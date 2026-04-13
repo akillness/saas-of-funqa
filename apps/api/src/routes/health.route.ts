@@ -4,8 +4,8 @@ import { config } from "../config.js";
 import { getRagStats } from "../services/rag.service.js";
 
 export function registerHealthRoute(app: Express) {
-  app.get("/v1/health", (_req, res) => {
-    const stats = getRagStats();
+  app.get("/v1/health", async (_req, res) => {
+    const stats = await getRagStats();
     const payload = HealthResponseSchema.parse({
       status: "ok",
       timestamp: new Date().toISOString(),

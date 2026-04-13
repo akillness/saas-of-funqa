@@ -10,6 +10,15 @@ import { getRagStore, resetRagStore, saveRagArtifacts } from "@funqa/db";
 import type { IngestRequest, SearchRequest } from "@funqa/contracts";
 import { config } from "../config.js";
 import { runOptimizedPipeline } from "./rag-optimization.service.js";
+import {
+  getFirestoreRagDocuments,
+  getFirestoreRagChunkCount,
+  saveFirestoreRagArtifacts,
+  resetFirestoreRag
+} from "../repositories/firestore-rag-store.repository.js";
+import { db } from "../firebase.js";
+
+const useFirestore = config.ragStorePath === "firestore";
 
 function pipelineDocuments(tenantId: string, documents: IngestRequest["documents"]) {
   const extractedDocuments: ExtractedDocument[] = [];
@@ -32,7 +41,14 @@ function pipelineDocuments(tenantId: string, documents: IngestRequest["documents
 
 export async function ingestDocuments(input: IngestRequest) {
   const { extractedDocuments, embeddedChunks } = pipelineDocuments(input.tenantId, input.documents);
-  const store = saveRagArtifacts(config.ragStorePath, input.tenantId, extractedDocuments, embeddedChunks);
+
+  let storeUpdatedAt: string;
+  if (useFirestore) {
+    storeUpdatedAt = await saveFirestoreRagArtifacts(input.tenantId, extractedDocuments, embeddedChunks);
+  } else {
+    const store = saveRagArtifacts(config.ragStorePath, input.tenantId, extractedDocuments, embeddedChunks);
+    storeUpdatedAt = store.updatedAt ?? new Date().toISOString();
+  }
 
   return {
     jobId: `ingest_${Date.now()}`,
@@ -41,20 +57,34 @@ export async function ingestDocuments(input: IngestRequest) {
     chunkCount: embeddedChunks.length,
     embeddingModel: `${config.embeddingModelId}:local-hash`,
     extractionMode: "heuristic-local" as const,
-    storeUpdatedAt: store.updatedAt ?? new Date().toISOString()
+    storeUpdatedAt
   };
 }
 
 export async function searchDocuments(input: SearchRequest) {
-  const store = getRagStore(config.ragStorePath);
-  const scopedDocuments = store.documents
-    .filter((document) => document.tenantId === input.tenantId)
-    .map((document) => ({
-      id: document.id,
-      text: document.text,
-      mimeType: document.mimeType,
-      sourceUrl: document.sourceUrl
+  let scopedDocuments: Array<{ id: string; text: string; mimeType: string; sourceUrl?: string }>;
+  let totalDocuments: number;
+  let totalChunks: number;
+
+  if (useFirestore) {
+    const storedDocs = await getFirestoreRagDocuments(input.tenantId);
+    scopedDocuments = storedDocs.map((d) => ({
+      id: d.id,
+      text: d.text,
+      mimeType: d.mimeType ?? "text/plain",
+      sourceUrl: d.sourceUrl
     }));
+    totalDocuments = storedDocs.length;
+    totalChunks = await getFirestoreRagChunkCount(input.tenantId);
+  } else {
+    const store = getRagStore(config.ragStorePath);
+    scopedDocuments = store.documents
+      .filter((d) => d.tenantId === input.tenantId)
+      .map((d) => ({ id: d.id, text: d.text, mimeType: d.mimeType, sourceUrl: d.sourceUrl }));
+    totalDocuments = store.documents.filter((d) => d.tenantId === input.tenantId).length;
+    totalChunks = store.chunks.filter((c) => c.tenantId === input.tenantId).length;
+  }
+
   const pipeline = await runOptimizedPipeline({
     tenantId: input.tenantId,
     query: input.query,
@@ -64,10 +94,11 @@ export async function searchDocuments(input: SearchRequest) {
     queryTransformMode: "rewrite-local",
     rerankMode: "heuristic"
   });
+
   const results = pipeline.reranked.map((chunk) => ({
     id: chunk.id,
     title:
-      store.documents.find((document) => document.id === chunk.documentId)?.title ??
+      pipeline.extracted.find((d) => d.id === chunk.documentId)?.title ??
       `Document ${chunk.documentId}`,
     snippet: chunk.text,
     sourcePath: chunk.documentId,
@@ -89,15 +120,27 @@ export async function searchDocuments(input: SearchRequest) {
     rerankMode: "heuristic" as const,
     results,
     citations: pipeline.answer.citations,
-    totalDocuments: store.documents.filter((document) => document.tenantId === input.tenantId).length,
-    totalChunks: store.chunks.filter((chunk) => chunk.tenantId === input.tenantId).length
+    totalDocuments,
+    totalChunks
   };
 }
 
-export function getRagStats() {
-  const store = getRagStore(config.ragStorePath);
-  const tenants = [...new Set(store.documents.map((document) => document.tenantId))];
+export async function getRagStats() {
+  if (useFirestore) {
+    const [docsSnap, chunksSnap] = await Promise.all([
+      db().collectionGroup("docs").count().get(),
+      db().collectionGroup("chunks").count().get()
+    ]);
+    return {
+      documentCount: docsSnap.data().count,
+      chunkCount: chunksSnap.data().count,
+      updatedAt: new Date().toISOString(),
+      tenants: [] as string[]
+    };
+  }
 
+  const store = getRagStore(config.ragStorePath);
+  const tenants = [...new Set(store.documents.map((d) => d.tenantId))];
   return {
     documentCount: store.documents.length,
     chunkCount: store.chunks.length,
@@ -106,7 +149,13 @@ export function getRagStats() {
   };
 }
 
-export function clearRagStore() {
+export async function clearRagStore(tenantId?: string) {
+  if (useFirestore) {
+    if (tenantId) {
+      await resetFirestoreRag(tenantId);
+    }
+    return getRagStats();
+  }
   resetRagStore(config.ragStorePath);
   return getRagStats();
 }
