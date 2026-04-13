@@ -21,6 +21,9 @@
     "rules": "infra/firebase/storage.rules"
   },
   "emulators": {
+    "functions": {
+      "port": 5001
+    },
     "apphosting": {
       "port": 5002
     },

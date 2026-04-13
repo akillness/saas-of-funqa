@@ -23,6 +23,8 @@ acceptance_criteria:
   - A local smoke test proves end-to-end ingest and search behavior without relying on hosted model calls.
   - App Hosting local development and deployment entrypoints exist for the monorepo web surface.
   - Search and admin surfaces consume live API data when the trusted backend is reachable, while preserving graceful fallback rendering.
+  - Default search quality path uses deterministic query transformation plus hybrid rerank before answer synthesis.
+  - A dedicated RAG inspection page exposes query, retrieve, rerank, answer, and eval stages as menu-addressable modules.
 ontology:
   users:
     roles:

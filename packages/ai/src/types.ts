@@ -38,6 +38,32 @@ export type RetrievedChunk = EmbeddedChunk & {
   score: number;
 };
 
+export type QueryTransformMode = "none" | "rewrite-local" | "hyde-local" | "hyde-genkit";
+
+export type QueryTransformResult = {
+  mode: QueryTransformMode;
+  inputQuery: string;
+  transformedQuery: string;
+  hypotheticalDocument?: string;
+  notes: string[];
+};
+
+export type HybridRetrievedChunk = RetrievedChunk & {
+  denseScore: number;
+  lexicalScore: number;
+  fusedScore: number;
+  denseRank: number;
+  lexicalRank: number;
+};
+
+export type RerankMode = "none" | "rrf" | "heuristic" | "genkit-score";
+
+export type RerankedChunk = HybridRetrievedChunk & {
+  rerankScore: number;
+  lexicalOverlap: number;
+  keywordHits: number;
+};
+
 export type AnswerBundle = {
   answer: string;
   citations: Array<{
@@ -48,4 +74,3 @@ export type AnswerBundle = {
     snippet: string;
   }>;
 };
-

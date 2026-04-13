@@ -90,6 +90,11 @@ export default function DocsPage() {
               </tr>
               <tr>
                 <td>POST</td>
+                <td>/v1/rag/inspect</td>
+                <td>Inspect query-transform, retrieve, rerank, answer, and eval steps</td>
+              </tr>
+              <tr>
+                <td>POST</td>
                 <td>/v1/provider-keys/:provider</td>
                 <td>Encrypt and store provider credentials</td>
               </tr>

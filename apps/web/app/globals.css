@@ -255,6 +255,11 @@ pre,
     rgba(7, 17, 27, 0.94);
 }
 
+.panel-inset {
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: none;
+}
+
 .panel-hero {
   background:
     linear-gradient(160deg, rgba(143, 228, 211, 0.14), rgba(255, 139, 94, 0.08)),
@@ -607,6 +612,36 @@ pre,
   align-items: start;
 }
 
+.rag-lab-layout {
+  display: grid;
+  grid-template-columns: 22rem minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.lab-sidebar {
+  position: sticky;
+  top: 6rem;
+  align-self: start;
+}
+
+.lab-menu-link {
+  display: block;
+  padding: 0.8rem 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  color: var(--muted);
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.lab-menu-link-active,
+.lab-menu-link:hover,
+.lab-menu-link:focus-visible {
+  color: var(--text);
+  border-color: var(--border-strong);
+  background: rgba(143, 228, 211, 0.08);
+}
+
 .docs-nav {
   position: sticky;
   top: 6rem;
@@ -658,6 +693,7 @@ pre,
   .mode-grid,
   .metric-grid,
   .feature-band,
+  .rag-lab-layout,
   .search-layout,
   .docs-layout,
   .auth-layout,
@@ -666,6 +702,7 @@ pre,
   }
 
   .docs-nav,
+  .lab-sidebar,
   .rail-panel,
   .inspector-panel {
     position: static;

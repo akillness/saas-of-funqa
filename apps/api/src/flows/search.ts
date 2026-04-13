@@ -12,6 +12,8 @@ const SearchFlowOutputSchema = z.object({
   query: z.string(),
   answer: z.string(),
   embeddingModel: z.string(),
+  queryTransformMode: z.enum(["none", "rewrite-local", "hyde-local", "hyde-genkit"]),
+  rerankMode: z.enum(["none", "rrf", "heuristic", "genkit-score"]),
   results: z.array(
     z.object({
       id: z.string(),

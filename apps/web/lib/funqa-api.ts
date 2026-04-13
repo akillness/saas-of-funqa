@@ -1,6 +1,7 @@
 import {
   HealthResponseSchema,
   MonitoringSummarySchema,
+  RagInspectResponseSchema,
   RagStatsResponseSchema,
   SearchResponseSchema
 } from "@funqa/contracts";
@@ -68,6 +69,27 @@ export async function searchWorkspace(query: string, tenantId = defaultTenantId,
       tenantId,
       query,
       topK
+    })
+  });
+}
+
+export async function inspectRagPipeline(input: {
+  query: string;
+  tenantId?: string;
+  topK?: number;
+  preRerankK?: number;
+  queryTransformMode?: "none" | "rewrite-local" | "hyde-local" | "hyde-genkit";
+  rerankMode?: "none" | "rrf" | "heuristic" | "genkit-score";
+}) {
+  return requestJson("/v1/rag/inspect", RagInspectResponseSchema, {
+    method: "POST",
+    body: JSON.stringify({
+      tenantId: input.tenantId ?? defaultTenantId,
+      query: input.query,
+      topK: input.topK ?? 5,
+      preRerankK: input.preRerankK ?? 8,
+      queryTransformMode: input.queryTransformMode ?? "rewrite-local",
+      rerankMode: input.rerankMode ?? "heuristic"
     })
   });
 }

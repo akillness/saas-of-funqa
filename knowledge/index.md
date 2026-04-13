@@ -10,6 +10,7 @@ This is the content-oriented map of the wiki. Read this file first before broad 
 ## Sources
 <!-- SOURCES:START -->
 - [[wiki/sources/firebase-app-hosting]]
+- [[wiki/sources/genkit-rag-evaluation]]
 - [[wiki/sources/genkit-firebase]]
 - [[wiki/sources/gemini-embeddings]]
 - [[wiki/sources/langextract]]
@@ -34,4 +35,5 @@ This is the content-oriented map of the wiki. Read this file first before broad 
 - [[wiki/reports/funqa-rag-platform]]
 - [[wiki/reports/live-apphosting-ui-verification]]
 - [[wiki/reports/modular-rag-plan]]
+- [[wiki/reports/rag-optimization-consensus]]
 <!-- REPORTS:END -->

@@ -163,7 +163,11 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
               <article className="panel answer-panel">
                 <div className="results-header">
                   <h3>Grounded answer</h3>
-                  <span className="pill pill-bright">{apiResponse.totalChunks} chunks searched</span>
+                  <div className="result-tags">
+                    <span className="pill pill-bright">{apiResponse.totalChunks} chunks searched</span>
+                    <span className="pill pill-subtle">{apiResponse.queryTransformMode}</span>
+                    <span className="pill pill-subtle">{apiResponse.rerankMode}</span>
+                  </div>
                 </div>
                 <p>{apiResponse.answer}</p>
               </article>

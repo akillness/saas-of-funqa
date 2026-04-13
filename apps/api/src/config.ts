@@ -16,3 +16,14 @@ export const config = {
   searchTopK: Number(process.env.SEARCH_TOP_K ?? 5),
   localAnswerModelId: "local-rag-answer-v1"
 };
+
+export function validateConfig(): void {
+  const missing: string[] = [];
+  if (!config.secretEncryptionKey) missing.push("SECRET_ENCRYPTION_KEY");
+  if (missing.length > 0) {
+    throw new Error(
+      `Missing required environment variables: ${missing.join(", ")}.\n` +
+      "Copy .env.example to .env and fill in the required values."
+    );
+  }
+}

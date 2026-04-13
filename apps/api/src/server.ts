@@ -5,6 +5,7 @@ import { registerHealthRoute } from "./routes/health.route.js";
 import { registerIngestRoute } from "./routes/ingest.route.js";
 import { registerMonitoringRoute } from "./routes/monitoring.route.js";
 import { registerProviderKeyRoute } from "./routes/provider-keys.route.js";
+import { registerRagRoute } from "./routes/rag.route.js";
 import { registerSearchRoute } from "./routes/search.route.js";
 
 export function createServer() {
@@ -17,6 +18,7 @@ export function createServer() {
   registerProviderKeyRoute(app);
   registerIngestRoute(app);
   registerSearchRoute(app);
+  registerRagRoute(app);
   registerMonitoringRoute(app);
 
   app.use((error: unknown, _req: express.Request, res: express.Response, _next: express.NextFunction) => {

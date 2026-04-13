@@ -13,4 +13,3 @@ export function retrieveChunks(query: string, chunks: EmbeddedChunk[], topK = 5)
     .sort((left, right) => right.score - left.score)
     .slice(0, topK);
 }
-

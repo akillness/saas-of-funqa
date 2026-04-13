@@ -29,6 +29,7 @@ export const metadata: Metadata = {
 const navItems = [
   { href: "/", label: "Overview" },
   { href: "/search", label: "Search" },
+  { href: "/rag-lab", label: "RAG Lab" },
   { href: "/admin", label: "Admin" },
   { href: "/docs", label: "API Docs" },
   { href: "/login", label: "Login" }

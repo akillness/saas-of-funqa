@@ -51,6 +51,26 @@ service cloud.firestore {
                     );
     }
 
+    // ── EGLab LLM Wiki: Knowledge vault entries ───────────────────
+    match /llm_wiki/{entryId} {
+      // Anyone can read wiki entries (public knowledge base)
+      allow read: if true;
+      // Admins can create/update/delete
+      allow write: if request.auth != null
+                   && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // ── RAG: 문서 저장소 (Admin SDK 전용 쓰기) ────────────────────
+    match /ragDocuments/{tenantId}/docs/{docId} {
+      allow read: if request.auth != null && request.auth.uid == tenantId;
+      allow write: if false;
+    }
+
+    match /ragChunks/{tenantId}/chunks/{chunkId} {
+      allow read: if request.auth != null && request.auth.uid == tenantId;
+      allow write: if false;
+    }
+
     // ── Default deny ─────────────────────────────────────────────
     match /{document=**} {
       allow read, write: if false;

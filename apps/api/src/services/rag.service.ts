@@ -1,16 +1,15 @@
 import {
-  answerFromChunks,
   chunkDocument,
   embedChunk,
   extractDocument,
   normalizeDocument,
-  retrieveChunks,
   type EmbeddedChunk,
   type ExtractedDocument
 } from "@funqa/ai";
 import { getRagStore, resetRagStore, saveRagArtifacts } from "@funqa/db";
 import type { IngestRequest, SearchRequest } from "@funqa/contracts";
 import { config } from "../config.js";
+import { runOptimizedPipeline } from "./rag-optimization.service.js";
 
 function pipelineDocuments(tenantId: string, documents: IngestRequest["documents"]) {
   const extractedDocuments: ExtractedDocument[] = [];
@@ -48,17 +47,32 @@ export async function ingestDocuments(input: IngestRequest) {
 
 export async function searchDocuments(input: SearchRequest) {
   const store = getRagStore(config.ragStorePath);
-  const scopedChunks = store.chunks.filter((chunk) => chunk.tenantId === input.tenantId);
-  const retrieved = retrieveChunks(input.query, scopedChunks, input.topK ?? config.searchTopK);
-  const answerBundle = answerFromChunks(input.query, retrieved);
-  const results = retrieved.map((chunk) => ({
+  const scopedDocuments = store.documents
+    .filter((document) => document.tenantId === input.tenantId)
+    .map((document) => ({
+      id: document.id,
+      text: document.text,
+      mimeType: document.mimeType,
+      sourceUrl: document.sourceUrl
+    }));
+  const pipeline = await runOptimizedPipeline({
+    tenantId: input.tenantId,
+    query: input.query,
+    documents: scopedDocuments,
+    topK: input.topK ?? config.searchTopK,
+    preRerankK: Math.max((input.topK ?? config.searchTopK) * 2, 6),
+    queryTransformMode: "rewrite-local",
+    rerankMode: "heuristic"
+  });
+  const results = pipeline.reranked.map((chunk) => ({
     id: chunk.id,
     title:
       store.documents.find((document) => document.id === chunk.documentId)?.title ??
       `Document ${chunk.documentId}`,
     snippet: chunk.text,
     sourcePath: chunk.documentId,
-    confidence: chunk.score >= 0.4 ? "high" : chunk.score >= 0.2 ? "medium" : "low"
+    confidence:
+      chunk.rerankScore >= 0.4 ? "high" : chunk.rerankScore >= 0.2 ? "medium" : "low"
   })) as Array<{
     id: string;
     title: string;
@@ -69,12 +83,14 @@ export async function searchDocuments(input: SearchRequest) {
 
   return {
     query: input.query,
-    answer: answerBundle.answer,
+    answer: pipeline.answer.answer,
     embeddingModel: `${config.embeddingModelId}:local-hash`,
+    queryTransformMode: "rewrite-local" as const,
+    rerankMode: "heuristic" as const,
     results,
-    citations: answerBundle.citations,
+    citations: pipeline.answer.citations,
     totalDocuments: store.documents.filter((document) => document.tenantId === input.tenantId).length,
-    totalChunks: scopedChunks.length
+    totalChunks: store.chunks.filter((chunk) => chunk.tenantId === input.tenantId).length
   };
 }
 
@@ -94,4 +110,3 @@ export function clearRagStore() {
   resetRagStore(config.ragStorePath);
   return getRagStats();
 }
-
