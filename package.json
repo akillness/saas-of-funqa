@@ -1,0 +1,27 @@
+{
+  "name": "saas-of-funqa",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "npm@10.9.3",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build:web",
+    "dev:apphosting": "npx firebase-tools@latest emulators:start --only apphosting,auth,firestore",
+    "dev": "npm run dev:web",
+    "dev:web": "npm --workspace @funqa/web run dev",
+    "dev:api": "npm --workspace @funqa/api run dev",
+    "build:web": "npm --workspace @funqa/web run build",
+    "deploy:apphosting": "npx firebase-tools@latest deploy --only apphosting",
+    "seed:demo": "tsx scripts/seed-demo-rag.ts",
+    "start": "npm --workspace @funqa/web run start",
+    "typecheck": "npm --workspace @funqa/api run typecheck && npm --workspace @funqa/web run typecheck",
+    "smoke:rag": "tsx scripts/smoke-rag.ts"
+  },
+  "devDependencies": {
+    "tsx": "4.21.0",
+    "typescript": "6.0.2"
+  }
+}

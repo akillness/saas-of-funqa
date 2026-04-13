@@ -1,0 +1,27 @@
+{
+  "name": "@funqa/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@funqa/ai": "0.1.0",
+    "@funqa/contracts": "0.1.0",
+    "@funqa/db": "0.1.0",
+    "@genkit-ai/google-genai": "1.32.0",
+    "express": "5.2.1",
+    "firebase-admin": "13.8.0",
+    "genkit": "1.32.0",
+    "zod": "4.3.6"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.7.2",
+    "tsx": "4.21.0",
+    "typescript": "6.0.2"
+  }
+}

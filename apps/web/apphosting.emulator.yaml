@@ -1,0 +1,11 @@
+env:
+  - variable: NEXT_PUBLIC_APP_NAME
+    value: funqa-local
+    availability:
+      - BUILD
+      - RUNTIME
+  - variable: NEXT_PUBLIC_API_BASE_URL
+    value: http://127.0.0.1:4300
+    availability:
+      - BUILD
+      - RUNTIME

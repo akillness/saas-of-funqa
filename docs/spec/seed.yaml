@@ -1,0 +1,56 @@
+goal: Build a production-oriented Firebase + Genkit RAG SaaS for personalized repositories.
+date_frozen: 2026-04-13
+constraints:
+  - Keep all trusted AI logic and secret handling server-side.
+  - Use Google login for user management.
+  - Provide three primary surfaces: search, admin, and public API docs.
+  - Use langextract in the ingestion/enrichment pipeline.
+  - Track LLM usage and cost in an internal monitoring dashboard.
+  - Persist provider API keys only in encrypted form.
+  - Preserve planning and research artifacts as markdown in-repo.
+assumptions:
+  - Repository starts nearly empty.
+  - Firebase service account JSON exists locally but must remain untracked.
+  - Initial hosted embedding default is Gemini embeddings, not an assumed Gemma 2 hosted endpoint.
+acceptance_criteria:
+  - Monorepo skeleton exists for web, api, and shared contracts.
+  - Search, admin, and docs pages behave as one premium workspace with a main task surface and a supporting context rail.
+  - API runtime exposes typed endpoints for health, ingest, search, provider-key save, monitoring summary, and rag stats/reset.
+  - Encryption boundary is documented and scaffolded in code.
+  - ClawTeam role split is documented and configured for Codex, Claude, and Gemini ownership.
+  - Survey and knowledge artifacts are stored in-repo.
+  - RAG is decomposed into independently testable process modules.
+  - A local smoke test proves end-to-end ingest and search behavior without relying on hosted model calls.
+  - App Hosting local development and deployment entrypoints exist for the monorepo web surface.
+  - Search and admin surfaces consume live API data when the trusted backend is reachable, while preserving graceful fallback rendering.
+ontology:
+  users:
+    roles:
+      - end-user
+      - admin
+      - operator
+      - developer
+  core_entities:
+    - repository
+    - source_document
+    - extracted_fact
+    - chunk
+    - embedding_record
+    - search_query
+    - citation
+    - provider_key
+    - usage_metric
+  surfaces:
+    - search_page
+    - admin_page
+    - api_docs_page
+  server_flows:
+    - ingest
+    - extract
+    - chunk
+    - embed
+    - index
+    - retrieve
+    - search
+    - answer
+    - monitor

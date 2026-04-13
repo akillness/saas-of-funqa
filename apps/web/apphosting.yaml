@@ -1,0 +1,18 @@
+runConfig:
+  minInstances: 0
+  maxInstances: 4
+  concurrency: 80
+  cpu: 1
+  memoryMiB: 512
+
+env:
+  - variable: NEXT_PUBLIC_APP_NAME
+    value: funqa
+    availability:
+      - BUILD
+      - RUNTIME
+  - variable: NEXT_PUBLIC_API_BASE_URL
+    value: https://api.funqa.example
+    availability:
+      - BUILD
+      - RUNTIME

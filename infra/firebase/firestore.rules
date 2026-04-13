@@ -1,0 +1,59 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Existing: Tenant provider keys ───────────────────────────
+    match /tenantProviderKeys/{document=**} {
+      allow read, write: if request.auth != null;
+    }
+
+    // ── EGLab Blog: User profiles ─────────────────────────────────
+    // Users can read/write their own document; role field is admin-only.
+    match /users/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow create: if request.auth != null && request.auth.uid == uid
+                    && request.resource.data.role == 'pending';
+      allow update: if request.auth != null && request.auth.uid == uid
+                    && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['role']);
+      // Admins can read/write any user document including role
+      allow read, write: if request.auth != null
+                         && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // ── EGLab Blog: Blog posts ────────────────────────────────────
+    match /blog_posts/{postId} {
+      // Anyone can read published posts (public blog)
+      allow read: if resource.data.status == 'published';
+
+      // Authenticated users can read their own drafts
+      allow read: if request.auth != null
+                  && resource.data.authorUid == request.auth.uid;
+
+      // Admins can read all posts
+      allow read: if request.auth != null
+                  && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+
+      // Writers and admins can create posts
+      allow create: if request.auth != null
+                    && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['writer', 'admin']
+                    && request.resource.data.authorUid == request.auth.uid;
+
+      // Authors can update their own posts; admins can update any
+      allow update: if request.auth != null && (
+                      resource.data.authorUid == request.auth.uid ||
+                      get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'
+                    );
+
+      // Authors can delete their own posts; admins can delete any
+      allow delete: if request.auth != null && (
+                      resource.data.authorUid == request.auth.uid ||
+                      get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'
+                    );
+    }
+
+    // ── Default deny ─────────────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
