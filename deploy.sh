@@ -7,6 +7,11 @@ cd "$ROOT_DIR"
 BACKEND_ID="${BACKEND_ID:-saas-of-funqa}"
 PROJECT_ID="${PROJECT_ID:-saas-of-funqa}"
 DEPLOY_TARGET="${1:-}"
+FIREBASE_TOKEN_ARGS=()
+
+if [[ -n "${FIREBASE_TOKEN:-}" ]]; then
+  FIREBASE_TOKEN_ARGS=(--token "$FIREBASE_TOKEN")
+fi
 
 if command -v firebase >/dev/null 2>&1; then
   FIREBASE_BIN=(firebase)
@@ -30,8 +35,8 @@ rm -rf apps/web/.next apps/web/.turbo
 
 if [[ "$DEPLOY_TARGET" == "--apphosting" ]]; then
   echo "Deploying App Hosting backend ${BACKEND_ID} to project ${PROJECT_ID}"
-  "${FIREBASE_BIN[@]}" deploy --project "$PROJECT_ID" --only "apphosting:${BACKEND_ID}"
+  "${FIREBASE_BIN[@]}" deploy --project "$PROJECT_ID" "${FIREBASE_TOKEN_ARGS[@]}" --only "apphosting:${BACKEND_ID}"
 else
   echo "Deploying Firebase Functions and App Hosting backend ${BACKEND_ID} to project ${PROJECT_ID}"
-  "${FIREBASE_BIN[@]}" deploy --project "$PROJECT_ID" --only "functions,apphosting:${BACKEND_ID}"
+  "${FIREBASE_BIN[@]}" deploy --project "$PROJECT_ID" "${FIREBASE_TOKEN_ARGS[@]}" --only "functions,apphosting:${BACKEND_ID}"
 fi

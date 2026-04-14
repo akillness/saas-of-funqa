@@ -11,11 +11,17 @@ jobs:
     needs: []
 
     env:
+      BACKEND_ID: saas-of-funqa
+      PROJECT_ID: saas-of-funqa
+      APP_HOSTING_URL: https://saas-of-funqa--saas-of-funqa.us-east4.hosted.app
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
       PORT: 4300
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       SECRET_ENCRYPTION_KEY: ${{ secrets.SECRET_ENCRYPTION_KEY }}
       SECRET_ENCRYPTION_KEY_VERSION: v1
-      EMBEDDING_MODEL_ID: gemini-embedding-001
+      EMBEDDING_MODEL_ID: gemini-embedding-2-preview
+      EMBEDDING_OUTPUT_DIMENSION: 1536
+      RAG_LIVE_EMBEDDINGS: 1
       SEARCH_TOP_K: 5
       RAG_STORE_PATH: ./.runtime/rag-store.json
 
@@ -39,4 +45,18 @@ jobs:
         run: npm run build:web
 
       - name: Deploy to Firebase App Hosting
-        run: npx firebase-tools@latest deploy --only apphosting:funqa-web --project saas-of-funqa --token "${{ secrets.FIREBASE_TOKEN }}"
+        run: ./deploy.sh --apphosting
+
+      - name: Verify hosted app responds
+        run: |
+          for attempt in {1..12}; do
+            status="$(curl -sS -o /dev/null -w '%{http_code}' "$APP_HOSTING_URL" || true)"
+            if [ "$status" = "200" ]; then
+              echo "Hosted app responded with HTTP 200"
+              exit 0
+            fi
+            echo "Attempt $attempt: status=$status"
+            sleep 10
+          done
+          echo "Hosted app did not return HTTP 200 in time"
+          exit 1

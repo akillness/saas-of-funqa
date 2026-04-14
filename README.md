@@ -273,6 +273,8 @@ push / PR → Install → Typecheck → Build
 push(main) → CI 통과 → Deploy to Firebase App Hosting
 ```
 
+현재 GitHub Actions 배포 워크플로는 App Hosting backend `saas-of-funqa`를 대상으로 `./deploy.sh --apphosting`를 실행하고, 배포 직후 hosted URL의 `HTTP 200` 응답까지 확인합니다.
+
 **필요한 GitHub Secrets:**
 
 | Secret | 설명 |
