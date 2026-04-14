@@ -1,7 +1,6 @@
 import { RagInspectRequestSchema, RagInspectResponseSchema } from "@funqa/contracts";
-import { getRagStore } from "@funqa/db";
 import type { Express } from "express";
-import { config } from "../config.js";
+import { getRagInspectionChunks, getRagInspectionDocuments } from "../services/rag.service.js";
 import { inspectOptimizedPipeline } from "../services/rag-optimization.service.js";
 
 const defaultLabDocuments = [
@@ -25,15 +24,10 @@ export function registerRagRoute(app: Express) {
   app.post("/v1/rag/inspect", async (req, res, next) => {
     try {
       const parsed = RagInspectRequestSchema.parse(req.body);
-      const store = getRagStore(config.ragStorePath);
-      const tenantDocuments = store.documents
-        .filter((document) => document.tenantId === parsed.tenantId)
-        .map((document) => ({
-          id: document.id,
-          text: document.text,
-          mimeType: document.mimeType,
-          sourceUrl: document.sourceUrl
-        }));
+      const [tenantDocuments, tenantChunks] = await Promise.all([
+        getRagInspectionDocuments(parsed.tenantId),
+        getRagInspectionChunks(parsed.tenantId)
+      ]);
 
       const result = await inspectOptimizedPipeline({
         ...parsed,
@@ -42,7 +36,8 @@ export function registerRagRoute(app: Express) {
             ? parsed.documents
             : tenantDocuments.length > 0
               ? tenantDocuments
-              : defaultLabDocuments
+              : defaultLabDocuments,
+        chunks: parsed.documents && parsed.documents.length > 0 ? undefined : tenantChunks
       });
 
       res.json(RagInspectResponseSchema.parse(result));

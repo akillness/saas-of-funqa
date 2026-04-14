@@ -12,7 +12,7 @@ env:
       - BUILD
       - RUNTIME
   - variable: NEXT_PUBLIC_API_BASE_URL
-    value: https://api.funqa.example
+    value: https://asia-northeast3-saas-of-funqa.cloudfunctions.net/api
     availability:
       - BUILD
       - RUNTIME

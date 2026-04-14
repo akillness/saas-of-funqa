@@ -4,14 +4,18 @@ import type { ChunkRecord, ExtractedDocument } from "../types.js";
 type ChunkOptions = {
   tenantId: string;
   maxCharacters?: number;
+  overlap?: boolean;
 };
 
 export function chunkDocument(document: ExtractedDocument, options: ChunkOptions): ChunkRecord[] {
   const maxCharacters = options.maxCharacters ?? 260;
+  const useOverlap = options.overlap ?? true;
   const sentences = document.normalizedText.split(/(?<=[.!?])\s+/).filter(Boolean);
   const chunks: ChunkRecord[] = [];
   let buffer = "";
   let chunkIndex = 0;
+  let sentencesInBuffer = 0;
+  let lastSentence = "";
 
   const flush = () => {
     const text = buffer.trim();
@@ -29,7 +33,10 @@ export function chunkDocument(document: ExtractedDocument, options: ChunkOptions
       tokenCount: tokenize(text).length
     });
     chunkIndex += 1;
-    buffer = "";
+
+    const carryOverlap = useOverlap && sentencesInBuffer >= 2;
+    buffer = carryOverlap ? lastSentence : "";
+    sentencesInBuffer = carryOverlap ? 1 : 0;
   };
 
   for (const sentence of sentences) {
@@ -38,6 +45,8 @@ export function chunkDocument(document: ExtractedDocument, options: ChunkOptions
       flush();
     }
     buffer = `${buffer} ${sentence}`.trim();
+    sentencesInBuffer += 1;
+    lastSentence = sentence;
   }
 
   flush();

@@ -15,22 +15,16 @@ if [[ ! -d node_modules ]]; then
   npm install
 fi
 
-export PORT="${PORT:-4300}"
-export NEXT_PUBLIC_API_BASE_URL="${NEXT_PUBLIC_API_BASE_URL:-http://127.0.0.1:${PORT}}"
+if [[ -f .env ]]; then
+  set -a
+  source .env
+  set +a
+fi
 
-cleanup() {
-  local exit_code="$?"
-  if [[ -n "${API_PID:-}" ]]; then
-    kill "$API_PID" >/dev/null 2>&1 || true
-  fi
-  exit "$exit_code"
-}
+export NEXT_PUBLIC_API_BASE_URL="${NEXT_PUBLIC_API_BASE_URL:-http://127.0.0.1:5001/saas-of-funqa/asia-northeast3/api}"
 
-trap cleanup EXIT INT TERM
+echo "Building Firebase Functions bundle"
+npm run build:functions
 
-echo "Starting API on :${PORT}"
-npm run dev:api &
-API_PID="$!"
-
-echo "Starting Firebase App Hosting emulator on :5002"
-"${FIREBASE_BIN[@]}" emulators:start --only apphosting,auth,firestore
+echo "Starting Firebase emulators (App Hosting + Functions + Auth + Firestore)"
+"${FIREBASE_BIN[@]}" emulators:start --only apphosting,functions,auth,firestore

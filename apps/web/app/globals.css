@@ -43,6 +43,14 @@ body {
     linear-gradient(180deg, #09131e 0%, var(--bg) 50%, #041019 100%);
 }
 
+body[data-locale="ko"] {
+  font-family: var(--font-korean), var(--font-body), sans-serif;
+}
+
+html:lang(ko) body {
+  font-family: var(--font-body), "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+}
+
 body::before {
   content: "";
   position: fixed;
@@ -81,10 +89,18 @@ h2,
 h3 {
   margin: 0;
   font-family: var(--font-heading), sans-serif;
-  line-height: 0.98;
+  line-height: 1.04;
   letter-spacing: -0.03em;
   text-wrap: balance;
   scroll-margin-top: 7rem;
+}
+
+html:lang(ko) h1,
+html:lang(ko) h2,
+html:lang(ko) h3 {
+  font-family: var(--font-body), "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
 }
 
 p,
@@ -156,10 +172,19 @@ pre,
   box-shadow: var(--shadow);
 }
 
+.site-header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
 .brand-lockup {
   display: inline-flex;
   align-items: center;
   gap: 0.95rem;
+  min-width: 0;
   text-decoration: none;
 }
 
@@ -183,6 +208,11 @@ pre,
   letter-spacing: 0.02em;
 }
 
+html:lang(ko) .site-title {
+  font-family: var(--font-body), "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  letter-spacing: 0;
+}
+
 .nav-list,
 .bullet-list {
   margin: 0;
@@ -195,6 +225,14 @@ pre,
   gap: 0.65rem;
   list-style: none;
   padding-left: 0;
+}
+
+.site-header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .nav-list a,
@@ -223,6 +261,12 @@ pre,
   font-weight: 600;
 }
 
+.locale-switcher {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
 .eyebrow {
   display: inline-block;
   margin: 0 0 0.55rem;
@@ -231,6 +275,25 @@ pre,
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+body[data-locale="ko"] h1,
+body[data-locale="ko"] h2,
+body[data-locale="ko"] h3 {
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+body[data-locale="ko"] .eyebrow,
+body[data-locale="ko"] .metric-label {
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+html:lang(ko) .eyebrow,
+html:lang(ko) .metric-label {
+  letter-spacing: 0.03em;
+  text-transform: none;
 }
 
 .panel,
@@ -426,6 +489,12 @@ pre,
   letter-spacing: 0.02em;
 }
 
+.locale-switcher {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
 .check-chip,
 .pill-subtle,
 .segment {
@@ -533,8 +602,14 @@ pre,
   margin-top: 0.7rem;
 }
 
+.suggestion-chip {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
 .search-layout {
-  grid-template-columns: 18rem minmax(0, 1fr) 20rem;
+  grid-template-columns: minmax(15rem, 18rem) minmax(0, 1fr) minmax(16rem, 20rem);
   align-items: start;
 }
 
@@ -580,6 +655,33 @@ pre,
   transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
 }
 
+.result-card-button {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+
+.suggestion-chip {
+  cursor: pointer;
+  font: inherit;
+}
+
+.result-card-button {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
 .result-card-active {
   border-color: rgba(143, 228, 211, 0.24);
   background:
@@ -587,7 +689,8 @@ pre,
     var(--surface);
 }
 
-.result-card:hover {
+.result-card:hover,
+.result-card:focus-within {
   transform: translateY(-2px);
 }
 
@@ -608,13 +711,13 @@ pre,
 }
 
 .docs-layout {
-  grid-template-columns: 15rem minmax(0, 1fr) 16rem;
+  grid-template-columns: minmax(13rem, 15rem) minmax(0, 1fr) minmax(14rem, 16rem);
   align-items: start;
 }
 
 .rag-lab-layout {
   display: grid;
-  grid-template-columns: 22rem minmax(0, 1fr);
+  grid-template-columns: minmax(18rem, 22rem) minmax(0, 1fr);
   gap: 1rem;
 }
 
@@ -722,7 +825,17 @@ pre,
     flex-direction: column;
   }
 
+  .site-header-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
   .search-composer-actions {
     justify-items: start;
+  }
+
+  .site-header-actions {
+    width: 100%;
+    justify-content: flex-start;
   }
 }

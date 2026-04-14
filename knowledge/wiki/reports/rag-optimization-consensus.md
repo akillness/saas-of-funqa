@@ -28,6 +28,8 @@ The four-lane survey converged on one practical rule for this repository: keep t
 ## Implemented Result
 
 - Search now runs through deterministic query transformation and rerank before answer synthesis.
+- Search now reuses stored chunks and stored embeddings instead of re-chunking and re-embedding the full tenant corpus on every request.
+- Live embedding configuration now targets Gemini's latest multimodal embedding path, while smoke tests still pin the local deterministic path.
 - `/rag-lab` exposes menu-addressable modules for:
   - Query
   - Retrieve

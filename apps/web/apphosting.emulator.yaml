@@ -5,7 +5,7 @@ env:
       - BUILD
       - RUNTIME
   - variable: NEXT_PUBLIC_API_BASE_URL
-    value: http://127.0.0.1:4300
+    value: http://127.0.0.1:5001/saas-of-funqa/asia-northeast3/api
     availability:
       - BUILD
       - RUNTIME

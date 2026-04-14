@@ -5,23 +5,33 @@
   "packageManager": "npm@10.9.3",
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "packages/*",
+    "functions"
   ],
   "scripts": {
     "build": "npm run build:web",
-    "dev:apphosting": "npx firebase-tools@latest emulators:start --only apphosting,auth,firestore",
+    "build:functions": "node scripts/build-functions.mjs",
+    "dev:apphosting": "npm run build:functions && npx firebase-tools@latest emulators:start --only apphosting,functions,auth,firestore",
     "dev": "npm run dev:web",
     "dev:web": "npm --workspace @funqa/web run dev",
     "dev:api": "npm --workspace @funqa/api run dev",
-    "build:web": "npm --workspace @funqa/web run build",
+    "dev:functions": "npm run build:functions && npx firebase-tools@latest emulators:start --only functions,auth,firestore",
+    "build:web": "npm --prefix apps/web install --workspaces=false && npm --prefix apps/web run build",
     "deploy:apphosting": "npx firebase-tools@latest deploy --only apphosting",
+    "deploy:functions": "npm run build:functions && npx firebase-tools@latest deploy --only functions",
     "seed:demo": "tsx scripts/seed-demo-rag.ts",
+    "smoke:functions": "SECRET_ENCRYPTION_KEY=${SECRET_ENCRYPTION_KEY:-local-dev-secret-key-32-bytes} npm run build:functions && SECRET_ENCRYPTION_KEY=${SECRET_ENCRYPTION_KEY:-local-dev-secret-key-32-bytes} npx firebase-tools@latest emulators:exec --only functions,firestore \"node scripts/smoke-functions.mjs\"",
     "start": "npm --workspace @funqa/web run start",
     "typecheck": "npm --workspace @funqa/api run typecheck && npm --workspace @funqa/web run typecheck",
     "smoke:rag": "tsx scripts/smoke-rag.ts"
   },
   "devDependencies": {
+    "esbuild": "^0.25.9",
     "tsx": "4.21.0",
     "typescript": "6.0.2"
+  },
+  "dependencies": {
+    "firebase": "^12.12.0",
+    "firebase-admin": "^13.8.0"
   }
 }

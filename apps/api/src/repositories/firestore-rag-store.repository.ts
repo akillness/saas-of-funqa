@@ -12,6 +12,11 @@ export async function getFirestoreRagChunkCount(tenantId: string): Promise<numbe
   return snap.data().count;
 }
 
+export async function getFirestoreRagChunks(tenantId: string): Promise<EmbeddedChunk[]> {
+  const snap = await db().collection(`ragChunks/${tenantId}/chunks`).get();
+  return snap.docs.map((d) => d.data() as EmbeddedChunk);
+}
+
 export async function saveFirestoreRagArtifacts(
   tenantId: string,
   documents: ExtractedDocument[],

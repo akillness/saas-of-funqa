@@ -4,7 +4,7 @@ import {
   RagInspectResponseSchema,
   RagStatsResponseSchema,
   SearchResponseSchema
-} from "@funqa/contracts";
+} from "./funqa-contracts";
 import type { z } from "zod";
 
 type SearchResponse = z.infer<typeof SearchResponseSchema>;

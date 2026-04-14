@@ -1,15 +1,45 @@
 {
   "apphosting": [
     {
-      "backendId": "funqa-web",
+      "backendId": "saas-of-funqa",
       "rootDir": "apps/web",
       "ignore": [
+        ".git",
+        ".omc",
+        ".omx",
+        ".runtime",
+        ".survey",
+        "google-cloud-sdk",
+        "google-cloud-cli-darwin-arm.tar.gz",
+        "apps/web/.next",
+        "apps/web/.turbo",
         "node_modules",
         ".next",
         "dist",
         "coverage",
         "firebase-debug.log",
         "firebase-debug.*.log"
+      ],
+      "alwaysDeployFromSource": true
+    }
+  ],
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "api",
+      "runtime": "nodejs20",
+      "ignore": [
+        "node_modules",
+        ".git",
+        ".env",
+        ".env.*",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "src",
+        ".runtime"
+      ],
+      "predeploy": [
+        "npm run build:functions"
       ]
     }
   ],

@@ -1,5 +1,6 @@
 import { HealthResponseSchema } from "@funqa/contracts";
 import type { Express } from "express";
+import { getEmbeddingPath } from "@funqa/ai";
 import { config } from "../config.js";
 import { getRagStats } from "../services/rag.service.js";
 
@@ -9,7 +10,7 @@ export function registerHealthRoute(app: Express) {
     const payload = HealthResponseSchema.parse({
       status: "ok",
       timestamp: new Date().toISOString(),
-      embeddingModel: `${config.embeddingModelId}:local-hash`,
+      embeddingModel: config.liveEmbeddingsEnabled ? config.embeddingModelId : getEmbeddingPath("local"),
       rag: {
         storePath: config.ragStorePath,
         documentCount: stats.documentCount,

@@ -10,6 +10,8 @@ This is the content-oriented map of the wiki. Read this file first before broad 
 ## Sources
 <!-- SOURCES:START -->
 - [[wiki/sources/firebase-app-hosting]]
+- [[wiki/sources/firebase-functions-monorepo]]
+- [[wiki/sources/firebase-web-config]]
 - [[wiki/sources/genkit-rag-evaluation]]
 - [[wiki/sources/genkit-firebase]]
 - [[wiki/sources/gemini-embeddings]]
@@ -33,7 +35,10 @@ This is the content-oriented map of the wiki. Read this file first before broad 
 ## Reports
 <!-- REPORTS:START -->
 - [[wiki/reports/funqa-rag-platform]]
+- [[wiki/reports/apphosting-deploy-rollout-debug]]
+- [[wiki/reports/firebase-functions-integration]]
 - [[wiki/reports/live-apphosting-ui-verification]]
 - [[wiki/reports/modular-rag-plan]]
 - [[wiki/reports/rag-optimization-consensus]]
+- [[wiki/reports/rag-speed-accuracy-ui-refresh-2026-04-15]]
 <!-- REPORTS:END -->

@@ -1,9 +1,10 @@
 import assert from "node:assert/strict";
 import { once } from "node:events";
 import { AddressInfo } from "node:net";
-import { createServer } from "../apps/api/src/server.js";
 
 async function main() {
+  process.env.RAG_LIVE_EMBEDDINGS = "0";
+  const { createServer } = await import("../apps/api/src/server.js");
   const app = createServer();
   const server = app.listen(0);
   await once(server, "listening");
@@ -91,4 +92,3 @@ main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
-

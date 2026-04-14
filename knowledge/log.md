@@ -110,3 +110,84 @@ Each entry should list the files touched, the reason for the change, and any fol
   - Preserve the 4-lane survey conclusion that baseline quality should stay deterministic while HyDE and hosted rerank remain explicit branches.
 - Follow-up:
   - Add measured comparisons between baseline, HyDE, and hosted rerank after an eval dataset exists.
+
+## [2026-04-13] ingest | Firebase web config
+
+- Files touched:
+  - `raw/sources/firebase-web-config-2026-04-13.md`
+  - `wiki/sources/firebase-web-config.md`
+  - `index.md`
+- Reason:
+  - Preserve the owner-provided Firebase console web app settings as immutable source plus a reusable source note.
+- Follow-up:
+  - Wire Firebase Auth client flows and any analytics gating decisions back into this source note.
+
+## [2026-04-13] query | App Hosting deploy rollout debug
+
+- Files touched:
+  - `wiki/reports/apphosting-deploy-rollout-debug.md`
+  - `index.md`
+- Reason:
+  - Record the exact sequence of App Hosting deploy blockers and the current remaining `iam.serviceAccounts.actAs` requirement after rollout startup succeeded.
+- Follow-up:
+  - Grant `roles/iam.serviceAccountUser` on the compute service account to the deployment service account, then re-run `./deploy.sh`.
+
+## [2026-04-14] query | App Hosting rollout deep debug
+
+- Files touched:
+  - `wiki/reports/apphosting-deploy-rollout-debug.md`
+  - `log.md`
+- Reason:
+  - Update the rollout note after real archive builds `007` through `010` proved that IAM and source upload blockers were resolved, but App Hosting still fails on Next 16 monorepo packaging:
+    - plain `next build` fails in the App Hosting adapter override path with Turbopack workspace-root inference
+    - `next build --webpack` reaches Cloud Run but deployed revisions still crash with `Cannot find module 'next'`
+- Follow-up:
+  - Decide whether to keep pushing on App Hosting-specific bundle shaping or switch the web app to direct Cloud Run deployment.
+
+## [2026-04-14] query | App Hosting Next 15 runtime packaging regression
+
+- Files touched:
+  - `wiki/reports/apphosting-deploy-rollout-debug.md`
+  - `log.md`
+- Reason:
+  - Preserve the narrower post-Next-15 findings after deployment moved past workspace-lock failures:
+    - App Hosting archive builds `013`, `014`, and `015` succeeded on Next `15.2.9`
+    - deployed Cloud Run revisions still failed startup with `Cannot find module 'styled-jsx/package.json'`
+    - local standalone verification still returned `HTTP/1.1 200 OK`, including an isolated copied standalone tree without parent `node_modules`
+- Follow-up:
+  - Determine whether App Hosting's runtime publisher strips `.next/standalone/node_modules` after build, or bypass the current App Hosting packaging path with a direct Cloud Run deployment.
+
+## [2026-04-14] ingest | Firebase Functions monorepo source note
+
+- Files touched:
+  - `raw/sources/firebase-functions-setup-2026-04-14.md`
+  - `wiki/sources/firebase-functions-monorepo.md`
+  - `index.md`
+- Reason:
+  - Capture the official Firebase Functions runtime and emulator guidance that now shapes the deployable backend boundary for the monorepo.
+- Follow-up:
+  - Add production secret-management notes once Firebase Secret Manager or runtime environment configuration is finalized.
+
+## [2026-04-14] query | Firebase Functions integration
+
+- Files touched:
+  - `wiki/reports/firebase-functions-integration.md`
+  - `index.md`
+  - `log.md`
+- Reason:
+  - Persist the implementation and verification evidence for the new Functions deployment path so future backend changes reuse the same rollout assumptions.
+- Follow-up:
+  - Keep this report updated if the backend URL, region, or deployment workflow changes.
+
+## [2026-04-15] query | RAG speed accuracy UI refresh
+
+- Files touched:
+  - `wiki/reports/rag-speed-accuracy-ui-refresh-2026-04-15.md`
+  - `wiki/sources/gemini-embeddings.md`
+  - `wiki/reports/rag-optimization-consensus.md`
+  - `index.md`
+  - `log.md`
+- Reason:
+  - Persist the latest survey-backed RAG and UI refresh after the repo moved to stored-chunk reuse, live Gemini multimodal embeddings by default, bilingual search surfaces, and Playwriter verification.
+- Follow-up:
+  - Add measured eval results for baseline vs HyDE vs hosted rerank and keep the bilingual coverage list current as remaining low-priority screens are localized.

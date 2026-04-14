@@ -1,6 +1,16 @@
 import { fetchHealthSummary, fetchMonitoringSummary, fetchRagStats } from "../../lib/funqa-api";
+import { getDictionary, resolveLocale } from "../../lib/i18n";
 
-export default async function AdminPage() {
+type AdminPageProps = {
+  searchParams?: Promise<{
+    lang?: string;
+  }>;
+};
+
+export default async function AdminPage({ searchParams }: AdminPageProps) {
+  const params = await searchParams;
+  const locale = resolveLocale(params?.lang);
+  const t = getDictionary(locale);
   const [health, monitoring, stats] = await Promise.all([
     fetchHealthSummary(),
     fetchMonitoringSummary(),
@@ -9,56 +19,56 @@ export default async function AdminPage() {
 
   const metrics = [
     {
-      label: "Success Rate",
+      label: t.admin.metrics.successRate,
       value: `${((monitoring?.successRate ?? 0.992) * 100).toFixed(1)}%`,
       status: "ok",
-      delta: health?.status === "ok" ? "runtime healthy" : "needs review"
+      delta: health?.status === "ok" ? t.admin.metrics.runtimeHealthy : t.admin.metrics.needsReview
     },
     {
-      label: "Indexed Docs",
+      label: t.admin.metrics.indexedDocs,
       value: `${stats?.documentCount ?? 0}`,
       status: (stats?.documentCount ?? 0) > 0 ? "ok" : "warn",
-      delta: `${stats?.tenants.length ?? 0} tenants`
+      delta: `${stats?.tenants.length ?? 0} ${t.admin.metrics.tenantsSuffix}`
     },
     {
-      label: "Indexed Chunks",
+      label: t.admin.metrics.indexedChunks,
       value: `${stats?.chunkCount ?? 0}`,
       status: (stats?.chunkCount ?? 0) > 0 ? "ok" : "warn",
-      delta: stats?.updatedAt ? "updated recently" : "not ingested yet"
+      delta: stats?.updatedAt ? t.admin.metrics.updatedRecently : t.admin.metrics.notIngestedYet
     },
     {
-      label: "P95 Latency",
+      label: t.admin.metrics.p95Latency,
       value: `${monitoring?.p95LatencyMs ?? 840}ms`,
       status: (monitoring?.p95LatencyMs ?? 840) < 1000 ? "ok" : "warn",
-      delta: `$${(monitoring?.dailyCostUsd ?? 18.42).toFixed(2)} today`
+      delta: `$${(monitoring?.dailyCostUsd ?? 18.42).toFixed(2)} ${t.admin.metrics.todaySuffix}`
     }
   ];
 
   return (
     <div className="stack-lg">
       <section className="page-intro page-intro-wide">
-        <p className="eyebrow">Admin</p>
-        <h1>Operate ingestion, keys, users, and spend without turning the console into a form graveyard.</h1>
-        <p className="lede">
-          The console leads with signals, not configuration. Priority items stay above the fold,
-          drill-down data stays compact, and operators can see queue pressure and model cost in one glance.
-        </p>
+        <p className="eyebrow">{t.admin.eyebrow}</p>
+        <h1>{t.admin.title}</h1>
+        <p className="lede">{t.admin.lede}</p>
       </section>
 
       <section className="control-strip panel">
         <div>
-          <p className="metric-label">Window</p>
+          <p className="metric-label">{t.admin.windowLabel}</p>
           <div className="segmented-control" aria-label="Time window">
-            <span className="segment segment-active">24h</span>
-            <span className="segment">7d</span>
-            <span className="segment">30d</span>
+            {t.admin.windows.map((window, index) => (
+              <span className={index === 0 ? "segment segment-active" : "segment"} key={window}>
+                {window}
+              </span>
+            ))}
           </div>
         </div>
         <div className="check-grid">
-          <span className="check-chip">rollouts</span>
-          <span className="check-chip">queues</span>
-          <span className="check-chip">keys</span>
-          <span className="check-chip">usage</span>
+          {t.admin.chips.map((chip) => (
+            <span className="check-chip" key={chip}>
+              {chip}
+            </span>
+          ))}
         </div>
       </section>
 
@@ -67,66 +77,57 @@ export default async function AdminPage() {
           <article className={`metric-card status-${metric.status} metric-card-premium`} key={metric.label}>
             <p className="metric-label">{metric.label}</p>
             <p className="metric-value">{metric.value}</p>
-            <p className="microcopy">{metric.delta} vs previous window</p>
+            <p className="microcopy">{metric.delta} {t.admin.metrics.previousWindowSuffix}</p>
           </article>
         ))}
       </section>
 
       <section className="feature-band">
         <article className="panel">
-          <h2>Needs Attention</h2>
+          <h2>{t.admin.needsAttention}</h2>
           <div className="stack-sm">
             <div className="event-item">
-              <span className="pill pill-bright">Priority</span>
-              <p>Provider key rotation policy still needs an enforced admin-only route guard.</p>
+              <span className="pill pill-bright">{t.admin.attentionItems.priority}</span>
+              <p>{t.admin.attentionItems.keyGuard}</p>
             </div>
             <div className="event-item">
-              <span className="pill pill-subtle">Queue</span>
+              <span className="pill pill-subtle">{t.admin.attentionItems.queue}</span>
               <p>
-                Current store has {stats?.documentCount ?? 0} documents and {stats?.chunkCount ?? 0} chunks.
+                {t.admin.attentionItems.queueSummaryPrefix} {stats?.documentCount ?? 0}{" "}
+                {t.admin.attentionItems.queueSummaryDocs} {stats?.chunkCount ?? 0}{" "}
+                {t.admin.attentionItems.queueSummaryChunks}
               </p>
             </div>
             <div className="event-item">
-              <span className="pill pill-subtle">Telemetry</span>
+              <span className="pill pill-subtle">{t.admin.attentionItems.telemetry}</span>
               <p>
-                Runtime reports {monitoring?.activeUsers ?? 12} active users and{" "}
-                {health?.embeddingModel ?? "gemini-embedding-001:local-hash"} as the current embedding path.
+                {t.admin.attentionItems.telemetryPrefix} {monitoring?.activeUsers ?? 12}{" "}
+                {t.admin.attentionItems.telemetryUsers}{" "}
+                {health?.embeddingModel ?? "gemini-embedding-2-preview"}{" "}
+                {t.admin.attentionItems.telemetryEmbedding}
               </p>
             </div>
           </div>
         </article>
         <article className="panel">
-          <h2>Operator Queue</h2>
+          <h2>{t.admin.operatorQueue}</h2>
           <table className="data-table">
             <caption className="sr-only">Operator queue</caption>
             <thead>
               <tr>
-                <th scope="col">Area</th>
-                <th scope="col">Signal</th>
-                <th scope="col">Owner</th>
+                <th scope="col">{t.admin.queueTable.area}</th>
+                <th scope="col">{t.admin.queueTable.signal}</th>
+                <th scope="col">{t.admin.queueTable.owner}</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Ingestion</td>
-                <td>Retry stalled repository sync</td>
-                <td>Ops</td>
-              </tr>
-              <tr>
-                <td>Users</td>
-                <td>Review pending admin invite</td>
-                <td>Admin</td>
-              </tr>
-              <tr>
-                <td>Usage</td>
-                <td>Inspect cost spike on search flow</td>
-                <td>PM</td>
-              </tr>
-              <tr>
-                <td>Deploy</td>
-                <td>Verify App Hosting rollout health after local smoke</td>
-                <td>Platform</td>
-              </tr>
+              {t.admin.queueTable.rows.map(([area, signal, owner]) => (
+                <tr key={`${area}-${signal}`}>
+                  <td>{area}</td>
+                  <td>{signal}</td>
+                  <td>{owner}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </article>

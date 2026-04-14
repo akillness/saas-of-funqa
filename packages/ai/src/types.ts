@@ -32,6 +32,8 @@ export type ChunkRecord = {
 
 export type EmbeddedChunk = ChunkRecord & {
   embedding: number[];
+  embeddingMode: "local" | "live";
+  embeddingModel: string;
 };
 
 export type RetrievedChunk = EmbeddedChunk & {

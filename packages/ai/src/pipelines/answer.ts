@@ -1,10 +1,16 @@
-import type { AnswerBundle, RetrievedChunk } from "../types.js";
+import type { AnswerBundle, RerankedChunk, RetrievedChunk } from "../types.js";
+
+type AnswerChunk = RetrievedChunk | RerankedChunk;
 
 function sentenceCase(value: string) {
   return value.charAt(0).toUpperCase() + value.slice(1);
 }
 
-export function answerFromChunks(query: string, chunks: RetrievedChunk[]): AnswerBundle {
+function resolveCitationScore(chunk: AnswerChunk) {
+  return "rerankScore" in chunk ? chunk.rerankScore : chunk.score;
+}
+
+export function answerFromChunks(query: string, chunks: AnswerChunk[]): AnswerBundle {
   const topChunks = chunks.slice(0, 3);
   const answer =
     topChunks.length > 0
@@ -15,7 +21,7 @@ export function answerFromChunks(query: string, chunks: RetrievedChunk[]): Answe
     chunkId: chunk.id,
     documentId: chunk.documentId,
     sourcePath: chunk.documentId,
-    score: Number(chunk.score.toFixed(4)),
+    score: Number(resolveCitationScore(chunk).toFixed(4)),
     snippet: chunk.text.slice(0, 220)
   }));
 
@@ -24,4 +30,3 @@ export function answerFromChunks(query: string, chunks: RetrievedChunk[]): Answe
     citations
   };
 }
-

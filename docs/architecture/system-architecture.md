@@ -79,13 +79,15 @@ This keeps the whole RAG path testable before hosted model integrations are swit
 
 ## Embeddings Decision
 
-As of April 13, 2026, Google's official embeddings documentation exposes `gemini-embedding-001`.
+As of April 15, 2026, Google's official Gemini API embeddings documentation exposes `gemini-embedding-2-preview` as the latest multimodal embedding path and keeps `gemini-embedding-001` as the stable text embedding path.
 Source: https://ai.google.dev/gemini-api/docs/embeddings
 
 Design implication:
 
 - Keep the embedding provider interface abstract.
-- Default the hosted implementation to Gemini embeddings.
+- Default the hosted implementation to Gemini multimodal embeddings.
+- Reuse stored chunk embeddings at query time instead of re-embedding the corpus on every search.
+- Use query/document task types and a configurable output dimensionality so latency and storage can be tuned without rewriting the adapter.
 - Keep room for a Gemma-family local adapter later, but do not model Gemma 2 as the initial hosted embedding API.
 - Use a deterministic local hash embedding backend for smoke tests and offline validation.
 

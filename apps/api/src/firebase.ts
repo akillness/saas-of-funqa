@@ -1,6 +1,6 @@
 import { existsSync, readFileSync } from "node:fs";
 import { initializeApp, cert, getApps, getApp, type App } from "firebase-admin/app";
-import { getFirestore } from "firebase-admin/firestore";
+import { getFirestore, type Firestore } from "firebase-admin/firestore";
 import { config } from "./config.js";
 
 export function getFirebaseApp(): App {
@@ -18,7 +18,13 @@ export function getFirebaseApp(): App {
   return initializeApp();
 }
 
-export function db() {
-  return getFirestore(getFirebaseApp());
-}
+let firestoreInstance: Firestore | undefined;
 
+export function db(): Firestore {
+  if (!firestoreInstance) {
+    firestoreInstance = getFirestore(getFirebaseApp());
+    firestoreInstance.settings({ ignoreUndefinedProperties: true });
+  }
+
+  return firestoreInstance;
+}

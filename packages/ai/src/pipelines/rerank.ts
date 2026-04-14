@@ -6,19 +6,49 @@ import type {
   RetrievedChunk
 } from "../types.js";
 
-function lexicalScore(query: string, chunk: RetrievedChunk) {
+function lexicalScore(query: string, chunk: RetrievedChunk, allChunks?: RetrievedChunk[]) {
   const queryTokens = tokenize(query).filter((token) => token.length >= 3);
-  const chunkTokens = new Set(tokenize(chunk.text));
-  const overlap = queryTokens.filter((token) => chunkTokens.has(token));
 
-  return {
-    overlap,
-    score:
-      queryTokens.length > 0
-        ? overlap.length / queryTokens.length +
-          (chunk.text.toLowerCase().includes(query.toLowerCase()) ? 0.25 : 0)
-        : 0
-  };
+  if (queryTokens.length === 0) {
+    return { overlap: [] as string[], score: 0 };
+  }
+
+  const chunkTokens = tokenize(chunk.text);
+  const chunkTokenSet = new Set(chunkTokens);
+  const overlap = queryTokens.filter((token) => chunkTokenSet.has(token));
+
+  if (!allChunks || allChunks.length === 0) {
+    const simpleScore =
+      overlap.length / queryTokens.length +
+      (chunk.text.toLowerCase().includes(query.toLowerCase()) ? 0.25 : 0);
+    return { overlap, score: simpleScore };
+  }
+
+  const N = allChunks.length;
+  const dfMap = new Map<string, number>();
+  for (const token of queryTokens) {
+    if (!dfMap.has(token)) {
+      let df = 0;
+      for (const c of allChunks) {
+        if (c.text.toLowerCase().includes(token)) {
+          df += 1;
+        }
+      }
+      dfMap.set(token, df);
+    }
+  }
+
+  let bm25Score = 0;
+  for (const token of queryTokens) {
+    const tf = chunkTokens.filter((t) => t === token).length / Math.max(chunk.tokenCount, 1);
+    const df = dfMap.get(token) ?? 0;
+    const idf = Math.log((N + 1) / (df + 1));
+    bm25Score += tf * idf;
+  }
+
+  const phraseBonus = chunk.text.toLowerCase().includes(query.toLowerCase()) ? 0.25 : 0;
+
+  return { overlap, score: bm25Score + phraseBonus };
 }
 
 export function hybridRetrieveChunks(query: string, chunks: RetrievedChunk[], topK = 5): HybridRetrievedChunk[] {
@@ -31,7 +61,7 @@ export function hybridRetrieveChunks(query: string, chunks: RetrievedChunk[], to
 
   const lexicalRanked = chunks
     .map((chunk) => {
-      const lexical = lexicalScore(query, chunk);
+      const lexical = lexicalScore(query, chunk, chunks);
       return {
         ...chunk,
         lexicalScore: lexical.score

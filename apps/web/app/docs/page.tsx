@@ -1,22 +1,25 @@
-const sections = [
-  "overview",
-  "auth",
-  "quickstart",
-  "endpoints",
-  "errors",
-  "limits"
-];
+import { getDictionary, resolveLocale } from "../../lib/i18n";
 
-export default function DocsPage() {
+type DocsPageProps = {
+  searchParams?: Promise<{
+    lang?: string;
+  }>;
+};
+
+export default async function DocsPage({ searchParams }: DocsPageProps) {
+  const params = await searchParams;
+  const locale = resolveLocale(params?.lang);
+  const t = getDictionary(locale);
+
   return (
     <div className="docs-layout">
       <aside className="panel docs-nav">
-        <h2>API Docs</h2>
-        <nav aria-label="API sections">
+        <h2>{t.docs.title}</h2>
+        <nav aria-label={t.docs.navLabel}>
           <ul className="bullet-list compact-list">
-            {sections.map((section) => (
-              <li key={section}>
-                <a href={`#${section}`}>{section}</a>
+            {t.docs.sections.map((section) => (
+              <li key={section.id}>
+                <a href={`#${section.id}`}>{section.label}</a>
               </li>
             ))}
           </ul>
@@ -25,12 +28,9 @@ export default function DocsPage() {
 
       <article className="panel docs-article">
         <header className="stack-sm">
-          <p className="eyebrow">Public API Docs</p>
-          <h1>Authenticate, ingest content, and retrieve grounded answers from one server boundary.</h1>
-          <p className="lede">
-            Start with Google-authenticated workspace access, then use task-first endpoints for
-            ingest, search, and provider-key administration.
-          </p>
+          <p className="eyebrow">{t.docs.eyebrow}</p>
+          <h1>{t.docs.heroTitle}</h1>
+          <p className="lede">{t.docs.lede}</p>
           <pre className="code-block">
             <code>{`curl -X POST https://api.example.com/v1/ingest \\
   -H "Authorization: Bearer <token>" \\
@@ -40,109 +40,67 @@ export default function DocsPage() {
         </header>
 
         <section id="overview" className="stack-sm">
-          <h2>Overview</h2>
-          <p>
-            The API accepts repository content, enriches it, stores encrypted provider-key
-            metadata, and returns search results with citations.
-          </p>
+          <h2>{t.docs.sections[0].title}</h2>
+          <p>{t.docs.overviewBody}</p>
         </section>
 
         <section id="auth" className="stack-sm">
-          <h2>Auth</h2>
-          <p>Use Google-authenticated workspace sessions. Admin-only routes must be server-guarded.</p>
+          <h2>{t.docs.sections[1].title}</h2>
+          <p>{t.docs.authBody}</p>
         </section>
 
         <section id="quickstart" className="stack-sm">
-          <h2>Quickstart</h2>
+          <h2>{t.docs.sections[2].title}</h2>
           <ol className="bullet-list ordered-list">
-            <li>Sign in with Google and obtain a workspace token.</li>
-            <li>Save provider credentials through the admin-only encrypted key endpoint.</li>
-            <li>Post ingest payloads, then search with URL-shareable query parameters.</li>
+            {t.docs.quickstartSteps.map((step) => (
+              <li key={step}>{step}</li>
+            ))}
           </ol>
         </section>
 
         <section id="endpoints" className="stack-sm">
-          <h2>Endpoints</h2>
+          <h2>{t.docs.sections[3].title}</h2>
           <table className="data-table">
             <caption className="sr-only">Endpoint reference</caption>
             <thead>
               <tr>
-                <th scope="col">Method</th>
-                <th scope="col">Path</th>
-                <th scope="col">Purpose</th>
+                <th scope="col">{t.docs.endpointsTable.method}</th>
+                <th scope="col">{t.docs.endpointsTable.path}</th>
+                <th scope="col">{t.docs.endpointsTable.purpose}</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>GET</td>
-                <td>/v1/health</td>
-                <td>Runtime health and embedding-model declaration</td>
-              </tr>
-              <tr>
-                <td>POST</td>
-                <td>/v1/ingest</td>
-                <td>Accept documents for extraction and indexing</td>
-              </tr>
-              <tr>
-                <td>POST</td>
-                <td>/v1/search</td>
-                <td>Return answer candidates with citations</td>
-              </tr>
-              <tr>
-                <td>POST</td>
-                <td>/v1/rag/inspect</td>
-                <td>Inspect query-transform, retrieve, rerank, answer, and eval steps</td>
-              </tr>
-              <tr>
-                <td>POST</td>
-                <td>/v1/provider-keys/:provider</td>
-                <td>Encrypt and store provider credentials</td>
-              </tr>
-              <tr>
-                <td>GET</td>
-                <td>/v1/monitoring/summary</td>
-                <td>Provide admin dashboard usage aggregates</td>
-              </tr>
-              <tr>
-                <td>GET</td>
-                <td>/v1/admin/rag/stats</td>
-                <td>Inspect local RAG store document and chunk counts</td>
-              </tr>
-              <tr>
-                <td>POST</td>
-                <td>/v1/admin/rag/reset</td>
-                <td>Reset the local verification store before smoke tests</td>
-              </tr>
+              {t.docs.endpointsTable.rows.map(([method, path, purpose]) => (
+                <tr key={`${method}-${path}`}>
+                  <td>{method}</td>
+                  <td>{path}</td>
+                  <td>{purpose}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </section>
 
         <section id="errors" className="stack-sm">
-          <h2>Errors</h2>
-          <p>Validation errors return field-level messages. Admin-only failures must explain the missing role or token.</p>
+          <h2>{t.docs.sections[4].title}</h2>
+          <p>{t.docs.errorsBody}</p>
         </section>
 
         <section id="limits" className="stack-sm">
-          <h2>Rate Limits</h2>
-          <p>Initial limits should be tenant-aware and enforced server-side. Document retries and backoff in the final API reference.</p>
+          <h2>{t.docs.sections[5].title}</h2>
+          <p>{t.docs.limitsBody}</p>
         </section>
       </article>
 
       <aside className="panel docs-nav">
-        <h2>Reference Notes</h2>
+        <h2>{t.docs.notesTitle}</h2>
         <div className="stack-sm">
-          <div>
-            <p className="metric-label">Auth</p>
-            <p className="microcopy">Google session required for workspace APIs.</p>
-          </div>
-          <div>
-            <p className="metric-label">Default model</p>
-            <p className="microcopy">`gemini-embedding-001`</p>
-          </div>
-          <div>
-            <p className="metric-label">Deployment</p>
-            <p className="microcopy">Next.js web on App Hosting, API on a separate trusted boundary.</p>
-          </div>
+          {t.docs.notes.map((note) => (
+            <div key={note.label}>
+              <p className="metric-label">{note.label}</p>
+              <p className="microcopy">{note.text}</p>
+            </div>
+          ))}
         </div>
       </aside>
     </div>

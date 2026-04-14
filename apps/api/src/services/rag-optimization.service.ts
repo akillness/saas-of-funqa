@@ -1,16 +1,17 @@
 import {
   answerFromChunks,
   chunkDocument,
-  embedChunk,
+  embedChunkAsync,
   embedText,
+  embedQueryTextAsync,
+  getEmbeddingPath,
   extractDocument,
   hybridRetrieveChunks,
   normalizeDocument,
   rerankChunks,
-  retrieveChunks,
+  scoreChunksWithVector,
   transformQueryLocally,
   type EmbeddedChunk,
-  type ExtractedDocument,
   type HybridRetrievedChunk,
   type QueryTransformMode,
   type QueryTransformResult,
@@ -121,12 +122,11 @@ async function rerankWithGenkit(
   }
 }
 
-function pipelineDocuments(tenantId: string, documents: IngestDocument[]) {
+async function pipelineDocuments(tenantId: string, documents: IngestDocument[]) {
   const normalized = documents.map(normalizeDocument);
   const extracted = normalized.map(extractDocument);
-  const chunks = extracted.flatMap((document) =>
-    chunkDocument(document, { tenantId }).map(embedChunk)
-  );
+  const chunkRecords = extracted.flatMap((document) => chunkDocument(document, { tenantId }));
+  const chunks = await Promise.all(chunkRecords.map((chunk) => embedChunkAsync(chunk)));
 
   return {
     normalized,
@@ -135,16 +135,39 @@ function pipelineDocuments(tenantId: string, documents: IngestDocument[]) {
   };
 }
 
+async function buildQueryVector(query: string, chunks: EmbeddedChunk[]) {
+  if (chunks.length === 0) {
+    return null;
+  }
+
+  const embeddingMode = chunks[0]?.embeddingMode ?? "local";
+  if (embeddingMode !== "live") {
+    return embedText(query);
+  }
+
+  return embedQueryTextAsync(query, {
+    modelId: chunks[0]?.embeddingModel ?? getEmbeddingPath("live")
+  });
+}
+
 export async function runOptimizedPipeline(input: {
   tenantId: string;
   query: string;
   documents: IngestDocument[];
+  chunks?: EmbeddedChunk[];
   topK: number;
   preRerankK: number;
   queryTransformMode: QueryTransformMode;
   rerankMode: RerankMode;
 }) {
-  const { normalized, extracted, chunks } = pipelineDocuments(input.tenantId, input.documents);
+  const fallbackPipeline =
+    input.chunks && input.chunks.length > 0
+      ? {
+          normalized: input.documents.map(normalizeDocument),
+          extracted: input.documents.map((document) => extractDocument(normalizeDocument(document))),
+          chunks: input.chunks
+        }
+      : await pipelineDocuments(input.tenantId, input.documents);
   const queryTransform =
     input.queryTransformMode === "hyde-genkit"
       ? await transformQueryWithGenkit(input.query)
@@ -153,8 +176,21 @@ export async function runOptimizedPipeline(input: {
           input.queryTransformMode === "none" ? "none" : input.queryTransformMode
         );
 
-  const denseRetrieved = retrieveChunks(queryTransform.transformedQuery, chunks, input.preRerankK);
-  const hybridRetrieved = hybridRetrieveChunks(queryTransform.transformedQuery, denseRetrieved, input.preRerankK);
+  const chunks = fallbackPipeline.chunks;
+  let queryVector: number[] | null = null;
+  try {
+    queryVector = await buildQueryVector(queryTransform.transformedQuery, chunks);
+  } catch {
+    queryVector = chunks[0]?.embeddingMode === "local" ? embedText(queryTransform.transformedQuery) : null;
+  }
+
+  const scoredChunks = queryVector
+    ? scoreChunksWithVector(queryVector, chunks)
+    : chunks.map((chunk) => ({
+        ...chunk,
+        score: 0
+      }));
+  const hybridRetrieved = hybridRetrieveChunks(queryTransform.transformedQuery, scoredChunks, input.preRerankK);
   const reranked =
     input.rerankMode === "genkit-score"
       ? await rerankWithGenkit(input.query, hybridRetrieved, input.topK)
@@ -162,8 +198,8 @@ export async function runOptimizedPipeline(input: {
   const answer = answerFromChunks(input.query, reranked);
 
   return {
-    normalized,
-    extracted,
+    normalized: fallbackPipeline.normalized,
+    extracted: fallbackPipeline.extracted,
     chunks,
     queryTransform,
     hybridRetrieved,
@@ -174,11 +210,16 @@ export async function runOptimizedPipeline(input: {
   };
 }
 
-export async function inspectOptimizedPipeline(input: RagInspectRequest) {
+export async function inspectOptimizedPipeline(
+  input: RagInspectRequest & {
+    chunks?: EmbeddedChunk[];
+  }
+) {
   const pipeline = await runOptimizedPipeline({
     tenantId: input.tenantId,
     query: input.query,
     documents: input.documents ?? [],
+    chunks: input.chunks,
     topK: input.topK,
     preRerankK: input.preRerankK,
     queryTransformMode: input.queryTransformMode,
@@ -222,7 +263,8 @@ export async function inspectOptimizedPipeline(input: RagInspectRequest) {
         notes: pipeline.queryTransform.notes
       },
       embed: {
-        queryVectorPreview: embedText(pipeline.queryTransform.transformedQuery).slice(0, 8),
+        queryVectorPreview: ((await buildQueryVector(pipeline.queryTransform.transformedQuery, pipeline.chunks)) ?? [])
+          .slice(0, 8),
         chunkVectorPreview: pipeline.chunks.slice(0, 3).map((chunk) => ({
           id: chunk.id,
           vector: chunk.embedding.slice(0, 8)
