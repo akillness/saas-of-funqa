@@ -231,6 +231,8 @@ export const koMessages = {
     releaseGateTitle: "최신 출시 게이트 리포트",
     releaseGateBody:
       "이 패널은 최신 고정 consensus-eval 리포트를 반영해 운영자가 RAG Lab 안에서 바로 출시 준비 상태를 판단할 수 있게 합니다.",
+    releaseGateSelectorLabel: "출시 리포트",
+    latestReportBadge: "최신",
     unknownState: "알 수 없음",
     noReasonCode: "없음",
     releaseGateCasesTitle: "출시 게이트 케이스 결과",

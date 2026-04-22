@@ -8,6 +8,7 @@ import { getDictionary, resolveLocale, withLocale } from "../../lib/i18n";
 type RagLabPageProps = {
   searchParams?: Promise<{
     q?: string;
+    report?: string;
     stage?: string;
     transform?: "none" | "rewrite-local" | "hyde-local" | "hyde-genkit";
     rerank?: "none" | "rrf" | "heuristic" | "genkit-score";
@@ -28,6 +29,11 @@ type ConsensusReleaseGateReport = ConsensusEvalReport & {
     minimumRetention: string;
   }>;
 };
+type ConsensusReleaseGateReportOption = {
+  entry: string;
+  mtimeMs: number;
+  report: ConsensusReleaseGateReport;
+};
 
 const consensusReportRelativePath = path.join(
   "knowledge",
@@ -43,7 +49,7 @@ function formatPercent(value: number) {
   return `${(value * 100).toFixed(1)}%`;
 }
 
-async function loadConsensusReleaseGateReport(): Promise<ConsensusReleaseGateReport | null> {
+async function loadConsensusReleaseGateReports(): Promise<ConsensusReleaseGateReportOption[]> {
   const candidateDirectories = [
     path.resolve(process.cwd(), consensusReportRelativePath),
     path.resolve(process.cwd(), "..", consensusReportRelativePath),
@@ -70,25 +76,34 @@ async function loadConsensusReleaseGateReport(): Promise<ConsensusReleaseGateRep
       );
 
       reportCandidates.sort((left, right) => right.stat.mtimeMs - left.stat.mtimeMs);
+      const parsedReports: ConsensusReleaseGateReportOption[] = [];
 
       for (const reportCandidate of reportCandidates) {
         try {
           const raw = JSON.parse(await readFile(reportCandidate.path, "utf8")) as Record<string, unknown>;
           const parsed = ConsensusEvalReportSchema.parse(raw);
-          return {
-            ...raw,
-            ...parsed
-          } as ConsensusReleaseGateReport;
+          parsedReports.push({
+            entry: reportCandidate.entry,
+            mtimeMs: reportCandidate.stat.mtimeMs,
+            report: {
+              ...raw,
+              ...parsed
+            } as ConsensusReleaseGateReport
+          });
         } catch {
           continue;
         }
+      }
+
+      if (parsedReports.length > 0) {
+        return parsedReports;
       }
     } catch {
       continue;
     }
   }
 
-  return null;
+  return [];
 }
 
 export default async function RagLabPage({ searchParams }: RagLabPageProps) {
@@ -96,6 +111,7 @@ export default async function RagLabPage({ searchParams }: RagLabPageProps) {
   const locale = resolveLocale(params?.lang);
   const t = getDictionary(locale);
   const query = params?.q?.trim() ?? t.ragLab.queryPlaceholder;
+  const requestedReport = params?.report?.trim() ?? "";
   const stage = resolveStage(params?.stage?.trim());
   const transform = params?.transform ?? "rewrite-local";
   const rerank = params?.rerank ?? "heuristic";
@@ -106,7 +122,10 @@ export default async function RagLabPage({ searchParams }: RagLabPageProps) {
     rerankMode: rerank
   });
   const latencyMs = Date.now() - startMs;
-  const releaseGateReport = await loadConsensusReleaseGateReport();
+  const releaseGateReports = await loadConsensusReleaseGateReports();
+  const selectedReleaseGateReportOption =
+    releaseGateReports.find((item) => item.entry === requestedReport) ?? releaseGateReports[0] ?? null;
+  const releaseGateReport = selectedReleaseGateReportOption?.report ?? null;
 
   return (
     <div className="rag-lab-layout">
@@ -140,6 +159,7 @@ export default async function RagLabPage({ searchParams }: RagLabPageProps) {
               </option>
             ))}
           </select>
+          {selectedReleaseGateReportOption ? <input name="report" type="hidden" value={selectedReleaseGateReportOption.entry} /> : null}
           <input name="stage" type="hidden" value={stage} />
           <button className="primary-button" type="submit">
             {t.ragLab.runInspection}
@@ -152,6 +172,7 @@ export default async function RagLabPage({ searchParams }: RagLabPageProps) {
               className={`lab-menu-link ${stage === item ? "lab-menu-link-active" : ""}`}
               href={withLocale("/rag-lab", locale, {
                 q: query,
+                report: selectedReleaseGateReportOption?.entry,
                 stage: item,
                 transform,
                 rerank
@@ -162,6 +183,30 @@ export default async function RagLabPage({ searchParams }: RagLabPageProps) {
             </Link>
           ))}
         </nav>
+
+        {releaseGateReports.length > 0 ? (
+          <section className="stack-sm">
+            <p className="field-label">{t.ragLab.releaseGateSelectorLabel}</p>
+            <div className="stack-sm">
+              {releaseGateReports.map((item, index) => (
+                <Link
+                  className={`lab-menu-link ${selectedReleaseGateReportOption?.entry === item.entry ? "lab-menu-link-active" : ""}`}
+                  href={withLocale("/rag-lab", locale, {
+                    q: query,
+                    report: item.entry,
+                    stage,
+                    transform,
+                    rerank
+                  })}
+                  key={item.entry}
+                >
+                  <span>{item.report.aggregate.buildSha}</span>
+                  {index === 0 ? <span className="pill pill-subtle">{t.ragLab.latestReportBadge}</span> : null}
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
       </aside>
 
       <section className="stack-lg">
@@ -202,6 +247,7 @@ export default async function RagLabPage({ searchParams }: RagLabPageProps) {
               <div className="result-tags">
                 <span className="pill pill-bright">{releaseGateReport.releaseState ?? t.ragLab.unknownState}</span>
                 <span className="pill pill-subtle">{releaseGateReport.aggregate.buildSha}</span>
+                <span className="pill pill-subtle">{selectedReleaseGateReportOption?.entry}</span>
               </div>
             </div>
 

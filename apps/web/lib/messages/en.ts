@@ -233,6 +233,8 @@ export const enMessages = {
     releaseGateTitle: "Latest release-gate report",
     releaseGateBody:
       "This panel reflects the latest frozen consensus-eval report so operators can judge launch readiness without leaving RAG Lab.",
+    releaseGateSelectorLabel: "Release reports",
+    latestReportBadge: "latest",
     unknownState: "unknown",
     noReasonCode: "none",
     releaseGateCasesTitle: "Release-gate case results",
