@@ -1,4 +1,4 @@
-import { access, readFile } from "node:fs/promises";
+import { access, readFile, readdir, stat } from "node:fs/promises";
 import path from "node:path";
 import Link from "next/link";
 import { ConsensusEvalReportSchema, type ConsensusEvalReport } from "@funqa/contracts";
@@ -32,8 +32,7 @@ type ConsensusReleaseGateReport = ConsensusEvalReport & {
 const consensusReportRelativePath = path.join(
   "knowledge",
   "wiki",
-  "reports",
-  "funqa-consensus-release-gate-baseline.json"
+  "reports"
 );
 
 function resolveStage(value?: string): StageId {
@@ -45,21 +44,45 @@ function formatPercent(value: number) {
 }
 
 async function loadConsensusReleaseGateReport(): Promise<ConsensusReleaseGateReport | null> {
-  const candidatePaths = [
+  const candidateDirectories = [
     path.resolve(process.cwd(), consensusReportRelativePath),
     path.resolve(process.cwd(), "..", consensusReportRelativePath),
     path.resolve(process.cwd(), "..", "..", consensusReportRelativePath)
   ];
 
-  for (const candidatePath of candidatePaths) {
+  for (const candidateDirectory of candidateDirectories) {
     try {
-      await access(candidatePath);
-      const raw = JSON.parse(await readFile(candidatePath, "utf8")) as Record<string, unknown>;
-      const parsed = ConsensusEvalReportSchema.parse(raw);
-      return {
-        ...raw,
-        ...parsed
-      } as ConsensusReleaseGateReport;
+      await access(candidateDirectory);
+      const entries = await readdir(candidateDirectory);
+      const reportCandidates = await Promise.all(
+        entries
+          .filter(
+            (entry) =>
+              entry.startsWith("funqa-consensus-release-gate-") &&
+              entry.endsWith(".json") &&
+              !entry.includes(".integrity.")
+          )
+          .map(async (entry) => ({
+            path: path.join(candidateDirectory, entry),
+            entry,
+            stat: await stat(path.join(candidateDirectory, entry))
+          }))
+      );
+
+      reportCandidates.sort((left, right) => right.stat.mtimeMs - left.stat.mtimeMs);
+
+      for (const reportCandidate of reportCandidates) {
+        try {
+          const raw = JSON.parse(await readFile(reportCandidate.path, "utf8")) as Record<string, unknown>;
+          const parsed = ConsensusEvalReportSchema.parse(raw);
+          return {
+            ...raw,
+            ...parsed
+          } as ConsensusReleaseGateReport;
+        } catch {
+          continue;
+        }
+      }
     } catch {
       continue;
     }
@@ -205,6 +228,14 @@ export default async function RagLabPage({ searchParams }: RagLabPageProps) {
               <div>
                 <dt>{t.ragLab.releaseGateDetails.datasetVersion}</dt>
                 <dd>{releaseGateReport.aggregate.datasetVersion}</dd>
+              </div>
+              <div>
+                <dt>{t.ragLab.releaseGateDetails.generatedAt}</dt>
+                <dd>{releaseGateReport.generatedAt}</dd>
+              </div>
+              <div>
+                <dt>{t.ragLab.releaseGateDetails.buildSha}</dt>
+                <dd>{releaseGateReport.aggregate.buildSha}</dd>
               </div>
               <div>
                 <dt>{t.ragLab.releaseGateDetails.evaluationStatus}</dt>

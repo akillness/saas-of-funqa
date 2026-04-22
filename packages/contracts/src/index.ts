@@ -359,6 +359,8 @@ export const ConsensusEvalCaseExecutionRecordSchema = z.object({
     graphCoverage: ConsensusEvalObservedGraphCoverageSchema,
     observedDecision: ConsensusEvalObservedDecisionSchema,
     observedAnswerMode: ConsensusEvalObservedAnswerModeSchema,
+    traceId: z.string().min(1).optional(),
+    evidenceBundleHandle: z.string().min(1).optional(),
     observedReasonCodes: z.array(z.string().min(1)),
     requiredReasonCodes: z.array(ConsensusEvalReasonCodeSchema),
     expectedDecision: ConsensusEvalExpectedDecisionSchema,
@@ -379,6 +381,10 @@ export const ConsensusEvalReportSchema = z.object({
   reportVersion: z.literal("funqa-consensus-report-v1"),
   generatedAt: z.string().min(1),
   datasetPath: z.string().min(1),
+  decisionId: z.string().min(1).optional(),
+  releaseState: z.enum(["clear-pass", "borderline-review", "auto-block"]).optional(),
+  artifactIntegrityStatus: z.enum(["verified", "failed", "unknown"]).optional(),
+  replayabilityStatus: z.enum(["replayable", "not-replayable", "unknown"]).optional(),
   runOptions: z.object({
     buildSha: z.string().min(1),
     topK: z.number().int().min(1),
@@ -402,6 +408,7 @@ export const ConsensusEvalReportSchema = z.object({
     failedConsensusCases: z.number().int().nonnegative(),
     overallAgreementRate: z.number().min(0).max(1),
     agreementThreshold: z.number().min(0.9).max(1),
+    graphCoreRetrievalCompliance: z.number().min(0).max(1).optional(),
     rawAgreement: z.object({
       mean: z.number().min(0).max(1),
       min: z.number().min(0).max(1),
@@ -422,6 +429,23 @@ export const ConsensusEvalReportSchema = z.object({
     failingCaseIds: z.array(z.string().min(1)),
     missingCaseIds: z.array(z.string().min(1))
   }),
+  retainedArtifacts: z
+    .array(
+      z.object({
+        artifactType: z.string().min(1),
+        handle: z.string().min(1),
+        minimumRetention: z.string().min(1)
+      })
+    )
+    .optional(),
+  auditChecks: z
+    .object({
+      packetHashVerification: z.enum(["pass", "fail"]),
+      buildSnapshotConsistency: z.enum(["pass", "fail"]),
+      blockedCaseEvidenceOnlyVerification: z.enum(["pass", "fail"]),
+      replayabilityFromRetainedArtifacts: z.enum(["pass", "fail"])
+    })
+    .optional(),
   cases: z.array(ConsensusEvalCaseExecutionRecordSchema)
 });
 export type ConsensusEvalReport = z.infer<typeof ConsensusEvalReportSchema>;

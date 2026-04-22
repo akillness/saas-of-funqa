@@ -230,7 +230,7 @@ export const enMessages = {
     traceTitle: "Trace",
     traceLabel: "Execution trace",
     releaseGateEyebrow: "Consensus release gate",
-    releaseGateTitle: "Latest release-gate baseline",
+    releaseGateTitle: "Latest release-gate report",
     releaseGateBody:
       "This panel reflects the latest frozen consensus-eval report so operators can judge launch readiness without leaving RAG Lab.",
     unknownState: "unknown",
@@ -245,6 +245,8 @@ export const enMessages = {
     },
     releaseGateDetails: {
       datasetVersion: "Dataset version",
+      generatedAt: "Generated at",
+      buildSha: "Build SHA",
       evaluationStatus: "Evaluation status",
       integrity: "Artifact integrity",
       replayability: "Replayability"

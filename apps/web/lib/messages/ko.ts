@@ -228,7 +228,7 @@ export const koMessages = {
     traceTitle: "트레이스",
     traceLabel: "실행 트레이스",
     releaseGateEyebrow: "합의 출시 게이트",
-    releaseGateTitle: "최신 출시 게이트 베이스라인",
+    releaseGateTitle: "최신 출시 게이트 리포트",
     releaseGateBody:
       "이 패널은 최신 고정 consensus-eval 리포트를 반영해 운영자가 RAG Lab 안에서 바로 출시 준비 상태를 판단할 수 있게 합니다.",
     unknownState: "알 수 없음",
@@ -243,6 +243,8 @@ export const koMessages = {
     },
     releaseGateDetails: {
       datasetVersion: "데이터셋 버전",
+      generatedAt: "생성 시각",
+      buildSha: "빌드 SHA",
       evaluationStatus: "평가 상태",
       integrity: "아티팩트 무결성",
       replayability: "재현 가능성"
