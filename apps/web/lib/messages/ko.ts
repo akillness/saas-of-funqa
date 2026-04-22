@@ -116,6 +116,10 @@ export const koMessages = {
     resultsSummaryEmpty: "근거 기반 매치를 확인하려면 자연어 질문으로 시작해 보세요.",
     inspectorSynced: "인스펙터 동기화",
     groundedAnswer: "근거 기반 답변",
+    evidenceOnlyTitle: "증거 전용 폴백",
+    evidenceOnlyBadge: "합의 미도달",
+    evidenceOnlyBody:
+      "FunQA가 관련 증거는 찾았지만 답변 게이트는 열리지 않았습니다. 검색 경로에 그래프 기반 합의가 연결되기 전까지는 아래의 정렬된 증거를 검토하세요.",
     chunksSearchedSuffix: "개 청크 검색",
     emptyTitle: "아직 강한 매치가 없습니다.",
     emptyBody:
@@ -302,7 +306,7 @@ export const koMessages = {
       rows: [
         ["GET", "/v1/health", "런타임 상태와 임베딩 모델 선언 반환"],
         ["POST", "/v1/ingest", "추출과 색인을 위한 문서 수락"],
-        ["POST", "/v1/search", "citation이 포함된 답변 후보 반환"],
+    ["POST", "/v1/search", "합의 기반 답변 또는 증거 전용 검색 결과 반환"],
         ["POST", "/v1/rag/inspect", "query-transform, retrieve, rerank, answer, eval 단계를 점검"],
         ["POST", "/v1/provider-keys/:provider", "provider 자격 증명을 암호화해 저장"],
         ["GET", "/v1/monitoring/summary", "관리자 대시보드용 사용량 요약 제공"],

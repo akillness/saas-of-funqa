@@ -69,6 +69,10 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         initialResults={sourceFiltered}
         initialSource={source}
         initialAnswer={apiResponse?.answer ?? null}
+        initialAnswerMode={apiResponse?.answerMode ?? null}
+        initialConsensusExplanation={apiResponse?.consensus.explanation ?? null}
+        initialConsensusReached={apiResponse?.consensus.reached ?? null}
+        initialRetrievalMode={apiResponse?.retrievalMode ?? null}
         locale={locale}
         totalChunks={apiResponse?.totalChunks}
         queryTransformMode={apiResponse?.queryTransformMode}

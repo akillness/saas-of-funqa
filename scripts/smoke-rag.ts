@@ -60,10 +60,14 @@ async function main() {
     const searchPayload = await searchResponse.json();
     assert.equal(searchPayload.totalDocuments, 2, "stored documents should be visible");
     assert.ok(searchPayload.results.length > 0, "search should return ranked results");
-    assert.ok(
-      searchPayload.answer.toLowerCase().includes("provider keys") ||
-        searchPayload.answer.toLowerCase().includes("admin"),
-      "answer should mention the matched policy"
+    assert.equal(searchPayload.answerMode, "evidence-only", "search should expose evidence-only mode");
+    assert.equal(searchPayload.answer, null, "search should suppress synthesized prose until consensus passes");
+    assert.equal(searchPayload.retrievalMode, "graph-core", "search should report graph-core retrieval intent");
+    assert.equal(searchPayload.consensus.reached, false, "consensus should remain closed in the scaffold");
+    assert.equal(
+      searchPayload.consensus.reason,
+      "graph-retrieval-pending",
+      "search should explain why evidence-only mode was selected"
     );
     assert.ok(searchPayload.citations.length > 0, "citations should be attached");
 
@@ -77,6 +81,7 @@ async function main() {
         {
           ingest: ingestPayload,
           searchTopResult: searchPayload.results[0],
+          answerMode: searchPayload.answerMode,
           citations: searchPayload.citations.length
         },
         null,

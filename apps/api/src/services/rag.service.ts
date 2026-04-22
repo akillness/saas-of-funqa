@@ -59,6 +59,18 @@ function resolveConfidence(
   return "low";
 }
 
+function buildConsensusScaffold() {
+  return {
+    gate: "document-graph-consensus" as const,
+    reached: false,
+    agreement: 0,
+    threshold: 0.9,
+    reason: "graph-retrieval-pending" as const,
+    explanation:
+      "Graph-path retrieval is not wired into the main search path yet, so FunQA returns evidence-only results until document and graph evidence can be judged together."
+  };
+}
+
 async function pipelineDocuments(tenantId: string, documents: IngestRequest["documents"]) {
   const pairs = documents.map((rawDocument) => {
     const normalized = normalizeDocument(rawDocument);
@@ -195,12 +207,16 @@ export async function searchDocuments(input: SearchRequest) {
 
   const searchResult = {
     query: input.query,
-    answer: pipeline.answer.answer,
+    answer: null,
+    answerMode: "evidence-only" as const,
+    retrievalMode: "graph-core" as const,
     embeddingModel: resolveChunkEmbeddingPath(pipeline.chunks),
     queryTransformMode: "rewrite-local" as const,
     rerankMode: "heuristic" as const,
+    consensus: buildConsensusScaffold(),
     results,
     citations: pipeline.answer.citations,
+    graphPaths: [],
     totalDocuments,
     totalChunks
   };

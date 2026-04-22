@@ -1,0 +1,101 @@
+{
+  "manifest": {
+    "datasetVersion": "fq_eval_fixture_v1",
+    "policyVersion": "funqa-consensus-rag-v1",
+    "agreementThreshold": 0.9,
+    "activeCaseIds": [
+      "fq_eval_fixture_case_01_graph_unavailable",
+      "fq_eval_fixture_case_02_member_boundary"
+    ]
+  },
+  "cases": [
+    {
+      "caseId": "fq_eval_fixture_case_01_graph_unavailable",
+      "datasetVersion": "fq_eval_fixture_v1",
+      "caseStatus": "active",
+      "releaseGateEligible": true,
+      "tenantId": "fixture-tenant",
+      "tenantScenario": "member-search",
+      "query": "What should FunQA return when graph coverage is unavailable for a knowledge query?",
+      "queryType": "relationship-heavy",
+      "sourceDocuments": [
+        {
+          "id": "graph-fallback-policy",
+          "text": "When graph coverage is unavailable, FunQA must fail closed into evidence-only mode and expose the supporting documents instead of fabricating a synthesized answer.",
+          "mimeType": "text/plain",
+          "requiredPassages": [
+            {
+              "text": "FunQA must fail closed into evidence-only mode",
+              "role": "supports",
+              "expectedClaimIds": [
+                "claim_graph_unavailable_evidence_only"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "operator-guidance",
+          "text": "The operator view should explain that graph support is unavailable by design for this evaluation fixture and keep the final answer gate closed.",
+          "mimeType": "text/plain",
+          "requiredPassages": [
+            {
+              "text": "graph support is unavailable by design",
+              "role": "supports",
+              "expectedClaimIds": [
+                "claim_graph_unavailable_evidence_only"
+              ]
+            }
+          ]
+        }
+      ],
+      "expectedGraphEvidence": {
+        "graphSupportExpectation": "unavailable-by-design",
+        "minimumSupportingPathCount": 0,
+        "mustIncludePathRoles": []
+      },
+      "expectedAgreementOutcome": {
+        "agreementClass": "graph-coverage-unavailable",
+        "expectedConsensusDecision": "evidence-only",
+        "expectedAnswerMode": "evidence-only",
+        "requiredReasonCodes": [
+          "graph-coverage-unavailable"
+        ]
+      }
+    },
+    {
+      "caseId": "fq_eval_fixture_case_02_member_boundary",
+      "datasetVersion": "fq_eval_fixture_v1",
+      "caseStatus": "active",
+      "releaseGateEligible": false,
+      "tenantId": "fixture-tenant",
+      "tenantScenario": "member-management-boundary",
+      "query": "List the workspace members for fixture-tenant.",
+      "queryType": "boundary",
+      "sourceDocuments": [
+        {
+          "id": "member-boundary-doc",
+          "text": "Member management requests are deterministic application reads and stay outside the knowledge-answer consensus gate.",
+          "mimeType": "text/plain",
+          "requiredPassages": [
+            {
+              "text": "stay outside the knowledge-answer consensus gate",
+              "role": "supports",
+              "expectedClaimIds": []
+            }
+          ]
+        }
+      ],
+      "expectedGraphEvidence": {
+        "graphSupportExpectation": "not-applicable-boundary",
+        "minimumSupportingPathCount": 0,
+        "mustIncludePathRoles": []
+      },
+      "expectedAgreementOutcome": {
+        "agreementClass": "not-applicable-boundary",
+        "expectedConsensusDecision": "non-applicable",
+        "expectedAnswerMode": "deterministic-response",
+        "requiredReasonCodes": []
+      }
+    }
+  ]
+}

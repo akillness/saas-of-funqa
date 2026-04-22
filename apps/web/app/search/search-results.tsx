@@ -9,6 +9,10 @@ type Props = {
   initialSource: string
   initialResults: readonly SearchResult[]
   initialAnswer: string | null
+  initialAnswerMode: "consensus-backed-answer" | "evidence-only" | null
+  initialConsensusExplanation: string | null
+  initialConsensusReached: boolean | null
+  initialRetrievalMode: string | null
   totalChunks?: number
   queryTransformMode?: string
   rerankMode?: string
@@ -40,6 +44,10 @@ export function SearchResults({
   initialSource,
   initialResults,
   initialAnswer,
+  initialAnswerMode,
+  initialConsensusExplanation,
+  initialConsensusReached,
+  initialRetrievalMode,
   totalChunks,
   queryTransformMode,
   rerankMode
@@ -168,6 +176,22 @@ export function SearchResults({
                 </div>
               </div>
               <p>{initialAnswer}</p>
+            </article>
+          ) : null}
+
+          {initialAnswerMode === "evidence-only" && initialConsensusReached === false ? (
+            <article className="panel answer-panel">
+              <div className="results-header">
+                <h3>{t.search.evidenceOnlyTitle}</h3>
+                <div className="result-tags">
+                  <span className="pill pill-subtle">{t.search.evidenceOnlyBadge}</span>
+                  {initialRetrievalMode ? (
+                    <span className="pill pill-subtle">{initialRetrievalMode}</span>
+                  ) : null}
+                </div>
+              </div>
+              <p>{t.search.evidenceOnlyBody}</p>
+              {initialConsensusExplanation ? <p className="microcopy">{initialConsensusExplanation}</p> : null}
             </article>
           ) : null}
 

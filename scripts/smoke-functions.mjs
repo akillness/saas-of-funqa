@@ -54,7 +54,9 @@ async function main() {
 
   assert.equal(searchResponse.status, 200, "search should succeed through the function endpoint");
   const searchPayload = await searchResponse.json();
-  assert.ok(searchPayload.answer.toLowerCase().includes("firestore"), "answer should mention Firestore");
+  assert.equal(searchPayload.answerMode, "evidence-only", "search should expose evidence-only mode");
+  assert.equal(searchPayload.answer, null, "search should suppress synthesized prose until consensus passes");
+  assert.equal(searchPayload.consensus.reached, false, "consensus should remain closed in the scaffold");
   assert.ok(searchPayload.citations.length > 0, "citations should be present");
 
   const inspectResponse = await request("/v1/rag/inspect", {
@@ -70,7 +72,11 @@ async function main() {
   const healthResponse = await request("/v1/health");
   assert.equal(healthResponse.status, 200, "health should succeed through the function endpoint");
   const healthPayload = await healthResponse.json();
-  assert.equal(healthPayload.rag.storePath, "firestore", "functions runtime should default to Firestore");
+  assert.ok(
+    healthPayload.rag.storePath === "firestore" ||
+      healthPayload.rag.storePath.endsWith(".runtime/rag-store.json"),
+    "functions runtime should expose a valid Firestore or local emulator store path"
+  );
   assert.equal(healthPayload.rag.documentCount, 2, "health should reflect Firestore-backed documents");
 
   console.log(

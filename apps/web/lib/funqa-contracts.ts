@@ -8,6 +8,12 @@ export const QueryTransformModeSchema = z.enum([
 ]);
 
 export const RerankModeSchema = z.enum(["none", "rrf", "heuristic", "genkit-score"]);
+export const SearchAnswerModeSchema = z.enum(["consensus-backed-answer", "evidence-only"]);
+export const ConsensusGateReasonSchema = z.enum([
+  "graph-retrieval-pending",
+  "insufficient-evidence",
+  "conflicting-evidence"
+]);
 
 const SearchResultSchema = z.object({
   id: z.string(),
@@ -19,10 +25,20 @@ const SearchResultSchema = z.object({
 
 export const SearchResponseSchema = z.object({
   query: z.string(),
-  answer: z.string(),
+  answer: z.string().nullable(),
+  answerMode: SearchAnswerModeSchema,
+  retrievalMode: z.enum(["graph-core"]),
   embeddingModel: z.string(),
   queryTransformMode: QueryTransformModeSchema,
   rerankMode: RerankModeSchema,
+  consensus: z.object({
+    gate: z.literal("document-graph-consensus"),
+    reached: z.boolean(),
+    agreement: z.number().min(0).max(1),
+    threshold: z.number().min(0).max(1),
+    reason: ConsensusGateReasonSchema,
+    explanation: z.string()
+  }),
   results: z.array(SearchResultSchema),
   citations: z.array(
     z.object({
@@ -31,6 +47,13 @@ export const SearchResponseSchema = z.object({
       sourcePath: z.string(),
       score: z.number(),
       snippet: z.string()
+    })
+  ),
+  graphPaths: z.array(
+    z.object({
+      id: z.string(),
+      summary: z.string(),
+      relationCount: z.number().int().nonnegative()
     })
   ),
   totalDocuments: z.number().int(),

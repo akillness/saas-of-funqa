@@ -139,6 +139,12 @@ For evidence-only:
 
 This is the most important UX consequence of the seed. Evidence-only must still feel productive.
 
+Current execution slice:
+
+- the search workspace should render the evidence-only banner whenever `/v1/search` returns `answerMode: evidence-only`
+- the banner should preserve productive ranked evidence instead of implying a transport or server failure
+- synthesized answer UI stays hidden until the consensus gate is actually satisfied
+
 ### Right Inspector
 
 Purpose:

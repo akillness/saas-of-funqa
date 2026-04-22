@@ -20,6 +20,7 @@
     "deploy:apphosting": "npx firebase-tools@latest deploy --only apphosting",
     "deploy:functions": "npm run build:functions && npx firebase-tools@latest deploy --only functions",
     "seed:demo": "tsx scripts/seed-demo-rag.ts",
+    "eval:consensus": "node --import tsx scripts/run-consensus-eval.ts",
     "smoke:functions": "SECRET_ENCRYPTION_KEY=${SECRET_ENCRYPTION_KEY:-local-dev-secret-key-32-bytes} npm run build:functions && SECRET_ENCRYPTION_KEY=${SECRET_ENCRYPTION_KEY:-local-dev-secret-key-32-bytes} npx firebase-tools@latest emulators:exec --only functions,firestore \"node scripts/smoke-functions.mjs\"",
     "start": "npm --workspace @funqa/web run start",
     "typecheck": "npm --workspace @funqa/api run typecheck && npm --workspace @funqa/web run typecheck",

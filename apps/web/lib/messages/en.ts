@@ -116,6 +116,10 @@ export const enMessages = {
     resultsSummaryEmpty: "Try a natural-language question to inspect grounded matches.",
     inspectorSynced: "Inspector synced",
     groundedAnswer: "Grounded answer",
+    evidenceOnlyTitle: "Evidence-only fallback",
+    evidenceOnlyBadge: "Consensus not reached",
+    evidenceOnlyBody:
+      "FunQA found supporting evidence, but the answer gate stayed closed. Review the ranked evidence below while graph-backed consensus is still being wired into search.",
     chunksSearchedSuffix: "chunks searched",
     emptyTitle: "No strong matches yet.",
     emptyBody:
@@ -304,7 +308,7 @@ export const enMessages = {
       rows: [
         ["GET", "/v1/health", "Runtime health and embedding-model declaration"],
         ["POST", "/v1/ingest", "Accept documents for extraction and indexing"],
-        ["POST", "/v1/search", "Return answer candidates with citations"],
+    ["POST", "/v1/search", "Return consensus-backed answers or evidence-only search results"],
         ["POST", "/v1/rag/inspect", "Inspect query-transform, retrieve, rerank, answer, and eval steps"],
         ["POST", "/v1/provider-keys/:provider", "Encrypt and store provider credentials"],
         ["GET", "/v1/monitoring/summary", "Provide admin dashboard usage aggregates"],

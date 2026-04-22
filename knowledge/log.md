@@ -111,6 +111,15 @@ Each entry should list the files touched, the reason for the change, and any fol
 - Follow-up:
   - Add measured comparisons between baseline, HyDE, and hosted rerank after an eval dataset exists.
 
+## [2026-04-23] query | Consensus release decision thresholds
+
+- Files touched:
+  - `docs/spec/funqa-consensus-rag-v1.md`
+- Reason:
+  - Freeze the V1 release-decision policy into explicit score bands so `>=90%` remains the minimum acceptable consensus floor, `>=95%` is the clear-pass band, and borderline results cannot ship without replay plus cross-functional sign-off.
+- Follow-up:
+  - Keep the eval runner and release report schema aligned with the new `clear-pass`, `borderline-review`, and `auto-block` decision states.
+
 ## [2026-04-13] ingest | Firebase web config
 
 - Files touched:
@@ -191,3 +200,97 @@ Each entry should list the files touched, the reason for the change, and any fol
   - Persist the latest survey-backed RAG and UI refresh after the repo moved to stored-chunk reuse, live Gemini multimodal embeddings by default, bilingual search surfaces, and Playwriter verification.
 - Follow-up:
   - Add measured eval results for baseline vs HyDE vs hosted rerank and keep the bilingual coverage list current as remaining low-priority screens are localized.
+
+## [2026-04-22] query | Graph-core ranking and selection contract
+
+- Files touched:
+  - `docs/spec/funqa-consensus-rag-v1.md`
+  - `log.md`
+- Reason:
+  - Freeze the Sub-AC 3 retrieval contract for FunQA V1 so fused ranking, claim-group agreement, graph/document consensus signals, and final selected evidence caps are explicit before implementation drifts.
+- Follow-up:
+  - Mirror the new `SelectedEvidenceSet` and claim-group agreement fields into shared contracts and search trace persistence when the live graph path is wired into the API server.
+
+## [2026-04-22] query | Answer-generation retrieval contract
+
+- Files touched:
+  - `docs/spec/funqa-consensus-rag-v1.md`
+  - `log.md`
+- Reason:
+  - Freeze Sub-AC 4 for FunQA V1 by defining the exact retrieval output contract consumed by answer generation, including required claim/document/chunk/path payload fields, citation provenance metadata, and the document-graph consensus gate fields that decide synthesis versus evidence-only output.
+- Follow-up:
+  - Mirror `AnswerGenerationInput`, `citationBundle`, and `consensusGate` into shared TypeScript/Zod contracts once the graph-core retrieval path replaces the current search scaffold.
+
+## [2026-04-22] query | Graph-core shipped-search compliance rule
+
+- Files touched:
+  - `docs/spec/funqa-consensus-rag-v1.md`
+  - `log.md`
+- Reason:
+  - Freeze Sub-AC 1 for FunQA V1 by defining the exact shipped-search compliance formula for graph-core retrieval usage, including numerator, denominator, explicit exclusions, and the release-blocking threshold.
+- Follow-up:
+  - Mirror this metric into release telemetry and search trace reporting so the shipped router can prove every eligible production search used the graph-core path.
+
+## [2026-04-22] query | Graph relationship evidence contract
+
+- Files touched:
+  - `docs/spec/funqa-consensus-rag-v1.md`
+  - `log.md`
+- Reason:
+  - Freeze Sub-AC 2 for FunQA V1 by defining the graph-evidence portion of the retrieval result contract, including answer-level entities, relationships, paths, subgraphs, confidence metrics, and provenance requirements consumed by the document-graph consensus gate.
+- Follow-up:
+  - Mirror the new graph evidence bundle into shared TypeScript and validation contracts before the Genkit answer flow starts emitting graph-core retrieval results.
+
+## [2026-04-23] query | Consensus correlation metadata contract
+
+- Files touched:
+  - `docs/spec/funqa-consensus-rag-v1.md`
+  - `knowledge/log.md`
+- Reason:
+  - Freeze Sub-AC 2 for FunQA V1 by defining the request and response metadata fields that let clients correlate a consensus decision to the exact retrieval attempt, including stable identifiers, timing markers, artifact snapshot IDs, and compact graph-consensus context for downstream handling.
+- Follow-up:
+  - Mirror `requestMetadata`, `responseMetadata`, and the new response-gate correlation IDs into shared TypeScript/Zod response contracts and persisted search traces before the Genkit API server exposes the full graph-core retrieval path.
+
+## [2026-04-23] query | Consensus eval dataset schema contract
+
+- Files touched:
+  - `docs/spec/funqa-consensus-rag-v1.md`
+  - `knowledge/log.md`
+- Reason:
+  - Freeze AC 40001 for FunQA V1 by defining the immutable evaluation-dataset manifest and per-case schema, including required version metadata plus the exact structured fields for source documents, expected graph evidence, and expected agreement outcomes used by the consensus-quality release gate.
+- Follow-up:
+  - Mirror the frozen dataset manifest and case schema into the eval runner input contracts and report exporters before the Genkit release-gate workflow consumes live approval datasets.
+
+## [2026-04-23] query | Curated agreement-run protocol for frozen eval sets
+
+- Files touched:
+  - `docs/spec/funqa-consensus-rag-v1.md`
+  - `knowledge/log.md`
+- Reason:
+  - Freeze Sub-AC 2 for FunQA V1 by specifying how the curated consensus evaluation set is selected, when a new frozen dataset version is required, and which cases must be included in the authoritative agreement run used for release approval.
+- Follow-up:
+  - Mirror the selection and run-inclusion rules into the eval runner so it rejects partial runs, mixed snapshot inputs, and dataset-version drift before calculating the consensus-quality gate.
+
+## [2026-04-23] build | Consensus eval runner entrypoint scaffold
+
+- Files touched:
+  - `packages/contracts/src/index.ts`
+  - `scripts/run-consensus-eval.ts`
+  - `data/evals/fixtures/funqa-consensus-eval-fixture.json`
+  - `package.json`
+  - `knowledge/log.md`
+- Reason:
+  - Add an executable `eval:consensus` entrypoint that accepts a curated dataset path and run options, validates the frozen dataset contract, and executes every active case through the current graph-core retrieval inspection pipeline while failing closed on document-graph consensus until graph traversal is fully wired.
+- Follow-up:
+  - Replace the scaffolded `graph-retrieval-pending` fail-closed case verdict logic with live graph-path retrieval, selected-evidence construction, and immutable per-case aggregate exporters once the Genkit API server emits those artifacts.
+
+## [2026-04-23] query | Release decision packet retention and audit contract
+
+- Files touched:
+  - `docs/spec/funqa-consensus-rag-v1.md`
+  - `knowledge/wiki/reports/funqa-consensus-compliance-reporting-v1.md`
+  - `knowledge/log.md`
+- Reason:
+  - Freeze Sub-AC 4 for FunQA V1 by specifying the authoritative release-decision packet, required report contents, machine-readable and operator-readable example outputs, minimum trace and log retention windows, and the auditability checks that gate launch review.
+- Follow-up:
+  - Mirror the frozen packet members, artifact hashes, case-bundle handles, and telemetry-export references into the consensus evaluation runner and `rag-lab` release dashboard so the launch decision is driven by immutable artifacts rather than mutable counters.

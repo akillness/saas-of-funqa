@@ -1,0 +1,213 @@
+{
+  "reportVersion": "funqa-consensus-report-v1",
+  "generatedAt": "2026-04-22T15:37:53.431Z",
+  "datasetPath": "/Users/jangyoung/.superset/projects/saas-of-funqa/data/evals/fixtures/funqa-consensus-eval-fixture.json",
+  "decisionId": "funqa-release-baseline-ccc4bde-fq_eval_fixture_v1",
+  "releaseState": "clear-pass",
+  "artifactIntegrityStatus": "verified",
+  "replayabilityStatus": "replayable",
+  "documentSnapshotId": "docs-2026-04-22",
+  "graphSnapshotId": "graph-2026-04-22",
+  "runOptions": {
+    "buildSha": "baseline-ccc4bde",
+    "topK": 5,
+    "preRerankK": 8,
+    "queryTransformMode": "rewrite-local",
+    "rerankMode": "heuristic",
+    "liveEmbeddings": false,
+    "tenantIdOverride": null
+  },
+  "aggregate": {
+    "buildSha": "baseline-ccc4bde",
+    "datasetVersion": "fq_eval_fixture_v1",
+    "policyVersion": "funqa-consensus-rag-v1",
+    "totalFrozenCases": 2,
+    "evaluatedTotalCases": 2,
+    "totalBoundaryControlCases": 1,
+    "evaluatedBoundaryControlCases": 1,
+    "eligibleConsensusCases": 1,
+    "evaluatedEligibleCases": 1,
+    "passedConsensusCases": 1,
+    "failedConsensusCases": 0,
+    "overallAgreementRate": 1,
+    "agreementThreshold": 0.9,
+    "graphCoreRetrievalCompliance": 1,
+    "rawAgreement": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+    },
+    "outcomeConformance": {
+      "mean": 1,
+      "decisionMatchRate": 1,
+      "answerModeMatchRate": 1
+    },
+    "failureReasonBreakdown": [],
+    "evaluationStatus": "pass",
+    "failingCaseIds": [],
+    "missingCaseIds": []
+  },
+  "retainedArtifacts": [
+    {
+      "artifactType": "canonical-json-report",
+      "handle": "funqa-consensus-release-gate-baseline.json",
+      "minimumRetention": "permanent"
+    },
+    {
+      "artifactType": "canonical-markdown-report",
+      "handle": "funqa-consensus-release-gate-baseline.md",
+      "minimumRetention": "permanent"
+    },
+    {
+      "artifactType": "case-evidence-bundles",
+      "handle": "funqa-consensus-release-gate-baseline.case-bundles.jsonl",
+      "minimumRetention": "365d"
+    },
+    {
+      "artifactType": "consensus-outcome-telemetry",
+      "handle": "funqa-consensus-release-gate-baseline.events.jsonl",
+      "minimumRetention": "365d"
+    },
+    {
+      "artifactType": "integrity-manifest",
+      "handle": "funqa-consensus-release-gate-baseline.integrity.json",
+      "minimumRetention": "permanent"
+    }
+  ],
+  "auditChecks": {
+    "packetHashVerification": "pass",
+    "buildSnapshotConsistency": "pass",
+    "blockedCaseEvidenceOnlyVerification": "pass",
+    "replayabilityFromRetainedArtifacts": "pass"
+  },
+  "cases": [
+    {
+      "datasetVersion": "fq_eval_fixture_v1",
+      "caseId": "fq_eval_fixture_case_01_graph_unavailable",
+      "caseIndex": 0,
+      "totalActiveCases": 2,
+      "releaseGateEligible": true,
+      "tenantId": "fixture-tenant",
+      "tenantScenario": "member-search",
+      "query": "What should FunQA return when graph coverage is unavailable for a knowledge query?",
+      "queryType": "relationship-heavy",
+      "load": {
+        "sourceDocumentCount": 2,
+        "requiredClaimIds": [
+          "claim_graph_unavailable_evidence_only"
+        ],
+        "loadedDocumentIds": [
+          "graph-fallback-policy",
+          "operator-guidance"
+        ]
+      },
+      "graphCoreExecution": {
+        "retrievalMode": "graph-core-retrieval",
+        "executed": true,
+        "queryTransformMode": "rewrite-local",
+        "rerankMode": "heuristic",
+        "topK": 5,
+        "preRerankK": 8,
+        "retrievedChunkIds": [
+          "graph-fallback-policy_chunk_0",
+          "operator-guidance_chunk_0"
+        ],
+        "rerankedChunkIds": [
+          "graph-fallback-policy_chunk_0",
+          "operator-guidance_chunk_0"
+        ],
+        "topDocumentId": "graph-fallback-policy"
+      },
+      "consensusGate": {
+        "gate": "document-graph-consensus",
+        "evaluated": true,
+        "agreement": 0,
+        "threshold": 0.9,
+        "graphCoverage": "unavailable-by-design",
+        "observedDecision": "evidence-only",
+        "observedAnswerMode": "evidence-only",
+        "traceId": "trace-fq-eval-fixture-01",
+        "evidenceBundleHandle": "funqa-consensus-release-gate-baseline.case-bundles.jsonl#fq_eval_fixture_case_01_graph_unavailable",
+        "observedReasonCodes": [
+          "graph-coverage-unavailable"
+        ],
+        "requiredReasonCodes": [
+          "graph-coverage-unavailable"
+        ],
+        "expectedDecision": "evidence-only",
+        "expectedAnswerMode": "evidence-only"
+      },
+      "comparison": {
+        "decisionMatchesExpected": true,
+        "answerModeMatchesExpected": true,
+        "requiredReasonCodesSatisfied": true,
+        "outcomeConformanceScore": 1
+      },
+      "verdict": "pass",
+      "notes": [
+        "Runner initialized the existing graph-core retrieval scaffolding through the inspectable pipeline.",
+        "Document-graph consensus currently fails closed unless the dataset explicitly marks graph support unavailable by design.",
+        "Expected claim IDs: claim_graph_unavailable_evidence_only"
+      ]
+    },
+    {
+      "datasetVersion": "fq_eval_fixture_v1",
+      "caseId": "fq_eval_fixture_case_02_member_boundary",
+      "caseIndex": 1,
+      "totalActiveCases": 2,
+      "releaseGateEligible": false,
+      "tenantId": "fixture-tenant",
+      "tenantScenario": "member-management-boundary",
+      "query": "List the workspace members for fixture-tenant.",
+      "queryType": "boundary",
+      "load": {
+        "sourceDocumentCount": 1,
+        "requiredClaimIds": [],
+        "loadedDocumentIds": [
+          "member-boundary-doc"
+        ]
+      },
+      "graphCoreExecution": {
+        "retrievalMode": "graph-core-retrieval",
+        "executed": true,
+        "queryTransformMode": "rewrite-local",
+        "rerankMode": "heuristic",
+        "topK": 5,
+        "preRerankK": 8,
+        "retrievedChunkIds": [
+          "member-boundary-doc_chunk_0"
+        ],
+        "rerankedChunkIds": [
+          "member-boundary-doc_chunk_0"
+        ],
+        "topDocumentId": "member-boundary-doc"
+      },
+      "consensusGate": {
+        "gate": "document-graph-consensus",
+        "evaluated": true,
+        "agreement": 0,
+        "threshold": 0.9,
+        "graphCoverage": "not-applicable-boundary",
+        "observedDecision": "non-applicable",
+        "observedAnswerMode": "deterministic-response",
+        "traceId": "trace-fq-eval-fixture-02",
+        "evidenceBundleHandle": "funqa-consensus-release-gate-baseline.case-bundles.jsonl#fq_eval_fixture_case_02_member_boundary",
+        "observedReasonCodes": [],
+        "requiredReasonCodes": [],
+        "expectedDecision": "non-applicable",
+        "expectedAnswerMode": "deterministic-response"
+      },
+      "comparison": {
+        "decisionMatchesExpected": true,
+        "answerModeMatchesExpected": true,
+        "requiredReasonCodesSatisfied": true,
+        "outcomeConformanceScore": 1
+      },
+      "verdict": "not-applicable",
+      "notes": [
+        "Runner initialized the existing graph-core retrieval scaffolding through the inspectable pipeline.",
+        "Document-graph consensus currently fails closed unless the dataset explicitly marks graph support unavailable by design."
+      ]
+    }
+  ]
+}
