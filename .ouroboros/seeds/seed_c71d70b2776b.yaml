@@ -1,0 +1,121 @@
+goal: Define an immutable first-version specification for FunQA's Genkit-based API
+  server and RAG SaaS so its ingestion and retrieval system uses graph-core retrieval
+  with document-graph consensus as the answer gate.
+task_type: code
+brownfield_context:
+  project_type: greenfield
+  context_references: []
+  existing_patterns: []
+  existing_dependencies: []
+constraints:
+- First shipped version only
+- Genkit-based API server architecture
+- RAG SaaS includes search, member management, and API-key monetization
+- Retrieval approach is graph-core-retrieval
+- Final synthesized answers require document-graph consensus
+- When consensus is not reached, default behavior is evidence-only
+- Release approval is consensus-quality-gated
+- Consensus evaluation threshold must be at least 90% agreement
+acceptance_criteria:
+- The system uses graph-core retrieval in most searches for the first shipped version
+- Synthesized answers are returned only when retrieved documents and graph relationships
+  reach consensus
+- Non-consensus queries fall back to evidence-only with matched docs and graph paths
+  and no synthesized answer
+- Release readiness is determined by consensus quality rather than latency targets
+- A curated evaluation set demonstrates at least 90% document-graph agreement
+ontology_schema:
+  name: FunQAConsensusRAGSpec
+  description: Domain model for the first-release FunQA retrieval and answer-governance
+    system spanning query handling, graph-document consensus, fallback behavior, and
+    release evaluation.
+  fields:
+  - name: product_name
+    type: string
+    description: Name of the SaaS product
+    required: true
+  - name: architecture
+    type: string
+    description: Genkit-based API server with RAG capabilities
+    required: true
+  - name: retrieval_mode
+    type: string
+    description: Primary retrieval strategy for first release
+    required: true
+  - name: query
+    type: string
+    description: User search or API query being processed
+    required: true
+  - name: retrieved_documents
+    type: array
+    description: Documents returned by the retrieval pipeline
+    required: true
+  - name: graph_relations
+    type: array
+    description: Graph-backed entities, categories, and relationships used in retrieval
+    required: true
+  - name: consensus_reached
+    type: boolean
+    description: Whether documents and graph agree enough to support a synthesized
+      answer
+    required: true
+  - name: fallback_mode
+    type: string
+    description: Default behavior when consensus is not reached
+    required: true
+  - name: synthesized_answer
+    type: string
+    description: Final answer returned only when consensus is reached
+    required: true
+  - name: evidence_bundle
+    type: object
+    description: Matched documents and graph paths shown when fallback is triggered
+    required: true
+  - name: release_gate
+    type: string
+    description: Primary approval gate for first release
+    required: true
+  - name: consensus_agreement
+    type: number
+    description: Measured agreement score on curated evaluation set
+    required: true
+  - name: evaluation_dataset
+    type: array
+    description: Curated set of queries and expected agreement outcomes
+    required: true
+evaluation_principles:
+- name: consensus_correctness
+  description: Prefer answer policies that maximize agreement between retrieved documents
+    and graph relationships before synthesis
+  weight: 0.4
+- name: fallback_safety
+  description: Disagreement cases must avoid unsupported synthesized claims and return
+    evidence-only output
+  weight: 0.25
+- name: release_gate_alignment
+  description: The implementation should satisfy the consensus-quality-gated launch
+    decision rather than optimize primarily for latency
+  weight: 0.2
+- name: product_scope_fit
+  description: Solution should stay within first-version FunQA scope including search,
+    member management, and API-key monetization context
+  weight: 0.15
+exit_conditions:
+- name: consensus_eval_pass
+  description: Curated evaluation confirms the required document-graph agreement threshold
+  criteria: consensus_agreement>=0.90
+- name: consensus_answer_policy_enforced
+  description: Synthesized answers are only emitted for consensus-backed cases
+  criteria: all non-consensus cases return evidence-only
+- name: first_release_spec_complete
+  description: The first shipped version behavior for retrieval authority fallback
+    and release gate is fully defined
+  criteria: retrieval_mode=graph-core-retrieval and fallback_mode=evidence-only and
+    release_gate=consensus-quality-gated
+metadata:
+  seed_id: seed_c71d70b2776b
+  version: 1.0.0
+  created_at: '2026-04-22T14:09:35.431925Z'
+  ambiguity_score: 0.1995
+  interview_id: interview_20260422_134420
+  parent_seed_id: null

@@ -26,6 +26,7 @@
     "smoke:rag": "tsx scripts/smoke-rag.ts"
   },
   "devDependencies": {
+    "@google/design.md": "^0.1.1",
     "esbuild": "^0.25.9",
     "tsx": "4.21.0",
     "typescript": "6.0.2"
