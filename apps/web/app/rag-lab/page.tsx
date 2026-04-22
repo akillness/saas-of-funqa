@@ -1,4 +1,7 @@
+import { access, readFile } from "node:fs/promises";
+import path from "node:path";
 import Link from "next/link";
+import { ConsensusEvalReportSchema, type ConsensusEvalReport } from "@funqa/contracts";
 import { inspectRagPipeline } from "../../lib/funqa-api";
 import { getDictionary, resolveLocale, withLocale } from "../../lib/i18n";
 
@@ -14,9 +17,55 @@ type RagLabPageProps = {
 
 const stageOrder = ["query", "retrieve", "rerank", "answer", "eval", "trace"] as const;
 type StageId = (typeof stageOrder)[number];
+type ConsensusReleaseGateReport = ConsensusEvalReport & {
+  decisionId?: string;
+  releaseState?: string;
+  artifactIntegrityStatus?: string;
+  replayabilityStatus?: string;
+  retainedArtifacts?: Array<{
+    artifactType: string;
+    handle: string;
+    minimumRetention: string;
+  }>;
+};
+
+const consensusReportRelativePath = path.join(
+  "knowledge",
+  "wiki",
+  "reports",
+  "funqa-consensus-release-gate-baseline.json"
+);
 
 function resolveStage(value?: string): StageId {
   return stageOrder.includes((value ?? "query") as StageId) ? ((value ?? "query") as StageId) : "query";
+}
+
+function formatPercent(value: number) {
+  return `${(value * 100).toFixed(1)}%`;
+}
+
+async function loadConsensusReleaseGateReport(): Promise<ConsensusReleaseGateReport | null> {
+  const candidatePaths = [
+    path.resolve(process.cwd(), consensusReportRelativePath),
+    path.resolve(process.cwd(), "..", consensusReportRelativePath),
+    path.resolve(process.cwd(), "..", "..", consensusReportRelativePath)
+  ];
+
+  for (const candidatePath of candidatePaths) {
+    try {
+      await access(candidatePath);
+      const raw = JSON.parse(await readFile(candidatePath, "utf8")) as Record<string, unknown>;
+      const parsed = ConsensusEvalReportSchema.parse(raw);
+      return {
+        ...raw,
+        ...parsed
+      } as ConsensusReleaseGateReport;
+    } catch {
+      continue;
+    }
+  }
+
+  return null;
 }
 
 export default async function RagLabPage({ searchParams }: RagLabPageProps) {
@@ -34,6 +83,7 @@ export default async function RagLabPage({ searchParams }: RagLabPageProps) {
     rerankMode: rerank
   });
   const latencyMs = Date.now() - startMs;
+  const releaseGateReport = await loadConsensusReleaseGateReport();
 
   return (
     <div className="rag-lab-layout">
@@ -117,6 +167,95 @@ export default async function RagLabPage({ searchParams }: RagLabPageProps) {
             </div>
           </div>
         </section>
+
+        {releaseGateReport ? (
+          <section className="panel stack-md">
+            <div className="results-header">
+              <div>
+                <p className="eyebrow">{t.ragLab.releaseGateEyebrow}</p>
+                <h2>{t.ragLab.releaseGateTitle}</h2>
+                <p className="microcopy">{t.ragLab.releaseGateBody}</p>
+              </div>
+              <div className="result-tags">
+                <span className="pill pill-bright">{releaseGateReport.releaseState ?? t.ragLab.unknownState}</span>
+                <span className="pill pill-subtle">{releaseGateReport.aggregate.buildSha}</span>
+              </div>
+            </div>
+
+            <section className="metric-grid" aria-label={t.ragLab.releaseGateTitle}>
+              <article className="metric-card metric-card-premium">
+                <p className="metric-label">{t.ragLab.releaseGateMetrics.agreementRate}</p>
+                <p className="metric-value">{formatPercent(releaseGateReport.aggregate.overallAgreementRate)}</p>
+              </article>
+              <article className="metric-card metric-card-premium">
+                <p className="metric-label">{t.ragLab.releaseGateMetrics.threshold}</p>
+                <p className="metric-value">{formatPercent(releaseGateReport.aggregate.agreementThreshold)}</p>
+              </article>
+              <article className="metric-card metric-card-premium">
+                <p className="metric-label">{t.ragLab.releaseGateMetrics.eligibleCases}</p>
+                <p className="metric-value">{releaseGateReport.aggregate.eligibleConsensusCases}</p>
+              </article>
+              <article className="metric-card metric-card-premium">
+                <p className="metric-label">{t.ragLab.releaseGateMetrics.failedCases}</p>
+                <p className="metric-value">{releaseGateReport.aggregate.failedConsensusCases}</p>
+              </article>
+            </section>
+
+            <div className="detail-grid">
+              <div>
+                <dt>{t.ragLab.releaseGateDetails.datasetVersion}</dt>
+                <dd>{releaseGateReport.aggregate.datasetVersion}</dd>
+              </div>
+              <div>
+                <dt>{t.ragLab.releaseGateDetails.evaluationStatus}</dt>
+                <dd>{releaseGateReport.aggregate.evaluationStatus}</dd>
+              </div>
+              <div>
+                <dt>{t.ragLab.releaseGateDetails.integrity}</dt>
+                <dd>{releaseGateReport.artifactIntegrityStatus ?? t.ragLab.unknownState}</dd>
+              </div>
+              <div>
+                <dt>{t.ragLab.releaseGateDetails.replayability}</dt>
+                <dd>{releaseGateReport.replayabilityStatus ?? t.ragLab.unknownState}</dd>
+              </div>
+            </div>
+
+            <table className="data-table">
+              <caption className="sr-only">{t.ragLab.releaseGateCasesTitle}</caption>
+              <thead>
+                <tr>
+                  <th>{t.ragLab.releaseGateColumns.caseId}</th>
+                  <th>{t.ragLab.releaseGateColumns.verdict}</th>
+                  <th>{t.ragLab.releaseGateColumns.decision}</th>
+                  <th>{t.ragLab.releaseGateColumns.answerMode}</th>
+                  <th>{t.ragLab.releaseGateColumns.reason}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {releaseGateReport.cases.map((caseResult) => (
+                  <tr key={caseResult.caseId}>
+                    <td>{caseResult.caseId}</td>
+                    <td>{caseResult.verdict}</td>
+                    <td>{caseResult.consensusGate.observedDecision}</td>
+                    <td>{caseResult.consensusGate.observedAnswerMode}</td>
+                    <td>{caseResult.consensusGate.observedReasonCodes[0] ?? t.ragLab.noReasonCode}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            <article className="panel panel-inset">
+              <p className="metric-label">{t.ragLab.releaseGateArtifactsTitle}</p>
+              <ul className="bullet-list compact-list">
+                {(releaseGateReport.retainedArtifacts ?? []).map((artifact) => (
+                  <li key={artifact.handle}>
+                    {artifact.handle} · {artifact.minimumRetention}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          </section>
+        ) : null}
 
         {stage === "query" ? (
           <section className="panel stack-md">

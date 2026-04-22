@@ -228,7 +228,34 @@ export const enMessages = {
     evalScore: "Local groundedness score",
     evalNote: "Use this pane to compare strategy changes before wiring a stronger evaluator.",
     traceTitle: "Trace",
-    traceLabel: "Execution trace"
+    traceLabel: "Execution trace",
+    releaseGateEyebrow: "Consensus release gate",
+    releaseGateTitle: "Latest release-gate baseline",
+    releaseGateBody:
+      "This panel reflects the latest frozen consensus-eval report so operators can judge launch readiness without leaving RAG Lab.",
+    unknownState: "unknown",
+    noReasonCode: "none",
+    releaseGateCasesTitle: "Release-gate case results",
+    releaseGateArtifactsTitle: "Retained artifacts",
+    releaseGateMetrics: {
+      agreementRate: "Agreement rate",
+      threshold: "Threshold",
+      eligibleCases: "Eligible cases",
+      failedCases: "Failed cases"
+    },
+    releaseGateDetails: {
+      datasetVersion: "Dataset version",
+      evaluationStatus: "Evaluation status",
+      integrity: "Artifact integrity",
+      replayability: "Replayability"
+    },
+    releaseGateColumns: {
+      caseId: "Case ID",
+      verdict: "Verdict",
+      decision: "Decision",
+      answerMode: "Answer mode",
+      reason: "Primary reason"
+    }
   },
   admin: {
     eyebrow: "Admin",

@@ -226,7 +226,34 @@ export const koMessages = {
     evalScore: "로컬 groundedness 점수",
     evalNote: "더 강한 evaluator를 연결하기 전에 이 패널에서 전략 차이를 비교하세요.",
     traceTitle: "트레이스",
-    traceLabel: "실행 트레이스"
+    traceLabel: "실행 트레이스",
+    releaseGateEyebrow: "합의 출시 게이트",
+    releaseGateTitle: "최신 출시 게이트 베이스라인",
+    releaseGateBody:
+      "이 패널은 최신 고정 consensus-eval 리포트를 반영해 운영자가 RAG Lab 안에서 바로 출시 준비 상태를 판단할 수 있게 합니다.",
+    unknownState: "알 수 없음",
+    noReasonCode: "없음",
+    releaseGateCasesTitle: "출시 게이트 케이스 결과",
+    releaseGateArtifactsTitle: "보존 아티팩트",
+    releaseGateMetrics: {
+      agreementRate: "합의율",
+      threshold: "임계값",
+      eligibleCases: "대상 케이스",
+      failedCases: "실패 케이스"
+    },
+    releaseGateDetails: {
+      datasetVersion: "데이터셋 버전",
+      evaluationStatus: "평가 상태",
+      integrity: "아티팩트 무결성",
+      replayability: "재현 가능성"
+    },
+    releaseGateColumns: {
+      caseId: "케이스 ID",
+      verdict: "판정",
+      decision: "결정",
+      answerMode: "응답 모드",
+      reason: "주요 사유"
+    }
   },
   admin: {
     eyebrow: "관리",
