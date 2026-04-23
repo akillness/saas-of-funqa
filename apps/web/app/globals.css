@@ -955,6 +955,12 @@ html:lang(ko) .metric-label {
   width: 65%;
 }
 
+.form-error {
+  color: var(--danger, #ef4444);
+  font-size: 0.875rem;
+  margin: 0.25rem 0;
+}
+
 .nav-auth-user {
   display: flex;
   align-items: center;

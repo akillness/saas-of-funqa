@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { auth } from '@/lib/firebase-client';
+import { getFirebaseAuth } from '@/lib/firebase-client';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -14,7 +14,7 @@ export default function LoginPage() {
     setError(null);
     try {
       const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
+      await signInWithPopup(getFirebaseAuth(), provider);
       router.push('/search');
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : '로그인에 실패했습니다.';
@@ -42,7 +42,7 @@ export default function LoginPage() {
             Workspace login unlocks saved searches, grounded citations, admin controls, and
             audit-aware provider key actions.
           </p>
-          {error && <p style={{ color: 'red' }} role="alert">{error}</p>}
+          {error && <p className="form-error" role="alert">{error}</p>}
           <div className="action-row">
             <button
               className="primary-button"
