@@ -14,9 +14,12 @@
 현재 구현 기준 핵심 운영 기능:
 
 - **Google Auth 로그인** — Firebase `signInWithPopup` 기반 Google 소셜 로그인, `AuthProvider` 컨텍스트로 전역 인증 상태 관리
-- **Netflix/YouTube + imweb.me 컨셉 UI** — 에디토리얼 히어로 섹션, Games/Movies/Videos 가로 스크롤 콘텐츠 행, YouTube 스타일 칩 필터, 포스터 그리드, AI 분석 아코디언, 카테고리 탭 바
+- **Grounded-search first UI** — 홈과 검색 모두 “예쁜 AI 페이지”보다 “검증 가능한 retrieval workspace”로 읽히도록 재구성
+- **Visible wow points** — `Strict grounding`, `Pipeline x-ray`, `Operator proof`, `Multimodal core`, `Consensus engine` 같은 기술 블록을 첫 화면에 노출
 - **NavAuth 컴포넌트** — 로그인 상태에 따라 사용자명·로그아웃 또는 로그인 링크를 표시
 - `evidence-only` + `document-graph-consensus` 계약 기반 검색 API
+- 검색 화면의 **strict grounding 상태 블록** + **pipeline reveal strip** + **citation inspector rail**
+- consensus 미달 시 **evidence-only fallback**를 trust feature로 드러내는 경고 상태
 - `rag-lab`의 최신 consensus release-gate 리포트 조회 및 선택 UI
 - creator ingest bundle, video analyses, monetization guide/source API surface
 
@@ -56,6 +59,13 @@ RAG 파이프라인 흐름:
                                                       │
 사용자 질의 ────────────────────────────── retrieve → answer
 ```
+
+제품 UX 관점 핵심 메시지:
+
+- Search is not a chat toy. It is a **retrieval workspace**.
+- 답변은 항상 허용되는 것이 아니라 `document-graph consensus`를 통과해야 한다.
+- consensus 미달 시 FunQA는 hallucinate하지 않고 **evidence-only** 상태로 실패를 드러낸다.
+- `rag-lab`은 내부 디버깅용 부속 페이지가 아니라, 검색 품질과 release gate를 설명하는 operator proof surface다.
 
 ---
 
