@@ -3,6 +3,23 @@
 import { useState, useTransition } from "react"
 import { getDictionary, type Locale, type SearchResult } from "../../lib/i18n"
 
+function MediaTypeBadge({ category }: { category: string }) {
+  if (category === "games") return <span className="media-type-badge">🎮 Games</span>
+  if (category === "movies") return <span className="media-type-badge">🎬 Movies</span>
+  if (category === "videos") return <span className="media-type-badge">📱 Videos</span>
+  return null
+}
+
+function SkeletonCard() {
+  return (
+    <article className="panel result-card skeleton-card">
+      <div className="skeleton-line skeleton-line-short" />
+      <div className="skeleton-line" />
+      <div className="skeleton-line skeleton-line-medium" />
+    </article>
+  )
+}
+
 type Props = {
   locale: Locale
   initialQuery: string
@@ -195,13 +212,19 @@ export function SearchResults({
             </article>
           ) : null}
 
-          {initialResults.length > 0 ? (
+          {isPending ? (
+            <div className="stack-sm">
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+            </div>
+          ) : initialResults.length > 0 ? (
             <div className="stack-sm">
               {initialResults.map((result, index) => {
                 const bar = confidenceBar(result.confidence)
                 const isSelected = index === selectedIndex
                 return (
-                  <article className={`panel result-card ${isSelected ? "result-card-active" : ""}`} key={result.title}>
+                  <article className={`panel result-card media-card ${isSelected ? "result-card-active" : ""}`} key={result.title}>
                     <button
                       aria-pressed={isSelected}
                       className="result-card-button"
@@ -210,6 +233,7 @@ export function SearchResults({
                     >
                       <div className="result-meta result-meta-top">
                         <div className="result-tags">
+                          <MediaTypeBadge category={result.category} />
                           <span className="pill">{t.common.confidenceLabels[result.confidence]}</span>
                           <span
                             style={{
@@ -222,9 +246,22 @@ export function SearchResults({
                           />
                           <span className="pill pill-subtle">{t.common.sourceLabels[result.category]}</span>
                         </div>
-                        <span className="microcopy">{result.freshness}</span>
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                          <span className="microcopy">{result.freshness}</span>
+                          <button
+                            aria-label="북마크"
+                            className="bookmark-btn"
+                            onClick={(e) => e.stopPropagation()}
+                            type="button"
+                          >
+                            ⭐
+                          </button>
+                        </div>
                       </div>
                       <h3>{result.title}</h3>
+                      <div className="genre-tags">
+                        <span className="genre-pill">{t.common.sourceLabels[result.category]}</span>
+                      </div>
                       <p>{result.snippet}</p>
                       <div className="result-footer">
                         <p className="microcopy">{result.source}</p>

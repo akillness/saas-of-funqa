@@ -8,8 +8,17 @@
 [![Genkit](https://img.shields.io/badge/Genkit-1.32-4285F4?logo=google&logoColor=white)](https://firebase.google.com/docs/genkit)
 [![Node](https://img.shields.io/badge/Node.js-20+-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 
-> Firebase App Hosting + Cloud Functions + Google Genkit 기반 RAG SaaS 모노레포.
-> Q&A 문서를 벡터화하여 Gemini 모델로 질의응답을 제공합니다.
+> **게임, 영화, 미디어 콘텐츠를 저장하고 AI로 검색하는 RAG 기반 SaaS.**  
+> Firebase App Hosting + Cloud Functions + Google Genkit + Google Auth 모노레포.
+
+현재 구현 기준 핵심 운영 기능:
+
+- **Google Auth 로그인** — Firebase `signInWithPopup` 기반 Google 소셜 로그인, `AuthProvider` 컨텍스트로 전역 인증 상태 관리
+- **AI 미디어 검색엔진 UI** — Games / Movies / Videos 카테고리 필터, 미디어 타입 배지, 스켈레톤 로딩, 북마크 버튼
+- **NavAuth 컴포넌트** — 로그인 상태에 따라 사용자명·로그아웃 또는 로그인 링크를 표시
+- `evidence-only` + `document-graph-consensus` 계약 기반 검색 API
+- `rag-lab`의 최신 consensus release-gate 리포트 조회 및 선택 UI
+- creator ingest bundle, video analyses, monetization guide/source API surface
 
 ---
 
@@ -58,7 +67,7 @@ RAG 파이프라인 흐름:
 | Backend | Express 5, Genkit 1.32 |
 | AI | Google Gemini (`gemini-embedding-2-preview`, multimodal) |
 | Database | Firebase Firestore |
-| Auth | Firebase Auth (Google Login) |
+| Auth | Firebase Auth — Google Login (`signInWithPopup`, `AuthProvider`, `NavAuth`) |
 | Infra | Firebase App Hosting, Firebase Functions |
 | Monorepo | npm workspaces |
 
@@ -221,10 +230,10 @@ npm run build:web
 
 - Backend ID: `saas-of-funqa`
 - Hosted URL: `https://saas-of-funqa--saas-of-funqa.us-east4.hosted.app`
-- Last verified deploy: `2026-04-15`
+- Last verified deploy: `2026-04-23`
 - Verification method:
-  - `./deploy.sh --apphosting`로 타입체크, 프로덕션 빌드, 소스 업로드 확인
-  - `firebase apphosting:backends:list --project saas-of-funqa --json`로 backend 상태 확인
+  - `./deploy.sh --apphosting`로 타입체크, 프로덕션 빌드, App Hosting source upload 및 rollout 시작 확인
+  - `firebase apphosting:backends:list --project saas-of-funqa --json`로 backend 조회 확인
   - `curl -I https://saas-of-funqa--saas-of-funqa.us-east4.hosted.app`로 `HTTP/2 200` 확인
 
 운영 메모:
@@ -249,6 +258,7 @@ npm run build:web
 | `npm run typecheck` | TypeScript 타입 체크 (api + web) |
 | `npm run smoke:rag` | RAG 파이프라인 스모크 테스트 |
 | `npm run smoke:functions` | Firebase Functions 엔드포인트 스모크 테스트 |
+| `npm run eval:consensus -- --dataset data/evals/fixtures/funqa-consensus-eval-fixture.json --build-sha <sha>` | consensus release-gate 리포트 생성 |
 | `npm run seed:demo` | 데모 RAG 데이터 시드 |
 | `npm run deploy:functions` | Firebase Functions 배포 |
 | `npm run deploy:apphosting` | Firebase App Hosting 배포 |
@@ -301,9 +311,16 @@ push(main) → CI 통과 → Deploy to Firebase App Hosting
 
 ## 주요 참고사항
 
+- **검색 카테고리**: `games` / `movies` / `videos` 세 카테고리로 콘텐츠를 분류합니다. `SearchCategory` 타입은 `apps/web/lib/i18n.ts`에 정의됩니다.
+- **Google Auth**: `apps/web/components/auth-provider.tsx`의 `AuthProvider`가 레이아웃 최상위에서 인증 상태를 제공합니다. 로그인 페이지(`/login`)는 `signInWithPopup`으로 Google 계정 인증 후 `/search`로 리다이렉트됩니다.
+- **NavAuth**: `apps/web/components/nav-auth.tsx`는 `useAuth()` 훅으로 인증 상태를 읽어 헤더에 사용자명/로그아웃 또는 로그인 링크를 표시합니다.
+- 검색 응답은 현재 `graph-core` retrieval intent와 `require-consensus` 계약을 반영하며, graph-path retrieval이 완전 연결되기 전까지는 `evidence-only` 응답을 기본값으로 유지합니다.
+- `apps/web/app/rag-lab`에서는 `knowledge/wiki/reports/` 아래 최신 consensus release-gate 리포트를 자동 선택하거나 특정 리포트를 지정해서 검토할 수 있습니다.
+- creator 운영 API는 `POST /v1/creator-ingest-bundle`, `GET /v1/video-analyses`, `GET /v1/monetization-guides/latest`, `POST /v1/monetization-sources/latest` 경로를 제공합니다.
 - live 임베딩 기본값은 `gemini-embedding-2-preview`이며, 텍스트 외 이미지·비디오·오디오·PDF 입력까지 확장 가능한 최신 Gemini 멀티모달 경로를 기준으로 맞췄습니다.
 - `EMBEDDING_OUTPUT_DIMENSION=1536`은 속도·저장소 효율과 품질의 균형값으로 설정했습니다. 필요하면 `768`, `1536`, `3072` 중 하나로 조정할 수 있습니다.
 - `packages/ai`의 임베딩 어댑터는 플러그인 방식으로 교체 가능합니다.
 - 적재 시 생성한 청크/임베딩은 저장소에 보존되고, 검색 시 재청킹/재임베딩하지 않고 그대로 재사용합니다.
 - 로컬 검증 경로는 결정론적 해시 임베딩 백엔드를 사용하여 외부 모델 호출 없이 테스트할 수 있으며, `npm run smoke:rag`는 `RAG_LIVE_EMBEDDINGS=0`으로 고정됩니다.
+- `npm run smoke:functions`는 RAG 엔드포인트뿐 아니라 creator ingest, analyses, monetization guide/source 경로까지 함께 확인합니다.
 - Firebase 서비스 계정 JSON은 `.gitignore`에 포함되어 있으므로 절대 커밋하지 마세요.

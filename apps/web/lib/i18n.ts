@@ -5,7 +5,7 @@ export const locales = ["en", "ko"] as const;
 
 export type Locale = (typeof locales)[number];
 export type Messages = typeof enMessages;
-export type SearchCategory = "docs" | "wiki" | "policy";
+export type SearchCategory = "games" | "movies" | "videos";
 export type SearchConfidence = "high" | "medium" | "low";
 export type SearchResult = {
   title: string;

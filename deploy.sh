@@ -35,8 +35,18 @@ rm -rf apps/web/.next apps/web/.turbo
 
 if [[ "$DEPLOY_TARGET" == "--apphosting" ]]; then
   echo "Deploying App Hosting backend ${BACKEND_ID} to project ${PROJECT_ID}"
-  "${FIREBASE_BIN[@]}" deploy --project "$PROJECT_ID" "${FIREBASE_TOKEN_ARGS[@]}" --only "apphosting:${BACKEND_ID}"
+  DEPLOY_CMD=("${FIREBASE_BIN[@]}" deploy --project "$PROJECT_ID")
+  if [[ ${#FIREBASE_TOKEN_ARGS[@]} -gt 0 ]]; then
+    DEPLOY_CMD+=("${FIREBASE_TOKEN_ARGS[@]}")
+  fi
+  DEPLOY_CMD+=(--only "apphosting:${BACKEND_ID}")
+  "${DEPLOY_CMD[@]}"
 else
   echo "Deploying Firebase Functions and App Hosting backend ${BACKEND_ID} to project ${PROJECT_ID}"
-  "${FIREBASE_BIN[@]}" deploy --project "$PROJECT_ID" "${FIREBASE_TOKEN_ARGS[@]}" --only "functions,apphosting:${BACKEND_ID}"
+  DEPLOY_CMD=("${FIREBASE_BIN[@]}" deploy --project "$PROJECT_ID")
+  if [[ ${#FIREBASE_TOKEN_ARGS[@]} -gt 0 ]]; then
+    DEPLOY_CMD+=("${FIREBASE_TOKEN_ARGS[@]}")
+  fi
+  DEPLOY_CMD+=(--only "functions,apphosting:${BACKEND_ID}")
+  "${DEPLOY_CMD[@]}"
 fi

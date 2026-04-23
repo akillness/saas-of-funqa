@@ -8,9 +8,9 @@ export const koMessages = {
     },
     liveLabel: "실시간",
     sourceLabels: {
-      docs: "문서",
-      wiki: "위키",
-      policy: "정책"
+      games: "게임",
+      movies: "영화",
+      videos: "영상"
     },
     confidenceLabels: {
       high: "높음",
@@ -20,9 +20,9 @@ export const koMessages = {
   },
   layout: {
     skipToContent: "본문으로 건너뛰기",
-    brandEyebrow: "근거 기반 AI 워크스페이스",
+    brandEyebrow: "AI 미디어 검색엔진",
     nav: {
-      overview: "개요",
+      overview: "홈",
       search: "검색",
       ragLab: "RAG 랩",
       admin: "관리",
@@ -31,12 +31,12 @@ export const koMessages = {
     }
   },
   home: {
-    eyebrow: "Ralph Seed 활성",
-    title: "근거 기반 검색, 운영 제어, AI 전달을 하나의 프리미엄 워크스페이스로 묶습니다.",
+    eyebrow: "AI 미디어 검색",
+    title: "게임, 영화, 미디어를 AI로 검색하고 저장하세요",
     lede:
-      "funqa는 검색, 관리자 화면, 문서를 하나의 제품 모드로 다룹니다. 인터페이스는 하나의 핵심 작업면과 하나의 보조 컨텍스트 레일을 유지해 랜딩 페이지가 아니라 실제 도구처럼 느껴지도록 밀도를 맞춥니다.",
-    primaryAction: "검색 워크스페이스 열기",
-    secondaryAction: "API 표면 검토",
+      "당신의 콘텐츠 취향을 AI가 기억합니다. 게임, 영화, 영상 콘텐츠를 AI 기반 검색으로 탐색하고 관리하세요.",
+    primaryAction: "검색 시작",
+    secondaryAction: "API 문서",
     embedLabel: "기본 호스팅 임베딩",
     verifiedLabel: "검증일 2026-04-13",
     embedNote:
@@ -52,35 +52,33 @@ export const koMessages = {
     surfaces: [
       {
         href: "/search",
-        label: "검색 워크스페이스",
-        kicker: "Perplexity 스타일 검색",
-        text: "고정된 질의 컴포저, 눈에 보이는 소스 제어, 근거 기반 답변을 위한 상시 inspector를 제공합니다.",
-        cta: "검색 워크스페이스로 이동"
+        label: "🎮 게임 탐색",
+        kicker: "게임",
+        text: "플레이한 게임, 플레이하고 싶은 게임을 AI로 관리하고 스마트하게 검색합니다.",
+        cta: "게임 검색"
       },
       {
-        href: "/admin",
-        label: "운영 콘솔",
-        kicker: "조용하지만 밀도 높은 운영 UI",
-        text: "상태, 큐 압력, 롤아웃 가시성, 키 관리를 설정 덤프처럼 보이지 않게 정리합니다.",
-        cta: "운영 콘솔로 이동"
+        href: "/search",
+        label: "🎬 영화 데이터베이스",
+        kicker: "영화",
+        text: "본 영화와 시청 목록을 스마트하게 검색하고 AI로 추천받습니다.",
+        cta: "영화 검색"
       },
       {
-        href: "/docs",
-        label: "API 문서",
-        kicker: "코드 우선 레퍼런스",
-        text: "반복 조회에 맞춘 문서 셸 안에 빠른 시작, 엔드포인트 표, 롤아웃 인식 가이드를 둡니다.",
-        cta: "API 문서로 이동"
+        href: "/search",
+        label: "📱 콘텐츠 아카이브",
+        kicker: "영상",
+        text: "미디어 콘텐츠를 저장하고 AI로 분석하여 원하는 영상을 빠르게 찾습니다.",
+        cta: "영상 검색"
       }
     ],
-    processEyebrow: "프로세스 모듈",
-    processTitle: "RAG를 제품적으로 의미가 유지되는 가장 작은 검증 단위까지 분해했습니다.",
+    processEyebrow: "AI 파이프라인",
+    processTitle: "미디어 콘텐츠가 AI 단계를 거쳐 정확한 검색 결과로 변환됩니다.",
     pipeline: [
-      { label: "정규화", text: "원시 저장소 콘텐츠를 하나의 표준 문서 엔벌로프로 정리합니다" },
-      { label: "추출", text: "근거가 있는 사실과 엔티티를 앞으로 끌어와 보강합니다" },
-      { label: "청킹", text: "조사와 인용이 가능한 크기로 dense retrieval 단위를 유지합니다" },
-      { label: "임베딩", text: "기본 live 경로는 `gemini-embedding-2-preview`이며 출력 차원은 조정 가능합니다" },
-      { label: "검색", text: "결과 순위는 의미 유사성과 provenance 선명도를 함께 반영합니다" },
-      { label: "응답", text: "최종 답변은 떠다니는 생성이 아니라 인용과 연결된 상태를 유지합니다" }
+      { label: "인덱싱", text: "게임, 영화, 영상의 메타데이터와 설명을 수집하고 정규화합니다" },
+      { label: "임베딩", text: "`gemini-embedding-2-preview`로 콘텐츠를 임베딩해 의미 기반 검색을 지원합니다" },
+      { label: "검색", text: "의미 유사성과 키워드 신호를 결합해 정확한 미디어 결과를 반환합니다" },
+      { label: "답변", text: "최종 답변은 특정 미디어 항목에 인용을 연결해 근거를 유지합니다" }
     ],
     whyEyebrow: "UI가 바뀐 이유",
     whyTitle: "최근 AI 제품은 하나의 주 작업면과 하나의 컨텍스트 레일로 수렴하고 있습니다.",
@@ -89,29 +87,29 @@ export const koMessages = {
     whyChips: ["고정 질의 컴포저", "컨텍스트 인스펙터", "조용한 KPI 덱", "코드 우선 문서 레일"]
   },
   search: {
-    eyebrow: "검색",
-    title: "한 번 묻고, 그 자리에서 다듬고, 끝까지 provenance를 보이게 유지합니다.",
+    eyebrow: "미디어 검색",
+    title: "게임, 영화, 미디어를 AI로 검색하고 저장하세요",
     lede:
-      "검색 워크스페이스는 실제 검색 도구처럼 구성됩니다. 프롬프트 레일, 소스 필터, 밀도 있는 결과, 컨텍스트 전환이 필요 없는 citation inspector를 함께 둡니다.",
-    composerLabel: "검색 질의",
-    composerPlaceholder: "암호화된 provider key 저장을 설명하는 정책은 무엇인가요?",
-    submit: "검색 실행",
+      "AI 기반 검색으로 게임, 영화, 영상을 찾아보세요. 정확한 미디어 항목에 인용을 연결한 근거 있는 답변을 받을 수 있습니다.",
+    composerLabel: "검색어",
+    composerPlaceholder: "게임, 영화, 영상을 검색하세요...",
+    submit: "검색",
     pending: "검색 중…",
     shareableNote: "URL 상태를 그대로 공유해 검토와 재현에 사용할 수 있습니다.",
-    suggestionsLabel: "추천 프롬프트",
-    fallbackSuggestions: ["키 회전 정책", "기본 임베딩", "관리자 알림"],
-    railTitle: "소스 레일",
+    suggestionsLabel: "추천 검색어",
+    fallbackSuggestions: ["마인크래프트 최신 업데이트 내용은?", "크리스토퍼 놀란 감독 영화 목록", "넷플릭스 오리지널 드라마 추천", "2024년 GOTY 수상작"],
+    railTitle: "카테고리 필터",
     railBadge: "실시간 필터",
-    sourceLabel: "소스 유형",
+    sourceLabel: "콘텐츠 유형",
     sourceOptions: [
-      { value: "all", label: "전체 소스" },
-      { value: "docs", label: "문서" },
-      { value: "wiki", label: "위키" },
-      { value: "policy", label: "정책" }
+      { value: "all", label: "전체" },
+      { value: "games", label: "게임" },
+      { value: "movies", label: "영화" },
+      { value: "videos", label: "영상" }
     ],
     applyFilters: "필터 적용",
-    recentSearches: "최근 검색: 온보딩 정책, 키 회전, 관리자 알림",
-    filterChips: ["근거 있는 결과만", "최신 소스", "높은 신뢰도"],
+    recentSearches: "최근 검색: 오픈월드 게임, 명작 영화, 테크 리뷰",
+    filterChips: ["높은 평점", "최신 출시", "내 라이브러리"],
     resultsTitle: "결과",
     resultsSummaryEmpty: "근거 기반 매치를 확인하려면 자연어 질문으로 시작해 보세요.",
     inspectorSynced: "인스펙터 동기화",
@@ -136,31 +134,33 @@ export const koMessages = {
     liveFreshness: "실시간",
     fallbackResults: [
       {
-        title: "분기 로드맵 소스 노트",
-        source: "docs/roadmap-q2.md",
-        category: "docs",
+        title: "엘든 링",
+        source: "games/elden-ring",
+        category: "games",
         confidence: "high",
-        freshness: "2일 전",
-        snippet: "로드맵 우선순위는 ingest 신뢰성, 관리자 가시성, 사용자 검색 명확성 기준으로 묶입니다.",
-        citations: ["roadmap-q2.md#top-priorities", "system-architecture.md#surface-plan"]
+        freshness: "2024",
+        snippet:
+          "랜즈 비트윈을 배경으로 한 액션 RPG. 프롬소프트의 가장 방대한 오픈월드 소울라이크로 풍부한 세계관과 도전적인 전투를 제공합니다.",
+        citations: ["games/elden-ring#overview", "games/elden-ring#gameplay"]
       },
       {
-        title: "Provider key 회전 정책",
-        source: "docs/architecture/security-secrets.md",
-        category: "policy",
+        title: "인터스텔라",
+        source: "movies/interstellar",
+        category: "movies",
         confidence: "high",
-        freshness: "오늘",
-        snippet: "Provider key는 서버 측에서 AES-GCM으로 암호화되고 향후 KMS 회전을 위해 버전 관리됩니다.",
-        citations: ["security-secrets.md#encryption-boundary", "provider-keys.route.ts#save"]
+        freshness: "2014",
+        snippet:
+          "크리스토퍼 놀란 감독의 SF 서사시. 우주비행사 팀이 토성 근처 웜홀을 통해 인류의 새 보금자리를 찾아 떠나는 이야기입니다.",
+        citations: ["movies/interstellar#synopsis", "movies/interstellar#cast"]
       },
       {
-        title: "임베딩 모델 결정 로그",
-        source: "knowledge/wiki/sources/gemini-embeddings.md",
-        category: "wiki",
+        title: "Veritasium: AI는 어떻게 작동하는가",
+        source: "videos/veritasium-ai-explainer",
+        category: "videos",
         confidence: "medium",
-        freshness: "오늘",
-        snippet: "기본 호스팅 경로는 Gemini 임베딩을 유지하고, Gemma 계열 어댑터는 플러그형으로 남겨 둡니다.",
-        citations: ["gemini-embeddings.md#verified-default", "seed.yaml#assumptions"]
+        freshness: "최근",
+        snippet: "Derek Muller가 신경망, 트랜스포머, 현대 AI 아키텍처를 깊이 있게 설명하는 영상입니다.",
+        citations: ["videos/veritasium-ai-explainer#summary", "videos/veritasium-ai-explainer#chapters"]
       }
     ]
   },

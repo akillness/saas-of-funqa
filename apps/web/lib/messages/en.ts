@@ -8,9 +8,9 @@ export const enMessages = {
     },
     liveLabel: "live",
     sourceLabels: {
-      docs: "Docs",
-      wiki: "Wiki",
-      policy: "Policy"
+      games: "Games",
+      movies: "Movies",
+      videos: "Videos"
     },
     confidenceLabels: {
       high: "High",
@@ -20,9 +20,9 @@ export const enMessages = {
   },
   layout: {
     skipToContent: "Skip to main content",
-    brandEyebrow: "Grounded AI Workspace",
+    brandEyebrow: "AI 미디어 검색엔진",
     nav: {
-      overview: "Overview",
+      overview: "Home",
       search: "Search",
       ragLab: "RAG Lab",
       admin: "Admin",
@@ -31,12 +31,11 @@ export const enMessages = {
     }
   },
   home: {
-    eyebrow: "Ralph Seed Active",
-    title: "One premium workspace for grounded search, operator control, and AI delivery.",
-    lede:
-      "funqa treats search, admin, and docs as modes of the same product. The interface keeps one dominant task surface, one secondary context rail, and enough density to feel like a real tool instead of a landing page.",
-    primaryAction: "Open Search Workspace",
-    secondaryAction: "Review API Surface",
+    eyebrow: "AI Media Search",
+    title: "Discover & Archive Games, Movies, and Media with AI",
+    lede: "당신의 콘텐츠 취향을 AI가 기억합니다. Search, organize, and explore your games, movies, and media library with grounded AI retrieval.",
+    primaryAction: "Start Searching",
+    secondaryAction: "API Docs",
     embedLabel: "Default hosted embedding",
     verifiedLabel: "Verified 2026-04-13",
     embedNote:
@@ -52,35 +51,33 @@ export const enMessages = {
     surfaces: [
       {
         href: "/search",
-        label: "Search Workspace",
-        kicker: "Perplexity-style retrieval",
-        text: "Sticky query composer, visible source controls, and an always-on inspector for grounded answers.",
-        cta: "Enter Search Workspace"
+        label: "🎮 Games Discovery",
+        kicker: "Games",
+        text: "플레이한 게임, 플레이하고 싶은 게임을 AI로 관리. Track your played games and wishlist with AI-powered search.",
+        cta: "Search Games"
       },
       {
-        href: "/admin",
-        label: "Operator Console",
-        kicker: "Quiet but dense ops UI",
-        text: "Live health, queue pressure, rollout visibility, and key management without collapsing into a settings dump.",
-        cta: "Enter Operator Console"
+        href: "/search",
+        label: "🎬 Movie Database",
+        kicker: "Movies",
+        text: "본 영화와 시청 목록을 스마트하게 검색. Discover films and manage your watch history with grounded AI.",
+        cta: "Search Movies"
       },
       {
-        href: "/docs",
-        label: "API Docs",
-        kicker: "Code-first reference",
-        text: "Quickstart, endpoint tables, and rollout-aware guidance in a docs shell tuned for repeated lookup.",
-        cta: "Enter API Docs"
+        href: "/search",
+        label: "📱 Content Archive",
+        kicker: "Videos",
+        text: "미디어 콘텐츠를 저장하고 AI로 분석. Archive media content and surface insights with AI retrieval.",
+        cta: "Search Videos"
       }
     ],
-    processEyebrow: "Process Modules",
-    processTitle: "RAG is broken into the smallest verifiable steps that still make product sense.",
+    processEyebrow: "AI Pipeline",
+    processTitle: "Media content flows through AI-powered stages for accurate search and retrieval.",
     pipeline: [
-      { label: "Normalize", text: "raw repo content is cleaned into one canonical document envelope" },
-      { label: "Extract", text: "grounded facts and entities are pulled forward for enrichment" },
-      { label: "Chunk", text: "dense retrieval units stay small enough to inspect and cite" },
-      { label: "Embed", text: "default live path is `gemini-embedding-2-preview` with configurable output dimensionality" },
-      { label: "Retrieve", text: "result ranking blends semantic proximity with provenance clarity" },
-      { label: "Answer", text: "final responses stay tied to citations instead of free-floating generation" }
+      { label: "인덱싱", text: "media titles, metadata, and descriptions are ingested and normalized" },
+      { label: "임베딩", text: "content is embedded with `gemini-embedding-2-preview` for semantic search" },
+      { label: "검색", text: "semantic and lexical signals are fused for accurate media retrieval" },
+      { label: "답변", text: "final responses cite specific media entries instead of generating freely" }
     ],
     whyEyebrow: "Why the UI changed",
     whyTitle: "Recent AI products converge on one main task surface plus one context rail.",
@@ -89,29 +86,29 @@ export const enMessages = {
     whyChips: ["Sticky query composer", "Context inspector", "Quiet KPI deck", "Code-first docs rail"]
   },
   search: {
-    eyebrow: "Search",
-    title: "Ask once, refine in place, and keep provenance visible the whole time.",
+    eyebrow: "Media Search",
+    title: "게임, 영화, 미디어를 AI로 검색하고 저장하세요",
     lede:
-      "The search workspace is shaped like a real retrieval tool: prompt rail, source filters, dense results, and a citation inspector that never forces a context switch.",
+      "Find games, movies, and videos with AI-powered search. Get grounded answers with citations to the exact media entries that match your query.",
     composerLabel: "Search query",
-    composerPlaceholder: "Which policy explains encrypted provider key storage?",
-    submit: "Run Search",
+    composerPlaceholder: "게임, 영화, 영상을 검색하세요...",
+    submit: "Search",
     pending: "Searching…",
     shareableNote: "URL state stays shareable for review and replay.",
-    suggestionsLabel: "Suggested prompts",
-    fallbackSuggestions: ["rotation policy", "embedding default", "admin alerts"],
-    railTitle: "Source rail",
+    suggestionsLabel: "Suggested searches",
+    fallbackSuggestions: ["마인크래프트 최신 업데이트 내용은?", "크리스토퍼 놀란 감독 영화 목록", "넷플릭스 오리지널 드라마 추천", "2024년 GOTY 수상작"],
+    railTitle: "Category Filter",
     railBadge: "Live filters",
-    sourceLabel: "Source type",
+    sourceLabel: "Content type",
     sourceOptions: [
-      { value: "all", label: "All sources" },
-      { value: "docs", label: "Docs" },
-      { value: "wiki", label: "Wiki" },
-      { value: "policy", label: "Policy" }
+      { value: "all", label: "All" },
+      { value: "games", label: "Games" },
+      { value: "movies", label: "Movies" },
+      { value: "videos", label: "Videos" }
     ],
     applyFilters: "Apply filters",
-    recentSearches: "Recent searches: onboarding policy, key rotation, admin alerts.",
-    filterChips: ["Grounded only", "Fresh sources", "High confidence"],
+    recentSearches: "Recent: open world games, classic films, tech reviews.",
+    filterChips: ["High rated", "Recent releases", "My library"],
     resultsTitle: "Results",
     resultsSummaryEmpty: "Try a natural-language question to inspect grounded matches.",
     inspectorSynced: "Inspector synced",
@@ -136,33 +133,33 @@ export const enMessages = {
     liveFreshness: "live",
     fallbackResults: [
       {
-        title: "Quarterly roadmap source note",
-        source: "docs/roadmap-q2.md",
-        category: "docs",
+        title: "Elden Ring",
+        source: "games/elden-ring",
+        category: "games",
         confidence: "high",
-        freshness: "2d",
+        freshness: "2024",
         snippet:
-          "Roadmap priorities are grouped by ingestion reliability, admin visibility, and user-facing search clarity.",
-        citations: ["roadmap-q2.md#top-priorities", "system-architecture.md#surface-plan"]
+          "An action RPG set in the Lands Between. Fromsoft's most expansive open-world soulslike with rich lore and challenging combat.",
+        citations: ["games/elden-ring#overview", "games/elden-ring#gameplay"]
       },
       {
-        title: "Provider key rotation policy",
-        source: "docs/architecture/security-secrets.md",
-        category: "policy",
+        title: "Interstellar",
+        source: "movies/interstellar",
+        category: "movies",
         confidence: "high",
-        freshness: "today",
+        freshness: "2014",
         snippet:
-          "Provider keys are encrypted server-side with AES-GCM and versioned for future KMS rotation.",
-        citations: ["security-secrets.md#encryption-boundary", "provider-keys.route.ts#save"]
+          "Christopher Nolan's sci-fi epic about a team of astronauts traveling through a wormhole near Saturn to find a new home for humanity.",
+        citations: ["movies/interstellar#synopsis", "movies/interstellar#cast"]
       },
       {
-        title: "Embedding model decision log",
-        source: "knowledge/wiki/sources/gemini-embeddings.md",
-        category: "wiki",
+        title: "Veritasium: How AI Works",
+        source: "videos/veritasium-ai-explainer",
+        category: "videos",
         confidence: "medium",
-        freshness: "today",
-        snippet: "Hosted default remains Gemini embeddings while Gemma-family adapters stay pluggable.",
-        citations: ["gemini-embeddings.md#verified-default", "seed.yaml#assumptions"]
+        freshness: "recent",
+        snippet: "A deep-dive video explainer on neural networks, transformers, and modern AI architecture by Derek Muller.",
+        citations: ["videos/veritasium-ai-explainer#summary", "videos/veritasium-ai-explainer#chapters"]
       }
     ]
   },

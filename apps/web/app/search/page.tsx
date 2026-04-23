@@ -21,7 +21,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const locale = resolveLocale(params?.lang);
   const t = getDictionary(locale);
   const query = params?.q?.trim() ?? "";
-  const source = ["all", "docs", "wiki", "policy"].includes(params?.source?.trim() ?? "")
+  const source = ["all", "games", "movies", "videos"].includes(params?.source?.trim() ?? "")
     ? (params?.source?.trim() as "all" | SearchCategory)
     : "all";
   const apiResponse = await searchWorkspace(query);
@@ -30,11 +30,11 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     title: result.title,
     source: result.sourcePath,
     category:
-      result.sourcePath.includes("security") || result.sourcePath.includes("policy")
-        ? "policy"
-        : result.sourcePath.includes("wiki")
-          ? "wiki"
-          : "docs",
+      result.sourcePath.includes("movies")
+        ? "movies"
+        : result.sourcePath.includes("videos")
+          ? "videos"
+          : "games",
     confidence: normalizeConfidence(result.confidence),
     freshness: t.search.liveFreshness,
     snippet: result.snippet,
