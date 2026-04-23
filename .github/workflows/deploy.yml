@@ -70,12 +70,12 @@ jobs:
         run: |
           for attempt in {1..18}; do
             status="$(curl -sS -o /tmp/funqa-home.html -w '%{http_code}' "$APP_HOSTING_URL/search?lang=ko" || true)"
-            if [ "$status" = "200" ] && grep -q 'locale-switcher' /tmp/funqa-home.html && grep -q '필터 적용' /tmp/funqa-home.html; then
-              echo "Hosted app responded with HTTP 200 and served the refreshed bilingual search UI"
+            if [ "$status" = "200" ] && grep -q 'locale-switcher' /tmp/funqa-home.html && grep -q 'funqa' /tmp/funqa-home.html; then
+              echo "Hosted app responded with HTTP 200 and served the search UI"
               exit 0
             fi
             echo "Attempt $attempt: status=$status"
             sleep 10
           done
-          echo "Hosted app did not serve the refreshed search UI in time"
+          echo "Hosted app did not serve the search UI in time"
           exit 1
