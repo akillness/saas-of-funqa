@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   output: "standalone",
+  transpilePackages: ["@funqa/contracts"],
   outputFileTracingIncludes: {
     "/*": ["./node_modules/styled-jsx/**/*"]
   }
