@@ -1,5 +1,5 @@
 import { getApp, getApps, initializeApp, type FirebaseApp, type FirebaseOptions } from "firebase/app";
-import type { Auth } from "firebase/auth";
+import { getAuth, type Auth } from "firebase/auth";
 
 const firebaseConfig: FirebaseOptions = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY ?? "AIzaSyDR2XdnemhSHYznMFI20or-WKIPgn1V7vc",
@@ -37,7 +37,6 @@ let _auth: Auth | undefined;
 
 export function getFirebaseAuth(): Auth {
   if (!_auth) {
-    const { getAuth } = require("firebase/auth") as typeof import("firebase/auth");
     _auth = getAuth(getFirebaseApp());
   }
   return _auth;
