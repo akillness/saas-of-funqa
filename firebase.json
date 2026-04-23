@@ -39,7 +39,7 @@
         ".runtime"
       ],
       "predeploy": [
-        "npm run build:functions"
+        "bash scripts/build-functions-predeploy.sh"
       ]
     }
   ],
