@@ -7,7 +7,7 @@ import {
   type EmbeddedChunk,
   type RawDocument
 } from "@funqa/ai";
-import { getRagStore, resetRagStore, saveRagArtifacts } from "@funqa/db";
+import { getRagStore, resetRagStore, saveRagArtifacts, upsertRagArtifacts } from "@funqa/db";
 import type { IngestRequest, SearchRequest } from "@funqa/contracts";
 import { config } from "../config.js";
 import { db } from "../firebase.js";
@@ -16,7 +16,8 @@ import {
   getFirestoreRagChunks,
   getFirestoreRagDocuments,
   resetFirestoreRag,
-  saveFirestoreRagArtifacts
+  saveFirestoreRagArtifacts,
+  upsertFirestoreRagArtifacts
 } from "../repositories/firestore-rag-store.repository.js";
 import { buildCacheKey, ragQueryCache } from "./rag-cache.service.js";
 import { runOptimizedPipeline } from "./rag-optimization.service.js";
@@ -157,6 +158,39 @@ export async function ingestDocuments(input: IngestRequest) {
 
   return {
     jobId: `ingest_${Date.now()}`,
+    accepted: input.documents.length,
+    documentCount: extractedDocuments.length,
+    chunkCount: embeddedChunks.length,
+    embeddingModel: resolveChunkEmbeddingPath(embeddedChunks),
+    extractionMode: "heuristic-local" as const,
+    storeUpdatedAt
+  };
+}
+
+export async function ingestAdditionalDocuments(input: IngestRequest) {
+  const { extractedDocuments, embeddedChunks } = await pipelineDocuments(input.tenantId, input.documents);
+
+  let storeUpdatedAt: string;
+  if (useFirestore) {
+    storeUpdatedAt = await upsertFirestoreRagArtifacts(
+      input.tenantId,
+      extractedDocuments,
+      embeddedChunks
+    );
+  } else {
+    const store = upsertRagArtifacts(
+      config.ragStorePath,
+      input.tenantId,
+      extractedDocuments,
+      embeddedChunks
+    );
+    storeUpdatedAt = store.updatedAt ?? new Date().toISOString();
+  }
+
+  ragQueryCache.invalidate(input.tenantId);
+
+  return {
+    jobId: `ingest_append_${Date.now()}`,
     accepted: input.documents.length,
     documentCount: extractedDocuments.length,
     chunkCount: embeddedChunks.length,

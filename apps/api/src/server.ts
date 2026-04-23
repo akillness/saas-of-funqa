@@ -1,9 +1,13 @@
 import express from "express";
 import { z } from "zod";
 import { registerAdminRoute } from "./routes/admin.route.js";
+import { registerCreatorAnalysesRoute } from "./routes/creator-analyses.route.js";
+import { registerCreatorIngestBundleRoute } from "./routes/creator-ingest-bundle.route.js";
 import { registerHealthRoute } from "./routes/health.route.js";
 import { registerIngestRoute } from "./routes/ingest.route.js";
 import { registerMonitoringRoute } from "./routes/monitoring.route.js";
+import { registerMonetizationGuidesRoute } from "./routes/monetization-guides.route.js";
+import { registerMonetizationSourcesRoute } from "./routes/monetization-sources.route.js";
 import { registerProviderKeyRoute } from "./routes/provider-keys.route.js";
 import { registerRagRoute } from "./routes/rag.route.js";
 import { registerSearchRoute } from "./routes/search.route.js";
@@ -18,6 +22,10 @@ export function createServer() {
   registerProviderKeyRoute(app);
   registerIngestRoute(app);
   registerSearchRoute(app);
+  registerCreatorIngestBundleRoute(app);
+  registerCreatorAnalysesRoute(app);
+  registerMonetizationGuidesRoute(app);
+  registerMonetizationSourcesRoute(app);
   registerRagRoute(app);
   registerMonitoringRoute(app);
 

@@ -51,6 +51,58 @@ export async function saveFirestoreRagArtifacts(
   return storedAt;
 }
 
+export async function upsertFirestoreRagArtifacts(
+  tenantId: string,
+  documents: ExtractedDocument[],
+  chunks: EmbeddedChunk[]
+): Promise<string> {
+  const firestore = db();
+  const storedAt = new Date().toISOString();
+  const documentIds = documents.map((document) => document.id);
+
+  const [existingDocs, existingChunks] = await Promise.all([
+    Promise.all(
+      documentIds.map((documentId) =>
+        firestore.doc(`ragDocuments/${tenantId}/docs/${documentId}`).get()
+      )
+    ),
+    Promise.all(
+      documentIds.map((documentId) =>
+        firestore
+          .collection(`ragChunks/${tenantId}/chunks`)
+          .where("documentId", "==", documentId)
+          .get()
+      )
+    )
+  ]);
+
+  const deleteBatch = firestore.batch();
+  existingDocs.forEach((snap) => {
+    if (snap.exists) {
+      deleteBatch.delete(snap.ref);
+    }
+  });
+  existingChunks.forEach((snap) => {
+    snap.docs.forEach((doc) => deleteBatch.delete(doc.ref));
+  });
+  await deleteBatch.commit();
+
+  const writeBatch = firestore.batch();
+  for (const doc of documents) {
+    const storedDoc: StoredDocument = { ...doc, tenantId, createdAt: storedAt };
+    writeBatch.set(firestore.doc(`ragDocuments/${tenantId}/docs/${doc.id}`), storedDoc);
+  }
+  for (const chunk of chunks) {
+    writeBatch.set(
+      firestore.collection(`ragChunks/${tenantId}/chunks`).doc(chunk.id),
+      { ...chunk, createdAt: storedAt }
+    );
+  }
+  await writeBatch.commit();
+
+  return storedAt;
+}
+
 export async function resetFirestoreRag(tenantId: string): Promise<void> {
   const firestore = db();
   const [existingDocs, existingChunks] = await Promise.all([

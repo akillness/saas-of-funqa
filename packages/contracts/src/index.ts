@@ -35,6 +35,257 @@ export const IngestResponseSchema = z.object({
   storeUpdatedAt: z.string()
 });
 
+export const CreatorAnalysisRecordSchema = z
+  .object({
+    tenantId: z.string().min(1),
+    analysisId: z.string().min(1),
+    filename: z.string().min(1),
+    status: z.string().min(1),
+    createdAt: z.string().min(1),
+    updatedAt: z.string().min(1)
+  })
+  .passthrough();
+export type CreatorAnalysisRecord = z.infer<typeof CreatorAnalysisRecordSchema>;
+
+export const CreatorGuideReferenceSchema = z
+  .object({
+    sourceId: z.string().min(1).optional(),
+    title: z.string().min(1),
+    url: z.string().url(),
+    publisher: z.string().min(1).optional(),
+    sourceKind: z.string().min(1).optional()
+  })
+  .passthrough();
+export type CreatorGuideReference = z.infer<typeof CreatorGuideReferenceSchema>;
+
+export const CreatorGuideCitationSchema = CreatorGuideReferenceSchema;
+export type CreatorGuideCitation = z.infer<typeof CreatorGuideCitationSchema>;
+
+export const CreatorGuideSectionSchema = z
+  .object({
+    id: z.string().min(1).optional(),
+    title: z.string().min(1).optional(),
+    summary: z.string().min(1).optional(),
+    citations: z.array(CreatorGuideCitationSchema).optional()
+  })
+  .passthrough();
+export type CreatorGuideSection = z.infer<typeof CreatorGuideSectionSchema>;
+
+export const CreatorGuideSourceIdentifierSchema = z
+  .object({
+    sourceId: z.string().min(1).optional(),
+    canonicalSourceId: z.string().min(1).optional(),
+    url: z.string().url().optional()
+  })
+  .passthrough();
+export type CreatorGuideSourceIdentifier = z.infer<
+  typeof CreatorGuideSourceIdentifierSchema
+>;
+
+export const CreatorGuideSourceInventorySchema = z
+  .object({
+    inventoryId: z.string().min(1),
+    tenantId: z.string().min(1),
+    guideId: z.string().min(1),
+    guideWeekKey: z.string().min(1),
+    guideVersionDraft: z.string().min(1),
+    recordedAt: z.string().min(1),
+    sourceCount: z.number().int().nonnegative(),
+    sourceIdentifiers: z.array(CreatorGuideSourceIdentifierSchema).default([])
+  })
+  .passthrough();
+export type CreatorGuideSourceInventory = z.infer<
+  typeof CreatorGuideSourceInventorySchema
+>;
+
+export const CreatorGuideRecordSchema = z
+  .object({
+    tenantId: z.string().min(1),
+    guideId: z.string().min(1),
+    version: z.string().min(1),
+    slug: z.string().min(1),
+    title: z.string().min(1),
+    weekKey: z.string().min(1),
+    status: z.string().min(1),
+    publishedAt: z.string().min(1),
+    updatedAt: z.string().optional(),
+    sourceIds: z.array(z.string().min(1)).default([]),
+    sourceCount: z.number().int().nonnegative().optional(),
+    citationCount: z.number().int().nonnegative().optional(),
+    body: z.string().optional(),
+    sections: z.array(CreatorGuideSectionSchema).optional()
+  })
+  .passthrough();
+export type CreatorGuideRecord = z.infer<typeof CreatorGuideRecordSchema>;
+
+export const CreatorActiveGuideVersionSchema = z
+  .object({
+    tenantId: z.string().min(1),
+    guideId: z.string().min(1),
+    guideVersion: z.string().min(1),
+    slug: z.string().min(1),
+    title: z.string().min(1),
+    weekKey: z.string().min(1),
+    status: z.string().min(1),
+    activatedAt: z.string().min(1),
+    updatedAt: z.string().min(1)
+  })
+  .passthrough();
+export type CreatorActiveGuideVersion = z.infer<
+  typeof CreatorActiveGuideVersionSchema
+>;
+
+export const CreatorMonetizationSourceSchema = z
+  .object({
+    tenantId: z.string().min(1),
+    sourceId: z.string().min(1),
+    canonicalSourceId: z.string().min(1),
+    url: z.string().url(),
+    title: z.string().min(1),
+    publisher: z.string().min(1),
+    sourceKind: z.string().min(1),
+    fetchedAt: z.string().min(1),
+    publishedAt: z.string().optional(),
+    fullText: z.string().min(1),
+    excerpt: z.string().min(1),
+    language: z.string().optional(),
+    dedupeHash: z.string().min(1),
+    tags: z.array(z.string()).default([])
+  })
+  .passthrough();
+export type CreatorMonetizationSource = z.infer<
+  typeof CreatorMonetizationSourceSchema
+>;
+
+export const CreatorOriginalRecordSchema = z
+  .object({
+    tenantId: z.string().min(1),
+    originalId: z.string().min(1),
+    parentSourceId: z.string().min(1),
+    sourceUrl: z.string().url(),
+    mimeType: z.string().min(1),
+    body: z.string().min(1),
+    bodySha256: z.string().min(1),
+    fetchedAt: z.string().min(1)
+  })
+  .passthrough();
+export type CreatorOriginalRecord = z.infer<typeof CreatorOriginalRecordSchema>;
+
+export const CreatorIngestBundleRequestSchema = z
+  .object({
+    tenantId: z.string().min(1),
+    analysisRecord: CreatorAnalysisRecordSchema.optional(),
+    monetizationSource: CreatorMonetizationSourceSchema.optional(),
+    original: CreatorOriginalRecordSchema.optional(),
+    guide: CreatorGuideRecordSchema.optional(),
+    activeGuideVersion: CreatorActiveGuideVersionSchema.optional(),
+    sourceInventory: CreatorGuideSourceInventorySchema.optional(),
+    searchDocuments: z.array(IngestDocumentSchema).min(1).optional()
+  })
+  .superRefine((value, ctx) => {
+    if (
+      !value.analysisRecord &&
+      !value.monetizationSource &&
+      !value.original &&
+      !value.guide &&
+      !value.activeGuideVersion &&
+      !value.sourceInventory &&
+      !value.searchDocuments?.length
+    ) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "creator_ingest_bundle_requires_at_least_one_artifact"
+      });
+    }
+  });
+export type CreatorIngestBundleRequest = z.infer<
+  typeof CreatorIngestBundleRequestSchema
+>;
+
+export const CreatorIngestPersistedStatusSchema = z
+  .object({
+    analysis: z.boolean().optional(),
+    source: z.boolean().optional(),
+    original: z.boolean().optional(),
+    searchDocument: z.boolean().optional(),
+    guide: z.boolean().optional(),
+    guideVersion: z.boolean().optional(),
+    guideLineage: z.boolean().optional(),
+    activeVersion: z.boolean().optional(),
+    sourceInventory: z.boolean().optional()
+  })
+  .passthrough();
+export type CreatorIngestPersistedStatus = z.infer<
+  typeof CreatorIngestPersistedStatusSchema
+>;
+
+export const CreatorIngestBundleResponseSchema = z
+  .object({
+    tenantId: z.string().min(1),
+    persisted: CreatorIngestPersistedStatusSchema,
+    searchDocumentsAccepted: z.number().int().nonnegative()
+  })
+  .passthrough();
+export type CreatorIngestBundleResponse = z.infer<
+  typeof CreatorIngestBundleResponseSchema
+>;
+
+export const ListCreatorAnalysesQuerySchema = z.object({
+  tenantId: z.string().min(1),
+  limit: z.coerce.number().int().min(1).max(100).default(20)
+});
+export type ListCreatorAnalysesQuery = z.infer<
+  typeof ListCreatorAnalysesQuerySchema
+>;
+
+export const CreatorAnalysisSummarySchema = z.object({
+  totalCount: z.number().int().nonnegative(),
+  uploadedCount: z.number().int().nonnegative(),
+  failedCount: z.number().int().nonnegative(),
+  pendingCount: z.number().int().nonnegative()
+});
+export type CreatorAnalysisSummary = z.infer<
+  typeof CreatorAnalysisSummarySchema
+>;
+
+export const ListCreatorAnalysesResponseSchema = z.object({
+  tenantId: z.string().min(1),
+  totalCount: z.number().int().nonnegative(),
+  summary: CreatorAnalysisSummarySchema,
+  analyses: z.array(CreatorAnalysisRecordSchema)
+});
+export type ListCreatorAnalysesResponse = z.infer<
+  typeof ListCreatorAnalysesResponseSchema
+>;
+
+export const LatestMonetizationSourcesRequestSchema = z.object({
+  tenantId: z.string().min(1),
+  weekKey: z.string().min(1).optional(),
+  windowDays: z.number().int().positive().optional(),
+  asOf: z.string().optional()
+});
+export type LatestMonetizationSourcesRequest = z.infer<
+  typeof LatestMonetizationSourcesRequestSchema
+>;
+
+export const LatestMonetizationSourcesResponseSchema = z.object({
+  tenantId: z.string().min(1),
+  sources: z.array(CreatorMonetizationSourceSchema),
+  priorGuideSourceInventories: z.array(CreatorGuideSourceInventorySchema)
+});
+export type LatestMonetizationSourcesResponse = z.infer<
+  typeof LatestMonetizationSourcesResponseSchema
+>;
+
+export const LatestMonetizationGuideResponseSchema = z.object({
+  tenantId: z.string().min(1),
+  latestPublishedGuide: CreatorGuideRecordSchema,
+  activeGuideVersion: CreatorActiveGuideVersionSchema
+});
+export type LatestMonetizationGuideResponse = z.infer<
+  typeof LatestMonetizationGuideResponseSchema
+>;
+
 export const SearchRequestSchema = z.object({
   tenantId: z.string().min(1),
   query: z.string().min(3),

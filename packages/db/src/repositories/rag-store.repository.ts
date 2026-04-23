@@ -39,3 +39,32 @@ export function saveRagArtifacts(
   return nextStore;
 }
 
+export function upsertRagArtifacts(
+  storePath: string,
+  tenantId: string,
+  documents: ExtractedDocument[],
+  chunks: EmbeddedChunk[]
+) {
+  const current = readStore(storePath);
+  const documentIds = new Set(documents.map((document) => document.id));
+  const otherDocuments = current.documents.filter(
+    (document) => !(document.tenantId === tenantId && documentIds.has(document.id))
+  );
+  const otherChunks = current.chunks.filter(
+    (chunk) => !(chunk.tenantId === tenantId && documentIds.has(chunk.documentId))
+  );
+  const storedDocuments: StoredDocument[] = documents.map((document) => ({
+    ...document,
+    tenantId,
+    createdAt: new Date().toISOString()
+  }));
+
+  const nextStore: RagStore = {
+    documents: [...otherDocuments, ...storedDocuments],
+    chunks: [...otherChunks, ...chunks],
+    updatedAt: new Date().toISOString()
+  };
+
+  writeStore(storePath, nextStore);
+  return nextStore;
+}
