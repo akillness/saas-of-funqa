@@ -52,21 +52,21 @@ export const koMessages = {
     surfaces: [
       {
         href: "/search?source=games",
-        label: "🎮 게임 탐색",
+        label: "게임 탐색",
         kicker: "게임",
         text: "플레이한 게임, 플레이하고 싶은 게임을 AI로 관리하고 스마트하게 검색합니다.",
         cta: "게임 검색"
       },
       {
         href: "/search?source=movies",
-        label: "🎬 영화 데이터베이스",
+        label: "영화 데이터베이스",
         kicker: "영화",
         text: "본 영화와 시청 목록을 스마트하게 검색하고 AI로 추천받습니다.",
         cta: "영화 검색"
       },
       {
         href: "/search?source=videos",
-        label: "📱 콘텐츠 아카이브",
+        label: "콘텐츠 아카이브",
         kicker: "영상",
         text: "미디어 콘텐츠를 저장하고 AI로 분석하여 원하는 영상을 빠르게 찾습니다.",
         cta: "영상 검색"
@@ -382,18 +382,18 @@ export const koMessages = {
   },
   contentRow: {
     seeAll: "전체 보기",
-    gamesLabel: "🎮 게임",
-    moviesLabel: "🎬 영화",
-    videosLabel: "📱 영상",
+    gamesLabel: "게임",
+    moviesLabel: "영화",
+    videosLabel: "영상",
     gamesSubtitle: "인기 & 트렌딩 게임",
     moviesSubtitle: "호평받는 영화",
     videosSubtitle: "크리에이터 하이라이트"
   },
   categoryTabs: {
     all: "전체",
-    games: "🎮 게임",
-    movies: "🎬 영화",
-    videos: "📱 영상"
+    games: "게임",
+    movies: "영화",
+    videos: "영상"
   },
   answerPanel: {
     toggleShow: "AI 분석 보기",

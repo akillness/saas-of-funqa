@@ -4,9 +4,9 @@ import React, { useState, useTransition } from "react"
 import { getDictionary, type Locale, type SearchResult } from "../../lib/i18n"
 
 function MediaTypeBadge({ category }: { category: string }) {
-  if (category === "games") return <span className="media-type-badge media-type-badge--games">🎮 Games</span>
-  if (category === "movies") return <span className="media-type-badge media-type-badge--movies">🎬 Movies</span>
-  if (category === "videos") return <span className="media-type-badge media-type-badge--videos">📱 Videos</span>
+  if (category === "games") return <span className="media-type-badge media-type-badge--games">Games</span>
+  if (category === "movies") return <span className="media-type-badge media-type-badge--movies">Movies</span>
+  if (category === "videos") return <span className="media-type-badge media-type-badge--videos">Videos</span>
   return null
 }
 

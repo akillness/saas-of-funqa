@@ -13,9 +13,9 @@ export function CategoryTabBar({ locale }: Props) {
 
   const tabs = [
     { value: "all", label: "All", href: `/search?lang=${locale}` },
-    { value: "games", label: "🎮 Games", href: `/search?source=games&lang=${locale}` },
-    { value: "movies", label: "🎬 Movies", href: `/search?source=movies&lang=${locale}` },
-    { value: "videos", label: "📱 Videos", href: `/search?source=videos&lang=${locale}` },
+    { value: "games", label: "Games", href: `/search?source=games&lang=${locale}` },
+    { value: "movies", label: "Movies", href: `/search?source=movies&lang=${locale}` },
+    { value: "videos", label: "Videos", href: `/search?source=videos&lang=${locale}` },
   ] as const;
 
   return (

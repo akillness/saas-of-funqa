@@ -58,8 +58,9 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
   return (
     <div className="stack-lg">
-      <section className="page-intro page-intro-wide">
+      <section className="page-intro page-intro-wide editorial-page-intro">
         <p className="eyebrow">{t.search.eyebrow}</p>
+        <p className="editorial-kicker">Editorial search desk · games, films, and creator media</p>
         <h1>{t.search.title}</h1>
         <p className="lede">{t.search.lede}</p>
       </section>

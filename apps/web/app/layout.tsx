@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
-import { IBM_Plex_Mono, IBM_Plex_Sans, Noto_Sans_KR, Space_Grotesk } from "next/font/google";
+import { Cormorant_Garamond, IBM_Plex_Mono, IBM_Plex_Sans, Noto_Sans_KR } from "next/font/google";
 import { LocaleSwitcher } from "./locale-switcher";
 import { FirebaseAnalytics } from "./firebase-analytics";
 import { AuthProvider } from "@/components/auth-provider";
@@ -11,10 +11,10 @@ import { getDictionary, withLocale } from "../lib/i18n";
 import { getRequestLocale } from "../lib/i18n-server";
 import "./globals.css";
 
-const heading = Space_Grotesk({
+const heading = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-heading",
-  weight: ["500", "700"]
+  weight: ["500", "600", "700"]
 });
 
 const body = IBM_Plex_Sans({

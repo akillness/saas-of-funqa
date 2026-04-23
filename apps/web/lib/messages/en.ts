@@ -51,21 +51,21 @@ export const enMessages = {
     surfaces: [
       {
         href: "/search?source=games",
-        label: "🎮 Games Discovery",
+        label: "Games Discovery",
         kicker: "Games",
         text: "플레이한 게임, 플레이하고 싶은 게임을 AI로 관리. Track your played games and wishlist with AI-powered search.",
         cta: "Search Games"
       },
       {
         href: "/search?source=movies",
-        label: "🎬 Movie Database",
+        label: "Movie Database",
         kicker: "Movies",
         text: "본 영화와 시청 목록을 스마트하게 검색. Discover films and manage your watch history with grounded AI.",
         cta: "Search Movies"
       },
       {
         href: "/search?source=videos",
-        label: "📱 Content Archive",
+        label: "Content Archive",
         kicker: "Videos",
         text: "미디어 콘텐츠를 저장하고 AI로 분석. Archive media content and surface insights with AI retrieval.",
         cta: "Search Videos"
@@ -383,18 +383,18 @@ export const enMessages = {
   },
   contentRow: {
     seeAll: "See all",
-    gamesLabel: "🎮 Games",
-    moviesLabel: "🎬 Movies",
-    videosLabel: "📱 Videos",
+    gamesLabel: "Games",
+    moviesLabel: "Movies",
+    videosLabel: "Videos",
     gamesSubtitle: "Top-rated & trending games",
     moviesSubtitle: "Critically acclaimed films",
     videosSubtitle: "Content creator highlights"
   },
   categoryTabs: {
     all: "All",
-    games: "🎮 Games",
-    movies: "🎬 Movies",
-    videos: "📱 Videos"
+    games: "Games",
+    movies: "Movies",
+    videos: "Videos"
   },
   answerPanel: {
     toggleShow: "Show AI Analysis",
