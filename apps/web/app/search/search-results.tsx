@@ -1,12 +1,12 @@
 "use client"
 
-import { useState, useTransition } from "react"
+import React, { useState, useTransition } from "react"
 import { getDictionary, type Locale, type SearchResult } from "../../lib/i18n"
 
 function MediaTypeBadge({ category }: { category: string }) {
-  if (category === "games") return <span className="media-type-badge">🎮 Games</span>
-  if (category === "movies") return <span className="media-type-badge">🎬 Movies</span>
-  if (category === "videos") return <span className="media-type-badge">📱 Videos</span>
+  if (category === "games") return <span className="media-type-badge media-type-badge--games">🎮 Games</span>
+  if (category === "movies") return <span className="media-type-badge media-type-badge--movies">🎬 Movies</span>
+  if (category === "videos") return <span className="media-type-badge media-type-badge--videos">📱 Videos</span>
   return null
 }
 
@@ -35,11 +35,18 @@ type Props = {
   rerankMode?: string
 }
 
-function confidenceBar(confidence: SearchResult["confidence"]): { color: string; width: string } {
+function confidenceLevel(confidence: SearchResult["confidence"]): "high" | "medium" | "low" {
   const level = confidence.toLowerCase()
-  if (level === "high") return { color: "#6dd8a0", width: "85%" }
-  if (level === "medium") return { color: "#ffcb72", width: "55%" }
-  return { color: "#ff7f7f", width: "25%" }
+  if (level === "high") return "high"
+  if (level === "medium") return "medium"
+  return "low"
+}
+
+function confidenceWidth(confidence: SearchResult["confidence"]): string {
+  const level = confidence.toLowerCase()
+  if (level === "high") return "85%"
+  if (level === "medium") return "55%"
+  return "25%"
 }
 
 function extractSuggestions(results: readonly SearchResult[]): string[] {
@@ -53,6 +60,13 @@ function extractSuggestions(results: readonly SearchResult[]): string[] {
     if (phrases.length >= 3) break
   }
   return phrases
+}
+
+function posterThumbClass(category: string): string {
+  if (category === "games") return "poster-thumb poster-thumb--games"
+  if (category === "movies") return "poster-thumb poster-thumb--movies"
+  if (category === "videos") return "poster-thumb poster-thumb--videos"
+  return "poster-thumb"
 }
 
 export function SearchResults({
@@ -72,6 +86,7 @@ export function SearchResults({
   const t = getDictionary(locale)
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [isPending, startTransition] = useTransition()
+  const [answerOpen, setAnswerOpen] = useState(true)
 
   const activeResult = initialResults[selectedIndex] ?? null
 
@@ -120,47 +135,27 @@ export function SearchResults({
         </div>
       </form>
 
-      <div className="search-layout">
-        <aside className="panel rail-panel">
-          <div className="results-header">
-            <h2>{t.search.railTitle}</h2>
-            <span className="pill">{t.search.railBadge}</span>
-          </div>
-          <form action="/search" className="stack-sm">
-            <input name="lang" type="hidden" value={locale} />
-            <input name="q" type="hidden" value={initialQuery} />
-            <label className="field-label" htmlFor="source">
-              {t.search.sourceLabel}
-            </label>
-            <select
-              className="text-input"
-              defaultValue={initialSource}
-              id="source"
+      <form action="/search" className="chips-bar">
+        <input name="lang" type="hidden" value={locale} />
+        <input name="q" type="hidden" value={initialQuery} />
+        <input type="hidden" name="source" value={initialSource} />
+        <div className="category-filter-pills" role="group" aria-label={t.search.sourceLabel}>
+          {t.search.sourceOptions.map((option) => (
+            <button
+              key={option.value}
+              className="filter-pill"
+              type="submit"
               name="source"
-              onChange={(event) => event.currentTarget.form?.requestSubmit()}
+              value={option.value}
+              aria-pressed={initialSource === option.value}
             >
-              {t.search.sourceOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-            <button className="secondary-button" type="submit">
-              {t.search.applyFilters}
+              {option.label}
             </button>
-            <div className="stack-sm">
-              <p className="microcopy">{t.search.recentSearches}</p>
-              <div className="check-grid">
-                {t.search.filterChips.map((chip) => (
-                  <span className="check-chip" key={chip}>
-                    {chip}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </form>
-        </aside>
+          ))}
+        </div>
+      </form>
 
+      <div className="search-layout">
         <section className="stack-md">
           <header className="results-header">
             <div>
@@ -176,23 +171,41 @@ export function SearchResults({
 
           {initialAnswer ? (
             <article className="panel answer-panel">
-              <div className="results-header">
-                <h3>{t.search.groundedAnswer}</h3>
-                <div className="result-tags">
-                  {totalChunks !== undefined && (
-                    <span className="pill pill-bright">
-                      {totalChunks} {t.search.chunksSearchedSuffix}
-                    </span>
-                  )}
-                  {queryTransformMode && (
-                    <span className="pill pill-subtle">{queryTransformMode}</span>
-                  )}
-                  {rerankMode && (
-                    <span className="pill pill-subtle">{rerankMode}</span>
-                  )}
+              <div className="answer-accordion">
+                <div className="answer-accordion-header">
+                  <h3>{t.search.groundedAnswer}</h3>
+                  <div className="result-tags">
+                    {queryTransformMode && (
+                      <span className="pill pill-subtle">{queryTransformMode}</span>
+                    )}
+                    {rerankMode && (
+                      <span className="pill pill-subtle">{rerankMode}</span>
+                    )}
+                    <button
+                      className="answer-toggle-btn"
+                      type="button"
+                      onClick={() => setAnswerOpen((prev) => !prev)}
+                    >
+                      {answerOpen ? "▼ Hide AI Analysis" : "▶ Show AI Analysis"}
+                    </button>
+                  </div>
                 </div>
+                {answerOpen && (
+                  <>
+                    {totalChunks !== undefined && (
+                      <div className="insight-bar">
+                        <span
+                          className="confidence-bar"
+                          data-level="high"
+                          style={{ "--bar-width": "100%" } as React.CSSProperties}
+                        />
+                        <span>{totalChunks} {t.search.chunksSearchedSuffix}</span>
+                      </div>
+                    )}
+                    <p>{initialAnswer}</p>
+                  </>
+                )}
               </div>
-              <p>{initialAnswer}</p>
             </article>
           ) : null}
 
@@ -213,43 +226,54 @@ export function SearchResults({
           ) : null}
 
           {isPending ? (
-            <div className="stack-sm">
+            <div className="search-grid">
               <SkeletonCard />
               <SkeletonCard />
               <SkeletonCard />
             </div>
           ) : initialResults.length > 0 ? (
-            <div className="stack-sm">
+            <div className="search-grid">
               {initialResults.map((result, index) => {
-                const bar = confidenceBar(result.confidence)
                 const isSelected = index === selectedIndex
                 return (
-                  <article className={`panel result-card media-card ${isSelected ? "result-card-active" : ""}`} key={result.title}>
+                  <article
+                    className={`panel result-card media-card poster-card ${isSelected ? "result-card-active" : ""}`}
+                    data-category={result.category}
+                    key={`${result.source}-${result.title}`}
+                  >
+                    {/* Poster thumbnail with Netflix overlay */}
+                    <div className={posterThumbClass(result.category)}>
+                      <div className="poster-thumb-badge">
+                        <MediaTypeBadge category={result.category} />
+                      </div>
+                      <div className="poster-overlay">
+                        <span
+                          className="confidence-bar"
+                          data-level={confidenceLevel(result.confidence)}
+                          style={{ "--bar-width": confidenceWidth(result.confidence) } as React.CSSProperties}
+                        />
+                        <span className="microcopy" style={{ color: "#eef5f2", fontSize: "0.72rem" }}>
+                          {result.source}
+                        </span>
+                      </div>
+                    </div>
+
                     <button
                       aria-pressed={isSelected}
                       className="result-card-button"
                       onClick={() => setSelectedIndex(index)}
                       type="button"
+                      style={{ padding: "0.85rem" }}
                     >
                       <div className="result-meta result-meta-top">
                         <div className="result-tags">
-                          <MediaTypeBadge category={result.category} />
                           <span className="pill">{t.common.confidenceLabels[result.confidence]}</span>
-                          <span
-                            style={{
-                              display: "inline-block",
-                              height: "6px",
-                              borderRadius: "3px",
-                              background: bar.color,
-                              width: bar.width
-                            }}
-                          />
                           <span className="pill pill-subtle">{t.common.sourceLabels[result.category]}</span>
                         </div>
-                        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                        <div className="result-meta">
                           <span className="microcopy">{result.freshness}</span>
                           <button
-                            aria-label="북마크"
+                            aria-label={t.search.bookmarkLabel}
                             className="bookmark-btn"
                             onClick={(e) => e.stopPropagation()}
                             type="button"
@@ -302,14 +326,9 @@ export function SearchResults({
                     {t.common.confidenceLabels[activeResult.confidence]}
                     <br />
                     <span
-                      style={{
-                        display: "inline-block",
-                        height: "6px",
-                        borderRadius: "3px",
-                        background: confidenceBar(activeResult.confidence).color,
-                        width: confidenceBar(activeResult.confidence).width,
-                        marginTop: "4px"
-                      }}
+                      className="confidence-bar"
+                      data-level={confidenceLevel(activeResult.confidence)}
+                      style={{ "--bar-width": confidenceWidth(activeResult.confidence) } as React.CSSProperties}
                     />
                   </dd>
                 </div>
@@ -320,9 +339,14 @@ export function SearchResults({
               </dl>
               <div className="stack-sm">
                 <p className="field-label">{t.search.citationsField}</p>
-                <ul className="citation-list">
-                  {activeResult.citations.map((citation) => (
-                    <li key={citation}>{citation}</li>
+                <ul className="citation-list" style={{ listStyle: "none", padding: 0 }}>
+                  {activeResult.citations.map((citation, i) => (
+                    <li key={citation} className="citation-item">
+                      <span className="citation-num">#{i + 1}</span>
+                      <a href={citation} className="microcopy" target="_blank" rel="noopener noreferrer">
+                        {citation}
+                      </a>
+                    </li>
                   ))}
                 </ul>
               </div>

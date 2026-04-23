@@ -14,7 +14,7 @@
 현재 구현 기준 핵심 운영 기능:
 
 - **Google Auth 로그인** — Firebase `signInWithPopup` 기반 Google 소셜 로그인, `AuthProvider` 컨텍스트로 전역 인증 상태 관리
-- **AI 미디어 검색엔진 UI** — Games / Movies / Videos 카테고리 필터, 미디어 타입 배지, 스켈레톤 로딩, 북마크 버튼
+- **Netflix/YouTube + imweb.me 컨셉 UI** — 에디토리얼 히어로 섹션, Games/Movies/Videos 가로 스크롤 콘텐츠 행, YouTube 스타일 칩 필터, 포스터 그리드, AI 분석 아코디언, 카테고리 탭 바
 - **NavAuth 컴포넌트** — 로그인 상태에 따라 사용자명·로그아웃 또는 로그인 링크를 표시
 - `evidence-only` + `document-graph-consensus` 계약 기반 검색 API
 - `rag-lab`의 최신 consensus release-gate 리포트 조회 및 선택 UI

@@ -16,57 +16,127 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
   return (
     <div className="stack-xl">
-      <section className="spotlight">
-        <div className="spotlight-copy">
+      <section className="featured-hero" aria-label="Hero">
+        <div className="featured-hero-content">
           <p className="eyebrow">{t.home.eyebrow}</p>
-          <h1>{t.home.title}</h1>
+          <h1>{t.featuredHero.title}</h1>
           <p className="lede">{t.home.lede}</p>
           <div className="spotlight-actions">
             <Link className="primary-button" href={withLocale("/search", locale)}>
               {t.home.primaryAction}
             </Link>
-            <Link className="secondary-button" href={withLocale("/docs", locale)}>
-              {t.home.secondaryAction}
+            <Link className="secondary-button" href={withLocale("/search?trending=1", locale)}>
+              {t.featuredHero.trendingAction}
             </Link>
           </div>
         </div>
-        <div className="spotlight-stack">
-          <article className="panel panel-hero">
-            <div className="results-header">
-              <div>
-                <p className="metric-label">{t.home.embedLabel}</p>
-                <p className="metric-value">{health?.embeddingModel ?? "gemini-embedding-2-preview"}</p>
-              </div>
-              <span className="pill pill-bright">{t.home.verifiedLabel}</span>
-            </div>
-            <p className="microcopy">{t.home.embedNote}</p>
-            <div className="check-grid">
-              <span className="check-chip">{health?.rag.documentCount ?? 0} {t.home.docsIndexed}</span>
-              <span className="check-chip">{health?.rag.chunkCount ?? 0} {t.home.chunksLive}</span>
-            </div>
-          </article>
-          <article className="panel signal-panel">
-            <p className="metric-label">{t.home.systemShapeLabel}</p>
-            <ul className="signal-list">
-              {t.home.systemShape.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </article>
+        <div className="featured-hero-meta">
+          <span className="hero-stat-pill">
+            <span className="hero-stat-dot hero-stat-dot--ok" />
+            {health?.embeddingModel ?? "gemini-embedding-2-preview"}
+          </span>
+          <span className="hero-stat-pill">
+            <span className="hero-stat-dot hero-stat-dot--accent" />
+            {health?.rag.documentCount ?? 0} {t.home.docsIndexed}
+          </span>
+          <span className="hero-stat-pill">
+            <span className="hero-stat-dot hero-stat-dot--accent" />
+            {health?.rag.chunkCount ?? 0} {t.home.chunksLive}
+          </span>
         </div>
       </section>
 
-      <section className="mode-grid" aria-label="Primary surfaces">
-        {t.home.surfaces.map((surface) => (
-          <article className="panel mode-card" key={surface.href}>
-            <p className="eyebrow">{surface.kicker}</p>
-            <h2>{surface.label}</h2>
-            <p>{surface.text}</p>
-            <Link className="action-link" href={withLocale(surface.href, locale)}>
-              {surface.cta}
+      <section className="content-row" aria-label="Games">
+        <div className="content-row-header">
+          <span className="content-row-label content-row-label--games">{t.contentRow.gamesLabel}</span>
+          <Link className="content-row-see-all" href={withLocale("/search?source=games", locale)}>
+            {t.contentRow.seeAll} →
+          </Link>
+        </div>
+        <div className="content-row-scroll">
+          {[
+            { title: "Open-world RPGs", sub: "Best story-driven adventures" },
+            { title: "Soulslike Picks", sub: "Challenge + atmosphere" },
+            { title: "Indie Gems", sub: "Hidden masterpieces" },
+            { title: "GOTY Nominees", sub: "Award-winning titles" },
+            { title: "Multiplayer Hits", sub: "Play with friends" },
+          ].map((item) => (
+            <Link
+              key={item.title}
+              className="row-card row-card--games"
+              href={withLocale(`/search?source=games&q=${encodeURIComponent(item.title)}`, locale)}
+            >
+              <div className="row-card-thumb" aria-hidden="true" />
+              <div className="row-card-info">
+                <span className="row-card-badge row-card-badge--games">Games</span>
+                <p className="row-card-title">{item.title}</p>
+                <p className="row-card-sub">{item.sub}</p>
+              </div>
             </Link>
-          </article>
-        ))}
+          ))}
+        </div>
+      </section>
+
+      <section className="content-row" aria-label="Movies">
+        <div className="content-row-header">
+          <span className="content-row-label content-row-label--movies">{t.contentRow.moviesLabel}</span>
+          <Link className="content-row-see-all" href={withLocale("/search?source=movies", locale)}>
+            {t.contentRow.seeAll} →
+          </Link>
+        </div>
+        <div className="content-row-scroll">
+          {[
+            { title: "Oscar Winners", sub: "Academy Award champions" },
+            { title: "Sci-Fi Epics", sub: "Mind-bending universes" },
+            { title: "Nolan Collection", sub: "Christopher Nolan filmography" },
+            { title: "Netflix Originals", sub: "Streaming exclusives" },
+            { title: "Classic Cinema", sub: "Timeless masterworks" },
+          ].map((item) => (
+            <Link
+              key={item.title}
+              className="row-card row-card--movies"
+              href={withLocale(`/search?source=movies&q=${encodeURIComponent(item.title)}`, locale)}
+            >
+              <div className="row-card-thumb" aria-hidden="true" />
+              <div className="row-card-info">
+                <span className="row-card-badge row-card-badge--movies">Movies</span>
+                <p className="row-card-title">{item.title}</p>
+                <p className="row-card-sub">{item.sub}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="content-row" aria-label="Videos">
+        <div className="content-row-header">
+          <span className="content-row-label content-row-label--videos">{t.contentRow.videosLabel}</span>
+          <Link className="content-row-see-all" href={withLocale("/search?source=videos", locale)}>
+            {t.contentRow.seeAll} →
+          </Link>
+        </div>
+        <div className="content-row-scroll">
+          {[
+            { title: "Tech Deep Dives", sub: "Engineering explained" },
+            { title: "AI Explainers", sub: "How AI really works" },
+            { title: "Documentary Picks", sub: "Long-form knowledge" },
+            { title: "Creator Spotlights", sub: "Top YouTube channels" },
+            { title: "Tutorial Series", sub: "Learn by watching" },
+          ].map((item) => (
+            <Link
+              key={item.title}
+              className="row-card row-card--videos"
+              href={withLocale(`/search?source=videos&q=${encodeURIComponent(item.title)}`, locale)}
+            >
+              <div className="row-card-thumb" aria-hidden="true" />
+              <div className="row-card-info">
+                <span className="row-card-badge row-card-badge--videos">Videos</span>
+                <p className="row-card-title">{item.title}</p>
+                <p className="row-card-sub">{item.sub}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </section>
 
       <section className="workspace-band">

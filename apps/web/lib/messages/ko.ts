@@ -51,21 +51,21 @@ export const koMessages = {
     ],
     surfaces: [
       {
-        href: "/search",
+        href: "/search?source=games",
         label: "🎮 게임 탐색",
         kicker: "게임",
         text: "플레이한 게임, 플레이하고 싶은 게임을 AI로 관리하고 스마트하게 검색합니다.",
         cta: "게임 검색"
       },
       {
-        href: "/search",
+        href: "/search?source=movies",
         label: "🎬 영화 데이터베이스",
         kicker: "영화",
         text: "본 영화와 시청 목록을 스마트하게 검색하고 AI로 추천받습니다.",
         cta: "영화 검색"
       },
       {
-        href: "/search",
+        href: "/search?source=videos",
         label: "📱 콘텐츠 아카이브",
         kicker: "영상",
         text: "미디어 콘텐츠를 저장하고 AI로 분석하여 원하는 영상을 빠르게 찾습니다.",
@@ -97,7 +97,7 @@ export const koMessages = {
     pending: "검색 중…",
     shareableNote: "URL 상태를 그대로 공유해 검토와 재현에 사용할 수 있습니다.",
     suggestionsLabel: "추천 검색어",
-    fallbackSuggestions: ["마인크래프트 최신 업데이트 내용은?", "크리스토퍼 놀란 감독 영화 목록", "넷플릭스 오리지널 드라마 추천", "2024년 GOTY 수상작"],
+    fallbackSuggestions: ["마인크래프트 최신 업데이트 내용은?", "크리스토퍼 놀란 감독 영화 목록", "넷플릭스 오리지널 드라마 추천", "2024년 GOTY 수상작", "젤다의 전설 시리즈 순서는?", "역대 아카데미 작품상 수상작", "쇼츠 알고리즘 분석 채널 추천", "소울라이크 입문자 추천 게임"],
     railTitle: "카테고리 필터",
     railBadge: "실시간 필터",
     sourceLabel: "콘텐츠 유형",
@@ -131,6 +131,7 @@ export const koMessages = {
     citationsField: "인용",
     resultForSuffix: "개 결과",
     citationsSuffix: "개 인용",
+    bookmarkLabel: "북마크",
     liveFreshness: "실시간",
     fallbackResults: [
       {
@@ -369,5 +370,36 @@ export const koMessages = {
       "관리자 권한은 로그인 후 서버 측에서 부여됩니다.",
       "Provider API key는 브라우저 저장소에 저장되지 않습니다."
     ]
+  },
+  featuredHero: {
+    eyebrow: "AI 미디어 검색엔진",
+    title: "게임, 영화, 미디어를 AI로 발견하세요",
+    lede: "나만의 콘텐츠 유니버스. AI 기반 검색으로 저장하고 탐색하세요.",
+    primaryAction: "검색 시작",
+    trendingAction: "트렌딩 보기",
+    statsChunks: "청크 인덱싱",
+    statsModel: "임베딩 모델"
+  },
+  contentRow: {
+    seeAll: "전체 보기",
+    gamesLabel: "🎮 게임",
+    moviesLabel: "🎬 영화",
+    videosLabel: "📱 영상",
+    gamesSubtitle: "인기 & 트렌딩 게임",
+    moviesSubtitle: "호평받는 영화",
+    videosSubtitle: "크리에이터 하이라이트"
+  },
+  categoryTabs: {
+    all: "전체",
+    games: "🎮 게임",
+    movies: "🎬 영화",
+    videos: "📱 영상"
+  },
+  answerPanel: {
+    toggleShow: "AI 분석 보기",
+    toggleHide: "AI 분석 숨기기",
+    chunksAnalyzed: "청크 분석됨",
+    confidenceScore: "신뢰도",
+    citationsLabel: "출처"
   }
 } as const;

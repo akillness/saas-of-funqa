@@ -50,21 +50,21 @@ export const enMessages = {
     ],
     surfaces: [
       {
-        href: "/search",
+        href: "/search?source=games",
         label: "🎮 Games Discovery",
         kicker: "Games",
         text: "플레이한 게임, 플레이하고 싶은 게임을 AI로 관리. Track your played games and wishlist with AI-powered search.",
         cta: "Search Games"
       },
       {
-        href: "/search",
+        href: "/search?source=movies",
         label: "🎬 Movie Database",
         kicker: "Movies",
         text: "본 영화와 시청 목록을 스마트하게 검색. Discover films and manage your watch history with grounded AI.",
         cta: "Search Movies"
       },
       {
-        href: "/search",
+        href: "/search?source=videos",
         label: "📱 Content Archive",
         kicker: "Videos",
         text: "미디어 콘텐츠를 저장하고 AI로 분석. Archive media content and surface insights with AI retrieval.",
@@ -96,7 +96,7 @@ export const enMessages = {
     pending: "Searching…",
     shareableNote: "URL state stays shareable for review and replay.",
     suggestionsLabel: "Suggested searches",
-    fallbackSuggestions: ["마인크래프트 최신 업데이트 내용은?", "크리스토퍼 놀란 감독 영화 목록", "넷플릭스 오리지널 드라마 추천", "2024년 GOTY 수상작"],
+    fallbackSuggestions: ["What's new in Minecraft 1.21?", "Christopher Nolan films ranked", "Best Netflix originals to watch now", "2024 GOTY winner and nominees", "Best soulslike games for beginners", "All-time Academy Award Best Picture winners", "Top YouTube tech review channels", "Open-world RPGs with the best story"],
     railTitle: "Category Filter",
     railBadge: "Live filters",
     sourceLabel: "Content type",
@@ -130,6 +130,7 @@ export const enMessages = {
     citationsField: "Citations",
     resultForSuffix: "result(s) for",
     citationsSuffix: "citations",
+    bookmarkLabel: "Bookmark",
     liveFreshness: "live",
     fallbackResults: [
       {
@@ -370,5 +371,36 @@ export const enMessages = {
       "Admin privileges are assigned server-side after sign-in.",
       "No provider API key is ever stored in browser storage."
     ]
+  },
+  featuredHero: {
+    eyebrow: "AI Media Search Engine",
+    title: "Discover Games, Movies & Media with AI",
+    lede: "Your personal content universe. Search, save, and explore with grounded AI retrieval.",
+    primaryAction: "Start Searching",
+    trendingAction: "See What's Trending",
+    statsChunks: "chunks indexed",
+    statsModel: "embedding model"
+  },
+  contentRow: {
+    seeAll: "See all",
+    gamesLabel: "🎮 Games",
+    moviesLabel: "🎬 Movies",
+    videosLabel: "📱 Videos",
+    gamesSubtitle: "Top-rated & trending games",
+    moviesSubtitle: "Critically acclaimed films",
+    videosSubtitle: "Content creator highlights"
+  },
+  categoryTabs: {
+    all: "All",
+    games: "🎮 Games",
+    movies: "🎬 Movies",
+    videos: "📱 Videos"
+  },
+  answerPanel: {
+    toggleShow: "Show AI Analysis",
+    toggleHide: "Hide AI Analysis",
+    chunksAnalyzed: "chunks analyzed",
+    confidenceScore: "Confidence",
+    citationsLabel: "Sources"
   }
 } as const;
