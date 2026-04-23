@@ -1776,10 +1776,17 @@ body::before {
   font-size: 1.08rem;
 }
 
+.editorial-hero-note {
+  margin: 0 0 0.85rem;
+  color: #6f4a36;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
 .editorial-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(18rem, 24rem);
-  gap: 1.25rem;
+  grid-template-columns: minmax(0, 1.65fr) minmax(18rem, 24rem);
+  gap: 1.4rem;
   align-items: stretch;
 }
 
@@ -1795,6 +1802,10 @@ body::before {
   padding: clamp(1.75rem, 4vw, 3.3rem);
   position: relative;
   overflow: hidden;
+  min-height: 34rem;
+  display: grid;
+  align-content: space-between;
+  gap: 1.2rem;
 }
 
 .editorial-hero-copy::after {
@@ -1815,6 +1826,28 @@ body::before {
   letter-spacing: -0.045em;
 }
 
+.editorial-hero-ledger {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.editorial-ledger-item {
+  display: grid;
+  gap: 0.55rem;
+  padding: 1rem 1.05rem;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(57, 35, 22, 0.09);
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.editorial-ledger-item p {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.93rem;
+  line-height: 1.45;
+}
+
 .editorial-hero-rail {
   display: grid;
   gap: 1rem;
@@ -1831,6 +1864,16 @@ body::before {
 
 .editorial-rail-card--stats {
   background: linear-gradient(180deg, rgba(185, 101, 67, 0.09), rgba(255, 255, 255, 0.86));
+}
+
+.editorial-rail-card--stats h2 {
+  margin: 0.2rem 0 0.75rem;
+  font-size: clamp(1.9rem, 3vw, 3rem);
+  line-height: 0.98;
+}
+
+.editorial-rail-card--stats p {
+  margin: 0;
 }
 
 .editorial-bullet-list {
@@ -1852,9 +1895,14 @@ body::before {
   border-color: rgba(57, 35, 22, 0.08);
 }
 
-.editorial-surface-grid {
+.editorial-feature-band {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.95fr);
+  gap: 1.15rem;
+}
+
+.editorial-feature-stack {
+  display: grid;
   gap: 1rem;
 }
 
@@ -1869,6 +1917,16 @@ body::before {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 251, 245, 0.95));
   box-shadow: var(--shadow);
   transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.editorial-feature-lead {
+  min-height: 24rem;
+  align-content: space-between;
+  padding: 2rem;
+}
+
+.editorial-feature-card {
+  min-height: 11.5rem;
 }
 
 .editorial-surface-card:hover,
@@ -1896,9 +1954,22 @@ body::before {
   font-size: 0.9rem;
 }
 
+.editorial-feature-index {
+  margin: 0;
+  color: #6f4a36;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 .editorial-surface-card h2 {
   font-size: clamp(2rem, 3vw, 3rem);
   line-height: 0.95;
+}
+
+.editorial-feature-card h2 {
+  font-size: clamp(1.65rem, 2.4vw, 2.4rem);
 }
 
 .editorial-surface-card--games {
@@ -1917,6 +1988,45 @@ body::before {
   background:
     linear-gradient(180deg, rgba(85, 133, 155, 0.11), rgba(255, 251, 245, 0.96)),
     #fff;
+}
+
+.editorial-ledger-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.editorial-ledger-panel,
+.editorial-manifesto-panel {
+  padding: 1.6rem;
+  border-radius: 1.8rem;
+}
+
+.editorial-ledger-panel h2,
+.editorial-manifesto-panel h2 {
+  max-width: 16ch;
+  margin-bottom: 1rem;
+  font-size: clamp(2rem, 3vw, 3.1rem);
+}
+
+.editorial-ledger-grid-inner {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.editorial-ledger-block {
+  display: grid;
+  gap: 0.55rem;
+  padding: 1rem;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(57, 35, 22, 0.09);
+  background: rgba(255, 255, 255, 0.64);
+}
+
+.editorial-ledger-block p {
+  margin: 0;
+  color: var(--text);
 }
 
 .editorial-story-grid {
@@ -1968,6 +2078,15 @@ body::before {
   margin-top: 1.1rem;
 }
 
+.editorial-quote {
+  margin: 0 0 1rem;
+  color: var(--text);
+  font-family: var(--font-heading), sans-serif;
+  font-size: clamp(1.7rem, 2.8vw, 2.7rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
 .editorial-page-intro {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 251, 245, 0.9)),
@@ -1980,6 +2099,61 @@ body::before {
 
 .search-shell-premium {
   gap: 1.2rem;
+}
+
+.search-overview-strip {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.95fr);
+  gap: 1rem;
+  padding: 1.35rem 1.5rem;
+  border-radius: 1.8rem;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 246, 237, 0.98)),
+    #fff;
+}
+
+.search-overview-copy {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.search-overview-copy h2 {
+  font-size: clamp(2.2rem, 3vw, 3.4rem);
+}
+
+.search-overview-copy p {
+  margin: 0;
+  max-width: 36rem;
+}
+
+.search-overview-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.search-overview-card {
+  display: grid;
+  align-content: start;
+  gap: 0.35rem;
+  padding: 1rem;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(57, 35, 22, 0.08);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.search-overview-value {
+  color: var(--text);
+  font-family: var(--font-heading), sans-serif;
+  font-size: clamp(1.8rem, 2.8vw, 2.8rem);
+  line-height: 1;
+}
+
+.search-overview-label {
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .search-composer {
@@ -1995,7 +2169,7 @@ body::before {
 }
 
 .search-layout {
-  grid-template-columns: minmax(0, 1fr) minmax(18rem, 21rem);
+  grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 21rem);
   gap: 1rem;
 }
 
@@ -2078,18 +2252,25 @@ body::before {
 
 @media (max-width: 1080px) {
   .editorial-hero,
+  .editorial-feature-band,
+  .editorial-ledger-grid,
   .editorial-story-grid,
+  .search-overview-strip,
   .search-layout {
     grid-template-columns: 1fr;
   }
 
   .editorial-hero-copy h1,
+  .editorial-ledger-panel h2,
+  .editorial-manifesto-panel h2,
   .editorial-story-panel h2,
   .editorial-sidebar-panel h2 {
     max-width: none;
   }
 
-  .editorial-surface-grid {
+  .editorial-hero-ledger,
+  .editorial-ledger-grid-inner,
+  .search-overview-metrics {
     grid-template-columns: 1fr;
   }
 }

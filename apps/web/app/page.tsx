@@ -13,6 +13,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
   const locale = resolveLocale(params?.lang);
   const t = getDictionary(locale);
   const health = await fetchHealthSummary();
+  const [leadSurface, ...secondarySurfaces] = t.home.surfaces;
   const issueStats = [
     {
       label: health?.embeddingModel ?? "gemini-embedding-2-preview",
@@ -34,6 +35,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         <div className="editorial-hero-copy">
           <p className="eyebrow">{t.home.eyebrow}</p>
           <p className="editorial-kicker">Issue 01 · Curated intelligence for culture archives</p>
+          <p className="editorial-hero-note">Grounded search for games, films, and creator media</p>
           <h1>{t.home.title}</h1>
           <p className="lede editorial-lede">{t.home.lede}</p>
           <div className="spotlight-actions">
@@ -43,6 +45,14 @@ export default async function HomePage({ searchParams }: HomePageProps) {
             <Link className="secondary-button" href={withLocale("/docs", locale)}>
               {t.home.secondaryAction}
             </Link>
+          </div>
+          <div className="editorial-hero-ledger">
+            {issueStats.map((item) => (
+              <article className="editorial-ledger-item" key={item.label}>
+                <span className={`hero-stat-dot hero-stat-dot--${item.tone}`} />
+                <p>{item.label}</p>
+              </article>
+            ))}
           </div>
         </div>
         <aside className="editorial-hero-rail">
@@ -56,35 +66,77 @@ export default async function HomePage({ searchParams }: HomePageProps) {
           </article>
           <article className="editorial-rail-card editorial-rail-card--stats">
             <p className="eyebrow">Current issue</p>
-            <div className="editorial-stat-stack">
-              {issueStats.map((item) => (
-                <span className="hero-stat-pill" key={item.label}>
-                  <span className={`hero-stat-dot hero-stat-dot--${item.tone}`} />
-                  {item.label}
-                </span>
-              ))}
-            </div>
+            <h2>One search surface, one evidence rail, one clear archive rhythm.</h2>
+            <p>
+              FunQA keeps the product structure intact, but shifts the homepage into a magazine-like front
+              page so search feels like the clear center of gravity.
+            </p>
           </article>
         </aside>
       </section>
 
-      <section className="editorial-surface-grid" aria-label="Content categories">
-        {t.home.surfaces.map((surface) => (
-          <Link
-            className={`editorial-surface-card editorial-surface-card--${surface.kicker.toLowerCase()}`}
-            href={withLocale(surface.href, locale)}
-            key={surface.href}
-          >
-            <div className="editorial-surface-head">
-              <span className="editorial-surface-kicker">{surface.kicker}</span>
-              <span className="editorial-surface-label">{surface.label}</span>
-            </div>
-            <div className="editorial-surface-body">
-              <h2>{surface.cta}</h2>
-              <p>{surface.text}</p>
-            </div>
-          </Link>
-        ))}
+      <section className="editorial-feature-band" aria-label="Content categories">
+        <Link
+          className={`editorial-feature-lead editorial-surface-card editorial-surface-card--${leadSurface.kicker.toLowerCase()}`}
+          href={withLocale(leadSurface.href, locale)}
+        >
+          <div className="editorial-surface-head">
+            <span className="editorial-surface-kicker">{leadSurface.kicker}</span>
+            <span className="editorial-surface-label">{leadSurface.label}</span>
+          </div>
+          <div className="editorial-surface-body">
+            <p className="editorial-feature-index">Lead story</p>
+            <h2>{leadSurface.cta}</h2>
+            <p>{leadSurface.text}</p>
+          </div>
+        </Link>
+
+        <div className="editorial-feature-stack">
+          {secondarySurfaces.map((surface, index) => (
+            <Link
+              className={`editorial-surface-card editorial-feature-card editorial-surface-card--${surface.kicker.toLowerCase()}`}
+              href={withLocale(surface.href, locale)}
+              key={surface.href}
+            >
+              <div className="editorial-surface-head">
+                <span className="editorial-surface-kicker">{surface.kicker}</span>
+                <span className="editorial-surface-label">{surface.label}</span>
+              </div>
+              <div className="editorial-surface-body">
+                <p className="editorial-feature-index">Desk 0{index + 2}</p>
+                <h2>{surface.cta}</h2>
+                <p>{surface.text}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="editorial-ledger-grid">
+        <article className="panel editorial-ledger-panel">
+          <p className="eyebrow">Issue ledger</p>
+          <h2>Small metrics, visible posture, no hidden system state.</h2>
+          <div className="editorial-ledger-grid-inner">
+            {issueStats.map((item) => (
+              <div className="editorial-ledger-block" key={item.label}>
+                <span className={`hero-stat-dot hero-stat-dot--${item.tone}`} />
+                <p>{item.label}</p>
+              </div>
+            ))}
+          </div>
+        </article>
+        <article className="panel editorial-manifesto-panel">
+          <p className="eyebrow">{t.home.whyEyebrow}</p>
+          <h2>{t.home.whyTitle}</h2>
+          <p>{t.home.whyBody}</p>
+          <div className="editorial-chip-grid">
+            {t.home.whyChips.map((chip) => (
+              <span className="check-chip" key={chip}>
+                {chip}
+              </span>
+            ))}
+          </div>
+        </article>
       </section>
 
       <section className="editorial-story-grid">
@@ -102,16 +154,15 @@ export default async function HomePage({ searchParams }: HomePageProps) {
           </div>
         </article>
         <article className="panel editorial-sidebar-panel">
-          <p className="eyebrow">{t.home.whyEyebrow}</p>
-          <h2>{t.home.whyTitle}</h2>
-          <p>{t.home.whyBody}</p>
-          <div className="editorial-chip-grid">
-            {t.home.whyChips.map((chip) => (
-              <span className="check-chip" key={chip}>
-                {chip}
-              </span>
-            ))}
-          </div>
+          <p className="eyebrow">Editorial note</p>
+          <blockquote className="editorial-quote">
+            Search should feel less like a dashboard with cards and more like a deliberate front page with
+            one main story, one supporting rail, and evidence that stays visible.
+          </blockquote>
+          <p className="microcopy">
+            This pass increases contrast, spacing, and hierarchy without changing the actual product IA or
+            retrieval behavior.
+          </p>
         </article>
       </section>
     </div>

@@ -94,6 +94,11 @@ export function SearchResults({
     initialResults.length > 0
       ? extractSuggestions(initialResults)
       : t.search.fallbackSuggestions
+  const categorySummary = [
+    { key: "games", label: t.common.sourceLabels.games, count: initialResults.filter((item) => item.category === "games").length },
+    { key: "movies", label: t.common.sourceLabels.movies, count: initialResults.filter((item) => item.category === "movies").length },
+    { key: "videos", label: t.common.sourceLabels.videos, count: initialResults.filter((item) => item.category === "videos").length }
+  ]
 
   return (
     <div className="search-shell search-shell-premium">
@@ -154,6 +159,26 @@ export function SearchResults({
           ))}
         </div>
       </form>
+
+      <section className="search-overview-strip panel">
+        <div className="search-overview-copy">
+          <p className="eyebrow">Search desk</p>
+          <h2>{initialQuery ? `"${initialQuery}"` : t.search.resultsTitle}</h2>
+          <p>
+            {initialQuery
+              ? `${initialResults.length} ${t.search.resultForSuffix} "${initialQuery}"`
+              : t.search.resultsSummaryEmpty}
+          </p>
+        </div>
+        <div className="search-overview-metrics">
+          {categorySummary.map((item) => (
+            <article className="search-overview-card" key={item.key}>
+              <span className="search-overview-value">{item.count}</span>
+              <span className="search-overview-label">{item.label}</span>
+            </article>
+          ))}
+        </div>
+      </section>
 
       <div className="search-layout">
         <section className="stack-md">
