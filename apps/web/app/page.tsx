@@ -28,6 +28,23 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       tone: "accent" as const,
     },
   ];
+  const wowSignals = [
+    {
+      eyebrow: "Strict grounding",
+      title: "Evidence-only when consensus fails",
+      body: "FunQA would rather expose ranked evidence than improvise an answer without enough agreement.",
+    },
+    {
+      eyebrow: "Multimodal core",
+      title: "Gemini embeddings ready for text, image, and document inputs",
+      body: "The retrieval layer is already positioned for multimodal intake rather than a text-only prompt box.",
+    },
+    {
+      eyebrow: "Operator proof",
+      title: "RAG Lab keeps evaluation, failure reasons, and release-gate evidence visible",
+      body: "The system can be inspected like a product pipeline, not guessed at like a black box.",
+    },
+  ];
 
   return (
     <div className="stack-xl home-editorial">
@@ -65,14 +82,29 @@ export default async function HomePage({ searchParams }: HomePageProps) {
             </ul>
           </article>
           <article className="editorial-rail-card editorial-rail-card--stats">
-            <p className="eyebrow">Current issue</p>
-            <h2>One search surface, one evidence rail, one clear archive rhythm.</h2>
+            <p className="eyebrow">Consensus engine</p>
+            <h2>One answer rail, one refusal mode, one inspectable retrieval chain.</h2>
             <p>
-              FunQA keeps the product structure intact, but shifts the homepage into a magazine-like front
-              page so search feels like the clear center of gravity.
+              The product should feel serious because it shows when the answer is allowed, when it is
+              blocked, and what evidence shaped that decision.
             </p>
+            <div className="editorial-rail-signals">
+              <span className="check-chip">document-graph consensus</span>
+              <span className="check-chip">evidence-only fallback</span>
+              <span className="check-chip">citation-first inspection</span>
+            </div>
           </article>
         </aside>
+      </section>
+
+      <section className="editorial-wow-grid" aria-label="Technical wow points">
+        {wowSignals.map((signal) => (
+          <article className="panel editorial-wow-card" key={signal.title}>
+            <p className="eyebrow">{signal.eyebrow}</p>
+            <h2>{signal.title}</h2>
+            <p>{signal.body}</p>
+          </article>
+        ))}
       </section>
 
       <section className="editorial-feature-band" aria-label="Content categories">
@@ -126,11 +158,14 @@ export default async function HomePage({ searchParams }: HomePageProps) {
           </div>
         </article>
         <article className="panel editorial-manifesto-panel">
-          <p className="eyebrow">{t.home.whyEyebrow}</p>
-          <h2>{t.home.whyTitle}</h2>
-          <p>{t.home.whyBody}</p>
+          <p className="eyebrow">System proof</p>
+          <h2>FunQA should expose its search contract, not bury it in docs.</h2>
+          <p>
+            Query transform, hybrid retrieval, rerank, graph agreement, and refusal logic should all feel
+            like visible product behavior. That is the actual wow point.
+          </p>
           <div className="editorial-chip-grid">
-            {t.home.whyChips.map((chip) => (
+            {["query transform", "hybrid rerank", "graph agreement", "operator debugger"].map((chip) => (
               <span className="check-chip" key={chip}>
                 {chip}
               </span>

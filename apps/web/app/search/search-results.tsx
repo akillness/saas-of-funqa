@@ -99,6 +99,15 @@ export function SearchResults({
     { key: "movies", label: t.common.sourceLabels.movies, count: initialResults.filter((item) => item.category === "movies").length },
     { key: "videos", label: t.common.sourceLabels.videos, count: initialResults.filter((item) => item.category === "videos").length }
   ]
+  const pipelineSteps = [
+    { label: "Query transform", value: queryTransformMode ?? "deterministic-local" },
+    { label: "Retrieval", value: initialRetrievalMode ?? "graph-core-retrieval" },
+    { label: "Rerank", value: rerankMode ?? "hybrid-rerank" },
+    {
+      label: "Output contract",
+      value: initialAnswerMode === "evidence-only" ? "evidence-only" : "consensus-backed-answer"
+    }
+  ]
 
   return (
     <div className="search-shell search-shell-premium">
@@ -133,6 +142,13 @@ export function SearchResults({
           </div>
         </div>
         <div className="search-composer-actions">
+          <div className="strict-grounding-pill" aria-label="Strict grounding mode">
+            <span className="strict-grounding-switch" aria-hidden="true" />
+            <div>
+              <strong>Strict grounding</strong>
+              <p>Consensus gate protects final answer output.</p>
+            </div>
+          </div>
           <button className="primary-button" disabled={isPending} type="submit">
             {isPending ? t.search.pending : t.search.submit}
           </button>
@@ -175,6 +191,26 @@ export function SearchResults({
             <article className="search-overview-card" key={item.key}>
               <span className="search-overview-value">{item.count}</span>
               <span className="search-overview-label">{item.label}</span>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="search-pipeline-strip panel" aria-label="Search pipeline">
+        <div className="search-pipeline-copy">
+          <p className="eyebrow">Pipeline x-ray</p>
+          <h2>FunQA shows how the answer was allowed, not just what it said.</h2>
+          <p>
+            {initialQuery
+              ? `Optimized intent: ${queryTransformMode ?? "deterministic-local"}`
+              : "Search runs through transform, retrieval, rerank, and output contract checks."}
+          </p>
+        </div>
+        <div className="search-pipeline-grid">
+          {pipelineSteps.map((step) => (
+            <article className="search-pipeline-card" key={step.label}>
+              <span className="search-pipeline-label">{step.label}</span>
+              <strong>{step.value}</strong>
             </article>
           ))}
         </div>
@@ -235,7 +271,7 @@ export function SearchResults({
           ) : null}
 
           {initialAnswerMode === "evidence-only" && initialConsensusReached === false ? (
-            <article className="panel answer-panel">
+            <article className="panel answer-panel answer-panel-warning">
               <div className="results-header">
                 <h3>{t.search.evidenceOnlyTitle}</h3>
                 <div className="result-tags">
