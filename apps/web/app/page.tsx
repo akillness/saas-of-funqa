@@ -46,97 +46,48 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         </div>
       </section>
 
-      <section className="content-row" aria-label="Games">
-        <div className="content-row-header">
-          <span className="content-row-label content-row-label--games">{t.contentRow.gamesLabel}</span>
-          <Link className="content-row-see-all" href={withLocale("/search?source=games", locale)}>
-            {t.contentRow.seeAll} →
-          </Link>
-        </div>
-        <div className="content-row-scroll">
-          {[
-            { title: "Open-world RPGs", sub: "Best story-driven adventures" },
-            { title: "Soulslike Picks", sub: "Challenge + atmosphere" },
-            { title: "Indie Gems", sub: "Hidden masterpieces" },
-            { title: "GOTY Nominees", sub: "Award-winning titles" },
-            { title: "Multiplayer Hits", sub: "Play with friends" },
-          ].map((item) => (
-            <Link
-              key={item.title}
-              className="row-card row-card--games"
-              href={withLocale(`/search?source=games&q=${encodeURIComponent(item.title)}`, locale)}
-            >
-              <div className="row-card-thumb" aria-hidden="true" />
-              <div className="row-card-info">
-                <span className="row-card-badge row-card-badge--games">Games</span>
-                <p className="row-card-title">{item.title}</p>
-                <p className="row-card-sub">{item.sub}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+      <section className="bento-grid" aria-label="Content categories">
+        {/* Games — wide card (2 columns) */}
+        <Link className="bento-cell bento-cell--games bento-cell--wide" href={withLocale("/search?source=games", locale)}>
+          <div className="bento-cell-body">
+            <span className="bento-eyebrow">{t.contentRow.gamesLabel}</span>
+            <h2 className="bento-title">Find your next game</h2>
+            <p className="bento-sub">{t.contentRow.gamesSubtitle}</p>
+          </div>
+          <div className="bento-cell-chips">
+            {["Open-world RPGs", "Soulslike", "GOTY Nominees"].map(q => (
+              <span key={q} className="bento-chip">{q}</span>
+            ))}
+          </div>
+        </Link>
 
-      <section className="content-row" aria-label="Movies">
-        <div className="content-row-header">
-          <span className="content-row-label content-row-label--movies">{t.contentRow.moviesLabel}</span>
-          <Link className="content-row-see-all" href={withLocale("/search?source=movies", locale)}>
-            {t.contentRow.seeAll} →
-          </Link>
-        </div>
-        <div className="content-row-scroll">
-          {[
-            { title: "Oscar Winners", sub: "Academy Award champions" },
-            { title: "Sci-Fi Epics", sub: "Mind-bending universes" },
-            { title: "Nolan Collection", sub: "Christopher Nolan filmography" },
-            { title: "Netflix Originals", sub: "Streaming exclusives" },
-            { title: "Classic Cinema", sub: "Timeless masterworks" },
-          ].map((item) => (
-            <Link
-              key={item.title}
-              className="row-card row-card--movies"
-              href={withLocale(`/search?source=movies&q=${encodeURIComponent(item.title)}`, locale)}
-            >
-              <div className="row-card-thumb" aria-hidden="true" />
-              <div className="row-card-info">
-                <span className="row-card-badge row-card-badge--movies">Movies</span>
-                <p className="row-card-title">{item.title}</p>
-                <p className="row-card-sub">{item.sub}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+        {/* Videos — tall card (2 rows on right) */}
+        <Link className="bento-cell bento-cell--videos bento-cell--tall" href={withLocale("/search?source=videos", locale)}>
+          <div className="bento-cell-body">
+            <span className="bento-eyebrow">{t.contentRow.videosLabel}</span>
+            <h2 className="bento-title">Explore content</h2>
+            <p className="bento-sub">{t.contentRow.videosSubtitle}</p>
+          </div>
+          <div className="bento-cell-chips">
+            {["Tech Deep Dives", "AI Explainers", "Documentaries"].map(q => (
+              <span key={q} className="bento-chip">{q}</span>
+            ))}
+          </div>
+        </Link>
 
-      <section className="content-row" aria-label="Videos">
-        <div className="content-row-header">
-          <span className="content-row-label content-row-label--videos">{t.contentRow.videosLabel}</span>
-          <Link className="content-row-see-all" href={withLocale("/search?source=videos", locale)}>
-            {t.contentRow.seeAll} →
-          </Link>
-        </div>
-        <div className="content-row-scroll">
-          {[
-            { title: "Tech Deep Dives", sub: "Engineering explained" },
-            { title: "AI Explainers", sub: "How AI really works" },
-            { title: "Documentary Picks", sub: "Long-form knowledge" },
-            { title: "Creator Spotlights", sub: "Top YouTube channels" },
-            { title: "Tutorial Series", sub: "Learn by watching" },
-          ].map((item) => (
-            <Link
-              key={item.title}
-              className="row-card row-card--videos"
-              href={withLocale(`/search?source=videos&q=${encodeURIComponent(item.title)}`, locale)}
-            >
-              <div className="row-card-thumb" aria-hidden="true" />
-              <div className="row-card-info">
-                <span className="row-card-badge row-card-badge--videos">Videos</span>
-                <p className="row-card-title">{item.title}</p>
-                <p className="row-card-sub">{item.sub}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
+        {/* Movies — regular card */}
+        <Link className="bento-cell bento-cell--movies" href={withLocale("/search?source=movies", locale)}>
+          <div className="bento-cell-body">
+            <span className="bento-eyebrow">{t.contentRow.moviesLabel}</span>
+            <h2 className="bento-title">Discover films</h2>
+            <p className="bento-sub">{t.contentRow.moviesSubtitle}</p>
+          </div>
+          <div className="bento-cell-chips">
+            {["Oscar Winners", "Sci-Fi Epics", "Nolan Collection"].map(q => (
+              <span key={q} className="bento-chip">{q}</span>
+            ))}
+          </div>
+        </Link>
       </section>
 
       <section className="workspace-band">

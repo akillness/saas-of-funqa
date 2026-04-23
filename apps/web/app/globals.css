@@ -297,7 +297,8 @@ html:lang(ko) .metric-label {
   border: 1px solid var(--border);
   border-radius: 1.6rem;
   background: var(--surface);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   box-shadow: var(--shadow);
 }
 
@@ -1161,9 +1162,11 @@ html:lang(ko) .metric-label {
 
 
 .featured-hero h1 {
-  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
   color: var(--text);
-  max-width: 26ch;
+  max-width: 22ch;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
 }
 
 .featured-hero-content {
@@ -1497,3 +1500,136 @@ html:lang(ko) .metric-label {
 .insight-bar { display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.6rem; border-radius: 0.5rem; background: rgba(143,228,211,0.06); border: 1px solid rgba(143,228,211,0.12); font-size: 0.8rem; color: var(--muted); margin-bottom: 0.5rem; }
 .citation-item { display: flex; align-items: baseline; gap: 0.4rem; padding: 0.25rem 0; font-size: 0.82rem; }
 .citation-num { color: var(--accent); font-weight: 700; font-size: 0.75rem; min-width: 1.4rem; }
+
+/* ============================================================
+   2026 TRENDS: BENTO GRID + GLASSMORPHISM
+   ============================================================ */
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1rem;
+}
+
+.bento-cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 14rem;
+  padding: 1.8rem;
+  border-radius: 1.6rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  position: relative;
+  transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.bento-cell:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
+}
+
+.bento-cell--wide {
+  grid-column: span 1;
+}
+
+.bento-cell--tall {
+  grid-row: span 2;
+  min-height: auto;
+}
+
+/* Category color accents */
+.bento-cell--games {
+  border-color: rgba(139, 92, 246, 0.25);
+  background:
+    linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, transparent 60%),
+    var(--surface);
+}
+.bento-cell--games:hover { border-color: rgba(139, 92, 246, 0.45); }
+
+.bento-cell--movies {
+  border-color: rgba(239, 68, 68, 0.25);
+  background:
+    linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, transparent 60%),
+    var(--surface);
+}
+.bento-cell--movies:hover { border-color: rgba(239, 68, 68, 0.45); }
+
+.bento-cell--videos {
+  border-color: rgba(6, 182, 212, 0.25);
+  background:
+    linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, transparent 60%),
+    var(--surface);
+}
+.bento-cell--videos:hover { border-color: rgba(6, 182, 212, 0.45); }
+
+/* Bento cell content */
+.bento-eyebrow {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
+}
+
+.bento-cell--games .bento-eyebrow { color: #c4b5fd; }
+.bento-cell--movies .bento-eyebrow { color: #fca5a5; }
+.bento-cell--videos .bento-eyebrow { color: #67e8f9; }
+
+.bento-title {
+  margin: 0 0 0.4rem;
+  font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: var(--text);
+}
+
+.bento-sub {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.bento-cell-body {
+  flex: 1;
+}
+
+.bento-cell-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1.2rem;
+}
+
+.bento-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+}
+
+/* Responsive bento grid */
+@media (max-width: 860px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+  .bento-cell--tall {
+    grid-row: span 1;
+  }
+}
