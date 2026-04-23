@@ -13,6 +13,7 @@
         "google-cloud-cli-darwin-arm.tar.gz",
         "apps/web/.next",
         "apps/web/.turbo",
+        "apps/web/package-lock.json",
         "node_modules",
         ".next",
         "dist",
