@@ -4,6 +4,13 @@ on:
   push:
     branches: [main]
 
+concurrency:
+  group: deploy-apphosting-main
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
 jobs:
   deploy:
     name: Deploy to Firebase App Hosting
@@ -24,6 +31,8 @@ jobs:
       RAG_LIVE_EMBEDDINGS: 1
       SEARCH_TOP_K: 5
       RAG_STORE_PATH: ./.runtime/rag-store.json
+      APPHOSTING_DEPLOY_MAX_ATTEMPTS: 6
+      APPHOSTING_DEPLOY_RETRY_SECONDS: 30
 
     steps:
       - name: Checkout
@@ -32,7 +41,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - name: Install dependencies
