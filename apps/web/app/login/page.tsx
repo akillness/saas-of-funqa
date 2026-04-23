@@ -1,13 +1,30 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { GoogleAuthProvider, getRedirectResult, signInWithPopup, signInWithRedirect } from 'firebase/auth';
 import { getFirebaseAuth } from '@/lib/firebase-client';
 
 export default function LoginPage() {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Check if returning from a redirect-based login
+    getRedirectResult(getFirebaseAuth())
+      .then((result) => {
+        if (result?.user) {
+          router.push('/search');
+        } else {
+          setLoading(false);
+        }
+      })
+      .catch((err: unknown) => {
+        const message = err instanceof Error ? err.message : '로그인에 실패했습니다.';
+        setError(message);
+        setLoading(false);
+      });
+  }, [router]);
 
   const handleGoogleLogin = async () => {
     setLoading(true);
@@ -17,9 +34,14 @@ export default function LoginPage() {
       await signInWithPopup(getFirebaseAuth(), provider);
       router.push('/search');
     } catch (err: unknown) {
+      const code = (err as { code?: string }).code;
+      if (code === 'auth/popup-blocked' || code === 'auth/popup-closed-by-user') {
+        // Fallback to redirect when popup is blocked
+        await signInWithRedirect(getFirebaseAuth(), new GoogleAuthProvider());
+        return;
+      }
       const message = err instanceof Error ? err.message : '로그인에 실패했습니다.';
       setError(message);
-    } finally {
       setLoading(false);
     }
   };
