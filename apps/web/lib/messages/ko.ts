@@ -6,6 +6,11 @@ export const koMessages = {
       en: "English",
       ko: "한국어"
     },
+    themeLabel: "테마",
+    themeModes: {
+      light: "라이트",
+      dark: "다크"
+    },
     liveLabel: "실시간",
     sourceLabels: {
       games: "게임",
@@ -21,6 +26,7 @@ export const koMessages = {
   layout: {
     skipToContent: "본문으로 건너뛰기",
     brandEyebrow: "AI 미디어 검색엔진",
+    menuLabel: "메뉴",
     nav: {
       overview: "홈",
       search: "검색",
@@ -84,7 +90,27 @@ export const koMessages = {
     whyTitle: "최근 AI 제품은 하나의 주 작업면과 하나의 컨텍스트 레일로 수렴하고 있습니다.",
     whyBody:
       "검색은 Perplexity의 인용된 답변 밀도를 참고하고, admin은 현대 AI 운영 콘솔의 절제된 위계를 유지하며, docs는 OpenAI와 Gemini 레퍼런스 같은 코드 우선 흐름을 따릅니다.",
-    whyChips: ["고정 질의 컴포저", "컨텍스트 인스펙터", "조용한 KPI 덱", "코드 우선 문서 레일"]
+    whyChips: ["고정 질의 컴포저", "컨텍스트 인스펙터", "조용한 KPI 덱", "코드 우선 문서 레일"],
+    visitorPaths: [
+      {
+        href: "/search",
+        eyebrow: "처음 방문했어요",
+        title: "검색으로 바로 시작",
+        body: "게임, 영화, 영상 질문 하나로 FunQA가 어떤 근거를 찾는지 빠르게 확인합니다."
+      },
+      {
+        href: "/docs",
+        eyebrow: "구조를 보고 싶어요",
+        title: "API 문서와 계약 확인",
+        body: "검색 결과가 어떤 데이터와 출력 계약을 따르는지 문서 흐름으로 점검합니다."
+      },
+      {
+        href: "/rag-lab",
+        eyebrow: "실험이 궁금해요",
+        title: "RAG Lab에서 검증",
+        body: "인덱싱, 임베딩, 검색, 답변 단계를 운영자 관점에서 확인합니다."
+      }
+    ]
   },
   search: {
     eyebrow: "미디어 검색",

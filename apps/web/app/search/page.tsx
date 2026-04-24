@@ -6,6 +6,7 @@ import {
   type SearchCategory,
   type SearchResult
 } from "../../lib/i18n";
+import { getRequestLocale } from "../../lib/i18n-server";
 import { SearchResults } from "./search-results";
 
 type SearchPageProps = {
@@ -18,7 +19,7 @@ type SearchPageProps = {
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const params = await searchParams;
-  const locale = resolveLocale(params?.lang);
+  const locale = params?.lang ? resolveLocale(params.lang) : await getRequestLocale();
   const t = getDictionary(locale);
   const query = params?.q?.trim() ?? "";
   const source = ["all", "games", "movies", "videos"].includes(params?.source?.trim() ?? "")

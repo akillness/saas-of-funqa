@@ -1,0 +1,62 @@
+goal: Add durable Korean/English and light/dark theme controls, make the navigation side menu collapsible, deploy the web app to Firebase App Hosting, verify the deployed UI with Playwriter, and push the resulting git commit.
+task_type: code
+brownfield_context:
+  project_type: brownfield
+  context_references:
+    - apps/web/app/layout.tsx
+    - apps/web/app/locale-switcher.tsx
+    - apps/web/app/page.tsx
+    - apps/web/app/globals.css
+    - apps/web/lib/messages/en.ts
+    - apps/web/lib/messages/ko.ts
+    - firebase.json
+    - apps/web/apphosting.yaml
+  existing_patterns:
+    - Next.js App Router
+    - Query/cookie based locale resolution through funqa-locale
+    - Shared global CSS variables
+    - Firebase App Hosting backend saas-of-funqa
+constraints:
+  - Preserve existing routes and App Hosting configuration
+  - Keep language switching URL/cookie compatible with the current i18n helpers
+  - Theme switching must work without adding a dependency
+  - Side menu must be keyboard accessible and collapsible
+  - Do not remove existing auth, category, RAG Lab, docs, admin, or search paths
+  - Verify before claiming completion
+acceptance_criteria:
+  - English and Korean modes render localized homepage quick-path copy
+  - User can switch light and dark mode from the shell
+  - Navigation is available through a collapsible side menu
+  - apps/web typecheck passes
+  - apps/web production build passes
+  - Firebase App Hosting deploy command completes or failure evidence is recorded
+  - Playwriter verifies the deployed or locally served UI according to availability
+  - Changes are committed and pushed to origin/main if verification is sufficient
+evaluation_principles:
+  - name: product_integrity
+    description: Preserve FunQA's current product IA and deployment target.
+    weight: 0.3
+  - name: accessibility
+    description: Theme and menu controls must be keyboard accessible and clearly labeled.
+    weight: 0.25
+  - name: localization
+    description: Avoid hardcoded single-language home content in locale-sensitive areas.
+    weight: 0.2
+  - name: verification
+    description: Prefer mechanical and browser evidence over confidence.
+    weight: 0.25
+exit_conditions:
+  - name: ui_controls_complete
+    criteria: Locale, theme, and collapsible side-menu controls are visible and functional.
+  - name: deployment_attempted
+    criteria: App Hosting deploy is run and outcome is recorded.
+  - name: browser_verified
+    criteria: Playwriter captures evidence for language, theme, and menu behavior.
+  - name: pushed
+    criteria: Git commit is pushed to origin/main.
+metadata:
+  seed_id: seed_funqa_locale_theme_sidebar_deploy_20260424
+  version: 1.0.0
+  created_at: '2026-04-24T12:28:35Z'
+  ambiguity_score: 0.18
+  parent_seed_id: seed_funqa_eglab_home_refresh_20260424

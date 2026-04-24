@@ -1,0 +1,57 @@
+goal: Refresh the FunQA home page using https://eglabsid.github.io/ as a visual reference while preserving FunQA's product identity, routes, and grounded-search behavior.
+task_type: code
+brownfield_context:
+  project_type: brownfield
+  context_references:
+    - apps/web/app/page.tsx
+    - apps/web/app/globals.css
+    - https://eglabsid.github.io/
+  extracted_reference_signals:
+    - ice-blue hero surface
+    - white research-card body surfaces
+    - green primary actions
+    - cyan secondary highlights
+    - Start Here guidance for first-time visitors
+    - archive and lab-style content pathways
+  existing_patterns:
+    - Next.js app router
+    - localized top-level product copy from apps/web/lib/messages
+    - page-scoped editorial shell layered into shared global CSS
+constraints:
+  - Do not clone EGLAB content, branding, navigation, or lab identity
+  - Preserve FunQA routes and existing search-first IA
+  - Keep RAG Lab, docs, admin, and category routes reachable
+  - Prefer CSS and home-page composition changes over dependency or architecture churn
+  - Preserve responsive behavior across desktop and mobile
+acceptance_criteria:
+  - The home hero visibly adopts an ice-blue research-homepage mood with green/cyan actions
+  - First-time visitor paths are explicit and route to search, docs, and RAG Lab
+  - Archive/category cards remain FunQA-specific while feeling more curated
+  - Existing product behavior is unchanged
+  - apps/web typecheck passes
+  - apps/web production build passes
+evaluation_principles:
+  - name: reference_fit
+    description: Translate EGLAB's homepage mood and first-visit guidance without copying content or IA.
+    weight: 0.35
+  - name: product_integrity
+    description: Keep FunQA's grounded media search contract and routes intact.
+    weight: 0.3
+  - name: implementation_pragmatism
+    description: Favor low-risk edits in page.tsx and globals.css.
+    weight: 0.2
+  - name: responsiveness
+    description: Maintain legible layout on tablet and mobile.
+    weight: 0.15
+exit_conditions:
+  - name: home_reference_translation_complete
+    criteria: Home page uses EGLAB-inspired blue/white/green/cyan visual language and explicit quick paths.
+  - name: verification_passed
+    criteria: Typecheck and production build pass.
+metadata:
+  seed_id: seed_funqa_eglab_home_refresh_20260424
+  version: 1.0.0
+  created_at: '2026-04-24T12:23:29Z'
+  ambiguity_score: 0.16
+  interview_id: direct_reference_intake_20260424
+  parent_seed_id: seed_funqa_mria_editorial_refresh_20260424

@@ -1,4 +1,5 @@
 import { getDictionary, resolveLocale } from "../../lib/i18n";
+import { getRequestLocale } from "../../lib/i18n-server";
 
 type DocsPageProps = {
   searchParams?: Promise<{
@@ -8,7 +9,7 @@ type DocsPageProps = {
 
 export default async function DocsPage({ searchParams }: DocsPageProps) {
   const params = await searchParams;
-  const locale = resolveLocale(params?.lang);
+  const locale = params?.lang ? resolveLocale(params.lang) : await getRequestLocale();
   const t = getDictionary(locale);
 
   return (

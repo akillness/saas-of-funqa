@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ConsensusEvalReportSchema, type ConsensusEvalReport } from "@funqa/contracts";
 import { inspectRagPipeline } from "../../lib/funqa-api";
 import { getDictionary, resolveLocale, withLocale } from "../../lib/i18n";
+import { getRequestLocale } from "../../lib/i18n-server";
 
 type RagLabPageProps = {
   searchParams?: Promise<{
@@ -108,7 +109,7 @@ async function loadConsensusReleaseGateReports(): Promise<ConsensusReleaseGateRe
 
 export default async function RagLabPage({ searchParams }: RagLabPageProps) {
   const params = await searchParams;
-  const locale = resolveLocale(params?.lang);
+  const locale = params?.lang ? resolveLocale(params.lang) : await getRequestLocale();
   const t = getDictionary(locale);
   const query = params?.q?.trim() ?? t.ragLab.queryPlaceholder;
   const requestedReport = params?.report?.trim() ?? "";

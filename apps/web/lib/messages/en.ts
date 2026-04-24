@@ -6,6 +6,11 @@ export const enMessages = {
       en: "English",
       ko: "한국어"
     },
+    themeLabel: "Theme",
+    themeModes: {
+      light: "Light",
+      dark: "Dark"
+    },
     liveLabel: "live",
     sourceLabels: {
       games: "Games",
@@ -20,7 +25,8 @@ export const enMessages = {
   },
   layout: {
     skipToContent: "Skip to main content",
-    brandEyebrow: "AI 미디어 검색엔진",
+    brandEyebrow: "AI media search engine",
+    menuLabel: "Menu",
     nav: {
       overview: "Home",
       search: "Search",
@@ -33,7 +39,7 @@ export const enMessages = {
   home: {
     eyebrow: "AI Media Search",
     title: "Discover & Archive Games, Movies, and Media with AI",
-    lede: "당신의 콘텐츠 취향을 AI가 기억합니다. Search, organize, and explore your games, movies, and media library with grounded AI retrieval.",
+    lede: "Let AI remember your media taste. Search, organize, and explore your games, movies, and media library with grounded retrieval.",
     primaryAction: "Start Searching",
     secondaryAction: "API Docs",
     embedLabel: "Default hosted embedding",
@@ -53,41 +59,61 @@ export const enMessages = {
         href: "/search?source=games",
         label: "Games Discovery",
         kicker: "Games",
-        text: "플레이한 게임, 플레이하고 싶은 게임을 AI로 관리. Track your played games and wishlist with AI-powered search.",
+        text: "Track games you have played and games you want to try with AI-powered search.",
         cta: "Search Games"
       },
       {
         href: "/search?source=movies",
         label: "Movie Database",
         kicker: "Movies",
-        text: "본 영화와 시청 목록을 스마트하게 검색. Discover films and manage your watch history with grounded AI.",
+        text: "Discover films and manage your watch history with grounded AI retrieval.",
         cta: "Search Movies"
       },
       {
         href: "/search?source=videos",
         label: "Content Archive",
         kicker: "Videos",
-        text: "미디어 콘텐츠를 저장하고 AI로 분석. Archive media content and surface insights with AI retrieval.",
+        text: "Archive creator media and surface relevant clips, summaries, and insights with AI retrieval.",
         cta: "Search Videos"
       }
     ],
     processEyebrow: "AI Pipeline",
     processTitle: "Media content flows through AI-powered stages for accurate search and retrieval.",
     pipeline: [
-      { label: "인덱싱", text: "media titles, metadata, and descriptions are ingested and normalized" },
-      { label: "임베딩", text: "content is embedded with `gemini-embedding-2-preview` for semantic search" },
-      { label: "검색", text: "semantic and lexical signals are fused for accurate media retrieval" },
-      { label: "답변", text: "final responses cite specific media entries instead of generating freely" }
+      { label: "Index", text: "media titles, metadata, and descriptions are ingested and normalized" },
+      { label: "Embed", text: "content is embedded with `gemini-embedding-2-preview` for semantic search" },
+      { label: "Retrieve", text: "semantic and lexical signals are fused for accurate media retrieval" },
+      { label: "Answer", text: "final responses cite specific media entries instead of generating freely" }
     ],
     whyEyebrow: "Why the UI changed",
     whyTitle: "Recent AI products converge on one main task surface plus one context rail.",
     whyBody:
       "Search borrows the cited-answer density of Perplexity, admin keeps the restrained hierarchy common in modern AI ops consoles, and docs stay code-first in the style of OpenAI and Gemini references.",
-    whyChips: ["Sticky query composer", "Context inspector", "Quiet KPI deck", "Code-first docs rail"]
+    whyChips: ["Sticky query composer", "Context inspector", "Quiet KPI deck", "Code-first docs rail"],
+    visitorPaths: [
+      {
+        href: "/search",
+        eyebrow: "First visit",
+        title: "Start with search",
+        body: "Ask one question about a game, film, or video and see what evidence FunQA retrieves."
+      },
+      {
+        href: "/docs",
+        eyebrow: "Study the contract",
+        title: "Read API docs",
+        body: "Inspect the data and response contract behind grounded search results."
+      },
+      {
+        href: "/rag-lab",
+        eyebrow: "Open the lab",
+        title: "Verify in RAG Lab",
+        body: "Review indexing, embedding, retrieval, reranking, and answer assembly as an operator."
+      }
+    ]
   },
   search: {
     eyebrow: "Media Search",
-    title: "게임, 영화, 미디어를 AI로 검색하고 저장하세요",
+    title: "Search and save games, movies, and media with AI",
     lede:
       "Find games, movies, and videos with AI-powered search. Get grounded answers with citations to the exact media entries that match your query.",
     composerLabel: "Search query",

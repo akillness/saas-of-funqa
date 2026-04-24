@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { fetchHealthSummary } from "../lib/funqa-api";
 import { getDictionary, resolveLocale, withLocale } from "../lib/i18n";
+import { getRequestLocale } from "../lib/i18n-server";
 
 type HomePageProps = {
   searchParams?: Promise<{
@@ -10,7 +11,7 @@ type HomePageProps = {
 
 export default async function HomePage({ searchParams }: HomePageProps) {
   const params = await searchParams;
-  const locale = resolveLocale(params?.lang);
+  const locale = params?.lang ? resolveLocale(params.lang) : await getRequestLocale();
   const t = getDictionary(locale);
   const health = await fetchHealthSummary();
   const [leadSurface, ...secondarySurfaces] = t.home.surfaces;
@@ -30,41 +31,41 @@ export default async function HomePage({ searchParams }: HomePageProps) {
   ];
   const wowSignals = [
     {
-      eyebrow: "Strict grounding",
-      title: "Evidence-only when consensus fails",
-      body: "FunQA would rather expose ranked evidence than improvise an answer without enough agreement.",
+      eyebrow: "Grounding note",
+      title: "Ranked evidence before confident answers",
+      body: "FunQA keeps the first visit simple: search, inspect the evidence, then trust only answers with enough agreement.",
     },
     {
-      eyebrow: "Multimodal core",
-      title: "Gemini embeddings ready for text, image, and document inputs",
-      body: "The retrieval layer is already positioned for multimodal intake rather than a text-only prompt box.",
+      eyebrow: "Archive shape",
+      title: "Games, films, and creator media in one research shelf",
+      body: "The surface now reads more like a curated lab index than a generic dashboard of disconnected metrics.",
     },
     {
       eyebrow: "Operator proof",
-      title: "RAG Lab keeps evaluation, failure reasons, and release-gate evidence visible",
-      body: "The system can be inspected like a product pipeline, not guessed at like a black box.",
+      title: "RAG Lab keeps the retrieval chain visible",
+      body: "Evaluation, refusal reasons, and release-gate evidence stay reachable without taking over the home page.",
     },
   ];
   const editorialDispatch = [
     {
-      eyebrow: "Front page brief",
-      title: "Search remains the cover story",
-      body: "The first screen should still point clearly to search. Editorial treatment should increase desire and clarity, not bury the main action.",
+      eyebrow: "Start here",
+      title: "Begin with one useful media question",
+      body: "The first screen should tell new visitors what to do next, just like EGLAB routes readers toward recent posts, archives, and the lab hub.",
     },
     {
-      eyebrow: "Pretext measure",
-      title: "Headline width should feel composed, not accidental",
-      body: "Keep hero and section titles on a disciplined measure so the page feels typeset instead of auto-wrapped.",
+      eyebrow: "Research archive",
+      title: "Make the category doors feel curated",
+      body: "Games, films, and videos should scan as a research archive with clear entry points, not as bare product filters.",
     },
     {
-      eyebrow: "Stitch framing",
-      title: "Translate the mood, not the blog skeleton",
-      body: "Use Mria as a language for rhythm, air, and hierarchy while keeping FunQA's product routes and evidence-first product logic.",
+      eyebrow: "Lab posture",
+      title: "Use the reference mood without cloning the blog",
+      body: "The blue hero, white paper surfaces, green actions, and cyan highlights are translated into FunQA's search-first product contract.",
     },
   ];
   const editorialPrinciples = [
-    "One dominant lead story, then supporting desks.",
-    "Warm paper surfaces instead of dashboard chrome.",
+    "One dominant start point, then supporting archive paths.",
+    "Ice-blue hero and white research-card surfaces.",
     "Visible retrieval proof without heavy operator noise.",
   ];
   const deskNotes = [
@@ -90,7 +91,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       <section className="editorial-hero" aria-label="Hero">
         <div className="editorial-hero-copy">
           <p className="eyebrow">{t.home.eyebrow}</p>
-          <p className="editorial-kicker">Issue 01 · Curated intelligence for culture archives</p>
+          <p className="editorial-kicker">Start Here · AI media research archive</p>
           <p className="editorial-hero-note">Grounded search for games, films, and creator media</p>
           <h1>{t.home.title}</h1>
           <p className="lede editorial-lede">{t.home.lede}</p>
@@ -101,6 +102,15 @@ export default async function HomePage({ searchParams }: HomePageProps) {
             <Link className="secondary-button" href={withLocale("/docs", locale)}>
               {t.home.secondaryAction}
             </Link>
+          </div>
+          <div className="eglab-quicklink-grid" aria-label="Recommended first paths">
+            {t.home.visitorPaths.map((path) => (
+              <Link className="eglab-quicklink" href={withLocale(path.href, locale)} key={path.href}>
+                <span>{path.eyebrow}</span>
+                <strong>{path.title}</strong>
+                <small>{path.body}</small>
+              </Link>
+            ))}
           </div>
           <div className="editorial-hero-ledger">
             {issueStats.map((item) => (
@@ -122,7 +132,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
           </article>
           <article className="editorial-rail-card editorial-rail-card--stats">
             <p className="eyebrow">Consensus engine</p>
-            <h2>One answer rail, one refusal mode, one inspectable retrieval chain.</h2>
+            <h2>One search path, one refusal mode, one inspectable retrieval chain.</h2>
             <p>
               The product should feel serious because it shows when the answer is allowed, when it is
               blocked, and what evidence shaped that decision.
@@ -140,12 +150,12 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         <article className="panel editorial-cover-story">
           <div className="editorial-cover-head">
             <p className="eyebrow">Issue brief</p>
-            <span className="editorial-cover-badge">Mria mood, FunQA contract</span>
+            <span className="editorial-cover-badge">EGLAB mood, FunQA contract</span>
           </div>
-          <h2>Build the page like a curated front cover, not a metrics-first product board.</h2>
+          <h2>Build the page like a clear research homepage, not a metrics-first product board.</h2>
           <p>
-            FunQA should feel premium because the hierarchy is calmer, the reading rhythm is more deliberate,
-            and the supporting system proof sits beside the lead story instead of competing with it.
+            FunQA should feel useful on the first visit because the hierarchy says where to start, how to browse
+            the archive, and where to inspect the retrieval system when more proof is needed.
           </p>
           <div className="editorial-principle-list">
             {editorialPrinciples.map((item) => (
@@ -272,8 +282,8 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         <article className="panel editorial-sidebar-panel">
           <p className="eyebrow">Editorial note</p>
           <blockquote className="editorial-quote">
-            Search should feel less like a dashboard with cards and more like a deliberate front page with
-            one main story, one supporting rail, and evidence that stays visible.
+            Search should feel less like a dashboard with cards and more like a research homepage with one
+            main start point, a few clear paths, and evidence that stays visible.
           </blockquote>
           <p className="microcopy">
             This pass increases contrast, spacing, and hierarchy without changing the actual product IA or

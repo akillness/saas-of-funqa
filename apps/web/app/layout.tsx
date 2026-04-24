@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { Cormorant_Garamond, IBM_Plex_Mono, IBM_Plex_Sans, Noto_Sans_KR } from "next/font/google";
 import { LocaleSwitcher } from "./locale-switcher";
+import { ThemeToggle } from "./theme-toggle";
 import { FirebaseAnalytics } from "./firebase-analytics";
 import { AuthProvider } from "@/components/auth-provider";
 import { NavAuth } from "@/components/nav-auth";
@@ -61,6 +62,12 @@ export default async function RootLayout({
         className={`${heading.variable} ${body.variable} ${korean.variable} ${mono.variable}`}
         data-locale={locale}
       >
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var t=localStorage.getItem('funqa-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.body.dataset.theme=t;}catch(e){document.body.dataset.theme='light';}"
+          }}
+        />
         <FirebaseAnalytics />
         <a className="skip-link" href="#main-content">
           {t.layout.skipToContent}
@@ -77,23 +84,32 @@ export default async function RootLayout({
                   <span className="site-title">funqa</span>
                 </span>
               </Link>
-              <div className="site-header-actions">
-                <nav aria-label="Primary">
-                  <ul className="nav-list">
-                    {navItems.map((item) => (
-                      <li key={item.href}>
-                        <Link href={withLocale(item.href, locale)}>{item.label}</Link>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-                <NavAuth />
-                <LocaleSwitcher
-                  label={t.common.localeLabel}
-                  locale={locale}
-                  localeNames={t.common.localeNames}
-                />
-              </div>
+              <details className="site-menu">
+                <summary className="site-menu-toggle">
+                  <span className="site-menu-toggle-lines" aria-hidden="true" />
+                  <span>{t.layout.menuLabel}</span>
+                </summary>
+                <div className="site-menu-panel">
+                  <nav aria-label="Primary">
+                    <ul className="nav-list nav-list-side">
+                      {navItems.map((item) => (
+                        <li key={item.href}>
+                          <Link href={withLocale(item.href, locale)}>{item.label}</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+                  <div className="site-menu-controls">
+                    <NavAuth />
+                    <LocaleSwitcher
+                      label={t.common.localeLabel}
+                      locale={locale}
+                      localeNames={t.common.localeNames}
+                    />
+                    <ThemeToggle label={t.common.themeLabel} modes={t.common.themeModes} />
+                  </div>
+                </div>
+              </details>
             </header>
             <Suspense fallback={null}>
               <CategoryTabBar locale={locale} />

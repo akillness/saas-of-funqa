@@ -34,6 +34,8 @@ This is the content-oriented map of the wiki. Read this file first before broad 
 
 ## Reports
 <!-- REPORTS:START -->
+- [[wiki/reports/funqa-locale-theme-sidebar-apphosting-2026-04-24]]
+- [[wiki/reports/funqa-eglab-home-refresh-2026-04-24]]
 - [[wiki/reports/funqa-rag-platform]]
 - [[wiki/reports/apphosting-deploy-rollout-debug]]
 - [[wiki/reports/firebase-functions-integration]]

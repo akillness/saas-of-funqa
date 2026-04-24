@@ -1,5 +1,6 @@
 import { fetchHealthSummary, fetchMonitoringSummary, fetchRagStats } from "../../lib/funqa-api";
 import { getDictionary, resolveLocale } from "../../lib/i18n";
+import { getRequestLocale } from "../../lib/i18n-server";
 
 type AdminPageProps = {
   searchParams?: Promise<{
@@ -9,7 +10,7 @@ type AdminPageProps = {
 
 export default async function AdminPage({ searchParams }: AdminPageProps) {
   const params = await searchParams;
-  const locale = resolveLocale(params?.lang);
+  const locale = params?.lang ? resolveLocale(params.lang) : await getRequestLocale();
   const t = getDictionary(locale);
   const [health, monitoring, stats] = await Promise.all([
     fetchHealthSummary(),
