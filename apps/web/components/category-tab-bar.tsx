@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { getDictionary } from "../lib/i18n";
 
 type Props = {
   locale: string;
@@ -10,16 +11,17 @@ type Props = {
 export function CategoryTabBar({ locale }: Props) {
   const searchParams = useSearchParams();
   const activeSource = searchParams.get("source") ?? "all";
+  const t = getDictionary(locale === "ko" ? "ko" : "en");
 
   const tabs = [
-    { value: "all", label: "All", href: `/search?lang=${locale}` },
-    { value: "games", label: "Games", href: `/search?source=games&lang=${locale}` },
-    { value: "movies", label: "Movies", href: `/search?source=movies&lang=${locale}` },
-    { value: "videos", label: "Videos", href: `/search?source=videos&lang=${locale}` },
+    { value: "all", label: t.categoryTabs.all, href: `/search?lang=${locale}` },
+    { value: "games", label: t.categoryTabs.games, href: `/search?source=games&lang=${locale}` },
+    { value: "movies", label: t.categoryTabs.movies, href: `/search?source=movies&lang=${locale}` },
+    { value: "videos", label: t.categoryTabs.videos, href: `/search?source=videos&lang=${locale}` },
   ] as const;
 
   return (
-    <nav className="category-tab-bar" aria-label="Content categories">
+    <nav className="category-tab-bar" aria-label={t.search.sourceLabel}>
       {tabs.map((tab) => (
         <Link
           key={tab.value}

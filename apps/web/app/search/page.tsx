@@ -55,15 +55,30 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     source === "all"
       ? filtered
       : filtered.filter((item) => item.category === (source.toLowerCase() as SearchCategory));
+  const searchShellNotes = [
+    ...t.search.contractNotes,
+  ];
 
   return (
     <div className="stack-lg">
-      <section className="page-intro page-intro-wide editorial-page-intro">
-        <p className="eyebrow">{t.search.eyebrow}</p>
-        <p className="editorial-kicker">Editorial search desk · games, films, and creator media</p>
-        <h1>{t.search.title}</h1>
-        <p className="lede">{t.search.lede}</p>
-      </section>
+      <div className="editorial-page-intro-grid">
+        <section className="page-intro page-intro-wide editorial-page-intro">
+          <p className="eyebrow">{t.search.eyebrow}</p>
+          <p className="editorial-kicker">{t.search.editorialKicker}</p>
+          <h1>{t.search.title}</h1>
+          <p className="lede">{t.search.lede}</p>
+        </section>
+
+        <aside className="panel editorial-intro-rail">
+          <p className="eyebrow">{t.search.contractEyebrow}</p>
+          <h2>{t.search.contractTitle}</h2>
+          <ul className="editorial-bullet-list">
+            {searchShellNotes.map((note) => (
+              <li key={note}>{note}</li>
+            ))}
+          </ul>
+        </aside>
+      </div>
 
       <SearchResults
         initialQuery={query}

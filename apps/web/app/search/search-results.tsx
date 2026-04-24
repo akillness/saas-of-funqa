@@ -3,10 +3,10 @@
 import React, { useState, useTransition } from "react"
 import { getDictionary, type Locale, type SearchResult } from "../../lib/i18n"
 
-function MediaTypeBadge({ category }: { category: string }) {
-  if (category === "games") return <span className="media-type-badge media-type-badge--games">Games</span>
-  if (category === "movies") return <span className="media-type-badge media-type-badge--movies">Movies</span>
-  if (category === "videos") return <span className="media-type-badge media-type-badge--videos">Videos</span>
+function MediaTypeBadge({ category, labels }: { category: string; labels: { games: string; movies: string; videos: string } }) {
+  if (category === "games") return <span className="media-type-badge media-type-badge--games">{labels.games}</span>
+  if (category === "movies") return <span className="media-type-badge media-type-badge--movies">{labels.movies}</span>
+  if (category === "videos") return <span className="media-type-badge media-type-badge--videos">{labels.videos}</span>
   return null
 }
 
@@ -99,13 +99,48 @@ export function SearchResults({
     { key: "movies", label: t.common.sourceLabels.movies, count: initialResults.filter((item) => item.category === "movies").length },
     { key: "videos", label: t.common.sourceLabels.videos, count: initialResults.filter((item) => item.category === "videos").length }
   ]
-  const pipelineSteps = [
-    { label: "Query transform", value: queryTransformMode ?? "deterministic-local" },
-    { label: "Retrieval", value: initialRetrievalMode ?? "graph-core-retrieval" },
-    { label: "Rerank", value: rerankMode ?? "hybrid-rerank" },
+  const sourceLabel =
+    t.search.sourceOptions.find((option) => option.value === initialSource)?.label ??
+    t.search.sourceOptions[0].label
+  const searchDeskFacts = [
     {
-      label: "Output contract",
-      value: initialAnswerMode === "evidence-only" ? "evidence-only" : "consensus-backed-answer"
+      label: t.search.stateLabels.activeDesk,
+      value: sourceLabel,
+      note: initialSource === "all" ? t.search.stateNotes.allDesk : t.search.stateNotes.filteredDesk
+    },
+    {
+      label: t.search.stateLabels.outputMode,
+      value:
+        initialAnswerMode === "evidence-only"
+          ? t.search.outputModes.evidenceOnly
+          : initialAnswerMode === "consensus-backed-answer"
+            ? t.search.outputModes.consensusBacked
+            : t.search.outputModes.pending,
+      note:
+        initialAnswerMode === "evidence-only"
+          ? t.search.stateNotes.evidenceOnly
+          : initialAnswerMode === "consensus-backed-answer"
+            ? t.search.stateNotes.consensusBacked
+            : t.search.stateNotes.pending
+    },
+    {
+      label: t.search.stateLabels.retrievalPath,
+      value: rerankMode ?? queryTransformMode ?? "deterministic-local",
+      note: t.search.stateNotes.retrievalPath
+    }
+  ]
+  const pipelineSteps = [
+    { label: t.search.pipelineStepLabels.queryTransform, value: queryTransformMode ?? "deterministic-local" },
+    { label: t.search.pipelineStepLabels.retrieval, value: initialRetrievalMode ?? "graph-core-retrieval" },
+    { label: t.search.pipelineStepLabels.rerank, value: rerankMode ?? "hybrid-rerank" },
+    {
+      label: t.search.pipelineStepLabels.outputContract,
+      value:
+        initialAnswerMode === "evidence-only"
+          ? "evidence-only"
+          : initialAnswerMode === "consensus-backed-answer"
+            ? "consensus-backed-answer"
+            : t.search.outputModes.pending
     }
   ]
 
@@ -142,11 +177,11 @@ export function SearchResults({
           </div>
         </div>
         <div className="search-composer-actions">
-          <div className="strict-grounding-pill" aria-label="Strict grounding mode">
+          <div className="strict-grounding-pill" aria-label={t.search.strictGroundingTitle}>
             <span className="strict-grounding-switch" aria-hidden="true" />
             <div>
-              <strong>Strict grounding</strong>
-              <p>Consensus gate protects final answer output.</p>
+              <strong>{t.search.strictGroundingTitle}</strong>
+              <p>{t.search.strictGroundingBody}</p>
             </div>
           </div>
           <button className="primary-button" disabled={isPending} type="submit">
@@ -176,9 +211,19 @@ export function SearchResults({
         </div>
       </form>
 
+      <section className="search-state-strip" aria-label={t.search.stateSummaryLabel}>
+        {searchDeskFacts.map((fact) => (
+          <article className="panel search-state-card" key={fact.label}>
+            <span className="search-pipeline-label">{fact.label}</span>
+            <strong>{fact.value}</strong>
+            <p>{fact.note}</p>
+          </article>
+        ))}
+      </section>
+
       <section className="search-overview-strip panel">
         <div className="search-overview-copy">
-          <p className="eyebrow">Search desk</p>
+          <p className="eyebrow">{t.search.overviewEyebrow}</p>
           <h2>{initialQuery ? `"${initialQuery}"` : t.search.resultsTitle}</h2>
           <p>
             {initialQuery
@@ -196,14 +241,14 @@ export function SearchResults({
         </div>
       </section>
 
-      <section className="search-pipeline-strip panel" aria-label="Search pipeline">
+      <section className="search-pipeline-strip panel" aria-label={t.search.pipelineAriaLabel}>
         <div className="search-pipeline-copy">
-          <p className="eyebrow">Pipeline x-ray</p>
-          <h2>FunQA shows how the answer was allowed, not just what it said.</h2>
+          <p className="eyebrow">{t.search.pipelineEyebrow}</p>
+          <h2>{t.search.pipelineTitle}</h2>
           <p>
             {initialQuery
-              ? `Optimized intent: ${queryTransformMode ?? "deterministic-local"}`
-              : "Search runs through transform, retrieval, rerank, and output contract checks."}
+              ? `${t.search.optimizedIntentPrefix} ${queryTransformMode ?? "deterministic-local"}`
+              : t.search.pipelineBody}
           </p>
         </div>
         <div className="search-pipeline-grid">
@@ -247,7 +292,7 @@ export function SearchResults({
                       type="button"
                       onClick={() => setAnswerOpen((prev) => !prev)}
                     >
-                      {answerOpen ? "▼ Hide AI Analysis" : "▶ Show AI Analysis"}
+                      {answerOpen ? `▼ ${t.answerPanel.toggleHide}` : `▶ ${t.answerPanel.toggleShow}`}
                     </button>
                   </div>
                 </div>
@@ -305,7 +350,7 @@ export function SearchResults({
                     {/* Poster thumbnail with Netflix overlay */}
                     <div className={posterThumbClass(result.category)}>
                       <div className="poster-thumb-badge">
-                        <MediaTypeBadge category={result.category} />
+                        <MediaTypeBadge category={result.category} labels={t.common.sourceLabels} />
                       </div>
                       <div className="poster-overlay">
                         <span
@@ -333,14 +378,9 @@ export function SearchResults({
                         </div>
                         <div className="result-meta">
                           <span className="microcopy">{result.freshness}</span>
-                          <button
-                            aria-label={t.search.bookmarkLabel}
-                            className="bookmark-btn"
-                            onClick={(e) => e.stopPropagation()}
-                            type="button"
-                          >
+                          <span aria-hidden="true" className="bookmark-btn">
                             ⭐
-                          </button>
+                          </span>
                         </div>
                       </div>
                       <h3>{result.title}</h3>

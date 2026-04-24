@@ -110,8 +110,49 @@ export const koMessages = {
     applyFilters: "필터 적용",
     recentSearches: "최근 검색: 오픈월드 게임, 명작 영화, 테크 리뷰",
     filterChips: ["높은 평점", "최신 출시", "내 라이브러리"],
+    editorialKicker: "에디토리얼 검색 데스크 · 게임, 영화, 크리에이터 미디어",
+    contractEyebrow: "검색 계약",
+    contractTitle: "하나의 신중한 질의 면, 하나의 확인 가능한 답변 레일.",
+    contractNotes: [
+      "검색 입력은 전면에 두되, 셸은 에디토리얼 데스크처럼 여유 있게 유지합니다.",
+      "합의 기반 답변과 증거 전용 상태는 계속 분명하게 구분되어야 합니다.",
+      "보조 레일은 대시보드 소음이 아니라 신뢰도와 인용을 설명해야 합니다."
+    ],
     resultsTitle: "결과",
     resultsSummaryEmpty: "근거 기반 매치를 확인하려면 자연어 질문으로 시작해 보세요.",
+    stateSummaryLabel: "검색 데스크 요약",
+    stateLabels: {
+      activeDesk: "활성 데스크",
+      outputMode: "출력 모드",
+      retrievalPath: "검색 경로"
+    },
+    stateNotes: {
+      filteredDesk: "질의는 선택한 아카이브 데스크를 기준으로 필터링됩니다.",
+      allDesk: "하나의 검색 면에서 모든 데스크를 함께 탐색합니다.",
+      evidenceOnly: "답변 게이트가 열리지 않아도 폴백 상태는 계속 보입니다.",
+      consensusBacked: "허용된 답변은 계속 인스펙션 레일과 함께 표시됩니다.",
+      pending: "아직 답변 계약이 정해지기 전의 준비 상태입니다.",
+      retrievalPath: "질의 변환, 검색, 리랭크, 출력 계약이 숨지 않고 계속 드러납니다."
+    },
+    outputModes: {
+      evidenceOnly: "증거 전용",
+      consensusBacked: "합의 기반",
+      pending: "결과 대기"
+    },
+    strictGroundingTitle: "엄격한 근거 모드",
+    strictGroundingBody: "합의 게이트가 최종 답변 출력을 보호합니다.",
+    overviewEyebrow: "검색 데스크",
+    pipelineAriaLabel: "검색 파이프라인",
+    pipelineEyebrow: "파이프라인 엑스레이",
+    pipelineTitle: "FunQA는 답이 무엇인지보다 어떻게 허용됐는지를 보여줍니다.",
+    pipelineBody: "검색은 질의 변환, 검색, 리랭크, 출력 계약 검사를 거쳐 실행됩니다.",
+    optimizedIntentPrefix: "최적화된 의도:",
+    pipelineStepLabels: {
+      queryTransform: "질의 변환",
+      retrieval: "검색",
+      rerank: "리랭크",
+      outputContract: "출력 계약"
+    },
     inspectorSynced: "인스펙터 동기화",
     groundedAnswer: "근거 기반 답변",
     evidenceOnlyTitle: "증거 전용 폴백",

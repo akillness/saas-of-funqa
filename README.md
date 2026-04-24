@@ -14,11 +14,13 @@
 현재 구현 기준 핵심 운영 기능:
 
 - **Google Auth 로그인** — Firebase `signInWithPopup` 기반 Google 소셜 로그인, `AuthProvider` 컨텍스트로 전역 인증 상태 관리
+- **Mria-inspired editorial shell** — 홈과 검색을 밝고 여유 있는 매거진형 shell로 정리하되, 기존 FunQA route/IA/search contract는 유지
 - **Grounded-search first UI** — 홈과 검색 모두 “예쁜 AI 페이지”보다 “검증 가능한 retrieval workspace”로 읽히도록 재구성
 - **Visible wow points** — `Strict grounding`, `Pipeline x-ray`, `Operator proof`, `Multimodal core`, `Consensus engine` 같은 기술 블록을 첫 화면에 노출
 - **NavAuth 컴포넌트** — 로그인 상태에 따라 사용자명·로그아웃 또는 로그인 링크를 표시
 - `evidence-only` + `document-graph-consensus` 계약 기반 검색 API
 - 검색 화면의 **strict grounding 상태 블록** + **pipeline reveal strip** + **citation inspector rail**
+- 검색 shell 전반의 **dictionary-driven copy** + **localized category tabs** + **pinned inspector trust flow**
 - consensus 미달 시 **evidence-only fallback**를 trust feature로 드러내는 경고 상태
 - `rag-lab`의 최신 consensus release-gate 리포트 조회 및 선택 UI
 - creator ingest bundle, video analyses, monetization guide/source API surface
@@ -240,11 +242,18 @@ npm run build:web
 
 - Backend ID: `saas-of-funqa`
 - Hosted URL: `https://saas-of-funqa--saas-of-funqa.us-east4.hosted.app`
-- Last verified deploy: `2026-04-23`
+- Last verified deploy: `2026-04-24`
 - Verification method:
   - `./deploy.sh --apphosting`로 타입체크, 프로덕션 빌드, App Hosting source upload 및 rollout 시작 확인
   - `firebase apphosting:backends:list --project saas-of-funqa --json`로 backend 조회 확인
   - `curl -I https://saas-of-funqa--saas-of-funqa.us-east4.hosted.app`로 `HTTP/2 200` 확인
+
+최근 반영 사항:
+
+- 홈에 cover-story / desk-note 레이어를 추가해 더 강한 editorial hierarchy를 부여
+- 검색에 intro rail / state strip을 추가해 answer contract와 retrieval state를 더 명확히 노출
+- category tab, search shell copy, answer toggle을 locale dictionary 기반으로 정리
+- 결과 카드 내부 nested button 제거로 search interaction semantics 정리
 
 운영 메모:
 

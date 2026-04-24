@@ -45,6 +45,45 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       body: "The system can be inspected like a product pipeline, not guessed at like a black box.",
     },
   ];
+  const editorialDispatch = [
+    {
+      eyebrow: "Front page brief",
+      title: "Search remains the cover story",
+      body: "The first screen should still point clearly to search. Editorial treatment should increase desire and clarity, not bury the main action.",
+    },
+    {
+      eyebrow: "Pretext measure",
+      title: "Headline width should feel composed, not accidental",
+      body: "Keep hero and section titles on a disciplined measure so the page feels typeset instead of auto-wrapped.",
+    },
+    {
+      eyebrow: "Stitch framing",
+      title: "Translate the mood, not the blog skeleton",
+      body: "Use Mria as a language for rhythm, air, and hierarchy while keeping FunQA's product routes and evidence-first product logic.",
+    },
+  ];
+  const editorialPrinciples = [
+    "One dominant lead story, then supporting desks.",
+    "Warm paper surfaces instead of dashboard chrome.",
+    "Visible retrieval proof without heavy operator noise.",
+  ];
+  const deskNotes = [
+    {
+      label: "Search desk",
+      title: "Lead with a deliberate query moment",
+      body: "Primary actions and search entry should stay visible in the first viewport.",
+    },
+    {
+      label: "Evidence desk",
+      title: "Consensus and fallback remain readable states",
+      body: "The visual refresh should make the refusal contract feel clearer, not softer or hidden.",
+    },
+    {
+      label: "Archive desk",
+      title: "Category surfaces should feel curated",
+      body: "Games, films, and creator media should read like editorial sections, not product tabs.",
+    },
+  ];
 
   return (
     <div className="stack-xl home-editorial">
@@ -97,12 +136,54 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         </aside>
       </section>
 
+      <section className="editorial-cover-grid" aria-label="Editorial cover story">
+        <article className="panel editorial-cover-story">
+          <div className="editorial-cover-head">
+            <p className="eyebrow">Issue brief</p>
+            <span className="editorial-cover-badge">Mria mood, FunQA contract</span>
+          </div>
+          <h2>Build the page like a curated front cover, not a metrics-first product board.</h2>
+          <p>
+            FunQA should feel premium because the hierarchy is calmer, the reading rhythm is more deliberate,
+            and the supporting system proof sits beside the lead story instead of competing with it.
+          </p>
+          <div className="editorial-principle-list">
+            {editorialPrinciples.map((item) => (
+              <div className="editorial-principle-item" key={item}>
+                <span className="hero-stat-dot hero-stat-dot--accent" />
+                <p>{item}</p>
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <div className="editorial-cover-stack">
+          {editorialDispatch.map((item) => (
+            <article className="panel editorial-cover-card" key={item.title}>
+              <p className="eyebrow">{item.eyebrow}</p>
+              <h2>{item.title}</h2>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="editorial-wow-grid" aria-label="Technical wow points">
         {wowSignals.map((signal) => (
           <article className="panel editorial-wow-card" key={signal.title}>
             <p className="eyebrow">{signal.eyebrow}</p>
             <h2>{signal.title}</h2>
             <p>{signal.body}</p>
+          </article>
+        ))}
+      </section>
+
+      <section className="editorial-desk-grid" aria-label="Desk notes">
+        {deskNotes.map((note) => (
+          <article className="panel editorial-desk-card" key={note.title}>
+            <p className="editorial-feature-index">{note.label}</p>
+            <h2>{note.title}</h2>
+            <p>{note.body}</p>
           </article>
         ))}
       </section>

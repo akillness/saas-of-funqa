@@ -1688,7 +1688,9 @@ body::before {
   top: 1rem;
   margin-bottom: 1.5rem;
   border-radius: 1.75rem;
-  background: rgba(252, 247, 240, 0.84);
+  background:
+    linear-gradient(180deg, rgba(255, 252, 248, 0.94), rgba(248, 241, 231, 0.88)),
+    #fff;
   box-shadow: 0 18px 40px rgba(74, 44, 25, 0.08);
 }
 
@@ -1699,7 +1701,7 @@ body::before {
 
 .nav-list a {
   color: var(--text);
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.72);
 }
 
 .nav-list a:hover,
@@ -1914,6 +1916,102 @@ body::before {
   gap: 1rem;
 }
 
+.editorial-cover-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(18rem, 0.95fr);
+  gap: 1rem;
+}
+
+.editorial-cover-story,
+.editorial-cover-card,
+.editorial-desk-card {
+  border-radius: 1.8rem;
+}
+
+.editorial-cover-story {
+  padding: 1.8rem;
+  background:
+    linear-gradient(180deg, rgba(255, 252, 248, 0.92), rgba(252, 244, 235, 0.98)),
+    #fff;
+}
+
+.editorial-cover-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.9rem;
+}
+
+.editorial-cover-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(57, 35, 22, 0.08);
+  color: #6f4a36;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.editorial-cover-story h2 {
+  max-width: 15ch;
+  margin-bottom: 0.8rem;
+  font-size: clamp(2.3rem, 3.6vw, 3.9rem);
+}
+
+.editorial-cover-story p {
+  max-width: 42rem;
+  margin: 0;
+}
+
+.editorial-principle-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+}
+
+.editorial-principle-item {
+  display: grid;
+  gap: 0.55rem;
+  padding: 1rem;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(57, 35, 22, 0.08);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.editorial-principle-item p {
+  margin: 0;
+}
+
+.editorial-cover-stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.editorial-cover-card {
+  padding: 1.35rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 248, 241, 0.98)),
+    #fff;
+}
+
+.editorial-cover-card h2 {
+  max-width: 14ch;
+  margin-bottom: 0.65rem;
+  font-size: clamp(1.9rem, 2.5vw, 2.8rem);
+}
+
+.editorial-cover-card p {
+  margin: 0;
+}
+
 .editorial-wow-card {
   padding: 1.45rem;
   border-radius: 1.7rem;
@@ -1930,6 +2028,29 @@ body::before {
 
 .editorial-wow-card p {
   margin: 0;
+}
+
+.editorial-desk-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.editorial-desk-card {
+  padding: 1.45rem;
+  background:
+    linear-gradient(180deg, rgba(250, 242, 235, 0.96), rgba(255, 255, 255, 0.9)),
+    #fff;
+}
+
+.editorial-desk-card h2 {
+  max-width: 14ch;
+  margin-bottom: 0.65rem;
+  font-size: clamp(1.85rem, 2.4vw, 2.55rem);
+}
+
+.editorial-desk-card p:last-child {
+  margin-bottom: 0;
 }
 
 .editorial-feature-stack {
@@ -2124,12 +2245,55 @@ body::before {
     #fff;
 }
 
+.editorial-page-intro-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(19rem, 0.9fr);
+  gap: 1rem;
+}
+
 .editorial-page-intro h1 {
   max-width: 14ch;
 }
 
+.editorial-intro-rail {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+  padding: 1.4rem;
+  border-radius: 1.8rem;
+  background:
+    linear-gradient(180deg, rgba(255, 252, 247, 0.88), rgba(249, 242, 232, 0.96)),
+    #fff;
+}
+
+.editorial-intro-rail h2 {
+  max-width: 14ch;
+  font-size: clamp(2rem, 2.8vw, 3rem);
+}
+
 .search-shell-premium {
   gap: 1.2rem;
+}
+
+.search-state-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.search-state-card {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1rem 1.05rem;
+  border-radius: 1.4rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 250, 242, 0.96)),
+    #fff;
+}
+
+.search-state-card p {
+  margin: 0;
+  font-size: 0.86rem;
 }
 
 .strict-grounding-pill {
@@ -2278,6 +2442,7 @@ body::before {
 .search-composer {
   top: 6rem;
   border-radius: 1.8rem;
+  grid-template-columns: minmax(0, 1.2fr) minmax(16rem, auto);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(255, 250, 242, 0.95)),
     #fff;
@@ -2376,12 +2541,39 @@ body::before {
   color: #38677b;
 }
 
+.category-tab-bar {
+  gap: 0.45rem;
+  margin-bottom: 1.2rem;
+  padding: 0.65rem 0.1rem 0.85rem;
+  border-bottom: 1px solid rgba(57, 35, 22, 0.09);
+}
+
+.category-tab {
+  border-radius: 999px;
+  border-bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.category-tab:hover {
+  border-bottom-color: transparent;
+  background: rgba(185, 101, 67, 0.08);
+}
+
+.category-tab--active {
+  border-bottom: 0;
+  background: linear-gradient(135deg, rgba(185, 101, 67, 0.18), rgba(212, 141, 98, 0.12));
+}
+
 @media (max-width: 1080px) {
   .editorial-hero,
+  .editorial-cover-grid,
   .editorial-wow-grid,
+  .editorial-desk-grid,
   .editorial-feature-band,
   .editorial-ledger-grid,
   .editorial-story-grid,
+  .editorial-page-intro-grid,
+  .search-state-strip,
   .search-overview-strip,
   .search-pipeline-strip,
   .search-layout {
@@ -2389,13 +2581,16 @@ body::before {
   }
 
   .editorial-hero-copy h1,
+  .editorial-cover-story h2,
   .editorial-ledger-panel h2,
   .editorial-manifesto-panel h2,
   .editorial-story-panel h2,
-  .editorial-sidebar-panel h2 {
+  .editorial-sidebar-panel h2,
+  .editorial-intro-rail h2 {
     max-width: none;
   }
 
+  .editorial-principle-list,
   .editorial-hero-ledger,
   .editorial-ledger-grid-inner,
   .search-overview-metrics,
@@ -2413,11 +2608,17 @@ body::before {
     position: static;
   }
 
+  .site-header,
   .editorial-hero-copy,
   .editorial-hero-rail,
+  .editorial-cover-story,
+  .editorial-cover-card,
+  .editorial-desk-card,
   .editorial-surface-card,
   .editorial-story-panel,
   .editorial-sidebar-panel,
+  .editorial-intro-rail,
+  .search-state-card,
   .search-composer,
   .inspector-panel {
     border-radius: 1.4rem;
@@ -2425,6 +2626,10 @@ body::before {
 
   .editorial-hero-copy h1 {
     font-size: clamp(2.6rem, 13vw, 4.2rem);
+  }
+
+  .search-composer {
+    grid-template-columns: 1fr;
   }
 
   .editorial-timeline-grid {

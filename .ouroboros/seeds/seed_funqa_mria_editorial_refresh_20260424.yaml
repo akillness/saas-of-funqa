@@ -1,0 +1,89 @@
+goal: Refresh the FunQA web UI so the home and search shells better match the editorial, airy, premium concept and mood of the Mria theme while preserving FunQA's existing routes, information architecture, search-first product identity, and grounded-answer behavior.
+task_type: code
+brownfield_context:
+  project_type: brownfield
+  context_references:
+    - .omx/context/funqa-mria-editorial-refresh-20260423T060358Z.md
+    - DESIGN.md
+    - apps/web/app/page.tsx
+    - apps/web/app/search/page.tsx
+    - apps/web/app/search/search-results.tsx
+    - apps/web/app/globals.css
+  existing_patterns:
+    - Next.js app router
+    - localized copy from apps/web/lib/messages
+    - page-scoped editorial shell layered into shared global CSS
+  existing_dependencies:
+    - next
+    - react
+    - styled-jsx
+constraints:
+  - Preserve FunQA branding, routes, and core IA
+  - Keep search, RAG Lab, admin, docs, and login reachable as-is
+  - Do not turn the product into a literal blog clone
+  - Maintain responsive behavior across desktop and mobile
+  - Keep changes grounded in the current codebase and visual system
+  - Prefer typography, spacing, layout hierarchy, and surface treatment over gratuitous new features
+  - Use pretext as typography/layout guidance rather than forcing irrelevant runtime dependencies
+  - Use stitch-style prompt framing and design-system language to guide the visual refresh
+acceptance_criteria:
+  - The home page presents a stronger editorial hierarchy with one dominant story area, one supporting rail, and clearer curated desk sections
+  - The search shell feels visually consistent with the refreshed editorial direction without losing search usability or evidence-state clarity
+  - Typography, spacing, and line length are improved to better match the Mria-inspired airy premium mood
+  - Existing routes and product capabilities remain intact
+  - apps/web typecheck passes
+  - apps/web production build passes
+ontology_schema:
+  name: FunQAMriaEditorialRefresh
+  description: Brownfield design-refresh contract for aligning FunQA's web shell with an editorial, magazine-like interaction model while preserving product behavior.
+  fields:
+    - name: page_surface
+      type: string
+      description: The page or shell being refreshed
+      required: true
+    - name: hierarchy_mode
+      type: string
+      description: How editorial hierarchy is expressed on the surface
+      required: true
+    - name: typography_measure
+      type: string
+      description: Intended headline and body width behavior
+      required: true
+    - name: rail_role
+      type: string
+      description: What supporting information the right rail communicates
+      required: true
+    - name: evidence_state_visibility
+      type: string
+      description: How consensus and evidence-only states are visually surfaced
+      required: true
+evaluation_principles:
+  - name: editorial_fit
+    description: Prefer layouts and surfaces that feel curated, airy, and premium rather than utilitarian or dashboard-heavy.
+    weight: 0.35
+  - name: product_integrity
+    description: Preserve FunQA's search-first IA, grounded-answer framing, and route structure.
+    weight: 0.3
+  - name: readability
+    description: Improve line length, copy rhythm, and mobile readability through typography and spacing choices.
+    weight: 0.2
+  - name: implementation_pragmatism
+    description: Favor low-risk changes in existing app/page/css files over unnecessary dependency or architecture churn.
+    weight: 0.15
+exit_conditions:
+  - name: home_shell_refreshed
+    description: The home page visibly aligns more strongly with the editorial target mood and hierarchy.
+    criteria: home shell shows dominant hero, support rail, and curated section rhythm
+  - name: search_shell_aligned
+    description: The search page shares the editorial direction without reducing usability.
+    criteria: search shell remains usable and visually consistent with the home shell
+  - name: verification_passed
+    description: Mechanical verification succeeds for the affected web app.
+    criteria: typecheck passed and build passed
+metadata:
+  seed_id: seed_funqa_mria_editorial_refresh_20260424
+  version: 1.0.0
+  created_at: '2026-04-24T02:42:00Z'
+  ambiguity_score: 0.18
+  interview_id: interview_20260424_024100
+  parent_seed_id: null

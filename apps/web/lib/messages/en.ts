@@ -109,8 +109,49 @@ export const enMessages = {
     applyFilters: "Apply filters",
     recentSearches: "Recent: open world games, classic films, tech reviews.",
     filterChips: ["High rated", "Recent releases", "My library"],
+    editorialKicker: "Editorial search desk · games, films, and creator media",
+    contractEyebrow: "Search contract",
+    contractTitle: "One deliberate query surface, one inspectable answer rail.",
+    contractNotes: [
+      "Keep the query box prominent, but let the shell breathe like an editorial desk.",
+      "Consensus-backed and evidence-only answers must remain visibly different states.",
+      "The supporting rail should clarify confidence and citations, not become dashboard clutter."
+    ],
     resultsTitle: "Results",
     resultsSummaryEmpty: "Try a natural-language question to inspect grounded matches.",
+    stateSummaryLabel: "Search desk summary",
+    stateLabels: {
+      activeDesk: "Active desk",
+      outputMode: "Output mode",
+      retrievalPath: "Retrieval path"
+    },
+    stateNotes: {
+      filteredDesk: "Query is filtered through the selected archive desk.",
+      allDesk: "Browse every desk from one search surface.",
+      evidenceOnly: "Fallback stays visible when the answer gate does not open.",
+      consensusBacked: "Allowed answers stay paired with a visible inspection rail.",
+      pending: "The shell is ready before an answer contract is determined.",
+      retrievalPath: "Transform, retrieval, rerank, and output contract stay legible instead of hidden."
+    },
+    outputModes: {
+      evidenceOnly: "Evidence only",
+      consensusBacked: "Consensus-backed",
+      pending: "Awaiting result"
+    },
+    strictGroundingTitle: "Strict grounding",
+    strictGroundingBody: "Consensus gate protects final answer output.",
+    overviewEyebrow: "Search desk",
+    pipelineAriaLabel: "Search pipeline",
+    pipelineEyebrow: "Pipeline x-ray",
+    pipelineTitle: "FunQA shows how the answer was allowed, not just what it said.",
+    pipelineBody: "Search runs through transform, retrieval, rerank, and output contract checks.",
+    optimizedIntentPrefix: "Optimized intent:",
+    pipelineStepLabels: {
+      queryTransform: "Query transform",
+      retrieval: "Retrieval",
+      rerank: "Rerank",
+      outputContract: "Output contract"
+    },
     inspectorSynced: "Inspector synced",
     groundedAnswer: "Grounded answer",
     evidenceOnlyTitle: "Evidence-only fallback",
@@ -396,7 +437,7 @@ export const enMessages = {
     movies: "Movies",
     videos: "Videos"
   },
-  answerPanel: {
+    answerPanel: {
     toggleShow: "Show AI Analysis",
     toggleHide: "Hide AI Analysis",
     chunksAnalyzed: "chunks analyzed",
