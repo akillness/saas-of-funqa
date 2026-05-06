@@ -1,6 +1,7 @@
 import { cosineSimilarity } from "../core/similarity.js";
 import { embedText } from "./embed.js";
 import type { EmbeddedChunk, RetrievedChunk } from "../types.js";
+import { DEFAULT_TOP_K } from "../config.js";
 
 export function scoreChunks(query: string, chunks: EmbeddedChunk[]): RetrievedChunk[] {
   const queryEmbedding = embedText(query);
@@ -27,14 +28,14 @@ export function scoreChunksWithVector(queryVector: number[], chunks: EmbeddedChu
     .sort((left, right) => right.score - left.score);
 }
 
-export function retrieveChunks(query: string, chunks: EmbeddedChunk[], topK = 5): RetrievedChunk[] {
+export function retrieveChunks(query: string, chunks: EmbeddedChunk[], topK = DEFAULT_TOP_K): RetrievedChunk[] {
   return scoreChunks(query, chunks).slice(0, topK);
 }
 
 export function retrieveChunksWithVector(
   queryVector: number[],
   chunks: EmbeddedChunk[],
-  topK = 5
+  topK = DEFAULT_TOP_K
 ): RetrievedChunk[] {
   return scoreChunksWithVector(queryVector, chunks).slice(0, topK);
 }

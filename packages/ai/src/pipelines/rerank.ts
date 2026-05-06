@@ -5,6 +5,7 @@ import type {
   RerankedChunk,
   RetrievedChunk
 } from "../types.js";
+import { DEFAULT_TOP_K, PHRASE_BONUS, RERANK_WEIGHTS, RRF_K } from "../config.js";
 
 function lexicalScore(query: string, chunk: RetrievedChunk, allChunks?: RetrievedChunk[]) {
   const queryTokens = tokenize(query).filter((token) => token.length >= 3);

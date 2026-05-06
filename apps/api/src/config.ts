@@ -91,7 +91,16 @@ export const config = {
     Boolean(process.env.GEMINI_API_KEY)
   ),
   searchTopK: Number(process.env.SEARCH_TOP_K ?? 5),
-  localAnswerModelId: "local-rag-answer-v1"
+  localAnswerModelId: "local-rag-answer-v1",
+  geminiModelId: process.env.GEMINI_MODEL_ID ?? "gemini-2.5-flash",
+  citationLimit: Number(process.env.CITATION_LIMIT ?? 3),
+  snippetMaxChars: Number(process.env.SNIPPET_MAX_CHARS ?? 220),
+  confidenceHigh: Number(process.env.CONFIDENCE_HIGH ?? 0.72),
+  confidenceLow: Number(process.env.CONFIDENCE_LOW ?? 0.45),
+  costPer1kTokens: Number(process.env.COST_PER_1K_TOKENS ?? 0.00015),
+  maxMonitoringRecords: Number(process.env.MAX_MONITORING_RECORDS ?? 10_000),
+  chunkPageSize: Number(process.env.CHUNK_PAGE_SIZE ?? 500),
+  disableAuth: parseBooleanFlag(process.env.DISABLE_AUTH, false),
 };
 
 export function validateConfig(): void {

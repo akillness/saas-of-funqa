@@ -1,9 +1,6 @@
 import {
-  chunkDocument,
-  embedChunkAsync,
-  extractDocument,
   getEmbeddingPath,
-  normalizeDocument,
+  pipelineDocuments,
   type EmbeddedChunk,
   type RawDocument
 } from "@funqa/ai";
@@ -52,10 +49,10 @@ function resolveConfidence(
   }
 
   const relativeScore = topScore > 0 ? rerankScore / topScore : 0;
-  if (relativeScore >= 0.72) {
+  if (relativeScore >= config.confidenceHigh) {
     return "high";
   }
-  if (relativeScore >= 0.45) {
+  if (relativeScore >= config.confidenceLow) {
     return "medium";
   }
 
@@ -71,24 +68,6 @@ function buildConsensusScaffold() {
     reason: "graph-retrieval-pending" as const,
     explanation:
       "Graph-path retrieval is not wired into the main search path yet, so FunQA returns evidence-only results until document and graph evidence can be judged together."
-  };
-}
-
-async function pipelineDocuments(tenantId: string, documents: IngestRequest["documents"]) {
-  const pairs = documents.map((rawDocument) => {
-    const normalized = normalizeDocument(rawDocument);
-    const extracted = extractDocument(normalized);
-    const chunkRecords = chunkDocument(extracted, { tenantId });
-    return { extracted, chunkRecords };
-  });
-
-  const embeddedChunks = await Promise.all(
-    pairs.flatMap((pair) => pair.chunkRecords).map((chunk) => embedChunkAsync(chunk))
-  );
-
-  return {
-    extractedDocuments: pairs.map((pair) => pair.extracted),
-    embeddedChunks
   };
 }
 
@@ -146,7 +125,7 @@ export async function getRagInspectionChunks(tenantId: string): Promise<Embedded
 }
 
 export async function ingestDocuments(input: IngestRequest) {
-  const { extractedDocuments, embeddedChunks } = await pipelineDocuments(input.tenantId, input.documents);
+  const { extracted: extractedDocuments, embeddedChunks } = await pipelineDocuments(input.documents, input.tenantId);
 
   let storeUpdatedAt: string;
   if (useFirestore) {
@@ -170,7 +149,7 @@ export async function ingestDocuments(input: IngestRequest) {
 }
 
 export async function ingestAdditionalDocuments(input: IngestRequest) {
-  const { extractedDocuments, embeddedChunks } = await pipelineDocuments(input.tenantId, input.documents);
+  const { extracted: extractedDocuments, embeddedChunks } = await pipelineDocuments(input.documents, input.tenantId);
 
   let storeUpdatedAt: string;
   if (useFirestore) {
@@ -254,7 +233,7 @@ export async function searchDocuments(input: SearchRequest) {
   let answer: string | null = null;
   let answerMode: "consensus-backed-answer" | "evidence-only" = "evidence-only";
   try {
-    const topCitations = pipeline.answer.citations.slice(0, 3);
+    const topCitations = pipeline.answer.citations.slice(0, config.citationLimit);
     const answerResult = await runAnswerFlow({
       question: input.query,
       citations: topCitations,

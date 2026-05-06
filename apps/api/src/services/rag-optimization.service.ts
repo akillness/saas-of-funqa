@@ -1,13 +1,12 @@
 import {
   answerFromChunks,
-  chunkDocument,
-  embedChunkAsync,
   embedText,
   embedQueryTextAsync,
-  getEmbeddingPath,
   extractDocument,
+  getEmbeddingPath,
   hybridRetrieveChunks,
   normalizeDocument,
+  pipelineDocuments,
   rerankChunks,
   scoreChunksWithVector,
   transformQueryLocally,
@@ -21,12 +20,13 @@ import {
 import type { IngestDocument, RagInspectRequest } from "@funqa/contracts";
 import { z } from "genkit";
 import { googleAI } from "@genkit-ai/google-genai";
+import { config } from "../config.js";
 import { ai } from "../genkit.js";
 
 const rankingLine = /^([A-Za-z0-9._:-]+)\|([01](?:\.\d+)?)$/;
 
 function getLiveModel() {
-  return process.env.GEMINI_API_KEY ? googleAI.model("gemini-2.5-flash") : null;
+  return process.env.GEMINI_API_KEY ? googleAI.model(config.geminiModelId) : null;
 }
 
 async function transformQueryWithGenkit(query: string): Promise<QueryTransformResult> {
@@ -53,7 +53,8 @@ async function transformQueryWithGenkit(query: string): Promise<QueryTransformRe
       hypotheticalDocument,
       notes: ["Generated with Gemini via Genkit as an experimental HyDE branch."]
     };
-  } catch {
+  } catch (e) {
+    console.warn("[rag-optimization] transformQueryWithGenkit failed:", e instanceof Error ? e.message : e);
     return transformQueryLocally(query, "hyde-local");
   }
 }
@@ -117,22 +118,10 @@ async function rerankWithGenkit(
       })
       .sort((left, right) => right.rerankScore - left.rerankScore || left.id.localeCompare(right.id))
       .slice(0, topK);
-  } catch {
+  } catch (e) {
+    console.warn("[rag-optimization] rerankWithGenkit failed:", e instanceof Error ? e.message : e);
     return rerankChunks(query, chunks, "heuristic", topK);
   }
-}
-
-async function pipelineDocuments(tenantId: string, documents: IngestDocument[]) {
-  const normalized = documents.map(normalizeDocument);
-  const extracted = normalized.map(extractDocument);
-  const chunkRecords = extracted.flatMap((document) => chunkDocument(document, { tenantId }));
-  const chunks = await Promise.all(chunkRecords.map((chunk) => embedChunkAsync(chunk)));
-
-  return {
-    normalized,
-    extracted,
-    chunks
-  };
 }
 
 async function buildQueryVector(query: string, chunks: EmbeddedChunk[]) {
@@ -165,9 +154,9 @@ export async function runOptimizedPipeline(input: {
       ? {
           normalized: input.documents.map(normalizeDocument),
           extracted: input.documents.map((document) => extractDocument(normalizeDocument(document))),
-          chunks: input.chunks
+          embeddedChunks: input.chunks
         }
-      : await pipelineDocuments(input.tenantId, input.documents);
+      : await pipelineDocuments(input.documents, input.tenantId);
   const queryTransform =
     input.queryTransformMode === "hyde-genkit"
       ? await transformQueryWithGenkit(input.query)
@@ -176,11 +165,12 @@ export async function runOptimizedPipeline(input: {
           input.queryTransformMode === "none" ? "none" : input.queryTransformMode
         );
 
-  const chunks = fallbackPipeline.chunks;
+  const chunks = fallbackPipeline.embeddedChunks;
   let queryVector: number[] | null = null;
   try {
     queryVector = await buildQueryVector(queryTransform.transformedQuery, chunks);
-  } catch {
+  } catch (e) {
+    console.warn("[rag-optimization] buildQueryVector failed, using fallback:", e instanceof Error ? e.message : e);
     queryVector = chunks[0]?.embeddingMode === "local" ? embedText(queryTransform.transformedQuery) : null;
   }
 

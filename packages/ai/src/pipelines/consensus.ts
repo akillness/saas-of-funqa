@@ -1,4 +1,5 @@
 import type { EmbeddedChunk } from '../types.js';
+import { CONSENSUS_THRESHOLD, DEFAULT_TOP_K } from '../config.js';
 
 export interface ConsensusResult {
   reached: boolean;

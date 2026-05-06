@@ -1,9 +1,8 @@
 import type { EmbeddedChunk, ExtractedDocument } from "@funqa/ai";
 import type { StoredDocument } from "@funqa/db";
 import type { DocumentSnapshot } from "firebase-admin/firestore";
+import { config } from "../config.js";
 import { db } from "../firebase.js";
-
-const CHUNK_PAGE_SIZE = 500;
 
 export async function getFirestoreRagDocuments(tenantId: string): Promise<StoredDocument[]> {
   const snap = await db().collection(`ragDocuments/${tenantId}/docs`).get();
@@ -23,7 +22,7 @@ export async function getFirestoreRagChunks(tenantId: string): Promise<EmbeddedC
     let q = db()
       .collection(`ragChunks/${tenantId}/chunks`)
       .orderBy('__name__')
-      .limit(CHUNK_PAGE_SIZE);
+      .limit(config.chunkPageSize);
 
     if (lastDoc) q = q.startAfter(lastDoc);
 
@@ -34,7 +33,7 @@ export async function getFirestoreRagChunks(tenantId: string): Promise<EmbeddedC
       chunks.push(doc.data() as EmbeddedChunk);
     }
 
-    if (snap.size < CHUNK_PAGE_SIZE) break;
+    if (snap.size < config.chunkPageSize) break;
     lastDoc = snap.docs[snap.docs.length - 1];
   }
 

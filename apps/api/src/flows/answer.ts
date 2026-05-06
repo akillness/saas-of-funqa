@@ -1,5 +1,6 @@
 import { googleAI } from "@genkit-ai/google-genai";
 import { z } from "genkit";
+import { config } from "../config.js";
 import { ai } from "../genkit.js";
 
 const CitationSchema = z.object({
@@ -25,14 +26,13 @@ const AnswerResponseSchema = z.object({
 });
 
 const FALLBACK_MODEL = "evidence-only-local";
-const LIVE_MODEL_ID = "gemini-2.5-flash";
 
 function getLiveModel() {
-  return process.env.GEMINI_API_KEY ? googleAI.model(LIVE_MODEL_ID) : null;
+  return process.env.GEMINI_API_KEY ? googleAI.model(config.geminiModelId) : null;
 }
 
 function citationText(citation: z.infer<typeof CitationSchema>) {
-  return citation.snippet ?? citation.text?.slice(0, 220) ?? "";
+  return citation.snippet ?? citation.text?.slice(0, config.snippetMaxChars) ?? "";
 }
 
 function buildEvidenceFallback(citations: Array<z.infer<typeof CitationSchema>>) {
@@ -40,7 +40,7 @@ function buildEvidenceFallback(citations: Array<z.infer<typeof CitationSchema>>)
     return "No evidence is available to answer this question.";
   }
   return citations
-    .slice(0, 3)
+    .slice(0, config.citationLimit)
     .map((citation, index) => `[${index + 1}] ${citationText(citation)}`)
     .filter((line) => line.replace(/^\[\d+\] /, "").length > 0)
     .join("\n");
@@ -48,7 +48,7 @@ function buildEvidenceFallback(citations: Array<z.infer<typeof CitationSchema>>)
 
 function buildPrompt(question: string, citations: Array<z.infer<typeof CitationSchema>>) {
   const evidence = citations
-    .slice(0, 3)
+    .slice(0, config.citationLimit)
     .map((citation, index) => `[${index + 1}] ${citationText(citation)}`)
     .join("\n");
 
@@ -105,11 +105,12 @@ const answerFlow = ai.defineFlow(
       return {
         answer,
         citationCount: input.citations.length,
-        model: LIVE_MODEL_ID,
+        model: config.geminiModelId,
         tokensUsed,
         answerMode: "consensus-backed-answer" as const
       };
-    } catch {
+    } catch (e) {
+      console.warn("[answer] ai.generate failed, using evidence-only fallback:", e instanceof Error ? e.message : e);
       return {
         answer: buildEvidenceFallback(input.citations),
         citationCount: input.citations.length,

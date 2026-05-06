@@ -1,5 +1,6 @@
 import express from "express";
 import { z } from "zod";
+import { AuthError, FunQAError } from "./errors.js";
 import { requireAuth } from "./middleware/auth.middleware.js";
 import { registerAdminRoute } from "./routes/admin.route.js";
 import { registerCreatorAnalysesRoute } from "./routes/creator-analyses.route.js";
@@ -40,6 +41,16 @@ export function createServer() {
         error: "validation_error",
         issues: error.issues
       });
+      return;
+    }
+
+    if (error instanceof AuthError) {
+      res.status(403).json({ error: error.code, message: error.message });
+      return;
+    }
+
+    if (error instanceof FunQAError) {
+      res.status(500).json({ error: error.code, message: error.message });
       return;
     }
 

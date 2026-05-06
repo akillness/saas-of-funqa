@@ -1,4 +1,5 @@
-// In-memory counters (resets on restart — acceptable for v1)
+import { config } from "../config.js";
+
 interface RequestRecord {
   latencyMs: number;
   tokensUsed: number;
@@ -7,11 +8,10 @@ interface RequestRecord {
 }
 
 const records: RequestRecord[] = [];
-const MAX_RECORDS = 10_000; // rolling window
 
 export function recordRequest(latencyMs: number, tokensUsed: number, error = false): void {
   records.push({ latencyMs, tokensUsed, error, timestamp: Date.now() });
-  if (records.length > MAX_RECORDS) records.shift();
+  if (records.length > config.maxMonitoringRecords) records.shift();
 }
 
 export function getMonitoringSummary() {
@@ -29,8 +29,7 @@ export function getMonitoringSummary() {
     : 0;
 
   const totalTokens = day.reduce((s, r) => s + r.tokensUsed, 0);
-  // Gemini pricing ~$0.00015 per 1K tokens (approximate)
-  const dailyCostUsd = (totalTokens / 1000) * 0.00015;
+  const dailyCostUsd = (totalTokens / 1000) * config.costPer1kTokens;
 
   return {
     dailyCostUsd: Math.round(dailyCostUsd * 100) / 100,

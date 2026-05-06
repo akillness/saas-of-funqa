@@ -1,5 +1,6 @@
 import { tokenize } from "../core/tokenize.js";
 import type { ChunkRecord, ExtractedDocument } from "../types.js";
+import { DEFAULT_CHUNK_MAX_CHARS } from "../config.js";
 
 type ChunkOptions = {
   tenantId: string;
