@@ -1,8 +1,9 @@
 import type { NextFunction, Request, Response } from "express";
 import { getAuth } from "firebase-admin/auth";
+import { config } from "../config.js";
 
 export async function requireAuth(req: Request, res: Response, next: NextFunction): Promise<void> {
-  if (process.env.DISABLE_AUTH === "true") {
+  if (config.disableAuth) {
     next();
     return;
   }
