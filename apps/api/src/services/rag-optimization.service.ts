@@ -18,7 +18,6 @@ import {
   type RerankedChunk
 } from "@funqa/ai";
 import type { IngestDocument, RagInspectRequest } from "@funqa/contracts";
-import { z } from "genkit";
 import { googleAI } from "@genkit-ai/google-genai";
 import { config } from "../config.js";
 import { ai } from "../genkit.js";
@@ -97,14 +96,10 @@ async function rerankWithGenkit(
 
     return chunks
       .map((chunk) => {
-        const lexicalOverlap = z.number().int().parse(
-          new Set(query.toLowerCase().split(/\W+/)).size === 0
-            ? 0
-            : query
-                .toLowerCase()
-                .split(/\W+/)
-                .filter((token) => token && chunk.text.toLowerCase().includes(token)).length
-        );
+        const lexicalOverlap = query
+          .toLowerCase()
+          .split(/\W+/)
+          .filter((token) => token && chunk.text.toLowerCase().includes(token)).length;
         const keywordHits = chunk.keywords.filter((keyword) =>
           query.toLowerCase().includes(keyword.toLowerCase())
         ).length;
