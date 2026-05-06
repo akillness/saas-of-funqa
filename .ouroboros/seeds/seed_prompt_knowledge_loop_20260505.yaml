@@ -1,0 +1,26 @@
+id: seed_prompt_knowledge_loop_20260505
+created: "2026-05-05"
+status: frozen
+goal: "Unify per-prompt knowledge handling into one durable loop that refines prompt knowledge through graph-style structure, organizes it in the Obsidian-compatible project wiki, and makes llm-wiki the first knowledge source for future answers."
+constraints:
+  - "Use RTK-prefixed commands when running shell commands in this project."
+  - "Treat knowledge/raw/ as immutable source captures."
+  - "Treat knowledge/wiki/, knowledge/index.md, and knowledge/log.md as LLM-maintained artifacts."
+  - "Use Graphify or a truthful structural graph packet for relationship refinement; do not claim native Graphify output unless it exists."
+  - "Use Obsidian CLI only for desktop Obsidian automation; direct markdown writes are the default for repository-backed wiki updates."
+  - "Do not ingest secrets, credentials, service account keys, .env files, or ignored private material."
+acceptance_criteria:
+  - "Root AGENTS.md defines the per-prompt Prompt Knowledge Loop."
+  - "knowledge/AGENTS.md defines how the loop applies inside the llm-wiki vault."
+  - "A durable spec exists under docs/spec/ for future agents."
+  - "The user request is captured as an immutable raw source and summarized into the wiki."
+  - "knowledge/index.md links to the new source and concept pages."
+  - "knowledge/log.md records the ingest and policy update."
+verification:
+  - "Check that all referenced markdown files exist."
+  - "Check that index links use existing wiki paths."
+  - "Check that no secret-bearing files were ingested."
+drift_controls:
+  - "If future prompts are purely transient, record no wiki artifact unless they change durable project knowledge."
+  - "If Graphify produces weak or empty output, fall back to structural packets and state that explicitly."
+  - "If requirements change, add a new seed instead of mutating this frozen one."

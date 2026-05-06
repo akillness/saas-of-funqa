@@ -1,0 +1,60 @@
+goal: Generate concept-fit brand imagery and favicon assets for FunQA using god-tibo-imagen, attach them to the Next.js App Router metadata surface, and deploy the updated web app to Firebase App Hosting.
+task_type: code
+brownfield_context:
+  project_type: brownfield
+  context_references:
+    - apps/web/app/layout.tsx
+    - apps/web/app/page.tsx
+    - apps/web/app/globals.css
+    - deploy.sh
+    - firebase.json
+  extracted_reference_signals:
+    - bright research-hub mood
+    - ice-blue paper surfaces
+    - green and cyan accents
+    - search-first product framing
+    - icon-led utility chrome
+  existing_patterns:
+    - Next.js App Router special metadata files
+    - Firebase App Hosting deployment via deploy.sh
+    - repository knowledge capture in knowledge/wiki
+constraints:
+  - Use god-tibo-imagen for image generation rather than introducing a production image dependency
+  - Preserve FunQA branding and the current research-hub concept
+  - Keep asset integration compatible with Next.js 15 App Router metadata conventions
+  - Favor generated PNG plus deterministic resizing/composition over manual binary editing
+  - Deployment target is Firebase App Hosting backend saas-of-funqa
+acceptance_criteria:
+  - A concept-fit square brand image is generated and attached to the app
+  - Favicon-related assets are generated and wired into the app metadata surface
+  - Open Graph and Twitter preview images are generated and wired into the app metadata surface
+  - Web typecheck passes
+  - Web production build passes
+  - App Hosting deployment command completes successfully or records exact blocking evidence
+evaluation_principles:
+  - name: concept_fit
+    description: Generated imagery should match the current FunQA bright research-hub shell rather than generic SaaS art.
+    weight: 0.3
+  - name: metadata_integrity
+    description: Asset integration should follow Next.js conventions and not break routing or build output.
+    weight: 0.25
+  - name: deployment_readiness
+    description: The repo should be left in a state that is actually deployable to App Hosting.
+    weight: 0.25
+  - name: implementation_pragmatism
+    description: Use the lightest toolchain that works, with generated assets reproducible from prompts and scripts.
+    weight: 0.2
+exit_conditions:
+  - name: assets_attached
+    criteria: App Router metadata assets exist and are referenced by the deployed build.
+  - name: verification_passed
+    criteria: Typecheck and build pass after asset integration.
+  - name: deployment_attempt_recorded
+    criteria: App Hosting deployment succeeds or the exact blocking error is captured.
+metadata:
+  seed_id: seed_funqa_brand_images_apphosting_20260424
+  version: 1.0.0
+  created_at: '2026-04-24T14:05:00Z'
+  ambiguity_score: 0.15
+  interview_id: direct_brand_asset_intake_20260424
+  parent_seed_id: seed_funqa_eglab_home_refresh_20260424

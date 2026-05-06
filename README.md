@@ -91,7 +91,7 @@ RAG 파이프라인 흐름:
 saas-of-funqa/
 ├── apps/
 │   ├── api/          # Express + Genkit RAG 런타임
-│   └── web/          # Next.js 프론트엔드
+│   └── web/          # Next.js 프론트엔드 (App Router, i18n EN/KO)
 ├── functions/        # Firebase Functions 배포 패키지
 ├── packages/
 │   ├── ai/           # RAG 파이프라인 (normalize/extract/chunk/embed/index/retrieve/answer)
@@ -102,15 +102,21 @@ saas-of-funqa/
 │   └── ui/           # 공유 UI 컴포넌트
 ├── infra/
 │   └── firebase/     # Firestore 규칙 & 인덱스
-├── scripts/          # 시드 & 스모크 테스트 스크립트
+├── scripts/          # 시드·스모크·지식 파이프라인 스크립트
 ├── docs/             # 아키텍처 & 런북 문서
-├── knowledge/        # RAG 소스 문서 볼트
+├── data/
+│   └── evals/fixtures/  # 컨센서스 평가 픽스처
+├── knowledge/        # LLM-wiki 기반 프로젝트 지식 볼트
+│   ├── raw/sources/  # 원시 불변 소스 캡처
+│   └── wiki/         # 합성 페이지 (concepts/entities/queries/reports/sources)
 ├── .github/
 │   └── workflows/    # CI/CD 워크플로우
 ├── firebase.json
 ├── deploy.sh
 └── dev.sh
 ```
+
+> 모든 주요 디렉토리에는 AI 에이전트용 `AGENTS.md` 파일이 포함되어 있습니다 (계층적 deepinit 구조).
 
 ---
 
@@ -254,6 +260,12 @@ npm run build:web
 - 검색에 intro rail / state strip을 추가해 answer contract와 retrieval state를 더 명확히 노출
 - category tab, search shell copy, answer toggle을 locale dictionary 기반으로 정리
 - 결과 카드 내부 nested button 제거로 search interaction semantics 정리
+- 브랜드 자산 추가: favicon, OG 이미지, Apple icon, Twitter card 이미지
+- `menu-icons.tsx` 컴포넌트 추가로 네비게이션 아이콘 시스템 정립
+- 로케일 전환기(locale-switcher) 및 테마 토글 UI 개선
+- 지식 파이프라인 스크립트 추가: `bootstrap-vault.sh`, `ingest-url.sh`, `lint-wiki.py`, `new-query-note.sh`, `build-brand-assets.py`
+- 프롬프트 지식 루프(`docs/spec/prompt-knowledge-loop.md`) 스펙 문서화
+- 전체 디렉토리에 AI 에이전트용 `AGENTS.md` 계층 구조 구축 (deepinit)
 
 운영 메모:
 
@@ -281,6 +293,11 @@ npm run build:web
 | `npm run seed:demo` | 데모 RAG 데이터 시드 |
 | `npm run deploy:functions` | Firebase Functions 배포 |
 | `npm run deploy:apphosting` | Firebase App Hosting 배포 |
+| `scripts/bootstrap-vault.sh` | knowledge/ 볼트 초기 디렉토리 구조 생성 |
+| `scripts/ingest-url.sh <url>` | URL 원문을 `knowledge/raw/sources/`에 캡처 |
+| `scripts/new-query-note.sh <topic>` | `knowledge/wiki/queries/`에 새 쿼리 노트 생성 |
+| `scripts/lint-wiki.py` | wiki 마크다운 링크·형식 검사 |
+| `scripts/build-brand-assets.py` | 브랜드 이미지 자산 생성 |
 
 ---
 

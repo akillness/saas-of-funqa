@@ -8,6 +8,7 @@ import { FirebaseAnalytics } from "./firebase-analytics";
 import { AuthProvider } from "@/components/auth-provider";
 import { NavAuth } from "@/components/nav-auth";
 import { CategoryTabBar } from "@/components/category-tab-bar";
+import { BookIcon, FlaskIcon, HomeIcon, MenuIcon, SearchIcon, ShieldIcon } from "@/components/menu-icons";
 import { getDictionary, withLocale } from "../lib/i18n";
 import { getRequestLocale } from "../lib/i18n-server";
 import "./globals.css";
@@ -38,7 +39,20 @@ const mono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: "funqa",
-  description: "Grounded repository intelligence with a premium search workspace and operator console."
+  description: "An all-knowledge AI search engine with grounded retrieval, citations, and visible evidence.",
+  metadataBase: new URL("https://saas-of-funqa--saas-of-funqa.us-east4.hosted.app"),
+  openGraph: {
+    title: "funqa",
+    description: "An all-knowledge AI search engine with grounded retrieval, citations, and visible evidence.",
+    images: ["/opengraph-image.png"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "funqa",
+    description: "An all-knowledge AI search engine with grounded retrieval, citations, and visible evidence.",
+    images: ["/twitter-image.png"],
+  },
 };
 
 export default async function RootLayout({
@@ -49,11 +63,11 @@ export default async function RootLayout({
   const locale = await getRequestLocale();
   const t = getDictionary(locale);
   const navItems = [
-    { href: "/", label: t.layout.nav.overview },
-    { href: "/search", label: t.layout.nav.search },
-    { href: "/rag-lab", label: t.layout.nav.ragLab },
-    { href: "/admin", label: t.layout.nav.admin },
-    { href: "/docs", label: t.layout.nav.docs },
+    { href: "/", label: t.layout.nav.overview, Icon: HomeIcon },
+    { href: "/search", label: t.layout.nav.search, Icon: SearchIcon },
+    { href: "/rag-lab", label: t.layout.nav.ragLab, Icon: FlaskIcon },
+    { href: "/admin", label: t.layout.nav.admin, Icon: ShieldIcon },
+    { href: "/docs", label: t.layout.nav.docs, Icon: BookIcon },
   ];
 
   return (
@@ -86,28 +100,46 @@ export default async function RootLayout({
               </Link>
               <details className="site-menu">
                 <summary className="site-menu-toggle">
-                  <span className="site-menu-toggle-lines" aria-hidden="true" />
-                  <span>{t.layout.menuLabel}</span>
+                  <MenuIcon className="site-menu-toggle-icon" />
+                  <span className="sr-only">{t.layout.menuLabel}</span>
                 </summary>
                 <div className="site-menu-panel">
-                  <nav aria-label="Primary">
-                    <ul className="nav-list nav-list-side">
-                      {navItems.map((item) => (
-                        <li key={item.href}>
-                          <Link href={withLocale(item.href, locale)}>{item.label}</Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </nav>
-                  <div className="site-menu-controls">
-                    <NavAuth />
-                    <LocaleSwitcher
-                      label={t.common.localeLabel}
-                      locale={locale}
-                      localeNames={t.common.localeNames}
-                    />
-                    <ThemeToggle label={t.common.themeLabel} modes={t.common.themeModes} />
-                  </div>
+                  <section className="menu-panel-section">
+                    <p className="menu-panel-heading">{t.layout.menuLabel}</p>
+                    <nav aria-label="Primary">
+                      <ul className="nav-list nav-list-side menu-nav-list">
+                        {navItems.map((item) => (
+                          <li key={item.href}>
+                            <Link className="menu-nav-link" href={withLocale(item.href, locale)}>
+                              <span className="menu-nav-icon" aria-hidden="true">
+                                <item.Icon />
+                              </span>
+                              <span>{item.label}</span>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </nav>
+                  </section>
+                  <section className="menu-panel-section">
+                    <p className="menu-panel-heading">
+                      {t.common.localeLabel} / {t.common.themeLabel}
+                    </p>
+                    <div className="site-menu-controls">
+                      <NavAuth
+                        accountLabel={locale === "ko" ? "계정" : "Account"}
+                        loginHref={withLocale("/login", locale)}
+                        loginLabel={t.layout.nav.login}
+                        logoutLabel={locale === "ko" ? "로그아웃" : "Sign out"}
+                      />
+                      <LocaleSwitcher
+                        label={t.common.localeLabel}
+                        locale={locale}
+                        localeNames={t.common.localeNames}
+                      />
+                      <ThemeToggle label={t.common.themeLabel} modes={t.common.themeModes} />
+                    </div>
+                  </section>
                 </div>
               </details>
             </header>

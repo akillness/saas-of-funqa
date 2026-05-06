@@ -16,6 +16,7 @@ This is the content-oriented map of the wiki. Read this file first before broad 
 - [[wiki/sources/genkit-firebase]]
 - [[wiki/sources/gemini-embeddings]]
 - [[wiki/sources/langextract]]
+- [[wiki/sources/prompt-knowledge-loop-request-2026-05-05]]
 - [[wiki/sources/vercel-web-guidelines]]
 <!-- SOURCES:END -->
 
@@ -25,6 +26,7 @@ This is the content-oriented map of the wiki. Read this file first before broad 
 
 ## Concepts
 <!-- CONCEPTS:START -->
+- [[wiki/concepts/prompt-knowledge-loop]]
 <!-- CONCEPTS:END -->
 
 ## Queries
@@ -34,6 +36,12 @@ This is the content-oriented map of the wiki. Read this file first before broad 
 
 ## Reports
 <!-- REPORTS:START -->
+- [[wiki/reports/graphify-codex-install-2026-05-05]]
+- [[wiki/reports/llm-wiki-install-2026-05-06]]
+- [[wiki/reports/funqa-all-knowledge-brand-apphosting-2026-04-26]]
+- [[wiki/reports/funqa-brand-images-apphosting-2026-04-24]]
+- [[wiki/reports/funqa-consensus-compliance-reporting-v1]]
+- [[wiki/reports/funqa-consensus-release-gate-baseline]]
 - [[wiki/reports/funqa-locale-theme-sidebar-apphosting-2026-04-24]]
 - [[wiki/reports/funqa-eglab-home-refresh-2026-04-24]]
 - [[wiki/reports/funqa-rag-platform]]

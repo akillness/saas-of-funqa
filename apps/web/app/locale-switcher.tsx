@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname, useSearchParams } from "next/navigation";
+import { EnglishIcon, GlobeIcon, KoreanIcon } from "@/components/menu-icons";
 import { localeCookieName, type Locale, locales } from "../lib/i18n";
 
 type LocaleSwitcherProps = {
@@ -25,16 +26,22 @@ export function LocaleSwitcher({ locale, label, localeNames }: LocaleSwitcherPro
   }
 
   return (
-    <div aria-label={label} className="locale-switcher" role="group">
+    <div aria-label={label} className="menu-control-group locale-switcher" role="group">
+      <span className="menu-control-icon" aria-hidden="true">
+        <GlobeIcon />
+      </span>
       {locales.map((item) => (
         <a
           aria-current={item === locale ? "true" : undefined}
-          className={item === locale ? "segment segment-active" : "segment"}
+          aria-label={localeNames[item]}
+          className={item === locale ? "icon-segment icon-segment-active" : "icon-segment"}
           href={buildHref(item)}
           key={item}
           onClick={() => switchLocale(item)}
+          title={localeNames[item]}
         >
-          {localeNames[item]}
+          {item === "ko" ? <KoreanIcon className="icon-segment-glyph" /> : <EnglishIcon className="icon-segment-glyph" />}
+          <span className="sr-only">{localeNames[item]}</span>
         </a>
       ))}
     </div>

@@ -24,7 +24,12 @@
     "smoke:functions": "SECRET_ENCRYPTION_KEY=${SECRET_ENCRYPTION_KEY:-local-dev-secret-key-32-bytes} npm run build:functions && SECRET_ENCRYPTION_KEY=${SECRET_ENCRYPTION_KEY:-local-dev-secret-key-32-bytes} npx firebase-tools@latest emulators:exec --only functions,firestore \"node scripts/smoke-functions.mjs\"",
     "start": "npm --workspace @funqa/web run start",
     "typecheck": "npm --workspace @funqa/api run typecheck && npm --workspace @funqa/web run typecheck",
-    "smoke:rag": "tsx scripts/smoke-rag.ts"
+    "smoke:rag": "tsx scripts/smoke-rag.ts",
+    "wiki:bootstrap": "bash scripts/bootstrap-vault.sh knowledge",
+    "wiki:ingest-url": "bash scripts/ingest-url.sh knowledge",
+    "wiki:new-query": "bash scripts/new-query-note.sh knowledge",
+    "wiki:lint": "python3 scripts/lint-wiki.py knowledge",
+    "wiki:lint:json": "python3 scripts/lint-wiki.py knowledge --format json"
   },
   "devDependencies": {
     "@google/design.md": "^0.1.1",

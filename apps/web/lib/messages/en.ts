@@ -37,9 +37,9 @@ export const enMessages = {
     }
   },
   home: {
-    eyebrow: "AI Media Search",
-    title: "Discover & Archive Games, Movies, and Media with AI",
-    lede: "Let AI remember your media taste. Search, organize, and explore your games, movies, and media library with grounded retrieval.",
+    eyebrow: "All-Knowledge AI Search",
+    title: "Search Every Knowledge Surface with Grounded AI",
+    lede: "FunQA turns documents, games, films, videos, citations, and graph evidence into one inspectable AI search engine.",
     primaryAction: "Start Searching",
     secondaryAction: "API Docs",
     embedLabel: "Default hosted embedding",
@@ -95,7 +95,7 @@ export const enMessages = {
         href: "/search",
         eyebrow: "First visit",
         title: "Start with search",
-        body: "Ask one question about a game, film, or video and see what evidence FunQA retrieves."
+        body: "Ask one question across documents, media, and evidence graphs to see what FunQA can prove."
       },
       {
         href: "/docs",

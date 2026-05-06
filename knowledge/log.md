@@ -294,3 +294,126 @@ Each entry should list the files touched, the reason for the change, and any fol
   - Freeze Sub-AC 4 for FunQA V1 by specifying the authoritative release-decision packet, required report contents, machine-readable and operator-readable example outputs, minimum trace and log retention windows, and the auditability checks that gate launch review.
 - Follow-up:
   - Mirror the frozen packet members, artifact hashes, case-bundle handles, and telemetry-export references into the consensus evaluation runner and `rag-lab` release dashboard so the launch decision is driven by immutable artifacts rather than mutable counters.
+
+## [2026-04-24] query | EGLAB home refresh icon-menu refinement
+
+- Files touched:
+  - `.ouroboros/seeds/seed_funqa_eglab_home_refresh_20260424.yaml`
+  - `knowledge/wiki/reports/funqa-eglab-home-refresh-2026-04-24.md`
+  - `knowledge/log.md`
+- Reason:
+  - Tighten the existing EGLAB-inspired refresh scope around the latest request:
+    - the header menu should become icon-led
+    - locale and theme controls inside the menu should use icons rather than text labels
+    - Korean and English home framing should stay coherent after the redesign
+- Follow-up:
+  - Record implementation and verification evidence after the web build passes with the updated header and home page.
+
+## [2026-04-24] query | Brand images and App Hosting deployment pass
+
+- Files touched:
+  - `.ouroboros/seeds/seed_funqa_brand_images_apphosting_20260424.yaml`
+  - `knowledge/wiki/reports/funqa-brand-images-apphosting-2026-04-24.md`
+  - `knowledge/index.md`
+  - `knowledge/log.md`
+- Reason:
+  - Freeze the new request into a durable contract before implementation:
+    - generate concept-fit imagery with `god-tibo-imagen`
+    - attach favicon and share-preview assets to the Next App Router app
+    - deploy the updated web shell to Firebase App Hosting
+- Follow-up:
+  - Record the actual asset file set, verification results, prompts, and deployment evidence after execution.
+
+## [2026-04-24] build | Generated brand assets and deployed App Hosting rollout
+
+- Files touched:
+  - `scripts/build-brand-assets.py`
+  - `apps/web/app/icon.png`
+  - `apps/web/app/apple-icon.png`
+  - `apps/web/app/favicon.ico`
+  - `apps/web/app/opengraph-image.png`
+  - `apps/web/app/twitter-image.png`
+  - `apps/web/app/layout.tsx`
+  - `knowledge/wiki/reports/funqa-brand-images-apphosting-2026-04-24.md`
+- Reason:
+  - Generate concept-fit image assets with `god-tibo-imagen`, compose them into deterministic App Router metadata files, and verify that the updated App Hosting backend serves the new favicon and social-preview routes.
+- Follow-up:
+  - If the product shell changes significantly again, regenerate the raw `square` and `wide` source images and rerun `python3 scripts/build-brand-assets.py` instead of hand-editing binary assets.
+
+## [2026-04-26] build | All-knowledge AI search brand assets and App Hosting rollout
+
+- Files touched:
+  - `.ouroboros/seeds/seed_funqa_all_knowledge_search_brand_apphosting_20260426.yaml`
+  - `scripts/build-brand-assets.py`
+  - `apps/web/app/layout.tsx`
+  - `apps/web/app/page.tsx`
+  - `apps/web/lib/messages/en.ts`
+  - `apps/web/lib/messages/ko.ts`
+  - `apps/web/app/globals.css`
+  - `apps/web/app/icon.png`
+  - `apps/web/app/apple-icon.png`
+  - `apps/web/app/favicon.ico`
+  - `apps/web/app/opengraph-image.png`
+  - `apps/web/app/twitter-image.png`
+  - `apps/web/public/hero-image.png`
+  - `knowledge/wiki/reports/funqa-all-knowledge-brand-apphosting-2026-04-26.md`
+  - `knowledge/index.md`
+  - `knowledge/log.md`
+- Reason:
+  - Reframe the page concept around FunQA as an all-knowledge AI search engine, generate concept-fit imagery with `god-tibo-imagen`, attach favicon/social/hero assets, verify locally, and deploy the App Hosting backend.
+- Follow-up:
+  - Update secondary surfaces such as the search page and docs copy if the all-knowledge positioning should replace the older media-search framing across the whole product.
+
+## [2026-05-05] ingest | Prompt Knowledge Loop operating contract
+
+- Files touched:
+  - `AGENTS.md`
+  - `.ouroboros/seeds/seed_prompt_knowledge_loop_20260505.yaml`
+  - `docs/spec/prompt-knowledge-loop.md`
+  - `knowledge/AGENTS.md`
+  - `knowledge/raw/sources/2026-05-05-prompt-knowledge-loop.md`
+  - `knowledge/wiki/sources/prompt-knowledge-loop-request-2026-05-05.md`
+  - `knowledge/wiki/concepts/prompt-knowledge-loop.md`
+  - `knowledge/index.md`
+  - `knowledge/log.md`
+- Reason:
+  - Freeze the user preference that each non-trivial prompt should run as one durable knowledge loop: recall llm-wiki context, refine new prompt knowledge through Graphify or structural graph packets, organize it in the Obsidian-compatible wiki, and reuse it as future project knowledge.
+- Follow-up:
+  - For future implementation-bearing prompts, create or reuse an Ouroboros seed and file verification evidence back into `knowledge/wiki/reports/` or `knowledge/wiki/queries/`.
+
+## [2026-05-05] install | Graphify Codex integration
+
+- Files touched:
+  - `AGENTS.md`
+  - `.codex/hooks.json`
+  - `knowledge/raw/sources/2026-05-05-graphify-codex-install.md`
+  - `knowledge/wiki/reports/graphify-codex-install-2026-05-05.md`
+  - `knowledge/index.md`
+  - `knowledge/log.md`
+- Reason:
+  - Install Graphify as a Codex-native project integration so Codex can surface existing `graphify-out/` knowledge graph context before codebase and architecture answers.
+- Follow-up:
+  - Use `graphify-out/GRAPH_REPORT.md` before raw graph JSON for graph-backed questions.
+  - Prefer the `graphify` CLI for graph operations unless `graphifyy` is intentionally installed into the default `python3` interpreter.
+
+## [2026-05-06] install | llm-wiki helper scripts
+
+- Files touched:
+  - `package.json`
+  - `scripts/bootstrap-vault.sh`
+  - `scripts/ingest-url.sh`
+  - `scripts/new-query-note.sh`
+  - `scripts/lint-wiki.py`
+  - `knowledge/AGENTS.md`
+  - `knowledge/raw/sources/2026-05-06-llm-wiki-install.md`
+  - `knowledge/wiki/reports/llm-wiki-install-2026-05-06.md`
+  - `knowledge/index.md`
+  - `knowledge/log.md`
+- Reason:
+  - Install local llm-wiki maintenance helpers into the existing project vault so future agents can ingest sources, file durable answers, and run structural lint without rediscovering the workflow.
+- Verification:
+  - `npm run wiki:lint`
+  - `npm run wiki:lint:json`
+- Follow-up:
+  - Use `wiki:lint` after future wiki ingest or filing operations.
+  - Use `wiki:ingest-url` only when the Scrapling CLI is available.

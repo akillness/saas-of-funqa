@@ -2836,7 +2836,8 @@ body::before {
 .editorial-hero-copy {
   min-height: 39rem;
   background:
-    radial-gradient(circle at 88% 15%, rgba(255, 255, 255, 0.86), transparent 22%),
+    linear-gradient(90deg, rgba(246, 252, 255, 0.99) 0%, rgba(246, 252, 255, 0.9) 48%, rgba(246, 252, 255, 0.2) 100%),
+    url("/hero-image.png") center / cover no-repeat,
     linear-gradient(135deg, rgba(196, 232, 248, 0.98) 0%, rgba(235, 249, 255, 0.94) 56%, rgba(255, 255, 255, 0.96) 100%);
   border-color: rgba(50, 98, 115, 0.16);
 }
@@ -3056,7 +3057,8 @@ body[data-theme="dark"] .metric-card {
 
 body[data-theme="dark"] .editorial-hero-copy {
   background:
-    radial-gradient(circle at 88% 15%, rgba(123, 192, 67, 0.14), transparent 22%),
+    linear-gradient(90deg, rgba(7, 19, 29, 0.98) 0%, rgba(7, 19, 29, 0.87) 50%, rgba(7, 19, 29, 0.32) 100%),
+    url("/hero-image.png") center / cover no-repeat,
     linear-gradient(135deg, rgba(9, 37, 52, 0.98) 0%, rgba(10, 29, 43, 0.96) 58%, rgba(7, 19, 29, 0.98) 100%);
   border-color: var(--border);
 }
@@ -3120,5 +3122,228 @@ body[data-theme="dark"] .editorial-surface-card--videos {
     right: 1rem;
     left: 1rem;
     width: auto;
+  }
+}
+
+/* ============================================================
+   2026-04-24 EGLAB ICON MENU REFINEMENT
+   ============================================================ */
+
+.site-menu-toggle {
+  justify-content: center;
+  min-width: 3rem;
+  padding: 0;
+}
+
+.site-menu-toggle-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.menu-panel-section {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.menu-panel-heading {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+body[data-locale="ko"] .menu-panel-heading,
+html:lang(ko) .menu-panel-heading {
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.menu-nav-list {
+  gap: 0.6rem;
+}
+
+.menu-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.menu-nav-icon,
+.menu-control-icon,
+.menu-icon-button,
+.icon-segment {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+}
+
+.menu-nav-icon {
+  width: 2.1rem;
+  height: 2.1rem;
+  color: var(--accent-2);
+  background: rgba(0, 168, 199, 0.1);
+  border: 1px solid rgba(0, 168, 199, 0.12);
+}
+
+.menu-nav-icon svg,
+.menu-control-icon svg,
+.menu-icon-button-glyph,
+.icon-segment-glyph {
+  width: 1rem;
+  height: 1rem;
+}
+
+.site-menu-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, auto));
+  justify-content: start;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.menu-control-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.menu-control-icon {
+  width: 2rem;
+  height: 2rem;
+  color: var(--accent-2);
+  background: rgba(196, 232, 248, 0.52);
+  border: 1px solid rgba(0, 168, 199, 0.12);
+}
+
+.icon-segment {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.82);
+  text-decoration: none;
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.icon-segment:hover,
+.icon-segment:focus-visible,
+.menu-icon-button:hover,
+.menu-icon-button:focus-visible {
+  transform: translateY(-1px);
+}
+
+.icon-segment-active {
+  color: #fff;
+  background: linear-gradient(135deg, #7bc043, #00bcd4);
+  border-color: transparent;
+}
+
+.menu-icon-button {
+  width: 2.2rem;
+  height: 2.2rem;
+  padding: 0;
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.84);
+  cursor: pointer;
+  text-decoration: none;
+  font: inherit;
+}
+
+.nav-auth-user {
+  gap: 0.6rem;
+}
+
+.nav-auth-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  max-width: 10.5rem;
+  min-height: 2.2rem;
+  padding: 0 0.75rem;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.72);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav-auth-icon {
+  flex: none;
+  width: 0.95rem;
+  height: 0.95rem;
+  color: var(--accent-2);
+}
+
+.editorial-ledger-item--stacked,
+.editorial-ledger-block--stacked {
+  align-items: flex-start;
+}
+
+.editorial-ledger-item--stacked strong,
+.editorial-ledger-block--stacked strong {
+  display: block;
+  color: var(--text);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+.editorial-ledger-item--stacked p,
+.editorial-ledger-block--stacked p {
+  margin: 0.15rem 0 0;
+}
+
+.editorial-rail-card h2,
+.editorial-cover-card h2,
+.editorial-desk-card h2,
+.editorial-manifesto-panel h2 {
+  text-wrap: balance;
+}
+
+body[data-theme="dark"] .menu-panel-heading {
+  color: #c4e8f8;
+}
+
+body[data-theme="dark"] .menu-nav-icon,
+body[data-theme="dark"] .menu-control-icon {
+  color: #7bc043;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--border);
+}
+
+body[data-theme="dark"] .menu-icon-button,
+body[data-theme="dark"] .icon-segment,
+body[data-theme="dark"] .nav-auth-name {
+  background: rgba(255, 255, 255, 0.055);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+body[data-theme="dark"] .icon-segment-active {
+  color: #051017;
+  background: linear-gradient(135deg, #7bc043, #00bcd4);
+}
+
+body[data-theme="dark"] .nav-auth-icon {
+  color: #7bc043;
+}
+
+@media (max-width: 860px) {
+  .site-menu-controls {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-auth-name {
+    max-width: 8.5rem;
   }
 }

@@ -1,0 +1,14 @@
+goal: "Refresh FunQA brand imagery for the concept of an AI search engine containing all knowledge, attach web icon/social assets, verify the app, and deploy App Hosting."
+concept: "All-knowledge AI search engine: a bright, trustworthy research archive where games, films, creator media, documents, citations, and graph evidence converge into one searchable intelligence surface."
+constraints:
+  - "Use god-tibo-imagen/gti for source image generation when available through local Codex auth."
+  - "Keep trusted product wording aligned with FunQA's grounded search and evidence posture."
+  - "Do not introduce runtime image-generation dependencies into the production app."
+  - "Limit code changes to brand image attachment, metadata, and durable notes unless build/deploy requires more."
+  - "Respect existing user changes in the dirty worktree."
+acceptance_criteria:
+  - "A square source image and wide source image are generated for the all-knowledge AI search engine concept."
+  - "Next.js app assets are attached: icon.png, apple-icon.png, favicon.ico, opengraph-image.png, twitter-image.png."
+  - "Page metadata describes FunQA as an all-knowledge AI search engine with grounded evidence."
+  - "Local typecheck and web build pass before deployment."
+  - "Firebase App Hosting deploy is attempted with the repository deploy script and the result is recorded."

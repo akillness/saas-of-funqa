@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { MoonIcon, SunIcon } from "@/components/menu-icons";
 
 type ThemeMode = "light" | "dark";
 
@@ -40,16 +41,22 @@ export function ThemeToggle({ label, modes }: ThemeToggleProps) {
   }
 
   return (
-    <div aria-label={label} className="theme-switcher" role="group">
+    <div aria-label={label} className="menu-control-group theme-switcher" role="group">
+      <span className="menu-control-icon" aria-hidden="true">
+        {theme === "dark" ? <MoonIcon /> : <SunIcon />}
+      </span>
       {(["light", "dark"] as const).map((item) => (
         <button
           aria-pressed={theme === item}
-          className={theme === item ? "segment segment-active" : "segment"}
+          aria-label={modes[item]}
+          className={theme === item ? "icon-segment icon-segment-active" : "icon-segment"}
           key={item}
           onClick={() => switchTheme(item)}
+          title={modes[item]}
           type="button"
         >
-          {modes[item]}
+          {item === "light" ? <SunIcon className="icon-segment-glyph" /> : <MoonIcon className="icon-segment-glyph" />}
+          <span className="sr-only">{modes[item]}</span>
         </button>
       ))}
     </div>

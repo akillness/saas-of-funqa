@@ -37,10 +37,10 @@ export const koMessages = {
     }
   },
   home: {
-    eyebrow: "AI 미디어 검색",
-    title: "게임, 영화, 미디어를 AI로 검색하고 저장하세요",
+    eyebrow: "모든 지식의 AI 검색",
+    title: "모든 지식 표면을 근거 기반 AI로 검색하세요",
     lede:
-      "당신의 콘텐츠 취향을 AI가 기억합니다. 게임, 영화, 영상 콘텐츠를 AI 기반 검색으로 탐색하고 관리하세요.",
+      "FunQA는 문서, 게임, 영화, 영상, 인용, 그래프 근거를 하나의 확인 가능한 AI 검색엔진으로 연결합니다.",
     primaryAction: "검색 시작",
     secondaryAction: "API 문서",
     embedLabel: "기본 호스팅 임베딩",
@@ -96,7 +96,7 @@ export const koMessages = {
         href: "/search",
         eyebrow: "처음 방문했어요",
         title: "검색으로 바로 시작",
-        body: "게임, 영화, 영상 질문 하나로 FunQA가 어떤 근거를 찾는지 빠르게 확인합니다."
+        body: "문서, 미디어, 근거 그래프를 가로지르는 질문 하나로 FunQA가 무엇을 증명할 수 있는지 확인합니다."
       },
       {
         href: "/docs",
