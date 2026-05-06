@@ -33,3 +33,19 @@ export async function saveProviderKey(record: Omit<ProviderKeyRecord, "createdAt
   };
 }
 
+export async function getProviderKey(
+  tenantId: string,
+  provider: string
+): Promise<{ exists: boolean; provider: string } | null> {
+  const firestore = db();
+  const ref = firestore.collection("tenantProviderKeys").doc(`${tenantId}_${provider}`);
+  const snap = await ref.get();
+  if (!snap.exists) return null;
+  return { exists: true, provider };
+}
+
+export async function deleteProviderKey(tenantId: string, provider: string): Promise<void> {
+  const firestore = db();
+  await firestore.collection("tenantProviderKeys").doc(`${tenantId}_${provider}`).delete();
+}
+

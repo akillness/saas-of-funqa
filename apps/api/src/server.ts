@@ -12,6 +12,7 @@ import { registerMonetizationSourcesRoute } from "./routes/monetization-sources.
 import { registerProviderKeyRoute } from "./routes/provider-keys.route.js";
 import { registerRagRoute } from "./routes/rag.route.js";
 import { registerSearchRoute } from "./routes/search.route.js";
+import { registerWikiRoute } from "./routes/wiki.route.js";
 
 export function createServer() {
   const app = express();
@@ -31,6 +32,7 @@ export function createServer() {
   registerMonetizationSourcesRoute(app);
   registerRagRoute(app);
   registerMonitoringRoute(app);
+  registerWikiRoute(app);
 
   app.use((error: unknown, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
     if (error instanceof z.ZodError) {
