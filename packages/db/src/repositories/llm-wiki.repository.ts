@@ -1,51 +1,54 @@
+import { getFirestore } from "firebase-admin/firestore";
+import { getApp } from "firebase-admin/app";
 import type { LlmWikiEntry, LlmWikiEntryType } from "../types.js";
 
 // ── Firestore collection name ─────────────────────────────────
-export const LLM_WIKI_COLLECTION = "llm_wiki";
+export const LLM_WIKI_COLLECTION = "llmWiki";
 
-// ── In-memory store for local/emulator mode ───────────────────
-type LlmWikiStore = {
-  entries: LlmWikiEntry[];
-  updatedAt: string | null;
-};
+const LLM_WIKI_TYPES: LlmWikiEntryType[] = ['source', 'entity', 'concept', 'query', 'report'];
 
-function emptyStore(): LlmWikiStore {
-  return { entries: [], updatedAt: null };
+function db() {
+  return getFirestore(getApp());
 }
 
-let _store: LlmWikiStore = emptyStore();
-
-export function getLlmWikiStore(): LlmWikiStore {
-  return _store;
+function collectionPath(type: LlmWikiEntryType): string {
+  return `${LLM_WIKI_COLLECTION}/${type}/entries`;
 }
 
-export function resetLlmWikiStore(): void {
-  _store = emptyStore();
+export async function saveLlmWikiEntry(entry: LlmWikiEntry): Promise<void> {
+  const firestore = db();
+  const now = new Date().toISOString();
+  const ref = firestore.collection(collectionPath(entry.type)).doc(entry.id);
+  const snap = await ref.get();
+  const updated: LlmWikiEntry = {
+    ...entry,
+    updatedAt: now,
+    createdAt: snap.exists ? (snap.data() as LlmWikiEntry).createdAt : now,
+  };
+  await ref.set(updated);
 }
 
-export function saveLlmWikiEntry(entry: LlmWikiEntry): LlmWikiEntry {
-  const idx = _store.entries.findIndex((e) => e.id === entry.id);
-  const updated: LlmWikiEntry = { ...entry, updatedAt: new Date().toISOString() };
-  if (idx >= 0) {
-    _store.entries[idx] = updated;
-  } else {
-    _store.entries.push({ ...updated, createdAt: updated.updatedAt });
-  }
-  _store.updatedAt = new Date().toISOString();
-  return updated;
+export async function getLlmWikiEntry(id: string, type: LlmWikiEntryType): Promise<LlmWikiEntry | null> {
+  const firestore = db();
+  const snap = await firestore.collection(collectionPath(type)).doc(id).get();
+  if (!snap.exists) return null;
+  return snap.data() as LlmWikiEntry;
 }
 
-export function getLlmWikiEntry(id: string): LlmWikiEntry | undefined {
-  return _store.entries.find((e) => e.id === id);
+export async function queryLlmWikiByType(type: LlmWikiEntryType): Promise<LlmWikiEntry[]> {
+  const firestore = db();
+  const snap = await firestore.collection(collectionPath(type)).get();
+  return snap.docs.map((d) => d.data() as LlmWikiEntry);
 }
 
-export function queryLlmWikiByType(type: LlmWikiEntryType): LlmWikiEntry[] {
-  return _store.entries.filter((e) => e.type === type);
+export async function deleteLlmWikiEntry(id: string, type: LlmWikiEntryType): Promise<void> {
+  const firestore = db();
+  await firestore.collection(collectionPath(type)).doc(id).delete();
 }
 
-export function deleteLlmWikiEntry(id: string): boolean {
-  const before = _store.entries.length;
-  _store.entries = _store.entries.filter((e) => e.id !== id);
-  _store.updatedAt = new Date().toISOString();
-  return _store.entries.length < before;
+export async function getLlmWikiStore(): Promise<Record<LlmWikiEntryType, LlmWikiEntry[]>> {
+  const results = await Promise.all(
+    LLM_WIKI_TYPES.map(async (type) => ({ type, entries: await queryLlmWikiByType(type) }))
+  );
+  return Object.fromEntries(results.map(({ type, entries }) => [type, entries])) as Record<LlmWikiEntryType, LlmWikiEntry[]>;
 }

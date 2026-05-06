@@ -19,7 +19,9 @@ import {
   saveFirestoreRagArtifacts,
   upsertFirestoreRagArtifacts
 } from "../repositories/firestore-rag-store.repository.js";
+import { runAnswerFlow } from "../flows/answer.js";
 import { buildCacheKey, ragQueryCache } from "./rag-cache.service.js";
+import { recordRequest } from "./monitoring.service.js";
 import { runOptimizedPipeline } from "./rag-optimization.service.js";
 
 const useFirestore = config.ragStorePath === "firestore";
@@ -216,16 +218,26 @@ export async function searchDocuments(input: SearchRequest) {
     totalChunks
   } = await loadTenantArtifacts(input.tenantId);
 
-  const pipeline = await runOptimizedPipeline({
-    tenantId: input.tenantId,
-    query: input.query,
-    documents: scopedDocuments,
-    chunks: scopedChunks,
-    topK,
-    preRerankK: Math.max(topK * 2, 6),
-    queryTransformMode: "rewrite-local",
-    rerankMode: "heuristic"
-  });
+  const start = Date.now();
+  let pipeline: Awaited<ReturnType<typeof runOptimizedPipeline>>;
+  try {
+    pipeline = await runOptimizedPipeline({
+      tenantId: input.tenantId,
+      query: input.query,
+      documents: scopedDocuments,
+      chunks: scopedChunks,
+      topK,
+      preRerankK: Math.max(topK * 2, 6),
+      queryTransformMode: "rewrite-local",
+      rerankMode: "heuristic"
+    });
+    const chunkTextLength = pipeline.reranked.reduce((s, c) => s + c.text.length, 0);
+    const estimatedTokens = Math.ceil((input.query.length + chunkTextLength) / 4);
+    recordRequest(Date.now() - start, estimatedTokens, false);
+  } catch (e) {
+    recordRequest(Date.now() - start, 0, true);
+    throw e;
+  }
 
   const topRerankScore = pipeline.reranked[0]?.rerankScore ?? 0;
   const results = pipeline.reranked.map((chunk, index) => {
@@ -239,10 +251,26 @@ export async function searchDocuments(input: SearchRequest) {
     };
   });
 
+  let answer: string | null = null;
+  let answerMode: "consensus-backed-answer" | "evidence-only" = "evidence-only";
+  try {
+    const topCitations = pipeline.answer.citations.slice(0, 3);
+    const answerResult = await runAnswerFlow({
+      question: input.query,
+      citations: topCitations,
+      tenantId: input.tenantId
+    });
+    answer = answerResult.answer;
+    answerMode = answerResult.answerMode;
+  } catch {
+    answer = null;
+    answerMode = "evidence-only";
+  }
+
   const searchResult = {
     query: input.query,
-    answer: null,
-    answerMode: "evidence-only" as const,
+    answer,
+    answerMode,
     retrievalMode: "graph-core" as const,
     embeddingModel: resolveChunkEmbeddingPath(pipeline.chunks),
     queryTransformMode: "rewrite-local" as const,

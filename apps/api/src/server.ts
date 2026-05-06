@@ -1,5 +1,6 @@
 import express from "express";
 import { z } from "zod";
+import { requireAuth } from "./middleware/auth.middleware.js";
 import { registerAdminRoute } from "./routes/admin.route.js";
 import { registerCreatorAnalysesRoute } from "./routes/creator-analyses.route.js";
 import { registerCreatorIngestBundleRoute } from "./routes/creator-ingest-bundle.route.js";
@@ -18,6 +19,8 @@ export function createServer() {
   app.use(express.json({ limit: "5mb" }));
 
   registerHealthRoute(app);
+  app.use("/v1/admin", requireAuth);
+  app.use("/v1/provider-keys", requireAuth);
   registerAdminRoute(app);
   registerProviderKeyRoute(app);
   registerIngestRoute(app);
