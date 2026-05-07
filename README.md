@@ -256,6 +256,11 @@ npm run build:web
 
 최근 반영 사항:
 
+- **Arc Browser 디자인 시스템 적용**: 사이드바 우선 레이아웃(240px `.arc-sidebar` + `.arc-content`), 프로스트 글래스 서피스, Arc 모션 시스템(`--ease-spring: cubic-bezier(0.32,0.72,0,1)`, 200/320/480ms), 다크모드 `[data-theme="dark"]` 글래스 블록 추가
+- **시피아 오버라이드 제거**: `globals.css`의 1019줄 세피아 팔레트 오버라이드(`--accent: #b96543`, `--text: #241915`) 전면 삭제 — Arc 토큰이 실제로 적용되도록 복원
+- **Inter 타이포그래피**: 제품 UI h1/h2/h3를 Cormorant Garamond → Inter로 전환, Cormorant는 `.display-heading` · `.editorial-hero h1` 마케팅 전용으로 격리
+- **카테고리 탭**: `.category-dot` 컬러 인디케이터 + `data-category` 속성으로 Arc 사이드바 탭 스타일 구현
+- **Arc 커맨드바 인풋**: `.text-input`을 `rgba(255,255,255,0.85)` + `blur(40px)` 글래스 사양으로 업그레이드
 - **Genkit 중앙화**: `getLiveModel()` 단일 소스(`apps/api/src/genkit.ts`)로 분산된 모델 해석 제거 — `answer.ts`, `rag-optimization.service.ts` 중복 제거
 - **O(1) LRU 캐시**: `rag-cache.service.ts`를 Map 삽입 순서 + delete-reinsert 방식으로 재작성, 선형 스캔 없이 O(1) eviction 달성
 - **충돌 방지 캐시 키**: `buildCacheKey` 구분자를 `\x00`(NUL)으로 변경해 tenantId/query 충돌 방지

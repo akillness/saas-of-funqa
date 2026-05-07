@@ -87,9 +87,9 @@ export default async function RootLayout({
           {t.layout.skipToContent}
         </a>
         <AuthProvider>
-          <div className="page-chrome">
-            <header className="site-header">
-              <Link className="brand-lockup" href={withLocale("/", locale)}>
+          <div className="arc-layout">
+            <aside className="arc-sidebar" id="arc-sidebar">
+              <Link className="arc-sidebar-brand brand-lockup" href={withLocale("/", locale)}>
                 <span className="brand-mark" aria-hidden="true">
                   fq
                 </span>
@@ -98,55 +98,64 @@ export default async function RootLayout({
                   <span className="site-title">funqa</span>
                 </span>
               </Link>
-              <details className="site-menu">
-                <summary className="site-menu-toggle">
-                  <MenuIcon className="site-menu-toggle-icon" />
-                  <span className="sr-only">{t.layout.menuLabel}</span>
-                </summary>
-                <div className="site-menu-panel">
-                  <section className="menu-panel-section">
-                    <p className="menu-panel-heading">{t.layout.menuLabel}</p>
-                    <nav aria-label="Primary">
-                      <ul className="nav-list nav-list-side menu-nav-list">
-                        {navItems.map((item) => (
-                          <li key={item.href}>
-                            <Link className="menu-nav-link" href={withLocale(item.href, locale)}>
-                              <span className="menu-nav-icon" aria-hidden="true">
-                                <item.Icon />
-                              </span>
-                              <span>{item.label}</span>
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </nav>
-                  </section>
-                  <section className="menu-panel-section">
-                    <p className="menu-panel-heading">
-                      {t.common.localeLabel} / {t.common.themeLabel}
-                    </p>
-                    <div className="site-menu-controls">
-                      <NavAuth
-                        accountLabel={locale === "ko" ? "계정" : "Account"}
-                        loginHref={withLocale("/login", locale)}
-                        loginLabel={t.layout.nav.login}
-                        logoutLabel={locale === "ko" ? "로그아웃" : "Sign out"}
-                      />
-                      <LocaleSwitcher
-                        label={t.common.localeLabel}
-                        locale={locale}
-                        localeNames={t.common.localeNames}
-                      />
-                      <ThemeToggle label={t.common.themeLabel} modes={t.common.themeModes} />
-                    </div>
-                  </section>
+
+              <nav className="arc-sidebar-nav" aria-label="Primary">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    className="arc-sidebar-tab"
+                    href={withLocale(item.href, locale)}
+                  >
+                    <span className="arc-sidebar-tab-icon" aria-hidden="true">
+                      <item.Icon />
+                    </span>
+                    <span>{item.label}</span>
+                  </Link>
+                ))}
+              </nav>
+
+              <div className="arc-sidebar-footer">
+                <NavAuth
+                  accountLabel={locale === "ko" ? "계정" : "Account"}
+                  loginHref={withLocale("/login", locale)}
+                  loginLabel={t.layout.nav.login}
+                  logoutLabel={locale === "ko" ? "로그아웃" : "Sign out"}
+                />
+                <div className="site-menu-controls">
+                  <LocaleSwitcher
+                    label={t.common.localeLabel}
+                    locale={locale}
+                    localeNames={t.common.localeNames}
+                  />
+                  <ThemeToggle label={t.common.themeLabel} modes={t.common.themeModes} />
                 </div>
-              </details>
-            </header>
-            <Suspense fallback={null}>
-              <CategoryTabBar locale={locale} />
-            </Suspense>
-            <main id="main-content">{children}</main>
+              </div>
+            </aside>
+
+            <div className="arc-content">
+              <header className="site-header arc-content-header">
+                <Link className="brand-lockup arc-mobile-brand" href={withLocale("/", locale)}>
+                  <span className="brand-mark" aria-hidden="true">
+                    fq
+                  </span>
+                  <span className="site-title">funqa</span>
+                </Link>
+                <div className="site-header-actions">
+                  <NavAuth
+                    accountLabel={locale === "ko" ? "계정" : "Account"}
+                    loginHref={withLocale("/login", locale)}
+                    loginLabel={t.layout.nav.login}
+                    logoutLabel={locale === "ko" ? "로그아웃" : "Sign out"}
+                  />
+                  <ThemeToggle label={t.common.themeLabel} modes={t.common.themeModes} />
+                </div>
+              </header>
+
+              <Suspense fallback={null}>
+                <CategoryTabBar locale={locale} />
+              </Suspense>
+              <main id="main-content">{children}</main>
+            </div>
           </div>
         </AuthProvider>
       </body>
