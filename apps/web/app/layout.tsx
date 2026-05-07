@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
-import { Cormorant_Garamond, IBM_Plex_Mono, IBM_Plex_Sans, Noto_Sans_KR } from "next/font/google";
+import { Cormorant_Garamond, IBM_Plex_Mono, Inter, Noto_Sans_KR } from "next/font/google";
 import { LocaleSwitcher } from "./locale-switcher";
 import { ThemeToggle } from "./theme-toggle";
 import { FirebaseAnalytics } from "./firebase-analytics";
@@ -19,10 +19,10 @@ const heading = Cormorant_Garamond({
   weight: ["500", "600", "700"]
 });
 
-const body = IBM_Plex_Sans({
+const body = Inter({
   subsets: ["latin"],
   variable: "--font-body",
-  weight: ["400", "500", "600"]
+  weight: ["400", "500", "600", "700"]
 });
 
 const korean = Noto_Sans_KR({
