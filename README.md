@@ -256,6 +256,16 @@ npm run build:web
 
 최근 반영 사항:
 
+- **Genkit 중앙화**: `getLiveModel()` 단일 소스(`apps/api/src/genkit.ts`)로 분산된 모델 해석 제거 — `answer.ts`, `rag-optimization.service.ts` 중복 제거
+- **O(1) LRU 캐시**: `rag-cache.service.ts`를 Map 삽입 순서 + delete-reinsert 방식으로 재작성, 선형 스캔 없이 O(1) eviction 달성
+- **충돌 방지 캐시 키**: `buildCacheKey` 구분자를 `\x00`(NUL)으로 변경해 tenantId/query 충돌 방지
+- **단일 normalizeDocument 패스**: `rag-optimization.service.ts`에서 chunks 사전 계산 여부에 따른 이중 normalize 제거, `if/else` 단일 패스로 정리
+- **browser-harness CDP 스모크 테스트**: Chrome DevTools Protocol WebSocket 기반 자동화 테스트 (`/tmp/funqa_browser_test.py`), 8/8 PASS 검증 완료
+  - US-001: 홈 페이지 로드 · 타이틀 · hero section
+  - US-002: 로케일 전환 (ko) · 한국어 콘텐츠 노출
+  - US-003: 테마 토글 버튼 동작
+  - US-004: 네비게이션 링크 존재
+  - US-005: Health API HTTP 응답
 - 홈에 cover-story / desk-note 레이어를 추가해 더 강한 editorial hierarchy를 부여
 - 검색에 intro rail / state strip을 추가해 answer contract와 retrieval state를 더 명확히 노출
 - category tab, search shell copy, answer toggle을 locale dictionary 기반으로 정리

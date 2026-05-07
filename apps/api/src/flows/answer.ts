@@ -1,7 +1,6 @@
-import { googleAI } from "@genkit-ai/google-genai";
 import { z } from "genkit";
 import { config } from "../config.js";
-import { ai } from "../genkit.js";
+import { ai, getLiveModel } from "../genkit.js";
 
 const CitationSchema = z.object({
   chunkId: z.string(),
@@ -27,15 +26,13 @@ const AnswerResponseSchema = z.object({
 
 const FALLBACK_MODEL = "evidence-only-local";
 
-function getLiveModel() {
-  return process.env.GEMINI_API_KEY ? googleAI.model(config.geminiModelId) : null;
-}
+type Citation = z.infer<typeof CitationSchema>;
 
-function citationText(citation: z.infer<typeof CitationSchema>) {
+function citationText(citation: Citation) {
   return citation.snippet ?? citation.text?.slice(0, config.snippetMaxChars) ?? "";
 }
 
-function buildEvidenceFallback(citations: Array<z.infer<typeof CitationSchema>>) {
+function buildEvidenceFallback(citations: Array<Citation>) {
   if (citations.length === 0) {
     return "No evidence is available to answer this question.";
   }
@@ -46,7 +43,7 @@ function buildEvidenceFallback(citations: Array<z.infer<typeof CitationSchema>>)
     .join("\n");
 }
 
-function buildPrompt(question: string, citations: Array<z.infer<typeof CitationSchema>>) {
+function buildPrompt(question: string, citations: Array<Citation>) {
   const evidence = citations
     .slice(0, config.citationLimit)
     .map((citation, index) => `[${index + 1}] ${citationText(citation)}`)
@@ -65,6 +62,15 @@ function buildPrompt(question: string, citations: Array<z.infer<typeof CitationS
   ].join("\n");
 }
 
+function evidenceOnlyResult(citations: Array<Citation>) {
+  return {
+    answer: buildEvidenceFallback(citations),
+    citationCount: citations.length,
+    model: FALLBACK_MODEL,
+    answerMode: "evidence-only" as const
+  };
+}
+
 const answerFlow = ai.defineFlow(
   {
     name: "answerFlow",
@@ -73,15 +79,7 @@ const answerFlow = ai.defineFlow(
   },
   async (input) => {
     const liveModel = getLiveModel();
-
-    if (!liveModel) {
-      return {
-        answer: buildEvidenceFallback(input.citations),
-        citationCount: input.citations.length,
-        model: FALLBACK_MODEL,
-        answerMode: "evidence-only" as const
-      };
-    }
+    if (!liveModel) return evidenceOnlyResult(input.citations);
 
     try {
       const response = await ai.generate({
@@ -90,14 +88,7 @@ const answerFlow = ai.defineFlow(
       });
 
       const answer = response.text?.trim();
-      if (!answer) {
-        return {
-          answer: buildEvidenceFallback(input.citations),
-          citationCount: input.citations.length,
-          model: FALLBACK_MODEL,
-          answerMode: "evidence-only" as const
-        };
-      }
+      if (!answer) return evidenceOnlyResult(input.citations);
 
       const usage = (response as { usage?: { totalTokens?: number } }).usage;
       const tokensUsed = typeof usage?.totalTokens === "number" ? usage.totalTokens : undefined;
@@ -110,13 +101,8 @@ const answerFlow = ai.defineFlow(
         answerMode: "consensus-backed-answer" as const
       };
     } catch (e) {
-      console.warn("[answer] ai.generate failed, using evidence-only fallback:", e instanceof Error ? e.message : e);
-      return {
-        answer: buildEvidenceFallback(input.citations),
-        citationCount: input.citations.length,
-        model: FALLBACK_MODEL,
-        answerMode: "evidence-only" as const
-      };
+      console.warn("[answer] ai.generate failed:", e instanceof Error ? e.message : e);
+      return evidenceOnlyResult(input.citations);
     }
   }
 );

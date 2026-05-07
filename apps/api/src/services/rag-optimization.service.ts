@@ -18,15 +18,9 @@ import {
   type RerankedChunk
 } from "@funqa/ai";
 import type { IngestDocument, RagInspectRequest } from "@funqa/contracts";
-import { googleAI } from "@genkit-ai/google-genai";
-import { config } from "../config.js";
-import { ai } from "../genkit.js";
+import { ai, getLiveModel } from "../genkit.js";
 
 const rankingLine = /^([A-Za-z0-9._:-]+)\|([01](?:\.\d+)?)$/;
-
-function getLiveModel() {
-  return process.env.GEMINI_API_KEY ? googleAI.model(config.geminiModelId) : null;
-}
 
 async function transformQueryWithGenkit(query: string): Promise<QueryTransformResult> {
   const model = getLiveModel();
@@ -144,14 +138,13 @@ export async function runOptimizedPipeline(input: {
   queryTransformMode: QueryTransformMode;
   rerankMode: RerankMode;
 }) {
-  const fallbackPipeline =
-    input.chunks && input.chunks.length > 0
-      ? {
-          normalized: input.documents.map(normalizeDocument),
-          extracted: input.documents.map((document) => extractDocument(normalizeDocument(document))),
-          embeddedChunks: input.chunks
-        }
-      : await pipelineDocuments(input.documents, input.tenantId);
+  let resolvedPipeline: Awaited<ReturnType<typeof pipelineDocuments>>;
+  if (input.chunks && input.chunks.length > 0) {
+    const normalized = input.documents.map(normalizeDocument);
+    resolvedPipeline = { normalized, extracted: normalized.map(extractDocument), embeddedChunks: input.chunks };
+  } else {
+    resolvedPipeline = await pipelineDocuments(input.documents, input.tenantId);
+  }
   const queryTransform =
     input.queryTransformMode === "hyde-genkit"
       ? await transformQueryWithGenkit(input.query)
@@ -160,7 +153,7 @@ export async function runOptimizedPipeline(input: {
           input.queryTransformMode === "none" ? "none" : input.queryTransformMode
         );
 
-  const chunks = fallbackPipeline.embeddedChunks;
+  const chunks = resolvedPipeline.embeddedChunks;
   let queryVector: number[] | null = null;
   try {
     queryVector = await buildQueryVector(queryTransform.transformedQuery, chunks);
@@ -183,9 +176,10 @@ export async function runOptimizedPipeline(input: {
   const answer = answerFromChunks(input.query, reranked);
 
   return {
-    normalized: fallbackPipeline.normalized,
-    extracted: fallbackPipeline.extracted,
+    normalized: resolvedPipeline.normalized,
+    extracted: resolvedPipeline.extracted,
     chunks,
+    queryVector,
     queryTransform,
     hybridRetrieved,
     reranked,
@@ -248,8 +242,7 @@ export async function inspectOptimizedPipeline(
         notes: pipeline.queryTransform.notes
       },
       embed: {
-        queryVectorPreview: ((await buildQueryVector(pipeline.queryTransform.transformedQuery, pipeline.chunks)) ?? [])
-          .slice(0, 8),
+        queryVectorPreview: (pipeline.queryVector ?? []).slice(0, 8),
         chunkVectorPreview: pipeline.chunks.slice(0, 3).map((chunk) => ({
           id: chunk.id,
           vector: chunk.embedding.slice(0, 8)

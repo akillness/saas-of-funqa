@@ -4,29 +4,20 @@ const MAX_CACHE_SIZE = 100;
 type CacheEntry<T> = {
   value: T;
   expiresAt: number;
-  accessedAt: number;
 };
 
+// O(1) LRU: Map preserves insertion order; delete+reinsert on access moves key to tail.
+// Eviction takes the first (oldest) key — no linear scan needed.
 class LruCache<T> {
   private map = new Map<string, CacheEntry<T>>();
 
   set(key: string, value: T): void {
-    if (this.map.size >= MAX_CACHE_SIZE) {
-      let lruKey = '';
-      let lruTime = Infinity;
-      for (const [k, entry] of this.map) {
-        if (entry.accessedAt < lruTime) {
-          lruTime = entry.accessedAt;
-          lruKey = k;
-        }
-      }
-      if (lruKey) this.map.delete(lruKey);
+    if (this.map.has(key)) {
+      this.map.delete(key);
+    } else if (this.map.size >= MAX_CACHE_SIZE) {
+      this.map.delete(this.map.keys().next().value!);
     }
-    this.map.set(key, {
-      value,
-      expiresAt: Date.now() + CACHE_TTL_MS,
-      accessedAt: Date.now()
-    });
+    this.map.set(key, { value, expiresAt: Date.now() + CACHE_TTL_MS });
   }
 
   get(key: string): T | undefined {
@@ -36,13 +27,16 @@ class LruCache<T> {
       this.map.delete(key);
       return undefined;
     }
-    entry.accessedAt = Date.now();
+    // Promote to tail (most recently used)
+    this.map.delete(key);
+    this.map.set(key, entry);
     return entry.value;
   }
 
   invalidate(tenantId: string): void {
+    const prefix = `${tenantId}\x00`;
     for (const key of this.map.keys()) {
-      if (key.startsWith(`${tenantId}:`)) this.map.delete(key);
+      if (key.startsWith(prefix)) this.map.delete(key);
     }
   }
 
@@ -58,5 +52,6 @@ class LruCache<T> {
 export const ragQueryCache = new LruCache<Record<string, unknown>>();
 
 export function buildCacheKey(tenantId: string, query: string, topK: number): string {
-  return `${tenantId}:${query.trim().toLowerCase()}:${topK}`;
+  // Use \x00 as separator — cannot appear in valid tenant IDs or queries
+  return `${tenantId}\x00${query.trim().toLowerCase()}\x00${topK}`;
 }
