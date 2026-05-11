@@ -37,10 +37,10 @@ export const koMessages = {
     }
   },
   home: {
-    eyebrow: "모든 지식의 AI 검색",
-    title: "모든 지식 표면을 근거 기반 AI로 검색하세요",
+    eyebrow: "게임·영화·미디어 AI 검색",
+    title: "게임, 영화, 미디어를 AI로 정확하게 검색하세요",
     lede:
-      "FunQA는 문서, 게임, 영화, 영상, 인용, 그래프 근거를 하나의 확인 가능한 AI 검색엔진으로 연결합니다.",
+      "FunQA는 게임, 영화, 영상 콘텐츠를 AI로 검색하고 출처가 분명한 답변을 제공하는 통합 검색엔진입니다.",
     primaryAction: "검색 시작",
     secondaryAction: "API 문서",
     embedLabel: "기본 호스팅 임베딩",
@@ -49,7 +49,7 @@ export const koMessages = {
       "Google의 최신 Gemini 임베딩 문서는 `gemini-embedding-2-preview`를 멀티모달 경로로 제시하며, smoke test는 결정론적 local hash 백엔드로 유지됩니다.",
     docsIndexed: "색인된 문서",
     chunksLive: "활성 청크",
-    systemShapeLabel: "실시간 시스템 형태",
+    systemShapeLabel: "실시간 시스템 현황",
     systemShape: [
       "암호화된 provider key를 위한 서버 측 시크릿 경계",
       "검증 가능한 프로세스 단위로 분리된 모듈형 RAG 흐름",
@@ -86,10 +86,10 @@ export const koMessages = {
       { label: "검색", text: "의미 유사성과 키워드 신호를 결합해 정확한 미디어 결과를 반환합니다" },
       { label: "답변", text: "최종 답변은 특정 미디어 항목에 인용을 연결해 근거를 유지합니다" }
     ],
-    whyEyebrow: "UI가 바뀐 이유",
-    whyTitle: "최근 AI 제품은 하나의 주 작업면과 하나의 컨텍스트 레일로 수렴하고 있습니다.",
+    whyEyebrow: "디자인 원칙",
+    whyTitle: "최신 AI 제품은 핵심 작업 화면과 컨텍스트 패널, 이 두 가지로 수렴하고 있습니다.",
     whyBody:
-      "검색은 Perplexity의 인용된 답변 밀도를 참고하고, admin은 현대 AI 운영 콘솔의 절제된 위계를 유지하며, docs는 OpenAI와 Gemini 레퍼런스 같은 코드 우선 흐름을 따릅니다.",
+      "검색은 인용 중심의 답변을, 관리자 화면은 운영 신호를 우선에 두며, 문서는 코드 중심 흐름을 따릅니다.",
     whyChips: ["고정 질의 컴포저", "컨텍스트 인스펙터", "조용한 KPI 덱", "코드 우선 문서 레일"],
     visitorPaths: [
       {
@@ -138,11 +138,11 @@ export const koMessages = {
     filterChips: ["높은 평점", "최신 출시", "내 라이브러리"],
     editorialKicker: "에디토리얼 검색 데스크 · 게임, 영화, 크리에이터 미디어",
     contractEyebrow: "검색 계약",
-    contractTitle: "하나의 신중한 질의 면, 하나의 확인 가능한 답변 레일.",
+    contractTitle: "질문 하나, 검증 가능한 답변 하나.",
     contractNotes: [
-      "검색 입력은 전면에 두되, 셸은 에디토리얼 데스크처럼 여유 있게 유지합니다.",
-      "합의 기반 답변과 증거 전용 상태는 계속 분명하게 구분되어야 합니다.",
-      "보조 레일은 대시보드 소음이 아니라 신뢰도와 인용을 설명해야 합니다."
+      "검색 입력을 화면 중앙에 두고, 불필요한 요소는 최소화합니다.",
+      "AI 합의 답변과 증거 기반 결과를 명확히 구분합니다.",
+      "보조 패널은 신뢰도와 출처 정보를 간결하게 보여줍니다."
     ],
     resultsTitle: "결과",
     resultsSummaryEmpty: "근거 기반 매치를 확인하려면 자연어 질문으로 시작해 보세요.",
@@ -153,12 +153,12 @@ export const koMessages = {
       retrievalPath: "검색 경로"
     },
     stateNotes: {
-      filteredDesk: "질의는 선택한 아카이브 데스크를 기준으로 필터링됩니다.",
-      allDesk: "하나의 검색 면에서 모든 데스크를 함께 탐색합니다.",
-      evidenceOnly: "답변 게이트가 열리지 않아도 폴백 상태는 계속 보입니다.",
-      consensusBacked: "허용된 답변은 계속 인스펙션 레일과 함께 표시됩니다.",
-      pending: "아직 답변 계약이 정해지기 전의 준비 상태입니다.",
-      retrievalPath: "질의 변환, 검색, 리랭크, 출력 계약이 숨지 않고 계속 드러납니다."
+      filteredDesk: "선택한 카테고리 기준으로 검색 결과를 필터링합니다.",
+      allDesk: "게임, 영화, 영상을 한 번에 검색합니다.",
+      evidenceOnly: "AI 답변이 없어도 관련 검색 결과는 계속 표시됩니다.",
+      consensusBacked: "검증된 AI 답변은 출처 패널과 함께 표시됩니다.",
+      pending: "검색 결과를 불러오는 중입니다.",
+      retrievalPath: "질의 변환부터 검색, 재순위, 결과 출력까지 전 과정을 확인할 수 있습니다."
     },
     outputModes: {
       evidenceOnly: "증거 전용",
@@ -170,7 +170,7 @@ export const koMessages = {
     overviewEyebrow: "검색 데스크",
     pipelineAriaLabel: "검색 파이프라인",
     pipelineEyebrow: "파이프라인 엑스레이",
-    pipelineTitle: "FunQA는 답이 무엇인지보다 어떻게 허용됐는지를 보여줍니다.",
+    pipelineTitle: "FunQA는 답변의 내용뿐 아니라 그 근거와 과정을 함께 보여줍니다.",
     pipelineBody: "검색은 질의 변환, 검색, 리랭크, 출력 계약 검사를 거쳐 실행됩니다.",
     optimizedIntentPrefix: "최적화된 의도:",
     pipelineStepLabels: {
@@ -184,7 +184,7 @@ export const koMessages = {
     evidenceOnlyTitle: "증거 전용 폴백",
     evidenceOnlyBadge: "합의 미도달",
     evidenceOnlyBody:
-      "FunQA가 관련 증거는 찾았지만 답변 게이트는 열리지 않았습니다. 검색 경로에 그래프 기반 합의가 연결되기 전까지는 아래의 정렬된 증거를 검토하세요.",
+      "관련 자료는 찾았지만 AI 답변 기준에는 도달하지 못했습니다. 아래 검색 결과를 직접 확인해 보세요.",
     chunksSearchedSuffix: "개 청크 검색",
     emptyTitle: "아직 강한 매치가 없습니다.",
     emptyBody:
@@ -234,9 +234,9 @@ export const koMessages = {
   },
   ragLab: {
     eyebrow: "RAG 랩",
-    title: "검색 파이프라인의 모든 단계를 일급 모듈처럼 점검합니다.",
+    title: "검색 파이프라인의 각 단계를 직접 점검하고 비교합니다.",
     lede:
-      "이 화면은 모듈형 파이프라인 구조를 그대로 반영해 query transform, retrieval, rerank, answer assembly를 제품 안에서 바로 비교할 수 있게 설계됐습니다.",
+      "질의 변환, 검색, 재순위, 답변 조립 과정을 제품 안에서 단계별로 비교하고 분석할 수 있습니다.",
     queryLabel: "질의",
     queryPlaceholder: "provider key storage",
     transformLabel: "질의 변환",
@@ -344,9 +344,9 @@ export const koMessages = {
   },
   admin: {
     eyebrow: "관리",
-    title: "콘솔을 폼 무덤으로 만들지 않고 ingest, 키, 사용자, 비용을 운영합니다.",
+    title: "ingest, 키 관리, 사용자, 비용을 한눈에 확인하고 운영합니다.",
     lede:
-      "콘솔은 설정이 아니라 신호를 먼저 보여줍니다. 우선순위 항목은 첫 화면에 두고, 드릴다운 데이터는 compact하게 유지해 운영자가 큐 압력과 모델 비용을 한 번에 볼 수 있게 합니다.",
+      "설정보다 운영 신호를 먼저 보여주는 콘솔입니다. 우선순위 항목을 첫 화면에 배치하고, 큐 상태와 모델 비용을 한눈에 파악할 수 있습니다.",
     windowLabel: "기간",
     windows: ["24시간", "7일", "30일"],
     chips: ["롤아웃", "큐", "키", "사용량"],
@@ -369,7 +369,7 @@ export const koMessages = {
       priority: "우선",
       queue: "큐",
       telemetry: "텔레메트리",
-      keyGuard: "Provider key 회전 정책에는 아직 admin 전용 route guard가 강제되지 않았습니다.",
+      keyGuard: "Provider 키 교체 정책에 관리자 전용 접근 제한이 아직 적용되지 않았습니다.",
       queueSummaryPrefix: "현재 저장소에는",
       queueSummaryDocs: "개 문서와",
       queueSummaryChunks: "개 청크가 있습니다.",
