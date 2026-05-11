@@ -1,8 +1,11 @@
 import {
+  cragFilter,
   getEmbeddingPath,
   pipelineDocuments,
+  rerankWithCohere,
   type EmbeddedChunk,
-  type RawDocument
+  type RawDocument,
+  type RetrievedChunk
 } from "@funqa/ai";
 import { getRagStore, resetRagStore, saveRagArtifacts, upsertRagArtifacts } from "@funqa/db";
 import type { IngestRequest, SearchRequest } from "@funqa/contracts";
@@ -218,15 +221,25 @@ export async function searchDocuments(input: SearchRequest) {
     throw e;
   }
 
-  const topRerankScore = pipeline.reranked[0]?.rerankScore ?? 0;
-  const results = pipeline.reranked.map((chunk, index) => {
+  const cohereApiKey = process.env.COHERE_API_KEY;
+  const finalReranked: RetrievedChunk[] = cohereApiKey
+    ? await rerankWithCohere(input.query, pipeline.reranked.slice(0, 50), cohereApiKey, 10)
+    : pipeline.reranked;
+
+  const crag = pipeline.queryVector
+    ? cragFilter(input.query, finalReranked, pipeline.queryVector)
+    : { kept: finalReranked, filtered: [], confidence: "low" as const };
+
+  const topRerankScore = (pipeline.reranked[0]?.rerankScore ?? 0);
+  const results = crag.kept.map((chunk, index) => {
     const matchedDocument = pipeline.extracted.find((document) => document.id === chunk.documentId);
+    const rerankScore = (chunk as typeof pipeline.reranked[0]).rerankScore ?? 0;
     return {
       id: chunk.id,
       title: matchedDocument?.title ?? `Document ${chunk.documentId}`,
       snippet: chunk.text,
       sourcePath: chunk.documentId,
-      confidence: resolveConfidence(chunk.rerankScore, topRerankScore, index)
+      confidence: resolveConfidence(rerankScore, topRerankScore, index)
     };
   });
 
@@ -255,6 +268,7 @@ export async function searchDocuments(input: SearchRequest) {
     queryTransformMode: "rewrite-local" as const,
     rerankMode: "heuristic" as const,
     consensus: buildConsensusScaffold(),
+    cragConfidence: crag.confidence,
     results,
     citations: pipeline.answer.citations,
     graphPaths: [],

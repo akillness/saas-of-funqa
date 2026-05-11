@@ -57,9 +57,15 @@ Browser ──► Next.js (App Hosting) ──► Firebase Functions v2 (Express
 RAG 파이프라인 흐름:
 
 ```
-문서 입력 → normalize → extract → chunk → embed → index
+문서 입력 → normalize → extract → semantic-chunk → embed → index
+                                                              │
+사용자 질의 → multi-query(×3) → hybrid-retrieve → MMR-dedup
                                                       │
-사용자 질의 ────────────────────────────── retrieve → answer
+                                              cross-encoder rerank (Cohere)
+                                                      │
+                                         CRAG eval (correct/ambiguous/incorrect)
+                                                      │
+                                              Gemini Flash answer ──► SSE stream
 ```
 
 제품 UX 관점 핵심 메시지:
@@ -163,6 +169,7 @@ cp .env.example .env
 | `RAG_LIVE_EMBEDDINGS` | Gemini live 임베딩 사용 여부 | `1` |
 | `SEARCH_TOP_K` | RAG 검색 결과 수 | `5` |
 | `RAG_STORE_PATH` | RAG 저장소 경로 | `./.runtime/rag-store.json` |
+| `COHERE_API_KEY` | Cohere cross-encoder reranker API 키 | 없음 (선택) |
 
 ---
 
@@ -248,7 +255,7 @@ npm run build:web
 
 - Backend ID: `saas-of-funqa`
 - Hosted URL: `https://saas-of-funqa--saas-of-funqa.us-east4.hosted.app`
-- Last verified deploy: `2026-04-24`
+- Last verified deploy: `2026-05-11`
 - Verification method:
   - `./deploy.sh --apphosting`로 타입체크, 프로덕션 빌드, App Hosting source upload 및 rollout 시작 확인
   - `firebase apphosting:backends:list --project saas-of-funqa --json`로 backend 조회 확인
@@ -256,6 +263,9 @@ npm run build:web
 
 최근 반영 사항:
 
+- **그라디언트-미디어 다크 디자인 시스템 적용**: --gm-* CSS 토큰, Spotify/Apple TV 스타일 다크 테마
+- **GameRecommendationCard, RecommendationPanel 컴포넌트 추가**: 게임 미디어 카드 및 슬라이딩 추천 패널 UI
+- **전체 페이지 다크 테마 적용**: /, /search, /rag-lab, /login, /admin
 - **Arc Browser 디자인 시스템 적용**: 사이드바 우선 레이아웃(240px `.arc-sidebar` + `.arc-content`), 프로스트 글래스 서피스, Arc 모션 시스템(`--ease-spring: cubic-bezier(0.32,0.72,0,1)`, 200/320/480ms), 다크모드 `[data-theme="dark"]` 글래스 블록 추가
 - **시피아 오버라이드 제거**: `globals.css`의 1019줄 세피아 팔레트 오버라이드(`--accent: #b96543`, `--text: #241915`) 전면 삭제 — Arc 토큰이 실제로 적용되도록 복원
 - **Inter 타이포그래피**: 제품 UI h1/h2/h3를 Cormorant Garamond → Inter로 전환, Cormorant는 `.display-heading` · `.editorial-hero h1` 마케팅 전용으로 격리
@@ -265,6 +275,15 @@ npm run build:web
 - **O(1) LRU 캐시**: `rag-cache.service.ts`를 Map 삽입 순서 + delete-reinsert 방식으로 재작성, 선형 스캔 없이 O(1) eviction 달성
 - **충돌 방지 캐시 키**: `buildCacheKey` 구분자를 `\x00`(NUL)으로 변경해 tenantId/query 충돌 방지
 - **단일 normalizeDocument 패스**: `rag-optimization.service.ts`에서 chunks 사전 계산 여부에 따른 이중 normalize 제거, `if/else` 단일 패스로 정리
+- **Multi-query retrieval**: 사용자 질의를 Gemini Flash로 3가지 변형(broader/narrower/synonym) 생성 후 병렬 검색, RRF(k=60) 퓨전 — `query-transform.ts` + `retrieve.ts`
+- **CRAG 신뢰도 평가기**: 검색된 청크를 `correct`(≥0.75) / `ambiguous`(0.35-0.75) / `incorrect`(<0.35) 3단계로 분류, 응답에 `cragConfidence` 포함 — `consensus.ts` + `rag.service.ts`
+- **시맨틱 청킹**: 임베딩 유사도 기반 경계 탐지(`semanticChunk()` async), threshold 0.75, max 2000자 가드 — `chunk.ts`
+- **MMR 중복 제거**: 검색 후 rerank 전에 Maximal Marginal Relevance(λ=0.7) 적용, 다양성 보존 — `rerank.ts`
+- **Cohere cross-encoder reranker**: `COHERE_API_KEY` 설정 시 `rerank-v3.5` 모델로 top-50 → top-10 정밀 rerank, 미설정 시 기존 heuristic 유지 — `rerank.ts`
+- **SSE 스트리밍 검색**: `POST /v1/search/stream` 엔드포인트 추가 — retrieving/reranking/generating 단계별 이벤트 스트리밍, `useSearchStream` 훅 + `SearchStreamPanel` 클라이언트 컴포넌트
+- **요청 속도 제한**: tenant 단위 슬라이딩 윈도우 rate limiter (검색 30req/60s, ingest 10req/60s), 외부 패키지 없음 — `middleware/rate-limit.ts`
+- **SAFE-CACHE 임계값**: 시맨틱 캐시 유사도 임계값 0.93 문서화 (2026 adversarial poisoning 연구 기반)
+- **2026 RAG 서베이 위키**: `.omc/wiki/rag-survey-2026.md` 추가 — CRAG 프로덕션 패턴, Qwen3-Embedding, LazyGraphRAG, RAGAS agentic metrics 포함
 - **browser-harness CDP 스모크 테스트**: Chrome DevTools Protocol WebSocket 기반 자동화 테스트 (`/tmp/funqa_browser_test.py`), 8/8 PASS 검증 완료
   - US-001: 홈 페이지 로드 · 타이틀 · hero section
   - US-002: 로케일 전환 (ko) · 한국어 콘텐츠 노출
@@ -303,6 +322,7 @@ npm run build:web
 | `npm run start` | 빌드된 웹 앱 서버 시작 |
 | `npm run typecheck` | TypeScript 타입 체크 (api + web) |
 | `npm run smoke:rag` | RAG 파이프라인 스모크 테스트 |
+| `POST /v1/search/stream` | SSE 스트리밍 검색 엔드포인트 (retrieving→reranking→generating→done 이벤트) |
 | `npm run smoke:functions` | Firebase Functions 엔드포인트 스모크 테스트 |
 | `npm run eval:consensus -- --dataset data/evals/fixtures/funqa-consensus-eval-fixture.json --build-sha <sha>` | consensus release-gate 리포트 생성 |
 | `npm run seed:demo` | 데모 RAG 데이터 시드 |
@@ -361,6 +381,13 @@ push(main) → CI 통과 → Deploy to Firebase App Hosting
 ---
 
 ## 주요 참고사항
+
+### UI 컴포넌트
+
+- `GameRecommendationCard` — 게임 미디어 카드 (카테고리 그라디언트 캡, AI 점수 배지)
+- `RecommendationPanel` — 슬라이딩 추천 패널 (백드롭 오버레이, 큐빅 베지어 애니메이션)
+
+### 검색 & 인증
 
 - **검색 카테고리**: `games` / `movies` / `videos` 세 카테고리로 콘텐츠를 분류합니다. `SearchCategory` 타입은 `apps/web/lib/i18n.ts`에 정의됩니다.
 - **Google Auth**: `apps/web/components/auth-provider.tsx`의 `AuthProvider`가 레이아웃 최상위에서 인증 상태를 제공합니다. 로그인 페이지(`/login`)는 `signInWithPopup`으로 Google 계정 인증 후 `/search`로 리다이렉트됩니다.

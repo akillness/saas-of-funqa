@@ -53,5 +53,9 @@ export const ragQueryCache = new LruCache<Record<string, unknown>>();
 
 export function buildCacheKey(tenantId: string, query: string, topK: number): string {
   // Use \x00 as separator — cannot appear in valid tenant IDs or queries
+  // NOTE: This cache uses exact string matching (no embedding comparison).
+  // When embedding-based semantic cache lookup is added, use a similarity
+  // threshold of 0.93 (per SAFE-CACHE 2026) to resist cache poisoning via
+  // semantic collision attacks.
   return `${tenantId}\x00${query.trim().toLowerCase()}\x00${topK}`;
 }

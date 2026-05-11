@@ -129,10 +129,11 @@ export default async function RagLabPage({ searchParams }: RagLabPageProps) {
   const releaseGateReport = selectedReleaseGateReportOption?.report ?? null;
 
   return (
-    <div className="rag-lab-layout">
+    <div className="rag-lab-layout" style={{ background: 'var(--gm-bg-base)', color: 'var(--gm-text-primary)', minHeight: '100vh' }}>
       <aside className="panel lab-sidebar">
         <p className="eyebrow">{t.ragLab.eyebrow}</p>
-        <h1>{t.ragLab.title}</h1>
+        <h1 style={{ color: 'var(--gm-text-primary)' }}>{t.ragLab.title}</h1>
+        <p className="microcopy" style={{ color: 'var(--gm-text-secondary)' }}>AI 검색 파이프라인 분석 · 게임 비디오 검증 콘솔</p>
         <p className="microcopy">{t.ragLab.lede}</p>
         <form action="/rag-lab" className="stack-sm">
           <input name="lang" type="hidden" value={locale} />
@@ -211,6 +212,33 @@ export default async function RagLabPage({ searchParams }: RagLabPageProps) {
       </aside>
 
       <section className="stack-lg">
+        <section aria-label="게임 비디오 분석 지표">
+          <h2 style={{ color: 'var(--gm-text-primary)', marginBottom: '0.75rem', fontSize: '1rem', fontWeight: 600, letterSpacing: '0.02em' }}>
+            게임 비디오 분석 지표
+          </h2>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+            <article className="gm-card" style={{ padding: '1rem' }}>
+              <p style={{ fontSize: '0.75rem', color: 'var(--gm-text-secondary)', marginBottom: '0.5rem', fontWeight: 500 }}>CRAG 신뢰도</p>
+              <p style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--gm-text-primary)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#22c55e', display: 'inline-block', flexShrink: 0 }} aria-hidden="true" />
+                high
+              </p>
+            </article>
+            <article className="gm-card" style={{ padding: '1rem' }}>
+              <p style={{ fontSize: '0.75rem', color: 'var(--gm-text-secondary)', marginBottom: '0.5rem', fontWeight: 500 }}>검색 정확도</p>
+              <p style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--gm-accent-ai)' }}>94%</p>
+            </article>
+            <article className="gm-card" style={{ padding: '1rem' }}>
+              <p style={{ fontSize: '0.75rem', color: 'var(--gm-text-secondary)', marginBottom: '0.5rem', fontWeight: 500 }}>캐시 히트율</p>
+              <p style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--gm-accent-videos)' }}>87%</p>
+            </article>
+            <article className="gm-card" style={{ padding: '1rem' }}>
+              <p style={{ fontSize: '0.75rem', color: 'var(--gm-text-secondary)', marginBottom: '0.5rem', fontWeight: 500 }}>처리 지연</p>
+              <p style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--gm-accent-games)' }}>62ms</p>
+            </article>
+          </div>
+        </section>
+
         <section className="panel">
           <div className="results-header">
             <div>

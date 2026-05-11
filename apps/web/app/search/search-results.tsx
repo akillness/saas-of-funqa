@@ -2,6 +2,7 @@
 
 import React, { useState, useTransition } from "react"
 import { getDictionary, type Locale, type SearchResult } from "../../lib/i18n"
+import { RecommendationPanel, type RecommendationPanelResult } from "../../components/recommendation-panel"
 
 function MediaTypeBadge({ category, labels }: { category: string; labels: { games: string; movies: string; videos: string } }) {
   if (category === "games") return <span className="media-type-badge media-type-badge--games">{labels.games}</span>
@@ -87,8 +88,26 @@ export function SearchResults({
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [isPending, startTransition] = useTransition()
   const [answerOpen, setAnswerOpen] = useState(true)
+  const [panelResult, setPanelResult] = useState<RecommendationPanelResult | null>(null)
+  const [isPanelOpen, setIsPanelOpen] = useState(false)
 
   const activeResult = initialResults[selectedIndex] ?? null
+
+  function openPanel(result: SearchResult, index: number): void {
+    setSelectedIndex(index)
+    setPanelResult({
+      id: `${result.source}-${result.title}`,
+      title: result.title,
+      snippet: result.snippet,
+      category: result.category,
+      cragConfidence: result.confidence
+    })
+    setIsPanelOpen(true)
+  }
+
+  function closePanel(): void {
+    setIsPanelOpen(false)
+  }
 
   const suggestions =
     initialResults.length > 0
@@ -341,11 +360,31 @@ export function SearchResults({
             <div className="search-grid">
               {initialResults.map((result, index) => {
                 const isSelected = index === selectedIndex
+                const cragLevel = confidenceLevel(result.confidence)
+                const simScore = cragLevel === "high" ? 94 : cragLevel === "medium" ? 62 : 31
+                const categoryAccent =
+                  result.category === "games"
+                    ? "var(--gm-accent-games)"
+                    : result.category === "movies"
+                      ? "var(--gm-accent-movies)"
+                      : "var(--gm-accent-videos)"
+                const cragColor =
+                  cragLevel === "high"
+                    ? "var(--gm-confidence-high, #22c55e)"
+                    : cragLevel === "medium"
+                      ? "var(--gm-confidence-medium, #f59e0b)"
+                      : "var(--gm-confidence-low, #ef4444)"
+
                 return (
                   <article
-                    className={`panel result-card media-card poster-card ${isSelected ? "result-card-active" : ""}`}
+                    className={`panel result-card ai-result-card media-card poster-card ${isSelected ? "result-card-active" : ""}`}
                     data-category={result.category}
                     key={`${result.source}-${result.title}`}
+                    style={{
+                      background: "var(--gm-bg-surface)",
+                      border: `1px solid var(--gm-border-subtle)`,
+                      borderTop: `2px solid ${categoryAccent}`
+                    }}
                   >
                     {/* Poster thumbnail with Netflix overlay */}
                     <div className={posterThumbClass(result.category)}>
@@ -355,7 +394,7 @@ export function SearchResults({
                       <div className="poster-overlay">
                         <span
                           className="confidence-bar"
-                          data-level={confidenceLevel(result.confidence)}
+                          data-level={cragLevel}
                           style={{ "--bar-width": confidenceWidth(result.confidence) } as React.CSSProperties}
                         />
                         <span className="microcopy" style={{ color: "#eef5f2", fontSize: "0.72rem" }}>
@@ -367,15 +406,48 @@ export function SearchResults({
                     <button
                       aria-pressed={isSelected}
                       className="result-card-button"
-                      onClick={() => setSelectedIndex(index)}
+                      onClick={() => openPanel(result, index)}
                       type="button"
                       style={{ padding: "0.85rem" }}
                     >
-                      <div className="result-meta result-meta-top">
-                        <div className="result-tags">
-                          <span className="pill">{t.common.confidenceLabels[result.confidence]}</span>
-                          <span className="pill pill-subtle">{t.common.sourceLabels[result.category]}</span>
-                        </div>
+                      {/* AI metadata row */}
+                      <div className="ai-card-meta-row">
+                        {/* CRAG confidence badge */}
+                        <span
+                          className="ai-crag-badge"
+                          style={{
+                            background: `color-mix(in srgb, ${cragColor} 12%, transparent)`,
+                            borderColor: `color-mix(in srgb, ${cragColor} 28%, transparent)`,
+                            color: cragColor
+                          }}
+                          title="CRAG Confidence"
+                        >
+                          CRAG · {result.confidence.toUpperCase()}
+                        </span>
+
+                        {/* Category chip */}
+                        <span
+                          className="ai-category-chip"
+                          style={{
+                            background: `color-mix(in srgb, ${categoryAccent} 14%, transparent)`,
+                            borderColor: `color-mix(in srgb, ${categoryAccent} 30%, transparent)`,
+                            color: categoryAccent
+                          }}
+                        >
+                          {t.common.sourceLabels[result.category]}
+                        </span>
+
+                        {/* Similarity score */}
+                        <span
+                          className="ai-sim-score"
+                          aria-label={`유사도 ${simScore}%`}
+                          style={{ color: "var(--gm-text-secondary)" }}
+                        >
+                          {simScore}%
+                        </span>
+                      </div>
+
+                      <div className="result-meta result-meta-top" style={{ marginTop: "0.5rem" }}>
                         <div className="result-meta">
                           <span className="microcopy">{result.freshness}</span>
                           <span aria-hidden="true" className="bookmark-btn">
@@ -384,9 +456,6 @@ export function SearchResults({
                         </div>
                       </div>
                       <h3>{result.title}</h3>
-                      <div className="genre-tags">
-                        <span className="genre-pill">{t.common.sourceLabels[result.category]}</span>
-                      </div>
                       <p>{result.snippet}</p>
                       <div className="result-footer">
                         <p className="microcopy">{result.source}</p>
@@ -451,12 +520,29 @@ export function SearchResults({
                   ))}
                 </ul>
               </div>
+              <button
+                className="primary-button"
+                type="button"
+                onClick={() => {
+                  const r = initialResults[selectedIndex]
+                  if (r) openPanel(r, selectedIndex)
+                }}
+                style={{ marginTop: "0.5rem", width: "100%" }}
+              >
+                AI 분석 보기 →
+              </button>
             </div>
           ) : (
             <p className="microcopy">{t.search.inspectorHint}</p>
           )}
         </aside>
       </div>
+
+      <RecommendationPanel
+        isOpen={isPanelOpen}
+        onClose={closePanel}
+        selectedResult={panelResult}
+      />
     </div>
   )
 }

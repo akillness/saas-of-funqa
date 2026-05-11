@@ -8,6 +8,7 @@ import {
 } from "../../lib/i18n";
 import { getRequestLocale } from "../../lib/i18n-server";
 import { SearchResults } from "./search-results";
+import { SearchStreamPanel } from "./search-stream-panel";
 
 type SearchPageProps = {
   searchParams?: Promise<{
@@ -80,6 +81,8 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
           </ul>
         </aside>
       </div>
+
+      {query.length >= 3 && <SearchStreamPanel query={query} />}
 
       <SearchResults
         initialQuery={query}
