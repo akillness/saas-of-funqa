@@ -263,6 +263,7 @@ npm run build:web
 
 최근 반영 사항:
 
+- **전체 페이지 톤앤메너·레이아웃 일관성 개선**: 검색 페이지 Arc-era CSS 클래스 제거 → --gm-* 다크 테마로 통일, RAG-lab i18n 일관성 확보 (하드코딩 텍스트 제거), trace 레이블 i18n 처리
 - **그라디언트-미디어 다크 디자인 시스템 적용**: --gm-* CSS 토큰, Spotify/Apple TV 스타일 다크 테마
 - **GameRecommendationCard, RecommendationPanel 컴포넌트 추가**: 게임 미디어 카드 및 슬라이딩 추천 패널 UI
 - **전체 페이지 다크 테마 적용**: /, /search, /rag-lab, /login, /admin

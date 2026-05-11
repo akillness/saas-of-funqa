@@ -295,6 +295,21 @@ export const koMessages = {
     evalNote: "더 강한 evaluator를 연결하기 전에 이 패널에서 전략 차이를 비교하세요.",
     traceTitle: "트레이스",
     traceLabel: "실행 트레이스",
+    traceDetails: {
+      normalizeDocs: "문서 정규화",
+      extractDocs: "문서 추출",
+      chunks: "청크",
+      topDocument: "최상위 문서",
+      none: "없음"
+    },
+    analyticsMetrics: {
+      title: "게임 비디오 분석 지표",
+      cragConfidence: "CRAG 신뢰도",
+      searchAccuracy: "검색 정확도",
+      cacheHitRate: "캐시 히트율",
+      processingLatency: "처리 지연",
+      lede: "AI 검색 파이프라인 분석 · 게임 비디오 검증 콘솔"
+    },
     releaseGateEyebrow: "합의 출시 게이트",
     releaseGateTitle: "최신 출시 게이트 리포트",
     releaseGateBody:

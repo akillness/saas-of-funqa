@@ -294,6 +294,21 @@ export const enMessages = {
     evalNote: "Use this pane to compare strategy changes before wiring a stronger evaluator.",
     traceTitle: "Trace",
     traceLabel: "Execution trace",
+    traceDetails: {
+      normalizeDocs: "Normalize docs",
+      extractDocs: "Extract docs",
+      chunks: "Chunks",
+      topDocument: "Top document",
+      none: "none"
+    },
+    analyticsMetrics: {
+      title: "Game Video Analytics",
+      cragConfidence: "CRAG Confidence",
+      searchAccuracy: "Search Accuracy",
+      cacheHitRate: "Cache Hit Rate",
+      processingLatency: "Processing Latency",
+      lede: "AI search pipeline · game video verification console"
+    },
     releaseGateEyebrow: "Consensus release gate",
     releaseGateTitle: "Latest release-gate report",
     releaseGateBody:
