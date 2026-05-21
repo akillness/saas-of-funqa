@@ -9,3 +9,4 @@ export * from "./pipelines/rerank.js";
 export * from "./pipelines/answer.js";
 export * from './pipelines/consensus.js';
 export * from './pipelines/ingest.js';
+export * from "./rerank/rerank-optimization.service.js";

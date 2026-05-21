@@ -21,7 +21,13 @@ const SearchFlowOutputSchema = z.object({
     reached: z.boolean(),
     agreement: z.number().min(0).max(1),
     threshold: z.number().min(0).max(1),
-    reason: z.enum(["graph-retrieval-pending", "insufficient-evidence", "conflicting-evidence"]),
+    reason: z.enum([
+      "graph-retrieval-pending",
+      "insufficient-evidence",
+      "conflicting-evidence",
+      "consensus-reached",
+      "insufficient-confidence"
+    ]),
     explanation: z.string()
   }),
   results: z.array(

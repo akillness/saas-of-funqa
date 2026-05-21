@@ -13,9 +13,10 @@ async function main() {
   const baseUrl = `http://127.0.0.1:${port}`;
 
   try {
-    await fetch(`${baseUrl}/v1/admin/rag/reset`, {
+    const resetResponse = await fetch(`${baseUrl}/v1/admin/rag/reset`, {
       method: "POST"
     });
+    assert.equal(resetResponse.status, 200, "reset should succeed");
 
     const ingestResponse = await fetch(`${baseUrl}/v1/ingest`, {
       method: "POST",
@@ -60,16 +61,43 @@ async function main() {
     const searchPayload = await searchResponse.json();
     assert.equal(searchPayload.totalDocuments, 2, "stored documents should be visible");
     assert.ok(searchPayload.results.length > 0, "search should return ranked results");
+    
+    // Under low-confidence local mock embedding environment, Dynamic Consensus should safely remain closed
+    assert.equal(searchPayload.consensus.reached, false, "consensus should safely remain closed on low-confidence local mock evidence");
     assert.equal(searchPayload.answerMode, "evidence-only", "search should expose evidence-only mode");
-    assert.equal(searchPayload.answer, null, "search should suppress synthesized prose until consensus passes");
+    assert.equal(searchPayload.answer, null, "search should suppress synthesized answer under low-confidence evidence");
+    
     assert.equal(searchPayload.retrievalMode, "graph-core", "search should report graph-core retrieval intent");
-    assert.equal(searchPayload.consensus.reached, false, "consensus should remain closed in the scaffold");
     assert.equal(
       searchPayload.consensus.reason,
-      "graph-retrieval-pending",
-      "search should explain why evidence-only mode was selected"
+      "insufficient-confidence",
+      "search should report insufficient-confidence status"
     );
     assert.ok(searchPayload.citations.length > 0, "citations should be attached");
+
+    // Validate custom rerankMode "genkit-score" integration
+    const genkitRerankSearchResponse = await fetch(`${baseUrl}/v1/search`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        tenantId: "demo",
+        query: "How do admins rotate provider keys?",
+        topK: 3,
+        rerankMode: "genkit-score"
+      })
+    });
+
+    assert.equal(genkitRerankSearchResponse.status, 200, "search with genkit-score rerankMode should succeed");
+    const genkitRerankPayload = await genkitRerankSearchResponse.json();
+    assert.equal(genkitRerankPayload.consensus.reached, false, "consensus should remain closed on genkit-score low-confidence evidence");
+    assert.equal(
+      genkitRerankPayload.consensus.reason,
+      "insufficient-confidence",
+      "genkit-score search should report insufficient-confidence status"
+    );
+    assert.ok(genkitRerankPayload.results.length > 0, "genkit-score search should return ranked results");
 
     const healthResponse = await fetch(`${baseUrl}/v1/health`);
     const healthPayload = await healthResponse.json();

@@ -240,6 +240,101 @@ async function main() {
     "health should reflect persisted Firestore-backed documents"
   );
 
+  // ── Monitoring Summary Test ──────────────────────────────────
+  console.log("Running Monitoring Summary smoke test...");
+  const monitoringResponse = await request("/v1/monitoring/summary");
+  assert.equal(monitoringResponse.status, 200, "monitoring summary should succeed");
+  const monitoringPayload = await monitoringResponse.json();
+  assert.equal(typeof monitoringPayload.dailyCostUsd, "number", "dailyCostUsd must be a number");
+  assert.equal(typeof monitoringPayload.activeUsers, "number", "activeUsers must be a number");
+  assert.equal(typeof monitoringPayload.successRate, "number", "successRate must be a number");
+  assert.equal(typeof monitoringPayload.p95LatencyMs, "number", "p95LatencyMs must be a number");
+
+  // ── Provider Keys Tests ─────────────────────────────────────────
+  console.log("Running Provider Keys smoke tests...");
+  const providerKeyPayload = {
+    tenantId: "demo",
+    label: "Demo Gemini Key",
+    apiKey: "gemini-api-key-test-must-be-long-enough",
+    notes: "Testing gemini key storage"
+  };
+
+  const createKeyResponse = await request("/v1/provider-keys/gemini", {
+    method: "POST",
+    body: JSON.stringify(providerKeyPayload)
+  });
+  assert.equal(createKeyResponse.status, 201, "POST provider-key should succeed");
+  const createKeyResult = await createKeyResponse.json();
+  assert.equal(createKeyResult.tenantId, "demo", "tenantId should match");
+  assert.equal(createKeyResult.provider, "gemini", "provider should match");
+  assert.equal(createKeyResult.label, "Demo Gemini Key", "label should match");
+  assert.ok(createKeyResult.keyVersion, "keyVersion should be present");
+  assert.ok(createKeyResult.storedAt, "storedAt should be present");
+
+  const getKeyResponse = await request("/v1/provider-keys/gemini?tenantId=demo", {
+    method: "GET"
+  });
+  assert.equal(getKeyResponse.status, 200, "GET provider-key should succeed");
+  const getKeyResult = await getKeyResponse.json();
+  assert.equal(getKeyResult.exists, true, "exists should be true");
+  assert.equal(getKeyResult.provider, "gemini", "provider should match");
+
+  const deleteKeyResponse = await request("/v1/provider-keys/gemini?tenantId=demo", {
+    method: "DELETE"
+  });
+  assert.equal(deleteKeyResponse.status, 204, "DELETE provider-key should succeed");
+
+  const getDeletedKeyResponse = await request("/v1/provider-keys/gemini?tenantId=demo", {
+    method: "GET"
+  });
+  assert.equal(getDeletedKeyResponse.status, 404, "GET deleted provider-key should return 404");
+
+  // ── LLM Wiki Entry Tests ───────────────────────────────────────
+  console.log("Running LLM Wiki smoke tests...");
+  const wikiEntryPayload = {
+    id: "test-concept-1",
+    type: "concept",
+    title: "FunQA Consensus",
+    content: "Consensus requires 90% or higher agreement among RAG source documents.",
+    tags: ["consensus", "rag"],
+    path: "knowledge/wiki/concepts/funqa-consensus.md",
+    sourceFile: "knowledge/wiki/concepts/funqa-consensus.md",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    createdBy: "agent-smoke"
+  };
+
+  const createWikiResponse = await request("/v1/wiki", {
+    method: "POST",
+    body: JSON.stringify(wikiEntryPayload)
+  });
+  assert.equal(createWikiResponse.status, 201, "POST wiki entry should succeed");
+  const createWikiResult = await createWikiResponse.json();
+  assert.equal(createWikiResult.id, "test-concept-1", "id should match");
+  assert.equal(createWikiResult.type, "concept", "type should match");
+  assert.equal(createWikiResult.title, "FunQA Consensus", "title should match");
+
+  const getWikiResponse = await request("/v1/wiki/concept/test-concept-1");
+  assert.equal(getWikiResponse.status, 200, "GET wiki entry should succeed");
+  const getWikiResult = await getWikiResponse.json();
+  assert.equal(getWikiResult.id, "test-concept-1", "id should match in fetched wiki entry");
+  assert.equal(getWikiResult.content, "Consensus requires 90% or higher agreement among RAG source documents.", "content should match");
+
+  const queryWikiResponse = await request("/v1/wiki/concept");
+  assert.equal(queryWikiResponse.status, 200, "GET wiki entries by type should succeed");
+  const queryWikiResult = await queryWikiResponse.json();
+  assert.ok(Array.isArray(queryWikiResult), "query result should be an array");
+  const foundEntry = queryWikiResult.find(e => e.id === "test-concept-1");
+  assert.ok(foundEntry, "seeded entry should be found in query list");
+
+  const deleteWikiResponse = await request("/v1/wiki/concept/test-concept-1", {
+    method: "DELETE"
+  });
+  assert.equal(deleteWikiResponse.status, 204, "DELETE wiki entry should succeed");
+
+  const getDeletedWikiResponse = await request("/v1/wiki/concept/test-concept-1");
+  assert.equal(getDeletedWikiResponse.status, 404, "GET deleted wiki entry should return 404");
+
   console.log(
     JSON.stringify(
       {
@@ -249,7 +344,10 @@ async function main() {
         analysesSummary: analysesPayload.summary,
         latestGuideVersion: latestGuidePayload.activeGuideVersion.guideVersion,
         searchTopResult: searchPayload.results[0],
-        health: healthPayload.rag
+        health: healthPayload.rag,
+        monitoring: monitoringPayload,
+        providerKeyCreated: createKeyResult,
+        wikiEntryCreated: createWikiResult
       },
       null,
       2

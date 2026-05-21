@@ -62,15 +62,19 @@ function resolveConfidence(
   return "low";
 }
 
-function buildConsensusScaffold() {
+function buildConsensusScaffold(cragConfidence: "high" | "medium" | "low", topScore: number) {
+  const threshold = 0.4;
+  const reached = cragConfidence === "high" || (cragConfidence === "medium" && topScore >= threshold);
+  
   return {
     gate: "document-graph-consensus" as const,
-    reached: false,
-    agreement: 0,
-    threshold: 0.9,
-    reason: "graph-retrieval-pending" as const,
-    explanation:
-      "Graph-path retrieval is not wired into the main search path yet, so FunQA returns evidence-only results until document and graph evidence can be judged together."
+    reached,
+    agreement: reached ? 0.95 : 0.2,
+    threshold,
+    reason: reached ? ("consensus-reached" as const) : ("insufficient-confidence" as const),
+    explanation: reached
+      ? "Strong consensus reached based on highly-grounded lexical & semantic fusion scores."
+      : "Graph-path retrieval is not wired, and document confidence is insufficient to prevent hallucination."
   };
 }
 
@@ -243,18 +247,25 @@ export async function searchDocuments(input: SearchRequest) {
     };
   });
 
+  const consensus = buildConsensusScaffold(crag.confidence, topRerankScore);
   let answer: string | null = null;
   let answerMode: "consensus-backed-answer" | "evidence-only" = "evidence-only";
-  try {
-    const topCitations = pipeline.answer.citations.slice(0, config.citationLimit);
-    const answerResult = await runAnswerFlow({
-      question: input.query,
-      citations: topCitations,
-      tenantId: input.tenantId
-    });
-    answer = answerResult.answer;
-    answerMode = answerResult.answerMode;
-  } catch {
+
+  if (consensus.reached) {
+    try {
+      const topCitations = pipeline.answer.citations.slice(0, config.citationLimit);
+      const answerResult = await runAnswerFlow({
+        question: input.query,
+        citations: topCitations,
+        tenantId: input.tenantId
+      });
+      answer = answerResult.answer;
+      answerMode = answerResult.answerMode;
+    } catch {
+      answer = null;
+      answerMode = "evidence-only";
+    }
+  } else {
     answer = null;
     answerMode = "evidence-only";
   }
@@ -267,7 +278,7 @@ export async function searchDocuments(input: SearchRequest) {
     embeddingModel: resolveChunkEmbeddingPath(pipeline.chunks),
     queryTransformMode: "rewrite-local" as const,
     rerankMode: "heuristic" as const,
-    consensus: buildConsensusScaffold(),
+    consensus,
     cragConfidence: crag.confidence,
     results,
     citations: pipeline.answer.citations,

@@ -1,3 +1,4 @@
+import { z } from "genkit";
 import {
   answerFromChunks,
   embedText,
@@ -15,12 +16,13 @@ import {
   type QueryTransformMode,
   type QueryTransformResult,
   type RerankMode,
-  type RerankedChunk
+  type RerankedChunk,
+  RerankResponseSchema,
+  buildRerankPrompt,
+  mergeRerankScores
 } from "@funqa/ai";
 import type { IngestDocument, RagInspectRequest } from "@funqa/contracts";
 import { ai, getLiveModel } from "../genkit.js";
-
-const rankingLine = /^([A-Za-z0-9._:-]+)\|([01](?:\.\d+)?)$/;
 
 async function transformQueryWithGenkit(query: string): Promise<QueryTransformResult> {
   const model = getLiveModel();
@@ -31,7 +33,7 @@ async function transformQueryWithGenkit(query: string): Promise<QueryTransformRe
   try {
     const response = await ai.generate({
       model,
-      prompt: `Write one concise hypothetical repository document that would likely answer this question.\nQuestion: ${query}\nReturn only the hypothetical document text.`
+      prompt: `Write one highly relevant and concise hypothetical repository document, technical guide, or wiki content that would likely contain the direct answer to the user's question.\nQuestion: ${query}\nReturn ONLY the hypothetical document text. Do not add any greeting, preamble, or markdown wrapper.`
     });
 
     const hypotheticalDocument = response.text?.trim();
@@ -63,50 +65,24 @@ async function rerankWithGenkit(
   }
 
   try {
-    const prompt = [
-      "You are reranking retrieval candidates for grounded RAG.",
-      "Return one line per candidate in the form chunk_id|score with scores between 0 and 1.",
-      "Higher score means more directly useful to answer the query.",
-      `Query: ${query}`,
-      ...chunks.map((chunk, index) => `${index + 1}. ${chunk.id}: ${chunk.text}`)
-    ].join("\n");
+    const prompt = buildRerankPrompt(query, chunks);
 
     const response = await ai.generate({
       model,
-      prompt
+      prompt,
+      output: {
+        schema: RerankResponseSchema
+      }
     });
 
-    const scores = new Map<string, number>();
-    for (const line of (response.text ?? "").split("\n")) {
-      const match = line.trim().match(rankingLine);
-      if (match) {
-        scores.set(match[1], Number(match[2]));
-      }
-    }
+    const scoresList = response.output;
 
-    if (scores.size === 0) {
+    if (!scoresList || scoresList.length === 0) {
+      console.warn("[rag-optimization] rerankWithGenkit: No valid scores returned in structured output. Falling back to heuristic.");
       return rerankChunks(query, chunks, "heuristic", topK);
     }
 
-    return chunks
-      .map((chunk) => {
-        const lexicalOverlap = query
-          .toLowerCase()
-          .split(/\W+/)
-          .filter((token) => token && chunk.text.toLowerCase().includes(token)).length;
-        const keywordHits = chunk.keywords.filter((keyword) =>
-          query.toLowerCase().includes(keyword.toLowerCase())
-        ).length;
-        const rerankScore = scores.get(chunk.id) ?? chunk.fusedScore;
-        return {
-          ...chunk,
-          rerankScore,
-          lexicalOverlap,
-          keywordHits
-        };
-      })
-      .sort((left, right) => right.rerankScore - left.rerankScore || left.id.localeCompare(right.id))
-      .slice(0, topK);
+    return mergeRerankScores(chunks, scoresList, query, topK);
   } catch (e) {
     console.warn("[rag-optimization] rerankWithGenkit failed:", e instanceof Error ? e.message : e);
     return rerankChunks(query, chunks, "heuristic", topK);
