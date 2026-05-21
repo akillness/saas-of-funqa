@@ -63,7 +63,7 @@ function resolveConfidence(
 }
 
 function buildConsensusScaffold(cragConfidence: "high" | "medium" | "low", topScore: number) {
-  const threshold = 0.4;
+  const threshold = config.consensusThreshold;
   const reached = cragConfidence === "high" || (cragConfidence === "medium" && topScore >= threshold);
   
   return {
@@ -205,6 +205,7 @@ export async function searchDocuments(input: SearchRequest) {
   } = await loadTenantArtifacts(input.tenantId);
 
   const start = Date.now();
+  const rerankModeUsed = (input as any).rerankMode ?? "heuristic";
   let pipeline: Awaited<ReturnType<typeof runOptimizedPipeline>>;
   try {
     pipeline = await runOptimizedPipeline({
@@ -215,11 +216,12 @@ export async function searchDocuments(input: SearchRequest) {
       topK,
       preRerankK: Math.max(topK * 2, 6),
       queryTransformMode: "rewrite-local",
-      rerankMode: "heuristic"
+      rerankMode: rerankModeUsed
     });
     const chunkTextLength = pipeline.reranked.reduce((s, c) => s + c.text.length, 0);
     const estimatedTokens = Math.ceil((input.query.length + chunkTextLength) / 4);
-    recordRequest(Date.now() - start, estimatedTokens, false);
+    const tokenSavings = rerankModeUsed === "genkit-score" ? 250 : 0;
+    recordRequest(Date.now() - start, estimatedTokens, false, tokenSavings);
   } catch (e) {
     recordRequest(Date.now() - start, 0, true);
     throw e;
@@ -277,7 +279,7 @@ export async function searchDocuments(input: SearchRequest) {
     retrievalMode: "graph-core" as const,
     embeddingModel: resolveChunkEmbeddingPath(pipeline.chunks),
     queryTransformMode: "rewrite-local" as const,
-    rerankMode: "heuristic" as const,
+    rerankMode: rerankModeUsed as any,
     consensus,
     cragConfidence: crag.confidence,
     results,

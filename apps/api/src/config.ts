@@ -97,6 +97,7 @@ export const config = {
   snippetMaxChars: Number(process.env.SNIPPET_MAX_CHARS ?? 220),
   confidenceHigh: Number(process.env.CONFIDENCE_HIGH ?? 0.72),
   confidenceLow: Number(process.env.CONFIDENCE_LOW ?? 0.45),
+  consensusThreshold: Number(process.env.CONSENSUS_THRESHOLD ?? 0.4),
   costPer1kTokens: Number(process.env.COST_PER_1K_TOKENS ?? 0.00015),
   maxMonitoringRecords: Number(process.env.MAX_MONITORING_RECORDS ?? 10_000),
   chunkPageSize: Number(process.env.CHUNK_PAGE_SIZE ?? 500),
