@@ -87,10 +87,10 @@ export default async function RootLayout({
           {t.layout.skipToContent}
         </a>
         <AuthProvider>
-          <div className="arc-layout">
-            <aside className="arc-sidebar" id="arc-sidebar">
+          <div className="arc-layout" style={{ background: 'transparent' }}>
+            <aside className="arc-sidebar" id="arc-sidebar" style={{ background: 'rgba(10, 10, 15, 0.45)', backdropFilter: 'blur(30px)', borderRight: '1px solid rgba(0, 255, 204, 0.2)', boxShadow: '4px 0 30px rgba(0,0,0,0.5)' }}>
               <Link className="arc-sidebar-brand brand-lockup" href={withLocale("/", locale)}>
-                <span className="brand-mark" aria-hidden="true">
+                <span className="brand-mark" aria-hidden="true" style={{ background: 'linear-gradient(135deg, var(--gm-accent-neon), var(--gm-accent-cyber))', boxShadow: '0 0 15px var(--gm-accent-neon)' }}>
                   fq
                 </span>
                 <span>
@@ -133,12 +133,12 @@ export default async function RootLayout({
             </aside>
 
             <div className="arc-content">
-              <header className="site-header arc-content-header">
+              <header className="site-header arc-content-header" style={{ background: 'rgba(15, 15, 22, 0.55)', backdropFilter: 'blur(24px)', border: '1px solid rgba(0, 255, 204, 0.15)', boxShadow: '0 4px 30px rgba(0,0,0,0.4)' }}>
                 <Link className="brand-lockup arc-mobile-brand" href={withLocale("/", locale)}>
-                  <span className="brand-mark" aria-hidden="true">
+                  <span className="brand-mark" aria-hidden="true" style={{ background: 'linear-gradient(135deg, var(--gm-accent-neon), var(--gm-accent-cyber))' }}>
                     fq
                   </span>
-                  <span className="site-title">funqa</span>
+                  <span className="site-title" style={{ textShadow: '0 0 8px rgba(0,255,204,0.5)' }}>funqa</span>
                 </Link>
                 <div className="site-header-actions">
                   <NavAuth

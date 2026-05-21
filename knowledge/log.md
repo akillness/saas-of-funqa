@@ -417,3 +417,23 @@ Each entry should list the files touched, the reason for the change, and any fol
 - Follow-up:
   - Use `wiki:lint` after future wiki ingest or filing operations.
   - Use `wiki:ingest-url` only when the Scrapling CLI is available.
+
+## [2026-05-21] query | Firebase Functions Emulator auth fix and expanded smoke test boundary coverage
+
+- Files touched:
+  - `package.json`
+  - `scripts/smoke-rag.ts`
+  - `scripts/smoke-functions.mjs`
+  - `knowledge/wiki/reports/functions-smoke-test-auth-fix.md`
+  - `knowledge/log.md`
+- Reason:
+  - Resolve the `401 Unauthorized` database reset blocker inside the Cloud Functions Emulator during `npm run smoke:functions` by prepending `DISABLE_AUTH=true`.
+  - Fix the masked/unasserted admin reset bypass bug inside the RAG smoke test script `scripts/smoke-rag.ts` and verify it succeeds cleanly.
+  - Expand `scripts/smoke-functions.mjs` to add comprehensive end-to-end CRUD coverage for newly implemented route boundaries (LLM Wiki, Provider Keys, and Monitoring Summary) to ensure 100% boundary security and routing reliability.
+- Verification:
+  - `npm run smoke:functions` successfully executed to exit code 0, executing and asserting all RAG, Wiki, Provider Key, and Monitoring endpoints.
+  - `npm run smoke:rag` successfully executed to exit code 0.
+  - `npm run lint` and `npm run typecheck` run clean.
+- Follow-up:
+  - Ensure any new local test environments that hit admin routes also utilize `DISABLE_AUTH=true` or provide mock tokens.
+

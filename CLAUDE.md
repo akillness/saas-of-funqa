@@ -137,15 +137,23 @@ rtk init --global       # Add RTK to ~/.claude/CLAUDE.md
 Overall average: **60-90% token reduction** on common development operations.
 <!-- /rtk-instructions -->
 
-## Prompt Knowledge Loop
+## Prompt Knowledge Loop (Core Workflow Rule)
 
-For non-trivial prompts, use the project llm-wiki as durable memory before answering or editing:
+**매 프롬프트(Prompt) 유입 시 항상 다음 4가지 핵심 원칙을 최우선 규칙으로 삼아 엄격하게 실행한다.**
 
-1. Read `knowledge/index.md`, then relevant `knowledge/wiki/**` pages.
-2. Convert durable prompt knowledge into a graph-style packet with entities, relationships, decisions, constraints, affected files, and follow-ups. Prefer native Graphify artifacts when present; otherwise label the packet as a structural fallback.
-3. File reusable knowledge into the Obsidian-compatible `knowledge/` vault: raw source, source summary, synthesis page, `index.md`, and `log.md`.
-4. For vague or implementation-bearing work, freeze an Ouroboros seed/spec before execution and verify against it.
-5. Do not ingest secrets, ignored env files, or Firebase service account keys.
+1. **RTK 기반 토큰 압축 (Token Compression)**
+   - 입력으로 들어오는 매 프롬프트 및 명령에 대해 RTK(Rust Token Killer) 지침을 적극 준수하여 불필요한 토큰 낭비를 최소화하고 메시지를 간결하게 압축하여 효율적인 토큰 관리를 유지합니다.
+
+2. **Graphify 기반 지식 DB 정제 (Knowledge Graph Extraction)**
+   - 매 프롬프트 처리 전후로 발생한 지식을 엔티티, 관계성, 결정사항, 제약조건 단위로 구조화하여 `graphify-out/`의 지식 그래프 DB로 정제하고, 변경 시 자동으로 업데이트합니다.
+
+3. **Obsidian Vault 표준 기반 파일/폴더 관리 (Obsidian Vault Management)**
+   - 지식 데이터베이스 경로인 `knowledge/` 폴더를 공식 **Obsidian Vault**로 지정하여 모든 마크다운 문서가 Obsidian 호환 디렉토리 및 링크 표준(`[[page-name]]`)에 맞추어 계통적으로 저장되고 유기적으로 관리되도록 설계합니다.
+
+4. **LLM-Wiki Root Directory 참조 및 점진적 자가 발전 (Self-Evolving Wiki Reference)**
+   - `knowledge/`를 **llm-wiki의 루트 디렉토리(Root Directory)**로 상정하고, 매 단계마다 최우선으로 `knowledge/index.md`와 `wiki/**` 내의 문서들을 적극적으로 참조 및 의미론적/키워드 검색하여 기존 맥락을 정확히 수용하고 지식을 점진적으로 확장해 나갑니다.
+
+---
 
 ## graphify
 
@@ -158,7 +166,7 @@ Rules:
 
 ## llm-wiki
 
-This project has a persistent LLM-maintained wiki at `knowledge/`.
+This project has a persistent LLM-maintained wiki at `knowledge/` which serves as the **Obsidian Vault Root**.
 
 Rules:
 - Read `knowledge/index.md` before any broad search or architecture question — it is the fastest path to relevant context
@@ -167,3 +175,88 @@ Rules:
 - Keep `knowledge/raw/sources/` immutable — corrections go into wiki pages, not rewrites of raw captures
 - Cross-reference pages with `[[page-name]]` wiki-link syntax
 - Do not record secrets, credentials, `.env` values, or Firebase service account material in the wiki
+
+<!-- OMA:START — managed by oh-my-agent. Do not edit this block manually. -->
+
+# oh-my-agent
+
+## Architecture
+
+- **SSOT**: `.agents/` directory (do not modify directly)
+- **Response language**: Follows `language` in `.agents/oma-config.yaml`
+- **Skills**: `.agents/skills/` (domain specialists)
+- **Workflows**: `.agents/workflows/` (multi-step orchestration)
+- **Subagents**: Same-vendor native dispatch via Claude Code Agent tool with `.claude/agents/{name}.md`; cross-vendor fallback via `oma agent:spawn`
+
+## Per-Agent Dispatch
+
+1. Resolve `target_vendor_for_agent` from `.agents/oma-config.yaml`.
+2. If `target_vendor_for_agent === current_runtime_vendor`, use the runtime's native subagent path.
+3. If vendors differ, or native subagents are unavailable, use `oma agent:spawn` for that agent only.
+
+## Code Search
+
+Prefer **serena MCP** tools over native find/grep when locating code — they are symbol-aware and faster on large repos. Fall back to native Read / Glob / Grep only when serena is unavailable or for plain file content reads.
+
+| Task | Preferred tool |
+|------|----------------|
+| Locate a symbol definition (class / function / variable) | `find_symbol` |
+| Find references / callers of a symbol | `find_referencing_symbols` |
+| Outline a file's top-level symbols | `get_symbols_overview` |
+| Pattern or regex search across the codebase | `search_for_pattern` |
+| Find a file by name | `find_file` |
+| List directory contents | `list_dir` |
+
+## Workflows
+
+Execute by naming the workflow in your prompt. Keywords are auto-detected via hooks.
+
+| Workflow | File | Description |
+|----------|------|-------------|
+| orchestrate | `orchestrate.md` | Parallel subagents + Review Loop |
+| work | `work.md` | Step-by-step with remediation loop |
+| ultrawork | `ultrawork.md` | 5-Phase Gate Loop (11 reviews) |
+| plan | `plan.md` | PM task breakdown |
+| brainstorm | `brainstorm.md` | Design-first ideation |
+| review | `review.md` | QA audit |
+| debug | `debug.md` | Root cause + minimal fix |
+| deepsec | `deepsec.md` | Drive `oma-deepsec` end-to-end (setup / scan / pr-review / matchers / triage) |
+| scm | `scm.md` | SCM + Git operations + Conventional Commits |
+| docs | `docs.md` | Documentation drift verify + sync |
+| recap | `recap.md` | Daily / period AI conversation recap |
+
+To execute: read and follow `.agents/workflows/{name}.md` step by step.
+
+## Auto-Detection
+
+Hooks: `UserPromptSubmit` (keyword detection), `PreToolUse`, `Stop` (persistent mode)
+Keywords defined in `.agents/hooks/core/triggers.json` (multi-language).
+Persistent workflows (orchestrate, ultrawork, work) block termination until complete.
+Deactivate: say "workflow done".
+
+## Rules
+
+1. **Do not modify `.agents/` files** (SSOT protection).
+2. Workflows execute via keyword detection or explicit naming, never self-initiated.
+3. Response language follows `.agents/oma-config.yaml`
+
+## Project Rules
+
+Read the relevant file from `.agents/rules/` when working on matching code.
+
+| Rule | File | Scope |
+|------|------|-------|
+| backend | `.agents/rules/backend.md` | on request |
+| commit | `.agents/rules/commit.md` | on request |
+| database | `.agents/rules/database.md` | **/*.{sql,prisma} |
+| debug | `.agents/rules/debug.md` | on request |
+| design | `.agents/rules/design.md` | on request |
+| dev-workflow | `.agents/rules/dev-workflow.md` | on request |
+| frontend | `.agents/rules/frontend.md` | **/*.{tsx,jsx,css,scss} |
+| i18n-guide | `.agents/rules/i18n-guide.md` | always |
+| infrastructure | `.agents/rules/infrastructure.md` | **/*.{tf,tfvars,hcl} |
+| market | `.agents/rules/market.md` | on request |
+| mobile | `.agents/rules/mobile.md` | **/*.{dart,swift,kt} |
+| quality | `.agents/rules/quality.md` | on request |
+
+<!-- OMA:END -->

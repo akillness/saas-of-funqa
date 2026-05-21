@@ -57,10 +57,6 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     source === "all"
       ? filtered
       : filtered.filter((item) => item.category === (source.toLowerCase() as SearchCategory));
-  const searchShellNotes = [
-    ...t.search.contractNotes,
-  ];
-
   return (
     <div style={{ background: 'var(--gm-bg-base)', minHeight: '100vh', padding: '2rem' }}>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 360px', gap: '2rem', alignItems: 'start', marginBottom: '2rem' }}>
@@ -73,9 +69,9 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         <aside style={{ background: 'var(--gm-bg-surface)', border: '1px solid var(--gm-border)', borderRadius: '0.75rem', padding: '1.25rem' }}>
           <p style={{ fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--gm-accent-ai)', marginBottom: '0.5rem' }}>{t.search.contractEyebrow}</p>
           <h2 style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--gm-text-primary)', marginBottom: '0.75rem' }}>{t.search.contractTitle}</h2>
-          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-            {searchShellNotes.map((note) => (
-              <li key={note} style={{ fontSize: '0.8125rem', color: 'var(--gm-text-secondary)', lineHeight: 1.5, marginBottom: '0.5rem', paddingLeft: '1rem', listStyleType: 'disc' }}>{note}</li>
+          <ul style={{ paddingLeft: '1.25rem', margin: 0 }}>
+            {t.search.contractNotes.map((note) => (
+              <li key={note} style={{ fontSize: '0.8125rem', color: 'var(--gm-text-secondary)', lineHeight: 1.5, marginBottom: '0.5rem' }}>{note}</li>
             ))}
           </ul>
         </aside>

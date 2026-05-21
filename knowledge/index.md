@@ -27,6 +27,7 @@ This is the content-oriented map of the wiki. Read this file first before broad 
 ## Concepts
 <!-- CONCEPTS:START -->
 - [[wiki/concepts/prompt-knowledge-loop]]
+- [[wiki/concepts/bmad-ooo-integration]]
 <!-- CONCEPTS:END -->
 
 ## Queries
@@ -36,6 +37,7 @@ This is the content-oriented map of the wiki. Read this file first before broad 
 
 ## Reports
 <!-- REPORTS:START -->
+- [[wiki/reports/functions-smoke-test-auth-fix]]
 - [[wiki/reports/graphify-codex-install-2026-05-05]]
 - [[wiki/reports/llm-wiki-install-2026-05-06]]
 - [[wiki/reports/funqa-all-knowledge-brand-apphosting-2026-04-26]]

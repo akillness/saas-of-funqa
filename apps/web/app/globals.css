@@ -9,9 +9,13 @@
   --gm-bg-overlay: rgba(19, 19, 26, 0.92);
 
   /* Text */
-  --gm-text-primary: #f0f0f8;
-  --gm-text-secondary: #9898b0;
-  --gm-text-tertiary: #5a5a72;
+  --gm-text-primary: #ffffff;
+  --gm-text-secondary: #b4b4cb;
+  --gm-text-tertiary: #6c6c8a;
+  
+  /* 2026 Neon Accent Colors */
+  --gm-accent-neon: #00ffcc;
+  --gm-accent-cyber: #ff007f;
 
   /* Category Accents */
   --gm-accent-games: #7c3aed;
@@ -25,9 +29,9 @@
   --gm-gradient-videos: linear-gradient(135deg, #0891b2, #0d9488);
   --gm-gradient-hero: linear-gradient(180deg, #1a0533 0%, #0a0a0f 100%);
 
-  /* Glass Surfaces */
-  --gm-glass-dark: rgba(19, 19, 26, 0.72);
-  --gm-glass-card: rgba(28, 28, 38, 0.80);
+  /* Glass Surfaces - 2026 Ultra Blur */
+  --gm-glass-dark: rgba(10, 10, 15, 0.45);
+  --gm-glass-card: rgba(15, 15, 22, 0.55);
 
   /* Borders */
   --gm-border-subtle: rgba(255, 255, 255, 0.06);
@@ -117,14 +121,29 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background: repeating-linear-gradient(
-    90deg,
-    transparent 0,
-    transparent 78px,
-    rgba(255, 126, 95, 0.025) 79px,
-    transparent 80px
-  );
-  mask-image: linear-gradient(180deg, rgba(0,0,0,0.4), transparent 80%);
+  background: 
+    linear-gradient(rgba(0, 255, 204, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 127, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+  z-index: -1;
+}
+
+/* 2026 Fancy Hero Image Container */
+.gm-hero-bg-container {
+  position: absolute;
+  inset: 0;
+  background-image: url('/assets/hero-bg.png');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.7) contrast(1.1) saturate(1.2);
+  z-index: -1;
+}
+.gm-hero-bg-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 30%, var(--gm-bg-base) 100%);
 }
 
 /* Gradient-Media Dark — utility classes */

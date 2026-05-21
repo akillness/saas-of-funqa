@@ -68,7 +68,6 @@ export default function LoginPage() {
           boxShadow: '0 24px 48px rgba(0,0,0,0.4)',
         }}
       >
-        {/* Gradient accent bar */}
         <div
           style={{
             height: '4px',
@@ -77,7 +76,6 @@ export default function LoginPage() {
         />
 
         <div style={{ padding: '40px 36px 36px' }}>
-          {/* Subtitle */}
           <p
             style={{
               margin: '0 0 8px',
@@ -91,7 +89,6 @@ export default function LoginPage() {
             게임 AI 검색엔진
           </p>
 
-          {/* Heading */}
           <h1
             style={{
               margin: '0 0 8px',
@@ -116,7 +113,6 @@ export default function LoginPage() {
             audit-aware provider key actions.
           </p>
 
-          {/* Error message */}
           {error && (
             <p
               role="alert"
@@ -134,7 +130,6 @@ export default function LoginPage() {
             </p>
           )}
 
-          {/* Google sign-in button */}
           <button
             type="button"
             onClick={handleGoogleLogin}
@@ -159,7 +154,6 @@ export default function LoginPage() {
               opacity: loading ? 0.7 : 1,
             }}
           >
-            {/* Google G icon */}
             {!loading && (
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
                 <path
@@ -183,7 +177,6 @@ export default function LoginPage() {
             {loading ? '로그인 중...' : 'Continue with Google'}
           </button>
 
-          {/* Trust info */}
           <div
             style={{
               marginTop: '28px',

@@ -97,28 +97,28 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
   return (
     <div className="gm-home">
-      {/* ── Section 1: Hero ── */}
-      <section className="gm-hero" aria-label={isKo ? "홈 히어로" : "Home hero"}>
-        <div className="gm-hero-inner">
-          <p className="gm-hero-eyebrow">
+      <section className="gm-hero" aria-label={isKo ? "홈 히어로" : "Home hero"} style={{ position: 'relative', overflow: 'hidden' }}>
+        <div className="gm-hero-bg-container" aria-hidden="true" />
+        <div className="gm-hero-inner" style={{ position: 'relative', zIndex: 1 }}>
+          <p className="gm-hero-eyebrow" style={{ color: 'var(--gm-accent-neon)', textShadow: '0 0 10px var(--gm-accent-neon)' }}>
             {isKo ? "AI 미디어 검색 엔진" : "AI Media Search Engine"}
           </p>
-          <h1 className="gm-hero-headline">{copy.heroHeadline}</h1>
-          <p className="gm-hero-subtitle">{copy.heroSubtitle}</p>
-          <div className="gm-search-bar" role="search">
+          <h1 className="gm-hero-headline" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}>{copy.heroHeadline}</h1>
+          <p className="gm-hero-subtitle" style={{ color: '#e0e0e0', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>{copy.heroSubtitle}</p>
+          <div className="gm-search-bar" role="search" style={{ boxShadow: '0 0 30px rgba(0, 255, 204, 0.2)' }}>
             <Link
               href={withLocale("/search", locale)}
               className="gm-search-link"
               aria-label={copy.heroSearch}
             >
-              <span className="gm-search-icon" aria-hidden="true">
+              <span className="gm-search-icon" aria-hidden="true" style={{ color: 'var(--gm-accent-neon)' }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="11" cy="11" r="8" />
                   <path d="m21 21-4.35-4.35" />
                 </svg>
               </span>
               <span className="gm-search-placeholder">{copy.heroSearch}</span>
-              <span className="gm-search-cta">{copy.searchCta}</span>
+              <span className="gm-search-cta" style={{ background: 'linear-gradient(135deg, var(--gm-accent-neon), var(--gm-accent-cyber))', color: '#000', fontWeight: 'bold', border: 'none' }}>{copy.searchCta}</span>
             </Link>
           </div>
           <div className="gm-hero-quicklinks">
@@ -127,18 +127,18 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                 key={path.href}
                 href={withLocale(path.href, locale)}
                 className="gm-quicklink"
+                style={{ backdropFilter: 'blur(10px)', border: '1px solid rgba(0,255,204,0.3)', transition: 'all 0.3s' }}
               >
-                <span className="gm-quicklink-eyebrow">{path.eyebrow}</span>
-                <strong className="gm-quicklink-title">{path.title}</strong>
+                <span className="gm-quicklink-eyebrow" style={{ color: 'var(--gm-accent-cyber)' }}>{path.eyebrow}</span>
+                <strong className="gm-quicklink-title" style={{ textShadow: '0 0 5px rgba(255,255,255,0.5)' }}>{path.title}</strong>
               </Link>
             ))}
           </div>
         </div>
-        <div className="gm-hero-glow" aria-hidden="true" />
+        <div className="gm-hero-glow" aria-hidden="true" style={{ background: 'radial-gradient(circle, rgba(0,255,204,0.15) 0%, transparent 60%)' }} />
       </section>
 
-      {/* ── Section 2: Trending Games Carousel ── */}
-      <section className="gm-section" aria-label={copy.trendingTitle}>
+      <section className="gm-section" aria-label={copy.trendingTitle} style={{ position: 'relative', zIndex: 1 }}>
         <div className="gm-section-header">
           <h2 className="gm-section-title">{copy.trendingTitle}</h2>
           <Link href={withLocale("/search", locale)} className="gm-see-all">
@@ -161,7 +161,6 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         </div>
       </section>
 
-      {/* ── Section 3: AI Discovery Grid ── */}
       <section className="gm-section" aria-label={copy.discoveryTitle}>
         <div className="gm-section-header">
           <h2 className="gm-section-title">{copy.discoveryTitle}</h2>
@@ -186,7 +185,6 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         </div>
       </section>
 
-      {/* ── Section 4: System Status Rail ── */}
       <section className="gm-section gm-status-rail" aria-label={copy.statusTitle}>
         <div className="gm-section-header">
           <h2 className="gm-section-title">{copy.statusTitle}</h2>

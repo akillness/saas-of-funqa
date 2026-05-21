@@ -52,7 +52,6 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
       padding: '2rem',
       fontFamily: 'inherit',
     }}>
-      {/* Page intro */}
       <section style={{ marginBottom: '2rem' }}>
         <p style={{
           color: 'var(--gm-accent-ai)',
@@ -76,7 +75,6 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
         }}>{t.admin.lede}</p>
       </section>
 
-      {/* Control strip */}
       <section style={{
         backgroundColor: 'var(--gm-bg-surface)',
         border: '1px solid var(--gm-border)',
@@ -138,7 +136,6 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
         </div>
       </section>
 
-      {/* Metric grid */}
       <section
         aria-label="Key metrics"
         style={{
@@ -194,13 +191,11 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
         ))}
       </section>
 
-      {/* Feature band: needs attention + operator queue */}
       <section style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
         gap: '1rem',
       }}>
-        {/* Needs attention panel */}
         <article style={{
           backgroundColor: 'var(--gm-bg-surface)',
           border: '1px solid var(--gm-border)',
@@ -214,7 +209,6 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
             marginBottom: '1rem',
           }}>{t.admin.needsAttention}</h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
-            {/* Priority item */}
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
               <span style={{
                 display: 'inline-block',
@@ -233,7 +227,6 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
                 {t.admin.attentionItems.keyGuard}
               </p>
             </div>
-            {/* Queue item */}
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
               <span style={{
                 display: 'inline-block',
@@ -254,7 +247,6 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
                 {t.admin.attentionItems.queueSummaryChunks}
               </p>
             </div>
-            {/* Telemetry item */}
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
               <span style={{
                 display: 'inline-block',
@@ -279,7 +271,6 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
           </div>
         </article>
 
-        {/* Operator queue panel */}
         <article style={{
           backgroundColor: 'var(--gm-bg-surface)',
           border: '1px solid var(--gm-border)',

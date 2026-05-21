@@ -1,4 +1,5 @@
 import { tokenize } from "../core/tokenize.js";
+import { cosineSimilarity } from "../core/similarity.js";
 import type {
   HybridRetrievedChunk,
   RerankMode,
@@ -132,4 +133,91 @@ export function rerankChunks(
     })
     .sort((left, right) => right.rerankScore - left.rerankScore || left.id.localeCompare(right.id))
     .slice(0, topK);
+}
+
+export function mmrDeduplicate(
+  chunks: RetrievedChunk[],
+  lambda: number = 0.7,
+  topK: number = 50
+): RetrievedChunk[] {
+  if (chunks.length === 0) return [];
+
+  const selected: RetrievedChunk[] = [];
+  const candidates = [...chunks];
+
+  while (selected.length < topK && candidates.length > 0) {
+    let bestIndex = -1;
+    let bestScore = -Infinity;
+
+    for (let i = 0; i < candidates.length; i++) {
+      const candidate = candidates[i];
+      const relevance = candidate.score;
+
+      let maxSim = 0;
+      for (const sel of selected) {
+        const sim = cosineSimilarity(candidate.embedding, sel.embedding);
+        if (sim > maxSim) maxSim = sim;
+      }
+
+      const mmrScore = lambda * relevance - (1 - lambda) * maxSim;
+      if (mmrScore > bestScore) {
+        bestScore = mmrScore;
+        bestIndex = i;
+      }
+    }
+
+    if (bestIndex === -1) break;
+    selected.push(candidates[bestIndex]);
+    candidates.splice(bestIndex, 1);
+  }
+
+  return selected;
+}
+
+interface CohereRerankResult {
+  index: number;
+  relevance_score: number;
+}
+
+interface CohereRerankResponse {
+  results: CohereRerankResult[];
+}
+
+export async function rerankWithCohere(
+  query: string,
+  chunks: RetrievedChunk[],
+  apiKey: string,
+  topK: number = 10
+): Promise<RetrievedChunk[]> {
+  try {
+    const response = await fetch("https://api.cohere.com/v2/rerank", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        model: "rerank-v3.5",
+        query,
+        documents: chunks.map((c) => c.text ?? ""),
+        top_n: topK,
+        return_documents: false
+      })
+    });
+
+    if (!response.ok) {
+      console.error(`Cohere rerank API error: ${response.status} ${response.statusText}`);
+      return chunks;
+    }
+
+    const data = (await response.json()) as CohereRerankResponse;
+
+    return data.results.map((result) => ({
+      ...chunks[result.index],
+      score: result.relevance_score
+    }));
+  } catch (error) {
+    console.error("Cohere rerank failed, falling back to original chunks:", error);
+    return chunks;
+  }
 }
