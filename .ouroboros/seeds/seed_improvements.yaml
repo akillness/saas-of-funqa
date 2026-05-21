@@ -1,0 +1,40 @@
+goal: "Execute infrastructure, security, and tooling improvements to enable ultrawork and deepsec workflows, and clarify the api vs functions architecture boundary."
+constraints:
+  - "Do not break existing apps/api or functions/ endpoints"
+  - "Ensure deepsec setup respects the current Firebase setup"
+  - "Maintain monorepo structure"
+acceptance_criteria:
+  - "ARCHITECTURE.md or an ADR specifies the boundary between apps/api and functions/"
+  - ".deepsec/INFO.md is populated and deepsec is calibrated"
+  - "Custom matchers exist for Firebase functions and Next.js"
+  - "Vitest and ESLint are configured and accessible via npm scripts"
+ontology_schema:
+  name: InfrastructureImprovementsSpec
+  description: Domain model for infrastructure, security, and tooling improvements
+  fields:
+    - name: goal
+      type: string
+      description: Goal of the task
+      required: true
+    - name: custom_matchers_configured
+      type: boolean
+      description: Whether custom matchers are successfully configured for deepsec
+      required: true
+evaluation_principles:
+  - name: correctness
+    description: Infrastructure changes must correctly enable ultrawork and deepsec without breaking existing logic
+    weight: 0.5
+  - name: completeness
+    description: All mentioned configurations and architecture boundaries must be documented and accessible
+    weight: 0.5
+exit_conditions:
+  - name: all_criteria_met
+    description: All acceptance criteria pass and custom matchers are verified
+    criteria: "tests=pass"
+metadata:
+  seed_id: seed_improvements
+  version: 1.0.0
+  created_at: "2026-05-22T01:35:00Z"
+  ambiguity_score: 0.12
+  interview_id: null
+  parent_seed_id: null
