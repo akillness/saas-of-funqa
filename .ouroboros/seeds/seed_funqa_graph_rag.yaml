@@ -1,0 +1,50 @@
+goal: "FunQA RAG의 Co-citation Graph 기반 문서 합의(Consensus) 알고리즘 구현 및 graph-path retrieval 연동"
+task_type: code
+brownfield_context:
+  project_type: brownfield
+  context_references: []
+  existing_patterns: []
+  existing_dependencies: []
+constraints:
+  - "TypeScript 6.0.2 / Node.js >= 20"
+  - "No changes to Excluded Modules (packages/db, apps/web, functions)"
+  - "Strict types for evaluateConsensus & RAG searchResult payload"
+acceptance_criteria:
+  - "evaluateConsensus builds co-citation graph using overlap and connection weights and returns actual graphPaths"
+  - "rag.service.ts searchDocuments calls evaluateConsensus core and wires dynamic reached, agreement, and graphPaths to output"
+  - "vitest run consensus and all unit tests pass 100%"
+  - "npm run smoke:rag and npm run smoke:functions pass with exit code 0"
+ontology_schema:
+  name: FunQACocitationConsensusSpec
+  description: Domain model for Co-citation Graph RAG Consensus algorithm and API integration in FunQA
+  fields:
+    - name: goal
+      type: string
+      description: Goal of the task
+      required: true
+    - name: consensus_reached
+      type: boolean
+      description: Dynamic consensus reached status
+      required: true
+    - name: graph_paths
+      type: array
+      description: Extracted co-citation paths between documents
+      required: true
+evaluation_principles:
+  - name: correctness
+    description: Co-citation graph must correctly reflect real document overlap and similarity
+    weight: 0.5
+  - name: completeness
+    description: RAG service must return dynamic results matching the evaluated consensus
+    weight: 0.5
+exit_conditions:
+  - name: tests_pass
+    description: All automated tests pass successfully
+    criteria: "tests=pass"
+metadata:
+  seed_id: seed_funqa_graph_rag
+  version: 1.0.0
+  created_at: "2026-05-22T01:22:00Z"
+  ambiguity_score: 0.12
+  interview_id: null
+  parent_seed_id: null

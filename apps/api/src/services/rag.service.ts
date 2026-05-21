@@ -1,5 +1,6 @@
 import {
   cragFilter,
+  evaluateConsensus,
   getEmbeddingPath,
   pipelineDocuments,
   rerankWithCohere,
@@ -62,21 +63,6 @@ function resolveConfidence(
   return "low";
 }
 
-function buildConsensusScaffold(cragConfidence: "high" | "medium" | "low", topScore: number) {
-  const threshold = config.consensusThreshold;
-  const reached = cragConfidence === "high" || (cragConfidence === "medium" && topScore >= threshold);
-  
-  return {
-    gate: "document-graph-consensus" as const,
-    reached,
-    agreement: reached ? 0.95 : 0.2,
-    threshold,
-    reason: reached ? ("consensus-reached" as const) : ("insufficient-confidence" as const),
-    explanation: reached
-      ? "Strong consensus reached based on highly-grounded lexical & semantic fusion scores."
-      : "Graph-path retrieval is not wired, and document confidence is insufficient to prevent hallucination."
-  };
-}
 
 async function loadTenantArtifacts(tenantId: string): Promise<{
   documents: RagScopedDocument[];
@@ -249,7 +235,27 @@ export async function searchDocuments(input: SearchRequest) {
     };
   });
 
-  const consensus = buildConsensusScaffold(crag.confidence, topRerankScore);
+  const consensusResult = evaluateConsensus(
+    input.query,
+    crag.kept,
+    pipeline.chunks,
+    {
+      threshold: config.consensusThreshold,
+      topK
+    }
+  );
+
+  const consensus = {
+    gate: "document-graph-consensus" as const,
+    reached: consensusResult.reached,
+    agreement: consensusResult.agreement,
+    threshold: config.consensusThreshold,
+    reason: consensusResult.reached ? ("consensus-reached" as const) : ("insufficient-confidence" as const),
+    explanation: consensusResult.reached
+      ? "Strong consensus reached based on highly-grounded lexical & semantic fusion scores."
+      : "Graph-path retrieval is not wired, and document confidence is insufficient to prevent hallucination."
+  };
+
   let answer: string | null = null;
   let answerMode: "consensus-backed-answer" | "evidence-only" = "evidence-only";
 
@@ -284,7 +290,7 @@ export async function searchDocuments(input: SearchRequest) {
     cragConfidence: crag.confidence,
     results,
     citations: pipeline.answer.citations,
-    graphPaths: [],
+    graphPaths: consensusResult.graphPaths,
     totalDocuments,
     totalChunks
   };
