@@ -55,6 +55,19 @@ export function FlaskIcon(props: IconProps) {
   );
 }
 
+export function RalphIcon(props: IconProps) {
+  return (
+    <BaseIcon {...props}>
+      <path d="M7.2 7.5a6.8 6.8 0 0 1 10.4.8" />
+      <path d="M17.8 4.8v3.8h-3.8" />
+      <path d="M16.8 16.5a6.8 6.8 0 0 1-10.4-.8" />
+      <path d="M6.2 19.2v-3.8h3.8" />
+      <path d="M9.5 12h5" />
+      <path d="M12 9.5v5" />
+    </BaseIcon>
+  );
+}
+
 export function ShieldIcon(props: IconProps) {
   return (
     <BaseIcon {...props}>

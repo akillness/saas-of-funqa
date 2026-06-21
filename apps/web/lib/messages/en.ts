@@ -31,6 +31,7 @@ export const enMessages = {
       overview: "Home",
       search: "Search",
       ragLab: "RAG Lab",
+      ralph: "Ralph",
       admin: "Admin",
       docs: "API Docs",
       login: "Login"
@@ -340,6 +341,87 @@ export const enMessages = {
       answerMode: "Answer mode",
       reason: "Primary reason"
     }
+  },
+  ralph: {
+    eyebrow: "Ralph completion loop",
+    title: "Run work against a frozen seed until the evidence says it is done.",
+    lede:
+      "Ralph turns implementation work into a verified loop: clarify the contract, execute the smallest useful change, inspect the evidence, correct drift, and keep moving until acceptance criteria pass.",
+    primaryAction: "Inspect in RAG Lab",
+    secondaryAction: "Read API docs",
+    statusCard: {
+      eyebrow: "Operating posture",
+      title: "Spec-first loop status",
+      metrics: [
+        { label: "Contract", value: "Seeded", text: "Work starts from explicit goal, constraints, and acceptance criteria." },
+        { label: "Gate", value: "Verify", text: "Build, typecheck, smoke, and browser evidence precede completion claims." },
+        { label: "Drift", value: "Tracked", text: "Failures feed the next pass instead of being hidden in chat history." }
+      ]
+    },
+    loopEyebrow: "Execution model",
+    loopTitle: "The page-level contract for ooo ralph",
+    loopLede:
+      "Each card is a durable checkpoint. The loop remains visible so product, engineering, and QA can agree on what changed and why.",
+    loopSteps: [
+      {
+        label: "Interview",
+        title: "Reduce ambiguity",
+        body: "Turn vague requests into a bounded goal, constraints, and explicit non-goals.",
+        signal: "Ready when the remaining ambiguity is small enough to freeze."
+      },
+      {
+        label: "Seed",
+        title: "Freeze the contract",
+        body: "Capture the accepted goal and acceptance criteria before implementation starts.",
+        signal: "The seed is immutable; follow-up changes become a new seed."
+      },
+      {
+        label: "Execute",
+        title: "Make the smallest useful change",
+        body: "Apply focused edits that satisfy the seed without broad refactors or hidden scope creep.",
+        signal: "Every code path touched has a reason tied to the contract."
+      },
+      {
+        label: "Evaluate",
+        title: "Verify before claiming done",
+        body: "Run mechanical checks and inspect the user-facing behavior before closing the loop.",
+        signal: "Evidence matters more than confidence."
+      },
+      {
+        label: "Evolve",
+        title: "Correct drift and repeat",
+        body: "When checks fail, keep the evidence and adjust the next pass until the acceptance criteria hold.",
+        signal: "Failures are recorded as data for the next iteration."
+      }
+    ],
+    guardrailsEyebrow: "Guardrails",
+    guardrailsTitle: "What Ralph will not skip",
+    guardrails: [
+      "No implementation without a bounded contract.",
+      "No completion claim without verification evidence.",
+      "No silent rewrite of the seed mid-run.",
+      "No deployment before build-critical checks pass."
+    ],
+    evidenceEyebrow: "Evidence rail",
+    evidenceTitle: "Artifacts Ralph keeps inspectable",
+    evidenceColumns: {
+      artifact: "Artifact",
+      purpose: "Purpose",
+      state: "State"
+    },
+    evidenceRows: [
+      { artifact: "seed.yaml", purpose: "Immutable work contract", state: "Required" },
+      { artifact: "README update", purpose: "User-facing operating note", state: "Required for this change" },
+      { artifact: "typecheck/build logs", purpose: "Mechanical verification", state: "Required" },
+      { artifact: "browser evidence", purpose: "Page-level behavior check", state: "Required" },
+      { artifact: "wiki report", purpose: "Durable project memory", state: "Filed after completion" }
+    ],
+    handoffEyebrow: "Handoff",
+    handoffTitle: "Use Ralph when a task must keep going",
+    handoffBody:
+      "Ralph is the right lane when a request should not stop at a proposal. It keeps implementation, evidence, and deployment work tied to the same acceptance criteria.",
+    handoffAction: "Search Ralph context",
+    handoffQuery: "Ralph completion loop"
   },
   admin: {
     eyebrow: "Admin",

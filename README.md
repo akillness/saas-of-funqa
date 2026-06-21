@@ -23,6 +23,7 @@
 - 검색 shell 전반의 **dictionary-driven copy** + **localized category tabs** + **pinned inspector trust flow**
 - consensus 미달 시 **evidence-only fallback**를 trust feature로 드러내는 경고 상태
 - `rag-lab`의 최신 consensus release-gate 리포트 조회 및 선택 UI
+- `/ralph`의 **ooo ralph completion loop surface** — seed, execute, evaluate, evolve 단계를 제품 안에서 설명하고 검증 산출물을 노출
 - creator ingest bundle, video analyses, monetization guide/source API surface
 
 ---
@@ -74,6 +75,7 @@ RAG 파이프라인 흐름:
 - 답변은 항상 허용되는 것이 아니라 `document-graph consensus`를 통과해야 한다.
 - consensus 미달 시 FunQA는 hallucinate하지 않고 **evidence-only** 상태로 실패를 드러낸다.
 - `rag-lab`은 내부 디버깅용 부속 페이지가 아니라, 검색 품질과 release gate를 설명하는 operator proof surface다.
+- `ralph`는 제안에서 멈추지 않는 작업을 위한 spec-first completion loop surface다.
 
 ---
 
@@ -190,6 +192,17 @@ Firebase App Hosting과 Functions Emulator를 함께 실행합니다.
 | App Hosting 에뮬레이터 | `http://localhost:5002` |
 | Auth 에뮬레이터 | `http://localhost:9099` |
 | Firestore 에뮬레이터 | `http://localhost:8080` |
+
+주요 웹 surface:
+
+| Route | Purpose |
+|-------|---------|
+| `/` | 제품 홈과 추천/상태 요약 |
+| `/search` | 근거 기반 검색 workspace |
+| `/rag-lab` | RAG pipeline inspection 및 release-gate 확인 |
+| `/ralph` | ooo ralph completion loop와 검증 산출물 안내 |
+| `/admin` | 운영 콘솔 |
+| `/docs` | API 문서 |
 
 ### 개별 실행
 

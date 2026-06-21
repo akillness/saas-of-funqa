@@ -31,6 +31,7 @@ export const koMessages = {
       overview: "홈",
       search: "검색",
       ragLab: "RAG 랩",
+      ralph: "Ralph",
       admin: "관리",
       docs: "API 문서",
       login: "로그인"
@@ -341,6 +342,87 @@ export const koMessages = {
       answerMode: "응답 모드",
       reason: "주요 사유"
     }
+  },
+  ralph: {
+    eyebrow: "Ralph 완성 루프",
+    title: "고정된 seed에 맞춰 증거가 완료를 말할 때까지 작업을 반복합니다.",
+    lede:
+      "Ralph는 구현 작업을 검증 루프로 바꿉니다. 계약을 명확히 하고, 가장 작은 유효 변경을 실행하고, 증거를 확인하고, drift를 바로잡으며 acceptance criteria가 통과할 때까지 계속 진행합니다.",
+    primaryAction: "RAG 랩에서 점검",
+    secondaryAction: "API 문서 보기",
+    statusCard: {
+      eyebrow: "운영 상태",
+      title: "Spec-first 루프 상태",
+      metrics: [
+        { label: "계약", value: "Seeded", text: "작업은 명시된 목표, 제약, acceptance criteria에서 시작합니다." },
+        { label: "게이트", value: "Verify", text: "빌드, 타입 검사, 스모크, 브라우저 증거가 완료 주장보다 먼저입니다." },
+        { label: "Drift", value: "Tracked", text: "실패는 숨기지 않고 다음 반복의 입력으로 남깁니다." }
+      ]
+    },
+    loopEyebrow: "실행 모델",
+    loopTitle: "ooo ralph를 위한 페이지 수준 계약",
+    loopLede:
+      "각 카드는 재사용 가능한 체크포인트입니다. 제품, 엔지니어링, QA가 무엇이 왜 바뀌었는지 같은 기준으로 확인할 수 있게 루프를 화면에 드러냅니다.",
+    loopSteps: [
+      {
+        label: "Interview",
+        title: "모호성 줄이기",
+        body: "막연한 요청을 제한된 목표, 제약, 명시적 non-goal로 정리합니다.",
+        signal: "남은 모호성이 seed로 고정해도 될 만큼 작아지면 준비 완료입니다."
+      },
+      {
+        label: "Seed",
+        title: "계약 고정",
+        body: "구현 전에 합의된 목표와 acceptance criteria를 기록합니다.",
+        signal: "seed는 불변이며 후속 변경은 새 seed로 남깁니다."
+      },
+      {
+        label: "Execute",
+        title: "가장 작은 유효 변경 실행",
+        body: "넓은 리팩터나 숨은 범위 확장 없이 seed를 만족하는 집중 변경을 적용합니다.",
+        signal: "건드린 모든 코드 경로는 계약과 연결된 이유가 있어야 합니다."
+      },
+      {
+        label: "Evaluate",
+        title: "완료 전에 검증",
+        body: "루프를 닫기 전에 기계적 검사와 사용자 관점 동작을 확인합니다.",
+        signal: "확신보다 증거가 우선입니다."
+      },
+      {
+        label: "Evolve",
+        title: "Drift를 수정하고 반복",
+        body: "검사가 실패하면 증거를 보존하고 acceptance criteria가 유지될 때까지 다음 반복을 조정합니다.",
+        signal: "실패는 다음 반복을 위한 데이터로 기록됩니다."
+      }
+    ],
+    guardrailsEyebrow: "가드레일",
+    guardrailsTitle: "Ralph가 건너뛰지 않는 것",
+    guardrails: [
+      "제한된 계약 없는 구현 금지.",
+      "검증 증거 없는 완료 주장 금지.",
+      "실행 중 seed 조용한 재작성 금지.",
+      "빌드 핵심 검증 전 배포 금지."
+    ],
+    evidenceEyebrow: "증거 레일",
+    evidenceTitle: "Ralph가 검사 가능하게 남기는 산출물",
+    evidenceColumns: {
+      artifact: "산출물",
+      purpose: "목적",
+      state: "상태"
+    },
+    evidenceRows: [
+      { artifact: "seed.yaml", purpose: "불변 작업 계약", state: "필수" },
+      { artifact: "README update", purpose: "사용자 대상 운영 노트", state: "이번 변경 필수" },
+      { artifact: "typecheck/build logs", purpose: "기계적 검증", state: "필수" },
+      { artifact: "browser evidence", purpose: "페이지 동작 확인", state: "필수" },
+      { artifact: "wiki report", purpose: "지속 프로젝트 메모리", state: "완료 후 기록" }
+    ],
+    handoffEyebrow: "핸드오프",
+    handoffTitle: "끝까지 가야 하는 작업에 Ralph를 사용합니다",
+    handoffBody:
+      "Ralph는 제안에서 멈추면 안 되는 요청에 맞는 실행 레인입니다. 구현, 증거, 배포 작업을 같은 acceptance criteria에 묶어 둡니다.",
+    handoffAction: "Ralph 맥락 검색",
+    handoffQuery: "Ralph 완성 루프"
   },
   admin: {
     eyebrow: "관리",
