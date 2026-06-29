@@ -437,3 +437,22 @@ Each entry should list the files touched, the reason for the change, and any fol
 - Follow-up:
   - Ensure any new local test environments that hit admin routes also utilize `DISABLE_AUTH=true` or provide mock tokens.
 
+ 
+## [2026-06-28] ingest | Neuro-symbolic game story research plan and paper drafts
+
+- Files touched:
+  - `raw/sources/2026-06-28-neuro-symbolic-game-story-research-request.md`
+  - `wiki/sources/neuro-symbolic-game-story-research-request-2026-06-28.md`
+  - `wiki/concepts/neuro-symbolic-game-storytelling.md`
+  - `wiki/reports/neuro-symbolic-game-story-research-plan-2026-06-28.md`
+  - `wiki/reports/paper-draft-ivie-style-validated-game-story-generation-2026-06-28.md`
+  - `wiki/reports/paper-draft-kg-grounded-rpg-dialogue-2026-06-28.md`
+  - `index.md`
+  - `log.md`
+- Reason:
+  - Capture the user’s 2026 neuro-symbolic game-story research request as durable wiki knowledge and create three handoff-ready artifacts: a research plan plus two distinct SCI-E-oriented paper drafts.
+  - Preserve public metadata verification results for verified and unverified literature leads.
+- Follow-up:
+  - Transfer the three report files into the user’s Google Drive folder when authenticated Google Workspace tooling is available.
+  - Verify full BibTeX records for the unverified candidate titles before citation in a submission draft.
+  - Implement experiment schemas and fixtures in `saas-of-funqa` before making empirical claims.

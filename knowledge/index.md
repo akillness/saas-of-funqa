@@ -18,6 +18,7 @@ This is the content-oriented map of the wiki. Read this file first before broad 
 - [[wiki/sources/langextract]]
 - [[wiki/sources/prompt-knowledge-loop-request-2026-05-05]]
 - [[wiki/sources/vercel-web-guidelines]]
+- [[wiki/sources/neuro-symbolic-game-story-research-request-2026-06-28]]
 <!-- SOURCES:END -->
 
 ## Entities
@@ -28,6 +29,7 @@ This is the content-oriented map of the wiki. Read this file first before broad 
 <!-- CONCEPTS:START -->
 - [[wiki/concepts/prompt-knowledge-loop]]
 - [[wiki/concepts/bmad-ooo-integration]]
+- [[wiki/concepts/neuro-symbolic-game-storytelling]]
 <!-- CONCEPTS:END -->
 
 ## Queries
@@ -53,4 +55,7 @@ This is the content-oriented map of the wiki. Read this file first before broad 
 - [[wiki/reports/modular-rag-plan]]
 - [[wiki/reports/rag-optimization-consensus]]
 - [[wiki/reports/rag-speed-accuracy-ui-refresh-2026-04-15]]
+- [[wiki/reports/neuro-symbolic-game-story-research-plan-2026-06-28]]
+- [[wiki/reports/paper-draft-ivie-style-validated-game-story-generation-2026-06-28]]
+- [[wiki/reports/paper-draft-kg-grounded-rpg-dialogue-2026-06-28]]
 <!-- REPORTS:END -->
