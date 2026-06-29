@@ -20,3 +20,6 @@ saas-of-funqa-firebase-adminsdk-fbsvc-cee18265fb.json
 .omc/
 .omx/
 .survey/
+
+# oma docs generated artifacts
+docs/generated/

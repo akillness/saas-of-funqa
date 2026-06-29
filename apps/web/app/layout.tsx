@@ -1,41 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
-import { Cormorant_Garamond, IBM_Plex_Mono, Inter, Noto_Sans_KR } from "next/font/google";
 import { LocaleSwitcher } from "./locale-switcher";
 import { ThemeToggle } from "./theme-toggle";
 import { FirebaseAnalytics } from "./firebase-analytics";
 import { AuthProvider } from "@/components/auth-provider";
 import { NavAuth } from "@/components/nav-auth";
 import { CategoryTabBar } from "@/components/category-tab-bar";
-import { BookIcon, FlaskIcon, HomeIcon, MenuIcon, RalphIcon, SearchIcon, ShieldIcon } from "@/components/menu-icons";
+import { BookIcon, FlaskIcon, HomeIcon, RalphIcon, SearchIcon, ShieldIcon } from "@/components/menu-icons";
 import { getDictionary, withLocale } from "../lib/i18n";
 import { getRequestLocale } from "../lib/i18n-server";
 import "./globals.css";
-
-const heading = Cormorant_Garamond({
-  subsets: ["latin"],
-  variable: "--font-heading",
-  weight: ["500", "600", "700"]
-});
-
-const body = Inter({
-  subsets: ["latin"],
-  variable: "--font-body",
-  weight: ["400", "500", "600", "700"]
-});
-
-const korean = Noto_Sans_KR({
-  subsets: ["latin"],
-  variable: "--font-korean",
-  weight: ["400", "500", "700"]
-});
-
-const mono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  weight: ["400", "500"]
-});
 
 export const metadata: Metadata = {
   title: "funqa",
@@ -74,7 +49,6 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body
-        className={`${heading.variable} ${body.variable} ${korean.variable} ${mono.variable}`}
         data-locale={locale}
       >
         <script

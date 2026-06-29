@@ -200,9 +200,15 @@ Firebase App Hosting과 Functions Emulator를 함께 실행합니다.
 | `/` | 제품 홈과 추천/상태 요약 |
 | `/search` | 근거 기반 검색 workspace |
 | `/rag-lab` | RAG pipeline inspection 및 release-gate 확인 |
-| `/ralph` | ooo ralph completion loop와 검증 산출물 안내 |
+| `/ralph` | ooo ralph completion loop와 검증 산출물 안내 (`/ralph?lang=ko`/`/ralph?lang=en` 지원) |
 | `/admin` | 운영 콘솔 |
 | `/docs` | API 문서 |
+
+#### Ralph completion loop surface
+
+`/ralph`는 Ouroboros/Ralph 작업을 제품 안에서 설명하는 spec-first completion loop 화면입니다. 고정된 seed 계약을 기준으로 `seed → execute → evaluate → evolve` 단계를 보여주고, 완료 주장은 타입체크·빌드·브라우저 확인 같은 검증 산출물과 함께 다룹니다. 화면 copy는 기존 EN/KO i18n dictionary를 따르며, 사이드바 navigation과 App Router route contract 안에서 한국어와 영어 query locale 모두 같은 loop surface를 제공합니다.
+
+Ralph 화면의 한국어 route/render 계약(`/ralph?lang=ko`가 404 없이 Korean dictionary copy를 렌더링)은 `npm test -- apps/web/app/ralph/page.test.tsx apps/web/lib/messages/ralph.test.ts`로 독립 실행할 수 있습니다.
 
 ### 개별 실행
 
@@ -335,6 +341,7 @@ npm run build:web
 | `npm run build:functions` | Firebase Functions 번들 빌드 |
 | `npm run start` | 빌드된 웹 앱 서버 시작 |
 | `npm run typecheck` | TypeScript 타입 체크 (api + web) |
+| `npm test -- apps/web/app/ralph/page.test.tsx apps/web/lib/messages/ralph.test.ts` | Ralph route와 EN/KO dictionary 렌더링 회귀 테스트 |
 | `npm run smoke:rag` | RAG 파이프라인 스모크 테스트 |
 | `POST /v1/search/stream` | SSE 스트리밍 검색 엔드포인트 (retrieving→reranking→generating→done 이벤트) |
 | `npm run smoke:functions` | Firebase Functions 엔드포인트 스모크 테스트 |
