@@ -200,6 +200,18 @@ export const enMessages = {
     citationsSuffix: "citations",
     bookmarkLabel: "Bookmark",
     liveFreshness: "live",
+    stream: {
+      streaming: "Streaming search…",
+      error: "Stream error",
+      liveAnswer: "Live answer",
+      topChunks: "Top chunks",
+      citations: "Citations",
+      stages: {
+        retrieving: "Retrieving relevant chunks…",
+        reranking: "Re-ranking results…",
+        generating: "Generating answer…"
+      }
+    },
     fallbackResults: [
       {
         title: "Elden Ring",

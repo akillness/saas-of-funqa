@@ -18,11 +18,39 @@ import { registerWikiRoute } from "./routes/wiki.route.js";
 export function createServer() {
   const app = express();
 
+  app.set("trust proxy", 1);
+
+  // CORS Middleware
+  app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    if (origin) {
+      res.setHeader("Access-Control-Allow-Origin", origin);
+    } else {
+      res.setHeader("Access-Control-Allow-Origin", "*");
+    }
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, DELETE");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Tenant-Id");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+
+    if (req.method === "OPTIONS") {
+      res.sendStatus(204);
+      return;
+    }
+    next();
+  });
+
   app.use(express.json({ limit: "5mb" }));
 
   registerHealthRoute(app);
-  app.use("/v1/admin", requireAuth);
+
+  // Write and sensitive endpoints require authentication
   app.use("/v1/provider-keys", requireAuth);
+  app.use("/v1/ingest", requireAuth);
+  app.use("/v1/creator-ingest-bundle", requireAuth);
+  app.use("/v1/video-analyses", requireAuth);
+  app.use("/v1/monetization-guides", requireAuth);
+  app.use("/v1/monetization-sources", requireAuth);
+
   registerAdminRoute(app);
   registerProviderKeyRoute(app);
   registerIngestRoute(app);
@@ -34,7 +62,6 @@ export function createServer() {
   registerRagRoute(app);
   registerMonitoringRoute(app);
   registerWikiRoute(app);
-
   app.use((error: unknown, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
     if (error instanceof z.ZodError) {
       res.status(400).json({
@@ -45,19 +72,20 @@ export function createServer() {
     }
 
     if (error instanceof AuthError) {
-      res.status(403).json({ error: error.code, message: error.message });
+      res.status(401).json({ error: error.code, message: error.message });
       return;
     }
 
     if (error instanceof FunQAError) {
-      res.status(500).json({ error: error.code, message: error.message });
+      const status = error.code === "invalid_request" ? 400 : 500;
+      res.status(status).json({ error: error.code, message: error.message });
       return;
     }
 
-    const message = error instanceof Error ? error.message : "Unexpected server error";
+    console.error("[server] Unhandled internal error:", error);
     res.status(500).json({
       error: "internal_error",
-      message
+      message: "An unexpected server error occurred."
     });
   });
 

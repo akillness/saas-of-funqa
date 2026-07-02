@@ -14,6 +14,19 @@ export function resetRagStore(storePath: string) {
   });
 }
 
+export function deleteTenantRagArtifacts(storePath: string, tenantId: string) {
+  const current = readStore(storePath);
+  const otherDocuments = current.documents.filter((doc) => doc.tenantId !== tenantId);
+  const otherChunks = current.chunks.filter((chunk) => chunk.tenantId !== tenantId);
+  const nextStore: RagStore = {
+    documents: otherDocuments,
+    chunks: otherChunks,
+    updatedAt: new Date().toISOString()
+  };
+  writeStore(storePath, nextStore);
+  return nextStore;
+}
+
 export function saveRagArtifacts(
   storePath: string,
   tenantId: string,

@@ -77,7 +77,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         </aside>
       </div>
 
-      {query.length >= 3 && <SearchStreamPanel query={query} />}
+      {query.length >= 3 && <SearchStreamPanel query={query} locale={locale} />}
 
       <SearchResults
         initialQuery={query}

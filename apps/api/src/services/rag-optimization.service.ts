@@ -11,8 +11,12 @@ import {
   rerankChunks,
   scoreChunksWithVector,
   transformQueryLocally,
+  type AnswerBundle,
   type EmbeddedChunk,
+  type ExtractedDocument,
   type HybridRetrievedChunk,
+  type IngestPipelineResult,
+  type NormalizedDocument,
   type QueryTransformMode,
   type QueryTransformResult,
   type RerankMode,
@@ -104,6 +108,18 @@ async function buildQueryVector(query: string, chunks: EmbeddedChunk[]) {
   });
 }
 
+export interface OptimizedPipelineResult {
+  normalized: NormalizedDocument[];
+  extracted: ExtractedDocument[];
+  chunks: EmbeddedChunk[];
+  queryVector: number[] | null;
+  queryTransform: QueryTransformResult;
+  hybridRetrieved: HybridRetrievedChunk[];
+  reranked: RerankedChunk[];
+  answer: AnswerBundle;
+  usedLiveGenkit: boolean;
+}
+
 export async function runOptimizedPipeline(input: {
   tenantId: string;
   query: string;
@@ -113,8 +129,8 @@ export async function runOptimizedPipeline(input: {
   preRerankK: number;
   queryTransformMode: QueryTransformMode;
   rerankMode: RerankMode;
-}) {
-  let resolvedPipeline: Awaited<ReturnType<typeof pipelineDocuments>>;
+}): Promise<OptimizedPipelineResult> {
+  let resolvedPipeline: IngestPipelineResult;
   if (input.chunks && input.chunks.length > 0) {
     const normalized = input.documents.map(normalizeDocument);
     resolvedPipeline = { normalized, extracted: normalized.map(extractDocument), embeddedChunks: input.chunks };

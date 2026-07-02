@@ -1,16 +1,16 @@
-# Graph Report - saas-of-funqa  (2026-05-22)
+# Graph Report - saas-of-funqa  (2026-07-02)
 
 ## Corpus Check
-- 909 files · ~999,974 words
+- 963 files · ~1,160,790 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 8152 nodes · 9853 edges · 656 communities (591 shown, 65 thin omitted)
+- 8601 nodes · 10357 edges · 675 communities (610 shown, 65 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `25c75da4`
+- Built from commit: `9419d060`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -601,18 +601,37 @@
 - [[_COMMUNITY_Community 653|Community 653]]
 - [[_COMMUNITY_Community 654|Community 654]]
 - [[_COMMUNITY_Community 655|Community 655]]
+- [[_COMMUNITY_Community 656|Community 656]]
+- [[_COMMUNITY_Community 657|Community 657]]
+- [[_COMMUNITY_Community 658|Community 658]]
+- [[_COMMUNITY_Community 659|Community 659]]
+- [[_COMMUNITY_Community 660|Community 660]]
+- [[_COMMUNITY_Community 661|Community 661]]
+- [[_COMMUNITY_Community 662|Community 662]]
+- [[_COMMUNITY_Community 663|Community 663]]
+- [[_COMMUNITY_Community 664|Community 664]]
+- [[_COMMUNITY_Community 665|Community 665]]
+- [[_COMMUNITY_Community 666|Community 666]]
+- [[_COMMUNITY_Community 667|Community 667]]
+- [[_COMMUNITY_Community 668|Community 668]]
+- [[_COMMUNITY_Community 669|Community 669]]
+- [[_COMMUNITY_Community 670|Community 670]]
+- [[_COMMUNITY_Community 671|Community 671]]
+- [[_COMMUNITY_Community 672|Community 672]]
+- [[_COMMUNITY_Community 673|Community 673]]
+- [[_COMMUNITY_Community 674|Community 674]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `Log` - 38 edges
-2. `getDictionary()` - 27 edges
+1. `Log` - 39 edges
+2. `getDictionary()` - 30 edges
 3. `get()` - 27 edges
 4. `Structural Flow` - 26 edges
 5. `scripts` - 25 edges
 6. `Logical Operations` - 24 edges
 7. `aggregate` - 23 edges
 8. `scripts` - 22 edges
-9. `scripts` - 22 edges
-10. `Logical Operations` - 22 edges
+9. `resolveLocale()` - 22 edges
+10. `getRequestLocale()` - 22 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `searchDocuments()` --calls--> `buildConsensusScaffold()`  [EXTRACTED]
@@ -626,27 +645,27 @@
 - `rerankWithGenkit()` --calls--> `getLiveModel()`  [EXTRACTED]
   apps/api/src/services/rag-optimization.service.ts → .claude/worktrees/agent-ab6cd01e/apps/api/src/services/rag-optimization.service.ts
 
-## Communities (656 total, 65 thin omitted)
+## Communities (675 total, 65 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.10
-Nodes (25): buildAnalysisSummary(), buildCacheKey(), buildConsensusScaffold(), createServer(), get(), getCreatorAnalysisRecord(), getFirestoreRagChunkCount(), getFirestoreRagChunks() (+17 more)
+Cohesion: 0.09
+Nodes (38): analysisCollection(), buildAnalysisSummary(), clear(), clearRagStore(), createServer(), db(), get(), getCreatorAnalysisRecord() (+30 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.14
-Nodes (12): requireAuth(), registerHealthRoute(), config, isFirebaseEmulatorRuntime(), isFirebaseRuntime(), loadCandidateEnvFiles(), parseBooleanFlag(), resolveRuntimeRoot() (+4 more)
+Cohesion: 0.12
+Nodes (15): registerHealthRoute(), config, isFirebaseEmulatorRuntime(), isFirebaseRuntime(), loadCandidateEnvFiles(), parseBooleanFlag(), resolveRuntimeRoot(), runtimeRoot (+7 more)
 
 ### Community 3 - "Community 3"
-Cohesion: 0.10
-Nodes (34): buildConsensusScaffold(), clearRagStore(), getRagInspectionChunks(), getRagInspectionDocuments(), getRagStats(), ingestAdditionalDocuments(), ingestDocuments(), loadTenantArtifacts() (+26 more)
+Cohesion: 0.11
+Nodes (31): db(), getFirebaseApp(), buildConsensusScaffold(), clearRagStore(), getRagInspectionChunks(), getRagInspectionDocuments(), getRagStats(), ingestAdditionalDocuments() (+23 more)
 
 ### Community 4 - "Community 4"
-Cohesion: 0.16
-Nodes (28): hashToken(), buildLocalEmbedding(), embedChunk(), embedChunkAsync(), embedQueryTextAsync(), embedText(), embedTextAsync(), getConfiguredEmbeddingModelId() (+20 more)
+Cohesion: 0.12
+Nodes (33): hashToken(), bucket, buildLocalEmbedding(), embedChunk(), embedChunkAsync(), embedQueryTextAsync(), embedText(), embedTextAsync() (+25 more)
 
 ### Community 5 - "Community 5"
-Cohesion: 0.10
-Nodes (28): answerFromChunks(), buildLocalEmbedding(), buildLocalHydeDocument(), buildQueryVector(), embedChunkAsync(), embedQueryTextAsync(), embedText(), embedTextAsync() (+20 more)
+Cohesion: 0.09
+Nodes (29): answerFromChunks(), buildLocalEmbedding(), buildLocalHydeDocument(), buildQueryVector(), embedChunkAsync(), embedQueryTextAsync(), embedText(), embedTextAsync() (+21 more)
 
 ### Community 6 - "Community 6"
 Cohesion: 0.08
@@ -657,12 +676,12 @@ Cohesion: 0.19
 Nodes (27): buildAggregate(), deriveReleaseState(), formatPercent(), loadDataset(), main(), parseCliArgs(), renderStableMarkdownReport(), resolveDefaultOutputPath() (+19 more)
 
 ### Community 8 - "Community 8"
-Cohesion: 0.08
-Nodes (34): analysisCollection(), buildAnalysisSummary(), getCreatorAnalysisRecord(), getLatestPublishedGuide(), guideMetaCollection(), guideVersionCollection(), listCreatorAnalysisRecords(), listLatestMonetizationSources() (+26 more)
+Cohesion: 0.10
+Nodes (29): analysisCollection(), buildAnalysisSummary(), getCreatorAnalysisRecord(), getLatestPublishedGuide(), guideMetaCollection(), guideVersionCollection(), listCreatorAnalysisRecords(), listLatestMonetizationSources() (+21 more)
 
 ### Community 9 - "Community 9"
 Cohesion: 0.14
-Nodes (28): AdminPage(), AdminPageProps, fetchHealthSummary(), fetchMonitoringSummary(), fetchRagStats(), getApiBaseUrl(), getFunqaApiBaseUrl(), inspectRagPipeline() (+20 more)
+Nodes (29): AdminPage(), AdminPageProps, fetchHealthSummary(), fetchMonitoringSummary(), fetchRagStats(), getApiBaseUrl(), getFunqaApiBaseUrl(), inspectRagPipeline() (+21 more)
 
 ### Community 10 - "Community 10"
 Cohesion: 0.34
@@ -673,8 +692,8 @@ Cohesion: 0.10
 Nodes (25): emptyStore(), resetLlmWikiStore(), collectionPath(), db(), deleteLlmWikiEntry(), emptyStore(), getLlmWikiEntry(), getLlmWikiStore() (+17 more)
 
 ### Community 12 - "Community 12"
-Cohesion: 0.20
-Nodes (18): buildQueryVector(), getLiveModel(), inspectOptimizedPipeline(), pipelineDocuments(), rerankWithGenkit(), runOptimizedPipeline(), transformQueryWithGenkit(), defaultLabDocuments (+10 more)
+Cohesion: 0.18
+Nodes (20): buildQueryVector(), getLiveModel(), inspectOptimizedPipeline(), pipelineDocuments(), rerankWithGenkit(), runOptimizedPipeline(), transformQueryWithGenkit(), defaultLabDocuments (+12 more)
 
 ### Community 13 - "Community 13"
 Cohesion: 0.15
@@ -685,40 +704,40 @@ Cohesion: 0.06
 Nodes (51): aggregate, agreementThreshold, buildSha, datasetVersion, eligibleConsensusCases, evaluatedBoundaryControlCases, evaluatedEligibleCases, evaluatedTotalCases (+43 more)
 
 ### Community 15 - "Community 15"
-Cohesion: 0.14
-Nodes (16): CATEGORY_ACCENT, CONFIDENCE_COLOR, CONFIDENCE_SCORE, PLACEHOLDER_RECS, PlaceholderRec, RecommendationPanel(), RecommendationPanelProps, RecommendationPanelResult (+8 more)
+Cohesion: 0.20
+Nodes (8): CATEGORY_ACCENT, CONFIDENCE_COLOR, CONFIDENCE_SCORE, PLACEHOLDER_RECS, PlaceholderRec, RecommendationPanel(), RecommendationPanelProps, RecommendationPanelResult
 
 ### Community 16 - "Community 16"
-Cohesion: 0.40
-Nodes (8): buildKeywords(), buildSummary(), buildTitle(), extractDocument(), buildKeywords(), buildSummary(), buildTitle(), extractDocument()
+Cohesion: 0.14
+Nodes (16): tokenize(), buildKeywords(), buildSummary(), buildTitle(), extractDocument(), chunkDocument(), ChunkOptions, cosineSimilarityLocal() (+8 more)
 
 ### Community 17 - "Community 17"
-Cohesion: 0.24
-Nodes (12): tokenize(), buildLocalHydeDocument(), extractKeywords(), MultiQueryResult, rewriteQueryLocally(), transformQueryLocally(), buildLocalHydeDocument(), extractKeywords() (+4 more)
+Cohesion: 0.23
+Nodes (14): buildLocalHydeDocument(), extractKeywords(), MultiQueryResult, rewriteQueryLocally(), doc, keywords, result, transformQueryLocally() (+6 more)
 
 ### Community 18 - "Community 18"
 Cohesion: 0.05
-Nodes (21): deriveKey(), encryptSecret(), answer, buildEvidenceFallback(), buildLocalEmbedding(), buildQueryVector(), deriveKey(), embedChunkAsync() (+13 more)
+Nodes (28): deriveKey(), encryptSecret(), answer, buildEvidenceFallback(), buildKeywords(), buildLocalEmbedding(), buildQueryVector(), buildSummary() (+20 more)
 
 ### Community 19 - "Community 19"
-Cohesion: 0.50
-Nodes (3): CATEGORY_META, GameRecommendationCard(), GameRecommendationCardProps
+Cohesion: 0.11
+Nodes (19): aggregate, agreementThreshold, buildSha, datasetVersion, eligibleConsensusCases, evaluatedBoundaryControlCases, evaluatedEligibleCases, evaluatedTotalCases (+11 more)
 
 ### Community 20 - "Community 20"
 Cohesion: 0.29
 Nodes (3): 4장 과제 전체 실행 스크립트 실행: python run_all.py 결과: output/ 폴더에 이미지 저장, 6장 과제: Train/Test Split + Ridge 회귀 실행: /Library/Frameworks/Python.framework/Vers, 6장 과제: Train/Test Split + Ridge 회귀 실행: /Library/Frameworks/Python.framework/Vers
 
 ### Community 21 - "Community 21"
-Cohesion: 0.14
-Nodes (17): answerFromChunks(), sentenceCase(), AnswerChunk, answerFromChunks(), resolveCitationScore(), sentenceCase(), CohereRerankResponse, CohereRerankResult (+9 more)
+Cohesion: 0.18
+Nodes (18): answerFromChunks(), sentenceCase(), AnswerChunk, answerFromChunks(), resolveCitationScore(), sentenceCase(), bundle, longText (+10 more)
 
 ### Community 22 - "Community 22"
 Cohesion: 0.04
 Nodes (45): Actions, Agent-to-Agent Review Loop (PHASE 4.5), Canonical command path, Clarification Debt (CD) Monitoring, code:bash (oma agent:spawn <agent-type> "<task>" <session-id> -w <works), code:json ({), code:block3 (Agent completes work), code:bash (oma verify {agent-type} --workspace {workspace} --json) (+37 more)
 
 ### Community 23 - "Community 23"
-Cohesion: 0.29
-Nodes (11): inspectRagPipeline(), ConsensusReleaseGateReport, ConsensusReleaseGateReportOption, consensusReportRelativePath, formatPercent(), loadConsensusReleaseGateReports(), RagLabPage(), RagLabPageProps (+3 more)
+Cohesion: 0.11
+Nodes (22): HomePage(), HomePageProps, TRENDING_CARDS, CATEGORY_META, GameRecommendationCard(), GameRecommendationCardProps, DocsPage(), DocsPageProps (+14 more)
 
 ### Community 24 - "Community 24"
 Cohesion: 0.46
@@ -761,16 +780,16 @@ Cohesion: 0.05
 Nodes (39): Actions, Anti-Pattern Quick Reference, Canonical workflow path, code:yaml (outputs:), code:text (1. Check `.design-context.md`; create it if missing.), code:bash (bunx getdesign@latest list), code:markdown (## Reference Sites), Color & Gradient (+31 more)
 
 ### Community 39 - "Community 39"
-Cohesion: 0.23
-Nodes (9): cosineSimilarity(), retrieveChunks(), retrieveChunksWithVector(), scoreChunks(), scoreChunksWithVector(), retrieveChunks(), retrieveChunksWithVector(), scoreChunks() (+1 more)
+Cohesion: 0.11
+Nodes (21): cosineSimilarity(), ConsensusResult, cragFilter(), CragFilterResult, evaluateChunkCorrectness(), evaluateConsensus(), result, topChunks (+13 more)
 
 ### Community 40 - "Community 40"
 Cohesion: 0.05
-Nodes (36): [2026-04-13] improve | Project hardening — config validation, Firestore rules, RAG indexes, [2026-04-13] ingest | Firebase App Hosting source note, [2026-04-13] ingest | Firebase web config, [2026-04-13] ingest | Genkit RAG and evaluation source note, [2026-04-13] ingest | Initial planning sources, [2026-04-13] query | App Hosting deploy rollout debug, [2026-04-13] query | Initial platform plan, [2026-04-13] query | Live App Hosting UI verification (+28 more)
+Nodes (37): [2026-04-13] improve | Project hardening — config validation, Firestore rules, RAG indexes, [2026-04-13] ingest | Firebase App Hosting source note, [2026-04-13] ingest | Firebase web config, [2026-04-13] ingest | Genkit RAG and evaluation source note, [2026-04-13] ingest | Initial planning sources, [2026-04-13] query | App Hosting deploy rollout debug, [2026-04-13] query | Initial platform plan, [2026-04-13] query | Live App Hosting UI verification (+29 more)
 
 ### Community 41 - "Community 41"
-Cohesion: 0.20
-Nodes (10): chunkDocument(), ChunkOptions, cosineSimilarityLocal(), semanticChunk(), IngestPipelineResult, normalizeDocument(), ChunkRecord, ExtractedDocument (+2 more)
+Cohesion: 0.19
+Nodes (10): result, IngestPipelineResult, pipelineDocuments(), documents, sourceIds, normalizeDocument(), raw, result (+2 more)
 
 ### Community 42 - "Community 42"
 Cohesion: 0.05
@@ -802,27 +821,27 @@ Nodes (36): Analysis & Debug (70-90% savings), Architecture, Auto-Detection, Bui
 
 ### Community 49 - "Community 49"
 Cohesion: 0.05
-Nodes (36): CI — 타입체크 & 빌드, code:block1 (Browser ──► Next.js (App Hosting) ──► Firebase Functions v2 ), code:bash (# 스크립트로 배포 (타입체크 + 빌드 + 배포 자동화)), code:block11 (push / PR → Install → Typecheck → Build), code:block12 (push(main) → CI 통과 → Deploy to Firebase App Hosting), code:block2 (문서 입력 → normalize → extract → semantic-chunk → embed → index), code:block3 (saas-of-funqa/), code:bash (# 저장소 클론) (+28 more)
+Nodes (37): CI — 타입체크 & 빌드, code:block1 (Browser ──► Next.js (App Hosting) ──► Firebase Functions v2 ), code:bash (# 스크립트로 배포 (타입체크 + 빌드 + 배포 자동화)), code:block11 (push / PR → Install → Typecheck → Build), code:block12 (push(main) → CI 통과 → Deploy to Firebase App Hosting), code:block2 (문서 입력 → normalize → extract → semantic-chunk → embed → index), code:block3 (saas-of-funqa/), code:bash (# 저장소 클론) (+29 more)
 
 ### Community 50 - "Community 50"
-Cohesion: 0.24
-Nodes (8): db(), getFirebaseApp(), deleteProviderKey(), getProviderKey(), ProviderKeyRecord, saveProviderKey(), db(), getFirebaseApp()
+Cohesion: 0.32
+Nodes (5): deleteProviderKey(), getProviderKey(), ProviderKeyRecord, saveProviderKey(), registerProviderKeyRoute()
 
 ### Community 51 - "Community 51"
-Cohesion: 0.18
-Nodes (9): runSearchFlow(), searchFlow, SearchFlowInputSchema, SearchFlowOutputSchema, createRateLimiter(), RateLimitConfig, registerSearchRoute(), searchRateLimit (+1 more)
+Cohesion: 0.15
+Nodes (10): ingestFlow, IngestFlowInputSchema, IngestFlowOutputSchema, runIngestFlow(), createRateLimiter(), RateLimitConfig, ingestRateLimit, registerIngestRoute() (+2 more)
 
 ### Community 52 - "Community 52"
-Cohesion: 0.12
-Nodes (16): answerFlow, AnswerRequestSchema, AnswerResponseSchema, buildEvidenceFallback(), Citation, CitationSchema, evidenceOnlyResult(), runAnswerFlow() (+8 more)
+Cohesion: 0.13
+Nodes (15): answerFlow, AnswerRequestSchema, AnswerResponseSchema, buildEvidenceFallback(), Citation, CitationSchema, evidenceOnlyResult(), runAnswerFlow() (+7 more)
 
 ### Community 53 - "Community 53"
 Cohesion: 0.06
 Nodes (35): dependencies, firebase, firebase-admin, devDependencies, esbuild, @google/design.md, tsx, typescript (+27 more)
 
 ### Community 59 - "Community 59"
-Cohesion: 0.07
-Nodes (84): ConsensusEvalAgreementClassSchema, ConsensusEvalCase, ConsensusEvalCaseExecutionRecord, ConsensusEvalCaseExecutionRecordSchema, ConsensusEvalCaseSchema, ConsensusEvalCaseVerdictSchema, ConsensusEvalDataset, ConsensusEvalDatasetManifest (+76 more)
+Cohesion: 0.06
+Nodes (89): ConsensusEvalAgreementClassSchema, ConsensusEvalCase, ConsensusEvalCaseExecutionRecord, ConsensusEvalCaseExecutionRecordSchema, ConsensusEvalCaseSchema, ConsensusEvalCaseVerdictSchema, ConsensusEvalDataset, ConsensusEvalDatasetManifest (+81 more)
 
 ### Community 60 - "Community 60"
 Cohesion: 0.06
@@ -830,7 +849,7 @@ Nodes (35): dependencies, firebase, firebase-admin, devDependencies, esbuild, @g
 
 ### Community 62 - "Community 62"
 Cohesion: 0.09
-Nodes (38): analysisCollection(), buildAnalysisSummary(), createServer(), db2(), deleteProviderKey(), get(), getCreatorAnalysisRecord(), getFirebaseApp() (+30 more)
+Nodes (37): analysisCollection(), buildAnalysisSummary(), createServer(), db2(), deleteProviderKey(), get(), getCreatorAnalysisRecord(), getFirebaseApp() (+29 more)
 
 ### Community 66 - "Community 66"
 Cohesion: 0.06
@@ -1126,7 +1145,7 @@ Nodes (22): code:block1 (Which PDF file should I convert? Please provide the fil
 
 ### Community 140 - "Community 140"
 Cohesion: 0.10
-Nodes (25): answerFromChunks(), buildKeywords(), buildLocalHydeDocument(), buildRerankPrompt(), buildSummary(), buildTitle(), chunkDocument(), extractDocument() (+17 more)
+Nodes (27): answerFromChunks(), buildCacheKey(), buildConsensusScaffold(), buildLocalHydeDocument(), buildRerankPrompt(), cosineSimilarity(), cragFilter(), evaluateChunkCorrectness() (+19 more)
 
 ### Community 141 - "Community 141"
 Cohesion: 0.09
@@ -1257,8 +1276,8 @@ Cohesion: 0.11
 Nodes (17): Alembic Migration, Backend Agent - Code Snippets, code:python (from fastapi import APIRouter, Depends, HTTPException, statu), code:python (from datetime import datetime), code:python (import uuid), code:python (from fastapi import Depends, HTTPException, status), code:python (from passlib.context import CryptContext), code:python (from sqlalchemy import select, func) (+9 more)
 
 ### Community 173 - "Community 173"
-Cohesion: 0.14
-Nodes (15): code:md (## Data Standards), code:md (## Model Choice), DB Agent - Examples, Example 1: Relational Order Management, Example 1: Security Audit, Example 2: NoSQL Activity Feed, Example 2: Performance Review, Example 2: web route (auto-detected) (+7 more)
+Cohesion: 0.13
+Nodes (16): code:md (## Data Standards), code:md (## Model Choice), DB Agent - Examples, Example 1: Relational Order Management, Example 1: Security Audit, Example 2: NoSQL Activity Feed, Example 2: Performance Review, Example 2: web route (auto-detected) (+8 more)
 
 ### Community 174 - "Community 174"
 Cohesion: 0.11
@@ -1313,8 +1332,8 @@ Cohesion: 0.19
 Nodes (15): dependencies, dotenv, express, firebase-admin, firebase-functions, genkit, @genkit-ai/google-genai, zod (+7 more)
 
 ### Community 187 - "Community 187"
-Cohesion: 0.13
-Nodes (19): HomePage(), HomePageProps, TRENDING_CARDS, DocsPage(), DocsPageProps, getDictionary(), LocaleParams, Messages (+11 more)
+Cohesion: 0.10
+Nodes (24): getDictionary(), Locale, LocaleParams, Messages, normalizeConfidence(), SearchCategory, SearchConfidence, SearchResult (+16 more)
 
 ### Community 188 - "Community 188"
 Cohesion: 0.12
@@ -1338,7 +1357,7 @@ Nodes (14): API Key Model, Authorization Consequences, FunQA Consensus RAG V1, L
 
 ### Community 193 - "Community 193"
 Cohesion: 0.11
-Nodes (31): analysisCollection(), clear(), clearRagStore(), db(), getFirebaseApp(), getLatestPublishedGuide(), getRagStats(), getRagStore() (+23 more)
+Nodes (24): buildCacheKey(), buildConsensusScaffold(), buildKeywords(), buildSummary(), buildTitle(), chunkDocument(), extractDocument(), ingestAdditionalDocuments() (+16 more)
 
 ### Community 194 - "Community 194"
 Cohesion: 0.12
@@ -1493,8 +1512,8 @@ Cohesion: 0.15
 Nodes (12): Anti-Patterns, `cn()` Utility, code:tsx (// Good), code:tsx (import { cn } from "@/lib/utils";), code:tsx (className="focus:outline-none focus-visible:ring-2 focus-vis), code:css (@import "tailwindcss";), Core Rules, Focus States (A11y) (+4 more)
 
 ### Community 232 - "Community 232"
-Cohesion: 0.14
-Nodes (13): Cursor, Cursor vs Windsurf: 시장 신호, Example 1 — pain intent: VS Code performance pain points (last 30 days), Example 3 — competitor intent: Cursor vs Windsurf market signal, Head-to-Head, Porter's 5 Forces, Quick Verdict, Sample briefs (+5 more)
+Cohesion: 0.15
+Nodes (12): Cursor, Cursor vs Windsurf: 시장 신호, Example 1 — pain intent: VS Code performance pain points (last 30 days), Head-to-Head, Porter's 5 Forces, Quick Verdict, Sample briefs, SWOT (+4 more)
 
 ### Community 233 - "Community 233"
 Cohesion: 0.15
@@ -1697,8 +1716,8 @@ Cohesion: 0.18
 Nodes (10): Common Patterns, Dependencies, External, For AI Agents, Internal, Key Files, packages/db, Purpose (+2 more)
 
 ### Community 284 - "Community 284"
-Cohesion: 0.29
-Nodes (7): buildKeywords(), buildSummary(), buildTitle(), chunkDocument(), extractDocument(), lexicalScore(), tokenize()
+Cohesion: 0.11
+Nodes (17): 10. 하위 폴더 레퍼런스 (research-materials/), 11. 학술 레퍼런스 (논문형식), 1. 한 줄 요약, 2. 핵심 문제의식, 3. 패키지 구성, 4. 논문별 정리, 5. 공통 플랫폼 매핑 (saas-of-funqa), 6. 일정 (12주) (+9 more)
 
 ### Community 285 - "Community 285"
 Cohesion: 0.18
@@ -1737,8 +1756,8 @@ Cohesion: 0.20
 Nodes (9): 1. Naturalness (10 pts), 2. Accuracy (10 pts), 3. Register Consistency (10 pts), 4. Terminology (10 pts), 5. Technical Integrity (10 pts), Criteria, Quick Self-Check (for translator), Scoring Guide (+1 more)
 
 ### Community 294 - "Community 294"
-Cohesion: 0.20
-Nodes (9): Cancellation, Error code mapping, Execution Protocol, Idempotency, Step 0: Mode detection, Step 4: Clarification (asset and transcribe modes only), Step 5: Length and duration guard, Step 6: Model availability (optional) (+1 more)
+Cohesion: 0.12
+Nodes (16): Cancellation, code:bash (bun run "{skill_resources}/flatten-tables.ts" "{output_path}), code:json ({), code:json ({), Error code mapping, Execution Protocol, Idempotency, Manifest shape (+8 more)
 
 ### Community 295 - "Community 295"
 Cohesion: 0.20
@@ -1845,8 +1864,8 @@ Cohesion: 0.22
 Nodes (8): Dependency Deadlock, Existing Codebase Unknown, General Principles, PM Agent - Error Recovery Playbook, Requirements Ambiguous, Serena Memory / Quota Issues, Task Decomposition Too Granular or Too Coarse, Tech Stack Decision Unclear
 
 ### Community 323 - "Community 323"
-Cohesion: 0.22
-Nodes (8): Evaluator Posture: SKEPTICAL by default, QA Agent - Execution Protocol, Step 1: Scope, Step 2.5: Runtime Verification, Step 2: Audit, Step 3: Report, Stubbed Feature Detection, When to Execute
+Cohesion: 0.15
+Nodes (12): code:bash (bunx kordoc@latest "{input_path}" --format json), Evaluator Posture: SKEPTICAL by default, JSON output (structured intermediate form), QA Agent - Execution Protocol, Recording Results, Step 1: Scope, Step 2.5: Runtime Verification, Step 2: Audit (+4 more)
 
 ### Community 324 - "Community 324"
 Cohesion: 0.22
@@ -2201,12 +2220,12 @@ Cohesion: 0.29
 Nodes (6): apps, Common Patterns, For AI Agents, Purpose, Subdirectories, Working In This Directory
 
 ### Community 412 - "Community 412"
-Cohesion: 0.29
-Nodes (3): AuthError, FunQAError, PipelineError
+Cohesion: 0.10
+Nodes (13): AuthenticatedRequest, requireAdmin(), requireAuth(), registerAdminRoute(), isValidType(), registerWikiRoute(), VALID_TYPES, main() (+5 more)
 
 ### Community 413 - "Community 413"
-Cohesion: 0.57
-Nodes (4): api, app, GEMINI_API_KEY, SECRET_ENCRYPTION_KEY
+Cohesion: 0.05
+Nodes (38): 10. Result placeholders, 1. Introduction, 2. Research questions, 3.1 NPC dialogue and interactive narrative, 3.2 LLM-driven game characters, 3.3 Knowledge graphs and symbolic control, 3.4 Neuro-symbolic reasoning, 3. Related work outline (+30 more)
 
 ### Community 414 - "Community 414"
 Cohesion: 0.33
@@ -2456,6 +2475,10 @@ Nodes (5): For AI Agents, Key Files, packages/db/src/storage, Purpose, Working I
 Cohesion: 0.33
 Nodes (5): For AI Agents, Key Files, packages/ui, Purpose, Working In This Directory
 
+### Community 476 - "Community 476"
+Cohesion: 0.15
+Nodes (5): LruCache, buildCacheKey(), CacheEntry, LruCache, ragQueryCache
+
 ### Community 477 - "Community 477"
 Cohesion: 0.33
 Nodes (6): API Security, Authentication & Authorization, Data Protection, Dependencies, Input Validation & Injection, Security Checklist
@@ -2471,6 +2494,10 @@ Nodes (6): Example Queries, Intent 7: `route`, Keywords, Primary Route, Secondar
 ### Community 480 - "Community 480"
 Cohesion: 0.33
 Nodes (6): 7.1 Argo CD, 7.2 Flux (CNCF Graduated), 7.3 Self-Observability of the GitOps Stack, 7. GitOps Integration, code:block19 (observability-root (App of Apps)), code:yaml (apiVersion: kustomize.toolkit.fluxcd.io/v1)
+
+### Community 481 - "Community 481"
+Cohesion: 0.06
+Nodes (33): 10. Result placeholders, 1. Introduction, 2. Research questions, 3.1 NPC dialogue and interactive narrative, 3.2 LLM-driven game characters, 3.3 Knowledge graphs and symbolic control, 3.4 Neuro-symbolic reasoning, 3. Related work outline (+25 more)
 
 ### Community 482 - "Community 482"
 Cohesion: 0.33
@@ -2517,8 +2544,8 @@ Cohesion: 0.40
 Nodes (4): Detection Order (use first match), Dispatch Rule, Vendor Detection Protocol, Vendor-Specific Spawn Methods
 
 ### Community 493 - "Community 493"
-Cohesion: 0.40
-Nodes (4): Load Classes, Shared Resource Layout, Structure, Workflow-Owned Resources
+Cohesion: 0.33
+Nodes (5): 2026 UI/UX & Asset Policies, Load Classes, Shared Resource Layout, Structure, Workflow-Owned Resources
 
 ### Community 498 - "Community 498"
 Cohesion: 0.40
@@ -2697,40 +2724,108 @@ Cohesion: 0.18
 Nodes (10): 1. ADSI Incubation Metadata, 2. Problem Statement (User-Facing), 3. Core Solution, 4. User Stories & Acceptance Criteria, 5. Strict Interface & Data Schema Design, 6. Implementation Decisions (Target Modules), 7. Strict Out-of-Scope & Autonomy Boundary (Non-Goals), 8. Triage Granularity Guidelines (For to-issues) (+2 more)
 
 ### Community 652 - "Community 652"
-Cohesion: 0.17
-Nodes (16): clear(), clearRagStore(), ingestAdditionalDocuments(), ingestDocuments(), invalidate(), pipelineDocuments(), readStore(), resetFirestoreRag() (+8 more)
+Cohesion: 0.15
+Nodes (19): clear(), clearRagStore(), deleteTenantRagArtifacts(), getRagStats(), getRagStore(), ingestAdditionalDocuments(), ingestDocuments(), invalidate() (+11 more)
 
 ### Community 653 - "Community 653"
-Cohesion: 0.27
-Nodes (8): ConsensusResult, cragFilter(), CragFilterResult, evaluateChunkCorrectness(), evaluateConsensus(), result, topChunks, EmbeddedChunk
+Cohesion: 0.05
+Nodes (36): 10. Result placeholders, 1. Introduction, 2. Research questions, 3.1 Interactive fiction generation, 3.2 Neuro-symbolic narrative systems, 3.3 LLMs as neuro-symbolic reasoners, 3.4 Procedural content generation and quest constraints, 3. Related work outline (+28 more)
 
 ### Community 654 - "Community 654"
-Cohesion: 0.18
-Nodes (11): code:bash (bunx kordoc@latest "{input_path}" --format json), code:bash (bun run "{skill_resources}/flatten-tables.ts" "{output_path}), code:json ({), code:json ({), JSON output (structured intermediate form), Manifest shape, Recording Results, Step 2.5: Post-process kordoc output (default) (+3 more)
+Cohesion: 0.06
+Nodes (32): 10. Result placeholders, 1. Introduction, 2. Research questions, 3.1 Interactive fiction generation, 3.2 Neuro-symbolic narrative systems, 3.3 LLMs as neuro-symbolic reasoners, 3.4 Procedural content generation and quest constraints, 3. Related work outline (+24 more)
 
 ### Community 655 - "Community 655"
+Cohesion: 0.20
+Nodes (9): artifactIntegrityStatus, cases, datasetPath, decisionId, generatedAt, releaseState, replayabilityStatus, reportVersion (+1 more)
+
+### Community 656 - "Community 656"
+Cohesion: 0.07
+Nodes (26): Constraints, Core method, Core method, Decisions, Entities, Executive goal, Google Drive / Docs handoff plan, Graphify-style knowledge packet (+18 more)
+
+### Community 657 - "Community 657"
+Cohesion: 0.07
+Nodes (26): Constraints, Core method, Core method, Decisions, Entities, Executive goal, Google Drive / Docs handoff plan, Graphify-style knowledge packet (+18 more)
+
+### Community 658 - "Community 658"
+Cohesion: 0.10
+Nodes (18): CohereRerankResponse, CohereRerankResult, mmrDeduplicate(), rerankWithCohere(), base, c1, c2, c3 (+10 more)
+
+### Community 659 - "Community 659"
+Cohesion: 0.40
+Nodes (4): Evidence, Notes, Ralph Page Route Fix - 2026-06-29, Summary
+
+### Community 660 - "Community 660"
+Cohesion: 0.20
+Nodes (9): Artifact contents, Chosen mode, Idea Routing Brief, Immediate next steps, Recommended artifact, Route-outs, Scope, What matters most now (+1 more)
+
+### Community 661 - "Community 661"
 Cohesion: 0.22
-Nodes (10): buildCacheKey(), buildConsensusScaffold(), cosineSimilarity(), cragFilter(), evaluateChunkCorrectness(), evaluateConsensus(), recordRequest(), rerankWithCohere() (+2 more)
+Nodes (8): Framing, Option A: Add `/ralph` as a dedicated page, Option B: Redirect `/ralph` to `/rag-lab`, Option C: Add Ralph content inside Docs only, Options Reviewed, Ralph Page Route Review 2026-05-22, Recommendation, Validation
+
+### Community 662 - "Community 662"
+Cohesion: 0.25
+Nodes (7): Core thesis, Evaluation dimensions, Graphify-style model, Neuro-symbolic Game Storytelling, Paper directions, Related pages, Relevance to saas-of-funqa
+
+### Community 663 - "Community 663"
+Cohesion: 0.21
+Nodes (11): base64Url(), { filePath, folderId }, { files, folderId }, getAccessToken(), getServiceAccount(), MIME_BY_EXT, mimeForFile(), parseArgs() (+3 more)
+
+### Community 664 - "Community 664"
+Cohesion: 0.25
+Nodes (8): runOptions, buildSha, liveEmbeddings, preRerankK, queryTransformMode, rerankMode, tenantIdOverride, topK
+
+### Community 665 - "Community 665"
+Cohesion: 0.29
+Nodes (6): Acceptance Criteria, Decision, Non-Goals, Problem, Ralph Page Fix 2026-05-22, Scope
+
+### Community 666 - "Community 666"
+Cohesion: 0.40
+Nodes (4): files, sources, status, targetFolder
+
+### Community 667 - "Community 667"
+Cohesion: 0.50
+Nodes (3): Calibration Status, Custom Matchers, Deepsec Information
+
+### Community 670 - "Community 670"
+Cohesion: 0.13
+Nodes (14): 10. 하위 폴더 레퍼런스 (research-materials/), 11. 학술 레퍼런스 (논문형식), 1. 한 줄 요약, 2. 핵심 문제의식, 3. 패키지 구성, 4. 논문별 정리, 5. 공통 플랫폼 매핑 (saas-of-funqa), 6. 일정 (12주) (+6 more)
+
+### Community 671 - "Community 671"
+Cohesion: 0.29
+Nodes (6): Aggregate Agreement, Comparison Handles, Consensus Release Gate Report, Failure Reasons, Metadata, Per-Case Results
+
+### Community 672 - "Community 672"
+Cohesion: 0.40
+Nodes (5): auditChecks, blockedCaseEvidenceOnlyVerification, buildSnapshotConsistency, packetHashVerification, replayabilityFromRetainedArtifacts
+
+### Community 673 - "Community 673"
+Cohesion: 0.50
+Nodes (4): outcomeConformance, answerModeMatchRate, decisionMatchRate, mean
+
+### Community 674 - "Community 674"
+Cohesion: 0.50
+Nodes (4): rawAgreement, max, mean, min
 
 ## Knowledge Gaps
-- **4330 isolated node(s):** `target`, `module`, `moduleResolution`, `lib`, `allowJs` (+4325 more)
+- **4627 isolated node(s):** `target`, `module`, `moduleResolution`, `lib`, `allowJs` (+4622 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **65 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `getDictionary()` connect `Community 187` to `Community 9`, `Community 23`, `Community 6`, `Community 15`?**
+- **Why does `PDF Conversion - Execution Protocol` connect `Community 208` to `Community 128`, `Community 218`, `Community 149`?**
   _High betweenness centrality (0.000) - this node is a cross-community bridge._
-- **Why does `On Error` connect `Community 149` to `Community 323`, `Community 209`, `Community 442`, `Community 155`, `Community 446`, `Community 255`?**
+- **Why does `Debug Agent - Execution Protocol` connect `Community 442` to `Community 149`?**
   _High betweenness centrality (0.000) - this node is a cross-community bridge._
-- **Why does `Observability Agent - Execution Protocol` connect `Community 209` to `Community 149`, `Community 255`?**
+- **Why does `MANDATORY RULES: VIOLATION IS FORBIDDEN` connect `Community 409` to `Community 484`, `Community 394`, `Community 440`, `Community 346`, `Community 285`?**
   _High betweenness centrality (0.000) - this node is a cross-community bridge._
 - **What connects `target`, `module`, `moduleResolution` to the rest of the system?**
-  _4343 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _4640 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.10333333333333333 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.08677098150782361 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.1354679802955665 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.11942959001782531 - nodes in this community are weakly interconnected._
 - **Should `Community 3` be split into smaller, more focused modules?**
-  _Cohesion score 0.09696969696969697 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.11378353376503238 - nodes in this community are weakly interconnected._

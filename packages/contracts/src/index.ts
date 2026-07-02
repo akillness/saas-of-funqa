@@ -286,12 +286,6 @@ export type LatestMonetizationGuideResponse = z.infer<
   typeof LatestMonetizationGuideResponseSchema
 >;
 
-export const SearchRequestSchema = z.object({
-  tenantId: z.string().min(1),
-  query: z.string().min(3),
-  topK: z.number().int().min(1).max(10).optional()
-});
-export type SearchRequest = z.infer<typeof SearchRequestSchema>;
 
 export const QueryTransformModeSchema = z.enum([
   "none",
@@ -304,8 +298,18 @@ export const SearchAnswerModeSchema = z.enum(["consensus-backed-answer", "eviden
 export const ConsensusGateReasonSchema = z.enum([
   "graph-retrieval-pending",
   "insufficient-evidence",
-  "conflicting-evidence"
+  "conflicting-evidence",
+  "consensus-reached",
+  "insufficient-confidence"
 ]);
+
+export const SearchRequestSchema = z.object({
+  tenantId: z.string().min(1),
+  query: z.string().min(3),
+  topK: z.number().int().min(1).max(10).optional(),
+  rerankMode: RerankModeSchema.optional()
+});
+export type SearchRequest = z.infer<typeof SearchRequestSchema>;
 
 export const SearchResultSchema = z.object({
   id: z.string(),
@@ -331,6 +335,7 @@ export const SearchResponseSchema = z.object({
     reason: ConsensusGateReasonSchema,
     explanation: z.string()
   }),
+  cragConfidence: z.enum(["high", "medium", "low"]),
   results: z.array(SearchResultSchema),
   citations: z.array(
     z.object({
@@ -341,16 +346,13 @@ export const SearchResponseSchema = z.object({
       snippet: z.string()
     })
   ),
-  graphPaths: z.array(
-    z.object({
-      id: z.string(),
-      summary: z.string(),
-      relationCount: z.number().int().nonnegative()
-    })
-  ),
+  // Pairs of chunk ids ([chunkA, chunkB]) that form a cross-document
+  // keyword-overlap relation — the raw graph evidence behind the consensus gate.
+  graphPaths: z.array(z.array(z.string())),
   totalDocuments: z.number().int(),
   totalChunks: z.number().int()
 });
+export type SearchResponse = z.infer<typeof SearchResponseSchema>;
 
 export const RagInspectRequestSchema = z.object({
   tenantId: z.string().min(1).default("demo"),
@@ -714,10 +716,16 @@ export const HealthResponseSchema = z.object({
 
 export const MonitoringSummarySchema = z.object({
   dailyCostUsd: z.number(),
+  dailySavingsUsd: z.number(),
   activeUsers: z.number().int(),
   successRate: z.number(),
-  p95LatencyMs: z.number()
+  p95LatencyMs: z.number(),
+  totalRequestsDay: z.number().int(),
+  totalRequestsWeek: z.number().int(),
+  totalTokensDay: z.number().int(),
+  totalSavingsDay: z.number().int()
 });
+export type MonitoringSummary = z.infer<typeof MonitoringSummarySchema>;
 
 export const RagStatsResponseSchema = z.object({
   documentCount: z.number().int(),
@@ -725,3 +733,19 @@ export const RagStatsResponseSchema = z.object({
   updatedAt: z.string().nullable(),
   tenants: z.array(z.string())
 });
+
+export const LlmWikiEntryTypeSchema = z.enum(["source", "entity", "concept", "query", "report"]);
+
+export const LlmWikiEntrySchema = z.object({
+  id: z.string().min(1),
+  type: LlmWikiEntryTypeSchema,
+  title: z.string().min(1),
+  content: z.string(),
+  tags: z.array(z.string()),
+  path: z.string(),
+  sourceFile: z.string(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  createdBy: z.string()
+});
+export type LlmWikiEntry = z.infer<typeof LlmWikiEntrySchema>;

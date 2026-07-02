@@ -1,3 +1,5 @@
+import type { SearchResponse } from "@funqa/contracts";
+
 const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
 const MAX_CACHE_SIZE = 100;
 
@@ -49,7 +51,7 @@ class LruCache<T> {
   }
 }
 
-export const ragQueryCache = new LruCache<Record<string, unknown>>();
+export const ragQueryCache = new LruCache<SearchResponse>();
 
 export function buildCacheKey(tenantId: string, query: string, topK: number): string {
   // Use \x00 as separator — cannot appear in valid tenant IDs or queries

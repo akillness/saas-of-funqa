@@ -4,24 +4,20 @@ import {
   queryLlmWikiByType,
   saveLlmWikiEntry,
 } from "@funqa/db";
-import type { LlmWikiEntry, LlmWikiEntryType } from "@funqa/db";
+import { LlmWikiEntrySchema, LlmWikiEntryTypeSchema } from "@funqa/contracts";
+import { requireAuth } from "../middleware/auth.middleware.js";
 import type { Express } from "express";
 
-const VALID_TYPES: LlmWikiEntryType[] = ["source", "entity", "concept", "query", "report"];
-
-function isValidType(type: string): type is LlmWikiEntryType {
-  return (VALID_TYPES as string[]).includes(type);
-}
-
+const VALID_TYPES = LlmWikiEntryTypeSchema.options;
 export function registerWikiRoute(app: Express) {
   app.get("/v1/wiki/:type", async (req, res, next) => {
     try {
-      const { type } = req.params;
-      if (!isValidType(type)) {
+      const typeResult = LlmWikiEntryTypeSchema.safeParse(req.params.type);
+      if (!typeResult.success) {
         res.status(400).json({ error: "validation_error", message: `Invalid type. Must be one of: ${VALID_TYPES.join(", ")}` });
         return;
       }
-      const entries = await queryLlmWikiByType(type);
+      const entries = await queryLlmWikiByType(typeResult.data);
       res.status(200).json(entries);
     } catch (error) {
       next(error);
@@ -30,12 +26,17 @@ export function registerWikiRoute(app: Express) {
 
   app.get("/v1/wiki/:type/:id", async (req, res, next) => {
     try {
-      const { type, id } = req.params;
-      if (!isValidType(type)) {
+      const typeResult = LlmWikiEntryTypeSchema.safeParse(req.params.type);
+      if (!typeResult.success) {
         res.status(400).json({ error: "validation_error", message: `Invalid type. Must be one of: ${VALID_TYPES.join(", ")}` });
         return;
       }
-      const entry = await getLlmWikiEntry(id, type);
+      const id = req.params.id;
+      if (typeof id !== "string") {
+        res.status(400).json({ error: "validation_error", message: "id must be a string" });
+        return;
+      }
+      const entry = await getLlmWikiEntry(id, typeResult.data);
       if (!entry) {
         res.status(404).json({ error: "not_found", message: "Wiki entry not found" });
         return;
@@ -46,13 +47,9 @@ export function registerWikiRoute(app: Express) {
     }
   });
 
-  app.post("/v1/wiki", async (req, res, next) => {
+  app.post("/v1/wiki", requireAuth, async (req, res, next) => {
     try {
-      const entry = req.body as LlmWikiEntry;
-      if (!entry || !isValidType(entry.type)) {
-        res.status(400).json({ error: "validation_error", message: `Invalid type. Must be one of: ${VALID_TYPES.join(", ")}` });
-        return;
-      }
+      const entry = LlmWikiEntrySchema.parse(req.body);
       await saveLlmWikiEntry(entry);
       res.status(201).json(entry);
     } catch (error) {
@@ -60,14 +57,19 @@ export function registerWikiRoute(app: Express) {
     }
   });
 
-  app.delete("/v1/wiki/:type/:id", async (req, res, next) => {
+  app.delete("/v1/wiki/:type/:id", requireAuth, async (req, res, next) => {
     try {
-      const { type, id } = req.params;
-      if (!isValidType(type)) {
+      const typeResult = LlmWikiEntryTypeSchema.safeParse(req.params.type);
+      if (!typeResult.success) {
         res.status(400).json({ error: "validation_error", message: `Invalid type. Must be one of: ${VALID_TYPES.join(", ")}` });
         return;
       }
-      await deleteLlmWikiEntry(id, type);
+      const id = req.params.id;
+      if (typeof id !== "string") {
+        res.status(400).json({ error: "validation_error", message: "id must be a string" });
+        return;
+      }
+      await deleteLlmWikiEntry(id, typeResult.data);
       res.status(204).send();
     } catch (error) {
       next(error);

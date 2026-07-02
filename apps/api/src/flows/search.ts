@@ -30,6 +30,7 @@ const SearchFlowOutputSchema = z.object({
     ]),
     explanation: z.string()
   }),
+  cragConfidence: z.enum(["high", "medium", "low"]),
   results: z.array(
     z.object({
       id: z.string(),
@@ -48,13 +49,9 @@ const SearchFlowOutputSchema = z.object({
       snippet: z.string()
     })
   ),
-  graphPaths: z.array(
-    z.object({
-      id: z.string(),
-      summary: z.string(),
-      relationCount: z.number().int().nonnegative()
-    })
-  ),
+  // NOTE: keep in sync with SearchResponseSchema in @funqa/contracts
+  // (genkit bundles zod3; contracts uses zod4 — schemas can't be shared directly).
+  graphPaths: z.array(z.array(z.string())),
   totalDocuments: z.number().int(),
   totalChunks: z.number().int()
 });

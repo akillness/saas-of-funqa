@@ -1,20 +1,17 @@
 "use client";
 
+import { getDictionary } from "../../lib/i18n";
 import { useSearchStream } from "../../hooks/use-search-stream";
 
 type Props = {
   query: string;
   tenantId?: string;
   topK?: number;
+  locale?: string;
 };
 
-const STAGE_LABELS: Record<string, string> = {
-  retrieving: "Retrieving relevant chunks…",
-  reranking: "Re-ranking results…",
-  generating: "Generating answer…"
-};
-
-export function SearchStreamPanel({ query, tenantId = "demo", topK = 5 }: Props) {
+export function SearchStreamPanel({ query, tenantId = "demo", topK = 5, locale = "en" }: Props) {
+  const t = getDictionary(locale === "ko" ? "ko" : "en");
   const { stage, chunks, answer, citations, latencyMs, loading, error } =
     useSearchStream(query, tenantId, topK);
 
@@ -27,7 +24,7 @@ export function SearchStreamPanel({ query, tenantId = "demo", topK = 5 }: Props)
       <div className="answer-accordion">
         <div className="answer-accordion-header">
           <h3>
-            {loading ? "Streaming search…" : error ? "Stream error" : "Live answer"}
+            {loading ? t.search.stream.streaming : error ? t.search.stream.error : t.search.stream.liveAnswer}
           </h3>
           {latencyMs !== null && (
             <span className="pill pill-subtle">{latencyMs} ms</span>
@@ -46,7 +43,7 @@ export function SearchStreamPanel({ query, tenantId = "demo", topK = 5 }: Props)
                 } as React.CSSProperties
               }
             />
-            <span className="microcopy">{STAGE_LABELS[stage] ?? stage}</span>
+            <span className="microcopy">{(t.search.stream.stages as Record<string, string>)[stage] ?? stage}</span>
           </div>
         )}
 
@@ -54,7 +51,7 @@ export function SearchStreamPanel({ query, tenantId = "demo", topK = 5 }: Props)
 
         {chunks.length > 0 && (
           <div className="stack-sm">
-            <p className="field-label">Top chunks ({chunks.length})</p>
+            <p className="field-label">{t.search.stream.topChunks} ({chunks.length})</p>
             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
               {chunks.slice(0, 3).map((chunk) => (
                 <li key={chunk.id} className="citation-item">
@@ -74,7 +71,7 @@ export function SearchStreamPanel({ query, tenantId = "demo", topK = 5 }: Props)
 
         {citations.length > 0 && (
           <div className="stack-sm" style={{ marginTop: "0.75rem" }}>
-            <p className="field-label">Citations ({citations.length})</p>
+            <p className="field-label">{t.search.stream.citations} ({citations.length})</p>
             <ul className="citation-list" style={{ listStyle: "none", padding: 0 }}>
               {citations.slice(0, 4).map((citation, i) => (
                 <li key={citation.chunkId} className="citation-item">

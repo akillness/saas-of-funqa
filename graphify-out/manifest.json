@@ -25,13 +25,13 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/deploy.sh": {
-    "mtime": 1776957935.8622901,
-    "ast_hash": "cc9d97ed8ff64fc1b8f5c2119d08b0b4",
+    "mtime": 1782721315.0214958,
+    "ast_hash": "2f2ad7156c6525008b135314bcef2d57",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/vitest.config.ts": {
-    "mtime": 1779373716.2751713,
-    "ast_hash": "81a00ca45e17e817c607724c580a6ed0",
+    "mtime": 1782719748.6631145,
+    "ast_hash": "62d9eef3ca63e7a5a660561663baac9c",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/eslint.config.mjs": {
@@ -1335,8 +1335,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/contracts/src/index.ts": {
-    "mtime": 1776899949.0004797,
-    "ast_hash": "9afc93d309998c3b4de0b2e33f2a573c",
+    "mtime": 1782999728.4260092,
+    "ast_hash": "64708700a48fc307daa26c7a2885fc86",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/package.json": {
@@ -1440,8 +1440,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/db/src/repositories/rag-store.repository.ts": {
-    "mtime": 1776906123.2645943,
-    "ast_hash": "0bfcfe1701afe83eb172bf8fa841b40a",
+    "mtime": 1782999409.1013572,
+    "ast_hash": "ca2879bddc98dfb71fe6c388750741ff",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/db/src/repositories/llm-wiki.repository.ts": {
@@ -1460,8 +1460,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/functions/lib/index.js": {
-    "mtime": 1779380500.6813464,
-    "ast_hash": "73357bbfb46e0785186460a0834d45f8",
+    "mtime": 1782999795.3386374,
+    "ast_hash": "fd973a06e40559a4a0222164e2d0bddd",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/data/evals/fixtures/funqa-consensus-eval-fixture.json": {
@@ -1525,13 +1525,13 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/app/layout.tsx": {
-    "mtime": 1778168987.9122612,
-    "ast_hash": "f6c82881af3e757e29247d98914104b2",
+    "mtime": 1782702821.281572,
+    "ast_hash": "a35f248816b674112055014de641ee4c",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/app/page.tsx": {
-    "mtime": 1778511087.5548825,
-    "ast_hash": "d4ae69dd45f7b2d6b2436cc9f6717174",
+    "mtime": 1779381744.1504216,
+    "ast_hash": "903094eb1d5d39ed38fad19e8df3fc00",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/app/theme-toggle.tsx": {
@@ -1550,8 +1550,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/app/search/search-stream-panel.tsx": {
-    "mtime": 1778287481.6180995,
-    "ast_hash": "3e49cc761dee507f9446b56760fe3b24",
+    "mtime": 1782999600.0884452,
+    "ast_hash": "cfd325bb7e6853e394e355bb33e15124",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/app/search/search-results.tsx": {
@@ -1560,8 +1560,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/app/search/page.tsx": {
-    "mtime": 1778511877.507404,
-    "ast_hash": "3f989b9d230609e3d30677895acc7d9a",
+    "mtime": 1782999605.4071112,
+    "ast_hash": "49f775bddac92ff8cc32811663cd96b8",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/app/rag-lab/page.tsx": {
@@ -1595,8 +1595,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/components/menu-icons.tsx": {
-    "mtime": 1777036258.3007648,
-    "ast_hash": "f6992b0f578b401cb3b7980b118b2146",
+    "mtime": 1779447126.8540814,
+    "ast_hash": "a63ef3e5bc3c249d89e6493d5012d979",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/components/auth-provider.tsx": {
@@ -1635,13 +1635,13 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/lib/messages/en.ts": {
-    "mtime": 1778511360.5402172,
-    "ast_hash": "162da398a9adf1c67a515c38ddbe28a3",
+    "mtime": 1782999581.4704614,
+    "ast_hash": "9257f6c8f9d32607f15bc43d83fc3468",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/lib/messages/ko.ts": {
-    "mtime": 1778512187.545697,
-    "ast_hash": "bb65fb6a31d9080e9d936c9ac3c068e7",
+    "mtime": 1782999583.7696724,
+    "ast_hash": "714f45e78cc32a52aa50d9dba257e825",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/package.json": {
@@ -1680,8 +1680,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/server.ts": {
-    "mtime": 1778081392.2830982,
-    "ast_hash": "61cc8acb1443777c1f21e3082801a529",
+    "mtime": 1782999524.662047,
+    "ast_hash": "19e2ef7566f78b0df15d6ae60f291c73",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/functions.ts": {
@@ -1690,8 +1690,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/middleware/auth.middleware.ts": {
-    "mtime": 1778081923.1145995,
-    "ast_hash": "377bad27b60adadbe4d7bc306f78cf5d",
+    "mtime": 1782999464.823794,
+    "ast_hash": "64382aacb2712c3af9eb7cdb6fc53ad8",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/middleware/rate-limit.ts": {
@@ -1715,8 +1715,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/flows/search.ts": {
-    "mtime": 1779377147.3597705,
-    "ast_hash": "83653ea1124f73cc8f6c7b750562919a",
+    "mtime": 1782999733.7483985,
+    "ast_hash": "cbe8d183b7963c9ffcbcfc5b8699ddb1",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/flows/answer.ts": {
@@ -1735,8 +1735,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/routes/admin.route.ts": {
-    "mtime": 1776091691.3663623,
-    "ast_hash": "84fe703a96a2056161453fe901d0fcf4",
+    "mtime": 1782999485.156482,
+    "ast_hash": "be9d3741fe5725b76052096a9e77c229",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/routes/provider-keys.route.ts": {
@@ -1770,13 +1770,13 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/routes/rag.route.ts": {
-    "mtime": 1776179537.0264487,
-    "ast_hash": "88af9028b0c0ff81e823653445ee0cc0",
+    "mtime": 1782999538.5930479,
+    "ast_hash": "9c7cb54846afb0c74aba010c1fed3476",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/routes/wiki.route.ts": {
-    "mtime": 1778080580.6119988,
-    "ast_hash": "173dbce598b37d88c81c2074e797b5ee",
+    "mtime": 1782999721.2861886,
+    "ast_hash": "4f8ff5784585c2d9fe3baf3ef915385b",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/routes/monetization-sources.route.ts": {
@@ -1790,13 +1790,13 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/services/rag-cache.service.ts": {
-    "mtime": 1778287778.0624557,
-    "ast_hash": "91213d199d7e5cafa8ad76a68af024a3",
+    "mtime": 1782999346.677426,
+    "ast_hash": "5190aefc8560d1304f018f08893ab2e4",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/services/rag.service.ts": {
-    "mtime": 1779380399.0180213,
-    "ast_hash": "cc59a993fa82d7de8210804e56ab335e",
+    "mtime": 1782999773.3973567,
+    "ast_hash": "62db11617f8d61431af02e6ca80f059d",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/services/monitoring.service.ts": {
@@ -1805,8 +1805,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/services/rag-optimization.service.ts": {
-    "mtime": 1779378933.4382765,
-    "ast_hash": "bc8bacbb7a6ac203b8dcfb2960211b3d",
+    "mtime": 1782997688.4095333,
+    "ast_hash": "395aadbd78850bae39aad8362a46126b",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/ARCHITECTURE.md": {
@@ -1815,8 +1815,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/README.md": {
-    "mtime": 1778511457.3140128,
-    "ast_hash": "d9f8224c1bcc483100020180edc09c17",
+    "mtime": 1782720150.2687964,
+    "ast_hash": "f8c2c9126b78954cac5b4aa5538f1442",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/plan.md": {
@@ -1870,8 +1870,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/.serena/project.yml": {
-    "mtime": 1779371850.6386874,
-    "ast_hash": "7499458f5ce05cc1ef12ab08a4980cb1",
+    "mtime": 1782995545.6248198,
+    "ast_hash": "e57728510acba6150c6659810d299164",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/.serena/memories/session-ralph.md": {
@@ -2835,8 +2835,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/_shared/README.md": {
-    "mtime": 1779368782.0355904,
-    "ast_hash": "e5228ee11fdb59bf2d4eac413ab59579",
+    "mtime": 1779381809.5898225,
+    "ast_hash": "e05f9e3bc91d9dd60804e589517116f5",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/_shared/core/prompt-structure.md": {
@@ -4240,13 +4240,13 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/log.md": {
-    "mtime": 1779374624.2591898,
-    "ast_hash": "3f58645acd728557e15a668614c49a5e",
+    "mtime": 1782621031.1787713,
+    "ast_hash": "8a1d2050987fe6556f94b8e5ea6fb7e1",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/index.md": {
-    "mtime": 1779377661.778378,
-    "ast_hash": "75650295f919fa237605a62191350559",
+    "mtime": 1782621469.400473,
+    "ast_hash": "1ca63c4d09a3c4699a0c4acc482d14ce",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/AGENTS.md": {
@@ -4870,8 +4870,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/app/icon.png": {
-    "mtime": 1777193501.9159594,
-    "ast_hash": "a85c6fbda198fe8ff61008f5f3a4313a",
+    "mtime": 1779381728.1170895,
+    "ast_hash": "b3bc43370515e5e3164c4a98ce3833c4",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/app/apple-icon.png": {
@@ -4932,6 +4932,386 @@
   "/Users/jangyoung/.superset/projects/saas-of-funqa/.ouroboros/seeds/seed_funqa_graph_rag.yaml": {
     "mtime": 1779380602.0661066,
     "ast_hash": "3d3ef06bdf852520e14298d01839be1a",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/exports/google-drive/neuro-symbolic-game-story-2026/manifest.json": {
+    "mtime": 1782622036.0075955,
+    "ast_hash": "e20c0235b1e1d6e7e69fb83e5abf80e6",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/scripts/upload-google-drive-package.mjs": {
+    "mtime": 1782650487.1857486,
+    "ast_hash": "92b00cf9d51729ceefc35b0664d17ccd",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/core/tokenize.test.ts": {
+    "mtime": 1782003832.4501443,
+    "ast_hash": "ace5b85e73583a886c20f1eabc0d4c60",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/core/similarity.test.ts": {
+    "mtime": 1782004405.2679203,
+    "ast_hash": "a394424bc0399d274941f462c69eefff",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/core/hash.test.ts": {
+    "mtime": 1782004405.2679214,
+    "ast_hash": "905d06e866c82586127c5a5413481bb3",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/pipelines/query-transform.test.ts": {
+    "mtime": 1782003918.4128413,
+    "ast_hash": "ade498d1cc2b172762e7e510ef81bfd5",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/pipelines/ingest.test.ts": {
+    "mtime": 1782005827.000222,
+    "ast_hash": "0e6eefa489a2d2b5560e08811f674ca5",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/pipelines/extract.test.ts": {
+    "mtime": 1782004405.267921,
+    "ast_hash": "cd871808b67f66bb176f11fab8a0ec87",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/pipelines/normalize.test.ts": {
+    "mtime": 1782003841.2507334,
+    "ast_hash": "e55ad171893b344d0981eca7850a8031",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/pipelines/chunk.test.ts": {
+    "mtime": 1782003859.159406,
+    "ast_hash": "d59ef146ed00d69cb33f2b824b4abe6d",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/pipelines/retrieve.test.ts": {
+    "mtime": 1782004455.3753798,
+    "ast_hash": "fa1b2373aab9e33aa03ca2c61ccb8c7e",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/pipelines/rerank.test.ts": {
+    "mtime": 1782005871.2216144,
+    "ast_hash": "7556fb84574fee7d7f12deb9cbb9610c",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/pipelines/answer.test.ts": {
+    "mtime": 1782004455.37538,
+    "ast_hash": "a5b5862340ba548cdcec4c73f88286b5",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/pipelines/embed.test.ts": {
+    "mtime": 1782004455.3753836,
+    "ast_hash": "0c0e1eba632963008cfe9038905b0af3",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/app/ralph/page.tsx": {
+    "mtime": 1782719780.5797906,
+    "ast_hash": "39bd814abb61889443cd8e89b29be9a1",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/services/rag-cache.service.test.ts": {
+    "mtime": 1782999740.6122336,
+    "ast_hash": "a7c440a29b18e52c1ba1ac0cf2968ec9",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.jeo/artifacts/tool-results/1782003179093-fykpaj-bash.txt": {
+    "mtime": 1782003179.0937405,
+    "ast_hash": "1d387733be35db2611c2af7179626a41",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.jeo/artifacts/tool-results/1782005701210-gkfiv3-bash.txt": {
+    "mtime": 1782005701.2107186,
+    "ast_hash": "48256c53d524494abc9224e975fe0bc3",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.jeo/artifacts/tool-results/1782003772086-9xv85r-bash.txt": {
+    "mtime": 1782003772.0867925,
+    "ast_hash": "27f82a8bf7a51f4d62fc2210a733e27e",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.jeo/artifacts/tool-results/1782621069597-u49ljl-bash.txt": {
+    "mtime": 1782621069.597694,
+    "ast_hash": "9f0bced8d9a62a1c6d809a683dbea0b9",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.jeo/artifacts/tool-results/1782621256717-dwrq4a-bash.txt": {
+    "mtime": 1782621256.7176845,
+    "ast_hash": "38592740a687dc2463e324bd0525295f",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.jeo/artifacts/tool-results/1782621251197-0b15vo-bash.txt": {
+    "mtime": 1782621251.1984315,
+    "ast_hash": "56f96609cc5462489dc63656211f8415",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.jeo/artifacts/tool-results/1782005678575-yl2mjo-bash.txt": {
+    "mtime": 1782005678.575792,
+    "ast_hash": "9838fb235a48aed67cc687230ea28c78",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.jeo/artifacts/tool-results/1782003749938-dbvsnn-bash.txt": {
+    "mtime": 1782003749.9390724,
+    "ast_hash": "51e8709d4f317aae59bc9b7edfa26bf9",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.jeo/artifacts/tool-results/1782621344344-ndlfgv-bash.txt": {
+    "mtime": 1782621344.3453233,
+    "ast_hash": "108c3e69daaa2fc9b410e800a610f65d",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.jeo/artifacts/tool-results/1782620065209-o3cpf9-bash.txt": {
+    "mtime": 1782620065.2095299,
+    "ast_hash": "9b91c79edbb87ddbbfb979894df43af1",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.serena/memories/session-coordinate.md": {
+    "mtime": 1779632589.226846,
+    "ast_hash": "90cdb23870d82a93f6d7290a08c98449",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/recap/SKILL.md": {
+    "mtime": 1780099988.6312222,
+    "ast_hash": "d3309501ebb5ca87f1df0bd8bd24837f",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/design/SKILL.md": {
+    "mtime": 1780099988.6337976,
+    "ast_hash": "be7e0efc55228a49a5bf2cf3cbdcec6f",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/tools/SKILL.md": {
+    "mtime": 1780099988.6371307,
+    "ast_hash": "a4749f5744e8a6626e5230d2a6ecdde9",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/brainstorm/SKILL.md": {
+    "mtime": 1780099988.638698,
+    "ast_hash": "624855bda565557d459e88907604afe4",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/plan/SKILL.md": {
+    "mtime": 1780099988.6407816,
+    "ast_hash": "22e02a53b5b8d0945729cad0db900834",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/ultrawork/SKILL.md": {
+    "mtime": 1780099988.6468651,
+    "ast_hash": "b2d0c48797a66ed58cfadcb89be5a209",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/pdf/SKILL.md": {
+    "mtime": 1780099988.6478953,
+    "ast_hash": "63c7f63e824827975fe85087130743e2",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/ralph/SKILL.md": {
+    "mtime": 1780099988.6489727,
+    "ast_hash": "4ef5e199b66fcc5412cefcbdba9c6a6c",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/docs/SKILL.md": {
+    "mtime": 1780099988.6500342,
+    "ast_hash": "8e67791bbbe913c95c5e89ab370f44ec",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/deepinit/SKILL.md": {
+    "mtime": 1780099988.6516683,
+    "ast_hash": "b8d8038068ee06ad15ad3fe3cecdbf21",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/architecture/SKILL.md": {
+    "mtime": 1780099988.6548233,
+    "ast_hash": "4cb4e10f897dc1fb5b7b6992727d5e19",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/review/SKILL.md": {
+    "mtime": 1780099988.6552308,
+    "ast_hash": "d4c9538ad27953d7643940de57ea76d5",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/work/SKILL.md": {
+    "mtime": 1780099988.6556818,
+    "ast_hash": "86384d39ba445b64b178e658c4a6e23e",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/deepsec/SKILL.md": {
+    "mtime": 1780099988.6564815,
+    "ast_hash": "c4c3894c4028d8ce95355cec8d8ee436",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/scm/SKILL.md": {
+    "mtime": 1780099988.657524,
+    "ast_hash": "43d935e99c23dad867ce7ba56b1b4005",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/orchestrate/SKILL.md": {
+    "mtime": 1780099988.659116,
+    "ast_hash": "5e0f400d7cf29cdd2b1ae37ea186cd64",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/stack-set/SKILL.md": {
+    "mtime": 1780099988.6619666,
+    "ast_hash": "b525a61aec5ccec8f36db3770a9ebf7e",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/debug/SKILL.md": {
+    "mtime": 1780099988.6630642,
+    "ast_hash": "57a50bc40b08224f3544acbc91539fe0",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.ouroboros/seeds/seed_ralph_page_fix_20260522.yaml": {
+    "mtime": 1779447082.4652214,
+    "ast_hash": "c81009cb64a545200be798b2ae9d68e4",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/docs/spec/ralph-page-fix-2026-05-22.md": {
+    "mtime": 1779447082.52052,
+    "ast_hash": "06649479fc8a028f93a5de645a061e42",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/docs/architecture/ralph-page-route-review-2026-05-22.md": {
+    "mtime": 1779447082.5725899,
+    "ast_hash": "fd0fc088d06e542fb88bbc52e66fb520",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/exports/google-drive/neuro-symbolic-game-story-2026/README-upload.md": {
+    "mtime": 1782622036.0074117,
+    "ast_hash": "823f661011c346ea823a6948014f2729",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/exports/google-drive/neuro-symbolic-game-story-2026/sources-md/01-neuro-symbolic-game-story-research-plan-2026.md": {
+    "mtime": 1782652284.1982937,
+    "ast_hash": "2f4e84ae5977badbc2864d72baa932f8",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/exports/google-drive/neuro-symbolic-game-story-2026/sources-md/02-paper-a-constraint-audited-interactive-fiction-worlds.md": {
+    "mtime": 1782652118.132104,
+    "ast_hash": "7be5fb9572b844d96b9f3f6a1af9d2af",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/exports/google-drive/neuro-symbolic-game-story-2026/sources-md/03-paper-b-kg-grounded-rpg-npc-dialogue.md": {
+    "mtime": 1782652226.898788,
+    "ast_hash": "f4049633cc49217aff73d88d19263e1e",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/wiki/concepts/concept-ui-ux-2026.md": {
+    "mtime": 1779381615.616836,
+    "ast_hash": "17919dfbe35dd42c4ab8854a7ffa14ef",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/wiki/concepts/neuro-symbolic-game-storytelling.md": {
+    "mtime": 1782620482.567852,
+    "ast_hash": "aea6e67815c38b2c0c7f5f702d446f8a",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/wiki/reports/paper-draft-kg-grounded-rpg-dialogue-2026-06-28.md": {
+    "mtime": 1782620961.5691664,
+    "ast_hash": "12a73797e7f1f9d1c729629f4f69ed8f",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/wiki/reports/paper-draft-ivie-style-validated-game-story-generation-2026-06-28.md": {
+    "mtime": 1782620714.564624,
+    "ast_hash": "00034994695b07c16ca5c2359ec978ab",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/wiki/reports/neuro-symbolic-game-story-research-plan-2026-06-28.md": {
+    "mtime": 1782620349.2574093,
+    "ast_hash": "fd653a55f166458411854ffe589a1cf0",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.deepsec/INFO.md": {
+    "mtime": 1779452647.2675707,
+    "ast_hash": "176c2fd557416d25f2276c5f66eb7851",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/wiki/sources/neuro-symbolic-game-story-research-request-2026-06-28.md": {
+    "mtime": 1782620155.553739,
+    "ast_hash": "88120356f99e42564cacfc5432788798",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/raw/sources/2026-06-28-neuro-symbolic-game-story-research-request.md": {
+    "mtime": 1782620419.0629203,
+    "ast_hash": "74c80658b65ac491f768b4ff5ac0bfd9",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/public/assets/hero-bg.png": {
+    "mtime": 1779381807.5739548,
+    "ast_hash": "840e4fd571fe0a8174b61f3d5cda256f",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.jeo/artifacts/tool-results/1782699713914-i5fj0j-bash.txt": {
+    "mtime": 1782699713.915178,
+    "ast_hash": "aad8e386d280422142bfda7cd4d1620b",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.jeo/artifacts/tool-results/1782651913459-mjdrjv-bash.txt": {
+    "mtime": 1782651913.4599786,
+    "ast_hash": "1e71a982bb0340f9ccd5de76d91775cf",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.jeo/artifacts/tool-results/1782652200485-o66kdz-edit.txt": {
+    "mtime": 1782652200.4873693,
+    "ast_hash": "736cf0bd80eb5edfddeee7a009ca16a0",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.ouroboros/seeds/seed_ralph_page_fix_20260522_v2.yaml": {
+    "mtime": 1782702548.939747,
+    "ast_hash": "cd806be5ea9e5e397a1509d62ca8f088",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/exports/google-drive/neuro-symbolic-game-story-2026/00-\ud68c\uc758\ub85d-\uc694\uc57d-neuro-symbolic-game-story-2026.md": {
+    "mtime": 1782652360.0189703,
+    "ast_hash": "09864bb207a39324935bc1888f4d6c78",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/exports/google-drive/neuro-symbolic-game-story-2026/weekly-2026-06-28-neuro-symbolic-game-story.md": {
+    "mtime": 1782699552.4297066,
+    "ast_hash": "129297f9b03a888d44b2a08a1be556c9",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/app/ralph/page.test.tsx": {
+    "mtime": 1782720144.3391495,
+    "ast_hash": "8bbff712a0be2d84b18741814d6d28c3",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/lib/messages/ralph.test.ts": {
+    "mtime": 1782719748.7975366,
+    "ast_hash": "bfcef806c45f670b2561ce22898855a8",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/ouroboros_help_wide.txt": {
+    "mtime": 1782719407.392766,
+    "ast_hash": "68f59db43901cc7da41afb3cfa5a197b",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/ouroboros_help.txt": {
+    "mtime": 1782719374.6631591,
+    "ast_hash": "2fc3c70766317f8378811deba6a7c261",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/ouroboros_auto_help_wide.txt": {
+    "mtime": 1782719572.6428437,
+    "ast_hash": "3b7731eb46de74031073ae4fbad2af41",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/wiki/reports/ralph-page-route-fix-2026-06-29.md": {
+    "mtime": 1782720182.2048833,
+    "ast_hash": "61247a27f967b017ccf4a14407a75d6a",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/wiki/reports/funqa-consensus-release-gate-local-dev.json": {
+    "mtime": 1782999832.967927,
+    "ast_hash": "6ff5118da1164731b4079919ba487260",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.jeo/artifacts/tool-results/1782721255937-vqebnq-bash.txt": {
+    "mtime": 1782721255.9376209,
+    "ast_hash": "e09aa3fded52cd606ee3d2838facb3bb",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/wiki/reports/funqa-consensus-release-gate-local-dev.md": {
+    "mtime": 1782999832.9708548,
+    "ast_hash": "1f7836baf4acd24f21d1ecf2b504424b",
     "semantic_hash": ""
   }
 }

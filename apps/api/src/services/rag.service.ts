@@ -6,10 +6,11 @@ import {
   rerankWithCohere,
   type EmbeddedChunk,
   type RawDocument,
-  type RetrievedChunk
+  type RetrievedChunk,
+  type RerankMode
 } from "@funqa/ai";
-import { getRagStore, resetRagStore, saveRagArtifacts, upsertRagArtifacts } from "@funqa/db";
-import type { IngestRequest, SearchRequest } from "@funqa/contracts";
+import { getRagStore, resetRagStore, saveRagArtifacts, upsertRagArtifacts, deleteTenantRagArtifacts } from "@funqa/db";
+import type { IngestRequest, SearchRequest, SearchResponse } from "@funqa/contracts";
 import { config } from "../config.js";
 import { db } from "../firebase.js";
 import {
@@ -21,9 +22,10 @@ import {
   upsertFirestoreRagArtifacts
 } from "../repositories/firestore-rag-store.repository.js";
 import { runAnswerFlow } from "../flows/answer.js";
+import { FunQAError } from "../errors.js";
 import { buildCacheKey, ragQueryCache } from "./rag-cache.service.js";
 import { recordRequest } from "./monitoring.service.js";
-import { runOptimizedPipeline } from "./rag-optimization.service.js";
+import { runOptimizedPipeline, type OptimizedPipelineResult } from "./rag-optimization.service.js";
 
 const useFirestore = config.ragStorePath === "firestore";
 
@@ -174,13 +176,13 @@ export async function ingestAdditionalDocuments(input: IngestRequest) {
   };
 }
 
-export async function searchDocuments(input: SearchRequest) {
+export async function searchDocuments(input: SearchRequest): Promise<SearchResponse> {
   const topK = input.topK ?? config.searchTopK;
   const cacheKey = buildCacheKey(input.tenantId, input.query, topK);
   const cached = ragQueryCache.get(cacheKey);
   if (cached !== undefined) {
-    // Cache stores already-shaped API payloads.
-    return cached as any;
+    recordRequest(0, 0, false, 0);
+    return cached;
   }
 
   const {
@@ -191,8 +193,8 @@ export async function searchDocuments(input: SearchRequest) {
   } = await loadTenantArtifacts(input.tenantId);
 
   const start = Date.now();
-  const rerankModeUsed = (input as any).rerankMode ?? "heuristic";
-  let pipeline: Awaited<ReturnType<typeof runOptimizedPipeline>>;
+  const rerankModeUsed: RerankMode = input.rerankMode ?? "heuristic";
+  let pipeline: OptimizedPipelineResult;
   try {
     pipeline = await runOptimizedPipeline({
       tenantId: input.tenantId,
@@ -222,9 +224,16 @@ export async function searchDocuments(input: SearchRequest) {
     ? cragFilter(input.query, finalReranked, pipeline.queryVector)
     : { kept: finalReranked, filtered: [], confidence: "low" as const };
 
-  const topRerankScore = (pipeline.reranked[0]?.rerankScore ?? 0);
+  const topRerankScore = pipeline.reranked[0]?.rerankScore ?? 0;
+  
+  // Optimize lookup: O(1) key check rather than nested O(N) array scans
+  const documentById: Record<string, typeof pipeline.extracted[number]> = {};
+  for (const doc of pipeline.extracted) {
+    documentById[doc.id] = doc;
+  }
+
   const results = crag.kept.map((chunk, index) => {
-    const matchedDocument = pipeline.extracted.find((document) => document.id === chunk.documentId);
+    const matchedDocument = documentById[chunk.documentId];
     const rerankScore = (chunk as typeof pipeline.reranked[0]).rerankScore ?? 0;
     return {
       id: chunk.id,
@@ -282,10 +291,10 @@ export async function searchDocuments(input: SearchRequest) {
     query: input.query,
     answer,
     answerMode,
-    retrievalMode: "graph-core" as const,
+    retrievalMode: "graph-core",
     embeddingModel: resolveChunkEmbeddingPath(pipeline.chunks),
-    queryTransformMode: "rewrite-local" as const,
-    rerankMode: rerankModeUsed as any,
+    queryTransformMode: "rewrite-local",
+    rerankMode: rerankModeUsed,
     consensus,
     cragConfidence: crag.confidence,
     results,
@@ -293,9 +302,9 @@ export async function searchDocuments(input: SearchRequest) {
     graphPaths: consensusResult.graphPaths,
     totalDocuments,
     totalChunks
-  };
+  } satisfies SearchResponse;
 
-  ragQueryCache.set(cacheKey, searchResult as unknown as Record<string, unknown>);
+  ragQueryCache.set(cacheKey, searchResult);
   return searchResult;
 }
 
@@ -324,19 +333,22 @@ export async function getRagStats() {
 }
 
 export async function clearRagStore(tenantId?: string) {
-  if (tenantId) {
-    ragQueryCache.invalidate(tenantId);
-  } else {
-    ragQueryCache.clear();
-  }
-
-  if (useFirestore) {
-    if (tenantId) {
-      await resetFirestoreRag(tenantId);
+  if (!tenantId) {
+    if (useFirestore) {
+      throw new FunQAError("invalid_request", "tenantId is required to clear Firestore RAG store.");
     }
+    ragQueryCache.clear();
+    resetRagStore(config.ragStorePath);
     return getRagStats();
   }
 
-  resetRagStore(config.ragStorePath);
+  ragQueryCache.invalidate(tenantId);
+
+  if (useFirestore) {
+    await resetFirestoreRag(tenantId);
+    return getRagStats();
+  }
+
+  deleteTenantRagArtifacts(config.ragStorePath, tenantId);
   return getRagStats();
 }

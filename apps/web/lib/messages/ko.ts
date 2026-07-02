@@ -201,6 +201,18 @@ export const koMessages = {
     citationsSuffix: "개 인용",
     bookmarkLabel: "북마크",
     liveFreshness: "실시간",
+    stream: {
+      streaming: "실시간 검색 중…",
+      error: "스트림 오류",
+      liveAnswer: "실시간 답변",
+      topChunks: "주요 청크",
+      citations: "출처 인용",
+      stages: {
+        retrieving: "관련 청크 검색 중…",
+        reranking: "결과 재순위화 중…",
+        generating: "답변 생성 중…"
+      }
+    },
     fallbackResults: [
       {
         title: "엘든 링",
