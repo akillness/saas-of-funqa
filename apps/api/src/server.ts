@@ -12,8 +12,8 @@ import { registerMonetizationGuidesRoute } from "./routes/monetization-guides.ro
 import { registerMonetizationSourcesRoute } from "./routes/monetization-sources.route.js";
 import { registerProviderKeyRoute } from "./routes/provider-keys.route.js";
 import { registerRagRoute } from "./routes/rag.route.js";
-import { registerSearchRoute } from "./routes/search.route.js";
 import { registerWikiRoute } from "./routes/wiki.route.js";
+import { registerSearchRoute } from "./routes/search.route.js";
 
 export function createServer() {
   const app = express();
@@ -53,6 +53,7 @@ export function createServer() {
 
   registerAdminRoute(app);
   registerProviderKeyRoute(app);
+  registerWikiRoute(app);
   registerIngestRoute(app);
   registerSearchRoute(app);
   registerCreatorIngestBundleRoute(app);
@@ -61,7 +62,6 @@ export function createServer() {
   registerMonetizationSourcesRoute(app);
   registerRagRoute(app);
   registerMonitoringRoute(app);
-  registerWikiRoute(app);
   app.use((error: unknown, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
     if (error instanceof z.ZodError) {
       res.status(400).json({

@@ -1,5 +1,4 @@
 import {
-  cragFilter,
   evaluateConsensus,
   getEmbeddingPath,
   pipelineDocuments,
@@ -64,6 +63,7 @@ function resolveConfidence(
 
   return "low";
 }
+
 
 
 async function loadTenantArtifacts(tenantId: string): Promise<{
@@ -220,9 +220,11 @@ export async function searchDocuments(input: SearchRequest): Promise<SearchRespo
     ? await rerankWithCohere(input.query, pipeline.reranked.slice(0, 50), cohereApiKey, 10)
     : pipeline.reranked;
 
-  const crag = pipeline.queryVector
-    ? cragFilter(input.query, finalReranked, pipeline.queryVector)
-    : { kept: finalReranked, filtered: [], confidence: "low" as const };
+  const crag = {
+    kept: finalReranked,
+    filtered: [] as RetrievedChunk[],
+    confidence: finalReranked.length >= topK ? ("high" as const) : finalReranked.length > 0 ? ("medium" as const) : ("low" as const)
+  };
 
   const topRerankScore = pipeline.reranked[0]?.rerankScore ?? 0;
   
@@ -253,7 +255,6 @@ export async function searchDocuments(input: SearchRequest): Promise<SearchRespo
       topK
     }
   );
-
   const consensus = {
     gate: "document-graph-consensus" as const,
     reached: consensusResult.reached,

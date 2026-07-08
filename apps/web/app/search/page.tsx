@@ -87,6 +87,13 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
           }
           return acc;
         }, []);
+
+  const graphPaths =
+    apiResponse?.graphPaths.map((path, index) => ({
+      id: `path-${index + 1}`,
+      summary: path.join(" → "),
+      relationCount: Math.max(path.length - 1, 0)
+    })) ?? [];
   return (
     <div style={{ background: 'var(--gm-bg-base)', minHeight: '100vh', padding: '2rem' }}>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 360px', gap: '2rem', alignItems: 'start', marginBottom: '2rem' }}>
@@ -127,7 +134,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         initialConsensusThreshold={apiResponse?.consensus.threshold ?? null}
         initialConsensusReason={apiResponse?.consensus.reason ?? null}
         initialConsensusGate={apiResponse?.consensus.gate ?? null}
-        initialGraphPaths={apiResponse?.graphPaths ?? []}
+        initialGraphPaths={graphPaths}
         initialEmbeddingModel={apiResponse?.embeddingModel ?? null}
         initialEvidenceByResult={sourceFilteredEvidence}
       />
