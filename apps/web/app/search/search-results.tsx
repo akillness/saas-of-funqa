@@ -32,8 +32,55 @@ type Props = {
   initialConsensusReached: boolean | null
   initialRetrievalMode: string | null
   totalChunks?: number
+  initialTotalDocuments?: number
   queryTransformMode?: string
   rerankMode?: string
+  initialConsensusAgreement: number | null
+  initialConsensusThreshold: number | null
+  initialConsensusReason: string | null
+  initialConsensusGate: string | null
+  initialGraphPaths: readonly SearchGraphPath[]
+  initialEmbeddingModel: string | null
+  initialEvidenceByResult: readonly SearchEvidence[][]
+}
+
+type SearchEvidence = {
+  citation: string
+  sourcePath: string
+  score: number
+  snippet: string
+}
+
+type SearchGraphPath = {
+  id: string
+  summary: string
+  relationCount: number
+}
+
+type SearchWowCopy = {
+  contractEyebrow: string
+  contractTitle: string
+  contractBody: string
+  queryStage: string
+  retrieveStage: string
+  rerankStage: string
+  consensusStage: string
+  graphStage: string
+  answerOpen: string
+  answerClosed: string
+  docsLabel: string
+  chunksLabel: string
+  graphLabel: string
+  agreementLabel: string
+  thresholdLabel: string
+  gateReasonLabel: string
+  graphPathsTitle: string
+  graphPathsBody: string
+  relationCountLabel: string
+  evidenceTitle: string
+  evidenceBody: string
+  evidenceScoreLabel: string
+  noEvidence: string
 }
 
 function confidenceLevel(confidence: SearchResult["confidence"]): "high" | "medium" | "low" {
@@ -70,6 +117,116 @@ function posterThumbClass(category: string): string {
   return "poster-thumb"
 }
 
+function formatMode(mode: string | null | undefined): string {
+  if (!mode) return "—"
+
+  const labels: Record<string, string> = {
+    none: "None",
+    "rewrite-local": "Rewrite local",
+    "hyde-local": "HyDE local",
+    "hyde-genkit": "HyDE via Genkit",
+    rrf: "RRF",
+    heuristic: "Heuristic rerank",
+    "genkit-score": "Genkit score",
+    "graph-core": "Graph core",
+    "document-graph-consensus": "Document graph consensus",
+    "consensus-backed-answer": "Consensus-backed answer",
+    "evidence-only": "Evidence-only"
+  }
+
+  return labels[mode] ?? mode.replace(/-/g, " ")
+}
+
+function formatPercent(value: number | null): string {
+  if (value === null) return "—"
+  return `${Math.round(value * 100)}%`
+}
+
+function getSearchWowCopy(locale: Locale): SearchWowCopy {
+  if (locale === "ko") {
+    return {
+      contractEyebrow: "실시간 검색 계약",
+      contractTitle: "이 검색이 검증되는 방식",
+      contractBody: "질의 변환, 그래프 검색, 리랭크, 합의 게이트를 한 번에 드러내 FunQA의 grounded workflow를 바로 보여줍니다.",
+      queryStage: "질의 변환",
+      retrieveStage: "그래프 검색",
+      rerankStage: "리랭크",
+      consensusStage: "합의 게이트",
+      graphStage: "그래프 경로",
+      answerOpen: "답변 열림",
+      answerClosed: "증거 전용",
+      docsLabel: "문서",
+      chunksLabel: "청크",
+      graphLabel: "그래프 경로",
+      agreementLabel: "합의율",
+      thresholdLabel: "통과 기준",
+      gateReasonLabel: "게이트 사유",
+      graphPathsTitle: "합의 그래프 경로",
+      graphPathsBody: "현재 검색에서 실제로 교차한 문서 관계를 요약합니다.",
+      relationCountLabel: "relations",
+      evidenceTitle: "선택한 결과의 근거 추적",
+      evidenceBody: "현재 선택한 카드와 동기화된 citation snippet 및 retrieval score입니다.",
+      evidenceScoreLabel: "score",
+      noEvidence: "아직 표시할 근거 snippet이 없습니다."
+    }
+  }
+
+  return {
+    contractEyebrow: "Live retrieval contract",
+    contractTitle: "How this search gets verified",
+    contractBody: "FunQA exposes query transform, graph retrieval, rerank, and the answer gate in one place so the workflow feels inspectable rather than magical.",
+    queryStage: "Query transform",
+    retrieveStage: "Graph retrieval",
+    rerankStage: "Rerank",
+    consensusStage: "Consensus gate",
+    graphStage: "Graph paths",
+    answerOpen: "Answer open",
+    answerClosed: "Evidence only",
+    docsLabel: "Documents",
+    chunksLabel: "Chunks",
+    graphLabel: "Graph paths",
+    agreementLabel: "Agreement",
+    thresholdLabel: "Threshold",
+    gateReasonLabel: "Gate reason",
+    graphPathsTitle: "Consensus graph paths",
+    graphPathsBody: "A compact summary of the document relationships this search crossed before answering.",
+    relationCountLabel: "relations",
+    evidenceTitle: "Evidence trail for the selected result",
+    evidenceBody: "Citation snippets and retrieval scores stay synced to the currently selected card.",
+    evidenceScoreLabel: "score",
+    noEvidence: "No evidence snippets are available for this result yet."
+  }
+}
+
+function PipelineCard({
+  label,
+  value,
+  meta
+}: {
+  label: string
+  value: string
+  meta: string
+}) {
+  return (
+    <article
+      className="panel"
+      style={{
+        display: "grid",
+        gap: "0.55rem",
+        padding: "1rem",
+        background: "rgba(255, 255, 255, 0.03)",
+        borderColor: "rgba(143, 228, 211, 0.16)"
+      }}
+    >
+      <span className="eyebrow" style={{ marginBottom: 0 }}>
+        {label}
+      </span>
+      <strong style={{ fontSize: "1rem", color: "var(--text)" }}>{value}</strong>
+      <span className="microcopy">{meta}</span>
+    </article>
+  )
+}
+
 export function SearchResults({
   locale,
   initialQuery,
@@ -81,10 +238,19 @@ export function SearchResults({
   initialConsensusReached,
   initialRetrievalMode,
   totalChunks,
+  initialTotalDocuments,
   queryTransformMode,
-  rerankMode
+  rerankMode,
+  initialConsensusAgreement,
+  initialConsensusThreshold,
+  initialConsensusReason,
+  initialConsensusGate,
+  initialGraphPaths,
+  initialEmbeddingModel,
+  initialEvidenceByResult
 }: Props) {
   const t = getDictionary(locale)
+  const wowCopy = getSearchWowCopy(locale)
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [isPending, startTransition] = useTransition()
   const [answerOpen, setAnswerOpen] = useState(true)
@@ -92,6 +258,7 @@ export function SearchResults({
   const [isPanelOpen, setIsPanelOpen] = useState(false)
 
   const activeResult = initialResults[selectedIndex] ?? null
+  const activeEvidence = initialEvidenceByResult[selectedIndex] ?? []
 
   function openPanel(result: SearchResult, index: number): void {
     setSelectedIndex(index)
@@ -260,24 +427,121 @@ export function SearchResults({
         </div>
       </section>
 
-      <section className="search-pipeline-strip panel" aria-label={t.search.pipelineAriaLabel}>
-        <div className="search-pipeline-copy">
-          <p className="eyebrow">{t.search.pipelineEyebrow}</p>
-          <h2>{t.search.pipelineTitle}</h2>
-          <p>
-            {initialQuery
-              ? `${t.search.optimizedIntentPrefix} ${queryTransformMode ?? "deterministic-local"}`
-              : t.search.pipelineBody}
-          </p>
+      <section
+        className="panel"
+        style={{
+          display: "grid",
+          gap: "1rem",
+          padding: "1.2rem"
+        }}
+        aria-label={t.search.pipelineAriaLabel}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "space-between",
+            gap: "1rem",
+            flexWrap: "wrap"
+          }}
+        >
+          <div style={{ display: "grid", gap: "0.45rem", maxWidth: "46rem" }}>
+            <p className="eyebrow">{wowCopy.contractEyebrow}</p>
+            <h2 style={{ fontSize: "clamp(1.35rem, 2vw, 1.8rem)" }}>{wowCopy.contractTitle}</h2>
+            <p style={{ margin: 0 }}>{wowCopy.contractBody}</p>
+          </div>
+          <div className="result-tags">
+            <span className="pill">
+              {initialAnswerMode === "consensus-backed-answer" ? wowCopy.answerOpen : wowCopy.answerClosed}
+            </span>
+            {initialEmbeddingModel ? <span className="pill pill-subtle">{initialEmbeddingModel}</span> : null}
+          </div>
         </div>
-        <div className="search-pipeline-grid">
-          {pipelineSteps.map((step) => (
-            <article className="search-pipeline-card" key={step.label}>
-              <span className="search-pipeline-label">{step.label}</span>
-              <strong>{step.value}</strong>
-            </article>
-          ))}
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(13rem, 1fr))",
+            gap: "0.9rem"
+          }}
+        >
+          <PipelineCard
+            label={wowCopy.queryStage}
+            value={formatMode(queryTransformMode)}
+            meta={initialQuery || t.search.resultsSummaryEmpty}
+          />
+          <PipelineCard
+            label={wowCopy.retrieveStage}
+            value={formatMode(initialRetrievalMode)}
+            meta={`${initialTotalDocuments ?? 0} ${wowCopy.docsLabel} · ${totalChunks ?? 0} ${wowCopy.chunksLabel}`}
+          />
+          <PipelineCard
+            label={wowCopy.rerankStage}
+            value={formatMode(rerankMode)}
+            meta={`${initialResults.length} ${t.search.resultForSuffix}${initialQuery ? ` "${initialQuery}"` : ""}`}
+          />
+          <PipelineCard
+            label={wowCopy.consensusStage}
+            value={initialConsensusReached ? wowCopy.answerOpen : wowCopy.answerClosed}
+            meta={`${wowCopy.agreementLabel} ${formatPercent(initialConsensusAgreement)} · ${wowCopy.thresholdLabel} ${formatPercent(initialConsensusThreshold)}`}
+          />
+          <PipelineCard
+            label={wowCopy.graphStage}
+            value={String(initialGraphPaths.length)}
+            meta={`${formatMode(initialConsensusGate)} · ${wowCopy.gateReasonLabel} ${formatMode(initialConsensusReason)}`}
+          />
         </div>
+
+        {initialGraphPaths.length > 0 ? (
+          <div
+            style={{
+              display: "grid",
+              gap: "0.85rem",
+              padding: "1rem",
+              borderRadius: "1rem",
+              border: "1px solid rgba(143, 228, 211, 0.14)",
+              background: "rgba(143, 228, 211, 0.05)"
+            }}
+          >
+            <div className="results-header">
+              <div>
+                <h3>{wowCopy.graphPathsTitle}</h3>
+                <p className="microcopy" style={{ marginTop: "0.35rem" }}>
+                  {wowCopy.graphPathsBody}
+                </p>
+              </div>
+              <span className="pill pill-subtle">
+                {initialGraphPaths.length} {wowCopy.graphLabel}
+              </span>
+            </div>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(14rem, 1fr))",
+                gap: "0.75rem"
+              }}
+            >
+              {initialGraphPaths.map((path) => (
+                <article
+                  key={path.id}
+                  className="panel"
+                  style={{
+                    display: "grid",
+                    gap: "0.6rem",
+                    padding: "0.95rem",
+                    background: "rgba(7, 17, 27, 0.34)"
+                  }}
+                >
+                  <div className="result-tags">
+                    <span className="pill pill-subtle">{path.id}</span>
+                    <span className="pill">{path.relationCount} {wowCopy.relationCountLabel}</span>
+                  </div>
+                  <p style={{ margin: 0, color: "var(--text)" }}>{path.summary}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        ) : null}
       </section>
 
       <div className="search-layout">
@@ -519,6 +783,38 @@ export function SearchResults({
                     </li>
                   ))}
                 </ul>
+              </div>
+              <div className="stack-sm">
+                <div>
+                  <p className="field-label">{wowCopy.evidenceTitle}</p>
+                  <p className="microcopy" style={{ marginTop: "0.35rem" }}>
+                    {wowCopy.evidenceBody}
+                  </p>
+                </div>
+                {activeEvidence.length > 0 ? (
+                  activeEvidence.map((evidence) => (
+                    <article
+                      key={evidence.citation}
+                      className="panel"
+                      style={{
+                        display: "grid",
+                        gap: "0.55rem",
+                        padding: "0.9rem",
+                        background: "rgba(255, 255, 255, 0.03)"
+                      }}
+                    >
+                      <div className="result-tags">
+                        <span className="pill pill-subtle">{evidence.sourcePath}</span>
+                        <span className="pill">
+                          {wowCopy.evidenceScoreLabel} {evidence.score.toFixed(2)}
+                        </span>
+                      </div>
+                      <p style={{ margin: 0 }}>{evidence.snippet}</p>
+                    </article>
+                  ))
+                ) : (
+                  <p className="microcopy">{wowCopy.noEvidence}</p>
+                )}
               </div>
               <button
                 className="primary-button"
