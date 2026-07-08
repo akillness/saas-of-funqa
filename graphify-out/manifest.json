@@ -174,1066 +174,6 @@
     "ast_hash": "f7845a468bf55ceb1637f36271012d71",
     "semantic_hash": ""
   },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/tsconfig.base.json": {
-    "mtime": 1778080251.5253491,
-    "ast_hash": "b545df1a28cef6e578a47cc95590d7b3",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/dev.sh": {
-    "mtime": 1778080251.4707115,
-    "ast_hash": "51608bc849859f324686dc8007e77f74",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/package.json": {
-    "mtime": 1778080251.4947968,
-    "ast_hash": "7bc23b9a131967c93688030e61ce6777",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/firebase.json": {
-    "mtime": 1778080251.4733617,
-    "ast_hash": "2553fe772db70d79ffb54008002d7e71",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/deploy.sh": {
-    "mtime": 1778080251.4705007,
-    "ast_hash": "cc9d97ed8ff64fc1b8f5c2119d08b0b4",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/infra/firebase/firestore.indexes.json": {
-    "mtime": 1778080251.474239,
-    "ast_hash": "baa65728364eaffc3399d9fe84bee2dc",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/reports/funqa-consensus-release-gate-baseline.json": {
-    "mtime": 1778080251.4799123,
-    "ast_hash": "17ea2d32b91083d0189a38c94656e228",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/scripts/smoke-rag.ts": {
-    "mtime": 1778080251.5248804,
-    "ast_hash": "0e3249a689b0ab6fc254264d71fb2f02",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/scripts/ingest-url.sh": {
-    "mtime": 1778080251.5229127,
-    "ast_hash": "3d46c8e3c49b5f478d0a4ec68d8aea75",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/scripts/build-functions.mjs": {
-    "mtime": 1778080251.5216608,
-    "ast_hash": "edac466d1152c480a71eab93b7ca4678",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/scripts/verify-post.ts": {
-    "mtime": 1778080251.525138,
-    "ast_hash": "4a362c5ddecec67555707666b8ec997e",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/scripts/build-functions-predeploy.sh": {
-    "mtime": 1778080251.5213244,
-    "ast_hash": "4d2626a12593fc81dace346e93091901",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/scripts/new-query-note.sh": {
-    "mtime": 1778080251.5234652,
-    "ast_hash": "cef689bb11b7851c2203f050ed9e8e77",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/scripts/setup-admin-user.ts": {
-    "mtime": 1778080251.5242398,
-    "ast_hash": "ec6250f0fc6abecc339cf5f7b7bae9ab",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/scripts/bootstrap-vault.sh": {
-    "mtime": 1778080251.5207427,
-    "ast_hash": "27bcbbf20c31ee5b55f6f755098fd365",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/scripts/smoke-functions.mjs": {
-    "mtime": 1778080251.524485,
-    "ast_hash": "d5fe4d1c045ac6bd1aaa0221c7249a3f",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/scripts/build-brand-assets.py": {
-    "mtime": 1778080251.521083,
-    "ast_hash": "ed2abb478e96671527d46b0e1f105931",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/scripts/lint-wiki.py": {
-    "mtime": 1778080251.523089,
-    "ast_hash": "cde6bcdf4389dd622d8a82ad2bbb6ab9",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/scripts/create-firestore-db.ts": {
-    "mtime": 1778080251.5220304,
-    "ast_hash": "39d29ade1c03ee8572a792a869951cbb",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/scripts/seed-demo-rag.ts": {
-    "mtime": 1778080251.524001,
-    "ast_hash": "c6b7045c4bf3d0f139b161de864a55a7",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/scripts/enable-firestore.ts": {
-    "mtime": 1778080251.5223675,
-    "ast_hash": "e010de17274b6039278702be07a51b54",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/scripts/run-consensus-eval.ts": {
-    "mtime": 1778080251.5237403,
-    "ast_hash": "2d58756a21608e1122f5dce6dcc16fb3",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/auth/package.json": {
-    "mtime": 1778080251.5161195,
-    "ast_hash": "11b38b58ca60c439289fa609a5c8649f",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/auth/src/index.ts": {
-    "mtime": 1778080251.5164278,
-    "ast_hash": "0ca3e3d842624af689071e57cdbee2c3",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/contracts/package.json": {
-    "mtime": 1778080251.516661,
-    "ast_hash": "927cb8fd383d598ff592b8e6a62512fa",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/contracts/src/index.ts": {
-    "mtime": 1778080251.5170014,
-    "ast_hash": "9afc93d309998c3b4de0b2e33f2a573c",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/ai/package.json": {
-    "mtime": 1778080251.496343,
-    "ast_hash": "993884d580e96788dbc656345075e3b7",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/ai/src/types.ts": {
-    "mtime": 1778080251.5138996,
-    "ast_hash": "90e6cf3d5af0e711036f8354a02411d1",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/ai/src/index.ts": {
-    "mtime": 1778080251.5009255,
-    "ast_hash": "d254d1823497d8d525a623c7b7b93dc7",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/ai/src/core/tokenize.ts": {
-    "mtime": 1778080251.500636,
-    "ast_hash": "b9ff18781b40c5d5a7bef11ac9a8c9a9",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/ai/src/core/hash.ts": {
-    "mtime": 1778080251.4967127,
-    "ast_hash": "9f0a50528afd207e7e9ca8c3d22fc3f4",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/ai/src/core/similarity.ts": {
-    "mtime": 1778080251.4970646,
-    "ast_hash": "ce48fd33522a9e56a1628f35ac20e041",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/ai/src/pipelines/extract.ts": {
-    "mtime": 1778080251.5092862,
-    "ast_hash": "c97361f9065e51e5e402157b91af81e0",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/ai/src/pipelines/query-transform.ts": {
-    "mtime": 1778080251.5101767,
-    "ast_hash": "acd650b76d32f5f8b4f2fbdcf6c57d7d",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/ai/src/pipelines/retrieve.ts": {
-    "mtime": 1778080251.5136182,
-    "ast_hash": "3478eda22de521975fafdd8f9a27f068",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/ai/src/pipelines/chunk.ts": {
-    "mtime": 1778080251.5060558,
-    "ast_hash": "da05df80d5160005f783fc4310d902d0",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/ai/src/pipelines/normalize.ts": {
-    "mtime": 1778080251.5097659,
-    "ast_hash": "30efde5050e5c5cea9189cfea3acf6d7",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/ai/src/pipelines/embed.ts": {
-    "mtime": 1778080251.5062525,
-    "ast_hash": "fd158694a3dbbc51effd3dc25f98fafa",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/ai/src/pipelines/answer.ts": {
-    "mtime": 1778080251.504887,
-    "ast_hash": "e570d68cd20878edf8aef95efad97d54",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/ai/src/pipelines/rerank.ts": {
-    "mtime": 1778080251.5133011,
-    "ast_hash": "225ffb2adfe007a0fa17d58c5d27a824",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/db/package.json": {
-    "mtime": 1778080251.517226,
-    "ast_hash": "abe0fe6e4a98876330ef974f7e7572a9",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/db/src/types.ts": {
-    "mtime": 1778080251.519585,
-    "ast_hash": "13c33eef59e514f8586ab4450435bd81",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/db/src/index.ts": {
-    "mtime": 1778080251.5175128,
-    "ast_hash": "af4957728a75ca4fa5f4108d733ec78b",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/db/src/repositories/rag-store.repository.ts": {
-    "mtime": 1778080251.5182316,
-    "ast_hash": "0bfcfe1701afe83eb172bf8fa841b40a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/db/src/repositories/llm-wiki.repository.ts": {
-    "mtime": 1778080302.495831,
-    "ast_hash": "80bde2c62cb97646dc6014d1bb641984",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/db/src/storage/file-store.ts": {
-    "mtime": 1778080251.5184622,
-    "ast_hash": "2cca103bf0c20f5d7355c7f348dae676",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/functions/package.json": {
-    "mtime": 1778080251.4738724,
-    "ast_hash": "0a0ebd172f366dd35c3d456c52aabb70",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/data/evals/fixtures/funqa-consensus-eval-fixture.json": {
-    "mtime": 1778080251.470082,
-    "ast_hash": "72c7e78f4e5be4bdefa436bdd398dc80",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/middleware.ts": {
-    "mtime": 1778080251.4588497,
-    "ast_hash": "edbc139e1eab5655d70ba6bcf454af79",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/next.config.mjs": {
-    "mtime": 1778080251.4595032,
-    "ast_hash": "99285e43cd9765085ecd995e6c93bf75",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/next-env.d.ts": {
-    "mtime": 1778080251.4591632,
-    "ast_hash": "a64595e6014adce3002d3bf762d2dbeb",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/package.json": {
-    "mtime": 1778080251.460204,
-    "ast_hash": "5453b6d12bd78ca0492286e2539a3976",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/global.d.ts": {
-    "mtime": 1778080251.456381,
-    "ast_hash": "fb8214c6467938c43691a41c63101314",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/tsconfig.json": {
-    "mtime": 1778080251.4671323,
-    "ast_hash": "898e661cf7ba36b7a03e41fbbde93a9b",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/app/firebase-analytics.tsx": {
-    "mtime": 1778080251.4449582,
-    "ast_hash": "0e6e804c9b9a021243e6d505f0fbd97a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/app/locale-switcher.tsx": {
-    "mtime": 1778080251.4482048,
-    "ast_hash": "14c5ac7b08c44a786968f88ad56f295d",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/app/layout.tsx": {
-    "mtime": 1778080251.447764,
-    "ast_hash": "3a507d869a4557bb5b07439d595d2518",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/app/page.tsx": {
-    "mtime": 1778080251.4514651,
-    "ast_hash": "50dda35bb844713c64749c0058a1958d",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/app/theme-toggle.tsx": {
-    "mtime": 1778080251.4526036,
-    "ast_hash": "fa60fbd390190fb4bdad6e8343ba37cc",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/app/admin/page.tsx": {
-    "mtime": 1778080251.4427025,
-    "ast_hash": "059cb8f768be16f0bc450113107d9369",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/app/docs/page.tsx": {
-    "mtime": 1778080251.4440303,
-    "ast_hash": "1b1fdcc9f47a75aeded195cf544a7ce0",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/app/search/search-results.tsx": {
-    "mtime": 1778080251.4523525,
-    "ast_hash": "42ed439edb8ab39b8dbd8d49025c4cc6",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/app/search/page.tsx": {
-    "mtime": 1778080251.4520783,
-    "ast_hash": "58ee94156f3e47a08b9dcc6ba216fecc",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/app/rag-lab/page.tsx": {
-    "mtime": 1778080251.4518104,
-    "ast_hash": "2c6a64ba14f786f2163492352ab50066",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/app/login/page.tsx": {
-    "mtime": 1778080251.4485285,
-    "ast_hash": "c03c94d7d188c87df5a42e7c32b9cb28",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/components/category-tab-bar.tsx": {
-    "mtime": 1778080251.4558516,
-    "ast_hash": "7dba66b8ce304aee586256053e5b1979",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/components/nav-auth.tsx": {
-    "mtime": 1778080251.456184,
-    "ast_hash": "71da41b2b2239dd8f721d8e1abbba8a5",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/components/menu-icons.tsx": {
-    "mtime": 1778080251.456013,
-    "ast_hash": "f6992b0f578b401cb3b7980b118b2146",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/components/auth-provider.tsx": {
-    "mtime": 1778080251.45561,
-    "ast_hash": "15ddf89bea7b57586ba34a43f4709b90",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/scripts/ensure-standalone-runtime.mjs": {
-    "mtime": 1778080251.4652283,
-    "ast_hash": "aefd349bf7417be72261b91a970cc546",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/lib/firebase-client.ts": {
-    "mtime": 1778080251.4566364,
-    "ast_hash": "bcb4ece49d8f31c599114ee8453b9a13",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/lib/funqa-api.ts": {
-    "mtime": 1778080251.4569411,
-    "ast_hash": "7a28f991a04c82952f4eca09bb9d5874",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/lib/i18n.ts": {
-    "mtime": 1778080251.4578588,
-    "ast_hash": "71a5b206016ff8df5a80f96984c05b3f",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/lib/i18n-server.ts": {
-    "mtime": 1778080251.4575384,
-    "ast_hash": "6bea24f39337ea2f7515b523ada9b625",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/lib/funqa-contracts.ts": {
-    "mtime": 1778080251.4571817,
-    "ast_hash": "133f7986b42ecafa7d5a31d244e3256c",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/lib/messages/en.ts": {
-    "mtime": 1778080251.458199,
-    "ast_hash": "591f3c9c976ab35c3f8a302f302e02a9",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/lib/messages/ko.ts": {
-    "mtime": 1778080251.458504,
-    "ast_hash": "cf9a4df6d04eff089b9a90a995874b1e",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/package.json": {
-    "mtime": 1778080251.434169,
-    "ast_hash": "c2bfddcad1c5cc5a74874eabfa32ded1",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/tsconfig.json": {
-    "mtime": 1778080251.4423058,
-    "ast_hash": "5a713b0a3bd7f862ab905f49a189273a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/genkit.ts": {
-    "mtime": 1778080251.4367886,
-    "ast_hash": "85920c8708bcc8ceca8d45e7bf74aa71",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/firebase.ts": {
-    "mtime": 1778080251.434665,
-    "ast_hash": "7ecd6e371f14801ad8cca53ea1dd6a00",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/index.ts": {
-    "mtime": 1778080251.437119,
-    "ast_hash": "0401846d1ea2bacd5dc858ee048d8094",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/config.ts": {
-    "mtime": 1778080251.434438,
-    "ast_hash": "841fcf6f873a9ac287b9b083500981cf",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/server.ts": {
-    "mtime": 1778080353.7067063,
-    "ast_hash": "fbf253f1eb24876121d2df69e53db91a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/functions.ts": {
-    "mtime": 1778080251.4364653,
-    "ast_hash": "fd7acde1894cbe07fa420b8a1b78c16e",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/repositories/creator-artifacts.repository.ts": {
-    "mtime": 1778080251.4374237,
-    "ast_hash": "39c716a5c6bdddd49773932b9901e047",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/repositories/provider-key.repository.ts": {
-    "mtime": 1778080310.321479,
-    "ast_hash": "b1ab733634695b5950eaaa1b87227aa1",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/repositories/firestore-rag-store.repository.ts": {
-    "mtime": 1778080251.4376812,
-    "ast_hash": "1cf01c228b4199cee7e25e28e02b0519",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/flows/search.ts": {
-    "mtime": 1778080251.4360905,
-    "ast_hash": "311ae0a178a7304818595a0b83000b7b",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/flows/answer.ts": {
-    "mtime": 1778080251.4350615,
-    "ast_hash": "9b4994788a1ed23b59577d6f8b3d6911",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/flows/ingest.ts": {
-    "mtime": 1778080251.435552,
-    "ast_hash": "f2e301f1931533ecf9bd89175fe41e7b",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/routes/search.route.ts": {
-    "mtime": 1778080251.44094,
-    "ast_hash": "713e1b2306d6ef8aa861dbbedc59e51f",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/routes/admin.route.ts": {
-    "mtime": 1778080251.4385374,
-    "ast_hash": "84fe703a96a2056161453fe901d0fcf4",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/routes/provider-keys.route.ts": {
-    "mtime": 1778080320.79513,
-    "ast_hash": "32438ecfe01e1e5072a8f47cb22e6961",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/routes/creator-ingest-bundle.route.ts": {
-    "mtime": 1778080251.439091,
-    "ast_hash": "150c58474b5c733b8256d2e895a644f9",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/routes/monitoring.route.ts": {
-    "mtime": 1778080251.4401038,
-    "ast_hash": "eb83ce405b04ed43bc328373ae855c11",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/routes/creator-analyses.route.ts": {
-    "mtime": 1778080251.438782,
-    "ast_hash": "3c8a7873d800da635cc2f1cdb956b615",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/routes/monetization-guides.route.ts": {
-    "mtime": 1778080251.4397397,
-    "ast_hash": "6783eb31c3a0a90ae1abff3c97ff2c25",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/routes/ingest.route.ts": {
-    "mtime": 1778080251.4395673,
-    "ast_hash": "18a4494211b0e008332b9a4d2f61bd1a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/routes/rag.route.ts": {
-    "mtime": 1778080251.4408078,
-    "ast_hash": "88af9028b0c0ff81e823653445ee0cc0",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/routes/wiki.route.ts": {
-    "mtime": 1778080346.9682987,
-    "ast_hash": "173dbce598b37d88c81c2074e797b5ee",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/routes/monetization-sources.route.ts": {
-    "mtime": 1778080251.439878,
-    "ast_hash": "2b56ed3370fb5d314eee30bd50d5cfcf",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/routes/health.route.ts": {
-    "mtime": 1778080251.4393153,
-    "ast_hash": "fc2528538763b93e3500a43f8b93d762",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/services/rag-cache.service.ts": {
-    "mtime": 1778080251.4417882,
-    "ast_hash": "8452628863750adc194db12e1b43dea1",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/services/rag.service.ts": {
-    "mtime": 1778080251.4421585,
-    "ast_hash": "aa7c772e9ab455c76c806451fc40da14",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/api/src/services/rag-optimization.service.ts": {
-    "mtime": 1778080251.4420102,
-    "ast_hash": "046d3fe61ac07ef17c1db54cc96633c4",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/tsconfig.base.json": {
-    "mtime": 1778080233.8466802,
-    "ast_hash": "b545df1a28cef6e578a47cc95590d7b3",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/dev.sh": {
-    "mtime": 1778080233.8185852,
-    "ast_hash": "51608bc849859f324686dc8007e77f74",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/package.json": {
-    "mtime": 1778080233.8348496,
-    "ast_hash": "7bc23b9a131967c93688030e61ce6777",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/firebase.json": {
-    "mtime": 1778080233.8219724,
-    "ast_hash": "2553fe772db70d79ffb54008002d7e71",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/deploy.sh": {
-    "mtime": 1778080233.8183374,
-    "ast_hash": "cc9d97ed8ff64fc1b8f5c2119d08b0b4",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/infra/firebase/firestore.indexes.json": {
-    "mtime": 1778080233.82279,
-    "ast_hash": "baa65728364eaffc3399d9fe84bee2dc",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/reports/funqa-consensus-release-gate-baseline.json": {
-    "mtime": 1778080233.8278515,
-    "ast_hash": "17ea2d32b91083d0189a38c94656e228",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/scripts/smoke-rag.ts": {
-    "mtime": 1778080233.8463926,
-    "ast_hash": "0e3249a689b0ab6fc254264d71fb2f02",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/scripts/ingest-url.sh": {
-    "mtime": 1778080233.8447924,
-    "ast_hash": "3d46c8e3c49b5f478d0a4ec68d8aea75",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/scripts/build-functions.mjs": {
-    "mtime": 1778080233.8434973,
-    "ast_hash": "edac466d1152c480a71eab93b7ca4678",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/scripts/verify-post.ts": {
-    "mtime": 1778080233.8465445,
-    "ast_hash": "4a362c5ddecec67555707666b8ec997e",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/scripts/build-functions-predeploy.sh": {
-    "mtime": 1778080233.843244,
-    "ast_hash": "4d2626a12593fc81dace346e93091901",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/scripts/new-query-note.sh": {
-    "mtime": 1778080233.8452008,
-    "ast_hash": "cef689bb11b7851c2203f050ed9e8e77",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/scripts/setup-admin-user.ts": {
-    "mtime": 1778080233.8459086,
-    "ast_hash": "ec6250f0fc6abecc339cf5f7b7bae9ab",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/scripts/bootstrap-vault.sh": {
-    "mtime": 1778080233.84261,
-    "ast_hash": "27bcbbf20c31ee5b55f6f755098fd365",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/scripts/smoke-functions.mjs": {
-    "mtime": 1778080233.8461604,
-    "ast_hash": "d5fe4d1c045ac6bd1aaa0221c7249a3f",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/scripts/build-brand-assets.py": {
-    "mtime": 1778080233.8429787,
-    "ast_hash": "ed2abb478e96671527d46b0e1f105931",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/scripts/lint-wiki.py": {
-    "mtime": 1778080233.8450243,
-    "ast_hash": "cde6bcdf4389dd622d8a82ad2bbb6ab9",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/scripts/create-firestore-db.ts": {
-    "mtime": 1778080233.8437817,
-    "ast_hash": "39d29ade1c03ee8572a792a869951cbb",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/scripts/seed-demo-rag.ts": {
-    "mtime": 1778080233.8456643,
-    "ast_hash": "c6b7045c4bf3d0f139b161de864a55a7",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/scripts/enable-firestore.ts": {
-    "mtime": 1778080233.8440557,
-    "ast_hash": "e010de17274b6039278702be07a51b54",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/scripts/run-consensus-eval.ts": {
-    "mtime": 1778080233.8454752,
-    "ast_hash": "2d58756a21608e1122f5dce6dcc16fb3",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/auth/package.json": {
-    "mtime": 1778080233.8386273,
-    "ast_hash": "11b38b58ca60c439289fa609a5c8649f",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/auth/src/index.ts": {
-    "mtime": 1778080233.8389103,
-    "ast_hash": "0ca3e3d842624af689071e57cdbee2c3",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/contracts/package.json": {
-    "mtime": 1778080233.8391109,
-    "ast_hash": "927cb8fd383d598ff592b8e6a62512fa",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/contracts/src/index.ts": {
-    "mtime": 1778080233.8394613,
-    "ast_hash": "9afc93d309998c3b4de0b2e33f2a573c",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/ai/package.json": {
-    "mtime": 1778080233.83512,
-    "ast_hash": "993884d580e96788dbc656345075e3b7",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/ai/src/types.ts": {
-    "mtime": 1778080233.8382068,
-    "ast_hash": "90e6cf3d5af0e711036f8354a02411d1",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/ai/src/index.ts": {
-    "mtime": 1778080350.7038987,
-    "ast_hash": "3dd9e93a6b925c70e1d69e3e10bd5440",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/ai/src/core/tokenize.ts": {
-    "mtime": 1778080233.8356853,
-    "ast_hash": "b9ff18781b40c5d5a7bef11ac9a8c9a9",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/ai/src/core/hash.ts": {
-    "mtime": 1778080233.8353937,
-    "ast_hash": "9f0a50528afd207e7e9ca8c3d22fc3f4",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/ai/src/core/similarity.ts": {
-    "mtime": 1778080233.8355339,
-    "ast_hash": "ce48fd33522a9e56a1628f35ac20e041",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/ai/src/pipelines/extract.ts": {
-    "mtime": 1778080233.8371675,
-    "ast_hash": "c97361f9065e51e5e402157b91af81e0",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/ai/src/pipelines/query-transform.ts": {
-    "mtime": 1778080233.837561,
-    "ast_hash": "acd650b76d32f5f8b4f2fbdcf6c57d7d",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/ai/src/pipelines/retrieve.ts": {
-    "mtime": 1778080233.838035,
-    "ast_hash": "3478eda22de521975fafdd8f9a27f068",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/ai/src/pipelines/consensus.ts": {
-    "mtime": 1778080264.557003,
-    "ast_hash": "cc71f1439f3609a49c0570715427b4d2",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/ai/src/pipelines/chunk.ts": {
-    "mtime": 1778080233.8368251,
-    "ast_hash": "da05df80d5160005f783fc4310d902d0",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/ai/src/pipelines/normalize.ts": {
-    "mtime": 1778080233.8373158,
-    "ast_hash": "30efde5050e5c5cea9189cfea3acf6d7",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/ai/src/pipelines/embed.ts": {
-    "mtime": 1778080233.8370214,
-    "ast_hash": "fd158694a3dbbc51effd3dc25f98fafa",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/ai/src/pipelines/answer.ts": {
-    "mtime": 1778080233.836541,
-    "ast_hash": "e570d68cd20878edf8aef95efad97d54",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/ai/src/pipelines/rerank.ts": {
-    "mtime": 1778080233.837887,
-    "ast_hash": "225ffb2adfe007a0fa17d58c5d27a824",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/db/package.json": {
-    "mtime": 1778080233.839687,
-    "ast_hash": "abe0fe6e4a98876330ef974f7e7572a9",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/db/src/types.ts": {
-    "mtime": 1778080233.8410823,
-    "ast_hash": "13c33eef59e514f8586ab4450435bd81",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/db/src/index.ts": {
-    "mtime": 1778080233.8400025,
-    "ast_hash": "af4957728a75ca4fa5f4108d733ec78b",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/db/src/repositories/rag-store.repository.ts": {
-    "mtime": 1778080233.84058,
-    "ast_hash": "0bfcfe1701afe83eb172bf8fa841b40a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/db/src/repositories/llm-wiki.repository.ts": {
-    "mtime": 1778080233.8403203,
-    "ast_hash": "d4a4464a114f534c91365b80fe640848",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/db/src/storage/file-store.ts": {
-    "mtime": 1778080233.840904,
-    "ast_hash": "2cca103bf0c20f5d7355c7f348dae676",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/functions/package.json": {
-    "mtime": 1778080233.8225038,
-    "ast_hash": "0a0ebd172f366dd35c3d456c52aabb70",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/data/evals/fixtures/funqa-consensus-eval-fixture.json": {
-    "mtime": 1778080233.8180978,
-    "ast_hash": "72c7e78f4e5be4bdefa436bdd398dc80",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/middleware.ts": {
-    "mtime": 1778080233.8079948,
-    "ast_hash": "edbc139e1eab5655d70ba6bcf454af79",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/next.config.mjs": {
-    "mtime": 1778080233.8085184,
-    "ast_hash": "99285e43cd9765085ecd995e6c93bf75",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/next-env.d.ts": {
-    "mtime": 1778080233.8082907,
-    "ast_hash": "a64595e6014adce3002d3bf762d2dbeb",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/package.json": {
-    "mtime": 1778080233.8107483,
-    "ast_hash": "5453b6d12bd78ca0492286e2539a3976",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/global.d.ts": {
-    "mtime": 1778080233.805876,
-    "ast_hash": "fb8214c6467938c43691a41c63101314",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/tsconfig.json": {
-    "mtime": 1778080233.817054,
-    "ast_hash": "898e661cf7ba36b7a03e41fbbde93a9b",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/app/firebase-analytics.tsx": {
-    "mtime": 1778080233.7939107,
-    "ast_hash": "0e6e804c9b9a021243e6d505f0fbd97a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/app/locale-switcher.tsx": {
-    "mtime": 1778080233.797339,
-    "ast_hash": "14c5ac7b08c44a786968f88ad56f295d",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/app/layout.tsx": {
-    "mtime": 1778080233.7971158,
-    "ast_hash": "3a507d869a4557bb5b07439d595d2518",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/app/page.tsx": {
-    "mtime": 1778080233.8006666,
-    "ast_hash": "50dda35bb844713c64749c0058a1958d",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/app/theme-toggle.tsx": {
-    "mtime": 1778080233.8021154,
-    "ast_hash": "fa60fbd390190fb4bdad6e8343ba37cc",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/app/admin/page.tsx": {
-    "mtime": 1778080233.7922587,
-    "ast_hash": "059cb8f768be16f0bc450113107d9369",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/app/docs/page.tsx": {
-    "mtime": 1778080233.7932916,
-    "ast_hash": "1b1fdcc9f47a75aeded195cf544a7ce0",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/app/search/search-results.tsx": {
-    "mtime": 1778080233.8017735,
-    "ast_hash": "42ed439edb8ab39b8dbd8d49025c4cc6",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/app/search/page.tsx": {
-    "mtime": 1778080233.801341,
-    "ast_hash": "58ee94156f3e47a08b9dcc6ba216fecc",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/app/rag-lab/page.tsx": {
-    "mtime": 1778080233.801031,
-    "ast_hash": "2c6a64ba14f786f2163492352ab50066",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/app/login/page.tsx": {
-    "mtime": 1778080233.7976124,
-    "ast_hash": "c03c94d7d188c87df5a42e7c32b9cb28",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/components/category-tab-bar.tsx": {
-    "mtime": 1778080233.8049614,
-    "ast_hash": "7dba66b8ce304aee586256053e5b1979",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/components/nav-auth.tsx": {
-    "mtime": 1778080233.8055723,
-    "ast_hash": "71da41b2b2239dd8f721d8e1abbba8a5",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/components/menu-icons.tsx": {
-    "mtime": 1778080233.8052738,
-    "ast_hash": "f6992b0f578b401cb3b7980b118b2146",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/components/auth-provider.tsx": {
-    "mtime": 1778080233.8045828,
-    "ast_hash": "15ddf89bea7b57586ba34a43f4709b90",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/scripts/ensure-standalone-runtime.mjs": {
-    "mtime": 1778080233.8168268,
-    "ast_hash": "aefd349bf7417be72261b91a970cc546",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/lib/firebase-client.ts": {
-    "mtime": 1778080233.8061824,
-    "ast_hash": "bcb4ece49d8f31c599114ee8453b9a13",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/lib/funqa-api.ts": {
-    "mtime": 1778080233.8063607,
-    "ast_hash": "7a28f991a04c82952f4eca09bb9d5874",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/lib/i18n.ts": {
-    "mtime": 1778080233.8071325,
-    "ast_hash": "71a5b206016ff8df5a80f96984c05b3f",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/lib/i18n-server.ts": {
-    "mtime": 1778080233.8068967,
-    "ast_hash": "6bea24f39337ea2f7515b523ada9b625",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/lib/funqa-contracts.ts": {
-    "mtime": 1778080233.8066542,
-    "ast_hash": "133f7986b42ecafa7d5a31d244e3256c",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/lib/messages/en.ts": {
-    "mtime": 1778080233.807453,
-    "ast_hash": "591f3c9c976ab35c3f8a302f302e02a9",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/lib/messages/ko.ts": {
-    "mtime": 1778080233.807766,
-    "ast_hash": "cf9a4df6d04eff089b9a90a995874b1e",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/package.json": {
-    "mtime": 1778080233.78386,
-    "ast_hash": "c2bfddcad1c5cc5a74874eabfa32ded1",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/tsconfig.json": {
-    "mtime": 1778080233.7918396,
-    "ast_hash": "5a713b0a3bd7f862ab905f49a189273a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/genkit.ts": {
-    "mtime": 1778080233.785605,
-    "ast_hash": "85920c8708bcc8ceca8d45e7bf74aa71",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/firebase.ts": {
-    "mtime": 1778080233.7843413,
-    "ast_hash": "7ecd6e371f14801ad8cca53ea1dd6a00",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/index.ts": {
-    "mtime": 1778080233.785852,
-    "ast_hash": "0401846d1ea2bacd5dc858ee048d8094",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/config.ts": {
-    "mtime": 1778080233.7840595,
-    "ast_hash": "841fcf6f873a9ac287b9b083500981cf",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/server.ts": {
-    "mtime": 1778080233.790865,
-    "ast_hash": "2b2095d09457af641e8615de84ef312e",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/functions.ts": {
-    "mtime": 1778080233.7854347,
-    "ast_hash": "fd7acde1894cbe07fa420b8a1b78c16e",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/repositories/creator-artifacts.repository.ts": {
-    "mtime": 1778080233.7862191,
-    "ast_hash": "39c716a5c6bdddd49773932b9901e047",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/repositories/provider-key.repository.ts": {
-    "mtime": 1778080233.7867935,
-    "ast_hash": "e6417065dc4b2a6c94089a0c40ac10b4",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/repositories/firestore-rag-store.repository.ts": {
-    "mtime": 1778080310.6420138,
-    "ast_hash": "f33201c55e916a0b0409bf5e154f83b9",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/flows/search.ts": {
-    "mtime": 1778080233.7851508,
-    "ast_hash": "311ae0a178a7304818595a0b83000b7b",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/flows/answer.ts": {
-    "mtime": 1778080233.784608,
-    "ast_hash": "9b4994788a1ed23b59577d6f8b3d6911",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/flows/ingest.ts": {
-    "mtime": 1778080233.784857,
-    "ast_hash": "f2e301f1931533ecf9bd89175fe41e7b",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/routes/search.route.ts": {
-    "mtime": 1778080233.7900975,
-    "ast_hash": "713e1b2306d6ef8aa861dbbedc59e51f",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/routes/admin.route.ts": {
-    "mtime": 1778080233.787109,
-    "ast_hash": "84fe703a96a2056161453fe901d0fcf4",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/routes/provider-keys.route.ts": {
-    "mtime": 1778080233.7895374,
-    "ast_hash": "5aeb3571200f8c0a7e8481ba43fbaf36",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/routes/creator-ingest-bundle.route.ts": {
-    "mtime": 1778080233.7873867,
-    "ast_hash": "150c58474b5c733b8256d2e895a644f9",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/routes/monitoring.route.ts": {
-    "mtime": 1778080233.789084,
-    "ast_hash": "eb83ce405b04ed43bc328373ae855c11",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/routes/creator-analyses.route.ts": {
-    "mtime": 1778080233.787243,
-    "ast_hash": "3c8a7873d800da635cc2f1cdb956b615",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/routes/monetization-guides.route.ts": {
-    "mtime": 1778080233.7883818,
-    "ast_hash": "6783eb31c3a0a90ae1abff3c97ff2c25",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/routes/ingest.route.ts": {
-    "mtime": 1778080233.7882333,
-    "ast_hash": "18a4494211b0e008332b9a4d2f61bd1a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/routes/rag.route.ts": {
-    "mtime": 1778080233.789887,
-    "ast_hash": "88af9028b0c0ff81e823653445ee0cc0",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/routes/monetization-sources.route.ts": {
-    "mtime": 1778080233.7886307,
-    "ast_hash": "2b56ed3370fb5d314eee30bd50d5cfcf",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/routes/health.route.ts": {
-    "mtime": 1778080233.7878602,
-    "ast_hash": "fc2528538763b93e3500a43f8b93d762",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/services/rag-cache.service.ts": {
-    "mtime": 1778080233.7911806,
-    "ast_hash": "8452628863750adc194db12e1b43dea1",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/services/rag.service.ts": {
-    "mtime": 1778080298.3569386,
-    "ast_hash": "0bf7bf10674d385a8a244b25ea20f06d",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/api/src/services/rag-optimization.service.ts": {
-    "mtime": 1778080233.79146,
-    "ast_hash": "046d3fe61ac07ef17c1db54cc96633c4",
-    "semantic_hash": ""
-  },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/.codex/hooks.json": {
     "mtime": 1777992713.7217543,
     "ast_hash": "b1643d69c38ea633ec815c49798d8da1",
@@ -1265,8 +205,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/scripts/build-functions-predeploy.sh": {
-    "mtime": 1776958277.3958232,
-    "ast_hash": "4d2626a12593fc81dace346e93091901",
+    "mtime": 1782999953.7436106,
+    "ast_hash": "2a734c3d48e2611dd888ffee41df95fa",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/scripts/new-query-note.sh": {
@@ -1335,8 +275,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/contracts/src/index.ts": {
-    "mtime": 1782999728.4260092,
-    "ast_hash": "64708700a48fc307daa26c7a2885fc86",
+    "mtime": 1783484211.8123004,
+    "ast_hash": "4d928fcb1689308f466ebf2b71874059",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/package.json": {
@@ -1350,7 +290,7 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/index.ts": {
-    "mtime": 1779378890.0501528,
+    "mtime": 1783484369.6783674,
     "ast_hash": "5b3e1f4ee3c654fb1a771011d286a304",
     "semantic_hash": ""
   },
@@ -1390,8 +330,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/pipelines/consensus.ts": {
-    "mtime": 1779380493.968891,
-    "ast_hash": "2a40b4d60152ab85cd77570da976ff62",
+    "mtime": 1778080264.557003,
+    "ast_hash": "cc71f1439f3609a49c0570715427b4d2",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/pipelines/chunk.ts": {
@@ -1445,7 +385,7 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/db/src/repositories/llm-wiki.repository.ts": {
-    "mtime": 1778080419.6644037,
+    "mtime": 1783484275.589316,
     "ast_hash": "80bde2c62cb97646dc6014d1bb641984",
     "semantic_hash": ""
   },
@@ -1460,7 +400,7 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/functions/lib/index.js": {
-    "mtime": 1782999795.3386374,
+    "mtime": 1782999981.759253,
     "ast_hash": "fd973a06e40559a4a0222164e2d0bddd",
     "semantic_hash": ""
   },
@@ -1555,13 +495,13 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/app/search/search-results.tsx": {
-    "mtime": 1778509936.4765146,
-    "ast_hash": "939364aaa984d749d6e5663487e26c76",
+    "mtime": 1783484186.74294,
+    "ast_hash": "b1d411ac5b4899f2eb9ef8da5fd00ec6",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/app/search/page.tsx": {
-    "mtime": 1782999605.4071112,
-    "ast_hash": "49f775bddac92ff8cc32811663cd96b8",
+    "mtime": 1783484593.3727264,
+    "ast_hash": "f05da535664d17159f89399594e60ffb",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/app/rag-lab/page.tsx": {
@@ -1680,8 +620,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/server.ts": {
-    "mtime": 1782999524.662047,
-    "ast_hash": "19e2ef7566f78b0df15d6ae60f291c73",
+    "mtime": 1783484550.7102494,
+    "ast_hash": "91b0557dc86d0d0c6342aedb611eed7e",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/functions.ts": {
@@ -1705,12 +645,12 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/repositories/provider-key.repository.ts": {
-    "mtime": 1778080580.6171803,
+    "mtime": 1783484275.5879686,
     "ast_hash": "b1ab733634695b5950eaaa1b87227aa1",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/repositories/firestore-rag-store.repository.ts": {
-    "mtime": 1778081156.2493904,
+    "mtime": 1783484327.2738204,
     "ast_hash": "b5123f873c3daaf273de282b880236cb",
     "semantic_hash": ""
   },
@@ -1740,7 +680,7 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/routes/provider-keys.route.ts": {
-    "mtime": 1778080580.614917,
+    "mtime": 1783484275.5881329,
     "ast_hash": "32438ecfe01e1e5072a8f47cb22e6961",
     "semantic_hash": ""
   },
@@ -1775,8 +715,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/routes/wiki.route.ts": {
-    "mtime": 1782999721.2861886,
-    "ast_hash": "4f8ff5784585c2d9fe3baf3ef915385b",
+    "mtime": 1778080346.9682987,
+    "ast_hash": "173dbce598b37d88c81c2074e797b5ee",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/routes/monetization-sources.route.ts": {
@@ -1795,8 +735,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/services/rag.service.ts": {
-    "mtime": 1782999773.3973567,
-    "ast_hash": "62db11617f8d61431af02e6ca80f059d",
+    "mtime": 1783484545.8725045,
+    "ast_hash": "b02e363b9915762c076bb2c73384f45c",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/services/monitoring.service.ts": {
@@ -3274,586 +2214,6 @@
     "ast_hash": "870b27b2683a0174cc52e35e4b423b68",
     "semantic_hash": ""
   },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/README.md": {
-    "mtime": 1778080251.4338195,
-    "ast_hash": "7422f0666762b0048b4f4050eccd68be",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/DESIGN.md": {
-    "mtime": 1778080251.4333959,
-    "ast_hash": "67169bc5865d5943d7cff15851816b11",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/CLAUDE.md": {
-    "mtime": 1778080251.4326963,
-    "ast_hash": "64eabc8c397254d12de44a3b0651b2bf",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/.ouroboros/seeds/seed_prompt_knowledge_loop_20260505.yaml": {
-    "mtime": 1778080251.4325116,
-    "ast_hash": "91f53e10e1e758b1143947668635317d",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/.ouroboros/seeds/seed_funqa_mria_editorial_refresh_20260424.yaml": {
-    "mtime": 1778080251.432356,
-    "ast_hash": "4f50e231677b9233e02068ab275bb69c",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/.ouroboros/seeds/seed_funqa_brand_images_apphosting_20260424.yaml": {
-    "mtime": 1778080251.4313958,
-    "ast_hash": "7c623c6ec6ad11a7e6f2367f32933079",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/.ouroboros/seeds/seed_funqa_all_knowledge_search_brand_apphosting_20260426.yaml": {
-    "mtime": 1778080251.431121,
-    "ast_hash": "ba10482bc70f43804ade73f9360b296a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/.ouroboros/seeds/seed_funqa_eglab_home_refresh_20260424.yaml": {
-    "mtime": 1778080251.431912,
-    "ast_hash": "890cea39b3d0e4003c75a72d2f064b86",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/.ouroboros/seeds/seed_c71d70b2776b.yaml": {
-    "mtime": 1778080251.4308436,
-    "ast_hash": "324dd3b54725a10c1c9ce49d130e1c69",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/.ouroboros/seeds/seed_funqa_locale_theme_sidebar_deploy_20260424.yaml": {
-    "mtime": 1778080251.432132,
-    "ast_hash": "e0865085e84e6419deae293741fc5bf6",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/docs/spec/prompt-knowledge-loop.md": {
-    "mtime": 1778080251.4728405,
-    "ast_hash": "583e08288a70fb322161b44edfcf061a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/docs/spec/funqa-consensus-rag-v1.md": {
-    "mtime": 1778080251.4725282,
-    "ast_hash": "9796b896552b9a0008402210bd4bb0ab",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/docs/spec/seed.yaml": {
-    "mtime": 1778080251.4730935,
-    "ast_hash": "656cc388f1a8e3054edf25c0e48b31cc",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/docs/runbooks/clawteam.md": {
-    "mtime": 1778080251.4718373,
-    "ast_hash": "7b9d79af2fa2f712368c8ef46f264770",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/docs/architecture/system-architecture.md": {
-    "mtime": 1778080251.4715292,
-    "ast_hash": "bf2e6bf63c869aab0ebb693f44485981",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/docs/architecture/funqa-workspace-ux-v1.md": {
-    "mtime": 1778080251.4710464,
-    "ast_hash": "6c5beb5527984ab5fb14a98028b1b806",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/log.md": {
-    "mtime": 1778080251.475845,
-    "ast_hash": "6f529839675ad8738ee97d1af0187828",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/index.md": {
-    "mtime": 1778080251.4755762,
-    "ast_hash": "44598fd825eda8004e31ac40a8c91d6d",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/AGENTS.md": {
-    "mtime": 1778080251.4752324,
-    "ast_hash": "6ef485b433d54f1dc9dc9c0f3671c0f7",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/queries/rag-smoke-test.md": {
-    "mtime": 1778080251.4782264,
-    "ast_hash": "6dc117e6dd2938e72cd18b46e429e08e",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/concepts/prompt-knowledge-loop.md": {
-    "mtime": 1778080251.4778621,
-    "ast_hash": "f277a439ad7e8113cb50577da35ab2a8",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/sources/genkit-rag-evaluation.md": {
-    "mtime": 1778080251.4886339,
-    "ast_hash": "186dd72cfb8112985201480070a43cd4",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/sources/firebase-web-config.md": {
-    "mtime": 1778080251.487196,
-    "ast_hash": "99b6e7c7660afad07608f8fe2e8fbde5",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/sources/vercel-web-guidelines.md": {
-    "mtime": 1778080251.4905543,
-    "ast_hash": "fba5f1ecbbfb437751acfb858185bcb2",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/sources/langextract.md": {
-    "mtime": 1778080251.4897816,
-    "ast_hash": "ed1a816f49a59ed09017ae49deab21a3",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/sources/gemini-embeddings.md": {
-    "mtime": 1778080251.4879234,
-    "ast_hash": "d31ab47b8dfc22824a44ad71023df522",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/sources/genkit-firebase.md": {
-    "mtime": 1778080251.4882662,
-    "ast_hash": "299d8b80c48cc19818ad906a5e670e5e",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/sources/prompt-knowledge-loop-request-2026-05-05.md": {
-    "mtime": 1778080251.4900746,
-    "ast_hash": "5bd774ad404351e1e8416a571027d8f5",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/sources/firebase-functions-monorepo.md": {
-    "mtime": 1778080251.4868457,
-    "ast_hash": "b58527b14ee628b23ee0b9381de1a792",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/sources/firebase-app-hosting.md": {
-    "mtime": 1778080251.4865782,
-    "ast_hash": "92427e5ab71e6e790dad6a4581edf4b5",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/reports/llm-wiki-install-2026-05-06.md": {
-    "mtime": 1778080251.4835167,
-    "ast_hash": "6363002fa0378d52d6140aa95fb66e1a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/reports/funqa-consensus-release-gate-baseline.md": {
-    "mtime": 1778080251.480559,
-    "ast_hash": "0d795e17a16ca252e2cdce098f4d1814",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/reports/graphify-codex-install-2026-05-05.md": {
-    "mtime": 1778080251.482263,
-    "ast_hash": "d4918af4642fafd25a7b184f2479c8b1",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/reports/rag-speed-accuracy-ui-refresh-2026-04-15.md": {
-    "mtime": 1778080251.4859476,
-    "ast_hash": "3cf6303d8987456993befcaecdc7b6db",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/reports/live-apphosting-ui-verification.md": {
-    "mtime": 1778080251.4826367,
-    "ast_hash": "2ac1939c135899b6e3e3d67bc4b9728a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/reports/firebase-functions-integration.md": {
-    "mtime": 1778080251.478748,
-    "ast_hash": "223334775a3fee0777728e2b6bd7d430",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/reports/funqa-eglab-home-refresh-2026-04-24.md": {
-    "mtime": 1778080251.4809422,
-    "ast_hash": "ed43ed027a9386964b458bd29ec9ff1e",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/reports/funqa-consensus-compliance-reporting-v1.md": {
-    "mtime": 1778080251.4796114,
-    "ast_hash": "bfdf1f548cfebcf4be6c70d73d8a0224",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/reports/funqa-all-knowledge-brand-apphosting-2026-04-26.md": {
-    "mtime": 1778080251.4790356,
-    "ast_hash": "59704b27460141ac24d47b3a32415275",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/reports/rag-optimization-consensus.md": {
-    "mtime": 1778080251.4842303,
-    "ast_hash": "b760e1b26448194cd564fe3d817671fb",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/reports/funqa-brand-images-apphosting-2026-04-24.md": {
-    "mtime": 1778080251.4793482,
-    "ast_hash": "4586d4290d9f59e5990f1748ba633106",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/reports/modular-rag-plan.md": {
-    "mtime": 1778080251.4838796,
-    "ast_hash": "8d7b714127bda05a785aee7d792c3fb4",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/reports/apphosting-deploy-rollout-debug.md": {
-    "mtime": 1778080251.478491,
-    "ast_hash": "0cd7d99690810bb943c92341ecf8387a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/reports/funqa-locale-theme-sidebar-apphosting-2026-04-24.md": {
-    "mtime": 1778080251.4815476,
-    "ast_hash": "11964f3af819bf0f4f61f757b3519b49",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/wiki/reports/funqa-rag-platform.md": {
-    "mtime": 1778080251.4819596,
-    "ast_hash": "a70a425adec2aabbf73d10562d8711c6",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/raw/sources/2026-05-06-llm-wiki-install.md": {
-    "mtime": 1778080251.476921,
-    "ast_hash": "db3e617313070dced0a68337d6a4707a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/raw/sources/2026-05-05-graphify-codex-install.md": {
-    "mtime": 1778080251.4762976,
-    "ast_hash": "4dbd202111f32c0fb64a142ab233fc07",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/raw/sources/2026-05-05-prompt-knowledge-loop.md": {
-    "mtime": 1778080251.4766595,
-    "ast_hash": "f00b9de691e319d3a322c1b263caaa25",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/raw/sources/firebase-web-config-2026-04-13.md": {
-    "mtime": 1778080251.4772274,
-    "ast_hash": "65df474be5b0638352d523e61463a44c",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/knowledge/raw/sources/firebase-functions-setup-2026-04-14.md": {
-    "mtime": 1778080251.4770777,
-    "ast_hash": "18a45431b51ec80bf2b9795bdc4f0ca2",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/ui/README.md": {
-    "mtime": 1778080251.5200372,
-    "ast_hash": "b2cd97c198437148f2aa4f1454b92b1f",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/auth/README.md": {
-    "mtime": 1778080251.5153015,
-    "ast_hash": "3dff839b5afb61f210546fe39cc8968d",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/packages/monitoring/README.md": {
-    "mtime": 1778080251.5198128,
-    "ast_hash": "7fef5f4f54305ca1685aeb28f4488a4a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/.github/workflows/deploy.yml": {
-    "mtime": 1778080251.4295266,
-    "ast_hash": "b3f27f7ace4d194cd6e09783560ea9d7",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/.github/workflows/ci.yml": {
-    "mtime": 1778080251.4293134,
-    "ast_hash": "a3f9b2c71a2f69ef274de9fc38eceee7",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/apphosting.emulator.yaml": {
-    "mtime": 1778080251.4548268,
-    "ast_hash": "2d9ccc910f234da049784d60f7422e8d",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/apphosting.yaml": {
-    "mtime": 1778080251.4552107,
-    "ast_hash": "aced44bea292958d0e3ef76cd6158e22",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/reports/worker-2-task-2-consensus.md": {
-    "mtime": 1778080251.5203753,
-    "ast_hash": "efdcd448b3f2b9892095d025eaaa8145",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/README.md": {
-    "mtime": 1778080233.783497,
-    "ast_hash": "7422f0666762b0048b4f4050eccd68be",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/DESIGN.md": {
-    "mtime": 1778080233.782986,
-    "ast_hash": "67169bc5865d5943d7cff15851816b11",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/CLAUDE.md": {
-    "mtime": 1778080233.7827492,
-    "ast_hash": "64eabc8c397254d12de44a3b0651b2bf",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/.ouroboros/seeds/seed_prompt_knowledge_loop_20260505.yaml": {
-    "mtime": 1778080233.7824037,
-    "ast_hash": "91f53e10e1e758b1143947668635317d",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/.ouroboros/seeds/seed_funqa_mria_editorial_refresh_20260424.yaml": {
-    "mtime": 1778080233.7820995,
-    "ast_hash": "4f50e231677b9233e02068ab275bb69c",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/.ouroboros/seeds/seed_funqa_brand_images_apphosting_20260424.yaml": {
-    "mtime": 1778080233.7810786,
-    "ast_hash": "7c623c6ec6ad11a7e6f2367f32933079",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/.ouroboros/seeds/seed_funqa_all_knowledge_search_brand_apphosting_20260426.yaml": {
-    "mtime": 1778080233.7807803,
-    "ast_hash": "ba10482bc70f43804ade73f9360b296a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/.ouroboros/seeds/seed_funqa_eglab_home_refresh_20260424.yaml": {
-    "mtime": 1778080233.7814155,
-    "ast_hash": "890cea39b3d0e4003c75a72d2f064b86",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/.ouroboros/seeds/seed_c71d70b2776b.yaml": {
-    "mtime": 1778080233.7804697,
-    "ast_hash": "324dd3b54725a10c1c9ce49d130e1c69",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/.ouroboros/seeds/seed_funqa_locale_theme_sidebar_deploy_20260424.yaml": {
-    "mtime": 1778080233.7817507,
-    "ast_hash": "e0865085e84e6419deae293741fc5bf6",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/docs/spec/prompt-knowledge-loop.md": {
-    "mtime": 1778080233.8214445,
-    "ast_hash": "583e08288a70fb322161b44edfcf061a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/docs/spec/funqa-consensus-rag-v1.md": {
-    "mtime": 1778080233.8206296,
-    "ast_hash": "9796b896552b9a0008402210bd4bb0ab",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/docs/spec/seed.yaml": {
-    "mtime": 1778080233.8217072,
-    "ast_hash": "656cc388f1a8e3054edf25c0e48b31cc",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/docs/runbooks/clawteam.md": {
-    "mtime": 1778080233.8199308,
-    "ast_hash": "7b9d79af2fa2f712368c8ef46f264770",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/docs/architecture/system-architecture.md": {
-    "mtime": 1778080233.8196127,
-    "ast_hash": "bf2e6bf63c869aab0ebb693f44485981",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/docs/architecture/funqa-workspace-ux-v1.md": {
-    "mtime": 1778080233.8190947,
-    "ast_hash": "6c5beb5527984ab5fb14a98028b1b806",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/log.md": {
-    "mtime": 1778080233.8242836,
-    "ast_hash": "6f529839675ad8738ee97d1af0187828",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/index.md": {
-    "mtime": 1778080233.8239632,
-    "ast_hash": "44598fd825eda8004e31ac40a8c91d6d",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/AGENTS.md": {
-    "mtime": 1778080233.8236938,
-    "ast_hash": "6ef485b433d54f1dc9dc9c0f3671c0f7",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/queries/rag-smoke-test.md": {
-    "mtime": 1778080233.8263783,
-    "ast_hash": "6dc117e6dd2938e72cd18b46e429e08e",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/concepts/prompt-knowledge-loop.md": {
-    "mtime": 1778080233.8260908,
-    "ast_hash": "f277a439ad7e8113cb50577da35ab2a8",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/sources/genkit-rag-evaluation.md": {
-    "mtime": 1778080233.831194,
-    "ast_hash": "186dd72cfb8112985201480070a43cd4",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/sources/firebase-web-config.md": {
-    "mtime": 1778080233.8306196,
-    "ast_hash": "99b6e7c7660afad07608f8fe2e8fbde5",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/sources/vercel-web-guidelines.md": {
-    "mtime": 1778080233.8317091,
-    "ast_hash": "fba5f1ecbbfb437751acfb858185bcb2",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/sources/langextract.md": {
-    "mtime": 1778080233.8313568,
-    "ast_hash": "ed1a816f49a59ed09017ae49deab21a3",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/sources/gemini-embeddings.md": {
-    "mtime": 1778080233.8307726,
-    "ast_hash": "d31ab47b8dfc22824a44ad71023df522",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/sources/genkit-firebase.md": {
-    "mtime": 1778080233.8309178,
-    "ast_hash": "299d8b80c48cc19818ad906a5e670e5e",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/sources/prompt-knowledge-loop-request-2026-05-05.md": {
-    "mtime": 1778080233.8315308,
-    "ast_hash": "5bd774ad404351e1e8416a571027d8f5",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/sources/firebase-functions-monorepo.md": {
-    "mtime": 1778080233.8304284,
-    "ast_hash": "b58527b14ee628b23ee0b9381de1a792",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/sources/firebase-app-hosting.md": {
-    "mtime": 1778080233.830208,
-    "ast_hash": "92427e5ab71e6e790dad6a4581edf4b5",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/reports/llm-wiki-install-2026-05-06.md": {
-    "mtime": 1778080233.8293612,
-    "ast_hash": "6363002fa0378d52d6140aa95fb66e1a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/reports/funqa-consensus-release-gate-baseline.md": {
-    "mtime": 1778080233.8281388,
-    "ast_hash": "0d795e17a16ca252e2cdce098f4d1814",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/reports/graphify-codex-install-2026-05-05.md": {
-    "mtime": 1778080233.828953,
-    "ast_hash": "d4918af4642fafd25a7b184f2479c8b1",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/reports/rag-speed-accuracy-ui-refresh-2026-04-15.md": {
-    "mtime": 1778080233.8300035,
-    "ast_hash": "3cf6303d8987456993befcaecdc7b6db",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/reports/live-apphosting-ui-verification.md": {
-    "mtime": 1778080233.8291862,
-    "ast_hash": "2ac1939c135899b6e3e3d67bc4b9728a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/reports/firebase-functions-integration.md": {
-    "mtime": 1778080233.8267908,
-    "ast_hash": "223334775a3fee0777728e2b6bd7d430",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/reports/funqa-eglab-home-refresh-2026-04-24.md": {
-    "mtime": 1778080233.828304,
-    "ast_hash": "ed43ed027a9386964b458bd29ec9ff1e",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/reports/funqa-consensus-compliance-reporting-v1.md": {
-    "mtime": 1778080233.8275201,
-    "ast_hash": "bfdf1f548cfebcf4be6c70d73d8a0224",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/reports/funqa-all-knowledge-brand-apphosting-2026-04-26.md": {
-    "mtime": 1778080233.8270783,
-    "ast_hash": "59704b27460141ac24d47b3a32415275",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/reports/rag-optimization-consensus.md": {
-    "mtime": 1778080233.8297622,
-    "ast_hash": "b760e1b26448194cd564fe3d817671fb",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/reports/funqa-brand-images-apphosting-2026-04-24.md": {
-    "mtime": 1778080233.8272328,
-    "ast_hash": "4586d4290d9f59e5990f1748ba633106",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/reports/modular-rag-plan.md": {
-    "mtime": 1778080233.8295302,
-    "ast_hash": "8d7b714127bda05a785aee7d792c3fb4",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/reports/apphosting-deploy-rollout-debug.md": {
-    "mtime": 1778080233.8266313,
-    "ast_hash": "0cd7d99690810bb943c92341ecf8387a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/reports/funqa-locale-theme-sidebar-apphosting-2026-04-24.md": {
-    "mtime": 1778080233.8285375,
-    "ast_hash": "11964f3af819bf0f4f61f757b3519b49",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/wiki/reports/funqa-rag-platform.md": {
-    "mtime": 1778080233.8287659,
-    "ast_hash": "a70a425adec2aabbf73d10562d8711c6",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/raw/sources/2026-05-06-llm-wiki-install.md": {
-    "mtime": 1778080233.8254328,
-    "ast_hash": "db3e617313070dced0a68337d6a4707a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/raw/sources/2026-05-05-graphify-codex-install.md": {
-    "mtime": 1778080233.8247807,
-    "ast_hash": "4dbd202111f32c0fb64a142ab233fc07",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/raw/sources/2026-05-05-prompt-knowledge-loop.md": {
-    "mtime": 1778080233.8250415,
-    "ast_hash": "f00b9de691e319d3a322c1b263caaa25",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/raw/sources/firebase-web-config-2026-04-13.md": {
-    "mtime": 1778080233.8258538,
-    "ast_hash": "65df474be5b0638352d523e61463a44c",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/knowledge/raw/sources/firebase-functions-setup-2026-04-14.md": {
-    "mtime": 1778080233.825674,
-    "ast_hash": "18a45431b51ec80bf2b9795bdc4f0ca2",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/ui/README.md": {
-    "mtime": 1778080233.8419225,
-    "ast_hash": "b2cd97c198437148f2aa4f1454b92b1f",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/auth/README.md": {
-    "mtime": 1778080233.8383987,
-    "ast_hash": "3dff839b5afb61f210546fe39cc8968d",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/packages/monitoring/README.md": {
-    "mtime": 1778080233.841457,
-    "ast_hash": "7fef5f4f54305ca1685aeb28f4488a4a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/.github/workflows/deploy.yml": {
-    "mtime": 1778080233.7788987,
-    "ast_hash": "b3f27f7ace4d194cd6e09783560ea9d7",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/.github/workflows/ci.yml": {
-    "mtime": 1778080233.7786758,
-    "ast_hash": "a3f9b2c71a2f69ef274de9fc38eceee7",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/apphosting.emulator.yaml": {
-    "mtime": 1778080233.8040216,
-    "ast_hash": "2d9ccc910f234da049784d60f7422e8d",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/apphosting.yaml": {
-    "mtime": 1778080233.804308,
-    "ast_hash": "aced44bea292958d0e3ef76cd6158e22",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/reports/worker-2-task-2-consensus.md": {
-    "mtime": 1778080233.8422692,
-    "ast_hash": "efdcd448b3f2b9892095d025eaaa8145",
-    "semantic_hash": ""
-  },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/rules/debug.md": {
     "mtime": 1779368782.1092744,
     "ast_hash": "6b380668b4c51f2d12ffa514a07bd0a9",
@@ -4240,13 +2600,13 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/log.md": {
-    "mtime": 1782621031.1787713,
-    "ast_hash": "8a1d2050987fe6556f94b8e5ea6fb7e1",
+    "mtime": 1783484211.8116446,
+    "ast_hash": "1654ffac0e9c6bdab3264b88e0e5013d",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/index.md": {
-    "mtime": 1782621469.400473,
-    "ast_hash": "1ca63c4d09a3c4699a0c4acc482d14ce",
+    "mtime": 1783484211.8112772,
+    "ast_hash": "efb7efda86683f98e30e481941b26403",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/AGENTS.md": {
@@ -4485,8 +2845,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/contracts/AGENTS.md": {
-    "mtime": 1777903325.2732613,
-    "ast_hash": "2c309c4a014e24224381b035071352a3",
+    "mtime": 1783259284.213658,
+    "ast_hash": "8b9d8f9e1e3f6c86d6c68ee9365fb130",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/AGENTS.md": {
@@ -4817,56 +3177,6 @@
   "/Users/jangyoung/.superset/projects/saas-of-funqa/study/ch6_assignment/output/fig_actual_vs_pred.png": {
     "mtime": 1777904946.6244986,
     "ast_hash": "acfad47508c2612a76274def4187b5b1",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/app/icon.png": {
-    "mtime": 1778080251.4474754,
-    "ast_hash": "a85c6fbda198fe8ff61008f5f3a4313a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/app/apple-icon.png": {
-    "mtime": 1778080251.4433558,
-    "ast_hash": "bdece84bcc851896c1f47b2001efd81b",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/app/opengraph-image.png": {
-    "mtime": 1778080251.4508982,
-    "ast_hash": "9972824d453866d53cefa2e33b2d23f0",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/app/twitter-image.png": {
-    "mtime": 1778080251.454123,
-    "ast_hash": "9972824d453866d53cefa2e33b2d23f0",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-a1783371/apps/web/public/hero-image.png": {
-    "mtime": 1778080251.464281,
-    "ast_hash": "8788154d46d6ea2242d1d66b522a8d32",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/app/icon.png": {
-    "mtime": 1778080233.7965572,
-    "ast_hash": "a85c6fbda198fe8ff61008f5f3a4313a",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/app/apple-icon.png": {
-    "mtime": 1778080233.7929242,
-    "ast_hash": "bdece84bcc851896c1f47b2001efd81b",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/app/opengraph-image.png": {
-    "mtime": 1778080233.8000991,
-    "ast_hash": "9972824d453866d53cefa2e33b2d23f0",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/app/twitter-image.png": {
-    "mtime": 1778080233.8037274,
-    "ast_hash": "9972824d453866d53cefa2e33b2d23f0",
-    "semantic_hash": ""
-  },
-  "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/worktrees/agent-ab6cd01e/apps/web/public/hero-image.png": {
-    "mtime": 1778080233.8161423,
-    "ast_hash": "8788154d46d6ea2242d1d66b522a8d32",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/app/icon.png": {
@@ -5200,8 +3510,8 @@
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/wiki/concepts/neuro-symbolic-game-storytelling.md": {
-    "mtime": 1782620482.567852,
-    "ast_hash": "aea6e67815c38b2c0c7f5f702d446f8a",
+    "mtime": 1783484211.8120267,
+    "ast_hash": "f6659d9ef895732ecbf52b47aa735a20",
     "semantic_hash": ""
   },
   "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/wiki/reports/paper-draft-kg-grounded-rpg-dialogue-2026-06-28.md": {
@@ -5312,6 +3622,56 @@
   "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/wiki/reports/funqa-consensus-release-gate-local-dev.md": {
     "mtime": 1782999832.9708548,
     "ast_hash": "1f7836baf4acd24f21d1ecf2b504424b",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.gjc/_session-gajae_code_main_mr7emv0h_4wx8hssj/runtime/tmux-sessions/gajae-code-main-mr7emv0h-4wx8hssj.json": {
+    "mtime": 1783259325.6712015,
+    "ast_hash": "bfa287273be5243e39f0a6be0b619aba",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/contracts/src/index.test.ts": {
+    "mtime": 1783259248.244958,
+    "ast_hash": "6893ef631051e62dc529c405255c1a5b",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.jeo/artifacts/tool-results/1783234151704-fmwfge-bash.txt": {
+    "mtime": 1783234151.704464,
+    "ast_hash": "49167c95814ada0f05b0c76f94335de3",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/.jeo/artifacts/tool-results/1783236412994-f3exra-bash.txt": {
+    "mtime": 1783236412.994449,
+    "ast_hash": "a1658f4744f5235e72d55467ca4cf083",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/exports/google-drive/neuro-symbolic-game-story-2026/weekly-2026-07-06-neuro-symbolic-game-story.md": {
+    "mtime": 1783234129.735152,
+    "ast_hash": "dab25c06443980b5cede43803b7259e3",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/reports/worker-1-task-1-consensus.md": {
+    "mtime": 1783484231.9600847,
+    "ast_hash": "77712d0572bbc200ecd8943a771854fe",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/wiki/reports/paper-draft-constraint-audited-interactive-fiction-2026-07-06.md": {
+    "mtime": 1783236793.6890745,
+    "ast_hash": "2fcff8d6854d452aed34f05bfd98975f",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/wiki/reports/paper-draft-kg-grounded-npc-dialogue-2026-07-06.md": {
+    "mtime": 1783236992.8557944,
+    "ast_hash": "bbb0c17b5480147f7a5085d91e593987",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/wiki/reports/neuro-symbolic-game-story-research-plan-2026-07-06.md": {
+    "mtime": 1783237050.9194913,
+    "ast_hash": "92f46ea8278499d87ac6a2c54980bb4e",
+    "semantic_hash": ""
+  },
+  "/Users/jangyoung/.superset/projects/saas-of-funqa/knowledge/wiki/reports/funqa-tension-score-platform-stage-plan-2026-07-06.md": {
+    "mtime": 1783234037.5124197,
+    "ast_hash": "6b48480b442f122f32e83b12036a9bb9",
     "semantic_hash": ""
   }
 }
