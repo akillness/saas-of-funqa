@@ -1,0 +1,14 @@
+{
+  "assertions-and-semantics.pdf": {
+    "bytes": 3748,
+    "sha256": "57cfb11afea1b4c956cc12432ef6570cb7d1c69bab774f8da1906b11bd616a00"
+  },
+  "incremental-dataflow.pdf": {
+    "bytes": 2779,
+    "sha256": "830b4772e7041273612eada0576190e27f3cccc84413be6abc6b30f34965bceb"
+  },
+  "latency-q01-q03.pdf": {
+    "bytes": 3305,
+    "sha256": "da0dd73ebbd836a887de5e0c696eb272427e24ae70930089b1203b3cba9acb28"
+  }
+}

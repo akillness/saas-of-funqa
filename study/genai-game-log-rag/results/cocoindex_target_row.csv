@@ -1,0 +1,2 @@
+evidence_id,content_sha256,excerpt,raw_path
+E001,a9d8f6bb2805363f81dad61fb359b932987f2f16cdf6770a9bedde9905cbbc47,Patch P42 changed Scout dash cooldown from 8 s to 10 s to reduce repeated disengage chains. Observed in a controlled balance session.,_workspace/current/engineering/evidence/stage-1/cocoindex-experiment-target-row.txt

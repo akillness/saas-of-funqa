@@ -1,0 +1,12 @@
+
+> saas-of-funqa@0.1.0 typecheck
+> npm --workspace @funqa/api run typecheck && npm --workspace @funqa/web run typecheck
+
+
+> @funqa/api@0.1.0 typecheck
+> tsc --noEmit -p tsconfig.json
+
+
+> @funqa/web@0.1.0 typecheck
+> tsc --noEmit
+

@@ -1,0 +1,160 @@
+[
+  {
+    "assertion": "outcome",
+    "case_id": "Q03-incident-root-cause",
+    "expected": "supported",
+    "observed": "supported",
+    "passed": true
+  },
+  {
+    "assertion": "failure_owner",
+    "case_id": "Q03-incident-root-cause",
+    "expected": "none",
+    "observed": "none",
+    "passed": true
+  },
+  {
+    "assertion": "query_id_preserved",
+    "case_id": "Q03-incident-root-cause",
+    "expected": "0198f4d0-0003-7000-8000-000000000003",
+    "observed": "0198f4d0-0003-7000-8000-000000000003",
+    "passed": true
+  },
+  {
+    "assertion": "correlation_id_preserved",
+    "case_id": "Q03-incident-root-cause",
+    "expected": "0198f4d0-1003-7000-8000-000000000003",
+    "observed": "0198f4d0-1003-7000-8000-000000000003",
+    "passed": true
+  },
+  {
+    "assertion": "minimum_evidence_count",
+    "case_id": "Q03-incident-root-cause",
+    "expected": 3,
+    "observed": 3,
+    "passed": true
+  },
+  {
+    "assertion": "required_top_five",
+    "case_id": "Q03-incident-root-cause",
+    "expected": [
+      "E004",
+      "E005",
+      "E006"
+    ],
+    "observed": [
+      "E004",
+      "E006",
+      "E005"
+    ],
+    "passed": true
+  },
+  {
+    "assertion": "expected_rank_one",
+    "case_id": "Q03-incident-root-cause",
+    "expected": null,
+    "observed": "E004",
+    "passed": true
+  },
+  {
+    "assertion": "forbidden_values_absent",
+    "case_id": "Q03-incident-root-cause",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "required_finding_values_present",
+    "case_id": "Q03-incident-root-cause",
+    "expected": [
+      "gpu",
+      "texture"
+    ],
+    "observed": [
+      "gpu",
+      "texture"
+    ],
+    "passed": true
+  },
+  {
+    "assertion": "scope_preserved",
+    "case_id": "Q03-incident-root-cause",
+    "expected": {
+      "entity_ids": [
+        "Incident184"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "observed": {
+      "entity_ids": [
+        "Incident184"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "passed": true
+  },
+  {
+    "assertion": "scope_delta_preserved",
+    "case_id": "Q03-incident-root-cause",
+    "expected": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "observed": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "passed": true
+  },
+  {
+    "assertion": "index_snapshot_preserved",
+    "case_id": "Q03-incident-root-cause",
+    "expected": "sim-index-v1",
+    "observed": "sim-index-v1",
+    "passed": true
+  },
+  {
+    "assertion": "boundary_reason",
+    "case_id": "Q03-incident-root-cause",
+    "expected": null,
+    "observed": null,
+    "passed": true
+  },
+  {
+    "assertion": "recovery_action",
+    "case_id": "Q03-incident-root-cause",
+    "expected": "inspect_claim_traces",
+    "observed": "inspect_claim_traces",
+    "passed": true
+  }
+]

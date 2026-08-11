@@ -1,0 +1,23 @@
+[
+  {
+    "case_id": "Q01-exact-cooldown",
+    "correlation_id": "0198f4d0-1001-7000-8000-000000000001",
+    "duration_ms": 25896.669,
+    "failure_owner": "synthesis",
+    "fault_mode": "none",
+    "network_urls": [
+      "http://127.0.0.1:11434/api/tags",
+      "http://127.0.0.1:11434/api/chat"
+    ],
+    "ordered_frame_types": [
+      "dispatch_accepted",
+      "stage",
+      "stage",
+      "evidence_snapshot",
+      "stage",
+      "terminal"
+    ],
+    "query_id": "0198f4d0-0001-7000-8000-000000000001",
+    "terminal_outcome": "synthesis_unavailable"
+  }
+]

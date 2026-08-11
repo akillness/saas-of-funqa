@@ -456,3 +456,19 @@ Each entry should list the files touched, the reason for the change, and any fol
   - Transfer the three report files into the user’s Google Drive folder when authenticated Google Workspace tooling is available.
   - Verify full BibTeX records for the unverified candidate titles before citation in a submission draft.
   - Implement experiment schemas and fixtures in `saas-of-funqa` before making empirical claims.
+
+## [2026-08-11] build | Local game-log agentic search and CocoIndex cycle
+
+- Files touched:
+  - `wiki/concepts/local-game-log-agentic-search.md`
+  - `wiki/concepts/cocoindex-incremental-game-log-index.md`
+  - `wiki/reports/game-log-agentic-search-cycle-2026-08-11.md`
+  - `index.md`
+  - `log.md`
+- Reason:
+  - Preserve the non-Genkit local-model boundary, CocoIndex incremental-index contract, typed evidence protocol, VM activation path, browser observations, and publication evidence as project-scoped Obsidian-compatible knowledge.
+  - Make the current system and its known gate failures discoverable through `knowledge/index.md` and the project `llm-wiki` skill.
+- Verification:
+  - `npm run wiki:lint:json` and `graphify update .` are the closeout checks for link/schema and graph freshness.
+- Follow-up:
+  - Replace FIX evidence only with frozen reruns or measured human/operational sessions; do not infer gate PASS from the case-study fixture.

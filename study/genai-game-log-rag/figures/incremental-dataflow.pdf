@@ -1,0 +1,67 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 504.00 270.00] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+6 0 obj
+<< /Length 2116 >>
+stream
+0.120 0.180 0.240 rg BT /F2 12.00 Tf 22.00 247.00 Td (Isolated CocoIndex incremental-flow observations) Tj ET
+0.350 0.380 0.400 rg BT /F1 8.00 Tf 22.00 231.00 Td (Nine input files; one baseline, one no-op, and one one-change execution) Tj ET
+0.820 0.840 0.860 RG 0.35 w 154.00 80.00 m 154.00 186.00 l S
+0.350 0.380 0.400 rg BT /F1 7.00 Tf 151.00 67.00 Td (0) Tj ET
+0.820 0.840 0.860 RG 0.35 w 247.33 80.00 m 247.33 186.00 l S
+0.350 0.380 0.400 rg BT /F1 7.00 Tf 244.33 67.00 Td (3) Tj ET
+0.820 0.840 0.860 RG 0.35 w 340.67 80.00 m 340.67 186.00 l S
+0.350 0.380 0.400 rg BT /F1 7.00 Tf 337.67 67.00 Td (6) Tj ET
+0.820 0.840 0.860 RG 0.35 w 434.00 80.00 m 434.00 186.00 l S
+0.350 0.380 0.400 rg BT /F1 7.00 Tf 431.00 67.00 Td (9) Tj ET
+0.120 0.180 0.240 rg BT /F2 9.00 Tf 28.00 171.00 Td (baseline) Tj ET
+0.000 0.450 0.700 rg 154.00 168.00 280.00 18.00 re f
+1.000 1.000 1.000 rg BT /F2 8.00 Tf 291.00 173.00 Td (9) Tj ET
+0.120 0.180 0.240 rg BT /F1 8.00 Tf 444.00 172.00 Td (12.5s) Tj ET
+0.120 0.180 0.240 rg BT /F2 9.00 Tf 28.00 136.00 Td (no-op) Tj ET
+0.700 0.720 0.740 rg 154.00 133.00 280.00 18.00 re f
+1.000 1.000 1.000 rg BT /F2 8.00 Tf 291.00 138.00 Td (9) Tj ET
+0.120 0.180 0.240 rg BT /F1 8.00 Tf 444.00 137.00 Td (0.0s) Tj ET
+0.120 0.180 0.240 rg BT /F2 9.00 Tf 28.00 101.00 Td (one-change) Tj ET
+0.900 0.500 0.000 rg 154.00 98.00 31.11 18.00 re f
+1.000 1.000 1.000 rg BT /F2 8.00 Tf 166.56 103.00 Td (1) Tj ET
+0.700 0.720 0.740 rg 185.11 98.00 248.89 18.00 re f
+1.000 1.000 1.000 rg BT /F2 8.00 Tf 306.56 103.00 Td (8) Tj ET
+0.120 0.180 0.240 rg BT /F1 8.00 Tf 444.00 102.00 Td (11.4s) Tj ET
+0.000 0.450 0.700 rg 110.00 45.00 10.00 8.00 re f
+0.120 0.180 0.240 rg BT /F1 8.00 Tf 125.00 45.00 Td (added) Tj ET
+0.900 0.500 0.000 rg 225.00 45.00 10.00 8.00 re f
+0.120 0.180 0.240 rg BT /F1 8.00 Tf 240.00 45.00 Td (reprocessed) Tj ET
+0.700 0.720 0.740 rg 340.00 45.00 10.00 8.00 re f
+0.120 0.180 0.240 rg BT /F1 8.00 Tf 355.00 45.00 Td (unchanged) Tj ET
+0.350 0.380 0.400 rg BT /F1 7.00 Tf 22.00 18.00 Td (Source: results/cocoindex_incremental.csv; elapsed values are tool-displayed single observations.) Tj ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000263 00000 n 
+0000000333 00000 n 
+0000000408 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2575
+%%EOF

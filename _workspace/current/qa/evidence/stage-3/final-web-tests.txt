@@ -1,0 +1,9 @@
+
+ RUN  v4.1.7 /private/tmp/saas-of-funqa-game-search-20260809
+
+
+ Test Files  1 passed (1)
+      Tests  14 passed (14)
+   Start at  19:27:08
+   Duration  761ms (transform 273ms, setup 0ms, import 498ms, tests 52ms, environment 0ms)
+

@@ -1,0 +1,4 @@
+*.pdf binary
+*.png binary
+*.webp binary
+_workspace/**/evidence/** whitespace=-trailing-space,-blank-at-eof

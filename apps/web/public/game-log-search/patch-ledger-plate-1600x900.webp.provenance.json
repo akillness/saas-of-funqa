@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "funqa.generated-asset-provenance.v1",
+  "asset": "patch-ledger-plate-1600x900.webp",
+  "provider": "openai-codex",
+  "model": "gpt-5.6-sol",
+  "prompt": null,
+  "promptStatus": "not-retained; visual description reconstructed from the accepted resource manifest, not represented as the original generation prompt",
+  "acceptedVisualDescription": "Abstract warm editorial game-log ledger with layered parchment, muted dusty-blue and plum bands, a dashed trajectory arc, waveform-like marks, restrained terracotta nodes, and no readable text or game-state control.",
+  "inputs": [],
+  "responseId": null,
+  "sha256": "5512feeee9311c937f34947a01bfba494b8f9155afa39c694b39e874eb33e9a7",
+  "rightsNotes": "AI-generated editorial decoration. No third-party source-image inputs are recorded. It carries no required product copy, state, evidence, or control.",
+  "runtimeEligible": true
+}

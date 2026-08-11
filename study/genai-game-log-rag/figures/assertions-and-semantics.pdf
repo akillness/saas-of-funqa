@@ -1,0 +1,82 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 504.00 270.00] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+6 0 obj
+<< /Length 3085 >>
+stream
+0.120 0.180 0.240 rg BT /F2 12.00 Tf 22.00 247.00 Td (Contract assertions and synthesis-dependent outcomes) Tj ET
+0.350 0.380 0.400 rg BT /F1 8.00 Tf 22.00 231.00 Td (One fixed ten-query run per Q4_K_M model arm; descriptive only) Tj ET
+0.120 0.180 0.240 rg BT /F2 9.00 Tf 24.00 207.00 Td (\(a\) Assertions passed \(of 140\)) Tj ET
+0.750 0.780 0.800 RG 0.40 w 94.00 134.00 m 94.00 199.00 l S
+0.350 0.380 0.400 rg BT /F1 7.00 Tf 90.00 122.00 Td (0) Tj ET
+0.750 0.780 0.800 RG 0.40 w 166.50 134.00 m 166.50 199.00 l S
+0.350 0.380 0.400 rg BT /F1 7.00 Tf 162.50 122.00 Td (70) Tj ET
+0.750 0.780 0.800 RG 0.40 w 239.00 134.00 m 239.00 199.00 l S
+0.350 0.380 0.400 rg BT /F1 7.00 Tf 235.00 122.00 Td (140) Tj ET
+0.120 0.180 0.240 rg BT /F2 8.00 Tf 24.00 186.00 Td (0.5b) Tj ET
+0.880 0.900 0.920 rg 94.00 184.00 145.00 11.00 re f
+0.000 0.450 0.700 rg 94.00 184.00 134.64 11.00 re f
+0.120 0.180 0.240 rg BT /F2 8.00 Tf 233.64 186.00 Td (130) Tj ET
+0.120 0.180 0.240 rg BT /F2 8.00 Tf 24.00 164.00 Td (1.5b) Tj ET
+0.880 0.900 0.920 rg 94.00 162.00 145.00 11.00 re f
+0.000 0.450 0.700 rg 94.00 162.00 134.64 11.00 re f
+0.120 0.180 0.240 rg BT /F2 8.00 Tf 233.64 164.00 Td (130) Tj ET
+0.120 0.180 0.240 rg BT /F2 8.00 Tf 24.00 142.00 Td (3b) Tj ET
+0.880 0.900 0.920 rg 94.00 140.00 145.00 11.00 re f
+0.000 0.450 0.700 rg 94.00 140.00 140.86 11.00 re f
+0.120 0.180 0.240 rg BT /F2 8.00 Tf 239.86 142.00 Td (136) Tj ET
+0.120 0.180 0.240 rg BT /F2 9.00 Tf 275.00 207.00 Td (\(b\) Q01/Q03 terminal result) Tj ET
+0.120 0.180 0.240 rg BT /F2 8.00 Tf 359.00 185.00 Td (Q01) Tj ET
+0.120 0.180 0.240 rg BT /F2 8.00 Tf 424.00 185.00 Td (Q03) Tj ET
+0.120 0.180 0.240 rg BT /F2 8.00 Tf 278.00 165.00 Td (0.5b) Tj ET
+0.900 0.500 0.000 rg 356.00 157.00 52.00 24.00 re f
+1.000 1.000 1.000 rg BT /F2 7.00 Tf 361.00 165.00 Td (timeout) Tj ET
+0.900 0.500 0.000 rg 421.00 157.00 52.00 24.00 re f
+1.000 1.000 1.000 rg BT /F2 7.00 Tf 426.00 165.00 Td (timeout) Tj ET
+0.120 0.180 0.240 rg BT /F2 8.00 Tf 278.00 127.00 Td (1.5b) Tj ET
+0.900 0.500 0.000 rg 356.00 119.00 52.00 24.00 re f
+1.000 1.000 1.000 rg BT /F2 7.00 Tf 361.00 127.00 Td (timeout) Tj ET
+0.900 0.500 0.000 rg 421.00 119.00 52.00 24.00 re f
+1.000 1.000 1.000 rg BT /F2 7.00 Tf 426.00 127.00 Td (timeout) Tj ET
+0.120 0.180 0.240 rg BT /F2 8.00 Tf 278.00 89.00 Td (3b) Tj ET
+0.000 0.620 0.450 rg 356.00 81.00 52.00 24.00 re f
+1.000 1.000 1.000 rg BT /F2 7.00 Tf 361.00 89.00 Td (supported) Tj ET
+0.800 0.250 0.200 rg 421.00 81.00 52.00 24.00 re f
+1.000 1.000 1.000 rg BT /F2 7.00 Tf 426.00 89.00 Td (strict fail) Tj ET
+0.000 0.620 0.450 rg 280.00 47.00 10.00 8.00 re f
+0.120 0.180 0.240 rg BT /F1 7.00 Tf 295.00 47.00 Td (supported) Tj ET
+0.900 0.500 0.000 rg 348.00 47.00 10.00 8.00 re f
+0.120 0.180 0.240 rg BT /F1 7.00 Tf 363.00 47.00 Td (timeout / schema unobserved) Tj ET
+0.800 0.250 0.200 rg 462.00 47.00 10.00 8.00 re f
+0.120 0.180 0.240 rg BT /F1 7.00 Tf 477.00 47.00 Td (strict) Tj ET
+0.350 0.380 0.400 rg BT /F1 7.00 Tf 22.00 18.00 Td (Source: results/run_summary.csv and results/query_results.csv; raw paths are retained in every row.) Tj ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000263 00000 n 
+0000000333 00000 n 
+0000000408 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+3544
+%%EOF

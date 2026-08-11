@@ -1,0 +1,9 @@
+{
+  "cached_answer_use_count": 0,
+  "genkit_canary_occurrence_count": 0,
+  "genkit_network_span_count": 0,
+  "genkit_network_urls": [],
+  "non_cocoindex_evidence_id_count": 0,
+  "non_cocoindex_evidence_ids": [],
+  "prior_knowledge_answer_count": 0
+}

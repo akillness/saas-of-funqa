@@ -1,0 +1,175 @@
+[
+  {
+    "case_id": "Q01-exact-cooldown",
+    "correlation_id": "0198f4d0-1001-7000-8000-000000000001",
+    "duration_ms": 51950.074,
+    "failure_owner": "none",
+    "fault_mode": "none",
+    "network_urls": [
+      "http://127.0.0.1:11434/api/tags",
+      "http://127.0.0.1:11434/api/chat"
+    ],
+    "ordered_frame_types": [
+      "dispatch_accepted",
+      "stage",
+      "stage",
+      "evidence_snapshot",
+      "stage",
+      "terminal"
+    ],
+    "query_id": "0198f4d0-0001-7000-8000-000000000001",
+    "terminal_outcome": "supported"
+  },
+  {
+    "case_id": "Q02-win-rate-cause",
+    "correlation_id": "0198f4d0-1002-7000-8000-000000000002",
+    "duration_ms": 7817.707,
+    "failure_owner": "none",
+    "fault_mode": "none",
+    "network_urls": [],
+    "ordered_frame_types": [
+      "dispatch_accepted",
+      "stage",
+      "stage",
+      "evidence_snapshot",
+      "terminal"
+    ],
+    "query_id": "0198f4d0-0002-7000-8000-000000000002",
+    "terminal_outcome": "weak_support"
+  },
+  {
+    "case_id": "Q03-incident-root-cause",
+    "correlation_id": "0198f4d0-1003-7000-8000-000000000003",
+    "duration_ms": 13676.039,
+    "failure_owner": "none",
+    "fault_mode": "none",
+    "network_urls": [
+      "http://127.0.0.1:11434/api/tags",
+      "http://127.0.0.1:11434/api/chat"
+    ],
+    "ordered_frame_types": [
+      "dispatch_accepted",
+      "stage",
+      "stage",
+      "evidence_snapshot",
+      "stage",
+      "terminal"
+    ],
+    "query_id": "0198f4d0-0003-7000-8000-000000000003",
+    "terminal_outcome": "supported"
+  },
+  {
+    "case_id": "Q04-no-hits",
+    "correlation_id": "0198f4d0-1004-7000-8000-000000000004",
+    "duration_ms": 11652.088,
+    "failure_owner": "none",
+    "fault_mode": "none",
+    "network_urls": [],
+    "ordered_frame_types": [
+      "dispatch_accepted",
+      "stage",
+      "stage",
+      "terminal"
+    ],
+    "query_id": "0198f4d0-0004-7000-8000-000000000004",
+    "terminal_outcome": "no_hits"
+  },
+  {
+    "case_id": "Q05-retrieval-unavailable",
+    "correlation_id": "0198f4d0-1005-7000-8000-000000000005",
+    "duration_ms": 1.963,
+    "failure_owner": "retrieval",
+    "fault_mode": "retrieval_503",
+    "network_urls": [],
+    "ordered_frame_types": [
+      "dispatch_accepted",
+      "stage",
+      "terminal"
+    ],
+    "query_id": "0198f4d0-0005-7000-8000-000000000005",
+    "terminal_outcome": "retrieval_unavailable"
+  },
+  {
+    "case_id": "Q06-synthesis-unavailable",
+    "correlation_id": "0198f4d0-1006-7000-8000-000000000006",
+    "duration_ms": 20204.307,
+    "failure_owner": "synthesis",
+    "fault_mode": "synthesis_503",
+    "network_urls": [],
+    "ordered_frame_types": [
+      "dispatch_accepted",
+      "stage",
+      "stage",
+      "evidence_snapshot",
+      "terminal"
+    ],
+    "query_id": "0198f4d0-0006-7000-8000-000000000006",
+    "terminal_outcome": "synthesis_unavailable"
+  },
+  {
+    "case_id": "Q07-newest-playtest",
+    "correlation_id": "0198f4d0-1007-7000-8000-000000000007",
+    "duration_ms": 44823.205,
+    "failure_owner": "retrieval",
+    "fault_mode": "none",
+    "network_urls": [],
+    "ordered_frame_types": [
+      "dispatch_accepted",
+      "stage",
+      "stage",
+      "evidence_snapshot",
+      "terminal"
+    ],
+    "query_id": "0198f4d0-0007-7000-8000-000000000007",
+    "terminal_outcome": "stale_index"
+  },
+  {
+    "case_id": "Q08-log-injection",
+    "correlation_id": "0198f4d0-1008-7000-8000-000000000008",
+    "duration_ms": 25154.634,
+    "failure_owner": "none",
+    "fault_mode": "none",
+    "network_urls": [],
+    "ordered_frame_types": [
+      "dispatch_accepted",
+      "stage",
+      "stage",
+      "evidence_snapshot",
+      "terminal"
+    ],
+    "query_id": "0198f4d0-0008-7000-8000-000000000008",
+    "terminal_outcome": "weak_support"
+  },
+  {
+    "case_id": "Q09-ambiguous-entity",
+    "correlation_id": "0198f4d0-1009-7000-8000-000000000009",
+    "duration_ms": 16669.574,
+    "failure_owner": "none",
+    "fault_mode": "none",
+    "network_urls": [],
+    "ordered_frame_types": [
+      "dispatch_accepted",
+      "stage",
+      "stage",
+      "evidence_snapshot",
+      "terminal"
+    ],
+    "query_id": "0198f4d0-0009-7000-8000-000000000009",
+    "terminal_outcome": "weak_support"
+  },
+  {
+    "case_id": "Q10-genkit-canary",
+    "correlation_id": "0198f4d0-1010-7000-8000-000000000010",
+    "duration_ms": 1.723,
+    "failure_owner": "retrieval",
+    "fault_mode": "retrieval_503",
+    "network_urls": [],
+    "ordered_frame_types": [
+      "dispatch_accepted",
+      "stage",
+      "terminal"
+    ],
+    "query_id": "0198f4d0-0010-7000-8000-000000000010",
+    "terminal_outcome": "retrieval_unavailable"
+  }
+]

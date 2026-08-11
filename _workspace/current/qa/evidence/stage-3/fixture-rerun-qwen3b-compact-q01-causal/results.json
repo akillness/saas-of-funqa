@@ -1,0 +1,163 @@
+[
+  {
+    "assertion": "outcome",
+    "case_id": "Q01-exact-cooldown",
+    "expected": "supported",
+    "observed": "supported",
+    "passed": true
+  },
+  {
+    "assertion": "failure_owner",
+    "case_id": "Q01-exact-cooldown",
+    "expected": "none",
+    "observed": "none",
+    "passed": true
+  },
+  {
+    "assertion": "query_id_preserved",
+    "case_id": "Q01-exact-cooldown",
+    "expected": "0198f4d0-0001-7000-8000-000000000001",
+    "observed": "0198f4d0-0001-7000-8000-000000000001",
+    "passed": true
+  },
+  {
+    "assertion": "correlation_id_preserved",
+    "case_id": "Q01-exact-cooldown",
+    "expected": "0198f4d0-1001-7000-8000-000000000001",
+    "observed": "0198f4d0-1001-7000-8000-000000000001",
+    "passed": true
+  },
+  {
+    "assertion": "minimum_evidence_count",
+    "case_id": "Q01-exact-cooldown",
+    "expected": 2,
+    "observed": 3,
+    "passed": true
+  },
+  {
+    "assertion": "required_top_five",
+    "case_id": "Q01-exact-cooldown",
+    "expected": [
+      "E001",
+      "E003"
+    ],
+    "observed": [
+      "E001",
+      "E002",
+      "E003"
+    ],
+    "passed": true
+  },
+  {
+    "assertion": "expected_rank_one",
+    "case_id": "Q01-exact-cooldown",
+    "expected": "E001",
+    "observed": "E001",
+    "passed": true
+  },
+  {
+    "assertion": "forbidden_values_absent",
+    "case_id": "Q01-exact-cooldown",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "required_finding_values_present",
+    "case_id": "Q01-exact-cooldown",
+    "expected": [
+      "8",
+      "10",
+      "disengage"
+    ],
+    "observed": [
+      "8",
+      "10",
+      "disengage"
+    ],
+    "passed": true
+  },
+  {
+    "assertion": "scope_preserved",
+    "case_id": "Q01-exact-cooldown",
+    "expected": {
+      "entity_ids": [
+        "P42",
+        "Scout"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "observed": {
+      "entity_ids": [
+        "P42",
+        "Scout"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "passed": true
+  },
+  {
+    "assertion": "scope_delta_preserved",
+    "case_id": "Q01-exact-cooldown",
+    "expected": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "observed": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "passed": true
+  },
+  {
+    "assertion": "index_snapshot_preserved",
+    "case_id": "Q01-exact-cooldown",
+    "expected": "sim-index-v1",
+    "observed": "sim-index-v1",
+    "passed": true
+  },
+  {
+    "assertion": "boundary_reason",
+    "case_id": "Q01-exact-cooldown",
+    "expected": null,
+    "observed": null,
+    "passed": true
+  },
+  {
+    "assertion": "recovery_action",
+    "case_id": "Q01-exact-cooldown",
+    "expected": "inspect_claim_traces",
+    "observed": "inspect_claim_traces",
+    "passed": true
+  }
+]

@@ -1,0 +1,75 @@
+{
+  "comparison_contract": {
+    "common_profile": {
+      "app_build_id": "local-smoke-20260811",
+      "clock_utc": "2026-08-09T12:00:00Z",
+      "cocoindex_version": "1.0.19",
+      "corpus_sha256": "ddf326aa636543a4c77dcf1262bd55e2b388ef1cae709f75f9a6b66f1d8f9ad2",
+      "corpus_version": "sim-game-logs-v1",
+      "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "fixture_mode": true,
+      "index_profile": {
+        "coverage_through": "2026-08-08T12:00:00Z",
+        "id": "sim-index-v1",
+        "indexed_evidence_ids": [
+          "E001",
+          "E002",
+          "E003",
+          "E004",
+          "E005",
+          "E006",
+          "E008",
+          "E009"
+        ],
+        "intentionally_absent": [
+          "E007"
+        ],
+        "refreshed_at": "2026-08-08T12:00:00Z"
+      },
+      "query_manifest_sha256": "5fe747e2cf2c8f52cafc2468426e00f41295dfefe9eacbf66091369df35eed33",
+      "ranking_seed": 20260809
+    },
+    "model_profiles": [
+      "qwen2.5:0.5b",
+      "qwen2.5:1.5b",
+      "qwen2.5:3b"
+    ],
+    "model_quantization": "Q4_K_M",
+    "single_run_per_arm": true,
+    "synthesis_dependent_cases": [
+      "Q01-exact-cooldown",
+      "Q03-incident-root-cause"
+    ]
+  },
+  "generator": "study/genai-game-log-rag/scripts/build_results.py",
+  "outputs": {
+    "results/assertions.csv": {
+      "bytes": 99958,
+      "sha256": "73843f422c638cfad40bb624e9ca4ff5527984587def724da6d9b1bd9795fe87"
+    },
+    "results/canary_summary.csv": {
+      "bytes": 769,
+      "sha256": "f7ae5184ab2e1c14df4fffb94aadfc2981204412d54167cb2c50e9b1a12afa6f"
+    },
+    "results/cocoindex_incremental.csv": {
+      "bytes": 383,
+      "sha256": "137c3401681bcc817ba091d8e69f2d819bbd6a86c997c5b6ae39e3dc891700a4"
+    },
+    "results/cocoindex_target_row.csv": {
+      "bytes": 332,
+      "sha256": "22ed4133301dfeac42d3d353ee0dd6fae41505cd57e3fcb2b352ec1c789b43cf"
+    },
+    "results/query_results.csv": {
+      "bytes": 17547,
+      "sha256": "03f2a2710ae157360fbebc7a87784bc1fd5e463aac70893351354620f93f0f28"
+    },
+    "results/retrieval_by_query.csv": {
+      "bytes": 4574,
+      "sha256": "fca8039bb37a035d082f04e30a85cb675e5394123cd987b7a7ee58192f3a2923"
+    },
+    "results/run_summary.csv": {
+      "bytes": 1717,
+      "sha256": "1b24469d0d2d6c69b0804f2da9217141fa8268fd08397824189f992b3e703fc9"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "date": "2026-08-11",
+  "precondition": "repository .env absent",
+  "teardown": {
+    "command": "sh scripts/game-log-search-local-down.sh",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "follow_up": {
+    "command": "docker ps --filter name=funqa-game-log-search --format '{{.Names}}'",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "",
+    "running_container_count": 0
+  }
+}

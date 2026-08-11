@@ -1,0 +1,57 @@
+
+> saas-of-funqa@0.1.0 build:web
+> npm --prefix apps/web install --workspaces=false && npm --prefix apps/web run build
+
+
+up to date in 5s
+
+> @funqa/web@0.1.0 build
+> next build && node scripts/ensure-standalone-runtime.mjs
+
+   ▲ Next.js 15.2.9
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+
+ ⚠ The Next.js plugin was not detected in your ESLint configuration. See https://nextjs.org/docs/app/api-reference/config/eslint#migrating-existing-config
+   Collecting page data ...
+   Generating static pages (0/15) ...
+   Generating static pages (3/15) 
+   Generating static pages (7/15) 
+   Generating static pages (11/15) 
+ ✓ Generating static pages (15/15)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ƒ /                                      176 B         104 kB
+├ ƒ /_not-found                            977 B         102 kB
+├ ƒ /admin                                 145 B         101 kB
+├ ƒ /api/game-log-search/health            145 B         101 kB
+├ ƒ /api/game-log-search/search            145 B         101 kB
+├ ○ /apple-icon.png                          0 B            0 B
+├ ƒ /docs                                  145 B         101 kB
+├ ○ /icon.png                                0 B            0 B
+├ ƒ /login                               2.39 kB         138 kB
+├ ○ /opengraph-image.png                     0 B            0 B
+├ ƒ /rag-lab                               176 B         104 kB
+├ ƒ /ralph                                 176 B         104 kB
+├ ƒ /search                              47.3 kB         148 kB
+└ ○ /twitter-image.png                       0 B            0 B
++ First Load JS shared by all             101 kB
+  ├ chunks/4bd1b696-68c34f2871d0bc5d.js  53.3 kB
+  ├ chunks/684-5e471f5b84e01799.js       45.4 kB
+  └ other shared chunks (total)          1.91 kB
+
+
+ƒ Middleware                               31 kB
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+Copied styled-jsx → standalone/node_modules
+Copied @swc/helpers → standalone/node_modules
+Copied react → standalone/node_modules
+Copied react-dom → standalone/node_modules
+Copied scheduler → standalone/node_modules

@@ -20,6 +20,17 @@ saas-of-funqa-firebase-adminsdk-fbsvc-cee18265fb.json
 .omc/
 .omx/
 .survey/
+.openspace/
 
 # oma docs generated artifacts
 docs/generated/
+
+# Python/local search runtime artifacts
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+services/**/.cocoindex/
+/logs/
+graphify-out/cache/

@@ -1,0 +1,15 @@
+Running app 'funqa_game_log_search' from environment 'default' (db path: /tmp/funqa-cocoindex-incremental/cocoindex.db)
+[Stats]
+⠋  app_main: 1 total, 1 in-flight
+✅ declare_target_state_with_child: 1 total | 1 reprocessed
+⠋  _MountEachLiveComponent.process: 1 total, 1 in-flight
+⠋  process_log_file: 9 total, 1 in-flight | 8 unchanged
+⏳ Elapsed: 1.0s
+
+[Stats] (terminated)
+✅ app_main: 1 total | 1 reprocessed
+✅ declare_target_state_with_child: 1 total | 1 reprocessed
+✅ _MountEachLiveComponent.process: 1 total | 1 reprocessed
+✅ process_log_file: 9 total | 1 reprocessed, 8 unchanged
+⏳ Elapsed: 11.4s
+

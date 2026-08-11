@@ -1,844 +1,478 @@
-"use client"
+"use client";
 
-import React, { useState, useTransition } from "react"
-import { getDictionary, type Locale, type SearchResult } from "../../lib/i18n"
-import { RecommendationPanel, type RecommendationPanelResult } from "../../components/recommendation-panel"
+import type {
+  GameLogSearchHealthStatus,
+  GameLogSearchOutcome,
+  GameLogSearchScope,
+  GameLogSearchScopeDelta
+} from "@funqa/contracts";
+import Image from "next/image";
+import { useEffect, useMemo, useRef, useState } from "react";
 
-function MediaTypeBadge({ category, labels }: { category: string; labels: { games: string; movies: string; videos: string } }) {
-  if (category === "games") return <span className="media-type-badge media-type-badge--games">{labels.games}</span>
-  if (category === "movies") return <span className="media-type-badge media-type-badge--movies">{labels.movies}</span>
-  if (category === "videos") return <span className="media-type-badge media-type-badge--videos">{labels.videos}</span>
-  return null
-}
+import { createScopeDelta, useGameLogSearch } from "@/hooks/use-game-log-search";
+import type { Locale, Messages } from "@/lib/i18n";
 
-function SkeletonCard() {
-  return (
-    <article className="panel result-card skeleton-card">
-      <div className="skeleton-line skeleton-line-short" />
-      <div className="skeleton-line" />
-      <div className="skeleton-line skeleton-line-medium" />
-    </article>
-  )
-}
+import { SearchStreamPanel } from "@/app/search/search-stream-panel";
 
-type Props = {
-  locale: Locale
-  initialQuery: string
-  initialSource: string
-  initialResults: readonly SearchResult[]
-  initialAnswer: string | null
-  initialAnswerMode: "consensus-backed-answer" | "evidence-only" | null
-  initialConsensusExplanation: string | null
-  initialConsensusReached: boolean | null
-  initialRetrievalMode: string | null
-  totalChunks?: number
-  initialTotalDocuments?: number
-  queryTransformMode?: string
-  rerankMode?: string
-  initialConsensusAgreement: number | null
-  initialConsensusThreshold: number | null
-  initialConsensusReason: string | null
-  initialConsensusGate: string | null
-  initialGraphPaths: readonly SearchGraphPath[]
-  initialEmbeddingModel: string | null
-  initialEvidenceByResult: readonly SearchEvidence[][]
-}
+type PatchDeskMessages = Messages["patchDesk"];
 
-type SearchEvidence = {
-  citation: string
-  sourcePath: string
-  score: number
-  snippet: string
-}
+type SearchResultsProps = {
+  locale: Locale;
+  initialQuery: string;
+  messages: PatchDeskMessages;
+};
 
-type SearchGraphPath = {
-  id: string
-  summary: string
-  relationCount: number
-}
+type EditableScope = {
+  projects: string;
+  entities: string;
+  sources: string;
+  timeFrom: string;
+  timeTo: string;
+  indexSnapshotId: string;
+};
 
-type SearchWowCopy = {
-  contractEyebrow: string
-  contractTitle: string
-  contractBody: string
-  queryStage: string
-  retrieveStage: string
-  rerankStage: string
-  consensusStage: string
-  graphStage: string
-  answerOpen: string
-  answerClosed: string
-  docsLabel: string
-  chunksLabel: string
-  graphLabel: string
-  agreementLabel: string
-  thresholdLabel: string
-  gateReasonLabel: string
-  graphPathsTitle: string
-  graphPathsBody: string
-  relationCountLabel: string
-  evidenceTitle: string
-  evidenceBody: string
-  evidenceScoreLabel: string
-  noEvidence: string
-}
-
-function confidenceLevel(confidence: SearchResult["confidence"]): "high" | "medium" | "low" {
-  const level = confidence.toLowerCase()
-  if (level === "high") return "high"
-  if (level === "medium") return "medium"
-  return "low"
-}
-
-function confidenceWidth(confidence: SearchResult["confidence"]): string {
-  const level = confidence.toLowerCase()
-  if (level === "high") return "85%"
-  if (level === "medium") return "55%"
-  return "25%"
-}
-
-function extractSuggestions(results: readonly SearchResult[]): string[] {
-  if (results.length === 0) return []
-  const phrases: string[] = []
-  for (const result of results) {
-    const words = result.title.split(/\s+/).slice(0, 2).join(" ")
-    if (words && !phrases.includes(words)) {
-      phrases.push(words)
-    }
-    if (phrases.length >= 3) break
+function describeScopeDelta(delta: GameLogSearchScopeDelta, messages: PatchDeskMessages): string[] {
+  if (!delta.changed) {
+    return [];
   }
-  return phrases
+  return [
+    delta.entity_added.length ? `${messages.entityAdded}: ${delta.entity_added.join(", ")}` : null,
+    delta.entity_removed.length ? `${messages.entityRemoved}: ${delta.entity_removed.join(", ")}` : null,
+    delta.sources_added.length ? `${messages.sourcesAdded}: ${delta.sources_added.join(", ")}` : null,
+    delta.sources_removed.length ? `${messages.sourcesRemoved}: ${delta.sources_removed.join(", ")}` : null,
+    delta.time_from_changed ? messages.timeFromChanged : null,
+    delta.time_to_changed ? messages.timeToChanged : null
+  ].filter((item): item is string => Boolean(item));
 }
 
-function posterThumbClass(category: string): string {
-  if (category === "games") return "poster-thumb poster-thumb--games"
-  if (category === "movies") return "poster-thumb poster-thumb--movies"
-  if (category === "videos") return "poster-thumb poster-thumb--videos"
-  return "poster-thumb"
+function outcomeLabel(outcome: GameLogSearchOutcome, messages: PatchDeskMessages): string {
+  if (outcome === "supported") return messages.supportedTitle;
+  if (outcome === "no_hits") return messages.noHitsTitle;
+  if (outcome === "weak_support") return messages.weakTitle;
+  if (outcome === "retrieval_unavailable") return messages.retrievalUnavailableTitle;
+  if (outcome === "synthesis_unavailable") return messages.synthesisUnavailableTitle;
+  return messages.staleTitle;
 }
 
-function formatMode(mode: string | null | undefined): string {
-  if (!mode) return "—"
-
-  const labels: Record<string, string> = {
-    none: "None",
-    "rewrite-local": "Rewrite local",
-    "hyde-local": "HyDE local",
-    "hyde-genkit": "HyDE via Genkit",
-    rrf: "RRF",
-    heuristic: "Heuristic rerank",
-    "genkit-score": "Genkit score",
-    "graph-core": "Graph core",
-    "document-graph-consensus": "Document graph consensus",
-    "consensus-backed-answer": "Consensus-backed answer",
-    "evidence-only": "Evidence-only"
-  }
-
-  return labels[mode] ?? mode.replace(/-/g, " ")
+function healthStateLabel(status: GameLogSearchHealthStatus, messages: PatchDeskMessages): string {
+  if (status === "ready") return messages.readyState;
+  if (status === "checking") return messages.checkingState;
+  return messages.offlineState;
 }
 
-function formatPercent(value: number | null): string {
-  if (value === null) return "—"
-  return `${Math.round(value * 100)}%`
+function csvValues(value: string): string[] {
+  return [...new Set(value.split(",").map((item) => item.trim()).filter(Boolean))].sort((left, right) =>
+    left.localeCompare(right)
+  );
 }
 
-function getSearchWowCopy(locale: Locale): SearchWowCopy {
-  if (locale === "ko") {
-    return {
-      contractEyebrow: "실시간 검색 계약",
-      contractTitle: "이 검색이 검증되는 방식",
-      contractBody: "질의 변환, 그래프 검색, 리랭크, 합의 게이트를 한 번에 드러내 FunQA의 grounded workflow를 바로 보여줍니다.",
-      queryStage: "질의 변환",
-      retrieveStage: "그래프 검색",
-      rerankStage: "리랭크",
-      consensusStage: "합의 게이트",
-      graphStage: "그래프 경로",
-      answerOpen: "답변 열림",
-      answerClosed: "증거 전용",
-      docsLabel: "문서",
-      chunksLabel: "청크",
-      graphLabel: "그래프 경로",
-      agreementLabel: "합의율",
-      thresholdLabel: "통과 기준",
-      gateReasonLabel: "게이트 사유",
-      graphPathsTitle: "합의 그래프 경로",
-      graphPathsBody: "현재 검색에서 실제로 교차한 문서 관계를 요약합니다.",
-      relationCountLabel: "relations",
-      evidenceTitle: "선택한 결과의 근거 추적",
-      evidenceBody: "현재 선택한 카드와 동기화된 citation snippet 및 retrieval score입니다.",
-      evidenceScoreLabel: "score",
-      noEvidence: "아직 표시할 근거 snippet이 없습니다."
-    }
-  }
+function toWireTime(value: string): string | null {
+  return value ? new Date(value).toISOString() : null;
+}
 
+function buildScope(editable: EditableScope): GameLogSearchScope {
   return {
-    contractEyebrow: "Live retrieval contract",
-    contractTitle: "How this search gets verified",
-    contractBody: "FunQA exposes query transform, graph retrieval, rerank, and the answer gate in one place so the workflow feels inspectable rather than magical.",
-    queryStage: "Query transform",
-    retrieveStage: "Graph retrieval",
-    rerankStage: "Rerank",
-    consensusStage: "Consensus gate",
-    graphStage: "Graph paths",
-    answerOpen: "Answer open",
-    answerClosed: "Evidence only",
-    docsLabel: "Documents",
-    chunksLabel: "Chunks",
-    graphLabel: "Graph paths",
-    agreementLabel: "Agreement",
-    thresholdLabel: "Threshold",
-    gateReasonLabel: "Gate reason",
-    graphPathsTitle: "Consensus graph paths",
-    graphPathsBody: "A compact summary of the document relationships this search crossed before answering.",
-    relationCountLabel: "relations",
-    evidenceTitle: "Evidence trail for the selected result",
-    evidenceBody: "Citation snippets and retrieval scores stay synced to the currently selected card.",
-    evidenceScoreLabel: "score",
-    noEvidence: "No evidence snippets are available for this result yet."
-  }
+    project_ids: csvValues(editable.projects),
+    entity_ids: csvValues(editable.entities),
+    time_from: toWireTime(editable.timeFrom),
+    time_to: toWireTime(editable.timeTo),
+    source_ids: csvValues(editable.sources),
+    index_snapshot_id: editable.indexSnapshotId
+  };
 }
 
-function PipelineCard({
-  label,
-  value,
-  meta
-}: {
-  label: string
-  value: string
-  meta: string
-}) {
-  return (
-    <article
-      className="panel"
-      style={{
-        display: "grid",
-        gap: "0.55rem",
-        padding: "1rem",
-        background: "rgba(255, 255, 255, 0.03)",
-        borderColor: "rgba(143, 228, 211, 0.16)"
-      }}
-    >
-      <span className="eyebrow" style={{ marginBottom: 0 }}>
-        {label}
-      </span>
-      <strong style={{ fontSize: "1rem", color: "var(--text)" }}>{value}</strong>
-      <span className="microcopy">{meta}</span>
-    </article>
-  )
+function isEditableTarget(target: EventTarget | null): boolean {
+  if (!(target instanceof HTMLElement)) {
+    return false;
+  }
+  return target.isContentEditable || target.matches("input, textarea, select");
 }
 
-export function SearchResults({
-  locale,
-  initialQuery,
-  initialSource,
-  initialResults,
-  initialAnswer,
-  initialAnswerMode,
-  initialConsensusExplanation,
-  initialConsensusReached,
-  initialRetrievalMode,
-  totalChunks,
-  initialTotalDocuments,
-  queryTransformMode,
-  rerankMode,
-  initialConsensusAgreement,
-  initialConsensusThreshold,
-  initialConsensusReason,
-  initialConsensusGate,
-  initialGraphPaths,
-  initialEmbeddingModel,
-  initialEvidenceByResult
-}: Props) {
-  const t = getDictionary(locale)
-  const wowCopy = getSearchWowCopy(locale)
-  const [selectedIndex, setSelectedIndex] = useState(0)
-  const [isPending, startTransition] = useTransition()
-  const [answerOpen, setAnswerOpen] = useState(true)
-  const [panelResult, setPanelResult] = useState<RecommendationPanelResult | null>(null)
-  const [isPanelOpen, setIsPanelOpen] = useState(false)
+export function SearchResults({ locale, initialQuery, messages }: SearchResultsProps) {
+  const search = useGameLogSearch();
+  const [query, setQuery] = useState(initialQuery);
+  const [revisionQuery, setRevisionQuery] = useState(initialQuery);
+  const [scope, setScope] = useState<EditableScope>({
+    projects: "",
+    entities: "",
+    sources: "",
+    timeFrom: "",
+    timeTo: "",
+    indexSnapshotId: "sim-index-v1"
+  });
+  const [composerNote, setComposerNote] = useState<string | null>(null);
+  const queryRef = useRef<HTMLInputElement | null>(null);
+  const revisionRef = useRef<HTMLInputElement | null>(null);
 
-  const activeResult = initialResults[selectedIndex] ?? null
-  const activeEvidence = initialEvidenceByResult[selectedIndex] ?? []
-
-  function openPanel(result: SearchResult, index: number): void {
-    setSelectedIndex(index)
-    setPanelResult({
-      id: `${result.source}-${result.title}`,
-      title: result.title,
-      snippet: result.snippet,
-      category: result.category,
-      cragConfidence: result.confidence
-    })
-    setIsPanelOpen(true)
-  }
-
-  function closePanel(): void {
-    setIsPanelOpen(false)
-  }
-
-  const suggestions =
-    initialResults.length > 0
-      ? extractSuggestions(initialResults)
-      : t.search.fallbackSuggestions
-  const categorySummary = [
-    { key: "games", label: t.common.sourceLabels.games, count: initialResults.filter((item) => item.category === "games").length },
-    { key: "movies", label: t.common.sourceLabels.movies, count: initialResults.filter((item) => item.category === "movies").length },
-    { key: "videos", label: t.common.sourceLabels.videos, count: initialResults.filter((item) => item.category === "videos").length }
-  ]
-  const sourceLabel =
-    t.search.sourceOptions.find((option) => option.value === initialSource)?.label ??
-    t.search.sourceOptions[0].label
-  const searchDeskFacts = [
-    {
-      label: t.search.stateLabels.activeDesk,
-      value: sourceLabel,
-      note: initialSource === "all" ? t.search.stateNotes.allDesk : t.search.stateNotes.filteredDesk
-    },
-    {
-      label: t.search.stateLabels.outputMode,
-      value:
-        initialAnswerMode === "evidence-only"
-          ? t.search.outputModes.evidenceOnly
-          : initialAnswerMode === "consensus-backed-answer"
-            ? t.search.outputModes.consensusBacked
-            : t.search.outputModes.pending,
-      note:
-        initialAnswerMode === "evidence-only"
-          ? t.search.stateNotes.evidenceOnly
-          : initialAnswerMode === "consensus-backed-answer"
-            ? t.search.stateNotes.consensusBacked
-            : t.search.stateNotes.pending
-    },
-    {
-      label: t.search.stateLabels.retrievalPath,
-      value: rerankMode ?? queryTransformMode ?? "deterministic-local",
-      note: t.search.stateNotes.retrievalPath
+  useEffect(() => {
+    if (search.health.index_snapshot_id && !search.isRunning) {
+      setScope((current) => ({
+        ...current,
+        indexSnapshotId: search.health.index_snapshot_id ?? current.indexSnapshotId
+      }));
     }
-  ]
-  const pipelineSteps = [
-    { label: t.search.pipelineStepLabels.queryTransform, value: queryTransformMode ?? "deterministic-local" },
-    { label: t.search.pipelineStepLabels.retrieval, value: initialRetrievalMode ?? "graph-core-retrieval" },
-    { label: t.search.pipelineStepLabels.rerank, value: rerankMode ?? "hybrid-rerank" },
-    {
-      label: t.search.pipelineStepLabels.outputContract,
-      value:
-        initialAnswerMode === "evidence-only"
-          ? "evidence-only"
-          : initialAnswerMode === "consensus-backed-answer"
-            ? "consensus-backed-answer"
-            : t.search.outputModes.pending
+  }, [search.health.index_snapshot_id, search.isRunning]);
+
+  useEffect(() => {
+    const handleShortcut = (event: KeyboardEvent) => {
+      if (event.key === "/" && !event.metaKey && !event.ctrlKey && !event.altKey && !isEditableTarget(event.target)) {
+        event.preventDefault();
+        queryRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", handleShortcut);
+    return () => window.removeEventListener("keydown", handleShortcut);
+  }, []);
+
+  useEffect(() => {
+    if (search.phase === "stopped") {
+      revisionRef.current?.focus();
     }
-  ]
+  }, [search.phase]);
+
+  useEffect(() => {
+    if (search.currentRequest) {
+      setRevisionQuery(search.currentRequest.query_text);
+    }
+  }, [search.currentRequest]);
+
+  const wireScope = useMemo(() => buildScope(scope), [scope]);
+  const healthView = useMemo(() => {
+    if (search.health.overall === "checking") {
+      return {
+        label: messages.serviceChecking,
+        detail: messages.serviceCheckingDetail,
+        tone: "checking"
+      };
+    }
+    if (search.health.retrieval.status !== "ready") {
+      return {
+        label: messages.retrievalOffline,
+        detail: messages.retrievalOfflineDetail,
+        tone: "offline"
+      };
+    }
+    if (search.health.synthesis.status !== "ready") {
+      return {
+        label: messages.synthesisOffline,
+        detail: messages.synthesisOfflineDetail,
+        tone: "offline"
+      };
+    }
+    return {
+      label: messages.serviceReady,
+      detail: messages.serviceReadyDetail,
+      tone: "ready"
+    };
+  }, [messages, search.health]);
+
+  const indexHealthStatus: GameLogSearchHealthStatus =
+    search.health.overall === "checking"
+      ? "checking"
+      : search.health.retrieval.status === "ready" && search.health.index_snapshot_id
+        ? "ready"
+        : "offline";
+  const canRetryRetrieval =
+    search.health.overall === "offline" && search.health.retrieval.status !== "ready";
+  const canOpenRawEvidence =
+    search.health.overall === "offline" &&
+    search.health.retrieval.status === "ready" &&
+    search.health.synthesis.status !== "ready" &&
+    search.evidence.length > 0;
+
+  const submitQuery = async (queryText: string) => {
+    if (search.health.overall !== "ready" || queryText.trim().length < 3 || search.isRunning) {
+      return;
+    }
+    setComposerNote(null);
+    if (search.currentRequest) {
+      await search.revise(queryText, wireScope);
+    } else {
+      await search.start(queryText, wireScope);
+    }
+  };
+
+  const stopSearch = async () => {
+    await search.cancel();
+    revisionRef.current?.focus();
+  };
+
+  const handleRecovery = async (outcome: GameLogSearchOutcome | "stopped") => {
+    if (outcome === "supported") {
+      document.querySelector<HTMLButtonElement>(".patch-claim-button[data-selected='true']")?.focus();
+      return;
+    }
+    if (outcome === "synthesis_unavailable") {
+      document.querySelector<HTMLElement>(".patch-shard")?.focus();
+      return;
+    }
+    if (outcome === "retrieval_unavailable" || outcome === "stale_index") {
+      setComposerNote(messages.retrying);
+      await search.refreshHealth();
+    }
+    revisionRef.current?.focus();
+  };
+
+  const dispatchStatus = (status: string) => {
+    if (status === "accepted") return messages.dispatchAccepted;
+    if (status === "running") return messages.dispatchRunning;
+    if (status === "cancelled") return messages.dispatchCancelled;
+    return messages.dispatchCompleted;
+  };
+
+  const pendingScopeDelta = search.currentRequest
+    ? createScopeDelta(search.currentRequest.scope, wireScope)
+    : null;
+  const scopeDeltaItems = pendingScopeDelta
+    ? describeScopeDelta(pendingScopeDelta, messages)
+    : [];
 
   return (
-    <div className="search-shell search-shell-premium">
-      <form
-        action="/search"
-        className="search-composer panel"
-        role="search"
-        onSubmit={() => startTransition(() => {})}
-      >
-        <input name="lang" type="hidden" value={locale} />
-        <input name="source" type="hidden" value={initialSource} />
-        <div className="search-composer-copy">
-          <label className="field-label" htmlFor="query">
-            {t.search.composerLabel}
-          </label>
-          <input
-            autoComplete="off"
-            className="text-input text-input-hero"
-            defaultValue={initialQuery}
-            id="query"
-            name="q"
-            placeholder={t.search.composerPlaceholder}
-            spellCheck={false}
-            type="search"
-          />
-          <div className="composer-suggestions" aria-label={t.search.suggestionsLabel}>
-            {suggestions.map((s) => (
-              <button className="check-chip suggestion-chip" key={s} name="q" type="submit" value={s}>
-                {s}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div className="search-composer-actions">
-          <div className="strict-grounding-pill" aria-label={t.search.strictGroundingTitle}>
-            <span className="strict-grounding-switch" aria-hidden="true" />
-            <div>
-              <strong>{t.search.strictGroundingTitle}</strong>
-              <p>{t.search.strictGroundingBody}</p>
-            </div>
-          </div>
-          <button className="primary-button" disabled={isPending} type="submit">
-            {isPending ? t.search.pending : t.search.submit}
-          </button>
-          <p className="microcopy">{t.search.shareableNote}</p>
-        </div>
-      </form>
-
-      <form action="/search" className="chips-bar">
-        <input name="lang" type="hidden" value={locale} />
-        <input name="q" type="hidden" value={initialQuery} />
-        <input type="hidden" name="source" value={initialSource} />
-        <div className="category-filter-pills" role="group" aria-label={t.search.sourceLabel}>
-          {t.search.sourceOptions.map((option) => (
-            <button
-              key={option.value}
-              className="filter-pill"
-              type="submit"
-              name="source"
-              value={option.value}
-              aria-pressed={initialSource === option.value}
-            >
-              {option.label}
-            </button>
-          ))}
-        </div>
-      </form>
-
-      <section className="search-state-strip" aria-label={t.search.stateSummaryLabel}>
-        {searchDeskFacts.map((fact) => (
-          <article className="panel search-state-card" key={fact.label}>
-            <span className="search-pipeline-label">{fact.label}</span>
-            <strong>{fact.value}</strong>
-            <p>{fact.note}</p>
-          </article>
-        ))}
-      </section>
-
-      <section className="search-overview-strip panel">
-        <div className="search-overview-copy">
-          <p className="eyebrow">{t.search.overviewEyebrow}</p>
-          <h2>{initialQuery ? `"${initialQuery}"` : t.search.resultsTitle}</h2>
-          <p>
-            {initialQuery
-              ? `${initialResults.length} ${t.search.resultForSuffix} "${initialQuery}"`
-              : t.search.resultsSummaryEmpty}
-          </p>
-        </div>
-        <div className="search-overview-metrics">
-          {categorySummary.map((item) => (
-            <article className="search-overview-card" key={item.key}>
-              <span className="search-overview-value">{item.count}</span>
-              <span className="search-overview-label">{item.label}</span>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section
-        className="panel"
-        style={{
-          display: "grid",
-          gap: "1rem",
-          padding: "1.2rem"
-        }}
-        aria-label={t.search.pipelineAriaLabel}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "flex-start",
-            justifyContent: "space-between",
-            gap: "1rem",
-            flexWrap: "wrap"
-          }}
-        >
-          <div style={{ display: "grid", gap: "0.45rem", maxWidth: "46rem" }}>
-            <p className="eyebrow">{wowCopy.contractEyebrow}</p>
-            <h2 style={{ fontSize: "clamp(1.35rem, 2vw, 1.8rem)" }}>{wowCopy.contractTitle}</h2>
-            <p style={{ margin: 0 }}>{wowCopy.contractBody}</p>
-          </div>
-          <div className="result-tags">
-            <span className="pill">
-              {initialAnswerMode === "consensus-backed-answer" ? wowCopy.answerOpen : wowCopy.answerClosed}
-            </span>
-            {initialEmbeddingModel ? <span className="pill pill-subtle">{initialEmbeddingModel}</span> : null}
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(13rem, 1fr))",
-            gap: "0.9rem"
-          }}
-        >
-          <PipelineCard
-            label={wowCopy.queryStage}
-            value={formatMode(queryTransformMode)}
-            meta={initialQuery || t.search.resultsSummaryEmpty}
-          />
-          <PipelineCard
-            label={wowCopy.retrieveStage}
-            value={formatMode(initialRetrievalMode)}
-            meta={`${initialTotalDocuments ?? 0} ${wowCopy.docsLabel} · ${totalChunks ?? 0} ${wowCopy.chunksLabel}`}
-          />
-          <PipelineCard
-            label={wowCopy.rerankStage}
-            value={formatMode(rerankMode)}
-            meta={`${initialResults.length} ${t.search.resultForSuffix}${initialQuery ? ` "${initialQuery}"` : ""}`}
-          />
-          <PipelineCard
-            label={wowCopy.consensusStage}
-            value={initialConsensusReached ? wowCopy.answerOpen : wowCopy.answerClosed}
-            meta={`${wowCopy.agreementLabel} ${formatPercent(initialConsensusAgreement)} · ${wowCopy.thresholdLabel} ${formatPercent(initialConsensusThreshold)}`}
-          />
-          <PipelineCard
-            label={wowCopy.graphStage}
-            value={String(initialGraphPaths.length)}
-            meta={`${formatMode(initialConsensusGate)} · ${wowCopy.gateReasonLabel} ${formatMode(initialConsensusReason)}`}
-          />
-        </div>
-
-        {initialGraphPaths.length > 0 ? (
-          <div
-            style={{
-              display: "grid",
-              gap: "0.85rem",
-              padding: "1rem",
-              borderRadius: "1rem",
-              border: "1px solid rgba(143, 228, 211, 0.14)",
-              background: "rgba(143, 228, 211, 0.05)"
-            }}
-          >
-            <div className="results-header">
-              <div>
-                <h3>{wowCopy.graphPathsTitle}</h3>
-                <p className="microcopy" style={{ marginTop: "0.35rem" }}>
-                  {wowCopy.graphPathsBody}
-                </p>
-              </div>
-              <span className="pill pill-subtle">
-                {initialGraphPaths.length} {wowCopy.graphLabel}
-              </span>
-            </div>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(14rem, 1fr))",
-                gap: "0.75rem"
-              }}
-            >
-              {initialGraphPaths.map((path) => (
-                <article
-                  key={path.id}
-                  className="panel"
-                  style={{
-                    display: "grid",
-                    gap: "0.6rem",
-                    padding: "0.95rem",
-                    background: "rgba(7, 17, 27, 0.34)"
-                  }}
-                >
-                  <div className="result-tags">
-                    <span className="pill pill-subtle">{path.id}</span>
-                    <span className="pill">{path.relationCount} {wowCopy.relationCountLabel}</span>
-                  </div>
-                  <p style={{ margin: 0, color: "var(--text)" }}>{path.summary}</p>
-                </article>
+    <main className="patch-desk" lang={locale}>
+      <div className="patch-desk-inner">
+        <header className="patch-desk-header">
+          <div className="patch-desk-intro">
+            <p className="patch-kicker">{messages.eyebrow}</p>
+            <h1>{messages.title}</h1>
+            <p className="patch-desk-lede">{messages.lede}</p>
+            <div className="patch-starters" aria-label={messages.queryLabel}>
+              {[messages.starterP42, messages.starterIncident184, messages.starterNewest].map((starter) => (
+                <button key={starter} type="button" onClick={() => { setQuery(starter); queryRef.current?.focus(); }}>
+                  {starter}
+                </button>
               ))}
             </div>
           </div>
-        ) : null}
-      </section>
-
-      <div className="search-layout">
-        <section className="stack-md">
-          <header className="results-header">
-            <div>
-              <h2>{t.search.resultsTitle}</h2>
-              <p className="microcopy">
-                {initialQuery
-                  ? `${initialResults.length} ${t.search.resultForSuffix} "${initialQuery}"`
-                  : t.search.resultsSummaryEmpty}
-              </p>
-            </div>
-            <span className="pill pill-subtle">{t.search.inspectorSynced}</span>
-          </header>
-
-          {initialAnswer ? (
-            <article className="panel answer-panel">
-              <div className="answer-accordion">
-                <div className="answer-accordion-header">
-                  <h3>{t.search.groundedAnswer}</h3>
-                  <div className="result-tags">
-                    {queryTransformMode && (
-                      <span className="pill pill-subtle">{queryTransformMode}</span>
-                    )}
-                    {rerankMode && (
-                      <span className="pill pill-subtle">{rerankMode}</span>
-                    )}
-                    <button
-                      className="answer-toggle-btn"
-                      type="button"
-                      onClick={() => setAnswerOpen((prev) => !prev)}
-                    >
-                      {answerOpen ? `▼ ${t.answerPanel.toggleHide}` : `▶ ${t.answerPanel.toggleShow}`}
-                    </button>
-                  </div>
-                </div>
-                {answerOpen && (
-                  <>
-                    {totalChunks !== undefined && (
-                      <div className="insight-bar">
-                        <span
-                          className="confidence-bar"
-                          data-level="high"
-                          style={{ "--bar-width": "100%" } as React.CSSProperties}
-                        />
-                        <span>{totalChunks} {t.search.chunksSearchedSuffix}</span>
-                      </div>
-                    )}
-                    <p>{initialAnswer}</p>
-                  </>
-                )}
-              </div>
-            </article>
-          ) : null}
-
-          {initialAnswerMode === "evidence-only" && initialConsensusReached === false ? (
-            <article className="panel answer-panel answer-panel-warning">
-              <div className="results-header">
-                <h3>{t.search.evidenceOnlyTitle}</h3>
-                <div className="result-tags">
-                  <span className="pill pill-subtle">{t.search.evidenceOnlyBadge}</span>
-                  {initialRetrievalMode ? (
-                    <span className="pill pill-subtle">{initialRetrievalMode}</span>
-                  ) : null}
-                </div>
-              </div>
-              <p>{t.search.evidenceOnlyBody}</p>
-              {initialConsensusExplanation ? <p className="microcopy">{initialConsensusExplanation}</p> : null}
-            </article>
-          ) : null}
-
-          {isPending ? (
-            <div className="search-grid">
-              <SkeletonCard />
-              <SkeletonCard />
-              <SkeletonCard />
-            </div>
-          ) : initialResults.length > 0 ? (
-            <div className="search-grid">
-              {initialResults.map((result, index) => {
-                const isSelected = index === selectedIndex
-                const cragLevel = confidenceLevel(result.confidence)
-                const simScore = cragLevel === "high" ? 94 : cragLevel === "medium" ? 62 : 31
-                const categoryAccent =
-                  result.category === "games"
-                    ? "var(--gm-accent-games)"
-                    : result.category === "movies"
-                      ? "var(--gm-accent-movies)"
-                      : "var(--gm-accent-videos)"
-                const cragColor =
-                  cragLevel === "high"
-                    ? "var(--gm-confidence-high, #22c55e)"
-                    : cragLevel === "medium"
-                      ? "var(--gm-confidence-medium, #f59e0b)"
-                      : "var(--gm-confidence-low, #ef4444)"
-
-                return (
-                  <article
-                    className={`panel result-card ai-result-card media-card poster-card ${isSelected ? "result-card-active" : ""}`}
-                    data-category={result.category}
-                    key={`${result.source}-${result.title}`}
-                    style={{
-                      background: "var(--gm-bg-surface)",
-                      border: `1px solid var(--gm-border-subtle)`,
-                      borderTop: `2px solid ${categoryAccent}`
-                    }}
-                  >
-                    {/* Poster thumbnail with Netflix overlay */}
-                    <div className={posterThumbClass(result.category)}>
-                      <div className="poster-thumb-badge">
-                        <MediaTypeBadge category={result.category} labels={t.common.sourceLabels} />
-                      </div>
-                      <div className="poster-overlay">
-                        <span
-                          className="confidence-bar"
-                          data-level={cragLevel}
-                          style={{ "--bar-width": confidenceWidth(result.confidence) } as React.CSSProperties}
-                        />
-                        <span className="microcopy" style={{ color: "#eef5f2", fontSize: "0.72rem" }}>
-                          {result.source}
-                        </span>
-                      </div>
-                    </div>
-
-                    <button
-                      aria-pressed={isSelected}
-                      className="result-card-button"
-                      onClick={() => openPanel(result, index)}
-                      type="button"
-                      style={{ padding: "0.85rem" }}
-                    >
-                      {/* AI metadata row */}
-                      <div className="ai-card-meta-row">
-                        {/* CRAG confidence badge */}
-                        <span
-                          className="ai-crag-badge"
-                          style={{
-                            background: `color-mix(in srgb, ${cragColor} 12%, transparent)`,
-                            borderColor: `color-mix(in srgb, ${cragColor} 28%, transparent)`,
-                            color: cragColor
-                          }}
-                          title="CRAG Confidence"
-                        >
-                          CRAG · {result.confidence.toUpperCase()}
-                        </span>
-
-                        {/* Category chip */}
-                        <span
-                          className="ai-category-chip"
-                          style={{
-                            background: `color-mix(in srgb, ${categoryAccent} 14%, transparent)`,
-                            borderColor: `color-mix(in srgb, ${categoryAccent} 30%, transparent)`,
-                            color: categoryAccent
-                          }}
-                        >
-                          {t.common.sourceLabels[result.category]}
-                        </span>
-
-                        {/* Similarity score */}
-                        <span
-                          className="ai-sim-score"
-                          aria-label={`유사도 ${simScore}%`}
-                          style={{ color: "var(--gm-text-secondary)" }}
-                        >
-                          {simScore}%
-                        </span>
-                      </div>
-
-                      <div className="result-meta result-meta-top" style={{ marginTop: "0.5rem" }}>
-                        <div className="result-meta">
-                          <span className="microcopy">{result.freshness}</span>
-                          <span aria-hidden="true" className="bookmark-btn">
-                            ⭐
-                          </span>
-                        </div>
-                      </div>
-                      <h3>{result.title}</h3>
-                      <p>{result.snippet}</p>
-                      <div className="result-footer">
-                        <p className="microcopy">{result.source}</p>
-                        <span className="microcopy">
-                          {result.citations.length} {t.search.citationsSuffix}
-                        </span>
-                      </div>
-                    </button>
-                  </article>
-                )
-              })}
-            </div>
-          ) : (
-            <article className="panel">
-              <h2>{t.search.emptyTitle}</h2>
-              <p>{t.search.emptyBody}</p>
-            </article>
-          )}
-        </section>
-
-        <aside className="panel inspector-panel">
-          <div className="results-header">
-            <h2>{t.search.inspectorTitle}</h2>
-            <span className="pill pill-bright">{t.search.inspectorPinned}</span>
-          </div>
-          {activeResult ? (
-            <div className="stack-sm">
-              <h3>{activeResult.title}</h3>
-              <p>{activeResult.snippet}</p>
-              <dl className="detail-grid">
+          <div className="patch-header-rail">
+            <Image
+              className="patch-ledger-plate"
+              src="/game-log-search/patch-ledger-plate-1600x900.webp"
+              width={280}
+              height={158}
+              sizes="(max-width: 767px) 0px, (max-width: 1179px) 220px, 280px"
+              alt=""
+              aria-hidden="true"
+              priority
+            />
+            <section className="patch-service-lamp" data-tone={healthView.tone} aria-labelledby="patch-service-title">
+              <p className="patch-kicker">{messages.serviceLampLabel}</p>
+              <h2 id="patch-service-title"><span aria-hidden="true" />{healthView.label}</h2>
+              <p>{healthView.detail}</p>
+              <dl className="patch-service-grid">
                 <div>
-                  <dt>{t.search.sourceField}</dt>
-                  <dd>{activeResult.source}</dd>
-                </div>
-                <div>
-                  <dt>{t.search.confidenceField}</dt>
-                  <dd>
-                    {t.common.confidenceLabels[activeResult.confidence]}
-                    <br />
-                    <span
-                      className="confidence-bar"
-                      data-level={confidenceLevel(activeResult.confidence)}
-                      style={{ "--bar-width": confidenceWidth(activeResult.confidence) } as React.CSSProperties}
-                    />
+                  <dt>{messages.archiveLabel}</dt>
+                  <dd data-tone={search.health.retrieval.status}>
+                    {healthStateLabel(search.health.retrieval.status, messages)}
                   </dd>
                 </div>
                 <div>
-                  <dt>{t.search.freshnessField}</dt>
-                  <dd>{activeResult.freshness}</dd>
+                  <dt>{messages.modelLabel}</dt>
+                  <dd data-tone={search.health.synthesis.status}>
+                    {healthStateLabel(search.health.synthesis.status, messages)}
+                  </dd>
+                </div>
+                <div>
+                  <dt>{messages.indexLabel}</dt>
+                  <dd data-tone={indexHealthStatus}>{healthStateLabel(indexHealthStatus, messages)}</dd>
                 </div>
               </dl>
-              <div className="stack-sm">
-                <p className="field-label">{t.search.citationsField}</p>
-                <ul className="citation-list" style={{ listStyle: "none", padding: 0 }}>
-                  {activeResult.citations.map((citation, i) => (
-                    <li key={citation} className="citation-item">
-                      <span className="citation-num">#{i + 1}</span>
-                      <a href={citation} className="microcopy" target="_blank" rel="noopener noreferrer">
-                        {citation}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="stack-sm">
-                <div>
-                  <p className="field-label">{wowCopy.evidenceTitle}</p>
-                  <p className="microcopy" style={{ marginTop: "0.35rem" }}>
-                    {wowCopy.evidenceBody}
-                  </p>
-                </div>
-                {activeEvidence.length > 0 ? (
-                  activeEvidence.map((evidence) => (
-                    <article
-                      key={evidence.citation}
-                      className="panel"
-                      style={{
-                        display: "grid",
-                        gap: "0.55rem",
-                        padding: "0.9rem",
-                        background: "rgba(255, 255, 255, 0.03)"
-                      }}
-                    >
-                      <div className="result-tags">
-                        <span className="pill pill-subtle">{evidence.sourcePath}</span>
-                        <span className="pill">
-                          {wowCopy.evidenceScoreLabel} {evidence.score.toFixed(2)}
-                        </span>
-                      </div>
-                      <p style={{ margin: 0 }}>{evidence.snippet}</p>
-                    </article>
-                  ))
-                ) : (
-                  <p className="microcopy">{wowCopy.noEvidence}</p>
-                )}
-              </div>
-              <button
-                className="primary-button"
-                type="button"
-                onClick={() => {
-                  const r = initialResults[selectedIndex]
-                  if (r) openPanel(r, selectedIndex)
-                }}
-                style={{ marginTop: "0.5rem", width: "100%" }}
-              >
-                AI 분석 보기 →
-              </button>
-            </div>
-          ) : (
-            <p className="microcopy">{t.search.inspectorHint}</p>
-          )}
-        </aside>
-      </div>
+              <p className="patch-protocol-line">
+                {messages.checkedAtLabel}:{" "}
+                {search.health.overall === "checking"
+                  ? messages.checkingState
+                  : search.health.retrieval.checked_at}
+              </p>
+              {canRetryRetrieval ? (
+                <button type="button" className="patch-text-button" onClick={() => { void search.refreshHealth(); }}>
+                  {messages.retryConnection}
+                </button>
+              ) : null}
+              {canOpenRawEvidence ? (
+                <button
+                  type="button"
+                  className="patch-text-button"
+                  onClick={() => document.querySelector<HTMLElement>(".patch-shard")?.focus()}
+                >
+                  {messages.openRawEvidence}
+                </button>
+              ) : null}
+            </section>
+          </div>
+        </header>
 
-      <RecommendationPanel
-        isOpen={isPanelOpen}
-        onClose={closePanel}
-        selectedResult={panelResult}
-      />
-    </div>
-  )
+        <form
+          className="patch-composer"
+          role="search"
+          onSubmit={(event) => {
+            event.preventDefault();
+            if (search.isRunning) {
+              void stopSearch();
+            } else {
+              void submitQuery(query);
+            }
+          }}
+        >
+          <div className="patch-query-field">
+            <label htmlFor="patch-query">{messages.queryLabel}</label>
+            <input
+              id="patch-query"
+              ref={queryRef}
+              value={query}
+              minLength={3}
+              maxLength={2000}
+              autoComplete="off"
+              placeholder={messages.queryPlaceholder}
+              onChange={(event) => setQuery(event.target.value)}
+            />
+          </div>
+
+          <fieldset className="patch-scope-bar" disabled={search.isRunning}>
+            <legend>{messages.scopeLabel}</legend>
+            <p className="patch-scope-hint">{messages.scopeFrozen}</p>
+            <div className="patch-scope-controls">
+              <label>
+                <span>{messages.projectLabel}</span>
+                <input
+                  value={scope.projects}
+                  disabled={Boolean(search.currentRequest)}
+                  placeholder={messages.projectPlaceholder}
+                  onChange={(event) => setScope((current) => ({ ...current, projects: event.target.value }))}
+                />
+              </label>
+              <label>
+                <span>{messages.entityLabel}</span>
+                <input
+                  value={scope.entities}
+                  placeholder={messages.entityPlaceholder}
+                  onChange={(event) => setScope((current) => ({ ...current, entities: event.target.value }))}
+                />
+              </label>
+              <label>
+                <span>{messages.sourcesLabel}</span>
+                <input
+                  value={scope.sources}
+                  placeholder={messages.sourcePlaceholder}
+                  onChange={(event) => setScope((current) => ({ ...current, sources: event.target.value }))}
+                />
+              </label>
+              <label>
+                <span>{messages.timeFromLabel}</span>
+                <input
+                  type="datetime-local"
+                  value={scope.timeFrom}
+                  onChange={(event) => setScope((current) => ({ ...current, timeFrom: event.target.value }))}
+                />
+              </label>
+              <label>
+                <span>{messages.timeToLabel}</span>
+                <input
+                  type="datetime-local"
+                  value={scope.timeTo}
+                  onChange={(event) => setScope((current) => ({ ...current, timeTo: event.target.value }))}
+                />
+              </label>
+              <label>
+                <span>{messages.snapshotLabel}</span>
+                <input value={scope.indexSnapshotId} readOnly />
+              </label>
+            </div>
+            <div className="patch-scope-chips" aria-label={messages.scopeLabel}>
+              <span>{messages.projectLabel}: {wireScope.project_ids.join(", ") || messages.allProjects}</span>
+              <span>{messages.entityLabel}: {wireScope.entity_ids.join(", ") || messages.allEntities}</span>
+              <span>{messages.timeLabel}: {wireScope.time_from ?? messages.notSet} — {wireScope.time_to ?? messages.notSet}</span>
+              <span>{messages.sourcesLabel}: {wireScope.source_ids.join(", ") || messages.allSources}</span>
+              <span>{messages.snapshotLabel}: {wireScope.index_snapshot_id}</span>
+              <span>{messages.freshnessLabel}: {search.health.index_refreshed_at ?? messages.freshnessUnknown}</span>
+            </div>
+          </fieldset>
+
+          <div className="patch-composer-actions">
+            <button
+              className={search.isRunning ? "patch-stop-button" : "patch-primary-button"}
+              type="submit"
+              disabled={!search.isRunning && (search.health.overall !== "ready" || query.trim().length < 3)}
+            >
+              {search.isRunning ? messages.stop : messages.search}
+            </button>
+            <span>{messages.shortcut}</span>
+            {search.health.overall !== "ready" ? <small>{messages.searchNeedsService}</small> : null}
+            {composerNote ? <small role="status">{composerNote}</small> : null}
+          </div>
+        </form>
+
+        <SearchStreamPanel
+          messages={messages}
+          phase={search.phase}
+          stage={search.stage}
+          currentRequest={search.currentRequest}
+          evidence={search.evidence}
+          terminal={search.terminal}
+          onRecovery={(outcome) => { void handleRecovery(outcome); }}
+        />
+
+        {search.currentRequest && (search.phase === "completed" || search.phase === "stopped") ? (
+          <section className="patch-revision" aria-labelledby="patch-revision-title">
+            <p className="patch-kicker">{messages.followUpLabel}</p>
+            <h2 id="patch-revision-title">{messages.reviseQuery}</h2>
+            <div className="patch-lineage">
+              <p><span>{messages.parentQueryLabel}</span> {search.currentRequest.query_id}</p>
+              <p><span>{messages.parentScopeLabel}</span> {search.currentRequest.scope.index_snapshot_id}</p>
+              <div>
+                <span>{messages.scopeDeltaLabel}</span>
+                {scopeDeltaItems.length ? <ul>{scopeDeltaItems.map((item) => <li key={item}>{item}</li>)}</ul> : <p>{messages.noScopeDelta}</p>}
+              </div>
+            </div>
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+                void submitQuery(revisionQuery);
+              }}
+            >
+              <label htmlFor="patch-revision-query">{messages.followUpLabel}</label>
+              <div className="patch-revision-row">
+                <input
+                  id="patch-revision-query"
+                  ref={revisionRef}
+                  value={revisionQuery}
+                  minLength={3}
+                  maxLength={2000}
+                  placeholder={messages.revisionPlaceholder}
+                  onChange={(event) => setRevisionQuery(event.target.value)}
+                />
+                <button
+                  className="patch-primary-button"
+                  type="submit"
+                  disabled={search.health.overall !== "ready" || revisionQuery.trim().length < 3}
+                >
+                  {messages.reviseQuery}
+                </button>
+              </div>
+            </form>
+          </section>
+        ) : null}
+
+        <nav className="patch-dispatch-trail" aria-labelledby="patch-dispatch-trail-title">
+          <p className="patch-kicker">{messages.dispatchCurrent}</p>
+          <h2 id="patch-dispatch-trail-title">{messages.dispatchTrail}</h2>
+          {search.dispatches.length ? (
+            <ol>
+              {search.dispatches.map((dispatch, index) => (
+                <li key={dispatch.query_id} aria-current={index === 0 ? "true" : undefined}>
+                  <div>
+                    <strong>{dispatch.query_text}</strong>
+                    <span>{dispatchStatus(dispatch.run_status)}{dispatch.outcome ? ` · ${outcomeLabel(dispatch.outcome, messages)}` : ""}</span>
+                  </div>
+                  <code>{dispatch.query_id}</code>
+                  <small>{messages.parentQueryLabel}: {dispatch.parent_query_id ?? messages.notSet}</small>
+                  <small>
+                    {messages.scopeDeltaLabel}: {describeScopeDelta(dispatch.scope_delta, messages).join("; ") || messages.noScopeDelta}
+                  </small>
+                </li>
+              ))}
+            </ol>
+          ) : <p>{messages.noDispatches}</p>}
+        </nav>
+      </div>
+    </main>
+  );
 }

@@ -50,6 +50,7 @@ export default async function RootLayout({
     <html lang={locale}>
       <body
         data-locale={locale}
+        suppressHydrationWarning
       >
         <script
           dangerouslySetInnerHTML={{

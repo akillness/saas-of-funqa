@@ -1,0 +1,4 @@
+model_profile,genkit_network_span_count,genkit_canary_occurrence_count,non_cocoindex_evidence_id_count,cached_answer_use_count,prior_knowledge_answer_count,instrumentation_scope,raw_path
+qwen2.5:0.5b,0,0,0,0,0,fixture_runner httpx hook plus serialized streams; cached/prior counters are runner constants,_workspace/current/qa/evidence/stage-1/fixture-run-qwen0_5b-schema/canary-scan.txt
+qwen2.5:1.5b,0,0,0,0,0,fixture_runner httpx hook plus serialized streams; cached/prior counters are runner constants,_workspace/current/qa/evidence/stage-1/fixture-run-qwen1_5b/canary-scan.txt
+qwen2.5:3b,0,0,0,0,0,fixture_runner httpx hook plus serialized streams; cached/prior counters are runner constants,_workspace/current/qa/evidence/stage-1/fixture-run-qwen3b/canary-scan.txt

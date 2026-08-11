@@ -4,8 +4,8 @@ This is the content-oriented map of the wiki. Read this file first before broad 
 
 ## Overview
 
-- `saas-of-funqa` is a Firebase + Genkit RAG SaaS plan with a server-first trust boundary.
-- Current focus: seed spec, architecture, survey findings, and initial bootstrap.
+- `saas-of-funqa` is a Firebase App Hosting SaaS with a server-first trust boundary and a separate local-first game-log search vertical slice.
+- Current focus: [[wiki/concepts/local-game-log-agentic-search]], [[wiki/concepts/cocoindex-incremental-game-log-index]], and the evidence-bounded cycle report.
 
 ## Sources
 <!-- SOURCES:START -->
@@ -30,6 +30,11 @@ This is the content-oriented map of the wiki. Read this file first before broad 
 - [[wiki/concepts/prompt-knowledge-loop]]
 - [[wiki/concepts/bmad-ooo-integration]]
 - [[wiki/concepts/neuro-symbolic-game-storytelling]]
+- [[wiki/concepts/local-game-log-agentic-search]]
+- [[wiki/concepts/cocoindex-incremental-game-log-index]]
+- [[wiki/concepts/concept-ui-ux-2026]]
+- [[wiki/concepts/bmad-idea]]
+- [[wiki/concepts/ooo]]
 <!-- CONCEPTS:END -->
 
 ## Queries
@@ -58,4 +63,6 @@ This is the content-oriented map of the wiki. Read this file first before broad 
 - [[wiki/reports/neuro-symbolic-game-story-research-plan-2026-06-28]]
 - [[wiki/reports/paper-draft-ivie-style-validated-game-story-generation-2026-06-28]]
 - [[wiki/reports/paper-draft-kg-grounded-rpg-dialogue-2026-06-28]]
+- [[wiki/reports/game-log-agentic-search-cycle-2026-08-11]]
+- [[wiki/reports/ralph-page-route-fix-2026-06-29]]
 <!-- REPORTS:END -->

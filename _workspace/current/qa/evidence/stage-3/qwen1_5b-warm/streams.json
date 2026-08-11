@@ -1,0 +1,285 @@
+{
+  "Q01-exact-cooldown": [
+    {
+      "accepted_at": "2026-08-11T09:53:50.403934Z",
+      "correlation_id": "0198f4d0-1001-7000-8000-000000000001",
+      "frame_type": "dispatch_accepted",
+      "parent_query_id": null,
+      "query_id": "0198f4d0-0001-7000-8000-000000000001",
+      "run_status": "accepted",
+      "schema_version": "game-log-search.v1",
+      "scope": {
+        "entity_ids": [
+          "P42",
+          "Scout"
+        ],
+        "index_snapshot_id": "sim-index-v1",
+        "project_ids": [
+          "Alpha"
+        ],
+        "source_ids": [],
+        "time_from": null,
+        "time_to": "2026-08-08T12:00:00Z"
+      },
+      "scope_delta": {
+        "changed": false,
+        "entity_added": [],
+        "entity_removed": [],
+        "sources_added": [],
+        "sources_removed": [],
+        "time_from_after": null,
+        "time_from_before": null,
+        "time_from_changed": false,
+        "time_to_after": "2026-08-08T12:00:00Z",
+        "time_to_before": "2026-08-08T12:00:00Z",
+        "time_to_changed": false
+      }
+    },
+    {
+      "correlation_id": "0198f4d0-1001-7000-8000-000000000001",
+      "frame_type": "stage",
+      "query_id": "0198f4d0-0001-7000-8000-000000000001",
+      "run_status": "running",
+      "schema_version": "game-log-search.v1",
+      "stage": "retrieving",
+      "started_at": "2026-08-11T09:53:50.404019Z"
+    },
+    {
+      "correlation_id": "0198f4d0-1001-7000-8000-000000000001",
+      "frame_type": "stage",
+      "query_id": "0198f4d0-0001-7000-8000-000000000001",
+      "run_status": "running",
+      "schema_version": "game-log-search.v1",
+      "stage": "ranking",
+      "started_at": "2026-08-11T09:54:02.124912Z"
+    },
+    {
+      "correlation_id": "0198f4d0-1001-7000-8000-000000000001",
+      "evidence": [
+        {
+          "content_sha256": "b79778675223891d133e0aea480f44e23ae3b68f021c569d22ff31349874e207",
+          "correlation_id": "0198f4d0-1001-7000-8000-000000000001",
+          "distance": 0.20602831948309752,
+          "entity_ids": [
+            "P42",
+            "Scout"
+          ],
+          "event_end_at": null,
+          "event_start_at": "2026-08-01T10:00:00Z",
+          "evidence_id": "E001",
+          "excerpt": "Patch P42 changed Scout dash cooldown from 8 s to 10 s to reduce repeated disengage chains.",
+          "excerpt_end": 91,
+          "excerpt_start": 0,
+          "index_refreshed_at": "2026-08-08T12:00:00Z",
+          "index_snapshot_id": "sim-index-v1",
+          "project_id": "Alpha",
+          "query_id": "0198f4d0-0001-7000-8000-000000000001",
+          "rank": 1,
+          "schema_version": "game-log-search.v1",
+          "score": 0.7939716805169025,
+          "source_id": "design/balance-session.log",
+          "source_label": "design/balance-session.log",
+          "source_path": "design/balance-session.log",
+          "trust_class": "trusted_log"
+        },
+        {
+          "content_sha256": "3ea9e4ee325f17beb21d1f48acd64c12bf502c69138db4bf2df7e76d65879949",
+          "correlation_id": "0198f4d0-1001-7000-8000-000000000001",
+          "distance": 0.5408873631156728,
+          "entity_ids": [
+            "P42",
+            "Scout"
+          ],
+          "event_end_at": null,
+          "event_start_at": "2026-08-02T08:00:00Z",
+          "evidence_id": "E002",
+          "excerpt": "Scout win rate was 51.2% after P42; the log makes no causal attribution.",
+          "excerpt_end": 72,
+          "excerpt_start": 0,
+          "index_refreshed_at": "2026-08-08T12:00:00Z",
+          "index_snapshot_id": "sim-index-v1",
+          "project_id": "Alpha",
+          "query_id": "0198f4d0-0001-7000-8000-000000000001",
+          "rank": 2,
+          "schema_version": "game-log-search.v1",
+          "score": 0.45911263688432724,
+          "source_id": "telemetry/patch-P42-summary.log",
+          "source_label": "telemetry/patch-P42-summary.log",
+          "source_path": "telemetry/patch-P42-summary.log",
+          "trust_class": "trusted_log"
+        },
+        {
+          "content_sha256": "5d8a04d4b3da88be6f674ca415887be778c070f6e35bb3f195f0025679d50799",
+          "correlation_id": "0198f4d0-1001-7000-8000-000000000001",
+          "distance": 0.5713117803706831,
+          "entity_ids": [
+            "P42",
+            "Scout"
+          ],
+          "event_end_at": null,
+          "event_start_at": "2026-08-02T12:00:00Z",
+          "evidence_id": "E003",
+          "excerpt": "Testers reproduced two disengages per fight before the cooldown change and one after it.",
+          "excerpt_end": 88,
+          "excerpt_start": 0,
+          "index_refreshed_at": "2026-08-08T12:00:00Z",
+          "index_snapshot_id": "sim-index-v1",
+          "project_id": "Alpha",
+          "query_id": "0198f4d0-0001-7000-8000-000000000001",
+          "rank": 3,
+          "schema_version": "game-log-search.v1",
+          "score": 0.4286882196293169,
+          "source_id": "qa/P42-playtest.log",
+          "source_label": "qa/P42-playtest.log",
+          "source_path": "qa/P42-playtest.log",
+          "trust_class": "trusted_log"
+        }
+      ],
+      "frame_type": "evidence_snapshot",
+      "query_id": "0198f4d0-0001-7000-8000-000000000001",
+      "retrieved_evidence_set_hash": "ca81fdaa8731d9fc4d58d65a92f762b6083da11cbc8e5a39ce94e2f13551c1eb",
+      "run_status": "running",
+      "schema_version": "game-log-search.v1"
+    },
+    {
+      "correlation_id": "0198f4d0-1001-7000-8000-000000000001",
+      "frame_type": "stage",
+      "query_id": "0198f4d0-0001-7000-8000-000000000001",
+      "run_status": "running",
+      "schema_version": "game-log-search.v1",
+      "stage": "synthesizing",
+      "started_at": "2026-08-11T09:54:02.573112Z"
+    },
+    {
+      "boundary_reason_code": "malformed_synthesis",
+      "confidence": "none",
+      "context_limit_tokens": null,
+      "correlation_id": "0198f4d0-1001-7000-8000-000000000001",
+      "evidence": [
+        {
+          "content_sha256": "b79778675223891d133e0aea480f44e23ae3b68f021c569d22ff31349874e207",
+          "correlation_id": "0198f4d0-1001-7000-8000-000000000001",
+          "distance": 0.20602831948309752,
+          "entity_ids": [
+            "P42",
+            "Scout"
+          ],
+          "event_end_at": null,
+          "event_start_at": "2026-08-01T10:00:00Z",
+          "evidence_id": "E001",
+          "excerpt": "Patch P42 changed Scout dash cooldown from 8 s to 10 s to reduce repeated disengage chains.",
+          "excerpt_end": 91,
+          "excerpt_start": 0,
+          "index_refreshed_at": "2026-08-08T12:00:00Z",
+          "index_snapshot_id": "sim-index-v1",
+          "project_id": "Alpha",
+          "query_id": "0198f4d0-0001-7000-8000-000000000001",
+          "rank": 1,
+          "schema_version": "game-log-search.v1",
+          "score": 0.7939716805169025,
+          "source_id": "design/balance-session.log",
+          "source_label": "design/balance-session.log",
+          "source_path": "design/balance-session.log",
+          "trust_class": "trusted_log"
+        },
+        {
+          "content_sha256": "3ea9e4ee325f17beb21d1f48acd64c12bf502c69138db4bf2df7e76d65879949",
+          "correlation_id": "0198f4d0-1001-7000-8000-000000000001",
+          "distance": 0.5408873631156728,
+          "entity_ids": [
+            "P42",
+            "Scout"
+          ],
+          "event_end_at": null,
+          "event_start_at": "2026-08-02T08:00:00Z",
+          "evidence_id": "E002",
+          "excerpt": "Scout win rate was 51.2% after P42; the log makes no causal attribution.",
+          "excerpt_end": 72,
+          "excerpt_start": 0,
+          "index_refreshed_at": "2026-08-08T12:00:00Z",
+          "index_snapshot_id": "sim-index-v1",
+          "project_id": "Alpha",
+          "query_id": "0198f4d0-0001-7000-8000-000000000001",
+          "rank": 2,
+          "schema_version": "game-log-search.v1",
+          "score": 0.45911263688432724,
+          "source_id": "telemetry/patch-P42-summary.log",
+          "source_label": "telemetry/patch-P42-summary.log",
+          "source_path": "telemetry/patch-P42-summary.log",
+          "trust_class": "trusted_log"
+        },
+        {
+          "content_sha256": "5d8a04d4b3da88be6f674ca415887be778c070f6e35bb3f195f0025679d50799",
+          "correlation_id": "0198f4d0-1001-7000-8000-000000000001",
+          "distance": 0.5713117803706831,
+          "entity_ids": [
+            "P42",
+            "Scout"
+          ],
+          "event_end_at": null,
+          "event_start_at": "2026-08-02T12:00:00Z",
+          "evidence_id": "E003",
+          "excerpt": "Testers reproduced two disengages per fight before the cooldown change and one after it.",
+          "excerpt_end": 88,
+          "excerpt_start": 0,
+          "index_refreshed_at": "2026-08-08T12:00:00Z",
+          "index_snapshot_id": "sim-index-v1",
+          "project_id": "Alpha",
+          "query_id": "0198f4d0-0001-7000-8000-000000000001",
+          "rank": 3,
+          "schema_version": "game-log-search.v1",
+          "score": 0.4286882196293169,
+          "source_id": "qa/P42-playtest.log",
+          "source_label": "qa/P42-playtest.log",
+          "source_path": "qa/P42-playtest.log",
+          "trust_class": "trusted_log"
+        }
+      ],
+      "evidence_input_tokens": null,
+      "failure_owner": "synthesis",
+      "finding": null,
+      "frame_type": "terminal",
+      "index_coverage_through": "2026-08-08T12:00:00Z",
+      "index_refreshed_at": "2026-08-08T12:00:00Z",
+      "index_snapshot_id": "sim-index-v1",
+      "model_profile_id": "qwen2.5:1.5b",
+      "model_quantization": "Q4_K_M",
+      "outcome": "synthesis_unavailable",
+      "output_tokens": null,
+      "parent_query_id": null,
+      "query_id": "0198f4d0-0001-7000-8000-000000000001",
+      "query_text": "What changed about Scout dash cooldown in P42, and why?",
+      "recovery_action": "open_raw_evidence",
+      "retrieved_evidence_set_hash": "ca81fdaa8731d9fc4d58d65a92f762b6083da11cbc8e5a39ce94e2f13551c1eb",
+      "run_status": "completed",
+      "schema_version": "game-log-search.v1",
+      "scope": {
+        "entity_ids": [
+          "P42",
+          "Scout"
+        ],
+        "index_snapshot_id": "sim-index-v1",
+        "project_ids": [
+          "Alpha"
+        ],
+        "source_ids": [],
+        "time_from": null,
+        "time_to": "2026-08-08T12:00:00Z"
+      },
+      "scope_delta": {
+        "changed": false,
+        "entity_added": [],
+        "entity_removed": [],
+        "sources_added": [],
+        "sources_removed": [],
+        "time_from_after": null,
+        "time_from_before": null,
+        "time_from_changed": false,
+        "time_to_after": "2026-08-08T12:00:00Z",
+        "time_to_before": "2026-08-08T12:00:00Z",
+        "time_to_changed": false
+      },
+      "truncation_reason": null
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 504.00 270.00] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+6 0 obj
+<< /Length 2642 >>
+stream
+0.120 0.180 0.240 rg BT /F2 12.00 Tf 22.00 247.00 Td (Observed whole-case latency for synthesis-dependent queries) Tj ET
+0.350 0.380 0.400 rg BT /F1 8.00 Tf 22.00 231.00 Td (Single observations; fixture setup is included; no error bars or percentile claims) Tj ET
+0.820 0.840 0.860 RG 0.35 w 58.00 54.00 m 472.00 54.00 l S
+0.350 0.380 0.400 rg BT /F1 7.00 Tf 34.00 52.00 Td (0) Tj ET
+0.820 0.840 0.860 RG 0.35 w 58.00 74.71 m 472.00 74.71 l S
+0.350 0.380 0.400 rg BT /F1 7.00 Tf 34.00 72.71 Td (5) Tj ET
+0.820 0.840 0.860 RG 0.35 w 58.00 95.43 m 472.00 95.43 l S
+0.350 0.380 0.400 rg BT /F1 7.00 Tf 34.00 93.43 Td (10) Tj ET
+0.820 0.840 0.860 RG 0.35 w 58.00 116.14 m 472.00 116.14 l S
+0.350 0.380 0.400 rg BT /F1 7.00 Tf 34.00 114.14 Td (15) Tj ET
+0.820 0.840 0.860 RG 0.35 w 58.00 136.86 m 472.00 136.86 l S
+0.350 0.380 0.400 rg BT /F1 7.00 Tf 34.00 134.86 Td (20) Tj ET
+0.820 0.840 0.860 RG 0.35 w 58.00 157.57 m 472.00 157.57 l S
+0.350 0.380 0.400 rg BT /F1 7.00 Tf 34.00 155.57 Td (25) Tj ET
+0.820 0.840 0.860 RG 0.35 w 58.00 178.29 m 472.00 178.29 l S
+0.350 0.380 0.400 rg BT /F1 7.00 Tf 34.00 176.29 Td (30) Tj ET
+0.820 0.840 0.860 RG 0.35 w 58.00 199.00 m 472.00 199.00 l S
+0.350 0.380 0.400 rg BT /F1 7.00 Tf 34.00 197.00 Td (35) Tj ET
+0.120 0.180 0.240 rg BT /F2 8.00 Tf 14.00 128.00 Td (seconds) Tj ET
+0.120 0.180 0.240 rg BT /F2 9.00 Tf 136.00 33.00 Td (Q01) Tj ET
+0.000 0.450 0.700 rg 112.00 54.00 34.00 138.48 re f
+0.120 0.180 0.240 rg BT /F2 7.00 Tf 116.00 197.48 Td (33.4) Tj ET
+0.000 0.620 0.450 rg 155.00 54.00 34.00 110.84 re f
+0.120 0.180 0.240 rg BT /F2 7.00 Tf 159.00 169.84 Td (26.8) Tj ET
+0.900 0.500 0.000 rg 198.00 54.00 34.00 76.50 re f
+0.120 0.180 0.240 rg BT /F2 7.00 Tf 202.00 135.50 Td (18.5) Tj ET
+0.120 0.180 0.240 rg BT /F2 9.00 Tf 329.00 33.00 Td (Q03) Tj ET
+0.000 0.450 0.700 rg 305.00 54.00 34.00 99.09 re f
+0.120 0.180 0.240 rg BT /F2 7.00 Tf 309.00 158.09 Td (23.9) Tj ET
+0.000 0.620 0.450 rg 348.00 54.00 34.00 48.45 re f
+0.120 0.180 0.240 rg BT /F2 7.00 Tf 352.00 107.45 Td (11.7) Tj ET
+0.900 0.500 0.000 rg 391.00 54.00 34.00 80.19 re f
+0.120 0.180 0.240 rg BT /F2 7.00 Tf 395.00 139.19 Td (19.4) Tj ET
+0.000 0.450 0.700 rg 108.00 214.00 10.00 8.00 re f
+0.120 0.180 0.240 rg BT /F1 8.00 Tf 123.00 214.00 Td (0.5b) Tj ET
+0.000 0.620 0.450 rg 236.00 214.00 10.00 8.00 re f
+0.120 0.180 0.240 rg BT /F1 8.00 Tf 251.00 214.00 Td (1.5b) Tj ET
+0.900 0.500 0.000 rg 364.00 214.00 10.00 8.00 re f
+0.120 0.180 0.240 rg BT /F1 8.00 Tf 379.00 214.00 Td (3b) Tj ET
+0.350 0.380 0.400 rg BT /F1 7.00 Tf 22.00 18.00 Td (Source: results/query_results.csv \(duration_ms\); each row links correlated-spans.json.) Tj ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000263 00000 n 
+0000000333 00000 n 
+0000000408 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+3101
+%%EOF

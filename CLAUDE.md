@@ -162,7 +162,7 @@ This project has a graphify knowledge graph at graphify-out/.
 Rules:
 - Before answering architecture or codebase questions, read graphify-out/GRAPH_REPORT.md for god nodes and community structure
 - If graphify-out/wiki/index.md exists, navigate it instead of reading raw files
-- After modifying code files in this session, run `python3 -c "from graphify.watch import _rebuild_code; from pathlib import Path; _rebuild_code(Path('.'))"` to keep the graph current
+- After modifying code, run `graphify update .` and read the refreshed `graphify-out/GRAPH_REPORT.md` before reporting architecture changes.
 
 ## llm-wiki
 
@@ -175,6 +175,43 @@ Rules:
 - Keep `knowledge/raw/sources/` immutable — corrections go into wiki pages, not rewrites of raw captures
 - Cross-reference pages with `[[page-name]]` wiki-link syntax
 - Do not record secrets, credentials, `.env` values, or Firebase service account material in the wiki
+
+## Game Studio Harness repository contract
+
+This repository runs one standing production cycle for the FunQA game-log search product. Studio evidence lives under `_workspace/current/`; prior-cycle evidence moves only to `_workspace/archive/<run-id>/` and is never edited or deleted. This prevents gate evidence from being replaced by a cleaner-looking rewrite.
+
+### Workspace and ownership
+
+- `_workspace/current/` is the only writable studio-artifact tree. Keep `intake/`, `design/`, `pm/`, `engineering/`, `qa/`, `ops/`, `ui/`, `production/`, `messages/`, and `retrospectives/` current.
+- Every measured statement is labeled `[OBSERVED]`, `[INFERENCE]`, or `[TARGET]` and cites the repository-relative command or evidence path behind it.
+- Append-only decision and negotiation records use unique IDs. Re-read the tail before writing; never renumber prior entries.
+- `.runtime/**`, local model caches, generated concept output, `.env*`, and `saas-of-funqa-firebase-adminsdk-*.json` are machine-local or secret material. Never commit them or cite them as shared gate evidence.
+
+### Engine boundary
+
+FunQA is a web search product: Next.js/React renders the App Hosting surface, Express/Firebase Functions owns the HTTP trust boundary, CocoIndex owns incremental game-log indexing, PostgreSQL/pgvector owns searchable index state, and Ollama owns local answer generation. Work from `skill://api-design`, `skill://design-system`, `skill://system-environment-setup`, and `skill://firebase-cli`.
+
+- Keep the API path router → service → repository. Route handlers validate and translate; they do not own retrieval logic.
+- Presentation reads typed search responses but never mutates index state. Index updates happen through the CocoIndex service.
+- Do not apply Unity or Unreal editor/asset guidance here; neither engine exists in this repository.
+- Local-model and CocoIndex integrations require a kill switch and deterministic evidence-only fallback so App Hosting stays usable when the future VM is not active.
+- VM activation uses local `build:` contexts for the API and CocoIndex containers. The systemd Compose command must build them (`--build`) or pull immutable prebuilt images before startup; `--no-build` on a fresh checkout leaves the service unavailable.
+
+### Asset generation
+
+Editorial game-search imagery is generated only with `god-tibo-imagen` (`gti --dry-run` before `gti --output ...`). Prove one asset before a set. Every generated file receives an adjacent `.provenance.json` with prompt, inputs, tool/model, response ID when available, checksum, rights notes, and `runtimeEligible`.
+
+### Concurrent Git safety
+
+- Use an isolated worktree and branch for commits. If a shared worktree is unavoidable, atomically create `$(git rev-parse --git-common-dir)/funqa-studio.lock`; record the owner and hold it through stage, commit, and push.
+- Stage explicit pathspecs only. Never use `git add .`, `git add -A`, cleanup resets, force-pushes, or restoration of changes owned by another session.
+- Before push, fetch the explicit upstream and inspect every commit in `@{upstream}..HEAD`. Unknown commits block the push.
+
+### Verification
+
+- Core regression command: `npm run typecheck && npm run smoke:rag && npm run build:web`.
+- Gate claims require a measured value, method, and evidence path. Missing evidence or any open S1 defect blocks PASS.
+- Leave `_workspace/current/production/task-manifest.md`, the project-local `llm-wiki` skill, `knowledge/index.md`, and the Graphify report current so the next session can resume without chat history.
 
 <!-- OMA:START — managed by oh-my-agent. Do not edit this block manually. -->
 

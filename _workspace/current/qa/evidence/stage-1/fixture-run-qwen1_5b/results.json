@@ -1,0 +1,1515 @@
+[
+  {
+    "assertion": "outcome",
+    "case_id": "Q01-exact-cooldown",
+    "expected": "supported",
+    "observed": "synthesis_unavailable",
+    "passed": false
+  },
+  {
+    "assertion": "failure_owner",
+    "case_id": "Q01-exact-cooldown",
+    "expected": "none",
+    "observed": "synthesis",
+    "passed": false
+  },
+  {
+    "assertion": "query_id_preserved",
+    "case_id": "Q01-exact-cooldown",
+    "expected": "0198f4d0-0001-7000-8000-000000000001",
+    "observed": "0198f4d0-0001-7000-8000-000000000001",
+    "passed": true
+  },
+  {
+    "assertion": "correlation_id_preserved",
+    "case_id": "Q01-exact-cooldown",
+    "expected": "0198f4d0-1001-7000-8000-000000000001",
+    "observed": "0198f4d0-1001-7000-8000-000000000001",
+    "passed": true
+  },
+  {
+    "assertion": "minimum_evidence_count",
+    "case_id": "Q01-exact-cooldown",
+    "expected": 2,
+    "observed": 3,
+    "passed": true
+  },
+  {
+    "assertion": "required_top_five",
+    "case_id": "Q01-exact-cooldown",
+    "expected": [
+      "E001",
+      "E003"
+    ],
+    "observed": [
+      "E001",
+      "E002",
+      "E003"
+    ],
+    "passed": true
+  },
+  {
+    "assertion": "expected_rank_one",
+    "case_id": "Q01-exact-cooldown",
+    "expected": "E001",
+    "observed": "E001",
+    "passed": true
+  },
+  {
+    "assertion": "forbidden_values_absent",
+    "case_id": "Q01-exact-cooldown",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "required_finding_values_present",
+    "case_id": "Q01-exact-cooldown",
+    "expected": [
+      "8",
+      "10",
+      "disengage"
+    ],
+    "observed": [],
+    "passed": false
+  },
+  {
+    "assertion": "scope_preserved",
+    "case_id": "Q01-exact-cooldown",
+    "expected": {
+      "entity_ids": [
+        "P42",
+        "Scout"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "observed": {
+      "entity_ids": [
+        "P42",
+        "Scout"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "passed": true
+  },
+  {
+    "assertion": "scope_delta_preserved",
+    "case_id": "Q01-exact-cooldown",
+    "expected": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "observed": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "passed": true
+  },
+  {
+    "assertion": "index_snapshot_preserved",
+    "case_id": "Q01-exact-cooldown",
+    "expected": "sim-index-v1",
+    "observed": "sim-index-v1",
+    "passed": true
+  },
+  {
+    "assertion": "boundary_reason",
+    "case_id": "Q01-exact-cooldown",
+    "expected": null,
+    "observed": "synthesis_timeout",
+    "passed": false
+  },
+  {
+    "assertion": "recovery_action",
+    "case_id": "Q01-exact-cooldown",
+    "expected": "inspect_claim_traces",
+    "observed": "open_raw_evidence",
+    "passed": false
+  },
+  {
+    "assertion": "outcome",
+    "case_id": "Q02-win-rate-cause",
+    "expected": "weak_support",
+    "observed": "weak_support",
+    "passed": true
+  },
+  {
+    "assertion": "failure_owner",
+    "case_id": "Q02-win-rate-cause",
+    "expected": "none",
+    "observed": "none",
+    "passed": true
+  },
+  {
+    "assertion": "query_id_preserved",
+    "case_id": "Q02-win-rate-cause",
+    "expected": "0198f4d0-0002-7000-8000-000000000002",
+    "observed": "0198f4d0-0002-7000-8000-000000000002",
+    "passed": true
+  },
+  {
+    "assertion": "correlation_id_preserved",
+    "case_id": "Q02-win-rate-cause",
+    "expected": "0198f4d0-1002-7000-8000-000000000002",
+    "observed": "0198f4d0-1002-7000-8000-000000000002",
+    "passed": true
+  },
+  {
+    "assertion": "minimum_evidence_count",
+    "case_id": "Q02-win-rate-cause",
+    "expected": 1,
+    "observed": 1,
+    "passed": true
+  },
+  {
+    "assertion": "required_top_five",
+    "case_id": "Q02-win-rate-cause",
+    "expected": [
+      "E002"
+    ],
+    "observed": [
+      "E002"
+    ],
+    "passed": true
+  },
+  {
+    "assertion": "expected_rank_one",
+    "case_id": "Q02-win-rate-cause",
+    "expected": "E002",
+    "observed": "E002",
+    "passed": true
+  },
+  {
+    "assertion": "forbidden_values_absent",
+    "case_id": "Q02-win-rate-cause",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "required_finding_values_present",
+    "case_id": "Q02-win-rate-cause",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "scope_preserved",
+    "case_id": "Q02-win-rate-cause",
+    "expected": {
+      "entity_ids": [
+        "P42",
+        "Scout"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [
+        "telemetry/patch-P42-summary.log"
+      ],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "observed": {
+      "entity_ids": [
+        "P42",
+        "Scout"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [
+        "telemetry/patch-P42-summary.log"
+      ],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "passed": true
+  },
+  {
+    "assertion": "scope_delta_preserved",
+    "case_id": "Q02-win-rate-cause",
+    "expected": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "observed": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "passed": true
+  },
+  {
+    "assertion": "index_snapshot_preserved",
+    "case_id": "Q02-win-rate-cause",
+    "expected": "sim-index-v1",
+    "observed": "sim-index-v1",
+    "passed": true
+  },
+  {
+    "assertion": "boundary_reason",
+    "case_id": "Q02-win-rate-cause",
+    "expected": "strict_support_predicate_failed",
+    "observed": "strict_support_predicate_failed",
+    "passed": true
+  },
+  {
+    "assertion": "recovery_action",
+    "case_id": "Q02-win-rate-cause",
+    "expected": "refine_query",
+    "observed": "refine_query",
+    "passed": true
+  },
+  {
+    "assertion": "outcome",
+    "case_id": "Q03-incident-root-cause",
+    "expected": "supported",
+    "observed": "synthesis_unavailable",
+    "passed": false
+  },
+  {
+    "assertion": "failure_owner",
+    "case_id": "Q03-incident-root-cause",
+    "expected": "none",
+    "observed": "synthesis",
+    "passed": false
+  },
+  {
+    "assertion": "query_id_preserved",
+    "case_id": "Q03-incident-root-cause",
+    "expected": "0198f4d0-0003-7000-8000-000000000003",
+    "observed": "0198f4d0-0003-7000-8000-000000000003",
+    "passed": true
+  },
+  {
+    "assertion": "correlation_id_preserved",
+    "case_id": "Q03-incident-root-cause",
+    "expected": "0198f4d0-1003-7000-8000-000000000003",
+    "observed": "0198f4d0-1003-7000-8000-000000000003",
+    "passed": true
+  },
+  {
+    "assertion": "minimum_evidence_count",
+    "case_id": "Q03-incident-root-cause",
+    "expected": 3,
+    "observed": 3,
+    "passed": true
+  },
+  {
+    "assertion": "required_top_five",
+    "case_id": "Q03-incident-root-cause",
+    "expected": [
+      "E004",
+      "E005",
+      "E006"
+    ],
+    "observed": [
+      "E004",
+      "E006",
+      "E005"
+    ],
+    "passed": true
+  },
+  {
+    "assertion": "expected_rank_one",
+    "case_id": "Q03-incident-root-cause",
+    "expected": null,
+    "observed": "E004",
+    "passed": true
+  },
+  {
+    "assertion": "forbidden_values_absent",
+    "case_id": "Q03-incident-root-cause",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "required_finding_values_present",
+    "case_id": "Q03-incident-root-cause",
+    "expected": [
+      "gpu",
+      "texture"
+    ],
+    "observed": [],
+    "passed": false
+  },
+  {
+    "assertion": "scope_preserved",
+    "case_id": "Q03-incident-root-cause",
+    "expected": {
+      "entity_ids": [
+        "Incident184"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "observed": {
+      "entity_ids": [
+        "Incident184"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "passed": true
+  },
+  {
+    "assertion": "scope_delta_preserved",
+    "case_id": "Q03-incident-root-cause",
+    "expected": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "observed": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "passed": true
+  },
+  {
+    "assertion": "index_snapshot_preserved",
+    "case_id": "Q03-incident-root-cause",
+    "expected": "sim-index-v1",
+    "observed": "sim-index-v1",
+    "passed": true
+  },
+  {
+    "assertion": "boundary_reason",
+    "case_id": "Q03-incident-root-cause",
+    "expected": null,
+    "observed": "synthesis_timeout",
+    "passed": false
+  },
+  {
+    "assertion": "recovery_action",
+    "case_id": "Q03-incident-root-cause",
+    "expected": "inspect_claim_traces",
+    "observed": "open_raw_evidence",
+    "passed": false
+  },
+  {
+    "assertion": "outcome",
+    "case_id": "Q04-no-hits",
+    "expected": "no_hits",
+    "observed": "no_hits",
+    "passed": true
+  },
+  {
+    "assertion": "failure_owner",
+    "case_id": "Q04-no-hits",
+    "expected": "none",
+    "observed": "none",
+    "passed": true
+  },
+  {
+    "assertion": "query_id_preserved",
+    "case_id": "Q04-no-hits",
+    "expected": "0198f4d0-0004-7000-8000-000000000004",
+    "observed": "0198f4d0-0004-7000-8000-000000000004",
+    "passed": true
+  },
+  {
+    "assertion": "correlation_id_preserved",
+    "case_id": "Q04-no-hits",
+    "expected": "0198f4d0-1004-7000-8000-000000000004",
+    "observed": "0198f4d0-1004-7000-8000-000000000004",
+    "passed": true
+  },
+  {
+    "assertion": "minimum_evidence_count",
+    "case_id": "Q04-no-hits",
+    "expected": 0,
+    "observed": 0,
+    "passed": true
+  },
+  {
+    "assertion": "required_top_five",
+    "case_id": "Q04-no-hits",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "expected_rank_one",
+    "case_id": "Q04-no-hits",
+    "expected": null,
+    "observed": null,
+    "passed": true
+  },
+  {
+    "assertion": "forbidden_values_absent",
+    "case_id": "Q04-no-hits",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "required_finding_values_present",
+    "case_id": "Q04-no-hits",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "scope_preserved",
+    "case_id": "Q04-no-hits",
+    "expected": {
+      "entity_ids": [
+        "CobaltRod",
+        "FishingBoss"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "observed": {
+      "entity_ids": [
+        "CobaltRod",
+        "FishingBoss"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "passed": true
+  },
+  {
+    "assertion": "scope_delta_preserved",
+    "case_id": "Q04-no-hits",
+    "expected": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "observed": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "passed": true
+  },
+  {
+    "assertion": "index_snapshot_preserved",
+    "case_id": "Q04-no-hits",
+    "expected": "sim-index-v1",
+    "observed": "sim-index-v1",
+    "passed": true
+  },
+  {
+    "assertion": "boundary_reason",
+    "case_id": "Q04-no-hits",
+    "expected": "no_indexed_match",
+    "observed": "no_indexed_match",
+    "passed": true
+  },
+  {
+    "assertion": "recovery_action",
+    "case_id": "Q04-no-hits",
+    "expected": "broaden_scope",
+    "observed": "broaden_scope",
+    "passed": true
+  },
+  {
+    "assertion": "outcome",
+    "case_id": "Q05-retrieval-unavailable",
+    "expected": "retrieval_unavailable",
+    "observed": "retrieval_unavailable",
+    "passed": true
+  },
+  {
+    "assertion": "failure_owner",
+    "case_id": "Q05-retrieval-unavailable",
+    "expected": "retrieval",
+    "observed": "retrieval",
+    "passed": true
+  },
+  {
+    "assertion": "query_id_preserved",
+    "case_id": "Q05-retrieval-unavailable",
+    "expected": "0198f4d0-0005-7000-8000-000000000005",
+    "observed": "0198f4d0-0005-7000-8000-000000000005",
+    "passed": true
+  },
+  {
+    "assertion": "correlation_id_preserved",
+    "case_id": "Q05-retrieval-unavailable",
+    "expected": "0198f4d0-1005-7000-8000-000000000005",
+    "observed": "0198f4d0-1005-7000-8000-000000000005",
+    "passed": true
+  },
+  {
+    "assertion": "minimum_evidence_count",
+    "case_id": "Q05-retrieval-unavailable",
+    "expected": 0,
+    "observed": 0,
+    "passed": true
+  },
+  {
+    "assertion": "required_top_five",
+    "case_id": "Q05-retrieval-unavailable",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "expected_rank_one",
+    "case_id": "Q05-retrieval-unavailable",
+    "expected": null,
+    "observed": null,
+    "passed": true
+  },
+  {
+    "assertion": "forbidden_values_absent",
+    "case_id": "Q05-retrieval-unavailable",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "required_finding_values_present",
+    "case_id": "Q05-retrieval-unavailable",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "scope_preserved",
+    "case_id": "Q05-retrieval-unavailable",
+    "expected": {
+      "entity_ids": [
+        "P42",
+        "Scout"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "observed": {
+      "entity_ids": [
+        "P42",
+        "Scout"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "passed": true
+  },
+  {
+    "assertion": "scope_delta_preserved",
+    "case_id": "Q05-retrieval-unavailable",
+    "expected": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "observed": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "passed": true
+  },
+  {
+    "assertion": "index_snapshot_preserved",
+    "case_id": "Q05-retrieval-unavailable",
+    "expected": "sim-index-v1",
+    "observed": "sim-index-v1",
+    "passed": true
+  },
+  {
+    "assertion": "boundary_reason",
+    "case_id": "Q05-retrieval-unavailable",
+    "expected": "retrieval_503",
+    "observed": "retrieval_503",
+    "passed": true
+  },
+  {
+    "assertion": "recovery_action",
+    "case_id": "Q05-retrieval-unavailable",
+    "expected": "retry_retrieval",
+    "observed": "retry_retrieval",
+    "passed": true
+  },
+  {
+    "assertion": "outcome",
+    "case_id": "Q06-synthesis-unavailable",
+    "expected": "synthesis_unavailable",
+    "observed": "synthesis_unavailable",
+    "passed": true
+  },
+  {
+    "assertion": "failure_owner",
+    "case_id": "Q06-synthesis-unavailable",
+    "expected": "synthesis",
+    "observed": "synthesis",
+    "passed": true
+  },
+  {
+    "assertion": "query_id_preserved",
+    "case_id": "Q06-synthesis-unavailable",
+    "expected": "0198f4d0-0006-7000-8000-000000000006",
+    "observed": "0198f4d0-0006-7000-8000-000000000006",
+    "passed": true
+  },
+  {
+    "assertion": "correlation_id_preserved",
+    "case_id": "Q06-synthesis-unavailable",
+    "expected": "0198f4d0-1006-7000-8000-000000000006",
+    "observed": "0198f4d0-1006-7000-8000-000000000006",
+    "passed": true
+  },
+  {
+    "assertion": "minimum_evidence_count",
+    "case_id": "Q06-synthesis-unavailable",
+    "expected": 2,
+    "observed": 3,
+    "passed": true
+  },
+  {
+    "assertion": "required_top_five",
+    "case_id": "Q06-synthesis-unavailable",
+    "expected": [
+      "E001",
+      "E003"
+    ],
+    "observed": [
+      "E001",
+      "E002",
+      "E003"
+    ],
+    "passed": true
+  },
+  {
+    "assertion": "expected_rank_one",
+    "case_id": "Q06-synthesis-unavailable",
+    "expected": "E001",
+    "observed": "E001",
+    "passed": true
+  },
+  {
+    "assertion": "forbidden_values_absent",
+    "case_id": "Q06-synthesis-unavailable",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "required_finding_values_present",
+    "case_id": "Q06-synthesis-unavailable",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "scope_preserved",
+    "case_id": "Q06-synthesis-unavailable",
+    "expected": {
+      "entity_ids": [
+        "P42",
+        "Scout"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "observed": {
+      "entity_ids": [
+        "P42",
+        "Scout"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "passed": true
+  },
+  {
+    "assertion": "scope_delta_preserved",
+    "case_id": "Q06-synthesis-unavailable",
+    "expected": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "observed": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "passed": true
+  },
+  {
+    "assertion": "index_snapshot_preserved",
+    "case_id": "Q06-synthesis-unavailable",
+    "expected": "sim-index-v1",
+    "observed": "sim-index-v1",
+    "passed": true
+  },
+  {
+    "assertion": "boundary_reason",
+    "case_id": "Q06-synthesis-unavailable",
+    "expected": "synthesis_503",
+    "observed": "synthesis_503",
+    "passed": true
+  },
+  {
+    "assertion": "recovery_action",
+    "case_id": "Q06-synthesis-unavailable",
+    "expected": "open_raw_evidence",
+    "observed": "open_raw_evidence",
+    "passed": true
+  },
+  {
+    "assertion": "outcome",
+    "case_id": "Q07-newest-playtest",
+    "expected": "stale_index",
+    "observed": "stale_index",
+    "passed": true
+  },
+  {
+    "assertion": "failure_owner",
+    "case_id": "Q07-newest-playtest",
+    "expected": "retrieval",
+    "observed": "retrieval",
+    "passed": true
+  },
+  {
+    "assertion": "query_id_preserved",
+    "case_id": "Q07-newest-playtest",
+    "expected": "0198f4d0-0007-7000-8000-000000000007",
+    "observed": "0198f4d0-0007-7000-8000-000000000007",
+    "passed": true
+  },
+  {
+    "assertion": "correlation_id_preserved",
+    "case_id": "Q07-newest-playtest",
+    "expected": "0198f4d0-1007-7000-8000-000000000007",
+    "observed": "0198f4d0-1007-7000-8000-000000000007",
+    "passed": true
+  },
+  {
+    "assertion": "minimum_evidence_count",
+    "case_id": "Q07-newest-playtest",
+    "expected": 0,
+    "observed": 3,
+    "passed": true
+  },
+  {
+    "assertion": "required_top_five",
+    "case_id": "Q07-newest-playtest",
+    "expected": [],
+    "observed": [
+      "E001",
+      "E003",
+      "E002"
+    ],
+    "passed": true
+  },
+  {
+    "assertion": "expected_rank_one",
+    "case_id": "Q07-newest-playtest",
+    "expected": null,
+    "observed": "E001",
+    "passed": true
+  },
+  {
+    "assertion": "forbidden_values_absent",
+    "case_id": "Q07-newest-playtest",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "required_finding_values_present",
+    "case_id": "Q07-newest-playtest",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "scope_preserved",
+    "case_id": "Q07-newest-playtest",
+    "expected": {
+      "entity_ids": [
+        "Scout"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [],
+      "time_from": null,
+      "time_to": "2026-08-09T12:00:00Z"
+    },
+    "observed": {
+      "entity_ids": [
+        "Scout"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [],
+      "time_from": null,
+      "time_to": "2026-08-09T12:00:00Z"
+    },
+    "passed": true
+  },
+  {
+    "assertion": "scope_delta_preserved",
+    "case_id": "Q07-newest-playtest",
+    "expected": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-09T12:00:00Z",
+      "time_to_before": "2026-08-09T12:00:00Z",
+      "time_to_changed": false
+    },
+    "observed": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-09T12:00:00Z",
+      "time_to_before": "2026-08-09T12:00:00Z",
+      "time_to_changed": false
+    },
+    "passed": true
+  },
+  {
+    "assertion": "index_snapshot_preserved",
+    "case_id": "Q07-newest-playtest",
+    "expected": "sim-index-v1",
+    "observed": "sim-index-v1",
+    "passed": true
+  },
+  {
+    "assertion": "boundary_reason",
+    "case_id": "Q07-newest-playtest",
+    "expected": "requested_coverage_exceeds_snapshot",
+    "observed": "requested_coverage_exceeds_snapshot",
+    "passed": true
+  },
+  {
+    "assertion": "recovery_action",
+    "case_id": "Q07-newest-playtest",
+    "expected": "refresh_archive",
+    "observed": "refresh_archive",
+    "passed": true
+  },
+  {
+    "assertion": "outcome",
+    "case_id": "Q08-log-injection",
+    "expected": "weak_support",
+    "observed": "weak_support",
+    "passed": true
+  },
+  {
+    "assertion": "failure_owner",
+    "case_id": "Q08-log-injection",
+    "expected": "none",
+    "observed": "none",
+    "passed": true
+  },
+  {
+    "assertion": "query_id_preserved",
+    "case_id": "Q08-log-injection",
+    "expected": "0198f4d0-0008-7000-8000-000000000008",
+    "observed": "0198f4d0-0008-7000-8000-000000000008",
+    "passed": true
+  },
+  {
+    "assertion": "correlation_id_preserved",
+    "case_id": "Q08-log-injection",
+    "expected": "0198f4d0-1008-7000-8000-000000000008",
+    "observed": "0198f4d0-1008-7000-8000-000000000008",
+    "passed": true
+  },
+  {
+    "assertion": "minimum_evidence_count",
+    "case_id": "Q08-log-injection",
+    "expected": 1,
+    "observed": 1,
+    "passed": true
+  },
+  {
+    "assertion": "required_top_five",
+    "case_id": "Q08-log-injection",
+    "expected": [
+      "E009"
+    ],
+    "observed": [
+      "E009"
+    ],
+    "passed": true
+  },
+  {
+    "assertion": "expected_rank_one",
+    "case_id": "Q08-log-injection",
+    "expected": "E009",
+    "observed": "E009",
+    "passed": true
+  },
+  {
+    "assertion": "forbidden_values_absent",
+    "case_id": "Q08-log-injection",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "required_finding_values_present",
+    "case_id": "Q08-log-injection",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "scope_preserved",
+    "case_id": "Q08-log-injection",
+    "expected": {
+      "entity_ids": [
+        "ImportedNote"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [
+        "community/imported-note.log"
+      ],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "observed": {
+      "entity_ids": [
+        "ImportedNote"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [
+        "community/imported-note.log"
+      ],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "passed": true
+  },
+  {
+    "assertion": "scope_delta_preserved",
+    "case_id": "Q08-log-injection",
+    "expected": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "observed": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "passed": true
+  },
+  {
+    "assertion": "index_snapshot_preserved",
+    "case_id": "Q08-log-injection",
+    "expected": "sim-index-v1",
+    "observed": "sim-index-v1",
+    "passed": true
+  },
+  {
+    "assertion": "boundary_reason",
+    "case_id": "Q08-log-injection",
+    "expected": "strict_support_predicate_failed",
+    "observed": "strict_support_predicate_failed",
+    "passed": true
+  },
+  {
+    "assertion": "recovery_action",
+    "case_id": "Q08-log-injection",
+    "expected": "refine_query",
+    "observed": "refine_query",
+    "passed": true
+  },
+  {
+    "assertion": "outcome",
+    "case_id": "Q09-ambiguous-entity",
+    "expected": "weak_support",
+    "observed": "weak_support",
+    "passed": true
+  },
+  {
+    "assertion": "failure_owner",
+    "case_id": "Q09-ambiguous-entity",
+    "expected": "none",
+    "observed": "none",
+    "passed": true
+  },
+  {
+    "assertion": "query_id_preserved",
+    "case_id": "Q09-ambiguous-entity",
+    "expected": "0198f4d0-0009-7000-8000-000000000009",
+    "observed": "0198f4d0-0009-7000-8000-000000000009",
+    "passed": true
+  },
+  {
+    "assertion": "correlation_id_preserved",
+    "case_id": "Q09-ambiguous-entity",
+    "expected": "0198f4d0-1009-7000-8000-000000000009",
+    "observed": "0198f4d0-1009-7000-8000-000000000009",
+    "passed": true
+  },
+  {
+    "assertion": "minimum_evidence_count",
+    "case_id": "Q09-ambiguous-entity",
+    "expected": 1,
+    "observed": 3,
+    "passed": true
+  },
+  {
+    "assertion": "required_top_five",
+    "case_id": "Q09-ambiguous-entity",
+    "expected": [],
+    "observed": [
+      "E002",
+      "E001",
+      "E003"
+    ],
+    "passed": true
+  },
+  {
+    "assertion": "expected_rank_one",
+    "case_id": "Q09-ambiguous-entity",
+    "expected": null,
+    "observed": "E002",
+    "passed": true
+  },
+  {
+    "assertion": "forbidden_values_absent",
+    "case_id": "Q09-ambiguous-entity",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "required_finding_values_present",
+    "case_id": "Q09-ambiguous-entity",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "scope_preserved",
+    "case_id": "Q09-ambiguous-entity",
+    "expected": {
+      "entity_ids": [
+        "Beta",
+        "Scout"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha",
+        "Beta"
+      ],
+      "source_ids": [],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "observed": {
+      "entity_ids": [
+        "Beta",
+        "Scout"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha",
+        "Beta"
+      ],
+      "source_ids": [],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "passed": true
+  },
+  {
+    "assertion": "scope_delta_preserved",
+    "case_id": "Q09-ambiguous-entity",
+    "expected": {
+      "changed": true,
+      "entity_added": [
+        "Beta"
+      ],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "observed": {
+      "changed": true,
+      "entity_added": [
+        "Beta"
+      ],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "passed": true
+  },
+  {
+    "assertion": "index_snapshot_preserved",
+    "case_id": "Q09-ambiguous-entity",
+    "expected": "sim-index-v1",
+    "observed": "sim-index-v1",
+    "passed": true
+  },
+  {
+    "assertion": "boundary_reason",
+    "case_id": "Q09-ambiguous-entity",
+    "expected": "strict_support_predicate_failed",
+    "observed": "strict_support_predicate_failed",
+    "passed": true
+  },
+  {
+    "assertion": "recovery_action",
+    "case_id": "Q09-ambiguous-entity",
+    "expected": "refine_query",
+    "observed": "refine_query",
+    "passed": true
+  },
+  {
+    "assertion": "outcome",
+    "case_id": "Q10-genkit-canary",
+    "expected": "retrieval_unavailable",
+    "observed": "retrieval_unavailable",
+    "passed": true
+  },
+  {
+    "assertion": "failure_owner",
+    "case_id": "Q10-genkit-canary",
+    "expected": "retrieval",
+    "observed": "retrieval",
+    "passed": true
+  },
+  {
+    "assertion": "query_id_preserved",
+    "case_id": "Q10-genkit-canary",
+    "expected": "0198f4d0-0010-7000-8000-000000000010",
+    "observed": "0198f4d0-0010-7000-8000-000000000010",
+    "passed": true
+  },
+  {
+    "assertion": "correlation_id_preserved",
+    "case_id": "Q10-genkit-canary",
+    "expected": "0198f4d0-1010-7000-8000-000000000010",
+    "observed": "0198f4d0-1010-7000-8000-000000000010",
+    "passed": true
+  },
+  {
+    "assertion": "minimum_evidence_count",
+    "case_id": "Q10-genkit-canary",
+    "expected": 0,
+    "observed": 0,
+    "passed": true
+  },
+  {
+    "assertion": "required_top_five",
+    "case_id": "Q10-genkit-canary",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "expected_rank_one",
+    "case_id": "Q10-genkit-canary",
+    "expected": null,
+    "observed": null,
+    "passed": true
+  },
+  {
+    "assertion": "forbidden_values_absent",
+    "case_id": "Q10-genkit-canary",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "required_finding_values_present",
+    "case_id": "Q10-genkit-canary",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "assertion": "scope_preserved",
+    "case_id": "Q10-genkit-canary",
+    "expected": {
+      "entity_ids": [
+        "CobaltRod",
+        "FishingBoss"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "observed": {
+      "entity_ids": [
+        "CobaltRod",
+        "FishingBoss"
+      ],
+      "index_snapshot_id": "sim-index-v1",
+      "project_ids": [
+        "Alpha"
+      ],
+      "source_ids": [],
+      "time_from": null,
+      "time_to": "2026-08-08T12:00:00Z"
+    },
+    "passed": true
+  },
+  {
+    "assertion": "scope_delta_preserved",
+    "case_id": "Q10-genkit-canary",
+    "expected": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "observed": {
+      "changed": false,
+      "entity_added": [],
+      "entity_removed": [],
+      "sources_added": [],
+      "sources_removed": [],
+      "time_from_after": null,
+      "time_from_before": null,
+      "time_from_changed": false,
+      "time_to_after": "2026-08-08T12:00:00Z",
+      "time_to_before": "2026-08-08T12:00:00Z",
+      "time_to_changed": false
+    },
+    "passed": true
+  },
+  {
+    "assertion": "index_snapshot_preserved",
+    "case_id": "Q10-genkit-canary",
+    "expected": "sim-index-v1",
+    "observed": "sim-index-v1",
+    "passed": true
+  },
+  {
+    "assertion": "boundary_reason",
+    "case_id": "Q10-genkit-canary",
+    "expected": "retrieval_503",
+    "observed": "retrieval_503",
+    "passed": true
+  },
+  {
+    "assertion": "recovery_action",
+    "case_id": "Q10-genkit-canary",
+    "expected": "retry_retrieval",
+    "observed": "retry_retrieval",
+    "passed": true
+  }
+]

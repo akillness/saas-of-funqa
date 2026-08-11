@@ -1,0 +1,123 @@
+name: funqa-game-log-search
+
+x-game-log-search-environment: &game-log-search-environment
+  GAME_LOG_SEARCH_HOST: 0.0.0.0
+  GAME_LOG_SEARCH_PORT: "7400"
+  GAME_LOG_SEARCH_DATABASE_URL: postgresql://game_log_search@postgres:5432/game_log_search
+  GAME_LOG_SEARCH_POSTGRES_SCHEMA: game_log_search
+  GAME_LOG_SEARCH_POSTGRES_TABLE: log_shards
+  GAME_LOG_SEARCH_SOURCE_DIR: /app/fixtures/sim-game-logs-v1/logs
+  GAME_LOG_SEARCH_INDEX_MANIFEST_PATH: /app/fixtures/sim-game-logs-v1/index-manifest.json
+  GAME_LOG_SEARCH_QUERY_MANIFEST_PATH: /app/fixtures/sim-game-logs-v1/queries.json
+  GAME_LOG_SEARCH_EMBEDDING_MODEL: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+  GAME_LOG_SEARCH_SYNTHESIS_API_STYLE: ollama_chat
+  GAME_LOG_SEARCH_SYNTHESIS_BASE_URL: http://ollama:11434
+  GAME_LOG_SEARCH_SYNTHESIS_MODEL: "${GAME_LOG_SEARCH_SYNTHESIS_MODEL:?Set GAME_LOG_SEARCH_SYNTHESIS_MODEL in the Compose env file}"
+  GAME_LOG_SEARCH_SYNTHESIS_MODEL_QUANTIZATION: "${GAME_LOG_SEARCH_SYNTHESIS_MODEL_QUANTIZATION:?Set GAME_LOG_SEARCH_SYNTHESIS_MODEL_QUANTIZATION in the Compose env file}"
+  GAME_LOG_SEARCH_SYNTHESIS_API_KEY: "${GAME_LOG_SEARCH_SYNTHESIS_API_KEY:-}"
+  GAME_LOG_SEARCH_BUILD_ID: "${GAME_LOG_SEARCH_BUILD_ID:-local-compose}"
+  GAME_LOG_SEARCH_FIXTURE_MODE: "${GAME_LOG_SEARCH_FIXTURE_MODE:-1}"
+  GAME_LOG_SEARCH_FAULT_MODE: "${GAME_LOG_SEARCH_FAULT_MODE:-none}"
+
+services:
+  postgres:
+    image: pgvector/pgvector:0.8.1-pg16
+    environment:
+      POSTGRES_DB: game_log_search
+      POSTGRES_USER: game_log_search
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "127.0.0.1:${GAME_LOG_SEARCH_POSTGRES_PORT:-55432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres/init-pgvector.sql:/docker-entrypoint-initdb.d/10-init-pgvector.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U game_log_search -d game_log_search"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 10s
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:0.11.10
+    ports:
+      - "127.0.0.1:11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
+    restart: unless-stopped
+
+  ollama-model-pull:
+    image: ollama/ollama:0.11.10
+    command:
+      - pull
+      - "${GAME_LOG_SEARCH_SYNTHESIS_MODEL:?Set GAME_LOG_SEARCH_SYNTHESIS_MODEL in the Compose env file}"
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    depends_on:
+      ollama:
+        condition: service_healthy
+    restart: "no"
+
+  cocoindex:
+    build:
+      context: ../../services/game-log-search
+      dockerfile: Dockerfile
+    command: ["cocoindex", "update", "-L", "game_log_search.index_app"]
+    environment: *game-log-search-environment
+    volumes:
+      - ../../services/game-log-search/fixtures:/app/fixtures:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "from pathlib import Path; raise SystemExit(b'cocoindex' not in Path('/proc/1/cmdline').read_bytes())"
+      interval: 10s
+      timeout: 3s
+      retries: 12
+      start_period: 10s
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+  api:
+    build:
+      context: ../../services/game-log-search
+      dockerfile: Dockerfile
+    environment: *game-log-search-environment
+    ports:
+      - "127.0.0.1:7400:7400"
+    volumes:
+      - ../../services/game-log-search/fixtures:/app/fixtures:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+      ollama-model-pull:
+        condition: service_completed_successfully
+      cocoindex:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import json, urllib.request; data = json.load(urllib.request.urlopen('http://127.0.0.1:7400/health', timeout=2)); raise SystemExit(any(data[name]['status'] != 'ready' for name in ('retrieval', 'synthesis')))"
+      interval: 10s
+      timeout: 3s
+      retries: 30
+      start_period: 20s
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+volumes:
+  postgres_data:
+  ollama_data:

@@ -1,0 +1,31 @@
+{
+  "app_build_id": "q03-hot-20260811",
+  "clock_utc": "2026-08-09T12:00:00Z",
+  "cocoindex_version": "1.0.19",
+  "corpus_sha256": "ddf326aa636543a4c77dcf1262bd55e2b388ef1cae709f75f9a6b66f1d8f9ad2",
+  "corpus_version": "sim-game-logs-v1",
+  "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "fixture_mode": true,
+  "index_profile": {
+    "coverage_through": "2026-08-08T12:00:00Z",
+    "id": "sim-index-v1",
+    "indexed_evidence_ids": [
+      "E001",
+      "E002",
+      "E003",
+      "E004",
+      "E005",
+      "E006",
+      "E008",
+      "E009"
+    ],
+    "intentionally_absent": [
+      "E007"
+    ],
+    "refreshed_at": "2026-08-08T12:00:00Z"
+  },
+  "model_profile": "qwen2.5:3b",
+  "model_quantization": "Q4_K_M",
+  "query_manifest_sha256": "5fe747e2cf2c8f52cafc2468426e00f41295dfefe9eacbf66091369df35eed33",
+  "ranking_seed": 20260809
+}

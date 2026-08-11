@@ -1,0 +1,277 @@
+{
+  "Q03-incident-root-cause": [
+    {
+      "accepted_at": "2026-08-11T10:51:24.580737Z",
+      "correlation_id": "0198f4d0-1003-7000-8000-000000000003",
+      "frame_type": "dispatch_accepted",
+      "parent_query_id": null,
+      "query_id": "0198f4d0-0003-7000-8000-000000000003",
+      "run_status": "accepted",
+      "schema_version": "game-log-search.v1",
+      "scope": {
+        "entity_ids": [
+          "Incident184"
+        ],
+        "index_snapshot_id": "sim-index-v1",
+        "project_ids": [
+          "Alpha"
+        ],
+        "source_ids": [],
+        "time_from": null,
+        "time_to": "2026-08-08T12:00:00Z"
+      },
+      "scope_delta": {
+        "changed": false,
+        "entity_added": [],
+        "entity_removed": [],
+        "sources_added": [],
+        "sources_removed": [],
+        "time_from_after": null,
+        "time_from_before": null,
+        "time_from_changed": false,
+        "time_to_after": "2026-08-08T12:00:00Z",
+        "time_to_before": "2026-08-08T12:00:00Z",
+        "time_to_changed": false
+      }
+    },
+    {
+      "correlation_id": "0198f4d0-1003-7000-8000-000000000003",
+      "frame_type": "stage",
+      "query_id": "0198f4d0-0003-7000-8000-000000000003",
+      "run_status": "running",
+      "schema_version": "game-log-search.v1",
+      "stage": "retrieving",
+      "started_at": "2026-08-11T10:51:24.580816Z"
+    },
+    {
+      "correlation_id": "0198f4d0-1003-7000-8000-000000000003",
+      "frame_type": "stage",
+      "query_id": "0198f4d0-0003-7000-8000-000000000003",
+      "run_status": "running",
+      "schema_version": "game-log-search.v1",
+      "stage": "ranking",
+      "started_at": "2026-08-11T10:51:39.268937Z"
+    },
+    {
+      "correlation_id": "0198f4d0-1003-7000-8000-000000000003",
+      "evidence": [
+        {
+          "content_sha256": "357c4a70d09fdb51b88a53f7ede5903c0401e46c9f96501b2554ac37eca8ee7e",
+          "correlation_id": "0198f4d0-1003-7000-8000-000000000003",
+          "distance": 0.6944187879562378,
+          "entity_ids": [
+            "Incident184"
+          ],
+          "event_end_at": null,
+          "event_start_at": "2026-08-03T09:00:00Z",
+          "evidence_id": "E004",
+          "excerpt": "Initial hypothesis: database saturation caused loading-room frame spikes.",
+          "excerpt_end": 73,
+          "excerpt_start": 0,
+          "index_refreshed_at": "2026-08-08T12:00:00Z",
+          "index_snapshot_id": "sim-index-v1",
+          "project_id": "Alpha",
+          "query_id": "0198f4d0-0003-7000-8000-000000000003",
+          "rank": 1,
+          "schema_version": "game-log-search.v1",
+          "score": 0.3055812120437622,
+          "source_id": "ops/incident-184-open.log",
+          "source_label": "ops/incident-184-open.log",
+          "source_path": "ops/incident-184-open.log",
+          "trust_class": "trusted_log"
+        },
+        {
+          "content_sha256": "f9bc069414254788b2304cca726b4f537cef2c59627d0a812d6f078173393d8e",
+          "correlation_id": "0198f4d0-1003-7000-8000-000000000003",
+          "distance": 0.8327608008838174,
+          "entity_ids": [
+            "Incident184"
+          ],
+          "event_end_at": null,
+          "event_start_at": "2026-08-03T12:00:00Z",
+          "evidence_id": "E006",
+          "excerpt": "Database saturation hypothesis retracted; database metrics remained normal.",
+          "excerpt_end": 75,
+          "excerpt_start": 0,
+          "index_refreshed_at": "2026-08-08T12:00:00Z",
+          "index_snapshot_id": "sim-index-v1",
+          "project_id": "Alpha",
+          "query_id": "0198f4d0-0003-7000-8000-000000000003",
+          "rank": 2,
+          "schema_version": "game-log-search.v1",
+          "score": 0.16723919911618257,
+          "source_id": "ops/incident-184-correction.log",
+          "source_label": "ops/incident-184-correction.log",
+          "source_path": "ops/incident-184-correction.log",
+          "trust_class": "trusted_log"
+        },
+        {
+          "content_sha256": "3fd055a15b0b16f940283f6e39a19a5d6197ca2b897224ccf4cf9372fa6340b0",
+          "correlation_id": "0198f4d0-1003-7000-8000-000000000003",
+          "distance": 0.8575918844232687,
+          "entity_ids": [
+            "Incident184"
+          ],
+          "event_end_at": null,
+          "event_start_at": "2026-08-03T11:30:00Z",
+          "evidence_id": "E005",
+          "excerpt": "GPU texture upload on room entry was the confirmed cause; texture prewarm resolved the spikes.",
+          "excerpt_end": 94,
+          "excerpt_start": 0,
+          "index_refreshed_at": "2026-08-08T12:00:00Z",
+          "index_snapshot_id": "sim-index-v1",
+          "project_id": "Alpha",
+          "query_id": "0198f4d0-0003-7000-8000-000000000003",
+          "rank": 3,
+          "schema_version": "game-log-search.v1",
+          "score": 0.14240811557673128,
+          "source_id": "ops/incident-184-resolution.log",
+          "source_label": "ops/incident-184-resolution.log",
+          "source_path": "ops/incident-184-resolution.log",
+          "trust_class": "trusted_log"
+        }
+      ],
+      "frame_type": "evidence_snapshot",
+      "query_id": "0198f4d0-0003-7000-8000-000000000003",
+      "retrieved_evidence_set_hash": "75764026282b7bae5216b423537583050d600de082c802ee97592778a187bbe0",
+      "run_status": "running",
+      "schema_version": "game-log-search.v1"
+    },
+    {
+      "correlation_id": "0198f4d0-1003-7000-8000-000000000003",
+      "frame_type": "stage",
+      "query_id": "0198f4d0-0003-7000-8000-000000000003",
+      "run_status": "running",
+      "schema_version": "game-log-search.v1",
+      "stage": "synthesizing",
+      "started_at": "2026-08-11T10:51:39.705258Z"
+    },
+    {
+      "boundary_reason_code": "malformed_synthesis",
+      "confidence": "none",
+      "context_limit_tokens": null,
+      "correlation_id": "0198f4d0-1003-7000-8000-000000000003",
+      "evidence": [
+        {
+          "content_sha256": "357c4a70d09fdb51b88a53f7ede5903c0401e46c9f96501b2554ac37eca8ee7e",
+          "correlation_id": "0198f4d0-1003-7000-8000-000000000003",
+          "distance": 0.6944187879562378,
+          "entity_ids": [
+            "Incident184"
+          ],
+          "event_end_at": null,
+          "event_start_at": "2026-08-03T09:00:00Z",
+          "evidence_id": "E004",
+          "excerpt": "Initial hypothesis: database saturation caused loading-room frame spikes.",
+          "excerpt_end": 73,
+          "excerpt_start": 0,
+          "index_refreshed_at": "2026-08-08T12:00:00Z",
+          "index_snapshot_id": "sim-index-v1",
+          "project_id": "Alpha",
+          "query_id": "0198f4d0-0003-7000-8000-000000000003",
+          "rank": 1,
+          "schema_version": "game-log-search.v1",
+          "score": 0.3055812120437622,
+          "source_id": "ops/incident-184-open.log",
+          "source_label": "ops/incident-184-open.log",
+          "source_path": "ops/incident-184-open.log",
+          "trust_class": "trusted_log"
+        },
+        {
+          "content_sha256": "f9bc069414254788b2304cca726b4f537cef2c59627d0a812d6f078173393d8e",
+          "correlation_id": "0198f4d0-1003-7000-8000-000000000003",
+          "distance": 0.8327608008838174,
+          "entity_ids": [
+            "Incident184"
+          ],
+          "event_end_at": null,
+          "event_start_at": "2026-08-03T12:00:00Z",
+          "evidence_id": "E006",
+          "excerpt": "Database saturation hypothesis retracted; database metrics remained normal.",
+          "excerpt_end": 75,
+          "excerpt_start": 0,
+          "index_refreshed_at": "2026-08-08T12:00:00Z",
+          "index_snapshot_id": "sim-index-v1",
+          "project_id": "Alpha",
+          "query_id": "0198f4d0-0003-7000-8000-000000000003",
+          "rank": 2,
+          "schema_version": "game-log-search.v1",
+          "score": 0.16723919911618257,
+          "source_id": "ops/incident-184-correction.log",
+          "source_label": "ops/incident-184-correction.log",
+          "source_path": "ops/incident-184-correction.log",
+          "trust_class": "trusted_log"
+        },
+        {
+          "content_sha256": "3fd055a15b0b16f940283f6e39a19a5d6197ca2b897224ccf4cf9372fa6340b0",
+          "correlation_id": "0198f4d0-1003-7000-8000-000000000003",
+          "distance": 0.8575918844232687,
+          "entity_ids": [
+            "Incident184"
+          ],
+          "event_end_at": null,
+          "event_start_at": "2026-08-03T11:30:00Z",
+          "evidence_id": "E005",
+          "excerpt": "GPU texture upload on room entry was the confirmed cause; texture prewarm resolved the spikes.",
+          "excerpt_end": 94,
+          "excerpt_start": 0,
+          "index_refreshed_at": "2026-08-08T12:00:00Z",
+          "index_snapshot_id": "sim-index-v1",
+          "project_id": "Alpha",
+          "query_id": "0198f4d0-0003-7000-8000-000000000003",
+          "rank": 3,
+          "schema_version": "game-log-search.v1",
+          "score": 0.14240811557673128,
+          "source_id": "ops/incident-184-resolution.log",
+          "source_label": "ops/incident-184-resolution.log",
+          "source_path": "ops/incident-184-resolution.log",
+          "trust_class": "trusted_log"
+        }
+      ],
+      "evidence_input_tokens": null,
+      "failure_owner": "synthesis",
+      "finding": null,
+      "frame_type": "terminal",
+      "index_coverage_through": "2026-08-08T12:00:00Z",
+      "index_refreshed_at": "2026-08-08T12:00:00Z",
+      "index_snapshot_id": "sim-index-v1",
+      "model_profile_id": "qwen2.5:3b",
+      "model_quantization": "Q4_K_M",
+      "outcome": "synthesis_unavailable",
+      "output_tokens": null,
+      "parent_query_id": null,
+      "query_id": "0198f4d0-0003-7000-8000-000000000003",
+      "query_text": "What caused incident 184 and what fixed it?",
+      "recovery_action": "open_raw_evidence",
+      "retrieved_evidence_set_hash": "75764026282b7bae5216b423537583050d600de082c802ee97592778a187bbe0",
+      "run_status": "completed",
+      "schema_version": "game-log-search.v1",
+      "scope": {
+        "entity_ids": [
+          "Incident184"
+        ],
+        "index_snapshot_id": "sim-index-v1",
+        "project_ids": [
+          "Alpha"
+        ],
+        "source_ids": [],
+        "time_from": null,
+        "time_to": "2026-08-08T12:00:00Z"
+      },
+      "scope_delta": {
+        "changed": false,
+        "entity_added": [],
+        "entity_removed": [],
+        "sources_added": [],
+        "sources_removed": [],
+        "time_from_after": null,
+        "time_from_before": null,
+        "time_from_changed": false,
+        "time_to_after": "2026-08-08T12:00:00Z",
+        "time_to_before": "2026-08-08T12:00:00Z",
+        "time_to_changed": false
+      },
+      "truncation_reason": null
+    }
+  ]
+}
