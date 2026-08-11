@@ -21,10 +21,11 @@ The cycle adds a local-first game-log RAG service, CocoIndex/pgvector incrementa
 - Fresh 390 × 844 render: no hydration issue badge or error text and no horizontal overflow.
 - CocoIndex isolated baseline/no-op/one-change/no-op experiment proved selective reprocessing for the frozen fixture.
 - The final Qwen2.5:3b Q4_K_M Q01–Q10 fixture run passed 140/140 assertions with zero Genkit, cache, prior-answer, or non-CocoIndex fallback use. Q01 and Q03 both terminated `supported`.
+- Firebase App Hosting rollout completed at `https://saas-of-funqa--saas-of-funqa.us-east4.hosted.app`; fresh production checks showed the Patch Desk offline shell, health HTTP 200 with `service_url_unconfigured`, and a valid search POST returning typed HTTP 503 NDJSON `retrieval_unavailable` with no evidence or Finding.
 
 ## Honest limits
 
-The frozen Q01/Q03 results qualify correctness, not shipped latency: fixture setup reloads the local embedding model per case, so those spans are not a five-sample service p95. A 30-minute runtime soak, rollback exercise, production VM, and human immersion, voluntary-repeat, commercial, and fairness evidence remain absent. Game-studio gates that require those measurements remain `FIX`; the App Hosting release is only the typed offline-ready web shell until `GAME_LOG_SEARCH_SERVICE_URL` points to an activated VM.
+The frozen Q01/Q03 results qualify correctness, not shipped latency: fixture setup reloads the local embedding model per case, so those spans are not a five-sample service p95. A 30-minute runtime soak, rollback exercise, production VM, and human immersion, voluntary-repeat, commercial, and fairness evidence remain absent. Game-studio gates that require those measurements remain `FIX`; the deployed App Hosting release is only the typed offline-ready web shell until `GAME_LOG_SEARCH_SERVICE_URL` points to an activated VM.
 
 ## Artifacts
 
@@ -34,7 +35,7 @@ The frozen Q01/Q03 results qualify correctness, not shipped latency: fixture set
 - Publication: `study/genai-game-log-rag/paper.pdf`
 - Reproducibility: `study/genai-game-log-rag/REPRODUCIBILITY.md`
 - Runtime contract: `CLAUDE.md` with pointer from `AGENTS.md`
-- Project skill: `.agents/skills/llm-wiki/SKILL.md`, mirrored by pointer at `.claude/skills/llm-wiki/SKILL.md`
+- Project skill: `.claude/skills/llm-wiki/SKILL.md`, with a runtime pointer at `.codex/skills/llm-wiki/SKILL.md`
 
 ## Related
 

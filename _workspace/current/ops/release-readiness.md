@@ -80,3 +80,7 @@ Local-model failure after evidence must remain `synthesis_unavailable`, preserve
 | RELEASE-11 QA-DEF-002 smaller profiles fail supported tasks | deferred | qwen2.5:1.5b and 0.5b preserve evidence but do not complete Q01/Q03; they remain unqualified for the shipped profile. |
 
 **Programmer pre-gate disposition:** G6 terminal remains **FIX** and G4 remains **FIX**. Release readiness is 3/12 (25.0%), not 100%; two S2 supported-task defects remain open, and the Firebase App Hosting production handoff is not authorized by this artifact.
+
+## Restricted shell rollout receipt
+
+Director Decision 003 separately authorized only the offline-ready App Hosting shell. That restricted shell was deployed and verified on 2026-08-11; see `ops/apphosting-release-2026-08-11.md`. This does not change the 3/12 readiness score, the open measurement list, or any `FIX` gate. `GAME_LOG_SEARCH_SERVICE_URL` remains absent, and production returns typed retrieval-owned unavailability instead of a fallback answer.

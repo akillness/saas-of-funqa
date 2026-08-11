@@ -112,3 +112,16 @@ All director gate reviews remain **FIX**. The offline-ready shell is a bounded d
 - An absent service URL must remain visible through honest typed behavior rather than an answer fallback.
 - Selected-profile correctness receipts remain valid local/deterministic evidence only.
 - Director verdicts, manifest, broadcast reply, and retrospective must all use this same release boundary.
+
+### Deployment verification — 2026-08-11
+
+Decision 003's exact restricted scope was deployed to Firebase project/backend `saas-of-funqa` at `https://saas-of-funqa--saas-of-funqa.us-east4.hosted.app`.
+
+| Check | Observed value | Method | Direct evidence |
+|---|---|---|---|
+| App Hosting deployment | `npm run deploy:apphosting` completed; uploaded source receipt recorded | release-owner deployment receipt audit | `_workspace/current/ops/apphosting-release-2026-08-11.md#rollout` |
+| Production shell | `/search` rendered The Patch Desk, `Local retrieval offline`, Archive/Model/Index `Offline`, and disabled Search | fresh 1440×900 production browser observation | `_workspace/current/ops/apphosting-release-2026-08-11.md#fresh-production-verification` |
+| Health boundary | HTTP 200; proxy=`ready`; retrieval/synthesis=`offline`; both reason codes=`service_url_unconfigured` | fresh production health request | `_workspace/current/ops/apphosting-release-2026-08-11.md#fresh-production-verification` |
+| Search boundary | HTTP 503 `application/x-ndjson`; `outcome=retrieval_unavailable`; `failure_owner=retrieval`; `boundary_reason_code=service_url_unconfigured`; `evidence=[]`; `finding=null` | valid frozen-contract production POST | `_workspace/current/ops/apphosting-release-2026-08-11.md#fresh-production-verification` |
+
+This verifies the authorized degraded boundary, not live search. `GAME_LOG_SEARCH_SERVICE_URL` remains absent. No VM, FastAPI, CocoIndex/Postgres, Ollama, Qwen, local-model availability, rollback readiness, telemetry completeness, or G1–G8 PASS is established. All gate verdicts remain **FIX**, release readiness remains 3/12, the cycle remains unarchived, and the next entry remains Stage 2 evidence qualification. Canonical restricted-rollout evidence is `_workspace/current/ops/apphosting-release-2026-08-11.md`; `_workspace/current/ops/release-readiness.md#restricted-shell-rollout-receipt` preserves the same authority boundary.

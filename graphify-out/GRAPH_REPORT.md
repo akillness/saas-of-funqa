@@ -1,16 +1,16 @@
 # Graph Report - saas-of-funqa-game-search-20260809  (2026-08-11)
 
 ## Corpus Check
-- 809 files · ~877,531 words
+- 824 files · ~881,554 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 11514 nodes · 14728 edges · 947 communities (859 shown, 88 thin omitted)
+- 11593 nodes · 14791 edges · 965 communities (864 shown, 101 thin omitted)
 - Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 645 edges (avg confidence: 0.71)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f51d1e8c`
+- Built from commit: `cc705ce3`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -806,12 +806,30 @@
 - [[_COMMUNITY_Community 944|Community 944]]
 - [[_COMMUNITY_Community 945|Community 945]]
 - [[_COMMUNITY_Community 946|Community 946]]
+- [[_COMMUNITY_Community 947|Community 947]]
+- [[_COMMUNITY_Community 948|Community 948]]
+- [[_COMMUNITY_Community 949|Community 949]]
+- [[_COMMUNITY_Community 950|Community 950]]
+- [[_COMMUNITY_Community 951|Community 951]]
+- [[_COMMUNITY_Community 952|Community 952]]
+- [[_COMMUNITY_Community 953|Community 953]]
+- [[_COMMUNITY_Community 954|Community 954]]
+- [[_COMMUNITY_Community 955|Community 955]]
+- [[_COMMUNITY_Community 956|Community 956]]
+- [[_COMMUNITY_Community 957|Community 957]]
+- [[_COMMUNITY_Community 958|Community 958]]
+- [[_COMMUNITY_Community 959|Community 959]]
+- [[_COMMUNITY_Community 960|Community 960]]
+- [[_COMMUNITY_Community 961|Community 961]]
+- [[_COMMUNITY_Community 962|Community 962]]
+- [[_COMMUNITY_Community 963|Community 963]]
+- [[_COMMUNITY_Community 964|Community 964]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `make_request()` - 74 edges
 2. `make_evidence()` - 66 edges
 3. `getDictionary()` - 46 edges
-4. `Log` - 45 edges
+4. `Log` - 46 edges
 5. `load_settings()` - 41 edges
 6. `DispatchOrchestrator` - 41 edges
 7. `_make_orchestrator()` - 37 edges
@@ -831,7 +849,7 @@
 - `main()` --calls--> `createServer()`  [INFERRED]
   /Users/jangyoung/.superset/projects/saas-of-funqa/scripts/smoke-rag.ts → apps/api/src/server.ts
 
-## Communities (947 total, 88 thin omitted)
+## Communities (965 total, 101 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.08
@@ -842,20 +860,20 @@ Cohesion: 0.16
 Nodes (11): registerHealthRoute(), config, isFirebaseEmulatorRuntime(), isFirebaseRuntime(), loadCandidateEnvFiles(), parseBooleanFlag(), resolveRuntimeRoot(), runtimeRoot (+3 more)
 
 ### Community 3 - "Community 3"
-Cohesion: 0.12
-Nodes (30): buildConsensusScaffold(), clearRagStore(), getRagInspectionChunks(), getRagInspectionDocuments(), getRagStats(), ingestAdditionalDocuments(), ingestDocuments(), loadTenantArtifacts() (+22 more)
+Cohesion: 0.10
+Nodes (35): buildConsensusScaffold(), clearRagStore(), getRagInspectionChunks(), getRagInspectionDocuments(), getRagStats(), ingestAdditionalDocuments(), ingestDocuments(), loadTenantArtifacts() (+27 more)
 
 ### Community 4 - "Community 4"
 Cohesion: 0.13
 Nodes (32): hashToken(), bucket, buildLocalEmbedding(), embedChunk(), embedChunkAsync(), embedQueryTextAsync(), embedText(), embedTextAsync() (+24 more)
 
 ### Community 5 - "Community 5"
-Cohesion: 0.10
-Nodes (21): ingestFlow, IngestFlowInputSchema, IngestFlowOutputSchema, runIngestFlow(), runSearchFlow(), searchFlow, SearchFlowInputSchema, SearchFlowOutputSchema (+13 more)
+Cohesion: 0.19
+Nodes (10): ingestFlow, IngestFlowInputSchema, IngestFlowOutputSchema, runIngestFlow(), runIngestFlow(), createRateLimiter(), getKey(), RateLimitConfig (+2 more)
 
 ### Community 6 - "Community 6"
 Cohesion: 0.09
-Nodes (29): body, heading, korean, metadata, mono, RootLayout(), LocaleSwitcher(), LocaleSwitcherProps (+21 more)
+Nodes (28): body, heading, korean, metadata, mono, RootLayout(), LocaleSwitcher(), LocaleSwitcherProps (+20 more)
 
 ### Community 7 - "Community 7"
 Cohesion: 0.20
@@ -866,12 +884,12 @@ Cohesion: 0.11
 Nodes (28): analysisCollection(), buildAnalysisSummary(), getCreatorAnalysisRecord(), getLatestPublishedGuide(), guideMetaCollection(), guideVersionCollection(), listCreatorAnalysisRecords(), listLatestMonetizationSources() (+20 more)
 
 ### Community 9 - "Community 9"
-Cohesion: 0.14
-Nodes (30): AdminPage(), AdminPageProps, HomePage(), HomePageProps, fetchHealthSummary(), fetchMonitoringSummary(), fetchRagStats(), getApiBaseUrl() (+22 more)
+Cohesion: 0.15
+Nodes (29): AdminPage(), AdminPageProps, fetchHealthSummary(), fetchMonitoringSummary(), fetchRagStats(), getApiBaseUrl(), getFunqaApiBaseUrl(), inspectRagPipeline() (+21 more)
 
 ### Community 10 - "Community 10"
-Cohesion: 0.07
-Nodes (82): list, BaseModel, create_app(), _load_manifest(), Settings, process_log_file(), CancelledFrame, ComponentHealth (+74 more)
+Cohesion: 0.09
+Nodes (68): BaseModel, Settings, process_log_file(), CancelledFrame, ComponentHealth, ConfidenceLabel, DispatchAcceptedFrame, EvidenceRelation (+60 more)
 
 ### Community 11 - "Community 11"
 Cohesion: 0.11
@@ -891,7 +909,7 @@ Nodes (66): add_gradient_overlay(), build_social_assets(), build_square_assets()
 
 ### Community 15 - "Community 15"
 Cohesion: 0.03
-Nodes (65): evidence_set_hash(), make_scope(), no_change_delta(), A scope delta that records no change (for first-dispatch requests)., _make_finding(), _make_log_record(), _make_terminal(), Contract tests for all Pydantic models in game_log_search.models.  Covers: - Wir (+57 more)
+Nodes (72): content_sha256(), evidence_set_hash(), make_evidence(), make_scope(), no_change_delta(), A scope delta that records no change (for first-dispatch requests)., _make_finding(), _make_log_record() (+64 more)
 
 ### Community 16 - "Community 16"
 Cohesion: 0.02
@@ -922,8 +940,8 @@ Cohesion: 0.04
 Nodes (45): Actions, Agent-to-Agent Review Loop (PHASE 4.5), Canonical command path, Clarification Debt (CD) Monitoring, code:bash (oma agent:spawn <agent-type> "<task>" <session-id> -w <works), code:json ({), code:block3 (Agent completes work), code:bash (oma verify {agent-type} --workspace {workspace} --json) (+37 more)
 
 ### Community 23 - "Community 23"
-Cohesion: 0.19
-Nodes (15): DocsPage(), DocsPageProps, inspectRagPipeline(), resolveLocale(), getRequestLocale(), ConsensusReleaseGateReport, ConsensusReleaseGateReportOption, consensusReportRelativePath (+7 more)
+Cohesion: 0.14
+Nodes (23): HomePage(), HomePageProps, TRENDING_CARDS, DocsPage(), DocsPageProps, getDictionary(), resolveLocale(), getRequestLocale() (+15 more)
 
 ### Community 24 - "Community 24"
 Cohesion: 0.44
@@ -971,7 +989,7 @@ Nodes (22): cosineSimilarity(), ConsensusResult, cragFilter(), CragFilterResult,
 
 ### Community 40 - "Community 40"
 Cohesion: 0.04
-Nodes (43): [2026-04-13] improve | Project hardening — config validation, Firestore rules, RAG indexes, [2026-04-13] ingest | Firebase App Hosting source note, [2026-04-13] ingest | Firebase web config, [2026-04-13] ingest | Genkit RAG and evaluation source note, [2026-04-13] ingest | Initial planning sources, [2026-04-13] query | App Hosting deploy rollout debug, [2026-04-13] query | Initial platform plan, [2026-04-13] query | Live App Hosting UI verification (+35 more)
+Nodes (44): [2026-04-13] improve | Project hardening — config validation, Firestore rules, RAG indexes, [2026-04-13] ingest | Firebase App Hosting source note, [2026-04-13] ingest | Firebase web config, [2026-04-13] ingest | Genkit RAG and evaluation source note, [2026-04-13] ingest | Initial planning sources, [2026-04-13] query | App Hosting deploy rollout debug, [2026-04-13] query | Initial platform plan, [2026-04-13] query | Live App Hosting UI verification (+36 more)
 
 ### Community 41 - "Community 41"
 Cohesion: 0.19
@@ -1006,8 +1024,8 @@ Cohesion: 0.10
 Nodes (21): Analysis & Debug (70-90% savings), Build & Compile (80-90% savings), code:bash (rtk curl <url>          # Compact HTTP responses (70%)), code:bash (rtk gain                # View token savings statistics), code:bash (rtk cargo build         # Cargo build output), code:bash (rtk cargo test          # Cargo test failures only (90%)), code:bash (rtk git status          # Compact status), code:bash (rtk gh pr view <num>    # Compact PR view (87%)) (+13 more)
 
 ### Community 49 - "Community 49"
-Cohesion: 0.13
-Nodes (15): code:block1 (Browser ──► Next.js (App Hosting) ──► Firebase Functions v2 ), code:block2 (문서 입력 → normalize → extract → semantic-chunk → embed → index), code:block3 (saas-of-funqa/), code:bash (# 저장소 클론), code:bash (cp .env.example .env), saas-of-funqa, 기술 스택, 기획 문서 (+7 more)
+Cohesion: 0.15
+Nodes (12): code:block3 (saas-of-funqa/), code:bash (# 저장소 클론), code:bash (cp .env.example .env), saas-of-funqa, 기술 스택, 기획 문서, 목차, 사전 요구사항 (+4 more)
 
 ### Community 50 - "Community 50"
 Cohesion: 0.21
@@ -1018,8 +1036,8 @@ Cohesion: 0.04
 Nodes (54): ConsensusEvalReport, ConsensusEvalSourceDocumentSchema, CreatorAnalysisSummarySchema, CreatorIngestBundleResponseSchema, DialogueCandidate, DialogueCandidateSchema, DialogueExperimentTrace, DialoguePolicy (+46 more)
 
 ### Community 52 - "Community 52"
-Cohesion: 0.27
-Nodes (14): buildQueryVector(), getLiveModel(), inspectOptimizedPipeline(), pipelineDocuments(), rerankWithGenkit(), runOptimizedPipeline(), transformQueryWithGenkit(), buildQueryVector() (+6 more)
+Cohesion: 0.64
+Nodes (6): buildQueryVector(), getLiveModel(), pipelineDocuments(), rerankWithGenkit(), runOptimizedPipeline(), transformQueryWithGenkit()
 
 ### Community 53 - "Community 53"
 Cohesion: 0.06
@@ -1330,8 +1348,8 @@ Cohesion: 0.08
 Nodes (22): code:block1 (Which PDF file should I convert? Please provide the file pat), code:bash (uvx opendataloader-pdf --hybrid docling-fast "{input_path}" ), code:bash (uvx opendataloader-pdf "{input_path}" --format markdown --ou), code:bash (uvx opendataloader-pdf "{input_path}" --format markdown --ou), code:bash (uvx opendataloader-pdf "{input_path}" --format markdown --ou), code:bash (uvx opendataloader-pdf "{input_path}" --format markdown,json), code:bash (uvx mdformat "{output_path}"), code:bash (uvx mdformat --check "{output_path}") (+14 more)
 
 ### Community 140 - "Community 140"
-Cohesion: 0.09
-Nodes (30): answerFromChunks(), buildKeywords(), buildLocalHydeDocument(), buildRerankPrompt(), buildSummary(), buildTitle(), chunkDocument(), extractDocument() (+22 more)
+Cohesion: 0.08
+Nodes (34): answerFromChunks(), buildCacheKey(), buildConsensusScaffold(), buildKeywords(), buildLocalHydeDocument(), buildRerankPrompt(), buildSummary(), buildTitle() (+26 more)
 
 ### Community 141 - "Community 141"
 Cohesion: 0.09
@@ -1538,8 +1556,8 @@ Cohesion: 0.11
 Nodes (16): Absolute Rules, code:block1 (<type>(<scope>): <description>), code:markdown (## Merge Operation Report), Commit Format, Commit Types, MANDATORY RULES: VIOLATION IS FORBIDDEN, Scope, Step 1: Determine intent (+8 more)
 
 ### Community 192 - "Community 192"
-Cohesion: 0.14
-Nodes (10): FunQA Consensus RAG V1, Logical Retrieval Layers, Non-Negotiable Constraints, Out of Scope for V1, Product Scope, Recommended Build Order, References, Runtime Surfaces (+2 more)
+Cohesion: 0.11
+Nodes (14): API Key Model, Authorization Consequences, FunQA Consensus RAG V1, Logical Retrieval Layers, Monetization and Access Model, Non-Negotiable Constraints, Out of Scope for V1, Product Scope (+6 more)
 
 ### Community 193 - "Community 193"
 Cohesion: 0.19
@@ -1591,11 +1609,11 @@ Nodes (13): apps/api, apps/web, code:text (apps/), Data Flow, Embeddings Decisio
 
 ### Community 205 - "Community 205"
 Cohesion: 0.12
-Nodes (16): 1. Undefined/Null Errors, 2. Stale Closures in useEffect, 4. Race Conditions in Async Effects, 6. Key Prop Issues in Lists, 7. Form Input Controlled/Uncontrolled Switch, code:typescript (// Crash when data not loaded yet), code:typescript (// Using index as key), code:typescript (// Use stable, unique ID) (+8 more)
+Nodes (16): 1. Undefined/Null Errors, 3. Missing Cleanup in useEffect, 4. Race Conditions in Async Effects, 5. Infinite Re-render Loops, 7. Form Input Controlled/Uncontrolled Switch, code:typescript (// Crash when data not loaded yet), code:typescript (// Option 1: Remove problematic dependency), code:typescript (const [value, setValue] = useState(); // undefined initially) (+8 more)
 
 ### Community 206 - "Community 206"
 Cohesion: 0.12
-Nodes (16): 1. SQL Injection, 3. Missing Authentication Check, 4. Missing Input Validation, 5. Unhandled Exceptions, 6. Missing CORS Configuration, Backend Bugs, code:python (# DANGEROUS!), code:python (# Use parameterized queries) (+8 more)
+Nodes (16): 1. SQL Injection, 2. N+1 Query Problem, 3. Missing Authentication Check, 4. Missing Input Validation, 6. Missing CORS Configuration, Backend Bugs, code:python (# DANGEROUS!), code:python (# Use parameterized queries) (+8 more)
 
 ### Community 207 - "Community 207"
 Cohesion: 0.18
@@ -1614,8 +1632,8 @@ Cohesion: 0.12
 Nodes (14): Checklist, Checklist, Checklist, Outputs, PLAN_GATE Checklist, PLAN Phase Protocol, Review Question, Review Question (+6 more)
 
 ### Community 211 - "Community 211"
-Cohesion: 0.12
-Nodes (14): Browser Compatibility Checklist, CRITICAL (Block Deployment), Desktop, HIGH (Fix Before Launch), ISO/IEC 25010, ISO/IEC 29119, ISO Quality Alignment, Issue Prioritization (+6 more)
+Cohesion: 0.13
+Nodes (13): Browser Compatibility Checklist, Critical (Must Pass), Desktop, Final Sign-Off, Important (Should Pass), ISO/IEC 25010, ISO/IEC 29119, ISO Quality Alignment (+5 more)
 
 ### Community 212 - "Community 212"
 Cohesion: 0.12
@@ -2407,15 +2425,15 @@ Nodes (6): apps, Common Patterns, For AI Agents, Purpose, Subdirectories, Workin
 
 ### Community 412 - "Community 412"
 Cohesion: 0.12
-Nodes (13): AuthenticatedRequest, requireAdmin(), requireAuth(), defaultLabDocuments, registerRagRoute(), isValidType(), registerWikiRoute(), VALID_TYPES (+5 more)
+Nodes (12): AuthenticatedRequest, requireAdmin(), requireAuth(), registerAdminRoute(), defaultLabDocuments, registerRagRoute(), isValidType(), registerWikiRoute() (+4 more)
 
 ### Community 413 - "Community 413"
 Cohesion: 0.05
 Nodes (38): 10. Result placeholders, 1. Introduction, 2. Research questions, 3.1 NPC dialogue and interactive narrative, 3.2 LLM-driven game characters, 3.3 Knowledge graphs and symbolic control, 3.4 Neuro-symbolic reasoning, 3. Related work outline (+30 more)
 
 ### Community 414 - "Community 414"
-Cohesion: 0.09
-Nodes (33): base_settings(), fixture_settings(), pytest configuration: path bootstrap and shared fixtures., make_base_settings(), make_mock_embedder(), make_mock_pool(), make_null_synthesis_result(), Shared test-only builder helpers (not pytest fixtures). (+25 more)
+Cohesion: 0.08
+Nodes (32): PgVectorRetriever, base_settings(), fixture_settings(), pytest configuration: path bootstrap and shared fixtures., make_base_settings(), make_mock_embedder(), make_mock_pool(), make_null_synthesis_result() (+24 more)
 
 ### Community 415 - "Community 415"
 Cohesion: 0.29
@@ -2502,8 +2520,8 @@ Cohesion: 0.29
 Nodes (7): 1. Unnecessary Re-renders (React), 2. Large Bundle Size, code:typescript (function Parent() {), code:typescript (// Memoize the expensive component), code:typescript (// Imports all of lodash (~70KB)), code:typescript (// Import only what you need), Performance Bugs
 
 ### Community 436 - "Community 436"
-Cohesion: 0.15
-Nodes (11): 1. XSS (Cross-Site Scripting), 2. Missing Rate Limiting, code:typescript (// Dangerous!), code:typescript (// React escapes by default), code:python (@app.post("/api/auth/login")), code:python (from slowapi import Limiter), Common Bug Patterns & Solutions, Common Error Messages & Solutions (+3 more)
+Cohesion: 0.29
+Nodes (7): 1. XSS (Cross-Site Scripting), 2. Missing Rate Limiting, code:typescript (// Dangerous!), code:typescript (// React escapes by default), code:python (@app.post("/api/auth/login")), code:python (from slowapi import Limiter), Security Bugs
 
 ### Community 437 - "Community 437"
 Cohesion: 0.29
@@ -2542,8 +2560,8 @@ Cohesion: 0.29
 Nodes (5): code:block1 (You are a {AGENT_ROLE} working as part of an automated multi), code:block2, Placeholder Reference, Subagent Prompt Template, Template
 
 ### Community 446 - "Community 446"
-Cohesion: 0.22
-Nodes (20): _incident_retraction_adjacency(), _ids(), _make_db_row(), Contract tests for game_log_search.retrieval.  Covers: - _incident_retraction_ad, Simulate an asyncpg Record returned by the SQL query., Create a minimal asyncpg.Record-like mock., _row(), test_incident_retraction_adjacency_e006_two_positions_after_e004() (+12 more)
+Cohesion: 0.13
+Nodes (26): list, create_app(), _load_manifest(), utc_string(), _incident_retraction_adjacency(), _nullable(), _to_evidence(), _ids() (+18 more)
 
 ### Community 447 - "Community 447"
 Cohesion: 0.29
@@ -2660,10 +2678,6 @@ Nodes (5): For AI Agents, Key Files, packages/db/src/storage, Purpose, Working I
 ### Community 475 - "Community 475"
 Cohesion: 0.33
 Nodes (5): For AI Agents, Key Files, packages/ui, Purpose, Working In This Directory
-
-### Community 476 - "Community 476"
-Cohesion: 0.15
-Nodes (5): LruCache, buildCacheKey(), CacheEntry, LruCache, ragQueryCache
 
 ### Community 477 - "Community 477"
 Cohesion: 0.33
@@ -2874,8 +2888,8 @@ Cohesion: 0.50
 Nodes (4): Backend Performance, Frontend Performance, Mobile Performance, Performance Checklist
 
 ### Community 544 - "Community 544"
-Cohesion: 0.50
-Nodes (4): Critical (Must Pass), Final Sign-Off, Important (Should Pass), Nice-to-Have (Can Address Later)
+Cohesion: 0.16
+Nodes (26): build(), corpus_sha256(), esc(), EvidenceError, expected_reason(), fail(), find_repo_root(), independent_assertions() (+18 more)
 
 ### Community 549 - "Community 549"
 Cohesion: 0.67
@@ -2910,8 +2924,8 @@ Cohesion: 0.17
 Nodes (10): 1. ADSI Incubation Metadata, 2. Problem Statement (User-Facing), 3. Core Solution, 4. User Stories & Acceptance Criteria, 5. Strict Interface & Data Schema Design, 6. Implementation Decisions (Target Modules), 7. Strict Out-of-Scope & Autonomy Boundary (Non-Goals), 8. Triage Granularity Guidelines (For to-issues) (+2 more)
 
 ### Community 652 - "Community 652"
-Cohesion: 0.25
-Nodes (11): clear(), clearRagStore(), deleteTenantRagArtifacts(), getRagStats(), getRagStore(), readStore(), resetFirestoreRag(), resetRagStore() (+3 more)
+Cohesion: 0.17
+Nodes (17): clear(), clearRagStore(), deleteTenantRagArtifacts(), getRagStats(), getRagStore(), ingestAdditionalDocuments(), ingestDocuments(), invalidate() (+9 more)
 
 ### Community 653 - "Community 653"
 Cohesion: 0.05
@@ -3022,8 +3036,8 @@ Cohesion: 0.10
 Nodes (21): Analysis & Debug (70-90% savings), Build & Compile (80-90% savings), code:bash (rtk curl <url>          # Compact HTTP responses (70%)), code:bash (rtk gain                # View token savings statistics), code:bash (rtk cargo build         # Cargo build output), code:bash (rtk cargo test          # Cargo test failures only (90%)), code:bash (rtk git status          # Compact status), code:bash (rtk gh pr view <num>    # Compact PR view (87%)) (+13 more)
 
 ### Community 682 - "Community 682"
-Cohesion: 0.06
-Nodes (67): _absolute_http_url(), ConfigurationError, _database_url(), _identifier(), load_settings(), _port(), The service environment violates its frozen startup contract., _required() (+59 more)
+Cohesion: 0.10
+Nodes (41): _absolute_http_url(), ConfigurationError, _database_url(), _identifier(), load_settings(), _port(), The service environment violates its frozen startup contract., _required() (+33 more)
 
 ### Community 683 - "Community 683"
 Cohesion: 0.10
@@ -3034,8 +3048,8 @@ Cohesion: 0.07
 Nodes (26): code:yaml (round_1_global_bounds:), code:yaml (round_2_signatures:), code:yaml (entry: N-01), code:yaml (entry: N-02), code:yaml (entry: N-03), code:yaml (entry: N-04), code:yaml (entry: N-05), code:yaml (entry: N-06) (+18 more)
 
 ### Community 685 - "Community 685"
-Cohesion: 0.09
-Nodes (57): has_deterministic_weak_support_boundary(), _support_tokens(), SynthesisDraft, validate_synthesis_draft(), make_evidence(), _make_correction_case(), _make_e002_evidence(), _make_incident_184_evidence() (+49 more)
+Cohesion: 0.08
+Nodes (58): has_deterministic_weak_support_boundary(), _support_tokens(), SynthesisDraft, validate_synthesis_draft(), _make_correction_case(), _make_e002_evidence(), _make_incident_184_evidence(), _make_valid_q01_draft() (+50 more)
 
 ### Community 686 - "Community 686"
 Cohesion: 0.14
@@ -3058,24 +3072,24 @@ Cohesion: 0.13
 Nodes (14): Candidate demand and cost fields, Candidate revenue points, code:yaml (revenue_map_contract:), code:yaml (common_fields:), code:yaml (fairness_and_loop_fields:), code:yaml (pricing_decision: blocked), Complete retrieval, reward, and cost coupling list, Decision boundary (+6 more)
 
 ### Community 691 - "Community 691"
-Cohesion: 0.15
-Nodes (12): code:block3 (saas-of-funqa/), code:bash (# 저장소 클론), code:bash (cp .env.example .env), saas-of-funqa, 기술 스택, 기획 문서, 목차, 사전 요구사항 (+4 more)
+Cohesion: 0.13
+Nodes (15): code:block3 (saas-of-funqa/), code:bash (# 저장소 클론), code:bash (cp .env.example .env), saas-of-funqa, UI 컴포넌트, 검색 & 인증, 기술 스택, 기획 문서 (+7 more)
 
 ### Community 692 - "Community 692"
 Cohesion: 0.17
 Nodes (11): code:yaml (project_brief:), Game Production Coordination Brief, Immediate next steps, Primary mode, Priority decisions, Production intake, Recommended next artifact, Scope (+3 more)
 
 ### Community 693 - "Community 693"
-Cohesion: 0.17
-Nodes (11): code:yaml (decision: 001), code:yaml (decision: 002), Consequences, Consequences, Context, Context, Decision, Decision 001 — Freeze the non-Genkit local-model/CocoIndex boundary (+3 more)
+Cohesion: 0.11
+Nodes (18): code:yaml (decision: 001), code:yaml (decision: 002), code:yaml (decision: 003), Consequences, Consequences, Consequences, Context, Context (+10 more)
 
 ### Community 694 - "Community 694"
 Cohesion: 0.12
 Nodes (15): Band interpretation, code:yaml (reward_bands:), code:yaml (stage_2_adjustment:), Comeback ceiling, Decision, N-01–N-06 linkage, Paid/free fairness, QA access, reward, and revenue response (+7 more)
 
 ### Community 695 - "Community 695"
-Cohesion: 0.10
-Nodes (21): CATEGORY_COLORS, CategoryTabBar(), Props, getDictionary(), LocaleParams, Messages, normalizeConfidence(), SearchCategory (+13 more)
+Cohesion: 0.14
+Nodes (13): LocaleParams, Messages, normalizeConfidence(), SearchCategory, SearchConfidence, SearchResult, enMessages, koMessages (+5 more)
 
 ### Community 696 - "Community 696"
 Cohesion: 0.18
@@ -3134,8 +3148,8 @@ Cohesion: 0.25
 Nodes (7): Completed paths, Feedback requested, Frozen design couplings, Implementation handoff, Phase 1b Game Designer Handback, Phase 1c negotiation couplings — unsigned, QA feedback response
 
 ### Community 710 - "Community 710"
-Cohesion: 0.25
-Nodes (7): Stage 1–3 Task Manifest, Stage 1 — Concept, presentation, animation, resources, core build, Stage 1 exit evidence, Stage 2 — Balance, core-loop stability, novelty development, Stage 2 exit evidence, Stage 3 exit evidence, Stage 3 — Ops stability and play impact
+Cohesion: 0.17
+Nodes (11): Current carry-forward truth, Stage 1–3 Task Manifest, Stage 1 — artifact delivery and draft gates, Stage 1 — Concept, presentation, animation, resources, core build, Stage 1 exit evidence, Stage 2 — Balance, core-loop stability, novelty development, Stage 2 — deterministic closeout and evidence qualification, Stage 2 exit evidence (+3 more)
 
 ### Community 711 - "Community 711"
 Cohesion: 0.25
@@ -3250,16 +3264,16 @@ Cohesion: 0.12
 Nodes (16): app_build_id, clock_utc, cocoindex_version, corpus_sha256, corpus_version, embedding_model, fixture_mode, index_profile (+8 more)
 
 ### Community 741 - "Community 741"
-Cohesion: 0.17
-Nodes (17): all, _assertion(), _corpus_sha256(), FixtureRunError, _load_corpus(), main(), The frozen fixture corpus or execution contract is invalid., run() (+9 more)
+Cohesion: 0.12
+Nodes (19): all, _assertion(), _corpus_sha256(), FixtureRunError, _load_corpus(), main(), The frozen fixture corpus or execution contract is invalid., run() (+11 more)
 
 ### Community 742 - "Community 742"
 Cohesion: 0.67
 Nodes (3): code:block1 (Browser ──► Next.js (App Hosting) ──► Firebase Functions v2 ), code:block2 (문서 입력 → normalize → extract → semantic-chunk → embed → index), 아키텍처
 
 ### Community 743 - "Community 743"
-Cohesion: 0.67
-Nodes (3): UI 컴포넌트, 검색 & 인증, 주요 참고사항
+Cohesion: 0.23
+Nodes (8): runSearchFlow(), searchFlow, SearchFlowInputSchema, SearchFlowOutputSchema, runSearchFlow(), registerSearchRoute(), searchRateLimit, SearchResult
 
 ### Community 744 - "Community 744"
 Cohesion: 0.67
@@ -3402,8 +3416,8 @@ Cohesion: 0.18
 Nodes (10): code:yaml (revenue_consistency_state:), code:yaml (future_paid_free_guardrails:), Consistency guardrails carried forward, Forecast assumption register, Future VM confirmation fields, Scope and evidence rule, Stage 3 conclusion, Stage 3 Revenue Consistency Forecast (+2 more)
 
 ### Community 840 - "Community 840"
-Cohesion: 0.30
-Nodes (10): answerFlow, AnswerRequestSchema, AnswerResponseSchema, buildEvidenceFallback(), buildPrompt(), Citation, CitationSchema, citationText() (+2 more)
+Cohesion: 0.15
+Nodes (20): answerFlow, AnswerRequestSchema, AnswerResponseSchema, buildEvidenceFallback(), buildPrompt(), Citation, CitationSchema, citationText() (+12 more)
 
 ### Community 841 - "Community 841"
 Cohesion: 0.20
@@ -3514,8 +3528,8 @@ Cohesion: 0.29
 Nodes (6): Feedback requested from every role, Final evidence disposition, Final Numeric QA Broadcast, G1–G8 measurement snapshot, Highest-severity blockers, QA-DEF-001 generalized-rerun disposition
 
 ### Community 868 - "Community 868"
-Cohesion: 0.29
-Nodes (6): Blocking measurements, Checklist, code:yaml (traceably_complete: 3), Programmer defect responses, Safe release boundary, Stage 3 Release Readiness
+Cohesion: 0.25
+Nodes (7): Blocking measurements, Checklist, code:yaml (traceably_complete: 3), Programmer defect responses, Restricted shell rollout receipt, Safe release boundary, Stage 3 Release Readiness
 
 ### Community 869 - "Community 869"
 Cohesion: 0.29
@@ -3526,8 +3540,8 @@ Cohesion: 0.29
 Nodes (6): Deterministic Archetype Rotation Results, Existing non-human browser and indexing observations, Method and admissibility, Q01–Q10 observed map, Required FIX/REDO evidence, Six-archetype rotation
 
 ### Community 871 - "Community 871"
-Cohesion: 0.22
-Nodes (10): buildCacheKey(), buildConsensusScaffold(), cosineSimilarity(), cragFilter(), evaluateChunkCorrectness(), evaluateConsensus(), recordRequest(), rerankWithCohere() (+2 more)
+Cohesion: 0.15
+Nodes (12): acceptedVisualDescription, asset, inputs, model, prompt, promptStatus, provider, responseId (+4 more)
 
 ### Community 873 - "Community 873"
 Cohesion: 0.33
@@ -3606,8 +3620,8 @@ Cohesion: 0.33
 Nodes (5): cases, clock_utc, corpus_version, index_snapshot_id, schema_version
 
 ### Community 892 - "Community 892"
-Cohesion: 0.36
-Nodes (4): TRENDING_CARDS, CATEGORY_META, GameRecommendationCard(), GameRecommendationCardProps
+Cohesion: 0.60
+Nodes (3): CATEGORY_META, GameRecommendationCard(), GameRecommendationCardProps
 
 ### Community 893 - "Community 893"
 Cohesion: 0.40
@@ -3622,41 +3636,67 @@ Cohesion: 0.29
 Nodes (5): PM Agent - Execution Protocol, Step 1: Analyze Requirements, Step 2: Design Architecture, Step 3: Decompose Tasks, Step 4: Validate Plan
 
 ### Community 897 - "Community 897"
-Cohesion: 0.67
-Nodes (3): 3. Missing Cleanup in useEffect, code:typescript (useEffect(() => {), code:typescript (useEffect(() => {)
+Cohesion: 0.39
+Nodes (3): CATEGORY_COLORS, CategoryTabBar(), Props
 
 ### Community 898 - "Community 898"
 Cohesion: 0.29
 Nodes (6): Defect and exploit disposition, Feedback requested from every role, Final automated and deterministic receipts, Final QA Closeout Broadcast, G1–G8 measurement disposition, Highest-severity unresolved evidence boundaries
 
 ### Community 943 - "Community 943"
-Cohesion: 0.50
-Nodes (4): API Key Model, Authorization Consequences, Monetization and Access Model, Tenant and Member Model
+Cohesion: 0.25
+Nodes (7): Cycle 1 Retrospective, Director outcome, Next-cycle entry decision, Per-gate closeout, Restricted shell rollout result, Unresolved risks and exact next owners, What the cycle established
 
 ### Community 944 - "Community 944"
-Cohesion: 0.67
-Nodes (3): 2. N+1 Query Problem, code:python (# 1 query to get todos), code:python (# Use JOIN - single query)
+Cohesion: 0.33
+Nodes (4): Common Bug Patterns & Solutions, Common Error Messages & Solutions, Prevention Tips, When to Use Each Agent
 
 ### Community 945 - "Community 945"
-Cohesion: 0.67
-Nodes (3): 5. Infinite Re-render Loops, code:typescript (// Option 1: Remove problematic dependency), code:typescript (function Component() {)
+Cohesion: 0.40
+Nodes (4): Defect and exploit acceptance, Director Reply to QA Broadcast 011, G1–G8 verdict and owner reply, Restricted release decision
 
 ### Community 946 - "Community 946"
 Cohesion: 0.67
 Nodes (3): 7. Password Storage, code:python (user = User(email=email, password=password) # NEVER DO THIS!), code:python (from passlib.context import CryptContext)
 
+### Community 947 - "Community 947"
+Cohesion: 0.40
+Nodes (4): Authority boundary, Firebase App Hosting restricted shell release, Fresh production verification, Rollout
+
+### Community 948 - "Community 948"
+Cohesion: 0.40
+Nodes (5): CRITICAL (Block Deployment), HIGH (Fix Before Launch), Issue Prioritization, LOW (Backlog), MEDIUM (Fix in Sprint)
+
+### Community 960 - "Community 960"
+Cohesion: 0.67
+Nodes (3): 2. Stale Closures in useEffect, code:typescript (function Counter() {), code:typescript (// Option 1: Include dependency)
+
+### Community 961 - "Community 961"
+Cohesion: 0.67
+Nodes (3): 5. Unhandled Exceptions, code:python (@app.post("/api/todos")), code:python (from fastapi import HTTPException)
+
+### Community 962 - "Community 962"
+Cohesion: 0.67
+Nodes (3): 6. Key Prop Issues in Lists, code:typescript (// Using index as key), code:typescript (// Use stable, unique ID)
+
+### Community 963 - "Community 963"
+Cohesion: 0.67
+Nodes (3): code:block1 (Browser ──► Next.js (App Hosting) ──► Firebase Functions v2 ), code:block2 (문서 입력 → normalize → extract → semantic-chunk → embed → index), 아키텍처
+
 ## Knowledge Gaps
-- **5943 isolated node(s):** `target`, `module`, `moduleResolution`, `lib`, `allowJs` (+5938 more)
+- **5991 isolated node(s):** `target`, `module`, `moduleResolution`, `lib`, `allowJs` (+5986 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **88 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **101 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `LruCache` connect `Community 476` to `Community 741`?**
+- **Why does `next` connect `Community 741` to `Community 553`, `Community 412`, `Community 127`?**
   _High betweenness centrality (0.006) - this node is a cross-community bridge._
-- **Why does `next` connect `Community 741` to `Community 553`, `Community 412`, `Community 414`, `Community 127`?**
-  _High betweenness centrality (0.006) - this node is a cross-community bridge._
+- **Why does `LruCache` connect `Community 741` to `Community 3`?**
+  _High betweenness centrality (0.004) - this node is a cross-community bridge._
+- **Why does `searchDocuments()` connect `Community 3` to `Community 39`, `Community 743`, `Community 840`, `Community 140`, `Community 52`, `Community 21`, `Community 831`?**
+  _High betweenness centrality (0.003) - this node is a cross-community bridge._
 - **Are the 71 inferred relationships involving `make_request()` (e.g. with `test_retriever_retrieve_raises_retrieval_unavailable_on_503_fault()` and `test_to_evidence_score_equals_one_minus_distance()`) actually correct?**
   _`make_request()` has 71 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 65 inferred relationships involving `make_evidence()` (e.g. with `_make_e002_evidence()` and `test_weak_boundary_false_when_e002_and_e001_with_caused()`) actually correct?**
@@ -3664,6 +3704,4 @@ _Questions this graph is uniquely positioned to answer:_
 - **Are the 31 inferred relationships involving `load_settings()` (e.g. with `test_quantization_env_reaches_supported_terminal_metadata()` and `test_embedding_model_defaults_to_paraphrase_multilingual_when_env_absent()`) actually correct?**
   _`load_settings()` has 31 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `target`, `module`, `moduleResolution` to the rest of the system?**
-  _5990 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
+  _6038 weakly-connected nodes found - possible documentation gaps or missing edges._

@@ -472,3 +472,18 @@ Each entry should list the files touched, the reason for the change, and any fol
   - `npm run wiki:lint:json` and `graphify update .` are the closeout checks for link/schema and graph freshness.
 - Follow-up:
   - Replace FIX evidence only with frozen reruns or measured human/operational sessions; do not infer gate PASS from the case-study fixture.
+
+## [2026-08-11] deploy | Restricted App Hosting game-log search shell
+
+- Files touched:
+  - `wiki/reports/game-log-agentic-search-cycle-2026-08-11.md`
+  - `log.md`
+- Reason:
+  - Record the completed Firebase App Hosting rollout and fresh production verification without misrepresenting the unactivated VM as live search.
+- Verification:
+  - `npm run deploy:apphosting` completed for backend `saas-of-funqa`.
+  - Production `/search` rendered the Patch Desk with local retrieval offline.
+  - Production health returned HTTP 200 with retrieval and synthesis offline for `service_url_unconfigured`.
+  - A valid production search POST returned HTTP 503 NDJSON `retrieval_unavailable`, with `evidence=[]` and `finding=null`.
+- Follow-up:
+  - Keep all G1–G8 gates at `FIX` until their missing human and operational measurements exist.

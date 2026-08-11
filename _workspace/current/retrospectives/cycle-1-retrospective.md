@@ -8,7 +8,7 @@ stage: cycle-closeout
 status: closed-with-FIX-evidence-carried-forward
 next-cycle-entry: Stage 2 evidence qualification
 archive-state: not-archived
-release-scope: App Hosting offline-ready web shell only
+release-scope: App Hosting offline-ready web shell deployed and boundary-verified
 ---
 
 # Cycle 1 Retrospective
@@ -17,7 +17,7 @@ release-scope: App Hosting offline-ready web shell only
 
 Cycle 1 closes its implementation/deterministic verification pass without closing any quality gate. The selected Qwen2.5:3b Q4_K_M profile passed the frozen Q01–Q10 suite 140/140; the current search-service receipt is 217/217, synthesis-focused receipt 43/43, web receipt 24/24, and typecheck/build succeeded. These receipts close the selected-profile product defects recorded by QA, but they do not replace the human and operational gate measurements.
 
-The only authorized release scope is the Firebase App Hosting **offline-ready web shell** with `GAME_LOG_SEARCH_SERVICE_URL` absent. It must preserve the typed retrieval-owned `retrieval_unavailable` state and zero fallback. It is not live game-log search, VM activation, CocoIndex/Postgres availability, Ollama/Qwen activation, or evidence of any gate PASS.
+The Firebase App Hosting **offline-ready web shell** was deployed to `https://saas-of-funqa--saas-of-funqa.us-east4.hosted.app` with `GAME_LOG_SEARCH_SERVICE_URL` absent. Fresh production verification observed The Patch Desk with `Local retrieval offline`, health HTTP 200 with retrieval/synthesis `offline` and `service_url_unconfigured`, and a valid search POST returning HTTP 503 NDJSON with retrieval-owned `retrieval_unavailable`, `evidence=[]`, and `finding=null`. Direct evidence: `_workspace/current/ops/apphosting-release-2026-08-11.md`; `_workspace/current/ops/release-readiness.md#restricted-shell-rollout-receipt`. This is not live game-log search, VM activation, CocoIndex/Postgres availability, Ollama/Qwen activation, or evidence of any gate PASS.
 
 ## Per-gate closeout
 
@@ -40,6 +40,17 @@ Director review details: `_workspace/current/production/gate-reviews/`.
 - The hostile untrusted-`claim.text` validator bypass is fixed and QA-verified: synthesis 43/43 and service 217/217. Direct evidence: `qa/evidence/stage-3/final-synthesis-junit.xml`; `qa/evidence/stage-3/final-search-service-217.xml`.
 - The web contract is stable under the latest focused capture: 24/24 across 6/6 suites; typecheck/build succeeded; browser smoke covers one desktop and one mobile viewport. Direct evidence: `qa/evidence/stage-3/final-focused-web-tests.json`; `qa/evidence/stage-3/final-workspace-typecheck.txt`; `qa/evidence/stage-3/final-web-build.txt`; `ui/browser-verification.md`.
 - Smaller Qwen2.5:1.5b and 0.5b profiles remain disqualified; typed unavailable is safe but is not supported-task qualification.
+
+## Restricted shell rollout result
+
+| Check | Measured value | Method | Evidence | Effect |
+|---|---|---|---|---|
+| Deployment | command completed for project/backend `saas-of-funqa`; production URL and uploaded source receipt recorded | release receipt audit | `_workspace/current/ops/apphosting-release-2026-08-11.md#rollout` | Decision 003 restricted scope delivered |
+| Honest UI | Patch Desk rendered; `Local retrieval offline`; Archive/Model/Index `Offline`; Search disabled | fresh 1440×900 production browser observation | `_workspace/current/ops/apphosting-release-2026-08-11.md#fresh-production-verification` | offline shell verified |
+| Health | HTTP 200; proxy `ready`; retrieval/synthesis `offline`; `service_url_unconfigured` | production health request | same receipt | absent service URL verified |
+| Search terminal | HTTP 503 NDJSON; retrieval-owned `retrieval_unavailable`; `service_url_unconfigured`; `evidence=[]`; `finding=null` | valid frozen-contract production POST | same receipt | typed no-fallback boundary verified |
+
+Release readiness remains 3/12 and every G1–G8 verdict remains **FIX**. The rollout supplies no VM, model, live retrieval, rollback, telemetry, soak, latency, human, or commercial gate numerator.
 
 ## Unresolved risks and exact next owners
 

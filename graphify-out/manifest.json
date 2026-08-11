@@ -4280,8 +4280,8 @@
     "semantic_hash": ""
   },
   "/private/tmp/saas-of-funqa-game-search-20260809/apps/web/app/api/game-log-search/_shared.ts": {
-    "mtime": 1786289526.257121,
-    "ast_hash": "261d7582ea5a3cebe57c725920719ec0",
+    "mtime": 1786447335.3739529,
+    "ast_hash": "19f1f29866a2412751b828f719c966e8",
     "semantic_hash": ""
   },
   "/private/tmp/saas-of-funqa-game-search-20260809/apps/web/app/api/game-log-search/health/route.ts": {
@@ -4645,8 +4645,8 @@
     "semantic_hash": ""
   },
   "/private/tmp/saas-of-funqa-game-search-20260809/CLAUDE.md": {
-    "mtime": 1786284040.1005151,
-    "ast_hash": "4fea2adfee069f07d8db0adcdeb29a8e",
+    "mtime": 1786446948.950625,
+    "ast_hash": "c2f2b4bd19a1031745f98e0aece208ba",
     "semantic_hash": ""
   },
   "/private/tmp/saas-of-funqa-game-search-20260809/infra/game-log-search/compose.yaml": {
@@ -6510,8 +6510,8 @@
     "semantic_hash": ""
   },
   "/private/tmp/saas-of-funqa-game-search-20260809/knowledge/log.md": {
-    "mtime": 1786443282.0434527,
-    "ast_hash": "195479e42cd7eb3d02eb5c56ff7edcd7",
+    "mtime": 1786447742.9951355,
+    "ast_hash": "a75fdd7857b139c6d5c965832fd6a058",
     "semantic_hash": ""
   },
   "/private/tmp/saas-of-funqa-game-search-20260809/knowledge/index.md": {
@@ -6845,13 +6845,13 @@
     "semantic_hash": ""
   },
   "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/production/decision-log.md": {
-    "mtime": 1786288502.0328562,
-    "ast_hash": "b1378fe2c89eb679e065bb4d5c5c2be4",
+    "mtime": 1786447736.4434407,
+    "ast_hash": "4757b9960d4cd4e3027fdf7718d70793",
     "semantic_hash": ""
   },
   "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/production/task-manifest.md": {
-    "mtime": 1786284283.9293375,
-    "ast_hash": "477e4db54ee0c1805c5bacba830b6cb1",
+    "mtime": 1786447745.1412685,
+    "ast_hash": "f6a04ba731d23bfbad7a6491cd12c447",
     "semantic_hash": ""
   },
   "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/ops/telemetry-contract.md": {
@@ -6865,8 +6865,8 @@
     "semantic_hash": ""
   },
   "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/engineering/resource-manifest.md": {
-    "mtime": 1786288268.829403,
-    "ast_hash": "7fd6ad08452fb56daa480b806a6e0cb2",
+    "mtime": 1786447039.147001,
+    "ast_hash": "64c93d4c396e01e345edc2d8f14b97c4",
     "semantic_hash": ""
   },
   "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/engineering/architecture-contract.md": {
@@ -7869,11 +7869,6 @@
     "ast_hash": "86384d39ba445b64b178e658c4a6e23e",
     "semantic_hash": ""
   },
-  "/private/tmp/saas-of-funqa-game-search-20260809/.agents/skills/llm-wiki/SKILL.md": {
-    "mtime": 1786431015.5281336,
-    "ast_hash": "fa95b04962672dd794e1f70c4fc32cb7",
-    "semantic_hash": ""
-  },
   "/private/tmp/saas-of-funqa-game-search-20260809/.agents/skills/deepsec/SKILL.md": {
     "mtime": 1786431015.5284307,
     "ast_hash": "c4c3894c4028d8ce95355cec8d8ee436",
@@ -7920,8 +7915,8 @@
     "semantic_hash": ""
   },
   "/private/tmp/saas-of-funqa-game-search-20260809/knowledge/wiki/reports/game-log-agentic-search-cycle-2026-08-11.md": {
-    "mtime": 1786446849.9847078,
-    "ast_hash": "51849e2d60d8227fdb515d78b3133594",
+    "mtime": 1786447742.9916139,
+    "ast_hash": "097f8acf33c46ee0b4ef921fe8e5fb19",
     "semantic_hash": ""
   },
   "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/pm/revenue-forecast.md": {
@@ -7975,8 +7970,8 @@
     "semantic_hash": ""
   },
   "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/qa/gate-measurements.md": {
-    "mtime": 1786446873.9951048,
-    "ast_hash": "435b2aa9271397070aab95ca22ddca98",
+    "mtime": 1786446944.7108233,
+    "ast_hash": "3ae9cbc9db7d51f83b24e39c767386df",
     "semantic_hash": ""
   },
   "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/qa/evidence/stage-3/final-search-service-pytest.txt": {
@@ -8815,8 +8810,8 @@
     "semantic_hash": ""
   },
   "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/ops/release-readiness.md": {
-    "mtime": 1786443106.7910318,
-    "ast_hash": "74c32ba135c913accc289c3bfcc36531",
+    "mtime": 1786447704.7075267,
+    "ast_hash": "cf5826a85d4df1619ff0379bb5d7c17c",
     "semantic_hash": ""
   },
   "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/engineering/movement-optimization.md": {
@@ -8900,8 +8895,88 @@
     "semantic_hash": ""
   },
   "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/messages/011-game-qa.md": {
-    "mtime": 1786446902.3015974,
-    "ast_hash": "225c69b1217d2aad82d47608ea0bf881",
+    "mtime": 1786446929.2173233,
+    "ast_hash": "17248ae698d3827f248b85e411f5901d",
+    "semantic_hash": ""
+  },
+  "/private/tmp/saas-of-funqa-game-search-20260809/apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json": {
+    "mtime": 1786447027.4808617,
+    "ast_hash": "9c876b3265671001a0bf34b3fb3b4f73",
+    "semantic_hash": ""
+  },
+  "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/messages/012-game-production-director.md": {
+    "mtime": 1786447153.9741716,
+    "ast_hash": "11d2d5e7a9ad4c601cad33b47254dabd",
+    "semantic_hash": ""
+  },
+  "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/messages/013-game-production-director.md": {
+    "mtime": 1786447765.6824434,
+    "ast_hash": "1ffd48abcc7d618b26bdee20531760b4",
+    "semantic_hash": ""
+  },
+  "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/retrospectives/cycle-1-retrospective.md": {
+    "mtime": 1786447754.5214288,
+    "ast_hash": "630ba8415465ac1ae2b34b48e7c3167d",
+    "semantic_hash": ""
+  },
+  "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/production/gate-reviews/stage-2-g5.md": {
+    "mtime": 1786447083.9970155,
+    "ast_hash": "616bf206ffedb06dc617312eede317aa",
+    "semantic_hash": ""
+  },
+  "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/production/gate-reviews/stage-1-g6-ops-draft.md": {
+    "mtime": 1786447083.9929116,
+    "ast_hash": "dae54ceaf110c0f935187b9ba360f4dd",
+    "semantic_hash": ""
+  },
+  "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/production/gate-reviews/stage-2-g7-final.md": {
+    "mtime": 1786447083.9978833,
+    "ast_hash": "01ead84d61dd045ac0d4dac1a5090c10",
+    "semantic_hash": ""
+  },
+  "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/production/gate-reviews/stage-3-g4.md": {
+    "mtime": 1786447084.0012634,
+    "ast_hash": "9fb72bef0374ffe5f770c32517050f48",
+    "semantic_hash": ""
+  },
+  "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/production/gate-reviews/stage-1-g1-draft.md": {
+    "mtime": 1786447083.9904692,
+    "ast_hash": "c47dfa4e18a0b53081101202edef1109",
+    "semantic_hash": ""
+  },
+  "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/production/gate-reviews/stage-2-g8.md": {
+    "mtime": 1786447083.9987953,
+    "ast_hash": "5a94bf34032a038c5188f1c414e45f72",
+    "semantic_hash": ""
+  },
+  "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/production/gate-reviews/stage-3-g1-final.md": {
+    "mtime": 1786447084.0003808,
+    "ast_hash": "db5d6be24bc0d7898bcfb11a5000a0d1",
+    "semantic_hash": ""
+  },
+  "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/production/gate-reviews/stage-3-g6-final.md": {
+    "mtime": 1786447084.0020254,
+    "ast_hash": "11f9b43ec144eb73f98c8e8a2408ff63",
+    "semantic_hash": ""
+  },
+  "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/production/gate-reviews/stage-2-g3.md": {
+    "mtime": 1786447083.9957907,
+    "ast_hash": "82f2f527dfd9f675f93bb146f395ccdc",
+    "semantic_hash": ""
+  },
+  "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/production/gate-reviews/stage-2-g2.md": {
+    "mtime": 1786447083.9949095,
+    "ast_hash": "efe756133a7abc9a53ff61e97ca7a053",
+    "semantic_hash": ""
+  },
+  "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/production/gate-reviews/stage-1-g7-draft.md": {
+    "mtime": 1786447083.9940875,
+    "ast_hash": "88694aafcc2c39de3bddfd32c780aba7",
+    "semantic_hash": ""
+  },
+  "/private/tmp/saas-of-funqa-game-search-20260809/_workspace/current/ops/apphosting-release-2026-08-11.md": {
+    "mtime": 1786447685.3278825,
+    "ast_hash": "0ecd71570cda2eec0dc6c9e779459c66",
     "semantic_hash": ""
   }
 }

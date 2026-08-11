@@ -1728,7 +1728,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L1",
       "id": "study_genai_game_log_rag_scripts_build_results_py",
-      "community": 682,
+      "community": 544,
       "norm_label": "build_results.py"
     },
     {
@@ -1737,7 +1737,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L85",
       "id": "scripts_build_results_evidenceerror",
-      "community": 682,
+      "community": 544,
       "norm_label": "evidenceerror"
     },
     {
@@ -1755,7 +1755,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L89",
       "id": "scripts_build_results_fail",
-      "community": 682,
+      "community": 544,
       "norm_label": "fail()"
     },
     {
@@ -1764,7 +1764,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L93",
       "id": "scripts_build_results_require",
-      "community": 682,
+      "community": 544,
       "norm_label": "require()"
     },
     {
@@ -1773,7 +1773,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L98",
       "id": "scripts_build_results_load_json",
-      "community": 682,
+      "community": 544,
       "norm_label": "load_json()"
     },
     {
@@ -1782,7 +1782,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L105",
       "id": "scripts_build_results_sha256_bytes",
-      "community": 682,
+      "community": 544,
       "norm_label": "sha256_bytes()"
     },
     {
@@ -1791,7 +1791,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L109",
       "id": "scripts_build_results_corpus_sha256",
-      "community": 682,
+      "community": 544,
       "norm_label": "corpus_sha256()"
     },
     {
@@ -1800,7 +1800,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L120",
       "id": "scripts_build_results_parse_env",
-      "community": 682,
+      "community": 544,
       "norm_label": "parse_env()"
     },
     {
@@ -1809,7 +1809,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L132",
       "id": "scripts_build_results_write_csv",
-      "community": 682,
+      "community": 544,
       "norm_label": "write_csv()"
     },
     {
@@ -1818,7 +1818,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L141",
       "id": "scripts_build_results_json_cell",
-      "community": 682,
+      "community": 544,
       "norm_label": "json_cell()"
     },
     {
@@ -1827,7 +1827,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L145",
       "id": "scripts_build_results_terminal_schema_valid",
-      "community": 682,
+      "community": 544,
       "norm_label": "terminal_schema_valid()"
     },
     {
@@ -1836,7 +1836,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L177",
       "id": "scripts_build_results_validate_finding",
-      "community": 682,
+      "community": 544,
       "norm_label": "validate_finding()"
     },
     {
@@ -1845,7 +1845,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L203",
       "id": "scripts_build_results_expected_reason",
-      "community": 682,
+      "community": 544,
       "norm_label": "expected_reason()"
     },
     {
@@ -1854,7 +1854,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L220",
       "id": "scripts_build_results_independent_assertions",
-      "community": 682,
+      "community": 544,
       "norm_label": "independent_assertions()"
     },
     {
@@ -1863,7 +1863,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L261",
       "id": "scripts_build_results_normalized_assertion",
-      "community": 682,
+      "community": 544,
       "norm_label": "normalized_assertion()"
     },
     {
@@ -1872,7 +1872,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L271",
       "id": "scripts_build_results_parse_cocoindex_stats",
-      "community": 682,
+      "community": 544,
       "norm_label": "parse_cocoindex_stats()"
     },
     {
@@ -1881,7 +1881,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L292",
       "id": "scripts_build_results_parse_target_row",
-      "community": 682,
+      "community": 544,
       "norm_label": "parse_target_row()"
     },
     {
@@ -1890,7 +1890,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L306",
       "id": "scripts_build_results_pdf",
-      "community": 682,
+      "community": 544,
       "norm_label": "pdf"
     },
     {
@@ -1899,7 +1899,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L309",
       "id": "scripts_build_results_pdf_init",
-      "community": 682,
+      "community": 544,
       "norm_label": ".__init__()"
     },
     {
@@ -1908,7 +1908,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L315",
       "id": "scripts_build_results_esc",
-      "community": 682,
+      "community": 544,
       "norm_label": "esc()"
     },
     {
@@ -1917,7 +1917,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L318",
       "id": "scripts_build_results_pdf_text",
-      "community": 682,
+      "community": 544,
       "norm_label": ".text()"
     },
     {
@@ -1926,7 +1926,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L322",
       "id": "scripts_build_results_pdf_line",
-      "community": 682,
+      "community": 544,
       "norm_label": ".line()"
     },
     {
@@ -1935,7 +1935,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L325",
       "id": "scripts_build_results_pdf_rect",
-      "community": 682,
+      "community": 544,
       "norm_label": ".rect()"
     },
     {
@@ -1944,7 +1944,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L331",
       "id": "scripts_build_results_pdf_save",
-      "community": 682,
+      "community": 544,
       "norm_label": ".save()"
     },
     {
@@ -1953,7 +1953,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L358",
       "id": "scripts_build_results_make_assertion_figure",
-      "community": 682,
+      "community": 544,
       "norm_label": "make_assertion_figure()"
     },
     {
@@ -1962,7 +1962,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L403",
       "id": "scripts_build_results_make_latency_figure",
-      "community": 682,
+      "community": 544,
       "norm_label": "make_latency_figure()"
     },
     {
@@ -1971,7 +1971,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L439",
       "id": "scripts_build_results_make_incremental_figure",
-      "community": 682,
+      "community": 544,
       "norm_label": "make_incremental_figure()"
     },
     {
@@ -1980,7 +1980,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L472",
       "id": "scripts_build_results_build",
-      "community": 682,
+      "community": 544,
       "norm_label": "build()"
     },
     {
@@ -1989,7 +1989,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L789",
       "id": "scripts_build_results_find_repo_root",
-      "community": 682,
+      "community": 544,
       "norm_label": "find_repo_root()"
     },
     {
@@ -1998,7 +1998,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L795",
       "id": "scripts_build_results_main",
-      "community": 682,
+      "community": 544,
       "norm_label": "main()"
     },
     {
@@ -2007,7 +2007,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L86",
       "id": "scripts_build_results_rationale_86",
-      "community": 682,
+      "community": 544,
       "norm_label": "raised when raw evidence violates the frozen comparison contract."
     },
     {
@@ -2016,7 +2016,7 @@
       "source_file": "study/genai-game-log-rag/scripts/build_results.py",
       "source_location": "L307",
       "id": "scripts_build_results_rationale_307",
-      "community": 682,
+      "community": 544,
       "norm_label": "tiny deterministic pdf 1.4 writer for vector-only study figures."
     },
     {
@@ -2646,7 +2646,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/mcp.json",
       "source_location": "L38",
       "id": "agents_mcp_tools_list",
-      "community": 10,
+      "community": 446,
       "norm_label": "list"
     },
     {
@@ -16065,7 +16065,7 @@
       "source_file": "apps/web/app/page.tsx",
       "source_location": "L1",
       "id": "apps_web_app_page_tsx",
-      "community": 892,
+      "community": 23,
       "norm_label": "page.tsx"
     },
     {
@@ -16074,7 +16074,7 @@
       "source_file": "apps/web/app/page.tsx",
       "source_location": "L7",
       "id": "app_page_homepageprops",
-      "community": 9,
+      "community": 23,
       "norm_label": "homepageprops"
     },
     {
@@ -16083,7 +16083,7 @@
       "source_file": "apps/web/app/page.tsx",
       "source_location": "L13",
       "id": "app_page_trending_cards",
-      "community": 892,
+      "community": 23,
       "norm_label": "trending_cards"
     },
     {
@@ -16092,7 +16092,7 @@
       "source_file": "apps/web/app/page.tsx",
       "source_location": "L27",
       "id": "app_page_homepage",
-      "community": 9,
+      "community": 23,
       "norm_label": "homepage()"
     },
     {
@@ -16173,7 +16173,7 @@
       "source_file": "apps/web/app/ralph/page.test.tsx",
       "source_location": "L1",
       "id": "apps_web_app_ralph_page_test_tsx",
-      "community": 695,
+      "community": 23,
       "norm_label": "page.test.tsx"
     },
     {
@@ -16182,7 +16182,7 @@
       "source_file": "apps/web/app/ralph/page.test.tsx",
       "source_location": "L15",
       "id": "ralph_page_test_route",
-      "community": 695,
+      "community": 23,
       "norm_label": "route"
     },
     {
@@ -16191,7 +16191,7 @@
       "source_file": "apps/web/app/ralph/page.test.tsx",
       "source_location": "L17",
       "id": "ralph_page_test_markup",
-      "community": 695,
+      "community": 23,
       "norm_label": "markup"
     },
     {
@@ -16200,7 +16200,7 @@
       "source_file": "apps/web/app/ralph/page.tsx",
       "source_location": "L1",
       "id": "apps_web_app_ralph_page_tsx",
-      "community": 695,
+      "community": 23,
       "norm_label": "page.tsx"
     },
     {
@@ -16209,7 +16209,7 @@
       "source_file": "apps/web/app/ralph/page.tsx",
       "source_location": "L5",
       "id": "ralph_page_ralphpageprops",
-      "community": 695,
+      "community": 23,
       "norm_label": "ralphpageprops"
     },
     {
@@ -16218,7 +16218,7 @@
       "source_file": "apps/web/app/ralph/page.tsx",
       "source_location": "L11",
       "id": "ralph_page_ralphpage",
-      "community": 695,
+      "community": 23,
       "norm_label": "ralphpage()"
     },
     {
@@ -16902,7 +16902,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/components/category-tab-bar.tsx",
       "source_location": "L1",
       "id": "users_jangyoung_superset_projects_saas_of_funqa_apps_web_components_category_tab_bar_tsx",
-      "community": 695,
+      "community": 897,
       "norm_label": "category-tab-bar.tsx"
     },
     {
@@ -16911,7 +16911,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/components/category-tab-bar.tsx",
       "source_location": "L7",
       "id": "components_category_tab_bar_props",
-      "community": 695,
+      "community": 897,
       "norm_label": "props"
     },
     {
@@ -16920,7 +16920,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/components/category-tab-bar.tsx",
       "source_location": "L11",
       "id": "components_category_tab_bar_category_colors",
-      "community": 695,
+      "community": 897,
       "norm_label": "category_colors"
     },
     {
@@ -16929,7 +16929,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/components/category-tab-bar.tsx",
       "source_location": "L18",
       "id": "components_category_tab_bar_categorytabbar",
-      "community": 695,
+      "community": 897,
       "norm_label": "categorytabbar()"
     },
     {
@@ -17291,6 +17291,123 @@
       "id": "components_auth_provider_useauth",
       "community": 29,
       "norm_label": "useauth()"
+    },
+    {
+      "label": "patch-ledger-plate-1600x900.webp.provenance.json",
+      "file_type": "code",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L1",
+      "id": "apps_web_public_game_log_search_patch_ledger_plate_1600x900_webp_provenance_json",
+      "community": 871,
+      "norm_label": "patch-ledger-plate-1600x900.webp.provenance.json"
+    },
+    {
+      "label": "schemaVersion",
+      "file_type": "code",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L2",
+      "id": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_schemaversion",
+      "community": 871,
+      "norm_label": "schemaversion"
+    },
+    {
+      "label": "asset",
+      "file_type": "code",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L3",
+      "id": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_asset",
+      "community": 871,
+      "norm_label": "asset"
+    },
+    {
+      "label": "provider",
+      "file_type": "code",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L4",
+      "id": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_provider",
+      "community": 871,
+      "norm_label": "provider"
+    },
+    {
+      "label": "model",
+      "file_type": "code",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L5",
+      "id": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_model",
+      "community": 871,
+      "norm_label": "model"
+    },
+    {
+      "label": "prompt",
+      "file_type": "code",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L6",
+      "id": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_prompt",
+      "community": 871,
+      "norm_label": "prompt"
+    },
+    {
+      "label": "promptStatus",
+      "file_type": "code",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L7",
+      "id": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_promptstatus",
+      "community": 871,
+      "norm_label": "promptstatus"
+    },
+    {
+      "label": "acceptedVisualDescription",
+      "file_type": "code",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L8",
+      "id": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_acceptedvisualdescription",
+      "community": 871,
+      "norm_label": "acceptedvisualdescription"
+    },
+    {
+      "label": "inputs",
+      "file_type": "code",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L9",
+      "id": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_inputs",
+      "community": 871,
+      "norm_label": "inputs"
+    },
+    {
+      "label": "responseId",
+      "file_type": "code",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L10",
+      "id": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_responseid",
+      "community": 871,
+      "norm_label": "responseid"
+    },
+    {
+      "label": "sha256",
+      "file_type": "code",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L11",
+      "id": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_sha256",
+      "community": 871,
+      "norm_label": "sha256"
+    },
+    {
+      "label": "rightsNotes",
+      "file_type": "code",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L12",
+      "id": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_rightsnotes",
+      "community": 871,
+      "norm_label": "rightsnotes"
+    },
+    {
+      "label": "runtimeEligible",
+      "file_type": "code",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L13",
+      "id": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_runtimeeligible",
+      "community": 871,
+      "norm_label": "runtimeeligible"
     },
     {
       "label": "use-search-stream.ts",
@@ -17793,7 +17910,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/lib/funqa-api.ts",
       "source_location": "L76",
       "id": "lib_funqa_api_inspectragpipeline",
-      "community": 23,
+      "community": 9,
       "norm_label": "inspectragpipeline()"
     },
     {
@@ -18045,7 +18162,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/lib/i18n.ts",
       "source_location": "L29",
       "id": "lib_i18n_getdictionary",
-      "community": 695,
+      "community": 23,
       "norm_label": "getdictionary()"
     },
     {
@@ -18054,7 +18171,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/lib/i18n.ts",
       "source_location": "L33",
       "id": "lib_i18n_withlocale",
-      "community": 6,
+      "community": 23,
       "norm_label": "withlocale()"
     },
     {
@@ -18441,7 +18558,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/genkit.ts",
       "source_location": "L1",
       "id": "users_jangyoung_superset_projects_saas_of_funqa_apps_api_src_genkit_ts",
-      "community": 5,
+      "community": 840,
       "norm_label": "genkit.ts"
     },
     {
@@ -18450,7 +18567,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/genkit.ts",
       "source_location": "L7",
       "id": "src_genkit_ai",
-      "community": 5,
+      "community": 840,
       "norm_label": "ai"
     },
     {
@@ -18459,7 +18576,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/genkit.ts",
       "source_location": "L11",
       "id": "src_genkit_getlivemodel",
-      "community": 52,
+      "community": 840,
       "norm_label": "getlivemodel()"
     },
     {
@@ -19017,7 +19134,7 @@
       "source_file": "apps/api/src/flows/search.ts",
       "source_location": "L1",
       "id": "apps_api_src_flows_search_ts",
-      "community": 5,
+      "community": 743,
       "norm_label": "search.ts"
     },
     {
@@ -19026,7 +19143,7 @@
       "source_file": "apps/api/src/flows/search.ts",
       "source_location": "L5",
       "id": "flows_search_searchflowinputschema",
-      "community": 5,
+      "community": 743,
       "norm_label": "searchflowinputschema"
     },
     {
@@ -19035,7 +19152,7 @@
       "source_file": "apps/api/src/flows/search.ts",
       "source_location": "L11",
       "id": "flows_search_searchflowoutputschema",
-      "community": 5,
+      "community": 743,
       "norm_label": "searchflowoutputschema"
     },
     {
@@ -19044,7 +19161,7 @@
       "source_file": "apps/api/src/flows/search.ts",
       "source_location": "L59",
       "id": "flows_search_searchflow",
-      "community": 5,
+      "community": 743,
       "norm_label": "searchflow"
     },
     {
@@ -19053,7 +19170,7 @@
       "source_file": "apps/api/src/flows/search.ts",
       "source_location": "L68",
       "id": "flows_search_runsearchflow",
-      "community": 5,
+      "community": 743,
       "norm_label": "runsearchflow()"
     },
     {
@@ -19206,7 +19323,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/routes/search.route.ts",
       "source_location": "L1",
       "id": "users_jangyoung_superset_projects_saas_of_funqa_apps_api_src_routes_search_route_ts",
-      "community": 5,
+      "community": 743,
       "norm_label": "search.route.ts"
     },
     {
@@ -19215,7 +19332,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/routes/search.route.ts",
       "source_location": "L7",
       "id": "routes_search_route_searchratelimit",
-      "community": 5,
+      "community": 743,
       "norm_label": "searchratelimit"
     },
     {
@@ -19224,7 +19341,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/routes/search.route.ts",
       "source_location": "L9",
       "id": "routes_search_route_searchresult",
-      "community": 5,
+      "community": 743,
       "norm_label": "searchresult"
     },
     {
@@ -19233,7 +19350,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/routes/search.route.ts",
       "source_location": "L17",
       "id": "routes_search_route_registersearchroute",
-      "community": 5,
+      "community": 743,
       "norm_label": "registersearchroute()"
     },
     {
@@ -19251,7 +19368,7 @@
       "source_file": "apps/api/src/routes/admin.route.ts",
       "source_location": "L6",
       "id": "routes_admin_route_registeradminroute",
-      "community": 3,
+      "community": 412,
       "norm_label": "registeradminroute()"
     },
     {
@@ -19476,7 +19593,7 @@
       "source_file": "apps/api/src/services/rag-cache.service.ts",
       "source_location": "L1",
       "id": "apps_api_src_services_rag_cache_service_ts",
-      "community": 476,
+      "community": 3,
       "norm_label": "rag-cache.service.ts"
     },
     {
@@ -19485,7 +19602,7 @@
       "source_file": "apps/api/src/services/rag-cache.service.ts",
       "source_location": "L6",
       "id": "services_rag_cache_service_cacheentry",
-      "community": 476,
+      "community": 3,
       "norm_label": "cacheentry"
     },
     {
@@ -19494,7 +19611,7 @@
       "source_file": "apps/api/src/services/rag-cache.service.ts",
       "source_location": "L13",
       "id": "services_rag_cache_service_lrucache",
-      "community": 476,
+      "community": 741,
       "norm_label": "lrucache"
     },
     {
@@ -19512,7 +19629,7 @@
       "source_file": "apps/api/src/services/rag-cache.service.ts",
       "source_location": "L25",
       "id": "services_rag_cache_service_lrucache_get",
-      "community": 476,
+      "community": 741,
       "norm_label": ".get()"
     },
     {
@@ -19521,7 +19638,7 @@
       "source_file": "apps/api/src/services/rag-cache.service.ts",
       "source_location": "L38",
       "id": "services_rag_cache_service_lrucache_invalidate",
-      "community": 476,
+      "community": 741,
       "norm_label": ".invalidate()"
     },
     {
@@ -19530,7 +19647,7 @@
       "source_file": "apps/api/src/services/rag-cache.service.ts",
       "source_location": "L45",
       "id": "services_rag_cache_service_lrucache_clear",
-      "community": 476,
+      "community": 741,
       "norm_label": ".clear()"
     },
     {
@@ -19539,7 +19656,7 @@
       "source_file": "apps/api/src/services/rag-cache.service.ts",
       "source_location": "L49",
       "id": "services_rag_cache_service_lrucache_stats",
-      "community": 476,
+      "community": 741,
       "norm_label": ".stats()"
     },
     {
@@ -19548,7 +19665,7 @@
       "source_file": "apps/api/src/services/rag-cache.service.ts",
       "source_location": "L54",
       "id": "services_rag_cache_service_ragquerycache",
-      "community": 476,
+      "community": 3,
       "norm_label": "ragquerycache"
     },
     {
@@ -19557,7 +19674,7 @@
       "source_file": "apps/api/src/services/rag-cache.service.ts",
       "source_location": "L56",
       "id": "services_rag_cache_service_buildcachekey",
-      "community": 476,
+      "community": 3,
       "norm_label": "buildcachekey()"
     },
     {
@@ -19620,7 +19737,7 @@
       "source_file": "apps/api/src/services/rag.service.ts",
       "source_location": "L112",
       "id": "services_rag_service_getraginspectiondocuments",
-      "community": 412,
+      "community": 3,
       "norm_label": "getraginspectiondocuments()"
     },
     {
@@ -19629,7 +19746,7 @@
       "source_file": "apps/api/src/services/rag.service.ts",
       "source_location": "L117",
       "id": "services_rag_service_getraginspectionchunks",
-      "community": 412,
+      "community": 3,
       "norm_label": "getraginspectionchunks()"
     },
     {
@@ -19656,7 +19773,7 @@
       "source_file": "apps/api/src/services/rag.service.ts",
       "source_location": "L179",
       "id": "services_rag_service_searchdocuments",
-      "community": 5,
+      "community": 3,
       "norm_label": "searchdocuments()"
     },
     {
@@ -19728,7 +19845,7 @@
       "source_file": "apps/api/src/services/rag-cache.service.test.ts",
       "source_location": "L1",
       "id": "apps_api_src_services_rag_cache_service_test_ts",
-      "community": 476,
+      "community": 3,
       "norm_label": "rag-cache.service.test.ts"
     },
     {
@@ -19737,7 +19854,7 @@
       "source_file": "apps/api/src/services/rag-optimization.service.ts",
       "source_location": "L1",
       "id": "apps_api_src_services_rag_optimization_service_ts",
-      "community": 52,
+      "community": 840,
       "norm_label": "rag-optimization.service.ts"
     },
     {
@@ -19773,7 +19890,7 @@
       "source_file": "apps/api/src/services/rag-optimization.service.ts",
       "source_location": "L111",
       "id": "services_rag_optimization_service_optimizedpipelineresult",
-      "community": 3,
+      "community": 840,
       "norm_label": "optimizedpipelineresult"
     },
     {
@@ -20151,7 +20268,7 @@
       "source_file": "services/game-log-search/tests/test_synthesis.py",
       "source_location": "L94",
       "id": "tests_test_synthesis_test_support_tokens_empty_string_returns_empty_set",
-      "community": 741,
+      "community": 685,
       "norm_label": "test_support_tokens_empty_string_returns_empty_set()"
     },
     {
@@ -20430,7 +20547,7 @@
       "source_file": "services/game-log-search/tests/test_synthesis.py",
       "source_location": "L786",
       "id": "tests_test_synthesis_test_synthesizer_ollama_chat_uses_bounded_scalar_output_contract",
-      "community": 414,
+      "community": 741,
       "norm_label": "test_synthesizer_ollama_chat_uses_bounded_scalar_output_contract()"
     },
     {
@@ -20439,7 +20556,7 @@
       "source_file": "services/game-log-search/tests/test_synthesis.py",
       "source_location": "L943",
       "id": "tests_test_synthesis_test_synthesizer_rejects_malformed_ollama_wire_response",
-      "community": 414,
+      "community": 685,
       "norm_label": "test_synthesizer_rejects_malformed_ollama_wire_response()"
     },
     {
@@ -21780,7 +21897,7 @@
       "source_file": "services/game-log-search/tests/test_models.py",
       "source_location": "L883",
       "id": "tests_test_models_test_stage_frame_retrieving",
-      "community": 10,
+      "community": 15,
       "norm_label": "test_stage_frame_retrieving()"
     },
     {
@@ -21879,7 +21996,7 @@
       "source_file": "services/game-log-search/tests/test_models.py",
       "source_location": "L1013",
       "id": "tests_test_models_test_index_manifest_rejects_wrong_membership",
-      "community": 10,
+      "community": 15,
       "norm_label": "test_index_manifest_rejects_wrong_membership()"
     },
     {
@@ -21888,7 +22005,7 @@
       "source_file": "services/game-log-search/tests/test_models.py",
       "source_location": "L1028",
       "id": "tests_test_models_test_index_manifest_rejects_wrong_absent_list",
-      "community": 10,
+      "community": 15,
       "norm_label": "test_index_manifest_rejects_wrong_absent_list()"
     },
     {
@@ -21897,7 +22014,7 @@
       "source_file": "services/game-log-search/tests/test_models.py",
       "source_location": "L1043",
       "id": "tests_test_models_test_index_manifest_rejects_wrong_forbidden_values",
-      "community": 10,
+      "community": 15,
       "norm_label": "test_index_manifest_rejects_wrong_forbidden_values()"
     },
     {
@@ -22050,7 +22167,7 @@
       "source_file": "services/game-log-search/tests/test_models.py",
       "source_location": "L1231",
       "id": "tests_test_models_test_content_sha256_is_lowercase_hex",
-      "community": 10,
+      "community": 15,
       "norm_label": "test_content_sha256_is_lowercase_hex()"
     },
     {
@@ -22140,7 +22257,7 @@
       "source_file": "services/game-log-search/tests/helpers.py",
       "source_location": "L152",
       "id": "tests_helpers_make_evidence",
-      "community": 685,
+      "community": 15,
       "norm_label": "make_evidence()"
     },
     {
@@ -22662,7 +22779,7 @@
       "source_file": "services/game-log-search/src/game_log_search/models.py",
       "source_location": "L121",
       "id": "game_log_search_models_utc_string",
-      "community": 10,
+      "community": 446,
       "norm_label": "utc_string()"
     },
     {
@@ -22734,7 +22851,7 @@
       "source_file": "services/game-log-search/src/game_log_search/models.py",
       "source_location": "L201",
       "id": "game_log_search_models_validate_lineage",
-      "community": 10,
+      "community": 741,
       "norm_label": "validate_lineage()"
     },
     {
@@ -22968,7 +23085,7 @@
       "source_file": "services/game-log-search/src/game_log_search/models.py",
       "source_location": "L635",
       "id": "game_log_search_models_content_sha256",
-      "community": 10,
+      "community": 15,
       "norm_label": "content_sha256()"
     },
     {
@@ -23139,7 +23256,7 @@
       "source_file": "services/game-log-search/src/game_log_search/api.py",
       "source_location": "L1",
       "id": "services_game_log_search_src_game_log_search_api_py",
-      "community": 10,
+      "community": 446,
       "norm_label": "api.py"
     },
     {
@@ -23148,7 +23265,7 @@
       "source_file": "services/game-log-search/src/game_log_search/api.py",
       "source_location": "L31",
       "id": "game_log_search_api_load_manifest",
-      "community": 10,
+      "community": 446,
       "norm_label": "_load_manifest()"
     },
     {
@@ -23157,7 +23274,7 @@
       "source_file": "services/game-log-search/src/game_log_search/api.py",
       "source_location": "L35",
       "id": "game_log_search_api_create_app",
-      "community": 10,
+      "community": 446,
       "norm_label": "create_app()"
     },
     {
@@ -23310,7 +23427,7 @@
       "source_file": "services/game-log-search/src/game_log_search/orchestrator.py",
       "source_location": "L328",
       "id": "game_log_search_orchestrator_dispatchorchestrator_terminal",
-      "community": 10,
+      "community": 15,
       "norm_label": "._terminal()"
     },
     {
@@ -23328,7 +23445,7 @@
       "source_file": "services/game-log-search/src/game_log_search/retrieval.py",
       "source_location": "L1",
       "id": "services_game_log_search_src_game_log_search_retrieval_py",
-      "community": 10,
+      "community": 446,
       "norm_label": "retrieval.py"
     },
     {
@@ -23346,7 +23463,7 @@
       "source_file": "services/game-log-search/src/game_log_search/retrieval.py",
       "source_location": "L25",
       "id": "game_log_search_retrieval_retrievalunavailable_init",
-      "community": 10,
+      "community": 414,
       "norm_label": ".__init__()"
     },
     {
@@ -23364,7 +23481,7 @@
       "source_file": "services/game-log-search/src/game_log_search/retrieval.py",
       "source_location": "L35",
       "id": "game_log_search_retrieval_nullable",
-      "community": 10,
+      "community": 446,
       "norm_label": "_nullable()"
     },
     {
@@ -23382,7 +23499,7 @@
       "source_file": "services/game-log-search/src/game_log_search/retrieval.py",
       "source_location": "L51",
       "id": "game_log_search_retrieval_pgvectorretriever",
-      "community": 10,
+      "community": 414,
       "norm_label": "pgvectorretriever"
     },
     {
@@ -23391,7 +23508,7 @@
       "source_file": "services/game-log-search/src/game_log_search/retrieval.py",
       "source_location": "L52",
       "id": "game_log_search_retrieval_pgvectorretriever_init",
-      "community": 10,
+      "community": 414,
       "norm_label": ".__init__()"
     },
     {
@@ -23400,7 +23517,7 @@
       "source_file": "services/game-log-search/src/game_log_search/retrieval.py",
       "source_location": "L80",
       "id": "game_log_search_retrieval_manifest",
-      "community": 10,
+      "community": 446,
       "norm_label": "manifest()"
     },
     {
@@ -23409,7 +23526,7 @@
       "source_file": "services/game-log-search/src/game_log_search/retrieval.py",
       "source_location": "L83",
       "id": "game_log_search_retrieval_pgvectorretriever_health",
-      "community": 10,
+      "community": 414,
       "norm_label": ".health()"
     },
     {
@@ -23418,7 +23535,7 @@
       "source_file": "services/game-log-search/src/game_log_search/retrieval.py",
       "source_location": "L134",
       "id": "game_log_search_retrieval_pgvectorretriever_retrieve",
-      "community": 10,
+      "community": 446,
       "norm_label": ".retrieve()"
     },
     {
@@ -23427,7 +23544,7 @@
       "source_file": "services/game-log-search/src/game_log_search/retrieval.py",
       "source_location": "L173",
       "id": "game_log_search_retrieval_to_evidence",
-      "community": 10,
+      "community": 446,
       "norm_label": "_to_evidence()"
     },
     {
@@ -23697,7 +23814,7 @@
       "source_file": "README.md",
       "source_location": "L1",
       "id": "readme_md",
-      "community": 691,
+      "community": 49,
       "norm_label": "readme.md"
     },
     {
@@ -24012,7 +24129,7 @@
       "source_file": "README.md",
       "source_location": "L404",
       "id": "saas_of_funqa_game_search_20260809_readme_\uc8fc\uc694_\ucc38\uace0\uc0ac\ud56d",
-      "community": 743,
+      "community": 691,
       "norm_label": "\u110c\u116e\u110b\u116d \u110e\u1161\u11b7\u1100\u1169\u1109\u1161\u1112\u1161\u11bc"
     },
     {
@@ -24021,7 +24138,7 @@
       "source_file": "README.md",
       "source_location": "L406",
       "id": "saas_of_funqa_game_search_20260809_readme_ui_\ucef4\ud3ec\ub10c\ud2b8",
-      "community": 743,
+      "community": 691,
       "norm_label": "ui \u110f\u1165\u11b7\u1111\u1169\u1102\u1165\u11ab\u1110\u1173"
     },
     {
@@ -24030,7 +24147,7 @@
       "source_file": "README.md",
       "source_location": "L411",
       "id": "saas_of_funqa_game_search_20260809_readme_\uac80\uc0c9_\uc778\uc99d",
-      "community": 743,
+      "community": 691,
       "norm_label": "\u1100\u1165\u11b7\u1109\u1162\u11a8 & \u110b\u1175\u11ab\u110c\u1173\u11bc"
     },
     {
@@ -24631,7 +24748,7 @@
       "label": "Asset generation",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L199",
+      "source_location": "L200",
       "id": "saas_of_funqa_game_search_20260809_claude_asset_generation",
       "community": 723,
       "norm_label": "asset generation"
@@ -24640,7 +24757,7 @@
       "label": "Concurrent Git safety",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L203",
+      "source_location": "L204",
       "id": "saas_of_funqa_game_search_20260809_claude_concurrent_git_safety",
       "community": 723,
       "norm_label": "concurrent git safety"
@@ -24649,7 +24766,7 @@
       "label": "Verification",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L209",
+      "source_location": "L210",
       "id": "saas_of_funqa_game_search_20260809_claude_verification",
       "community": 723,
       "norm_label": "verification"
@@ -24658,7 +24775,7 @@
       "label": "oh-my-agent",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L217",
+      "source_location": "L218",
       "id": "saas_of_funqa_game_search_20260809_claude_oh_my_agent",
       "community": 712,
       "norm_label": "oh-my-agent"
@@ -24667,7 +24784,7 @@
       "label": "Architecture",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L219",
+      "source_location": "L220",
       "id": "saas_of_funqa_game_search_20260809_claude_architecture",
       "community": 712,
       "norm_label": "architecture"
@@ -24676,7 +24793,7 @@
       "label": "Per-Agent Dispatch",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L227",
+      "source_location": "L228",
       "id": "saas_of_funqa_game_search_20260809_claude_per_agent_dispatch",
       "community": 712,
       "norm_label": "per-agent dispatch"
@@ -24685,7 +24802,7 @@
       "label": "Code Search",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L233",
+      "source_location": "L234",
       "id": "saas_of_funqa_game_search_20260809_claude_code_search",
       "community": 712,
       "norm_label": "code search"
@@ -24694,7 +24811,7 @@
       "label": "Workflows",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L246",
+      "source_location": "L247",
       "id": "saas_of_funqa_game_search_20260809_claude_workflows",
       "community": 712,
       "norm_label": "workflows"
@@ -24703,7 +24820,7 @@
       "label": "Auto-Detection",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L266",
+      "source_location": "L267",
       "id": "saas_of_funqa_game_search_20260809_claude_auto_detection",
       "community": 712,
       "norm_label": "auto-detection"
@@ -24712,7 +24829,7 @@
       "label": "Rules",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L273",
+      "source_location": "L274",
       "id": "saas_of_funqa_game_search_20260809_claude_rules",
       "community": 712,
       "norm_label": "rules"
@@ -24721,7 +24838,7 @@
       "label": "Project Rules",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L279",
+      "source_location": "L280",
       "id": "saas_of_funqa_game_search_20260809_claude_project_rules",
       "community": 712,
       "norm_label": "project rules"
@@ -41823,7 +41940,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-qa/resources/checklist.md",
       "source_location": "L263",
       "id": "resources_checklist_final_sign_off",
-      "community": 544,
+      "community": 211,
       "norm_label": "final sign-off"
     },
     {
@@ -41832,7 +41949,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-qa/resources/checklist.md",
       "source_location": "L265",
       "id": "resources_checklist_critical_must_pass",
-      "community": 544,
+      "community": 211,
       "norm_label": "critical (must pass)"
     },
     {
@@ -41841,7 +41958,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-qa/resources/checklist.md",
       "source_location": "L272",
       "id": "resources_checklist_important_should_pass",
-      "community": 544,
+      "community": 211,
       "norm_label": "important (should pass)"
     },
     {
@@ -41850,7 +41967,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-qa/resources/checklist.md",
       "source_location": "L278",
       "id": "resources_checklist_nice_to_have_can_address_later",
-      "community": 544,
+      "community": 211,
       "norm_label": "nice-to-have (can address later)"
     },
     {
@@ -41859,7 +41976,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-qa/resources/checklist.md",
       "source_location": "L285",
       "id": "resources_checklist_issue_prioritization",
-      "community": 211,
+      "community": 948,
       "norm_label": "issue prioritization"
     },
     {
@@ -41868,7 +41985,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-qa/resources/checklist.md",
       "source_location": "L287",
       "id": "resources_checklist_critical_block_deployment",
-      "community": 211,
+      "community": 948,
       "norm_label": "critical (block deployment)"
     },
     {
@@ -41877,7 +41994,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-qa/resources/checklist.md",
       "source_location": "L293",
       "id": "resources_checklist_high_fix_before_launch",
-      "community": 211,
+      "community": 948,
       "norm_label": "high (fix before launch)"
     },
     {
@@ -41886,7 +42003,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-qa/resources/checklist.md",
       "source_location": "L299",
       "id": "resources_checklist_medium_fix_in_sprint",
-      "community": 211,
+      "community": 948,
       "norm_label": "medium (fix in sprint)"
     },
     {
@@ -41895,7 +42012,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-qa/resources/checklist.md",
       "source_location": "L305",
       "id": "resources_checklist_low_backlog",
-      "community": 211,
+      "community": 948,
       "norm_label": "low (backlog)"
     },
     {
@@ -55617,24 +55734,6 @@
     {
       "label": "SKILL.md",
       "file_type": "document",
-      "source_file": ".agents/skills/llm-wiki/SKILL.md",
-      "source_location": "L1",
-      "id": "agents_skills_llm_wiki_skill_md",
-      "community": 745,
-      "norm_label": "skill.md"
-    },
-    {
-      "label": "/skill:llm-wiki",
-      "file_type": "document",
-      "source_file": ".claude/skills/llm-wiki/SKILL.md",
-      "source_location": "L6",
-      "id": "llm_wiki_skill_skill_llm_wiki",
-      "community": 745,
-      "norm_label": "/skill:llm-wiki"
-    },
-    {
-      "label": "SKILL.md",
-      "file_type": "document",
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-voice/SKILL.md",
       "source_location": "L1",
       "id": "users_jangyoung_superset_projects_saas_of_funqa_agents_skills_oma_voice_skill_md",
@@ -61650,7 +61749,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L1",
       "id": "users_jangyoung_superset_projects_saas_of_funqa_agents_skills_oma_debug_resources_common_patterns_md",
-      "community": 436,
+      "community": 944,
       "norm_label": "common-patterns.md"
     },
     {
@@ -61659,7 +61758,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L1",
       "id": "resources_common_patterns_common_bug_patterns_solutions",
-      "community": 436,
+      "community": 944,
       "norm_label": "common bug patterns & solutions"
     },
     {
@@ -61704,7 +61803,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L33",
       "id": "resources_common_patterns_2_stale_closures_in_useeffect",
-      "community": 205,
+      "community": 960,
       "norm_label": "2. stale closures in useeffect"
     },
     {
@@ -61713,7 +61812,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L37",
       "id": "resources_common_patterns_codeblock_3",
-      "community": 205,
+      "community": 960,
       "norm_label": "code:typescript (function counter() {)"
     },
     {
@@ -61722,7 +61821,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L54",
       "id": "resources_common_patterns_codeblock_4",
-      "community": 205,
+      "community": 960,
       "norm_label": "code:typescript (// option 1: include dependency)"
     },
     {
@@ -61731,7 +61830,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L88",
       "id": "resources_common_patterns_3_missing_cleanup_in_useeffect",
-      "community": 897,
+      "community": 205,
       "norm_label": "3. missing cleanup in useeffect"
     },
     {
@@ -61740,7 +61839,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L92",
       "id": "resources_common_patterns_codeblock_5",
-      "community": 897,
+      "community": 205,
       "norm_label": "code:typescript (useeffect(() => {)"
     },
     {
@@ -61749,7 +61848,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L101",
       "id": "resources_common_patterns_codeblock_6",
-      "community": 897,
+      "community": 205,
       "norm_label": "code:typescript (useeffect(() => {)"
     },
     {
@@ -61785,7 +61884,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L151",
       "id": "resources_common_patterns_5_infinite_re_render_loops",
-      "community": 945,
+      "community": 205,
       "norm_label": "5. infinite re-render loops"
     },
     {
@@ -61794,7 +61893,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L155",
       "id": "resources_common_patterns_codeblock_9",
-      "community": 945,
+      "community": 205,
       "norm_label": "code:typescript (function component() {)"
     },
     {
@@ -61803,7 +61902,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L169",
       "id": "resources_common_patterns_codeblock_10",
-      "community": 945,
+      "community": 205,
       "norm_label": "code:typescript (// option 1: remove problematic dependency)"
     },
     {
@@ -61812,7 +61911,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L192",
       "id": "resources_common_patterns_6_key_prop_issues_in_lists",
-      "community": 205,
+      "community": 962,
       "norm_label": "6. key prop issues in lists"
     },
     {
@@ -61821,7 +61920,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L196",
       "id": "resources_common_patterns_codeblock_11",
-      "community": 205,
+      "community": 962,
       "norm_label": "code:typescript (// using index as key)"
     },
     {
@@ -61830,7 +61929,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L205",
       "id": "resources_common_patterns_codeblock_12",
-      "community": 205,
+      "community": 962,
       "norm_label": "code:typescript (// use stable, unique id)"
     },
     {
@@ -61902,7 +62001,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L273",
       "id": "resources_common_patterns_2_n_1_query_problem",
-      "community": 944,
+      "community": 206,
       "norm_label": "2. n+1 query problem"
     },
     {
@@ -61911,7 +62010,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L277",
       "id": "resources_common_patterns_codeblock_17",
-      "community": 944,
+      "community": 206,
       "norm_label": "code:python (# 1 query to get todos)"
     },
     {
@@ -61920,7 +62019,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L289",
       "id": "resources_common_patterns_codeblock_18",
-      "community": 944,
+      "community": 206,
       "norm_label": "code:python (# use join - single query)"
     },
     {
@@ -61983,7 +62082,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L358",
       "id": "resources_common_patterns_5_unhandled_exceptions",
-      "community": 206,
+      "community": 961,
       "norm_label": "5. unhandled exceptions"
     },
     {
@@ -61992,7 +62091,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L362",
       "id": "resources_common_patterns_codeblock_23",
-      "community": 206,
+      "community": 961,
       "norm_label": "code:python (@app.post(\"/api/todos\"))"
     },
     {
@@ -62001,7 +62100,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L373",
       "id": "resources_common_patterns_codeblock_24",
-      "community": 206,
+      "community": 961,
       "norm_label": "code:python (from fastapi import httpexception)"
     },
     {
@@ -62253,7 +62352,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L648",
       "id": "resources_common_patterns_common_error_messages_solutions",
-      "community": 436,
+      "community": 944,
       "norm_label": "common error messages & solutions"
     },
     {
@@ -62325,7 +62424,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L709",
       "id": "resources_common_patterns_when_to_use_each_agent",
-      "community": 436,
+      "community": 944,
       "norm_label": "when to use each agent"
     },
     {
@@ -62334,7 +62433,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L722",
       "id": "resources_common_patterns_prevention_tips",
-      "community": 436,
+      "community": 944,
       "norm_label": "prevention tips"
     },
     {
@@ -70006,6 +70105,15 @@
       "norm_label": "skill.md"
     },
     {
+      "label": "/skill:llm-wiki",
+      "file_type": "document",
+      "source_file": ".claude/skills/llm-wiki/SKILL.md",
+      "source_location": "L6",
+      "id": "llm_wiki_skill_skill_llm_wiki",
+      "community": 745,
+      "norm_label": "/skill:llm-wiki"
+    },
+    {
       "label": "SKILL.md",
       "file_type": "document",
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.claude/skills/deepsec/SKILL.md",
@@ -71514,7 +71622,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/docs/spec/funqa-consensus-rag-v1.md",
       "source_location": "L4092",
       "id": "spec_funqa_consensus_rag_v1_monetization_and_access_model",
-      "community": 943,
+      "community": 192,
       "norm_label": "monetization and access model"
     },
     {
@@ -71523,7 +71631,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/docs/spec/funqa-consensus-rag-v1.md",
       "source_location": "L4094",
       "id": "spec_funqa_consensus_rag_v1_tenant_and_member_model",
-      "community": 943,
+      "community": 192,
       "norm_label": "tenant and member model"
     },
     {
@@ -71532,7 +71640,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/docs/spec/funqa-consensus-rag-v1.md",
       "source_location": "L4103",
       "id": "spec_funqa_consensus_rag_v1_api_key_model",
-      "community": 943,
+      "community": 192,
       "norm_label": "api key model"
     },
     {
@@ -71541,7 +71649,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/docs/spec/funqa-consensus-rag-v1.md",
       "source_location": "L4116",
       "id": "spec_funqa_consensus_rag_v1_authorization_consequences",
-      "community": 943,
+      "community": 192,
       "norm_label": "authorization consequences"
     },
     {
@@ -72902,6 +73010,15 @@
       "id": "knowledge_log_2026_08_11_build_local_game_log_agentic_search_and_cocoindex_cycle",
       "community": 40,
       "norm_label": "[2026-08-11] build | local game-log agentic search and cocoindex cycle"
+    },
+    {
+      "label": "[2026-08-11] deploy | Restricted App Hosting game-log search shell",
+      "file_type": "document",
+      "source_file": "knowledge/log.md",
+      "source_location": "L476",
+      "id": "knowledge_log_2026_08_11_deploy_restricted_app_hosting_game_log_search_shell",
+      "community": 40,
+      "norm_label": "[2026-08-11] deploy | restricted app hosting game-log search shell"
     },
     {
       "label": "index.md",
@@ -75382,7 +75499,7 @@
       "label": "Honest limits",
       "file_type": "document",
       "source_file": "knowledge/wiki/reports/game-log-agentic-search-cycle-2026-08-11.md",
-      "source_location": "L25",
+      "source_location": "L26",
       "id": "reports_game_log_agentic_search_cycle_2026_08_11_honest_limits",
       "community": 866,
       "norm_label": "honest limits"
@@ -75391,7 +75508,7 @@
       "label": "Artifacts",
       "file_type": "document",
       "source_file": "knowledge/wiki/reports/game-log-agentic-search-cycle-2026-08-11.md",
-      "source_location": "L29",
+      "source_location": "L30",
       "id": "reports_game_log_agentic_search_cycle_2026_08_11_artifacts",
       "community": 866,
       "norm_label": "artifacts"
@@ -75400,7 +75517,7 @@
       "label": "Related",
       "file_type": "document",
       "source_file": "knowledge/wiki/reports/game-log-agentic-search-cycle-2026-08-11.md",
-      "source_location": "L39",
+      "source_location": "L40",
       "id": "reports_game_log_agentic_search_cycle_2026_08_11_related",
       "community": 866,
       "norm_label": "related"
@@ -78520,6 +78637,51 @@
       "norm_label": "explicit feedback request to every role"
     },
     {
+      "label": "012-game-production-director.md",
+      "file_type": "document",
+      "source_file": "_workspace/current/messages/012-game-production-director.md",
+      "source_location": "L1",
+      "id": "workspace_current_messages_012_game_production_director_md",
+      "community": 945,
+      "norm_label": "012-game-production-director.md"
+    },
+    {
+      "label": "Director Reply to QA Broadcast 011",
+      "file_type": "document",
+      "source_file": "_workspace/current/messages/012-game-production-director.md",
+      "source_location": "L20",
+      "id": "messages_012_game_production_director_director_reply_to_qa_broadcast_011",
+      "community": 945,
+      "norm_label": "director reply to qa broadcast 011"
+    },
+    {
+      "label": "Defect and exploit acceptance",
+      "file_type": "document",
+      "source_file": "_workspace/current/messages/012-game-production-director.md",
+      "source_location": "L24",
+      "id": "messages_012_game_production_director_defect_and_exploit_acceptance",
+      "community": 945,
+      "norm_label": "defect and exploit acceptance"
+    },
+    {
+      "label": "G1\u2013G8 verdict and owner reply",
+      "file_type": "document",
+      "source_file": "_workspace/current/messages/012-game-production-director.md",
+      "source_location": "L31",
+      "id": "messages_012_game_production_director_g1_g8_verdict_and_owner_reply",
+      "community": 945,
+      "norm_label": "g1\u2013g8 verdict and owner reply"
+    },
+    {
+      "label": "Restricted release decision",
+      "file_type": "document",
+      "source_file": "_workspace/current/messages/012-game-production-director.md",
+      "source_location": "L44",
+      "id": "messages_012_game_production_director_restricted_release_decision",
+      "community": 945,
+      "norm_label": "restricted release decision"
+    },
+    {
       "label": "005-game-designer.md",
       "file_type": "document",
       "source_file": "_workspace/current/messages/005-game-designer.md",
@@ -78590,6 +78752,24 @@
       "id": "messages_005_game_designer_feedback_requested",
       "community": 709,
       "norm_label": "feedback requested"
+    },
+    {
+      "label": "013-game-production-director.md",
+      "file_type": "document",
+      "source_file": "_workspace/current/messages/013-game-production-director.md",
+      "source_location": "L1",
+      "id": "workspace_current_messages_013_game_production_director_md",
+      "community": 964,
+      "norm_label": "013-game-production-director.md"
+    },
+    {
+      "label": "Director Restricted-Shell Rollout Record",
+      "file_type": "document",
+      "source_file": "_workspace/current/messages/013-game-production-director.md",
+      "source_location": "L20",
+      "id": "messages_013_game_production_director_director_restricted_shell_rollout_record",
+      "community": 964,
+      "norm_label": "director restricted-shell rollout record"
     },
     {
       "label": "010-game-qa.md",
@@ -79906,6 +80086,78 @@
       "norm_label": "what not to do yet"
     },
     {
+      "label": "cycle-1-retrospective.md",
+      "file_type": "document",
+      "source_file": "_workspace/current/retrospectives/cycle-1-retrospective.md",
+      "source_location": "L1",
+      "id": "workspace_current_retrospectives_cycle_1_retrospective_md",
+      "community": 943,
+      "norm_label": "cycle-1-retrospective.md"
+    },
+    {
+      "label": "Cycle 1 Retrospective",
+      "file_type": "document",
+      "source_file": "_workspace/current/retrospectives/cycle-1-retrospective.md",
+      "source_location": "L14",
+      "id": "retrospectives_cycle_1_retrospective_cycle_1_retrospective",
+      "community": 943,
+      "norm_label": "cycle 1 retrospective"
+    },
+    {
+      "label": "Director outcome",
+      "file_type": "document",
+      "source_file": "_workspace/current/retrospectives/cycle-1-retrospective.md",
+      "source_location": "L16",
+      "id": "retrospectives_cycle_1_retrospective_director_outcome",
+      "community": 943,
+      "norm_label": "director outcome"
+    },
+    {
+      "label": "Per-gate closeout",
+      "file_type": "document",
+      "source_file": "_workspace/current/retrospectives/cycle-1-retrospective.md",
+      "source_location": "L22",
+      "id": "retrospectives_cycle_1_retrospective_per_gate_closeout",
+      "community": 943,
+      "norm_label": "per-gate closeout"
+    },
+    {
+      "label": "What the cycle established",
+      "file_type": "document",
+      "source_file": "_workspace/current/retrospectives/cycle-1-retrospective.md",
+      "source_location": "L37",
+      "id": "retrospectives_cycle_1_retrospective_what_the_cycle_established",
+      "community": 943,
+      "norm_label": "what the cycle established"
+    },
+    {
+      "label": "Restricted shell rollout result",
+      "file_type": "document",
+      "source_file": "_workspace/current/retrospectives/cycle-1-retrospective.md",
+      "source_location": "L44",
+      "id": "retrospectives_cycle_1_retrospective_restricted_shell_rollout_result",
+      "community": 943,
+      "norm_label": "restricted shell rollout result"
+    },
+    {
+      "label": "Unresolved risks and exact next owners",
+      "file_type": "document",
+      "source_file": "_workspace/current/retrospectives/cycle-1-retrospective.md",
+      "source_location": "L55",
+      "id": "retrospectives_cycle_1_retrospective_unresolved_risks_and_exact_next_owners",
+      "community": 943,
+      "norm_label": "unresolved risks and exact next owners"
+    },
+    {
+      "label": "Next-cycle entry decision",
+      "file_type": "document",
+      "source_file": "_workspace/current/retrospectives/cycle-1-retrospective.md",
+      "source_location": "L65",
+      "id": "retrospectives_cycle_1_retrospective_next_cycle_entry_decision",
+      "community": 943,
+      "norm_label": "next-cycle entry decision"
+    },
+    {
       "label": "decision-log.md",
       "file_type": "document",
       "source_file": "_workspace/current/production/decision-log.md",
@@ -80014,6 +80266,69 @@
       "norm_label": "consequences"
     },
     {
+      "label": "Decision 003 \u2014 Authorize only the offline-ready App Hosting shell",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/decision-log.md",
+      "source_location": "L76",
+      "id": "production_decision_log_decision_003_authorize_only_the_offline_ready_app_hosting_shell",
+      "community": 693,
+      "norm_label": "decision 003 \u2014 authorize only the offline-ready app hosting shell"
+    },
+    {
+      "label": "code:yaml (decision: 003)",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/decision-log.md",
+      "source_location": "L78",
+      "id": "production_decision_log_codeblock_3",
+      "community": 693,
+      "norm_label": "code:yaml (decision: 003)"
+    },
+    {
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/decision-log.md",
+      "source_location": "L90",
+      "id": "production_decision_log_context_90",
+      "community": 693,
+      "norm_label": "context"
+    },
+    {
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/decision-log.md",
+      "source_location": "L96",
+      "id": "production_decision_log_decision_96",
+      "community": 693,
+      "norm_label": "decision"
+    },
+    {
+      "label": "Gate and cycle effect",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/decision-log.md",
+      "source_location": "L105",
+      "id": "production_decision_log_gate_and_cycle_effect",
+      "community": 693,
+      "norm_label": "gate and cycle effect"
+    },
+    {
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/decision-log.md",
+      "source_location": "L109",
+      "id": "production_decision_log_consequences_109",
+      "community": 693,
+      "norm_label": "consequences"
+    },
+    {
+      "label": "Deployment verification \u2014 2026-08-11",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/decision-log.md",
+      "source_location": "L116",
+      "id": "production_decision_log_deployment_verification_2026_08_11",
+      "community": 693,
+      "norm_label": "deployment verification \u2014 2026-08-11"
+    },
+    {
       "label": "task-manifest.md",
       "file_type": "document",
       "source_file": "_workspace/current/production/task-manifest.md",
@@ -80026,64 +80341,388 @@
       "label": "Stage 1\u20133 Task Manifest",
       "file_type": "document",
       "source_file": "_workspace/current/production/task-manifest.md",
-      "source_location": "L12",
+      "source_location": "L16",
       "id": "production_task_manifest_stage_1_3_task_manifest",
       "community": 710,
       "norm_label": "stage 1\u20133 task manifest"
     },
     {
-      "label": "Stage 1 \u2014 Concept, presentation, animation, resources, core build",
+      "label": "Stage 1 \u2014 artifact delivery and draft gates",
       "file_type": "document",
       "source_file": "_workspace/current/production/task-manifest.md",
-      "source_location": "L16",
-      "id": "production_task_manifest_stage_1_concept_presentation_animation_resources_core_build",
+      "source_location": "L20",
+      "id": "production_task_manifest_stage_1_artifact_delivery_and_draft_gates",
       "community": 710,
-      "norm_label": "stage 1 \u2014 concept, presentation, animation, resources, core build"
+      "norm_label": "stage 1 \u2014 artifact delivery and draft gates"
     },
     {
-      "label": "Stage 1 exit evidence",
+      "label": "Stage 2 \u2014 deterministic closeout and evidence qualification",
       "file_type": "document",
       "source_file": "_workspace/current/production/task-manifest.md",
-      "source_location": "L29",
-      "id": "production_task_manifest_stage_1_exit_evidence",
+      "source_location": "L33",
+      "id": "production_task_manifest_stage_2_deterministic_closeout_and_evidence_qualification",
       "community": 710,
-      "norm_label": "stage 1 exit evidence"
+      "norm_label": "stage 2 \u2014 deterministic closeout and evidence qualification"
     },
     {
-      "label": "Stage 2 \u2014 Balance, core-loop stability, novelty development",
+      "label": "Stage 3 \u2014 technical closeout and restricted release authorization",
       "file_type": "document",
       "source_file": "_workspace/current/production/task-manifest.md",
-      "source_location": "L36",
-      "id": "production_task_manifest_stage_2_balance_core_loop_stability_novelty_development",
+      "source_location": "L46",
+      "id": "production_task_manifest_stage_3_technical_closeout_and_restricted_release_authorization",
       "community": 710,
-      "norm_label": "stage 2 \u2014 balance, core-loop stability, novelty development"
+      "norm_label": "stage 3 \u2014 technical closeout and restricted release authorization"
     },
     {
-      "label": "Stage 2 exit evidence",
-      "file_type": "document",
-      "source_file": "_workspace/current/production/task-manifest.md",
-      "source_location": "L49",
-      "id": "production_task_manifest_stage_2_exit_evidence",
-      "community": 710,
-      "norm_label": "stage 2 exit evidence"
-    },
-    {
-      "label": "Stage 3 \u2014 Ops stability and play impact",
+      "label": "Current carry-forward truth",
       "file_type": "document",
       "source_file": "_workspace/current/production/task-manifest.md",
       "source_location": "L58",
-      "id": "production_task_manifest_stage_3_ops_stability_and_play_impact",
+      "id": "production_task_manifest_current_carry_forward_truth",
       "community": 710,
-      "norm_label": "stage 3 \u2014 ops stability and play impact"
+      "norm_label": "current carry-forward truth"
     },
     {
-      "label": "Stage 3 exit evidence",
+      "label": "stage-2-g5.md",
       "file_type": "document",
-      "source_file": "_workspace/current/production/task-manifest.md",
-      "source_location": "L70",
-      "id": "production_task_manifest_stage_3_exit_evidence",
-      "community": 710,
-      "norm_label": "stage 3 exit evidence"
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g5.md",
+      "source_location": "L1",
+      "id": "workspace_current_production_gate_reviews_stage_2_g5_md",
+      "community": 954,
+      "norm_label": "stage-2-g5.md"
+    },
+    {
+      "label": "Stage 2 \u2014 G5 Review",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g5.md",
+      "source_location": "L12",
+      "id": "gate_reviews_stage_2_g5_stage_2_g5_review",
+      "community": 954,
+      "norm_label": "stage 2 \u2014 g5 review"
+    },
+    {
+      "label": "Director verdict \u2014 FIX",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g5.md",
+      "source_location": "L22",
+      "id": "gate_reviews_stage_2_g5_director_verdict_fix",
+      "community": 954,
+      "norm_label": "director verdict \u2014 fix"
+    },
+    {
+      "label": "stage-1-g6-ops-draft.md",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-1-g6-ops-draft.md",
+      "source_location": "L1",
+      "id": "workspace_current_production_gate_reviews_stage_1_g6_ops_draft_md",
+      "community": 950,
+      "norm_label": "stage-1-g6-ops-draft.md"
+    },
+    {
+      "label": "Stage 1 \u2014 G6 Ops Draft Review",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-1-g6-ops-draft.md",
+      "source_location": "L12",
+      "id": "gate_reviews_stage_1_g6_ops_draft_stage_1_g6_ops_draft_review",
+      "community": 950,
+      "norm_label": "stage 1 \u2014 g6 ops draft review"
+    },
+    {
+      "label": "Director verdict \u2014 FIX",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-1-g6-ops-draft.md",
+      "source_location": "L22",
+      "id": "gate_reviews_stage_1_g6_ops_draft_director_verdict_fix",
+      "community": 950,
+      "norm_label": "director verdict \u2014 fix"
+    },
+    {
+      "label": "stage-2-g7-final.md",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g7-final.md",
+      "source_location": "L1",
+      "id": "workspace_current_production_gate_reviews_stage_2_g7_final_md",
+      "community": 955,
+      "norm_label": "stage-2-g7-final.md"
+    },
+    {
+      "label": "Stage 2 \u2014 G7 Final Review",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g7-final.md",
+      "source_location": "L12",
+      "id": "gate_reviews_stage_2_g7_final_stage_2_g7_final_review",
+      "community": 955,
+      "norm_label": "stage 2 \u2014 g7 final review"
+    },
+    {
+      "label": "Director verdict \u2014 FIX",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g7-final.md",
+      "source_location": "L22",
+      "id": "gate_reviews_stage_2_g7_final_director_verdict_fix",
+      "community": 955,
+      "norm_label": "director verdict \u2014 fix"
+    },
+    {
+      "label": "stage-3-g4.md",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-3-g4.md",
+      "source_location": "L1",
+      "id": "workspace_current_production_gate_reviews_stage_3_g4_md",
+      "community": 958,
+      "norm_label": "stage-3-g4.md"
+    },
+    {
+      "label": "Stage 3 \u2014 G4 Review",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-3-g4.md",
+      "source_location": "L12",
+      "id": "gate_reviews_stage_3_g4_stage_3_g4_review",
+      "community": 958,
+      "norm_label": "stage 3 \u2014 g4 review"
+    },
+    {
+      "label": "Director verdict \u2014 FIX",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-3-g4.md",
+      "source_location": "L22",
+      "id": "gate_reviews_stage_3_g4_director_verdict_fix",
+      "community": 958,
+      "norm_label": "director verdict \u2014 fix"
+    },
+    {
+      "label": "stage-1-g1-draft.md",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-1-g1-draft.md",
+      "source_location": "L1",
+      "id": "workspace_current_production_gate_reviews_stage_1_g1_draft_md",
+      "community": 949,
+      "norm_label": "stage-1-g1-draft.md"
+    },
+    {
+      "label": "Stage 1 \u2014 G1 Draft Review",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-1-g1-draft.md",
+      "source_location": "L12",
+      "id": "gate_reviews_stage_1_g1_draft_stage_1_g1_draft_review",
+      "community": 949,
+      "norm_label": "stage 1 \u2014 g1 draft review"
+    },
+    {
+      "label": "Director verdict \u2014 FIX",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-1-g1-draft.md",
+      "source_location": "L22",
+      "id": "gate_reviews_stage_1_g1_draft_director_verdict_fix",
+      "community": 949,
+      "norm_label": "director verdict \u2014 fix"
+    },
+    {
+      "label": "stage-2-g8.md",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g8.md",
+      "source_location": "L1",
+      "id": "workspace_current_production_gate_reviews_stage_2_g8_md",
+      "community": 956,
+      "norm_label": "stage-2-g8.md"
+    },
+    {
+      "label": "Stage 2 \u2014 G8 Review",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g8.md",
+      "source_location": "L12",
+      "id": "gate_reviews_stage_2_g8_stage_2_g8_review",
+      "community": 956,
+      "norm_label": "stage 2 \u2014 g8 review"
+    },
+    {
+      "label": "Director verdict \u2014 FIX",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g8.md",
+      "source_location": "L22",
+      "id": "gate_reviews_stage_2_g8_director_verdict_fix",
+      "community": 956,
+      "norm_label": "director verdict \u2014 fix"
+    },
+    {
+      "label": "stage-3-g1-final.md",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-3-g1-final.md",
+      "source_location": "L1",
+      "id": "workspace_current_production_gate_reviews_stage_3_g1_final_md",
+      "community": 957,
+      "norm_label": "stage-3-g1-final.md"
+    },
+    {
+      "label": "Stage 3 \u2014 G1 Final Review",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-3-g1-final.md",
+      "source_location": "L12",
+      "id": "gate_reviews_stage_3_g1_final_stage_3_g1_final_review",
+      "community": 957,
+      "norm_label": "stage 3 \u2014 g1 final review"
+    },
+    {
+      "label": "Director verdict \u2014 FIX",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-3-g1-final.md",
+      "source_location": "L22",
+      "id": "gate_reviews_stage_3_g1_final_director_verdict_fix",
+      "community": 957,
+      "norm_label": "director verdict \u2014 fix"
+    },
+    {
+      "label": "stage-3-g6-final.md",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-3-g6-final.md",
+      "source_location": "L1",
+      "id": "workspace_current_production_gate_reviews_stage_3_g6_final_md",
+      "community": 959,
+      "norm_label": "stage-3-g6-final.md"
+    },
+    {
+      "label": "Stage 3 \u2014 G6 Final Review",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-3-g6-final.md",
+      "source_location": "L12",
+      "id": "gate_reviews_stage_3_g6_final_stage_3_g6_final_review",
+      "community": 959,
+      "norm_label": "stage 3 \u2014 g6 final review"
+    },
+    {
+      "label": "Director verdict \u2014 FIX",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-3-g6-final.md",
+      "source_location": "L22",
+      "id": "gate_reviews_stage_3_g6_final_director_verdict_fix",
+      "community": 959,
+      "norm_label": "director verdict \u2014 fix"
+    },
+    {
+      "label": "stage-2-g3.md",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g3.md",
+      "source_location": "L1",
+      "id": "workspace_current_production_gate_reviews_stage_2_g3_md",
+      "community": 953,
+      "norm_label": "stage-2-g3.md"
+    },
+    {
+      "label": "Stage 2 \u2014 G3 Review",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g3.md",
+      "source_location": "L12",
+      "id": "gate_reviews_stage_2_g3_stage_2_g3_review",
+      "community": 953,
+      "norm_label": "stage 2 \u2014 g3 review"
+    },
+    {
+      "label": "Director verdict \u2014 FIX",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g3.md",
+      "source_location": "L22",
+      "id": "gate_reviews_stage_2_g3_director_verdict_fix",
+      "community": 953,
+      "norm_label": "director verdict \u2014 fix"
+    },
+    {
+      "label": "stage-2-g2.md",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g2.md",
+      "source_location": "L1",
+      "id": "workspace_current_production_gate_reviews_stage_2_g2_md",
+      "community": 952,
+      "norm_label": "stage-2-g2.md"
+    },
+    {
+      "label": "Stage 2 \u2014 G2 Review",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g2.md",
+      "source_location": "L12",
+      "id": "gate_reviews_stage_2_g2_stage_2_g2_review",
+      "community": 952,
+      "norm_label": "stage 2 \u2014 g2 review"
+    },
+    {
+      "label": "Director verdict \u2014 FIX",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g2.md",
+      "source_location": "L22",
+      "id": "gate_reviews_stage_2_g2_director_verdict_fix",
+      "community": 952,
+      "norm_label": "director verdict \u2014 fix"
+    },
+    {
+      "label": "stage-1-g7-draft.md",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-1-g7-draft.md",
+      "source_location": "L1",
+      "id": "workspace_current_production_gate_reviews_stage_1_g7_draft_md",
+      "community": 951,
+      "norm_label": "stage-1-g7-draft.md"
+    },
+    {
+      "label": "Stage 1 \u2014 G7 Draft Review",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-1-g7-draft.md",
+      "source_location": "L12",
+      "id": "gate_reviews_stage_1_g7_draft_stage_1_g7_draft_review",
+      "community": 951,
+      "norm_label": "stage 1 \u2014 g7 draft review"
+    },
+    {
+      "label": "Director verdict \u2014 FIX",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/gate-reviews/stage-1-g7-draft.md",
+      "source_location": "L22",
+      "id": "gate_reviews_stage_1_g7_draft_director_verdict_fix",
+      "community": 951,
+      "norm_label": "director verdict \u2014 fix"
+    },
+    {
+      "label": "apphosting-release-2026-08-11.md",
+      "file_type": "document",
+      "source_file": "_workspace/current/ops/apphosting-release-2026-08-11.md",
+      "source_location": "L1",
+      "id": "workspace_current_ops_apphosting_release_2026_08_11_md",
+      "community": 947,
+      "norm_label": "apphosting-release-2026-08-11.md"
+    },
+    {
+      "label": "Firebase App Hosting restricted shell release",
+      "file_type": "document",
+      "source_file": "_workspace/current/ops/apphosting-release-2026-08-11.md",
+      "source_location": "L11",
+      "id": "ops_apphosting_release_2026_08_11_firebase_app_hosting_restricted_shell_release",
+      "community": 947,
+      "norm_label": "firebase app hosting restricted shell release"
+    },
+    {
+      "label": "Rollout",
+      "file_type": "document",
+      "source_file": "_workspace/current/ops/apphosting-release-2026-08-11.md",
+      "source_location": "L13",
+      "id": "ops_apphosting_release_2026_08_11_rollout",
+      "community": 947,
+      "norm_label": "rollout"
+    },
+    {
+      "label": "Fresh production verification",
+      "file_type": "document",
+      "source_file": "_workspace/current/ops/apphosting-release-2026-08-11.md",
+      "source_location": "L22",
+      "id": "ops_apphosting_release_2026_08_11_fresh_production_verification",
+      "community": 947,
+      "norm_label": "fresh production verification"
+    },
+    {
+      "label": "Authority boundary",
+      "file_type": "document",
+      "source_file": "_workspace/current/ops/apphosting-release-2026-08-11.md",
+      "source_location": "L36",
+      "id": "ops_apphosting_release_2026_08_11_authority_boundary",
+      "community": 947,
+      "norm_label": "authority boundary"
     },
     {
       "label": "rollback-runbook.md",
@@ -80237,6 +80876,15 @@
       "id": "ops_release_readiness_programmer_defect_responses",
       "community": 868,
       "norm_label": "programmer defect responses"
+    },
+    {
+      "label": "Restricted shell rollout receipt",
+      "file_type": "document",
+      "source_file": "_workspace/current/ops/release-readiness.md",
+      "source_location": "L84",
+      "id": "ops_release_readiness_restricted_shell_rollout_receipt",
+      "community": 868,
+      "norm_label": "restricted shell rollout receipt"
     },
     {
       "label": "telemetry-contract.md",
@@ -81016,7 +81664,7 @@
       "label": "Rendering contract",
       "file_type": "document",
       "source_file": "_workspace/current/engineering/resource-manifest.md",
-      "source_location": "L33",
+      "source_location": "L36",
       "id": "engineering_resource_manifest_rendering_contract",
       "community": 730,
       "norm_label": "rendering contract"
@@ -81025,7 +81673,7 @@
       "label": "Ownership",
       "file_type": "document",
       "source_file": "_workspace/current/engineering/resource-manifest.md",
-      "source_location": "L42",
+      "source_location": "L45",
       "id": "engineering_resource_manifest_ownership",
       "community": 730,
       "norm_label": "ownership"
@@ -82109,6 +82757,69 @@
       "id": "reports_worker_1_task_1_consensus_guardrails_for_implementation",
       "community": 677,
       "norm_label": "guardrails for implementation"
+    },
+    {
+      "label": "SKILL.md",
+      "file_type": "document",
+      "source_file": ".agents/skills/llm-wiki/SKILL.md",
+      "source_location": "L1",
+      "community": 745,
+      "norm_label": "skill.md",
+      "id": "agents_skills_llm_wiki_skill_md"
+    },
+    {
+      "label": "Stage 1 \u2014 Concept, presentation, animation, resources, core build",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/task-manifest.md",
+      "source_location": "L16",
+      "community": 710,
+      "norm_label": "stage 1 \u2014 concept, presentation, animation, resources, core build",
+      "id": "production_task_manifest_stage_1_concept_presentation_animation_resources_core_build"
+    },
+    {
+      "label": "Stage 1 exit evidence",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/task-manifest.md",
+      "source_location": "L29",
+      "community": 710,
+      "norm_label": "stage 1 exit evidence",
+      "id": "production_task_manifest_stage_1_exit_evidence"
+    },
+    {
+      "label": "Stage 2 \u2014 Balance, core-loop stability, novelty development",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/task-manifest.md",
+      "source_location": "L36",
+      "community": 710,
+      "norm_label": "stage 2 \u2014 balance, core-loop stability, novelty development",
+      "id": "production_task_manifest_stage_2_balance_core_loop_stability_novelty_development"
+    },
+    {
+      "label": "Stage 2 exit evidence",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/task-manifest.md",
+      "source_location": "L49",
+      "community": 710,
+      "norm_label": "stage 2 exit evidence",
+      "id": "production_task_manifest_stage_2_exit_evidence"
+    },
+    {
+      "label": "Stage 3 \u2014 Ops stability and play impact",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/task-manifest.md",
+      "source_location": "L58",
+      "community": 710,
+      "norm_label": "stage 3 \u2014 ops stability and play impact",
+      "id": "production_task_manifest_stage_3_ops_stability_and_play_impact"
+    },
+    {
+      "label": "Stage 3 exit evidence",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/task-manifest.md",
+      "source_location": "L70",
+      "community": 710,
+      "norm_label": "stage 3 exit evidence",
+      "id": "production_task_manifest_stage_3_exit_evidence"
     },
     {
       "label": "Q01-exact-cooldown",
@@ -84788,7 +85499,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1016",
-      "community": 871,
+      "community": 140,
       "norm_label": "cosinesimilarity()",
       "id": "lib_index_cosinesimilarity"
     },
@@ -84833,7 +85544,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1130",
-      "community": 871,
+      "community": 140,
       "norm_label": "rerankwithcohere()",
       "id": "lib_index_rerankwithcohere"
     },
@@ -84869,7 +85580,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1185",
-      "community": 871,
+      "community": 140,
       "norm_label": "evaluateconsensus()",
       "id": "lib_index_evaluateconsensus"
     },
@@ -84878,7 +85589,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1228",
-      "community": 871,
+      "community": 140,
       "norm_label": "evaluatechunkcorrectness()",
       "id": "lib_index_evaluatechunkcorrectness"
     },
@@ -84887,7 +85598,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1241",
-      "community": 871,
+      "community": 140,
       "norm_label": "cragfilter()",
       "id": "lib_index_cragfilter"
     },
@@ -84896,7 +85607,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1263",
-      "community": 140,
+      "community": 652,
       "norm_label": "pipelinedocuments()",
       "id": "lib_index_pipelinedocuments"
     },
@@ -85085,7 +85796,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1488",
-      "community": 140,
+      "community": 652,
       "norm_label": "savefirestoreragartifacts()",
       "id": "lib_index_savefirestoreragartifacts"
     },
@@ -85094,7 +85805,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1513",
-      "community": 140,
+      "community": 652,
       "norm_label": "upsertfirestoreragartifacts()",
       "id": "lib_index_upsertfirestoreragartifacts"
     },
@@ -85175,7 +85886,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1662",
-      "community": 871,
+      "community": 140,
       "norm_label": "runanswerflow()",
       "id": "lib_index_runanswerflow"
     },
@@ -85202,7 +85913,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1690",
-      "community": 140,
+      "community": 652,
       "norm_label": "invalidate()",
       "id": "lib_index_invalidate"
     },
@@ -85229,7 +85940,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1704",
-      "community": 871,
+      "community": 140,
       "norm_label": "buildcachekey()",
       "id": "lib_index_buildcachekey"
     },
@@ -85238,7 +85949,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1710",
-      "community": 871,
+      "community": 140,
       "norm_label": "recordrequest()",
       "id": "lib_index_recordrequest"
     },
@@ -85355,7 +86066,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L2001",
-      "community": 140,
+      "community": 652,
       "norm_label": "ingestdocuments()",
       "id": "lib_index_ingestdocuments"
     },
@@ -85364,7 +86075,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L2021",
-      "community": 140,
+      "community": 652,
       "norm_label": "ingestadditionaldocuments()",
       "id": "lib_index_ingestadditionaldocuments"
     },
@@ -85373,7 +86084,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L2050",
-      "community": 871,
+      "community": 140,
       "norm_label": "searchdocuments()",
       "id": "lib_index_searchdocuments"
     },
@@ -85670,7 +86381,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L2829",
-      "community": 5,
+      "community": 743,
       "norm_label": "runsearchflow()",
       "id": "lib_index_runsearchflow"
     },
@@ -86030,7 +86741,7 @@
       "file_type": "code",
       "source_file": "apps/web/components/category-tab-bar.tsx",
       "source_location": "L1",
-      "community": 695,
+      "community": 897,
       "norm_label": "category-tab-bar.tsx",
       "id": "apps_web_components_category_tab_bar_tsx"
     },
@@ -86147,7 +86858,7 @@
       "file_type": "code",
       "source_file": "apps/api/src/genkit.ts",
       "source_location": "L1",
-      "community": 52,
+      "community": 840,
       "norm_label": "genkit.ts",
       "id": "apps_api_src_genkit_ts"
     },
@@ -86255,7 +86966,7 @@
       "file_type": "code",
       "source_file": "apps/api/src/routes/search.route.ts",
       "source_location": "L1",
-      "community": 5,
+      "community": 743,
       "norm_label": "search.route.ts",
       "id": "apps_api_src_routes_search_route_ts"
     },
@@ -86381,7 +87092,7 @@
       "file_type": "document",
       "source_file": "README.md",
       "source_location": "L47",
-      "community": 49,
+      "community": 963,
       "norm_label": "\u110b\u1161\u110f\u1175\u1110\u1166\u11a8\u110e\u1165",
       "id": "saas_of_funqa_readme_\uc544\ud0a4\ud14d\ucc98"
     },
@@ -86390,7 +87101,7 @@
       "file_type": "document",
       "source_file": "README.md",
       "source_location": "L49",
-      "community": 49,
+      "community": 963,
       "norm_label": "code:block1 (browser \u2500\u2500\u25ba next.js (app hosting) \u2500\u2500\u25ba firebase functions v2 )",
       "id": "saas_of_funqa_readme_codeblock_1"
     },
@@ -86399,7 +87110,7 @@
       "file_type": "document",
       "source_file": "README.md",
       "source_location": "L60",
-      "community": 49,
+      "community": 963,
       "norm_label": "code:block2 (\u1106\u116e\u11ab\u1109\u1165 \u110b\u1175\u11b8\u1105\u1167\u11a8 \u2192 normalize \u2192 extract \u2192 semantic-chunk \u2192 embed \u2192 index)",
       "id": "saas_of_funqa_readme_codeblock_2"
     },
@@ -89423,7 +90134,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L1",
-      "community": 436,
+      "community": 944,
       "norm_label": "common-patterns.md",
       "id": "agents_skills_oma_debug_resources_common_patterns_md"
     },
@@ -96056,7 +96767,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-a1783371/apps/web/app/page.tsx",
       "source_location": "L1",
-      "community": 9,
+      "community": 23,
       "norm_label": "page.tsx",
       "id": "claude_worktrees_agent_a1783371_apps_web_app_page_tsx"
     },
@@ -96128,7 +96839,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-a1783371/apps/web/components/category-tab-bar.tsx",
       "source_location": "L1",
-      "community": 695,
+      "community": 897,
       "norm_label": "category-tab-bar.tsx",
       "id": "claude_worktrees_agent_a1783371_apps_web_components_category_tab_bar_tsx"
     },
@@ -96344,7 +97055,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-a1783371/apps/api/src/genkit.ts",
       "source_location": "L1",
-      "community": 5,
+      "community": 840,
       "norm_label": "genkit.ts",
       "id": "claude_worktrees_agent_a1783371_apps_api_src_genkit_ts"
     },
@@ -96425,7 +97136,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-a1783371/apps/api/src/flows/search.ts",
       "source_location": "L1",
-      "community": 5,
+      "community": 743,
       "norm_label": "search.ts",
       "id": "claude_worktrees_agent_a1783371_apps_api_src_flows_search_ts"
     },
@@ -96452,7 +97163,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-a1783371/apps/api/src/routes/search.route.ts",
       "source_location": "L1",
-      "community": 5,
+      "community": 743,
       "norm_label": "search.route.ts",
       "id": "claude_worktrees_agent_a1783371_apps_api_src_routes_search_route_ts"
     },
@@ -96560,7 +97271,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-a1783371/apps/api/src/services/rag-cache.service.ts",
       "source_location": "L1",
-      "community": 476,
+      "community": 3,
       "norm_label": "rag-cache.service.ts",
       "id": "claude_worktrees_agent_a1783371_apps_api_src_services_rag_cache_service_ts"
     },
@@ -96578,7 +97289,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-a1783371/apps/api/src/services/rag.service.ts",
       "source_location": "L63",
-      "community": 5,
+      "community": 3,
       "norm_label": "buildconsensusscaffold()",
       "id": "services_rag_service_buildconsensusscaffold"
     },
@@ -97793,7 +98504,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-ab6cd01e/apps/web/app/page.tsx",
       "source_location": "L1",
-      "community": 9,
+      "community": 23,
       "norm_label": "page.tsx",
       "id": "claude_worktrees_agent_ab6cd01e_apps_web_app_page_tsx"
     },
@@ -97865,7 +98576,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-ab6cd01e/apps/web/components/category-tab-bar.tsx",
       "source_location": "L1",
-      "community": 695,
+      "community": 897,
       "norm_label": "category-tab-bar.tsx",
       "id": "claude_worktrees_agent_ab6cd01e_apps_web_components_category_tab_bar_tsx"
     },
@@ -97991,7 +98702,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-ab6cd01e/apps/api/src/genkit.ts",
       "source_location": "L1",
-      "community": 5,
+      "community": 840,
       "norm_label": "genkit.ts",
       "id": "claude_worktrees_agent_ab6cd01e_apps_api_src_genkit_ts"
     },
@@ -98072,7 +98783,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-ab6cd01e/apps/api/src/flows/search.ts",
       "source_location": "L1",
-      "community": 5,
+      "community": 743,
       "norm_label": "search.ts",
       "id": "claude_worktrees_agent_ab6cd01e_apps_api_src_flows_search_ts"
     },
@@ -98099,7 +98810,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-ab6cd01e/apps/api/src/routes/search.route.ts",
       "source_location": "L1",
-      "community": 5,
+      "community": 743,
       "norm_label": "search.route.ts",
       "id": "claude_worktrees_agent_ab6cd01e_apps_api_src_routes_search_route_ts"
     },
@@ -98171,7 +98882,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-ab6cd01e/apps/api/src/routes/rag.route.ts",
       "source_location": "L1",
-      "community": 412,
+      "community": 3,
       "norm_label": "rag.route.ts",
       "id": "claude_worktrees_agent_ab6cd01e_apps_api_src_routes_rag_route_ts"
     },
@@ -98198,7 +98909,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-ab6cd01e/apps/api/src/services/rag-cache.service.ts",
       "source_location": "L1",
-      "community": 476,
+      "community": 3,
       "norm_label": "rag-cache.service.ts",
       "id": "claude_worktrees_agent_ab6cd01e_apps_api_src_services_rag_cache_service_ts"
     },
@@ -100601,7 +101312,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1850",
-      "community": 871,
+      "community": 140,
       "norm_label": "buildconsensusscaffold()",
       "id": "lib_index_buildconsensusscaffold"
     },
@@ -102572,7 +103283,7 @@
       "file_type": "code",
       "source_file": "apps/web/app/page.tsx",
       "source_location": "L215",
-      "community": 892,
+      "community": 23,
       "norm_label": "withlocale()",
       "id": "page_withlocale"
     },
@@ -102698,7 +103409,7 @@
       "file_type": "code",
       "source_file": "apps/web/components/category-tab-bar.tsx",
       "source_location": "L11",
-      "community": 695,
+      "community": 897,
       "norm_label": "categorytabbar()",
       "id": "category_tab_bar_categorytabbar"
     },
@@ -103265,7 +103976,7 @@
       "file_type": "code",
       "source_file": "apps/api/src/flows/search.ts",
       "source_location": "L65",
-      "community": 5,
+      "community": 743,
       "norm_label": "runsearchflow()",
       "id": "search_runsearchflow"
     },
@@ -103292,7 +104003,7 @@
       "file_type": "code",
       "source_file": "apps/api/src/routes/search.route.ts",
       "source_location": "L5",
-      "community": 5,
+      "community": 743,
       "norm_label": "registersearchroute()",
       "id": "search_route_registersearchroute"
     },
@@ -103445,7 +104156,7 @@
       "file_type": "code",
       "source_file": "apps/api/src/services/rag-cache.service.ts",
       "source_location": "L60",
-      "community": 476,
+      "community": 3,
       "norm_label": "buildcachekey()",
       "id": "rag_cache_service_buildcachekey"
     },
@@ -103571,7 +104282,7 @@
       "file_type": "code",
       "source_file": "apps/api/src/services/rag-optimization.service.ts",
       "source_location": "L28",
-      "community": 52,
+      "community": 840,
       "norm_label": "getlivemodel()",
       "id": "rag_optimization_service_getlivemodel"
     },
@@ -103580,7 +104291,7 @@
       "file_type": "code",
       "source_file": "apps/api/src/services/rag-optimization.service.ts",
       "source_location": "L32",
-      "community": 52,
+      "community": 840,
       "norm_label": "transformquerywithgenkit()",
       "id": "rag_optimization_service_transformquerywithgenkit"
     },
@@ -103589,7 +104300,7 @@
       "file_type": "code",
       "source_file": "apps/api/src/services/rag-optimization.service.ts",
       "source_location": "L61",
-      "community": 52,
+      "community": 840,
       "norm_label": "rerankwithgenkit()",
       "id": "rag_optimization_service_rerankwithgenkit"
     },
@@ -103598,7 +104309,7 @@
       "file_type": "code",
       "source_file": "apps/api/src/services/rag-optimization.service.ts",
       "source_location": "L125",
-      "community": 52,
+      "community": 840,
       "norm_label": "pipelinedocuments()",
       "id": "rag_optimization_service_pipelinedocuments"
     },
@@ -103607,7 +104318,7 @@
       "file_type": "code",
       "source_file": "apps/api/src/services/rag-optimization.service.ts",
       "source_location": "L138",
-      "community": 52,
+      "community": 840,
       "norm_label": "buildqueryvector()",
       "id": "rag_optimization_service_buildqueryvector"
     },
@@ -103616,7 +104327,7 @@
       "file_type": "code",
       "source_file": "apps/api/src/services/rag-optimization.service.ts",
       "source_location": "L153",
-      "community": 52,
+      "community": 840,
       "norm_label": "runoptimizedpipeline()",
       "id": "rag_optimization_service_runoptimizedpipeline"
     },
@@ -103625,7 +104336,7 @@
       "file_type": "code",
       "source_file": "apps/api/src/services/rag-optimization.service.ts",
       "source_location": "L213",
-      "community": 52,
+      "community": 840,
       "norm_label": "inspectoptimizedpipeline()",
       "id": "rag_optimization_service_inspectoptimizedpipeline"
     }
@@ -139603,6 +140314,126 @@
       "confidence_score": 1.0,
       "source": "claude_worktrees_agent_ab6cd01e_apps_web_components_auth_provider_tsx",
       "target": "components_auth_provider_useauth"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "apps_web_public_game_log_search_patch_ledger_plate_1600x900_webp_provenance_json",
+      "target": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_schemaversion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "apps_web_public_game_log_search_patch_ledger_plate_1600x900_webp_provenance_json",
+      "target": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_asset",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "apps_web_public_game_log_search_patch_ledger_plate_1600x900_webp_provenance_json",
+      "target": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_provider",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "apps_web_public_game_log_search_patch_ledger_plate_1600x900_webp_provenance_json",
+      "target": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_model",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "apps_web_public_game_log_search_patch_ledger_plate_1600x900_webp_provenance_json",
+      "target": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_prompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "apps_web_public_game_log_search_patch_ledger_plate_1600x900_webp_provenance_json",
+      "target": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_promptstatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "apps_web_public_game_log_search_patch_ledger_plate_1600x900_webp_provenance_json",
+      "target": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_acceptedvisualdescription",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "apps_web_public_game_log_search_patch_ledger_plate_1600x900_webp_provenance_json",
+      "target": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_inputs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "apps_web_public_game_log_search_patch_ledger_plate_1600x900_webp_provenance_json",
+      "target": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_responseid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "apps_web_public_game_log_search_patch_ledger_plate_1600x900_webp_provenance_json",
+      "target": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_sha256",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "apps_web_public_game_log_search_patch_ledger_plate_1600x900_webp_provenance_json",
+      "target": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_rightsnotes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/public/game-log-search/patch-ledger-plate-1600x900.webp.provenance.json",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "apps_web_public_game_log_search_patch_ledger_plate_1600x900_webp_provenance_json",
+      "target": "game_log_search_patch_ledger_plate_1600x900_webp_provenance_runtimeeligible",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -202834,26 +203665,6 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": ".agents/skills/llm-wiki/SKILL.md",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "agents_skills_llm_wiki_skill_md",
-      "target": "llm_wiki_skill_skill_llm_wiki"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".claude/skills/llm-wiki/SKILL.md",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "claude_skills_llm_wiki_skill_md",
-      "target": "llm_wiki_skill_skill_llm_wiki"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-voice/SKILL.md",
       "source_location": "L12",
       "weight": 1.0,
@@ -218534,6 +219345,26 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": ".claude/skills/llm-wiki/SKILL.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "claude_skills_llm_wiki_skill_md",
+      "target": "llm_wiki_skill_skill_llm_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/skills/llm-wiki/SKILL.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "agents_skills_llm_wiki_skill_md",
+      "target": "llm_wiki_skill_skill_llm_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/docs/PLANS.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -221580,6 +222411,16 @@
       "confidence_score": 1.0,
       "source": "knowledge_log_log",
       "target": "knowledge_log_2026_08_11_build_local_game_log_agentic_search_and_cocoindex_cycle"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "knowledge/log.md",
+      "source_location": "L476",
+      "weight": 1.0,
+      "source": "knowledge_log_log",
+      "target": "knowledge_log_2026_08_11_deploy_restricted_app_hosting_game_log_search_shell",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -228244,6 +229085,46 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/messages/012-game-production-director.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "workspace_current_messages_012_game_production_director_md",
+      "target": "messages_012_game_production_director_director_reply_to_qa_broadcast_011",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/messages/012-game-production-director.md",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "messages_012_game_production_director_director_reply_to_qa_broadcast_011",
+      "target": "messages_012_game_production_director_defect_and_exploit_acceptance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/messages/012-game-production-director.md",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "messages_012_game_production_director_director_reply_to_qa_broadcast_011",
+      "target": "messages_012_game_production_director_g1_g8_verdict_and_owner_reply",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/messages/012-game-production-director.md",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "messages_012_game_production_director_director_reply_to_qa_broadcast_011",
+      "target": "messages_012_game_production_director_restricted_release_decision",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "_workspace/current/messages/005-game-designer.md",
       "source_location": "L20",
       "weight": 1.0,
@@ -228310,6 +229191,16 @@
       "confidence_score": 1.0,
       "source": "messages_005_game_designer_phase_1b_game_designer_handback",
       "target": "messages_005_game_designer_feedback_requested"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/messages/013-game-production-director.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "workspace_current_messages_013_game_production_director_md",
+      "target": "messages_013_game_production_director_director_restricted_shell_rollout_record",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -228737,9 +229628,9 @@
       "source_file": "_workspace/current/messages/011-game-qa.md",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "workspace_current_messages_011_game_qa_md",
-      "target": "messages_011_game_qa_final_qa_closeout_broadcast",
-      "confidence_score": 1.0
+      "target": "messages_011_game_qa_final_qa_closeout_broadcast"
     },
     {
       "relation": "contains",
@@ -228747,9 +229638,9 @@
       "source_file": "_workspace/current/messages/011-game-qa.md",
       "source_location": "L25",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "messages_011_game_qa_final_qa_closeout_broadcast",
-      "target": "messages_011_game_qa_final_automated_and_deterministic_receipts",
-      "confidence_score": 1.0
+      "target": "messages_011_game_qa_final_automated_and_deterministic_receipts"
     },
     {
       "relation": "contains",
@@ -228757,9 +229648,9 @@
       "source_file": "_workspace/current/messages/011-game-qa.md",
       "source_location": "L35",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "messages_011_game_qa_final_qa_closeout_broadcast",
-      "target": "messages_011_game_qa_defect_and_exploit_disposition",
-      "confidence_score": 1.0
+      "target": "messages_011_game_qa_defect_and_exploit_disposition"
     },
     {
       "relation": "contains",
@@ -228767,9 +229658,9 @@
       "source_file": "_workspace/current/messages/011-game-qa.md",
       "source_location": "L42",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "messages_011_game_qa_final_qa_closeout_broadcast",
-      "target": "messages_011_game_qa_g1_g8_measurement_disposition",
-      "confidence_score": 1.0
+      "target": "messages_011_game_qa_g1_g8_measurement_disposition"
     },
     {
       "relation": "contains",
@@ -228777,9 +229668,9 @@
       "source_file": "_workspace/current/messages/011-game-qa.md",
       "source_location": "L53",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "messages_011_game_qa_final_qa_closeout_broadcast",
-      "target": "messages_011_game_qa_highest_severity_unresolved_evidence_boundaries",
-      "confidence_score": 1.0
+      "target": "messages_011_game_qa_highest_severity_unresolved_evidence_boundaries"
     },
     {
       "relation": "contains",
@@ -228787,9 +229678,9 @@
       "source_file": "_workspace/current/messages/011-game-qa.md",
       "source_location": "L63",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "messages_011_game_qa_final_qa_closeout_broadcast",
-      "target": "messages_011_game_qa_feedback_requested_from_every_role",
-      "confidence_score": 1.0
+      "target": "messages_011_game_qa_feedback_requested_from_every_role"
     },
     {
       "relation": "contains",
@@ -229614,6 +230505,76 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/retrospectives/cycle-1-retrospective.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "workspace_current_retrospectives_cycle_1_retrospective_md",
+      "target": "retrospectives_cycle_1_retrospective_cycle_1_retrospective",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/retrospectives/cycle-1-retrospective.md",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "retrospectives_cycle_1_retrospective_cycle_1_retrospective",
+      "target": "retrospectives_cycle_1_retrospective_director_outcome",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/retrospectives/cycle-1-retrospective.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "retrospectives_cycle_1_retrospective_cycle_1_retrospective",
+      "target": "retrospectives_cycle_1_retrospective_per_gate_closeout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/retrospectives/cycle-1-retrospective.md",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "retrospectives_cycle_1_retrospective_cycle_1_retrospective",
+      "target": "retrospectives_cycle_1_retrospective_what_the_cycle_established",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/retrospectives/cycle-1-retrospective.md",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "retrospectives_cycle_1_retrospective_cycle_1_retrospective",
+      "target": "retrospectives_cycle_1_retrospective_restricted_shell_rollout_result",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/retrospectives/cycle-1-retrospective.md",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "retrospectives_cycle_1_retrospective_cycle_1_retrospective",
+      "target": "retrospectives_cycle_1_retrospective_unresolved_risks_and_exact_next_owners",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/retrospectives/cycle-1-retrospective.md",
+      "source_location": "L65",
+      "weight": 1.0,
+      "source": "retrospectives_cycle_1_retrospective_cycle_1_retrospective",
+      "target": "retrospectives_cycle_1_retrospective_next_cycle_entry_decision",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "_workspace/current/production/decision-log.md",
       "source_location": "L10",
       "weight": 1.0,
@@ -229640,6 +230601,16 @@
       "confidence_score": 1.0,
       "source": "production_decision_log_production_decision_log",
       "target": "production_decision_log_decision_002_use_one_multilingual_384_dimension_embedding_model"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/decision-log.md",
+      "source_location": "L76",
+      "weight": 1.0,
+      "source": "production_decision_log_production_decision_log",
+      "target": "production_decision_log_decision_003_authorize_only_the_offline_ready_app_hosting_shell",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -229724,12 +230695,112 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/decision-log.md",
+      "source_location": "L78",
+      "weight": 1.0,
+      "source": "production_decision_log_decision_003_authorize_only_the_offline_ready_app_hosting_shell",
+      "target": "production_decision_log_codeblock_3",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/decision-log.md",
+      "source_location": "L90",
+      "weight": 1.0,
+      "source": "production_decision_log_decision_003_authorize_only_the_offline_ready_app_hosting_shell",
+      "target": "production_decision_log_context_90",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/decision-log.md",
+      "source_location": "L96",
+      "weight": 1.0,
+      "source": "production_decision_log_decision_003_authorize_only_the_offline_ready_app_hosting_shell",
+      "target": "production_decision_log_decision_96",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/decision-log.md",
+      "source_location": "L105",
+      "weight": 1.0,
+      "source": "production_decision_log_decision_003_authorize_only_the_offline_ready_app_hosting_shell",
+      "target": "production_decision_log_gate_and_cycle_effect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/decision-log.md",
+      "source_location": "L109",
+      "weight": 1.0,
+      "source": "production_decision_log_decision_003_authorize_only_the_offline_ready_app_hosting_shell",
+      "target": "production_decision_log_consequences_109",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/decision-log.md",
+      "source_location": "L116",
+      "weight": 1.0,
+      "source": "production_decision_log_decision_003_authorize_only_the_offline_ready_app_hosting_shell",
+      "target": "production_decision_log_deployment_verification_2026_08_11",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "_workspace/current/production/task-manifest.md",
       "source_location": "L12",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "workspace_current_production_task_manifest_md",
       "target": "production_task_manifest_stage_1_3_task_manifest"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/task-manifest.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "production_task_manifest_stage_1_3_task_manifest",
+      "target": "production_task_manifest_stage_1_artifact_delivery_and_draft_gates",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/task-manifest.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "production_task_manifest_stage_1_3_task_manifest",
+      "target": "production_task_manifest_stage_2_deterministic_closeout_and_evidence_qualification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/task-manifest.md",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "production_task_manifest_stage_1_3_task_manifest",
+      "target": "production_task_manifest_stage_3_technical_closeout_and_restricted_release_authorization",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/task-manifest.md",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "production_task_manifest_stage_1_3_task_manifest",
+      "target": "production_task_manifest_current_carry_forward_truth",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -229764,32 +230835,262 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "_workspace/current/production/task-manifest.md",
-      "source_location": "L29",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g5.md",
+      "source_location": "L12",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "production_task_manifest_stage_1_concept_presentation_animation_resources_core_build",
-      "target": "production_task_manifest_stage_1_exit_evidence"
+      "source": "workspace_current_production_gate_reviews_stage_2_g5_md",
+      "target": "gate_reviews_stage_2_g5_stage_2_g5_review",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "_workspace/current/production/task-manifest.md",
-      "source_location": "L49",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g5.md",
+      "source_location": "L22",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "production_task_manifest_stage_2_balance_core_loop_stability_novelty_development",
-      "target": "production_task_manifest_stage_2_exit_evidence"
+      "source": "gate_reviews_stage_2_g5_stage_2_g5_review",
+      "target": "gate_reviews_stage_2_g5_director_verdict_fix",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "_workspace/current/production/task-manifest.md",
-      "source_location": "L70",
+      "source_file": "_workspace/current/production/gate-reviews/stage-1-g6-ops-draft.md",
+      "source_location": "L12",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "production_task_manifest_stage_3_ops_stability_and_play_impact",
-      "target": "production_task_manifest_stage_3_exit_evidence"
+      "source": "workspace_current_production_gate_reviews_stage_1_g6_ops_draft_md",
+      "target": "gate_reviews_stage_1_g6_ops_draft_stage_1_g6_ops_draft_review",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/gate-reviews/stage-1-g6-ops-draft.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "gate_reviews_stage_1_g6_ops_draft_stage_1_g6_ops_draft_review",
+      "target": "gate_reviews_stage_1_g6_ops_draft_director_verdict_fix",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g7-final.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "workspace_current_production_gate_reviews_stage_2_g7_final_md",
+      "target": "gate_reviews_stage_2_g7_final_stage_2_g7_final_review",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g7-final.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "gate_reviews_stage_2_g7_final_stage_2_g7_final_review",
+      "target": "gate_reviews_stage_2_g7_final_director_verdict_fix",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/gate-reviews/stage-3-g4.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "workspace_current_production_gate_reviews_stage_3_g4_md",
+      "target": "gate_reviews_stage_3_g4_stage_3_g4_review",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/gate-reviews/stage-3-g4.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "gate_reviews_stage_3_g4_stage_3_g4_review",
+      "target": "gate_reviews_stage_3_g4_director_verdict_fix",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/gate-reviews/stage-1-g1-draft.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "workspace_current_production_gate_reviews_stage_1_g1_draft_md",
+      "target": "gate_reviews_stage_1_g1_draft_stage_1_g1_draft_review",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/gate-reviews/stage-1-g1-draft.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "gate_reviews_stage_1_g1_draft_stage_1_g1_draft_review",
+      "target": "gate_reviews_stage_1_g1_draft_director_verdict_fix",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g8.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "workspace_current_production_gate_reviews_stage_2_g8_md",
+      "target": "gate_reviews_stage_2_g8_stage_2_g8_review",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g8.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "gate_reviews_stage_2_g8_stage_2_g8_review",
+      "target": "gate_reviews_stage_2_g8_director_verdict_fix",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/gate-reviews/stage-3-g1-final.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "workspace_current_production_gate_reviews_stage_3_g1_final_md",
+      "target": "gate_reviews_stage_3_g1_final_stage_3_g1_final_review",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/gate-reviews/stage-3-g1-final.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "gate_reviews_stage_3_g1_final_stage_3_g1_final_review",
+      "target": "gate_reviews_stage_3_g1_final_director_verdict_fix",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/gate-reviews/stage-3-g6-final.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "workspace_current_production_gate_reviews_stage_3_g6_final_md",
+      "target": "gate_reviews_stage_3_g6_final_stage_3_g6_final_review",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/gate-reviews/stage-3-g6-final.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "gate_reviews_stage_3_g6_final_stage_3_g6_final_review",
+      "target": "gate_reviews_stage_3_g6_final_director_verdict_fix",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g3.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "workspace_current_production_gate_reviews_stage_2_g3_md",
+      "target": "gate_reviews_stage_2_g3_stage_2_g3_review",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g3.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "gate_reviews_stage_2_g3_stage_2_g3_review",
+      "target": "gate_reviews_stage_2_g3_director_verdict_fix",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g2.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "workspace_current_production_gate_reviews_stage_2_g2_md",
+      "target": "gate_reviews_stage_2_g2_stage_2_g2_review",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/gate-reviews/stage-2-g2.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "gate_reviews_stage_2_g2_stage_2_g2_review",
+      "target": "gate_reviews_stage_2_g2_director_verdict_fix",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/gate-reviews/stage-1-g7-draft.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "workspace_current_production_gate_reviews_stage_1_g7_draft_md",
+      "target": "gate_reviews_stage_1_g7_draft_stage_1_g7_draft_review",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/gate-reviews/stage-1-g7-draft.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "gate_reviews_stage_1_g7_draft_stage_1_g7_draft_review",
+      "target": "gate_reviews_stage_1_g7_draft_director_verdict_fix",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/ops/apphosting-release-2026-08-11.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "workspace_current_ops_apphosting_release_2026_08_11_md",
+      "target": "ops_apphosting_release_2026_08_11_firebase_app_hosting_restricted_shell_release",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/ops/apphosting-release-2026-08-11.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "ops_apphosting_release_2026_08_11_firebase_app_hosting_restricted_shell_release",
+      "target": "ops_apphosting_release_2026_08_11_rollout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/ops/apphosting-release-2026-08-11.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "ops_apphosting_release_2026_08_11_firebase_app_hosting_restricted_shell_release",
+      "target": "ops_apphosting_release_2026_08_11_fresh_production_verification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/ops/apphosting-release-2026-08-11.md",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "ops_apphosting_release_2026_08_11_firebase_app_hosting_restricted_shell_release",
+      "target": "ops_apphosting_release_2026_08_11_authority_boundary",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -229930,6 +231231,16 @@
       "confidence_score": 1.0,
       "source": "ops_release_readiness_stage_3_release_readiness",
       "target": "ops_release_readiness_programmer_defect_responses"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/ops/release-readiness.md",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "ops_release_readiness_stage_3_release_readiness",
+      "target": "ops_release_readiness_restricted_shell_rollout_receipt",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -231800,6 +233111,36 @@
       "confidence_score": 1.0,
       "source": "reports_worker_1_task_1_consensus_homepage_block_consensus",
       "target": "reports_worker_1_task_1_consensus_4_use_the_sidebar_supporting_block_for_multimodal_operator_proof"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/task-manifest.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "production_task_manifest_stage_1_concept_presentation_animation_resources_core_build",
+      "target": "production_task_manifest_stage_1_exit_evidence"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/task-manifest.md",
+      "source_location": "L49",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "production_task_manifest_stage_2_balance_core_loop_stability_novelty_development",
+      "target": "production_task_manifest_stage_2_exit_evidence"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/task-manifest.md",
+      "source_location": "L70",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "production_task_manifest_stage_3_ops_stability_and_play_impact",
+      "target": "production_task_manifest_stage_3_exit_evidence"
     },
     {
       "relation": "calls",
@@ -253268,5 +254609,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "f51d1e8c2098ca8adf6ab016f272080af53385ee"
+  "built_at_commit": "cc705ce38ad23f3774d9738c4dcdb8c7d80c6df3"
 }
