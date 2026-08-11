@@ -3,7 +3,10 @@ const nextConfig = {
   reactStrictMode: true,
   output: "standalone",
   transpilePackages: ["@funqa/contracts"],
-  serverExternalPackages: ["genkit", "@genkit-ai/core", "@genkit-ai/ai", "@genkit-ai/google-genai"],
+  // Genkit is intentionally NOT in serverExternalPackages: App Hosting's
+  // buildpack reassembles the app layer after our build script runs, so
+  // externals are not reliably present at runtime. Bundling the Genkit
+  // engine into the compiled route chunks removes the runtime resolution.
   outputFileTracingIncludes: {
     "/*": ["./node_modules/styled-jsx/**/*"]
   }
