@@ -10,15 +10,31 @@ const standaloneNodeModules = path.join(appRoot, ".next", "standalone", "node_mo
 
 const require = createRequire(import.meta.url);
 
+function ancestorNodeModuleDirs(startDir) {
+  const dirs = [];
+  let current = path.resolve(startDir);
+  const { root } = path.parse(current);
+  while (true) {
+    dirs.push(current);
+    if (current === root) break;
+    current = path.dirname(current);
+  }
+  return dirs;
+}
+
 function resolvePackagePath(packageName, fromDirs = [appRoot]) {
+  const searchDirs = [...new Set(fromDirs.flatMap((dir) => ancestorNodeModuleDirs(dir)))];
   try {
     return path.dirname(
-      require.resolve(`${packageName}/package.json`, { paths: fromDirs })
+      require.resolve(`${packageName}/package.json`, { paths: searchDirs })
     );
   } catch {
-    for (const fromDir of fromDirs) {
-      const local = path.join(fromDir, "node_modules", packageName);
-      if (fs.existsSync(local)) return local;
+    // Packages with an `exports` map that omits ./package.json throw
+    // ERR_PACKAGE_PATH_NOT_EXPORTED even when installed. Walk every ancestor
+    // node_modules (covers workspace-root hoisting on App Hosting builders).
+    for (const searchDir of searchDirs) {
+      const local = path.join(searchDir, "node_modules", packageName);
+      if (fs.existsSync(path.join(local, "package.json"))) return local;
     }
     return null;
   }
