@@ -46,6 +46,18 @@ pdflatex -interaction=nonstopmode -halt-on-error paper.tex
 
 The output is `paper.pdf`. Generated LaTeX auxiliaries and `paper.pdf` are build products, not inputs to `scripts/build_results.py`.
 
+### PDF reproducibility boundary
+
+`pdfTeX` writes build-time `CreationDate` and `ModDate` metadata, so this project does not promise a byte-identical `paper.pdf` across rebuild times. The SHA-256 of the tracked `paper.pdf` identifies the published binary. Rebuild verification instead requires:
+
+- a clean checkout;
+- an unchanged result/figure artifact tree after `scripts/build_results.py`;
+- the same eight-page count;
+- no unresolved citations or references; and
+- identical normalized text from `pdftotext`.
+
+For the currently published artifact, the binary SHA-256 is `b5f5eab6ab0c71a22e2c7f3dd2244aad5ccba432d75b299b4ad900a8cc6c5db7`; its `pdftotext` SHA-256 is `db8df9c2e9e91807508225f555635b17497a119630f32569c728df99fc0c6d3c`.
+
 ## Authoritative raw inputs
 
 Exact-Q4_K_M fixture runs:
