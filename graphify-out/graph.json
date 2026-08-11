@@ -13599,7 +13599,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/types.ts",
       "source_location": "L16",
       "id": "src_types_extracteddocument",
-      "community": 41,
+      "community": 17,
       "norm_label": "extracteddocument"
     },
     {
@@ -13635,7 +13635,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/types.ts",
       "source_location": "L43",
       "id": "src_types_querytransformmode",
-      "community": 17,
+      "community": 535,
       "norm_label": "querytransformmode"
     },
     {
@@ -13644,7 +13644,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/types.ts",
       "source_location": "L45",
       "id": "src_types_querytransformresult",
-      "community": 17,
+      "community": 535,
       "norm_label": "querytransformresult"
     },
     {
@@ -13806,7 +13806,7 @@
       "source_file": "packages/ai/src/pipelines/query-transform.test.ts",
       "source_location": "L1",
       "id": "packages_ai_src_pipelines_query_transform_test_ts",
-      "community": 17,
+      "community": 535,
       "norm_label": "query-transform.test.ts"
     },
     {
@@ -13815,7 +13815,7 @@
       "source_file": "packages/ai/src/pipelines/query-transform.test.ts",
       "source_location": "L10",
       "id": "pipelines_query_transform_test_result",
-      "community": 17,
+      "community": 535,
       "norm_label": "result"
     },
     {
@@ -13824,7 +13824,7 @@
       "source_file": "packages/ai/src/pipelines/query-transform.test.ts",
       "source_location": "L49",
       "id": "pipelines_query_transform_test_keywords",
-      "community": 17,
+      "community": 535,
       "norm_label": "keywords"
     },
     {
@@ -13833,7 +13833,7 @@
       "source_file": "packages/ai/src/pipelines/query-transform.test.ts",
       "source_location": "L56",
       "id": "pipelines_query_transform_test_doc",
-      "community": 17,
+      "community": 535,
       "norm_label": "doc"
     },
     {
@@ -13914,7 +13914,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/pipelines/query-transform.ts",
       "source_location": "L1",
       "id": "users_jangyoung_superset_projects_saas_of_funqa_packages_ai_src_pipelines_query_transform_ts",
-      "community": 17,
+      "community": 535,
       "norm_label": "query-transform.ts"
     },
     {
@@ -13923,7 +13923,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/pipelines/query-transform.ts",
       "source_location": "L4",
       "id": "pipelines_query_transform_multiqueryresult",
-      "community": 17,
+      "community": 535,
       "norm_label": "multiqueryresult"
     },
     {
@@ -13932,7 +13932,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/pipelines/query-transform.ts",
       "source_location": "L9",
       "id": "pipelines_query_transform_extractkeywords",
-      "community": 17,
+      "community": 535,
       "norm_label": "extractkeywords()"
     },
     {
@@ -13941,7 +13941,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/pipelines/query-transform.ts",
       "source_location": "L13",
       "id": "pipelines_query_transform_rewritequerylocally",
-      "community": 17,
+      "community": 535,
       "norm_label": "rewritequerylocally()"
     },
     {
@@ -13950,7 +13950,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/pipelines/query-transform.ts",
       "source_location": "L28",
       "id": "pipelines_query_transform_buildlocalhydedocument",
-      "community": 17,
+      "community": 535,
       "norm_label": "buildlocalhydedocument()"
     },
     {
@@ -13959,7 +13959,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/pipelines/query-transform.ts",
       "source_location": "L37",
       "id": "pipelines_query_transform_transformmultiquery",
-      "community": 17,
+      "community": 535,
       "norm_label": "transformmultiquery()"
     },
     {
@@ -13968,7 +13968,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/packages/ai/src/pipelines/query-transform.ts",
       "source_location": "L94",
       "id": "pipelines_query_transform_transformquerylocally",
-      "community": 17,
+      "community": 535,
       "norm_label": "transformquerylocally()"
     },
     {
@@ -15570,16 +15570,34 @@
       "source_file": "apps/web/next.config.mjs",
       "source_location": "L1",
       "id": "apps_web_next_config_mjs",
-      "community": 535,
+      "community": 278,
       "norm_label": "next.config.mjs"
+    },
+    {
+      "label": "appRoot",
+      "file_type": "code",
+      "source_file": "apps/web/next.config.mjs",
+      "source_location": "L10",
+      "id": "web_next_config_approot",
+      "community": 278,
+      "norm_label": "approot"
+    },
+    {
+      "label": "runtimeExternalIncludes",
+      "file_type": "code",
+      "source_file": "apps/web/next.config.mjs",
+      "source_location": "L18",
+      "id": "web_next_config_runtimeexternalincludes",
+      "community": 278,
+      "norm_label": "runtimeexternalincludes"
     },
     {
       "label": "nextConfig",
       "file_type": "code",
       "source_file": "apps/web/next.config.mjs",
-      "source_location": "L2",
+      "source_location": "L26",
       "id": "web_next_config_nextconfig",
-      "community": 535,
+      "community": 278,
       "norm_label": "nextconfig"
     },
     {
@@ -15709,10 +15727,37 @@
       "norm_label": "@genkit-ai/google-genai"
     },
     {
-      "label": "firebase",
+      "label": "ajv",
       "file_type": "code",
       "source_file": "apps/web/package.json",
       "source_location": "L15",
+      "id": "web_package_dependencies_ajv",
+      "community": 127,
+      "norm_label": "ajv"
+    },
+    {
+      "label": "ajv-formats",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L16",
+      "id": "web_package_dependencies_ajv_formats",
+      "community": 127,
+      "norm_label": "ajv-formats"
+    },
+    {
+      "label": "express",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L17",
+      "id": "web_package_dependencies_express",
+      "community": 127,
+      "norm_label": "express"
+    },
+    {
+      "label": "firebase",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L18",
       "id": "web_package_dependencies_firebase",
       "community": 127,
       "norm_label": "firebase"
@@ -15721,7 +15766,7 @@
       "label": "genkit",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L16",
+      "source_location": "L19",
       "id": "web_package_dependencies_genkit",
       "community": 127,
       "norm_label": "genkit"
@@ -15730,7 +15775,7 @@
       "label": "next",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L17",
+      "source_location": "L20",
       "id": "web_package_dependencies_next",
       "community": 741,
       "norm_label": "next"
@@ -15739,7 +15784,7 @@
       "label": "react",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L18",
+      "source_location": "L21",
       "id": "web_package_dependencies_react",
       "community": 127,
       "norm_label": "react"
@@ -15748,7 +15793,7 @@
       "label": "react-dom",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L19",
+      "source_location": "L22",
       "id": "web_package_dependencies_react_dom",
       "community": 127,
       "norm_label": "react-dom"
@@ -15757,7 +15802,7 @@
       "label": "server-only",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L20",
+      "source_location": "L23",
       "id": "web_package_dependencies_server_only",
       "community": 127,
       "norm_label": "server-only"
@@ -15766,7 +15811,7 @@
       "label": "styled-jsx",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L21",
+      "source_location": "L24",
       "id": "web_package_dependencies_styled_jsx",
       "community": 127,
       "norm_label": "styled-jsx"
@@ -15775,7 +15820,7 @@
       "label": "zod",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L22",
+      "source_location": "L25",
       "id": "web_package_dependencies_zod",
       "community": 127,
       "norm_label": "zod"
@@ -15784,7 +15829,7 @@
       "label": "devDependencies",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L24",
+      "source_location": "L27",
       "id": "web_package_devdependencies",
       "community": 127,
       "norm_label": "devdependencies"
@@ -15793,7 +15838,7 @@
       "label": "@types/node",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L25",
+      "source_location": "L28",
       "id": "web_package_devdependencies_types_node",
       "community": 127,
       "norm_label": "@types/node"
@@ -15802,7 +15847,7 @@
       "label": "@types/react",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L26",
+      "source_location": "L29",
       "id": "web_package_devdependencies_types_react",
       "community": 127,
       "norm_label": "@types/react"
@@ -15811,7 +15856,7 @@
       "label": "@types/react-dom",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L27",
+      "source_location": "L30",
       "id": "web_package_devdependencies_types_react_dom",
       "community": 127,
       "norm_label": "@types/react-dom"
@@ -15820,7 +15865,7 @@
       "label": "typescript",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L28",
+      "source_location": "L31",
       "id": "web_package_devdependencies_typescript",
       "community": 127,
       "norm_label": "typescript"
@@ -18202,19 +18247,73 @@
       "norm_label": "clientmarkup"
     },
     {
+      "label": "runtime-dep-closure.mjs",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/runtime-dep-closure.mjs",
+      "source_location": "L1",
+      "id": "apps_web_scripts_runtime_dep_closure_mjs",
+      "community": 278,
+      "norm_label": "runtime-dep-closure.mjs"
+    },
+    {
+      "label": "RUNTIME_EXTERNAL_ROOTS",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/runtime-dep-closure.mjs",
+      "source_location": "L12",
+      "id": "scripts_runtime_dep_closure_runtime_external_roots",
+      "community": 278,
+      "norm_label": "runtime_external_roots"
+    },
+    {
+      "label": "OPTIONAL_RUNTIME_EXTERNAL_ROOTS",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/runtime-dep-closure.mjs",
+      "source_location": "L25",
+      "id": "scripts_runtime_dep_closure_optional_runtime_external_roots",
+      "community": 278,
+      "norm_label": "optional_runtime_external_roots"
+    },
+    {
+      "label": "ancestorDirs()",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/runtime-dep-closure.mjs",
+      "source_location": "L27",
+      "id": "scripts_runtime_dep_closure_ancestordirs",
+      "community": 278,
+      "norm_label": "ancestordirs()"
+    },
+    {
+      "label": "findPackageDir()",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/runtime-dep-closure.mjs",
+      "source_location": "L39",
+      "id": "scripts_runtime_dep_closure_findpackagedir",
+      "community": 278,
+      "norm_label": "findpackagedir()"
+    },
+    {
+      "label": "resolveClosure()",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/runtime-dep-closure.mjs",
+      "source_location": "L50",
+      "id": "scripts_runtime_dep_closure_resolveclosure",
+      "community": 278,
+      "norm_label": "resolveclosure()"
+    },
+    {
       "label": "ensure-standalone-runtime.mjs",
       "file_type": "code",
-      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
       "source_location": "L1",
-      "id": "users_jangyoung_superset_projects_saas_of_funqa_apps_web_scripts_ensure_standalone_runtime_mjs",
+      "id": "apps_web_scripts_ensure_standalone_runtime_mjs",
       "community": 278,
       "norm_label": "ensure-standalone-runtime.mjs"
     },
     {
       "label": "__filename",
       "file_type": "code",
-      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L6",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L12",
       "id": "scripts_ensure_standalone_runtime_filename",
       "community": 278,
       "norm_label": "__filename"
@@ -18222,8 +18321,8 @@
     {
       "label": "__dirname",
       "file_type": "code",
-      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L7",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L13",
       "id": "scripts_ensure_standalone_runtime_dirname",
       "community": 278,
       "norm_label": "__dirname"
@@ -18231,8 +18330,8 @@
     {
       "label": "appRoot",
       "file_type": "code",
-      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L8",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L14",
       "id": "scripts_ensure_standalone_runtime_approot",
       "community": 278,
       "norm_label": "approot"
@@ -18240,8 +18339,8 @@
     {
       "label": "standaloneNodeModules",
       "file_type": "code",
-      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L9",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L15",
       "id": "scripts_ensure_standalone_runtime_standalonenodemodules",
       "community": 278,
       "norm_label": "standalonenodemodules"
@@ -18249,17 +18348,26 @@
     {
       "label": "require",
       "file_type": "code",
-      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L11",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L17",
       "id": "scripts_ensure_standalone_runtime_require",
       "community": 278,
       "norm_label": "require"
     },
     {
+      "label": "ancestorNodeModuleDirs()",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L19",
+      "id": "scripts_ensure_standalone_runtime_ancestornodemoduledirs",
+      "community": 278,
+      "norm_label": "ancestornodemoduledirs()"
+    },
+    {
       "label": "resolvePackagePath()",
       "file_type": "code",
-      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L13",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L31",
       "id": "scripts_ensure_standalone_runtime_resolvepackagepath",
       "community": 278,
       "norm_label": "resolvepackagepath()"
@@ -18267,8 +18375,8 @@
     {
       "label": "copies",
       "file_type": "code",
-      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L25",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L51",
       "id": "scripts_ensure_standalone_runtime_copies",
       "community": 278,
       "norm_label": "copies"
@@ -18276,11 +18384,101 @@
     {
       "label": "source",
       "file_type": "code",
-      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L62",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L88",
       "id": "scripts_ensure_standalone_runtime_source",
       "community": 278,
       "norm_label": "source"
+    },
+    {
+      "label": "closure",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L111",
+      "id": "scripts_ensure_standalone_runtime_closure",
+      "community": 278,
+      "norm_label": "closure"
+    },
+    {
+      "label": "target",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L117",
+      "id": "scripts_ensure_standalone_runtime_target",
+      "community": 278,
+      "norm_label": "target"
+    },
+    {
+      "label": "prepare-runtime-deps.mjs",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/prepare-runtime-deps.mjs",
+      "source_location": "L1",
+      "id": "apps_web_scripts_prepare_runtime_deps_mjs",
+      "community": 278,
+      "norm_label": "prepare-runtime-deps.mjs"
+    },
+    {
+      "label": "__dirname",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/prepare-runtime-deps.mjs",
+      "source_location": "L11",
+      "id": "scripts_prepare_runtime_deps_dirname",
+      "community": 278,
+      "norm_label": "__dirname"
+    },
+    {
+      "label": "appRoot",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/prepare-runtime-deps.mjs",
+      "source_location": "L12",
+      "id": "scripts_prepare_runtime_deps_approot",
+      "community": 278,
+      "norm_label": "approot"
+    },
+    {
+      "label": "appNodeModules",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/prepare-runtime-deps.mjs",
+      "source_location": "L13",
+      "id": "scripts_prepare_runtime_deps_appnodemodules",
+      "community": 278,
+      "norm_label": "appnodemodules"
+    },
+    {
+      "label": "closure",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/prepare-runtime-deps.mjs",
+      "source_location": "L15",
+      "id": "scripts_prepare_runtime_deps_closure",
+      "community": 278,
+      "norm_label": "closure"
+    },
+    {
+      "label": "missing",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/prepare-runtime-deps.mjs",
+      "source_location": "L20",
+      "id": "scripts_prepare_runtime_deps_missing",
+      "community": 278,
+      "norm_label": "missing"
+    },
+    {
+      "label": "skippedOptional",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/prepare-runtime-deps.mjs",
+      "source_location": "L21",
+      "id": "scripts_prepare_runtime_deps_skippedoptional",
+      "community": 278,
+      "norm_label": "skippedoptional"
+    },
+    {
+      "label": "target",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/prepare-runtime-deps.mjs",
+      "source_location": "L35",
+      "id": "scripts_prepare_runtime_deps_target",
+      "community": 278,
+      "norm_label": "target"
     },
     {
       "label": "game-log-search-client.test.ts",
@@ -19197,7 +19395,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/genkit.ts",
       "source_location": "L1",
       "id": "users_jangyoung_superset_projects_saas_of_funqa_apps_api_src_genkit_ts",
-      "community": 840,
+      "community": 5,
       "norm_label": "genkit.ts"
     },
     {
@@ -19206,7 +19404,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/genkit.ts",
       "source_location": "L7",
       "id": "src_genkit_ai",
-      "community": 840,
+      "community": 5,
       "norm_label": "ai"
     },
     {
@@ -19215,7 +19413,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/genkit.ts",
       "source_location": "L11",
       "id": "src_genkit_getlivemodel",
-      "community": 840,
+      "community": 5,
       "norm_label": "getlivemodel()"
     },
     {
@@ -19773,7 +19971,7 @@
       "source_file": "apps/api/src/flows/search.ts",
       "source_location": "L1",
       "id": "apps_api_src_flows_search_ts",
-      "community": 5,
+      "community": 872,
       "norm_label": "search.ts"
     },
     {
@@ -19782,7 +19980,7 @@
       "source_file": "apps/api/src/flows/search.ts",
       "source_location": "L5",
       "id": "flows_search_searchflowinputschema",
-      "community": 5,
+      "community": 872,
       "norm_label": "searchflowinputschema"
     },
     {
@@ -19791,7 +19989,7 @@
       "source_file": "apps/api/src/flows/search.ts",
       "source_location": "L11",
       "id": "flows_search_searchflowoutputschema",
-      "community": 5,
+      "community": 872,
       "norm_label": "searchflowoutputschema"
     },
     {
@@ -19800,7 +19998,7 @@
       "source_file": "apps/api/src/flows/search.ts",
       "source_location": "L59",
       "id": "flows_search_searchflow",
-      "community": 5,
+      "community": 872,
       "norm_label": "searchflow"
     },
     {
@@ -19809,7 +20007,7 @@
       "source_file": "apps/api/src/flows/search.ts",
       "source_location": "L68",
       "id": "flows_search_runsearchflow",
-      "community": 5,
+      "community": 872,
       "norm_label": "runsearchflow()"
     },
     {
@@ -19818,7 +20016,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/flows/answer.ts",
       "source_location": "L1",
       "id": "users_jangyoung_superset_projects_saas_of_funqa_apps_api_src_flows_answer_ts",
-      "community": 840,
+      "community": 5,
       "norm_label": "answer.ts"
     },
     {
@@ -19827,7 +20025,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/flows/answer.ts",
       "source_location": "L5",
       "id": "flows_answer_citationschema",
-      "community": 840,
+      "community": 5,
       "norm_label": "citationschema"
     },
     {
@@ -19836,7 +20034,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/flows/answer.ts",
       "source_location": "L13",
       "id": "flows_answer_answerrequestschema",
-      "community": 840,
+      "community": 5,
       "norm_label": "answerrequestschema"
     },
     {
@@ -19845,7 +20043,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/flows/answer.ts",
       "source_location": "L19",
       "id": "flows_answer_answerresponseschema",
-      "community": 840,
+      "community": 5,
       "norm_label": "answerresponseschema"
     },
     {
@@ -19854,7 +20052,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/flows/answer.ts",
       "source_location": "L29",
       "id": "flows_answer_citation",
-      "community": 840,
+      "community": 5,
       "norm_label": "citation"
     },
     {
@@ -19863,7 +20061,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/flows/answer.ts",
       "source_location": "L31",
       "id": "flows_answer_citationtext",
-      "community": 840,
+      "community": 5,
       "norm_label": "citationtext()"
     },
     {
@@ -19872,7 +20070,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/flows/answer.ts",
       "source_location": "L35",
       "id": "flows_answer_buildevidencefallback",
-      "community": 840,
+      "community": 5,
       "norm_label": "buildevidencefallback()"
     },
     {
@@ -19881,7 +20079,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/flows/answer.ts",
       "source_location": "L46",
       "id": "flows_answer_buildprompt",
-      "community": 840,
+      "community": 5,
       "norm_label": "buildprompt()"
     },
     {
@@ -19890,7 +20088,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/flows/answer.ts",
       "source_location": "L65",
       "id": "flows_answer_evidenceonlyresult",
-      "community": 840,
+      "community": 5,
       "norm_label": "evidenceonlyresult()"
     },
     {
@@ -19899,7 +20097,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/flows/answer.ts",
       "source_location": "L74",
       "id": "flows_answer_answerflow",
-      "community": 840,
+      "community": 5,
       "norm_label": "answerflow"
     },
     {
@@ -19908,7 +20106,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/flows/answer.ts",
       "source_location": "L110",
       "id": "flows_answer_runanswerflow",
-      "community": 840,
+      "community": 5,
       "norm_label": "runanswerflow()"
     },
     {
@@ -19962,7 +20160,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/routes/search.route.ts",
       "source_location": "L1",
       "id": "users_jangyoung_superset_projects_saas_of_funqa_apps_api_src_routes_search_route_ts",
-      "community": 5,
+      "community": 872,
       "norm_label": "search.route.ts"
     },
     {
@@ -19971,7 +20169,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/routes/search.route.ts",
       "source_location": "L7",
       "id": "routes_search_route_searchratelimit",
-      "community": 5,
+      "community": 872,
       "norm_label": "searchratelimit"
     },
     {
@@ -19980,7 +20178,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/routes/search.route.ts",
       "source_location": "L9",
       "id": "routes_search_route_searchresult",
-      "community": 5,
+      "community": 872,
       "norm_label": "searchresult"
     },
     {
@@ -19989,7 +20187,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/api/src/routes/search.route.ts",
       "source_location": "L17",
       "id": "routes_search_route_registersearchroute",
-      "community": 5,
+      "community": 872,
       "norm_label": "registersearchroute()"
     },
     {
@@ -19998,7 +20196,7 @@
       "source_file": "apps/api/src/routes/admin.route.ts",
       "source_location": "L1",
       "id": "apps_api_src_routes_admin_route_ts",
-      "community": 3,
+      "community": 412,
       "norm_label": "admin.route.ts"
     },
     {
@@ -20007,7 +20205,7 @@
       "source_file": "apps/api/src/routes/admin.route.ts",
       "source_location": "L6",
       "id": "routes_admin_route_registeradminroute",
-      "community": 3,
+      "community": 412,
       "norm_label": "registeradminroute()"
     },
     {
@@ -20133,7 +20331,7 @@
       "source_file": "apps/api/src/routes/rag.route.ts",
       "source_location": "L1",
       "id": "apps_api_src_routes_rag_route_ts",
-      "community": 412,
+      "community": 3,
       "norm_label": "rag.route.ts"
     },
     {
@@ -20142,7 +20340,7 @@
       "source_file": "apps/api/src/routes/rag.route.ts",
       "source_location": "L6",
       "id": "routes_rag_route_defaultlabdocuments",
-      "community": 412,
+      "community": 3,
       "norm_label": "defaultlabdocuments"
     },
     {
@@ -20151,7 +20349,7 @@
       "source_file": "apps/api/src/routes/rag.route.ts",
       "source_location": "L23",
       "id": "routes_rag_route_registerragroute",
-      "community": 412,
+      "community": 3,
       "norm_label": "registerragroute()"
     },
     {
@@ -20376,7 +20574,7 @@
       "source_file": "apps/api/src/services/rag.service.ts",
       "source_location": "L112",
       "id": "services_rag_service_getraginspectiondocuments",
-      "community": 412,
+      "community": 3,
       "norm_label": "getraginspectiondocuments()"
     },
     {
@@ -20385,7 +20583,7 @@
       "source_file": "apps/api/src/services/rag.service.ts",
       "source_location": "L117",
       "id": "services_rag_service_getraginspectionchunks",
-      "community": 412,
+      "community": 3,
       "norm_label": "getraginspectionchunks()"
     },
     {
@@ -20412,7 +20610,7 @@
       "source_file": "apps/api/src/services/rag.service.ts",
       "source_location": "L179",
       "id": "services_rag_service_searchdocuments",
-      "community": 3,
+      "community": 872,
       "norm_label": "searchdocuments()"
     },
     {
@@ -24453,7 +24651,7 @@
       "source_file": "README.md",
       "source_location": "L1",
       "id": "readme_md",
-      "community": 49,
+      "community": 691,
       "norm_label": "readme.md"
     },
     {
@@ -24768,7 +24966,7 @@
       "source_file": "README.md",
       "source_location": "L404",
       "id": "saas_of_funqa_game_search_20260809_readme_\uc8fc\uc694_\ucc38\uace0\uc0ac\ud56d",
-      "community": 691,
+      "community": 965,
       "norm_label": "\u110c\u116e\u110b\u116d \u110e\u1161\u11b7\u1100\u1169\u1109\u1161\u1112\u1161\u11bc"
     },
     {
@@ -24777,7 +24975,7 @@
       "source_file": "README.md",
       "source_location": "L406",
       "id": "saas_of_funqa_game_search_20260809_readme_ui_\ucef4\ud3ec\ub10c\ud2b8",
-      "community": 691,
+      "community": 965,
       "norm_label": "ui \u110f\u1165\u11b7\u1111\u1169\u1102\u1165\u11ab\u1110\u1173"
     },
     {
@@ -24786,7 +24984,7 @@
       "source_file": "README.md",
       "source_location": "L411",
       "id": "saas_of_funqa_game_search_20260809_readme_\uac80\uc0c9_\uc778\uc99d",
-      "community": 691,
+      "community": 965,
       "norm_label": "\u1100\u1165\u11b7\u1109\u1162\u11a8 & \u110b\u1175\u11ab\u110c\u1173\u11bc"
     },
     {
@@ -31356,7 +31554,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-hwp/resources/execution-protocol.md",
       "source_location": "L17",
       "id": "resources_execution_protocol_codeblock_1",
-      "community": 353,
+      "community": 896,
       "norm_label": "code:bash (bun --version)"
     },
     {
@@ -44586,7 +44784,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-market/resources/execution-protocol.md",
       "source_location": "L41",
       "id": "resources_execution_protocol_step_3_harvest_cli",
-      "community": 353,
+      "community": 896,
       "norm_label": "step 3 \u2014 harvest (cli)"
     },
     {
@@ -47259,7 +47457,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-pm/resources/execution-protocol.md",
       "source_location": "L1",
       "id": "users_jangyoung_superset_projects_saas_of_funqa_agents_skills_oma_pm_resources_execution_protocol_md",
-      "community": 896,
+      "community": 442,
       "norm_label": "execution-protocol.md"
     },
     {
@@ -47268,7 +47466,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-pm/resources/execution-protocol.md",
       "source_location": "L1",
       "id": "resources_execution_protocol_pm_agent_execution_protocol",
-      "community": 896,
+      "community": 442,
       "norm_label": "pm agent - execution protocol"
     },
     {
@@ -47277,7 +47475,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-pm/resources/execution-protocol.md",
       "source_location": "L17",
       "id": "resources_execution_protocol_step_1_analyze_requirements",
-      "community": 896,
+      "community": 442,
       "norm_label": "step 1: analyze requirements"
     },
     {
@@ -47286,7 +47484,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-pm/resources/execution-protocol.md",
       "source_location": "L29",
       "id": "resources_execution_protocol_step_2_design_architecture",
-      "community": 896,
+      "community": 442,
       "norm_label": "step 2: design architecture"
     },
     {
@@ -47295,7 +47493,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-pm/resources/execution-protocol.md",
       "source_location": "L40",
       "id": "resources_execution_protocol_step_3_decompose_tasks",
-      "community": 896,
+      "community": 442,
       "norm_label": "step 3: decompose tasks"
     },
     {
@@ -47304,7 +47502,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-pm/resources/execution-protocol.md",
       "source_location": "L49",
       "id": "resources_execution_protocol_step_4_validate_plan",
-      "community": 896,
+      "community": 442,
       "norm_label": "step 4: validate plan"
     },
     {
@@ -54108,7 +54306,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-search/resources/execution-protocol.md",
       "source_location": "L68",
       "id": "resources_execution_protocol_step_2_collect_results",
-      "community": 353,
+      "community": 896,
       "norm_label": "step 2: collect results"
     },
     {
@@ -54936,7 +55134,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-pdf/resources/execution-protocol.md",
       "source_location": "L1",
       "id": "users_jangyoung_superset_projects_saas_of_funqa_agents_skills_oma_pdf_resources_execution_protocol_md",
-      "community": 218,
+      "community": 896,
       "norm_label": "execution-protocol.md"
     },
     {
@@ -54945,7 +55143,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-pdf/resources/execution-protocol.md",
       "source_location": "L1",
       "id": "resources_execution_protocol_pdf_conversion_execution_protocol",
-      "community": 218,
+      "community": 896,
       "norm_label": "pdf conversion - execution protocol"
     },
     {
@@ -54954,7 +55152,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-hwp/resources/execution-protocol.md",
       "source_location": "L3",
       "id": "resources_execution_protocol_step_0_validate_input",
-      "community": 218,
+      "community": 896,
       "norm_label": "step 0: validate input"
     },
     {
@@ -54963,7 +55161,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-pdf/resources/execution-protocol.md",
       "source_location": "L12",
       "id": "resources_execution_protocol_step_1_assess_pdf_type",
-      "community": 218,
+      "community": 896,
       "norm_label": "step 1: assess pdf type"
     },
     {
@@ -55017,7 +55215,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-pdf/resources/execution-protocol.md",
       "source_location": "L70",
       "id": "resources_execution_protocol_step_5_report",
-      "community": 218,
+      "community": 896,
       "norm_label": "step 5: report"
     },
     {
@@ -56772,7 +56970,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-voice/resources/execution-protocol.md",
       "source_location": "L17",
       "id": "resources_execution_protocol_step_1_health_check",
-      "community": 353,
+      "community": 896,
       "norm_label": "step 1: health check"
     },
     {
@@ -62559,7 +62757,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L192",
       "id": "resources_common_patterns_6_key_prop_issues_in_lists",
-      "community": 962,
+      "community": 205,
       "norm_label": "6. key prop issues in lists"
     },
     {
@@ -62568,7 +62766,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L196",
       "id": "resources_common_patterns_codeblock_11",
-      "community": 962,
+      "community": 205,
       "norm_label": "code:typescript (// using index as key)"
     },
     {
@@ -62577,7 +62775,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L205",
       "id": "resources_common_patterns_codeblock_12",
-      "community": 962,
+      "community": 205,
       "norm_label": "code:typescript (// use stable, unique id)"
     },
     {
@@ -62586,7 +62784,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L219",
       "id": "resources_common_patterns_7_form_input_controlled_uncontrolled_switch",
-      "community": 205,
+      "community": 963,
       "norm_label": "7. form input controlled/uncontrolled switch"
     },
     {
@@ -62595,7 +62793,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L223",
       "id": "resources_common_patterns_codeblock_13",
-      "community": 205,
+      "community": 963,
       "norm_label": "code:typescript (const [value, setvalue] = usestate(); // undefined initially)"
     },
     {
@@ -62604,7 +62802,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L231",
       "id": "resources_common_patterns_codeblock_14",
-      "community": 205,
+      "community": 963,
       "norm_label": "code:typescript (// initialize with empty string)"
     },
     {
@@ -62676,7 +62874,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L301",
       "id": "resources_common_patterns_3_missing_authentication_check",
-      "community": 965,
+      "community": 206,
       "norm_label": "3. missing authentication check"
     },
     {
@@ -62685,7 +62883,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L305",
       "id": "resources_common_patterns_codeblock_19",
-      "community": 965,
+      "community": 206,
       "norm_label": "code:python (@app.get(\"/api/admin/users\"))"
     },
     {
@@ -62694,7 +62892,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L313",
       "id": "resources_common_patterns_codeblock_20",
-      "community": 965,
+      "community": 206,
       "norm_label": "code:python (@app.get(\"/api/admin/users\"))"
     },
     {
@@ -62730,7 +62928,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L358",
       "id": "resources_common_patterns_5_unhandled_exceptions",
-      "community": 206,
+      "community": 962,
       "norm_label": "5. unhandled exceptions"
     },
     {
@@ -62739,7 +62937,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L362",
       "id": "resources_common_patterns_codeblock_23",
-      "community": 206,
+      "community": 962,
       "norm_label": "code:python (@app.post(\"/api/todos\"))"
     },
     {
@@ -62748,7 +62946,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-debug/resources/common-patterns.md",
       "source_location": "L373",
       "id": "resources_common_patterns_codeblock_24",
-      "community": 206,
+      "community": 962,
       "norm_label": "code:python (from fastapi import httpexception)"
     },
     {
@@ -69003,7 +69201,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-hwp/resources/execution-protocol.md",
       "source_location": "L1",
       "id": "users_jangyoung_superset_projects_saas_of_funqa_agents_skills_oma_hwp_resources_execution_protocol_md",
-      "community": 218,
+      "community": 896,
       "norm_label": "execution-protocol.md"
     },
     {
@@ -69012,7 +69210,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-hwp/resources/execution-protocol.md",
       "source_location": "L1",
       "id": "resources_execution_protocol_hwp_conversion_execution_protocol",
-      "community": 218,
+      "community": 896,
       "norm_label": "hwp conversion - execution protocol"
     },
     {
@@ -69021,7 +69219,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-hwp/resources/execution-protocol.md",
       "source_location": "L15",
       "id": "resources_execution_protocol_step_1_check_runtime",
-      "community": 353,
+      "community": 896,
       "norm_label": "step 1: check runtime"
     },
     {
@@ -69084,7 +69282,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-hwp/resources/execution-protocol.md",
       "source_location": "L74",
       "id": "resources_execution_protocol_step_3_verify",
-      "community": 218,
+      "community": 896,
       "norm_label": "step 3: verify"
     },
     {
@@ -69093,7 +69291,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-hwp/resources/execution-protocol.md",
       "source_location": "L87",
       "id": "resources_execution_protocol_step_4_report",
-      "community": 218,
+      "community": 896,
       "norm_label": "step 4: report"
     },
     {
@@ -69102,7 +69300,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-hwp/resources/execution-protocol.md",
       "source_location": "L107",
       "id": "resources_execution_protocol_pin_vs_latest",
-      "community": 218,
+      "community": 896,
       "norm_label": "pin vs latest"
     },
     {
@@ -69111,7 +69309,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/.agents/skills/oma-hwp/resources/execution-protocol.md",
       "source_location": "L112",
       "id": "resources_execution_protocol_scope_reminder",
-      "community": 218,
+      "community": 896,
       "norm_label": "scope reminder"
     },
     {
@@ -72270,7 +72468,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/docs/spec/funqa-consensus-rag-v1.md",
       "source_location": "L4092",
       "id": "spec_funqa_consensus_rag_v1_monetization_and_access_model",
-      "community": 961,
+      "community": 192,
       "norm_label": "monetization and access model"
     },
     {
@@ -72279,7 +72477,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/docs/spec/funqa-consensus-rag-v1.md",
       "source_location": "L4094",
       "id": "spec_funqa_consensus_rag_v1_tenant_and_member_model",
-      "community": 961,
+      "community": 192,
       "norm_label": "tenant and member model"
     },
     {
@@ -72288,7 +72486,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/docs/spec/funqa-consensus-rag-v1.md",
       "source_location": "L4103",
       "id": "spec_funqa_consensus_rag_v1_api_key_model",
-      "community": 961,
+      "community": 192,
       "norm_label": "api key model"
     },
     {
@@ -72297,7 +72495,7 @@
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/docs/spec/funqa-consensus-rag-v1.md",
       "source_location": "L4116",
       "id": "spec_funqa_consensus_rag_v1_authorization_consequences",
-      "community": 961,
+      "community": 192,
       "norm_label": "authorization consequences"
     },
     {
@@ -76219,7 +76417,7 @@
       "label": "Honest limits",
       "file_type": "document",
       "source_file": "knowledge/wiki/reports/game-log-agentic-search-cycle-2026-08-11.md",
-      "source_location": "L26",
+      "source_location": "L27",
       "id": "reports_game_log_agentic_search_cycle_2026_08_11_honest_limits",
       "community": 866,
       "norm_label": "honest limits"
@@ -76228,7 +76426,7 @@
       "label": "Artifacts",
       "file_type": "document",
       "source_file": "knowledge/wiki/reports/game-log-agentic-search-cycle-2026-08-11.md",
-      "source_location": "L30",
+      "source_location": "L31",
       "id": "reports_game_log_agentic_search_cycle_2026_08_11_artifacts",
       "community": 866,
       "norm_label": "artifacts"
@@ -76237,7 +76435,7 @@
       "label": "Related",
       "file_type": "document",
       "source_file": "knowledge/wiki/reports/game-log-agentic-search-cycle-2026-08-11.md",
-      "source_location": "L40",
+      "source_location": "L42",
       "id": "reports_game_log_agentic_search_cycle_2026_08_11_related",
       "community": 866,
       "norm_label": "related"
@@ -81094,6 +81292,15 @@
       "norm_label": "consequences"
     },
     {
+      "label": "Deployment verification \u2014 2026-08-11 (Genkit engine)",
+      "file_type": "document",
+      "source_file": "_workspace/current/production/decision-log.md",
+      "source_location": "L162",
+      "id": "production_decision_log_deployment_verification_2026_08_11_genkit_engine",
+      "community": 693,
+      "norm_label": "deployment verification \u2014 2026-08-11 (genkit engine)"
+    },
+    {
       "label": "task-manifest.md",
       "file_type": "document",
       "source_file": "_workspace/current/production/task-manifest.md",
@@ -81487,6 +81694,60 @@
       "source_location": "L36",
       "id": "ops_apphosting_release_2026_08_11_authority_boundary",
       "community": 947,
+      "norm_label": "authority boundary"
+    },
+    {
+      "label": "apphosting-genkit-release-2026-08-11.md",
+      "file_type": "document",
+      "source_file": "_workspace/current/ops/apphosting-genkit-release-2026-08-11.md",
+      "source_location": "L1",
+      "id": "workspace_current_ops_apphosting_genkit_release_2026_08_11_md",
+      "community": 961,
+      "norm_label": "apphosting-genkit-release-2026-08-11.md"
+    },
+    {
+      "label": "Firebase App Hosting Genkit-engine release \u2014 2026-08-11",
+      "file_type": "document",
+      "source_file": "_workspace/current/ops/apphosting-genkit-release-2026-08-11.md",
+      "source_location": "L11",
+      "id": "ops_apphosting_genkit_release_2026_08_11_firebase_app_hosting_genkit_engine_release_2026_08_11",
+      "community": 961,
+      "norm_label": "firebase app hosting genkit-engine release \u2014 2026-08-11"
+    },
+    {
+      "label": "Rollout",
+      "file_type": "document",
+      "source_file": "_workspace/current/ops/apphosting-genkit-release-2026-08-11.md",
+      "source_location": "L17",
+      "id": "ops_apphosting_genkit_release_2026_08_11_rollout",
+      "community": 961,
+      "norm_label": "rollout"
+    },
+    {
+      "label": "Production verification (fresh browser, 2026-08-11T15:54\u201315:56Z)",
+      "file_type": "document",
+      "source_file": "_workspace/current/ops/apphosting-genkit-release-2026-08-11.md",
+      "source_location": "L27",
+      "id": "ops_apphosting_genkit_release_2026_08_11_production_verification_fresh_browser_2026_08_11t15_54_15_56z",
+      "community": 961,
+      "norm_label": "production verification (fresh browser, 2026-08-11t15:54\u201315:56z)"
+    },
+    {
+      "label": "Deploy-failure forensics (durable lesson)",
+      "file_type": "document",
+      "source_file": "_workspace/current/ops/apphosting-genkit-release-2026-08-11.md",
+      "source_location": "L36",
+      "id": "ops_apphosting_genkit_release_2026_08_11_deploy_failure_forensics_durable_lesson",
+      "community": 961,
+      "norm_label": "deploy-failure forensics (durable lesson)"
+    },
+    {
+      "label": "Authority boundary",
+      "file_type": "document",
+      "source_file": "_workspace/current/ops/apphosting-genkit-release-2026-08-11.md",
+      "source_location": "L49",
+      "id": "ops_apphosting_genkit_release_2026_08_11_authority_boundary",
+      "community": 961,
       "norm_label": "authority boundary"
     },
     {
@@ -83524,11 +83785,20 @@
       "norm_label": "guardrails for implementation"
     },
     {
+      "label": "ensure-standalone-runtime.mjs",
+      "file_type": "code",
+      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L1",
+      "community": 278,
+      "norm_label": "ensure-standalone-runtime.mjs",
+      "id": "users_jangyoung_superset_projects_saas_of_funqa_apps_web_scripts_ensure_standalone_runtime_mjs"
+    },
+    {
       "label": "next.config.mjs",
       "file_type": "code",
       "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/next.config.mjs",
       "source_location": "L1",
-      "community": 535,
+      "community": 278,
       "norm_label": "next.config.mjs",
       "id": "users_jangyoung_superset_projects_saas_of_funqa_apps_web_next_config_mjs"
     },
@@ -85841,7 +86111,7 @@
       "file_type": "code",
       "source_file": "packages/ai/src/pipelines/query-transform.ts",
       "source_location": "L1",
-      "community": 17,
+      "community": 535,
       "norm_label": "query-transform.ts",
       "id": "packages_ai_src_pipelines_query_transform_ts"
     },
@@ -86282,7 +86552,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1016",
-      "community": 872,
+      "community": 140,
       "norm_label": "cosinesimilarity()",
       "id": "lib_index_cosinesimilarity"
     },
@@ -86327,7 +86597,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1130",
-      "community": 872,
+      "community": 140,
       "norm_label": "rerankwithcohere()",
       "id": "lib_index_rerankwithcohere"
     },
@@ -86363,7 +86633,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1185",
-      "community": 872,
+      "community": 140,
       "norm_label": "evaluateconsensus()",
       "id": "lib_index_evaluateconsensus"
     },
@@ -86372,7 +86642,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1228",
-      "community": 872,
+      "community": 140,
       "norm_label": "evaluatechunkcorrectness()",
       "id": "lib_index_evaluatechunkcorrectness"
     },
@@ -86381,7 +86651,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1241",
-      "community": 872,
+      "community": 140,
       "norm_label": "cragfilter()",
       "id": "lib_index_cragfilter"
     },
@@ -86669,7 +86939,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1662",
-      "community": 872,
+      "community": 140,
       "norm_label": "runanswerflow()",
       "id": "lib_index_runanswerflow"
     },
@@ -86723,7 +86993,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1704",
-      "community": 872,
+      "community": 140,
       "norm_label": "buildcachekey()",
       "id": "lib_index_buildcachekey"
     },
@@ -86732,7 +87002,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1710",
-      "community": 872,
+      "community": 140,
       "norm_label": "recordrequest()",
       "id": "lib_index_recordrequest"
     },
@@ -86867,7 +87137,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L2050",
-      "community": 872,
+      "community": 140,
       "norm_label": "searchdocuments()",
       "id": "lib_index_searchdocuments"
     },
@@ -87164,7 +87434,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L2829",
-      "community": 5,
+      "community": 872,
       "norm_label": "runsearchflow()",
       "id": "lib_index_runsearchflow"
     },
@@ -87556,15 +87826,6 @@
       "id": "apps_web_hooks_use_search_stream_ts"
     },
     {
-      "label": "ensure-standalone-runtime.mjs",
-      "file_type": "code",
-      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L1",
-      "community": 278,
-      "norm_label": "ensure-standalone-runtime.mjs",
-      "id": "apps_web_scripts_ensure_standalone_runtime_mjs"
-    },
-    {
       "label": "firebase-client.ts",
       "file_type": "code",
       "source_file": "apps/web/lib/firebase-client.ts",
@@ -87623,7 +87884,7 @@
       "file_type": "code",
       "source_file": "apps/api/src/genkit.ts",
       "source_location": "L1",
-      "community": 840,
+      "community": 5,
       "norm_label": "genkit.ts",
       "id": "apps_api_src_genkit_ts"
     },
@@ -87713,7 +87974,7 @@
       "file_type": "code",
       "source_file": "apps/api/src/flows/answer.ts",
       "source_location": "L1",
-      "community": 840,
+      "community": 5,
       "norm_label": "answer.ts",
       "id": "apps_api_src_flows_answer_ts"
     },
@@ -87731,7 +87992,7 @@
       "file_type": "code",
       "source_file": "apps/api/src/routes/search.route.ts",
       "source_location": "L1",
-      "community": 5,
+      "community": 872,
       "norm_label": "search.route.ts",
       "id": "apps_api_src_routes_search_route_ts"
     },
@@ -87857,7 +88118,7 @@
       "file_type": "document",
       "source_file": "README.md",
       "source_location": "L47",
-      "community": 963,
+      "community": 49,
       "norm_label": "\u110b\u1161\u110f\u1175\u1110\u1166\u11a8\u110e\u1165",
       "id": "saas_of_funqa_readme_\uc544\ud0a4\ud14d\ucc98"
     },
@@ -87866,7 +88127,7 @@
       "file_type": "document",
       "source_file": "README.md",
       "source_location": "L49",
-      "community": 963,
+      "community": 49,
       "norm_label": "code:block1 (browser \u2500\u2500\u25ba next.js (app hosting) \u2500\u2500\u25ba firebase functions v2 )",
       "id": "saas_of_funqa_readme_codeblock_1"
     },
@@ -87875,7 +88136,7 @@
       "file_type": "document",
       "source_file": "README.md",
       "source_location": "L60",
-      "community": 963,
+      "community": 49,
       "norm_label": "code:block2 (\u1106\u116e\u11ab\u1109\u1165 \u110b\u1175\u11b8\u1105\u1167\u11a8 \u2192 normalize \u2192 extract \u2192 semantic-chunk \u2192 embed \u2192 index)",
       "id": "saas_of_funqa_readme_codeblock_2"
     },
@@ -89963,7 +90224,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/oma-pm/resources/execution-protocol.md",
       "source_location": "L1",
-      "community": 896,
+      "community": 442,
       "norm_label": "execution-protocol.md",
       "id": "agents_skills_oma_pm_resources_execution_protocol_md"
     },
@@ -90440,7 +90701,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/oma-pdf/resources/execution-protocol.md",
       "source_location": "L1",
-      "community": 218,
+      "community": 896,
       "norm_label": "execution-protocol.md",
       "id": "agents_skills_oma_pdf_resources_execution_protocol_md"
     },
@@ -91223,7 +91484,7 @@
       "file_type": "document",
       "source_file": ".agents/skills/oma-hwp/resources/execution-protocol.md",
       "source_location": "L1",
-      "community": 218,
+      "community": 896,
       "norm_label": "execution-protocol.md",
       "id": "agents_skills_oma_hwp_resources_execution_protocol_md"
     },
@@ -97280,7 +97541,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-a1783371/packages/ai/src/pipelines/query-transform.ts",
       "source_location": "L1",
-      "community": 17,
+      "community": 535,
       "norm_label": "query-transform.ts",
       "id": "claude_worktrees_agent_a1783371_packages_ai_src_pipelines_query_transform_ts"
     },
@@ -97424,7 +97685,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-a1783371/apps/web/next.config.mjs",
       "source_location": "L1",
-      "community": 535,
+      "community": 278,
       "norm_label": "next.config.mjs",
       "id": "claude_worktrees_agent_a1783371_apps_web_next_config_mjs"
     },
@@ -97820,7 +98081,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-a1783371/apps/api/src/genkit.ts",
       "source_location": "L1",
-      "community": 840,
+      "community": 5,
       "norm_label": "genkit.ts",
       "id": "claude_worktrees_agent_a1783371_apps_api_src_genkit_ts"
     },
@@ -97901,7 +98162,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-a1783371/apps/api/src/flows/search.ts",
       "source_location": "L1",
-      "community": 5,
+      "community": 872,
       "norm_label": "search.ts",
       "id": "claude_worktrees_agent_a1783371_apps_api_src_flows_search_ts"
     },
@@ -97910,7 +98171,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-a1783371/apps/api/src/flows/answer.ts",
       "source_location": "L1",
-      "community": 840,
+      "community": 5,
       "norm_label": "answer.ts",
       "id": "claude_worktrees_agent_a1783371_apps_api_src_flows_answer_ts"
     },
@@ -97928,7 +98189,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-a1783371/apps/api/src/routes/search.route.ts",
       "source_location": "L1",
-      "community": 5,
+      "community": 872,
       "norm_label": "search.route.ts",
       "id": "claude_worktrees_agent_a1783371_apps_api_src_routes_search_route_ts"
     },
@@ -98000,7 +98261,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-a1783371/apps/api/src/routes/rag.route.ts",
       "source_location": "L1",
-      "community": 412,
+      "community": 3,
       "norm_label": "rag.route.ts",
       "id": "claude_worktrees_agent_a1783371_apps_api_src_routes_rag_route_ts"
     },
@@ -98054,7 +98315,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-a1783371/apps/api/src/services/rag.service.ts",
       "source_location": "L63",
-      "community": 3,
+      "community": 872,
       "norm_label": "buildconsensusscaffold()",
       "id": "services_rag_service_buildconsensusscaffold"
     },
@@ -99008,7 +99269,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-ab6cd01e/packages/ai/src/pipelines/query-transform.ts",
       "source_location": "L1",
-      "community": 17,
+      "community": 535,
       "norm_label": "query-transform.ts",
       "id": "claude_worktrees_agent_ab6cd01e_packages_ai_src_pipelines_query_transform_ts"
     },
@@ -99197,7 +99458,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-ab6cd01e/apps/web/next.config.mjs",
       "source_location": "L1",
-      "community": 535,
+      "community": 278,
       "norm_label": "next.config.mjs",
       "id": "claude_worktrees_agent_ab6cd01e_apps_web_next_config_mjs"
     },
@@ -99467,7 +99728,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-ab6cd01e/apps/api/src/genkit.ts",
       "source_location": "L1",
-      "community": 840,
+      "community": 5,
       "norm_label": "genkit.ts",
       "id": "claude_worktrees_agent_ab6cd01e_apps_api_src_genkit_ts"
     },
@@ -99548,7 +99809,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-ab6cd01e/apps/api/src/flows/search.ts",
       "source_location": "L1",
-      "community": 5,
+      "community": 872,
       "norm_label": "search.ts",
       "id": "claude_worktrees_agent_ab6cd01e_apps_api_src_flows_search_ts"
     },
@@ -99557,7 +99818,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-ab6cd01e/apps/api/src/flows/answer.ts",
       "source_location": "L1",
-      "community": 840,
+      "community": 5,
       "norm_label": "answer.ts",
       "id": "claude_worktrees_agent_ab6cd01e_apps_api_src_flows_answer_ts"
     },
@@ -99575,7 +99836,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-ab6cd01e/apps/api/src/routes/search.route.ts",
       "source_location": "L1",
-      "community": 5,
+      "community": 872,
       "norm_label": "search.route.ts",
       "id": "claude_worktrees_agent_ab6cd01e_apps_api_src_routes_search_route_ts"
     },
@@ -99647,7 +99908,7 @@
       "file_type": "code",
       "source_file": ".claude/worktrees/agent-ab6cd01e/apps/api/src/routes/rag.route.ts",
       "source_location": "L1",
-      "community": 412,
+      "community": 3,
       "norm_label": "rag.route.ts",
       "id": "claude_worktrees_agent_ab6cd01e_apps_api_src_routes_rag_route_ts"
     },
@@ -102077,7 +102338,7 @@
       "file_type": "code",
       "source_file": "functions/lib/index.js",
       "source_location": "L1850",
-      "community": 872,
+      "community": 140,
       "norm_label": "buildconsensusscaffold()",
       "id": "lib_index_buildconsensusscaffold"
     },
@@ -102680,7 +102941,7 @@
       "file_type": "code",
       "source_file": "packages/ai/src/pipelines/query-transform.ts",
       "source_location": "L4",
-      "community": 17,
+      "community": 535,
       "norm_label": "extractkeywords()",
       "id": "query_transform_extractkeywords"
     },
@@ -102689,7 +102950,7 @@
       "file_type": "code",
       "source_file": "packages/ai/src/pipelines/query-transform.ts",
       "source_location": "L8",
-      "community": 17,
+      "community": 535,
       "norm_label": "rewritequerylocally()",
       "id": "query_transform_rewritequerylocally"
     },
@@ -102698,7 +102959,7 @@
       "file_type": "code",
       "source_file": "packages/ai/src/pipelines/query-transform.ts",
       "source_location": "L23",
-      "community": 17,
+      "community": 535,
       "norm_label": "buildlocalhydedocument()",
       "id": "query_transform_buildlocalhydedocument"
     },
@@ -102707,7 +102968,7 @@
       "file_type": "code",
       "source_file": "packages/ai/src/pipelines/query-transform.ts",
       "source_location": "L32",
-      "community": 17,
+      "community": 535,
       "norm_label": "transformquerylocally()",
       "id": "query_transform_transformquerylocally"
     },
@@ -104741,7 +105002,7 @@
       "file_type": "code",
       "source_file": "apps/api/src/flows/search.ts",
       "source_location": "L65",
-      "community": 5,
+      "community": 872,
       "norm_label": "runsearchflow()",
       "id": "search_runsearchflow"
     },
@@ -104750,7 +105011,7 @@
       "file_type": "code",
       "source_file": "apps/api/src/flows/answer.ts",
       "source_location": "L26",
-      "community": 840,
+      "community": 5,
       "norm_label": "runanswerflow()",
       "id": "answer_runanswerflow"
     },
@@ -104768,7 +105029,7 @@
       "file_type": "code",
       "source_file": "apps/api/src/routes/search.route.ts",
       "source_location": "L5",
-      "community": 5,
+      "community": 872,
       "norm_label": "registersearchroute()",
       "id": "search_route_registersearchroute"
     },
@@ -104777,7 +105038,7 @@
       "file_type": "code",
       "source_file": "apps/api/src/routes/admin.route.ts",
       "source_location": "L5",
-      "community": 3,
+      "community": 412,
       "norm_label": "registeradminroute()",
       "id": "admin_route_registeradminroute"
     },
@@ -104840,7 +105101,7 @@
       "file_type": "code",
       "source_file": "apps/api/src/routes/rag.route.ts",
       "source_location": "L23",
-      "community": 412,
+      "community": 3,
       "norm_label": "registerragroute()",
       "id": "rag_route_registerragroute"
     },
@@ -121734,9 +121995,9 @@
       "source_file": "packages/contracts/src/game-log-search.ts",
       "source_location": "L81",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "packages_contracts_src_game_log_search_ts",
-      "target": "src_game_log_search_gamelogsearchengineschema",
-      "confidence_score": 1.0
+      "target": "src_game_log_search_gamelogsearchengineschema"
     },
     {
       "relation": "contains",
@@ -121744,9 +122005,9 @@
       "source_file": "packages/contracts/src/game-log-search.ts",
       "source_location": "L82",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "packages_contracts_src_game_log_search_ts",
-      "target": "src_game_log_search_gamelogsearchengine",
-      "confidence_score": 1.0
+      "target": "src_game_log_search_gamelogsearchengine"
     },
     {
       "relation": "contains",
@@ -134338,6 +134599,70 @@
       "target": "web_middleware_config"
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/next.config.mjs",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "apps_web_next_config_mjs",
+      "target": "apps_web_scripts_runtime_dep_closure_mjs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/next.config.mjs",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "apps_web_next_config_mjs",
+      "target": "scripts_runtime_dep_closure_optional_runtime_external_roots",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/next.config.mjs",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "apps_web_next_config_mjs",
+      "target": "scripts_runtime_dep_closure_runtime_external_roots",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/next.config.mjs",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "apps_web_next_config_mjs",
+      "target": "scripts_runtime_dep_closure_resolveclosure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/next.config.mjs",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "apps_web_next_config_mjs",
+      "target": "web_next_config_approot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/next.config.mjs",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "apps_web_next_config_mjs",
+      "target": "web_next_config_runtimeexternalincludes",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/next.config.mjs",
@@ -134653,8 +134978,38 @@
       "source_file": "apps/web/package.json",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "web_package_dependencies",
-      "target": "web_package_dependencies_genkit_ai_google_genai",
+      "target": "web_package_dependencies_genkit_ai_google_genai"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "web_package_dependencies",
+      "target": "web_package_dependencies_ajv",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "web_package_dependencies",
+      "target": "web_package_dependencies_ajv_formats",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "web_package_dependencies",
+      "target": "web_package_dependencies_express",
       "confidence_score": 1.0
     },
     {
@@ -134673,9 +135028,9 @@
       "source_file": "apps/web/package.json",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "web_package_dependencies",
-      "target": "web_package_dependencies_genkit",
-      "confidence_score": 1.0
+      "target": "web_package_dependencies_genkit"
     },
     {
       "relation": "contains",
@@ -138712,9 +139067,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "apps_web_app_api_game_log_search_corpus_ts",
-      "confidence_score": 1.0
+      "target": "apps_web_app_api_game_log_search_corpus_ts"
     },
     {
       "relation": "imports",
@@ -138723,9 +139078,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_corpus_indexed_corpus",
-      "confidence_score": 1.0
+      "target": "game_log_search_corpus_indexed_corpus"
     },
     {
       "relation": "imports",
@@ -138734,9 +139089,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_corpus_evidencesethash",
-      "confidence_score": 1.0
+      "target": "game_log_search_corpus_evidencesethash"
     },
     {
       "relation": "imports_from",
@@ -138745,9 +139100,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "confidence_score": 1.0
+      "target": "apps_web_app_api_game_log_search_genkit_engine_ts"
     },
     {
       "relation": "imports",
@@ -138756,9 +139111,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_creategenkithealth",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_creategenkithealth"
     },
     {
       "relation": "imports",
@@ -138767,9 +139122,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_hasdeterministicweaksupportboundary",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_hasdeterministicweaksupportboundary"
     },
     {
       "relation": "imports",
@@ -138778,9 +139133,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_requestedcoverageisstale",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_requestedcoverageisstale"
     },
     {
       "relation": "imports",
@@ -138789,9 +139144,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_resolvegamelogsearchengine",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_resolvegamelogsearchengine"
     },
     {
       "relation": "imports",
@@ -138800,9 +139155,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_retrieveevidence",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_retrieveevidence"
     },
     {
       "relation": "imports",
@@ -138811,9 +139166,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_rungenkitsearch",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_rungenkitsearch"
     },
     {
       "relation": "imports",
@@ -138822,9 +139177,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_validatesynthesisdraft",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_validatesynthesisdraft"
     },
     {
       "relation": "imports",
@@ -138833,9 +139188,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_synthesisdraft",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_synthesisdraft"
     },
     {
       "relation": "contains",
@@ -138843,9 +139198,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L33",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_test_makescope",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_makescope"
     },
     {
       "relation": "contains",
@@ -138853,9 +139208,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L45",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_test_makerequest",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_makerequest"
     },
     {
       "relation": "contains",
@@ -138863,9 +139218,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L80",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_test_makep42request",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_makep42request"
     },
     {
       "relation": "contains",
@@ -138873,9 +139228,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L87",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_test_readndjsonframes",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_readndjsonframes"
     },
     {
       "relation": "contains",
@@ -138883,9 +139238,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L107",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_test_parseframes",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_parseframes"
     },
     {
       "relation": "contains",
@@ -138893,9 +139248,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L115",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_test_managed_env",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_managed_env"
     },
     {
       "relation": "contains",
@@ -138903,9 +139258,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L121",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_test_managedenvname",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_managedenvname"
     },
     {
       "relation": "contains",
@@ -138913,9 +139268,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L484",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_test_request",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_request"
     },
     {
       "relation": "contains",
@@ -138923,9 +139278,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L389",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_test_evidence",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_evidence"
     },
     {
       "relation": "contains",
@@ -138933,9 +139288,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L326",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_test_p42fixture",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_p42fixture"
     },
     {
       "relation": "contains",
@@ -138943,9 +139298,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L334",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_test_validdraft",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_validdraft"
     },
     {
       "relation": "contains",
@@ -138953,9 +139308,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L424",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_test_request_evidence",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_request_evidence"
     },
     {
       "relation": "contains",
@@ -138963,9 +139318,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L351",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_test_finding",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_finding"
     },
     {
       "relation": "contains",
@@ -138973,9 +139328,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L425",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_test_draft",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_draft"
     },
     {
       "relation": "contains",
@@ -138983,9 +139338,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L406",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_test_nocontext",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_nocontext"
     },
     {
       "relation": "contains",
@@ -138993,9 +139348,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L415",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_test_nosupports",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_nosupports"
     },
     {
       "relation": "contains",
@@ -139003,9 +139358,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L486",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_test_response",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_response"
     },
     {
       "relation": "contains",
@@ -139013,9 +139368,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L487",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_test_frames",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_frames"
     },
     {
       "relation": "contains",
@@ -139023,9 +139378,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L460",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_test_snapshot",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_snapshot"
     },
     {
       "relation": "contains",
@@ -139033,9 +139388,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L499",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_test_terminal",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_terminal"
     },
     {
       "relation": "contains",
@@ -139043,9 +139398,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L512",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_test_ts",
-      "target": "game_log_search_genkit_engine_test_health",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_health"
     },
     {
       "relation": "calls",
@@ -139054,9 +139409,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L59",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_test_makerequest",
-      "target": "game_log_search_genkit_engine_test_makescope",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_makescope"
     },
     {
       "relation": "calls",
@@ -139065,9 +139420,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L81",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_test_makep42request",
-      "target": "game_log_search_genkit_engine_test_makerequest",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_makerequest"
     },
     {
       "relation": "calls",
@@ -139076,9 +139431,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.test.ts",
       "source_location": "L327",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_test_p42fixture",
-      "target": "game_log_search_genkit_engine_test_makep42request",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_test_makep42request"
     },
     {
       "relation": "calls",
@@ -139109,9 +139464,9 @@
       "source_file": "apps/web/app/api/game-log-search/_shared.test.ts",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_shared_test_ts",
-      "target": "game_log_search_shared_createproxyhealth",
-      "confidence_score": 1.0
+      "target": "game_log_search_shared_createproxyhealth"
     },
     {
       "relation": "imports",
@@ -139142,9 +139497,9 @@
       "source_file": "apps/web/app/api/game-log-search/_shared.test.ts",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_shared_test_ts",
-      "target": "game_log_search_shared_createunavailablehealth",
-      "confidence_score": 1.0
+      "target": "game_log_search_shared_createunavailablehealth"
     },
     {
       "relation": "imports",
@@ -139223,9 +139578,9 @@
       "source_file": "apps/web/app/api/game-log-search/_shared.test.ts",
       "source_location": "L213",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_shared_test_ts",
-      "target": "game_log_search_shared_test_health",
-      "confidence_score": 1.0
+      "target": "game_log_search_shared_test_health"
     },
     {
       "relation": "contains",
@@ -139233,9 +139588,9 @@
       "source_file": "apps/web/app/api/game-log-search/_shared.test.ts",
       "source_location": "L202",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_shared_test_ts",
-      "target": "game_log_search_shared_test_upstream",
-      "confidence_score": 1.0
+      "target": "game_log_search_shared_test_upstream"
     },
     {
       "relation": "contains",
@@ -139490,9 +139845,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "apps_web_app_api_game_log_search_corpus_ts",
-      "confidence_score": 1.0
+      "target": "apps_web_app_api_game_log_search_corpus_ts"
     },
     {
       "relation": "imports",
@@ -139501,9 +139856,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_corpus_indexed_corpus",
-      "confidence_score": 1.0
+      "target": "game_log_search_corpus_indexed_corpus"
     },
     {
       "relation": "imports",
@@ -139512,9 +139867,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_corpus_evidencesethash",
-      "confidence_score": 1.0
+      "target": "game_log_search_corpus_evidencesethash"
     },
     {
       "relation": "imports",
@@ -139523,9 +139878,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_corpus_corpusrecord",
-      "confidence_score": 1.0
+      "target": "game_log_search_corpus_corpusrecord"
     },
     {
       "relation": "contains",
@@ -139533,9 +139888,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L31",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_schema_version",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_schema_version"
     },
     {
       "relation": "contains",
@@ -139543,9 +139898,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_resolvegamelogsearchengine",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_resolvegamelogsearchengine"
     },
     {
       "relation": "contains",
@@ -139553,9 +139908,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L46",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_genkitmodelid",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_genkitmodelid"
     },
     {
       "relation": "contains",
@@ -139563,9 +139918,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L50",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_hasgeminikey",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_hasgeminikey"
     },
     {
       "relation": "contains",
@@ -139573,9 +139928,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L56",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_getai",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_getai"
     },
     {
       "relation": "contains",
@@ -139583,9 +139938,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L65",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_support_stopwords",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_support_stopwords"
     },
     {
       "relation": "contains",
@@ -139593,9 +139948,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L81",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_supporttokens",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_supporttokens"
     },
     {
       "relation": "contains",
@@ -139603,9 +139958,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L92",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_parseutcms",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_parseutcms"
     },
     {
       "relation": "contains",
@@ -139613,9 +139968,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L96",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_scoredrecord",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_scoredrecord"
     },
     {
       "relation": "contains",
@@ -139623,9 +139978,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L101",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_scopematches",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_scopematches"
     },
     {
       "relation": "contains",
@@ -139633,9 +139988,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L125",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_lexicalscore",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_lexicalscore"
     },
     {
       "relation": "contains",
@@ -139643,9 +139998,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L141",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_retrieveevidence",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_retrieveevidence"
     },
     {
       "relation": "contains",
@@ -139653,9 +140008,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L201",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_requestedcoverageisstale",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_requestedcoverageisstale"
     },
     {
       "relation": "contains",
@@ -139663,9 +140018,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L208",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_hasdeterministicweaksupportboundary",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_hasdeterministicweaksupportboundary"
     },
     {
       "relation": "contains",
@@ -139673,9 +140028,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L239",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_hasimpossiblenumericdirection",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_hasimpossiblenumericdirection"
     },
     {
       "relation": "contains",
@@ -139683,9 +140038,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L271",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_synthesisdraftschema",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_synthesisdraftschema"
     },
     {
       "relation": "contains",
@@ -139693,9 +140048,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L299",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_synthesisdraft",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_synthesisdraft"
     },
     {
       "relation": "contains",
@@ -139703,9 +140058,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L305",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_validatesynthesisdraft",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_validatesynthesisdraft"
     },
     {
       "relation": "contains",
@@ -139713,9 +140068,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L423",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_synthesisfailurereason",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_synthesisfailurereason"
     },
     {
       "relation": "contains",
@@ -139723,9 +140078,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L425",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_genkitsynthesisresult",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_genkitsynthesisresult"
     },
     {
       "relation": "contains",
@@ -139733,9 +140088,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L435",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_synthesis_system_prompt",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_synthesis_system_prompt"
     },
     {
       "relation": "contains",
@@ -139743,9 +140098,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L448",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_istransientmodelerror",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_istransientmodelerror"
     },
     {
       "relation": "contains",
@@ -139753,9 +140108,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L453",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_delay",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_delay"
     },
     {
       "relation": "contains",
@@ -139763,9 +140118,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L459",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_synthesizewithgenkit",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_synthesizewithgenkit"
     },
     {
       "relation": "contains",
@@ -139773,9 +140128,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L549",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_terminaloverrides",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_terminaloverrides"
     },
     {
       "relation": "contains",
@@ -139783,9 +140138,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L558",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_terminal_disposition",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_terminal_disposition"
     },
     {
       "relation": "contains",
@@ -139793,9 +140148,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L574",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_buildterminal",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_buildterminal"
     },
     {
       "relation": "contains",
@@ -139803,9 +140158,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L612",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_activegenkitrun",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_activegenkitrun"
     },
     {
       "relation": "contains",
@@ -139813,9 +140168,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L618",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_activeruns",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_activeruns"
     },
     {
       "relation": "contains",
@@ -139823,9 +140178,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L620",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_genkitcanceloutcome",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_genkitcanceloutcome"
     },
     {
       "relation": "contains",
@@ -139833,9 +140188,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L625",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_cancelgenkitrun",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_cancelgenkitrun"
     },
     {
       "relation": "contains",
@@ -139843,9 +140198,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L637",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_nowiso",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_nowiso"
     },
     {
       "relation": "contains",
@@ -139853,9 +140208,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L641",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_rungenkitsearch",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_rungenkitsearch"
     },
     {
       "relation": "contains",
@@ -139863,9 +140218,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L862",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "target": "game_log_search_genkit_engine_creategenkithealth",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_creategenkithealth"
     },
     {
       "relation": "imports_from",
@@ -139874,9 +140229,9 @@
       "source_file": "apps/web/app/api/game-log-search/health/route.ts",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_health_route_ts",
-      "target": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "confidence_score": 1.0
+      "target": "apps_web_app_api_game_log_search_genkit_engine_ts"
     },
     {
       "relation": "imports_from",
@@ -139885,9 +140240,9 @@
       "source_file": "apps/web/app/api/game-log-search/search/route.ts",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_search_route_ts",
-      "target": "apps_web_app_api_game_log_search_genkit_engine_ts",
-      "confidence_score": 1.0
+      "target": "apps_web_app_api_game_log_search_genkit_engine_ts"
     },
     {
       "relation": "imports",
@@ -139896,9 +140251,9 @@
       "source_file": "apps/web/app/api/game-log-search/health/route.ts",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_health_route_ts",
-      "target": "game_log_search_genkit_engine_resolvegamelogsearchengine",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_resolvegamelogsearchengine"
     },
     {
       "relation": "imports",
@@ -139907,9 +140262,9 @@
       "source_file": "apps/web/app/api/game-log-search/search/route.ts",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_search_route_ts",
-      "target": "game_log_search_genkit_engine_resolvegamelogsearchengine",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_resolvegamelogsearchengine"
     },
     {
       "relation": "calls",
@@ -139951,9 +140306,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L498",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_synthesizewithgenkit",
-      "target": "game_log_search_genkit_engine_genkitmodelid",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_genkitmodelid"
     },
     {
       "relation": "calls",
@@ -139962,9 +140317,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L601",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_buildterminal",
-      "target": "game_log_search_genkit_engine_genkitmodelid",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_genkitmodelid"
     },
     {
       "relation": "calls",
@@ -139973,9 +140328,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L877",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_creategenkithealth",
-      "target": "game_log_search_genkit_engine_genkitmodelid",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_genkitmodelid"
     },
     {
       "relation": "calls",
@@ -139984,9 +140339,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L58",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_getai",
-      "target": "game_log_search_genkit_engine_hasgeminikey",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_hasgeminikey"
     },
     {
       "relation": "calls",
@@ -139995,9 +140350,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L463",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_synthesizewithgenkit",
-      "target": "game_log_search_genkit_engine_hasgeminikey",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_hasgeminikey"
     },
     {
       "relation": "calls",
@@ -140006,9 +140361,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L864",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_creategenkithealth",
-      "target": "game_log_search_genkit_engine_hasgeminikey",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_hasgeminikey"
     },
     {
       "relation": "calls",
@@ -140017,9 +140372,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L497",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_synthesizewithgenkit",
-      "target": "game_log_search_genkit_engine_getai",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_getai"
     },
     {
       "relation": "calls",
@@ -140028,9 +140383,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L129",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_lexicalscore",
-      "target": "game_log_search_genkit_engine_supporttokens",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_supporttokens"
     },
     {
       "relation": "calls",
@@ -140039,9 +140394,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L142",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_retrieveevidence",
-      "target": "game_log_search_genkit_engine_supporttokens",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_supporttokens"
     },
     {
       "relation": "calls",
@@ -140050,9 +140405,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L371",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_validatesynthesisdraft",
-      "target": "game_log_search_genkit_engine_supporttokens",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_supporttokens"
     },
     {
       "relation": "calls",
@@ -140061,9 +140416,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L115",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_scopematches",
-      "target": "game_log_search_genkit_engine_parseutcms",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_parseutcms"
     },
     {
       "relation": "calls",
@@ -140072,9 +140427,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L204",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_requestedcoverageisstale",
-      "target": "game_log_search_genkit_engine_parseutcms",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_parseutcms"
     },
     {
       "relation": "calls",
@@ -140083,9 +140438,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L152",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_retrieveevidence",
-      "target": "game_log_search_genkit_engine_scopematches",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_scopematches"
     },
     {
       "relation": "calls",
@@ -140094,9 +140449,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L155",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_retrieveevidence",
-      "target": "game_log_search_genkit_engine_lexicalscore",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_lexicalscore"
     },
     {
       "relation": "calls",
@@ -140105,9 +140460,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L403",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_validatesynthesisdraft",
-      "target": "game_log_search_genkit_engine_hasdeterministicweaksupportboundary",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_hasdeterministicweaksupportboundary"
     },
     {
       "relation": "calls",
@@ -140116,9 +140471,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L522",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_synthesizewithgenkit",
-      "target": "game_log_search_genkit_engine_validatesynthesisdraft",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_validatesynthesisdraft"
     },
     {
       "relation": "calls",
@@ -140127,9 +140482,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L528",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_synthesizewithgenkit",
-      "target": "game_log_search_genkit_engine_istransientmodelerror",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_istransientmodelerror"
     },
     {
       "relation": "calls",
@@ -140138,9 +140493,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L530",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_synthesizewithgenkit",
-      "target": "game_log_search_genkit_engine_delay",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_delay"
     },
     {
       "relation": "calls",
@@ -140160,9 +140515,9 @@
       "source_file": "apps/web/app/api/game-log-search/search/route.ts",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_search_route_ts",
-      "target": "game_log_search_genkit_engine_cancelgenkitrun",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_cancelgenkitrun"
     },
     {
       "relation": "calls",
@@ -140182,9 +140537,9 @@
       "source_file": "apps/web/app/api/game-log-search/_genkit-engine.ts",
       "source_location": "L863",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_genkit_engine_creategenkithealth",
-      "target": "game_log_search_genkit_engine_nowiso",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_nowiso"
     },
     {
       "relation": "imports",
@@ -140193,9 +140548,9 @@
       "source_file": "apps/web/app/api/game-log-search/search/route.ts",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_search_route_ts",
-      "target": "game_log_search_genkit_engine_rungenkitsearch",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_rungenkitsearch"
     },
     {
       "relation": "calls",
@@ -140215,9 +140570,9 @@
       "source_file": "apps/web/app/api/game-log-search/health/route.ts",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_health_route_ts",
-      "target": "game_log_search_genkit_engine_creategenkithealth",
-      "confidence_score": 1.0
+      "target": "game_log_search_genkit_engine_creategenkithealth"
     },
     {
       "relation": "calls",
@@ -140236,9 +140591,9 @@
       "source_file": "apps/web/app/api/game-log-search/_corpus.ts",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_corpus_ts",
-      "target": "game_log_search_corpus_corpusrecord",
-      "confidence_score": 1.0
+      "target": "game_log_search_corpus_corpusrecord"
     },
     {
       "relation": "contains",
@@ -140246,9 +140601,9 @@
       "source_file": "apps/web/app/api/game-log-search/_corpus.ts",
       "source_location": "L33",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_corpus_ts",
-      "target": "game_log_search_corpus_sha256utf8",
-      "confidence_score": 1.0
+      "target": "game_log_search_corpus_sha256utf8"
     },
     {
       "relation": "contains",
@@ -140256,9 +140611,9 @@
       "source_file": "apps/web/app/api/game-log-search/_corpus.ts",
       "source_location": "L37",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_corpus_ts",
-      "target": "game_log_search_corpus_corpusseed",
-      "confidence_score": 1.0
+      "target": "game_log_search_corpus_corpusseed"
     },
     {
       "relation": "contains",
@@ -140266,9 +140621,9 @@
       "source_file": "apps/web/app/api/game-log-search/_corpus.ts",
       "source_location": "L39",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_corpus_ts",
-      "target": "game_log_search_corpus_indexed_seeds",
-      "confidence_score": 1.0
+      "target": "game_log_search_corpus_indexed_seeds"
     },
     {
       "relation": "contains",
@@ -140276,9 +140631,9 @@
       "source_file": "apps/web/app/api/game-log-search/_corpus.ts",
       "source_location": "L143",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_corpus_ts",
-      "target": "game_log_search_corpus_indexed_corpus",
-      "confidence_score": 1.0
+      "target": "game_log_search_corpus_indexed_corpus"
     },
     {
       "relation": "contains",
@@ -140286,9 +140641,9 @@
       "source_file": "apps/web/app/api/game-log-search/_corpus.ts",
       "source_location": "L148",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_corpus_ts",
-      "target": "game_log_search_corpus_corpuscontentsha256",
-      "confidence_score": 1.0
+      "target": "game_log_search_corpus_corpuscontentsha256"
     },
     {
       "relation": "contains",
@@ -140296,9 +140651,9 @@
       "source_file": "apps/web/app/api/game-log-search/_corpus.ts",
       "source_location": "L152",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "apps_web_app_api_game_log_search_corpus_ts",
-      "target": "game_log_search_corpus_evidencesethash",
-      "confidence_score": 1.0
+      "target": "game_log_search_corpus_evidencesethash"
     },
     {
       "relation": "calls",
@@ -140307,9 +140662,9 @@
       "source_file": "apps/web/app/api/game-log-search/_corpus.ts",
       "source_location": "L149",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_corpus_corpuscontentsha256",
-      "target": "game_log_search_corpus_sha256utf8",
-      "confidence_score": 1.0
+      "target": "game_log_search_corpus_sha256utf8"
     },
     {
       "relation": "calls",
@@ -140318,9 +140673,9 @@
       "source_file": "apps/web/app/api/game-log-search/_corpus.ts",
       "source_location": "L159",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "game_log_search_corpus_evidencesethash",
-      "target": "game_log_search_corpus_sha256utf8",
-      "confidence_score": 1.0
+      "target": "game_log_search_corpus_sha256utf8"
     },
     {
       "relation": "contains",
@@ -142798,82 +143153,151 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L6",
+      "source_file": "apps/web/scripts/runtime-dep-closure.mjs",
+      "source_location": "L12",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "users_jangyoung_superset_projects_saas_of_funqa_apps_web_scripts_ensure_standalone_runtime_mjs",
-      "target": "scripts_ensure_standalone_runtime_filename"
+      "source": "apps_web_scripts_runtime_dep_closure_mjs",
+      "target": "scripts_runtime_dep_closure_runtime_external_roots",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "users_jangyoung_superset_projects_saas_of_funqa_apps_web_scripts_ensure_standalone_runtime_mjs",
-      "target": "scripts_ensure_standalone_runtime_dirname"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "users_jangyoung_superset_projects_saas_of_funqa_apps_web_scripts_ensure_standalone_runtime_mjs",
-      "target": "scripts_ensure_standalone_runtime_approot"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "users_jangyoung_superset_projects_saas_of_funqa_apps_web_scripts_ensure_standalone_runtime_mjs",
-      "target": "scripts_ensure_standalone_runtime_standalonenodemodules"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "users_jangyoung_superset_projects_saas_of_funqa_apps_web_scripts_ensure_standalone_runtime_mjs",
-      "target": "scripts_ensure_standalone_runtime_require"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "users_jangyoung_superset_projects_saas_of_funqa_apps_web_scripts_ensure_standalone_runtime_mjs",
-      "target": "scripts_ensure_standalone_runtime_resolvepackagepath"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_file": "apps/web/scripts/runtime-dep-closure.mjs",
       "source_location": "L25",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "users_jangyoung_superset_projects_saas_of_funqa_apps_web_scripts_ensure_standalone_runtime_mjs",
-      "target": "scripts_ensure_standalone_runtime_copies"
+      "source": "apps_web_scripts_runtime_dep_closure_mjs",
+      "target": "scripts_runtime_dep_closure_optional_runtime_external_roots",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L62",
+      "source_file": "apps/web/scripts/runtime-dep-closure.mjs",
+      "source_location": "L27",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "users_jangyoung_superset_projects_saas_of_funqa_apps_web_scripts_ensure_standalone_runtime_mjs",
-      "target": "scripts_ensure_standalone_runtime_source"
+      "source": "apps_web_scripts_runtime_dep_closure_mjs",
+      "target": "scripts_runtime_dep_closure_ancestordirs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/runtime-dep-closure.mjs",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "apps_web_scripts_runtime_dep_closure_mjs",
+      "target": "scripts_runtime_dep_closure_findpackagedir",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/runtime-dep-closure.mjs",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "apps_web_scripts_runtime_dep_closure_mjs",
+      "target": "scripts_runtime_dep_closure_resolveclosure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "apps_web_scripts_runtime_dep_closure_mjs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/prepare-runtime-deps.mjs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "apps_web_scripts_prepare_runtime_deps_mjs",
+      "target": "apps_web_scripts_runtime_dep_closure_mjs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_runtime_dep_closure_runtime_external_roots",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/prepare-runtime-deps.mjs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "apps_web_scripts_prepare_runtime_deps_mjs",
+      "target": "scripts_runtime_dep_closure_runtime_external_roots",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_runtime_dep_closure_optional_runtime_external_roots",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/prepare-runtime-deps.mjs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "apps_web_scripts_prepare_runtime_deps_mjs",
+      "target": "scripts_runtime_dep_closure_optional_runtime_external_roots",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/runtime-dep-closure.mjs",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "scripts_runtime_dep_closure_resolveclosure",
+      "target": "scripts_runtime_dep_closure_findpackagedir",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_runtime_dep_closure_resolveclosure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/prepare-runtime-deps.mjs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "apps_web_scripts_prepare_runtime_deps_mjs",
+      "target": "scripts_runtime_dep_closure_resolveclosure",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -142883,26 +143307,6 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "apps_web_scripts_ensure_standalone_runtime_mjs",
-      "target": "scripts_ensure_standalone_runtime_filename"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".claude/worktrees/agent-a1783371/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "claude_worktrees_agent_a1783371_apps_web_scripts_ensure_standalone_runtime_mjs",
-      "target": "scripts_ensure_standalone_runtime_filename"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".claude/worktrees/agent-ab6cd01e/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "claude_worktrees_agent_ab6cd01e_apps_web_scripts_ensure_standalone_runtime_mjs",
       "target": "scripts_ensure_standalone_runtime_filename"
     },
     {
@@ -142918,26 +143322,6 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": ".claude/worktrees/agent-a1783371/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "claude_worktrees_agent_a1783371_apps_web_scripts_ensure_standalone_runtime_mjs",
-      "target": "scripts_ensure_standalone_runtime_dirname"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".claude/worktrees/agent-ab6cd01e/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "claude_worktrees_agent_ab6cd01e_apps_web_scripts_ensure_standalone_runtime_mjs",
-      "target": "scripts_ensure_standalone_runtime_dirname"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
       "source_location": "L8",
       "weight": 1.0,
@@ -142948,51 +143332,11 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": ".claude/worktrees/agent-a1783371/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "claude_worktrees_agent_a1783371_apps_web_scripts_ensure_standalone_runtime_mjs",
-      "target": "scripts_ensure_standalone_runtime_approot"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".claude/worktrees/agent-ab6cd01e/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "claude_worktrees_agent_ab6cd01e_apps_web_scripts_ensure_standalone_runtime_mjs",
-      "target": "scripts_ensure_standalone_runtime_approot"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
       "source_location": "L9",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "apps_web_scripts_ensure_standalone_runtime_mjs",
-      "target": "scripts_ensure_standalone_runtime_standalonenodemodules"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".claude/worktrees/agent-a1783371/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "claude_worktrees_agent_a1783371_apps_web_scripts_ensure_standalone_runtime_mjs",
-      "target": "scripts_ensure_standalone_runtime_standalonenodemodules"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".claude/worktrees/agent-ab6cd01e/apps/web/scripts/ensure-standalone-runtime.mjs",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "claude_worktrees_agent_ab6cd01e_apps_web_scripts_ensure_standalone_runtime_mjs",
       "target": "scripts_ensure_standalone_runtime_standalonenodemodules"
     },
     {
@@ -143008,6 +143352,196 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_ensure_standalone_runtime_ancestornodemoduledirs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_ensure_standalone_runtime_resolvepackagepath"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L25",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_ensure_standalone_runtime_copies"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L62",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_ensure_standalone_runtime_source"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L111",
+      "weight": 1.0,
+      "source": "apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_ensure_standalone_runtime_closure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L117",
+      "weight": 1.0,
+      "source": "apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_ensure_standalone_runtime_target",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "users_jangyoung_superset_projects_saas_of_funqa_apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_ensure_standalone_runtime_filename"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/worktrees/agent-a1783371/apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "claude_worktrees_agent_a1783371_apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_ensure_standalone_runtime_filename"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/worktrees/agent-ab6cd01e/apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "claude_worktrees_agent_ab6cd01e_apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_ensure_standalone_runtime_filename"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "users_jangyoung_superset_projects_saas_of_funqa_apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_ensure_standalone_runtime_dirname"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/worktrees/agent-a1783371/apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "claude_worktrees_agent_a1783371_apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_ensure_standalone_runtime_dirname"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/worktrees/agent-ab6cd01e/apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "claude_worktrees_agent_ab6cd01e_apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_ensure_standalone_runtime_dirname"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "users_jangyoung_superset_projects_saas_of_funqa_apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_ensure_standalone_runtime_approot"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/worktrees/agent-a1783371/apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "claude_worktrees_agent_a1783371_apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_ensure_standalone_runtime_approot"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/worktrees/agent-ab6cd01e/apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "claude_worktrees_agent_ab6cd01e_apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_ensure_standalone_runtime_approot"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "users_jangyoung_superset_projects_saas_of_funqa_apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_ensure_standalone_runtime_standalonenodemodules"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/worktrees/agent-a1783371/apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "claude_worktrees_agent_a1783371_apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_ensure_standalone_runtime_standalonenodemodules"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/worktrees/agent-ab6cd01e/apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "claude_worktrees_agent_ab6cd01e_apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_ensure_standalone_runtime_standalonenodemodules"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "users_jangyoung_superset_projects_saas_of_funqa_apps_web_scripts_ensure_standalone_runtime_mjs",
+      "target": "scripts_ensure_standalone_runtime_require"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": ".claude/worktrees/agent-a1783371/apps/web/scripts/ensure-standalone-runtime.mjs",
       "source_location": "L11",
       "weight": 1.0,
@@ -143028,11 +143562,11 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
       "source_location": "L13",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "apps_web_scripts_ensure_standalone_runtime_mjs",
+      "source": "users_jangyoung_superset_projects_saas_of_funqa_apps_web_scripts_ensure_standalone_runtime_mjs",
       "target": "scripts_ensure_standalone_runtime_resolvepackagepath"
     },
     {
@@ -143058,11 +143592,11 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
       "source_location": "L25",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "apps_web_scripts_ensure_standalone_runtime_mjs",
+      "source": "users_jangyoung_superset_projects_saas_of_funqa_apps_web_scripts_ensure_standalone_runtime_mjs",
       "target": "scripts_ensure_standalone_runtime_copies"
     },
     {
@@ -143088,11 +143622,11 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "apps/web/scripts/ensure-standalone-runtime.mjs",
+      "source_file": "/Users/jangyoung/.superset/projects/saas-of-funqa/apps/web/scripts/ensure-standalone-runtime.mjs",
       "source_location": "L62",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "apps_web_scripts_ensure_standalone_runtime_mjs",
+      "source": "users_jangyoung_superset_projects_saas_of_funqa_apps_web_scripts_ensure_standalone_runtime_mjs",
       "target": "scripts_ensure_standalone_runtime_source"
     },
     {
@@ -143114,6 +143648,76 @@
       "confidence_score": 1.0,
       "source": "claude_worktrees_agent_ab6cd01e_apps_web_scripts_ensure_standalone_runtime_mjs",
       "target": "scripts_ensure_standalone_runtime_source"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/prepare-runtime-deps.mjs",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "apps_web_scripts_prepare_runtime_deps_mjs",
+      "target": "scripts_prepare_runtime_deps_dirname",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/prepare-runtime-deps.mjs",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "apps_web_scripts_prepare_runtime_deps_mjs",
+      "target": "scripts_prepare_runtime_deps_approot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/prepare-runtime-deps.mjs",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "apps_web_scripts_prepare_runtime_deps_mjs",
+      "target": "scripts_prepare_runtime_deps_appnodemodules",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/prepare-runtime-deps.mjs",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "apps_web_scripts_prepare_runtime_deps_mjs",
+      "target": "scripts_prepare_runtime_deps_closure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/prepare-runtime-deps.mjs",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "apps_web_scripts_prepare_runtime_deps_mjs",
+      "target": "scripts_prepare_runtime_deps_missing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/prepare-runtime-deps.mjs",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "apps_web_scripts_prepare_runtime_deps_mjs",
+      "target": "scripts_prepare_runtime_deps_skippedoptional",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/prepare-runtime-deps.mjs",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "apps_web_scripts_prepare_runtime_deps_mjs",
+      "target": "scripts_prepare_runtime_deps_target",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -170050,9 +170654,9 @@
       "source_file": "study/genai-game-log-rag/REPRODUCIBILITY.md",
       "source_location": "L49",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "genai_game_log_rag_reproducibility_compile_the_manuscript",
-      "target": "genai_game_log_rag_reproducibility_pdf_reproducibility_boundary",
-      "confidence_score": 1.0
+      "target": "genai_game_log_rag_reproducibility_pdf_reproducibility_boundary"
     },
     {
       "relation": "contains",
@@ -224510,9 +225114,9 @@
       "source_file": "knowledge/log.md",
       "source_location": "L491",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "knowledge_log_log",
-      "target": "knowledge_log_2026_08_11_build_dual_engine_patch_desk_genkit_production_interim_vm_ready_switch",
-      "confidence_score": 1.0
+      "target": "knowledge_log_2026_08_11_build_dual_engine_patch_desk_genkit_production_interim_vm_ready_switch"
     },
     {
       "relation": "contains",
@@ -225110,9 +225714,9 @@
       "source_file": "knowledge/wiki/concepts/dual-engine-game-log-search.md",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "knowledge_wiki_concepts_dual_engine_game_log_search_md",
-      "target": "concepts_dual_engine_game_log_search_dual_engine_game_log_search",
-      "confidence_score": 1.0
+      "target": "concepts_dual_engine_game_log_search_dual_engine_game_log_search"
     },
     {
       "relation": "contains",
@@ -225120,9 +225724,9 @@
       "source_file": "knowledge/wiki/concepts/dual-engine-game-log-search.md",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "concepts_dual_engine_game_log_search_dual_engine_game_log_search",
-      "target": "concepts_dual_engine_game_log_search_engines",
-      "confidence_score": 1.0
+      "target": "concepts_dual_engine_game_log_search_engines"
     },
     {
       "relation": "contains",
@@ -225130,9 +225734,9 @@
       "source_file": "knowledge/wiki/concepts/dual-engine-game-log-search.md",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "concepts_dual_engine_game_log_search_dual_engine_game_log_search",
-      "target": "concepts_dual_engine_game_log_search_selection",
-      "confidence_score": 1.0
+      "target": "concepts_dual_engine_game_log_search_selection"
     },
     {
       "relation": "contains",
@@ -225140,9 +225744,9 @@
       "source_file": "knowledge/wiki/concepts/dual-engine-game-log-search.md",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "concepts_dual_engine_game_log_search_dual_engine_game_log_search",
-      "target": "concepts_dual_engine_game_log_search_invariants_shared_by_both_engines",
-      "confidence_score": 1.0
+      "target": "concepts_dual_engine_game_log_search_invariants_shared_by_both_engines"
     },
     {
       "relation": "contains",
@@ -225150,9 +225754,9 @@
       "source_file": "knowledge/wiki/concepts/dual-engine-game-log-search.md",
       "source_location": "L30",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "concepts_dual_engine_game_log_search_dual_engine_game_log_search",
-      "target": "concepts_dual_engine_game_log_search_honest_limits",
-      "confidence_score": 1.0
+      "target": "concepts_dual_engine_game_log_search_honest_limits"
     },
     {
       "relation": "contains",
@@ -225160,9 +225764,9 @@
       "source_file": "knowledge/wiki/concepts/dual-engine-game-log-search.md",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "concepts_dual_engine_game_log_search_dual_engine_game_log_search",
-      "target": "concepts_dual_engine_game_log_search_related",
-      "confidence_score": 1.0
+      "target": "concepts_dual_engine_game_log_search_related"
     },
     {
       "relation": "contains",
@@ -232770,9 +233374,9 @@
       "source_file": "_workspace/current/production/decision-log.md",
       "source_location": "L129",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "production_decision_log_production_decision_log",
-      "target": "production_decision_log_decision_004_supersede_the_single_engine_freeze_dual_engine_with_genkit_as_production_interim",
-      "confidence_score": 1.0
+      "target": "production_decision_log_decision_004_supersede_the_single_engine_freeze_dual_engine_with_genkit_as_production_interim"
     },
     {
       "relation": "contains",
@@ -232920,9 +233524,9 @@
       "source_file": "_workspace/current/production/decision-log.md",
       "source_location": "L131",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "production_decision_log_decision_004_supersede_the_single_engine_freeze_dual_engine_with_genkit_as_production_interim",
-      "target": "production_decision_log_codeblock_4",
-      "confidence_score": 1.0
+      "target": "production_decision_log_codeblock_4"
     },
     {
       "relation": "contains",
@@ -232930,9 +233534,9 @@
       "source_file": "_workspace/current/production/decision-log.md",
       "source_location": "L143",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "production_decision_log_decision_004_supersede_the_single_engine_freeze_dual_engine_with_genkit_as_production_interim",
-      "target": "production_decision_log_context_143",
-      "confidence_score": 1.0
+      "target": "production_decision_log_context_143"
     },
     {
       "relation": "contains",
@@ -232940,9 +233544,9 @@
       "source_file": "_workspace/current/production/decision-log.md",
       "source_location": "L147",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "production_decision_log_decision_004_supersede_the_single_engine_freeze_dual_engine_with_genkit_as_production_interim",
-      "target": "production_decision_log_decision_147",
-      "confidence_score": 1.0
+      "target": "production_decision_log_decision_147"
     },
     {
       "relation": "contains",
@@ -232950,8 +233554,18 @@
       "source_file": "_workspace/current/production/decision-log.md",
       "source_location": "L155",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "production_decision_log_decision_004_supersede_the_single_engine_freeze_dual_engine_with_genkit_as_production_interim",
-      "target": "production_decision_log_consequences_155",
+      "target": "production_decision_log_consequences_155"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/production/decision-log.md",
+      "source_location": "L162",
+      "weight": 1.0,
+      "source": "production_decision_log_decision_004_supersede_the_single_engine_freeze_dual_engine_with_genkit_as_production_interim",
+      "target": "production_decision_log_deployment_verification_2026_08_11_genkit_engine",
       "confidence_score": 1.0
     },
     {
@@ -233293,6 +233907,56 @@
       "confidence_score": 1.0,
       "source": "ops_apphosting_release_2026_08_11_firebase_app_hosting_restricted_shell_release",
       "target": "ops_apphosting_release_2026_08_11_authority_boundary"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/ops/apphosting-genkit-release-2026-08-11.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "workspace_current_ops_apphosting_genkit_release_2026_08_11_md",
+      "target": "ops_apphosting_genkit_release_2026_08_11_firebase_app_hosting_genkit_engine_release_2026_08_11",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/ops/apphosting-genkit-release-2026-08-11.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "ops_apphosting_genkit_release_2026_08_11_firebase_app_hosting_genkit_engine_release_2026_08_11",
+      "target": "ops_apphosting_genkit_release_2026_08_11_rollout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/ops/apphosting-genkit-release-2026-08-11.md",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "ops_apphosting_genkit_release_2026_08_11_firebase_app_hosting_genkit_engine_release_2026_08_11",
+      "target": "ops_apphosting_genkit_release_2026_08_11_production_verification_fresh_browser_2026_08_11t15_54_15_56z",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/ops/apphosting-genkit-release-2026-08-11.md",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "ops_apphosting_genkit_release_2026_08_11_firebase_app_hosting_genkit_engine_release_2026_08_11",
+      "target": "ops_apphosting_genkit_release_2026_08_11_deploy_failure_forensics_durable_lesson",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "_workspace/current/ops/apphosting-genkit-release-2026-08-11.md",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "ops_apphosting_genkit_release_2026_08_11_firebase_app_hosting_genkit_engine_release_2026_08_11",
+      "target": "ops_apphosting_genkit_release_2026_08_11_authority_boundary",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -256811,5 +257475,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "05d66621e02f3c9a06c4ea6bc728501a70b3e9db"
+  "built_at_commit": "dfa2c3020288b3b2603eadbe7b69429c349fd4a4"
 }

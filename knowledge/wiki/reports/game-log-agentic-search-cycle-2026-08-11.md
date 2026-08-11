@@ -22,10 +22,11 @@ The cycle adds a local-first game-log RAG service, CocoIndex/pgvector incrementa
 - CocoIndex isolated baseline/no-op/one-change/no-op experiment proved selective reprocessing for the frozen fixture.
 - The final Qwen2.5:3b Q4_K_M Q01–Q10 fixture run passed 140/140 assertions with zero Genkit, cache, prior-answer, or non-CocoIndex fallback use. Q01 and Q03 both terminated `supported`.
 - Firebase App Hosting rollout completed at `https://saas-of-funqa--saas-of-funqa.us-east4.hosted.app`; fresh production checks showed the Patch Desk offline shell, health HTTP 200 with `service_url_unconfigured`, and a valid search POST returning typed HTTP 503 NDJSON `retrieval_unavailable` with no evidence or Finding.
+- Genkit-engine release (Decision 004): 58 focused web tests (28 engine + 12 shared + 18 panel) and workspace typecheck passed; isolated standalone boot showed zero module errors; production health returned `engine=genkit`, `overall=ready`, `model_profile_id=genkit:gemini-2.5-flash`; a frozen-contract production POST terminated `supported` with 3 claims, coverage 1.0, evidence E001/E003/E002; the redesigned Patch Desk completed the same query through the production UI. Receipt: `_workspace/current/ops/apphosting-genkit-release-2026-08-11.md`.
 
 ## Honest limits
 
-The frozen Q01/Q03 results qualify correctness, not shipped latency: fixture setup reloads the local embedding model per case, so those spans are not a five-sample service p95. A 30-minute runtime soak, rollback exercise, production VM, and human immersion, voluntary-repeat, commercial, and fairness evidence remain absent. Game-studio gates that require those measurements remain `FIX`; the deployed App Hosting release is only the typed offline-ready web shell until `GAME_LOG_SEARCH_SERVICE_URL` points to an activated VM.
+The frozen Q01/Q03 results qualify correctness, not shipped latency: fixture setup reloads the local embedding model per case, so those spans are not a five-sample service p95. A 30-minute runtime soak, rollback exercise, production VM, and human immersion, voluntary-repeat, commercial, and fairness evidence remain absent. Game-studio gates that require those measurements remain `FIX`. The active production engine is Genkit/Gemini over the embedded fixture corpus — a hosted-model path whose local-execution/privacy posture differs from the VM target; single-run production checks are not latency, soak, or rollback evidence. The VM path stays configuration-ready (`GAME_LOG_SEARCH_ENGINE=local` + `GAME_LOG_SEARCH_SERVICE_URL`) and unactivated.
 
 ## Artifacts
 
@@ -36,6 +37,7 @@ The frozen Q01/Q03 results qualify correctness, not shipped latency: fixture set
 - Reproducibility: `study/genai-game-log-rag/REPRODUCIBILITY.md`
 - Runtime contract: `CLAUDE.md` with pointer from `AGENTS.md`
 - Project skill: `.claude/skills/llm-wiki/SKILL.md`, with a runtime pointer at `.codex/skills/llm-wiki/SKILL.md`
+- Genkit release receipt: `_workspace/current/ops/apphosting-genkit-release-2026-08-11.md`
 
 ## Related
 

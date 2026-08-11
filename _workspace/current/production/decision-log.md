@@ -158,3 +158,20 @@ The product owner explicitly instructed the studio to run the Patch Desk on Genk
 - Genkit-engine answers depend on a hosted model; privacy/local-execution claims of the VM path do not transfer and MUST NOT be made for the Genkit engine.
 - The embedded corpus equals the frozen fixture corpus, so production behavior is comparable to the frozen QA fixtures but is NOT new gate evidence: all G1–G8 verdicts remain FIX and readiness stays 3/12 until their own measurements exist.
 - Both engines change together or not at all when gate semantics change; engine-divergence is a defect.
+
+### Deployment verification — 2026-08-11 (Genkit engine)
+
+Decision 004's scope was deployed to backend `saas-of-funqa` at
+`https://saas-of-funqa--saas-of-funqa.us-east4.hosted.app` after two failed
+module-resolution rollouts and one failed build (forensics in
+`_workspace/current/ops/apphosting-genkit-release-2026-08-11.md`).
+
+| Check | Observed value | Method | Direct evidence |
+|---|---|---|---|
+| Health | HTTP 200; `engine=genkit`; `overall=ready`; `model_profile_id=genkit:gemini-2.5-flash`; `build_id=web-genkit` | fresh production health request | receipt `#production-verification` |
+| Search API | HTTP 200 NDJSON; ordered frames; `outcome=supported`; 3 claims; coverage 1.0; evidence E001,E003,E002 | frozen-contract production POST | receipt `#production-verification` |
+| UI E2E | starter chip → `Finding supported` with claim traces in the redesigned Patch Desk | production browser interaction | receipt `#production-verification` |
+
+This verifies the Genkit engine release, not the VM path and not any G1–G8
+numerator: gate verdicts remain **FIX**, and VM activation remains a separate
+decision under Decision 003's boundary.
