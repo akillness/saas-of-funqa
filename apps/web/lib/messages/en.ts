@@ -269,6 +269,8 @@ export const enMessages = {
     synthesisOffline: "Local synthesis offline",
     serviceCheckingDetail: "The Patch Desk is verifying retrieval and synthesis.",
     serviceReadyDetail: "CocoIndex retrieval and local synthesis are available.",
+    serviceReadyGenkit: "Genkit evidence service ready",
+    serviceReadyGenkitDetail: "Embedded-corpus retrieval and Genkit · Gemini synthesis are available.",
     retrievalOfflineDetail: "The Archive cannot be searched right now.",
     synthesisOfflineDetail: "Retrieved log shards remain available.",
     retryConnection: "Retry connection",
@@ -329,7 +331,7 @@ export const enMessages = {
     inspectBeforeCopy: "Open a log shard before copying its evidence link.",
     readBeforeAcknowledge: "Read the boundary reason before acknowledging it.",
     inspectBoundaryReason: "Inspect boundary reason",
-    serviceLampLabel: "Local Service Lamp",
+    serviceLampLabel: "Service Lamp",
     archiveLabel: "Archive",
     modelLabel: "Model",
     indexLabel: "Index",
@@ -399,7 +401,11 @@ export const enMessages = {
     freshnessUnknown: "Refresh time unavailable",
     claimSelectedLabel: "Selected Claim",
     selectedShardLabel: "Selected log shard",
-    retrying: "Checking the Archive again…"
+    retrying: "Checking the Archive again…",
+    engineLabel: "Engine",
+    engineGenkit: "Genkit · Gemini cloud",
+    engineLocal: "Local VM engine",
+    engineUnknown: "Engine unknown"
   },
   ragLab: {
     eyebrow: "RAG Lab",

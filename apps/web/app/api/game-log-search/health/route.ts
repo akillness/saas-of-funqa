@@ -8,10 +8,21 @@ import {
   createUnavailableHealth,
   getGameLogSearchServiceUrl
 } from "@/app/api/game-log-search/_shared";
+import {
+  createGenkitHealth,
+  resolveGameLogSearchEngine
+} from "@/app/api/game-log-search/_genkit-engine";
 
 export const dynamic = "force-dynamic";
 
 export async function GET(request: Request): Promise<Response> {
+  if (resolveGameLogSearchEngine() === "genkit") {
+    return Response.json(createGenkitHealth(), {
+      status: 200,
+      headers: { "cache-control": "no-store" }
+    });
+  }
+
   const upstreamUrl = getGameLogSearchServiceUrl("/health");
   if (!upstreamUrl) {
     return Response.json(createUnavailableHealth("service_url_unconfigured"), {

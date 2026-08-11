@@ -10,7 +10,7 @@ run-id: 20260809-game-log-agentic-search
 
 ## Delivered system
 
-The cycle adds a local-first game-log RAG service, CocoIndex/pgvector incremental ingestion, a typed NDJSON protocol, an App Hosting proxy boundary, protected-VM activation templates, and the Patch Desk search experience. The service uses Ollama directly and does not route through Genkit.
+The cycle adds a local-first game-log RAG service, CocoIndex/pgvector incremental ingestion, a typed NDJSON protocol, an App Hosting proxy boundary, protected-VM activation templates, and the Patch Desk search experience. The Python service uses Ollama directly and does not route through Genkit. On 2026-08-11 Decision 004 added a second, config-selected web engine: in-process Genkit/Gemini over the embedded fixture corpus (`GAME_LOG_SEARCH_ENGINE=genkit`, active production interim), with the VM path unchanged as the long-term target — see [[dual-engine-game-log-search]].
 
 ## Verified evidence
 

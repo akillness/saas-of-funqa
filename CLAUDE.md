@@ -189,13 +189,15 @@ This repository runs one standing production cycle for the FunQA game-log search
 
 ### Engine boundary
 
-FunQA is a web search product: Next.js/React renders the App Hosting surface, Express/Firebase Functions owns the HTTP trust boundary, CocoIndex owns incremental game-log indexing, PostgreSQL/pgvector owns searchable index state, and Ollama owns local answer generation. Work from `skill://api-design`, `skill://design-system`, `skill://system-environment-setup`, and `skill://firebase-cli`.
+FunQA is a web search product: Next.js/React renders the App Hosting surface, Express/Firebase Functions owns the HTTP trust boundary, CocoIndex owns incremental game-log indexing, PostgreSQL/pgvector owns searchable index state. Answer generation is dual-engine. Work from `skill://api-design`, `skill://design-system`, `skill://system-environment-setup`, `skill://genkit`, and `skill://firebase-cli`.
 
 - Keep the API path router → service → repository. Route handlers validate and translate; they do not own retrieval logic.
 - Presentation reads typed search responses but never mutates index state. Index updates happen through the CocoIndex service.
 - Do not apply Unity or Unreal editor/asset guidance here; neither engine exists in this repository.
-- Local-model and CocoIndex integrations require a kill switch and deterministic evidence-only fallback so App Hosting stays usable when the future VM is not active.
-- VM activation uses local `build:` contexts for the API and CocoIndex containers. The systemd Compose command must build them (`--build`) or pull immutable prebuilt images before startup; `--no-build` on a fresh checkout leaves the service unavailable.
+- **Dual search engines, one wire protocol (Decision 004, 2026-08-11).** `GAME_LOG_SEARCH_ENGINE` selects `genkit` (in-process Gemini via Genkit over the embedded `sim-game-logs-v1` corpus, active production interim) or `local` (VM proxy to CocoIndex/pgvector/Ollama, the long-term target). Unset: `local` iff `GAME_LOG_SEARCH_SERVICE_URL` is set, else `genkit`. Both engines must emit the identical `game-log-search.v1` typed NDJSON frames and typed failure ownership — a broken engine is never hidden by silently switching engines at request time.
+- The Genkit engine reuses the frozen deterministic gate ported from `services/game-log-search` (`_genkit-engine.ts`): claim–evidence membership, untrusted-relation, supersedes, lexical-overlap, numeric-direction, and coverage rules. Changing gate semantics requires changing both engines and their tests together.
+- Local-model and CocoIndex integrations keep a kill switch (`GAME_LOG_SEARCH_ENGINE=genkit`) and deterministic evidence-only fallback so App Hosting stays usable when the future VM is not active.
+- VM activation uses local `build:` contexts for the API and CocoIndex containers. The systemd Compose command must build them (`--build`) or pull immutable prebuilt images before startup; `--no-build` on a fresh checkout leaves the service unavailable. Switching production back to the VM is config-only: set `GAME_LOG_SEARCH_ENGINE=local` + `GAME_LOG_SEARCH_SERVICE_URL` in `apphosting.yaml`.
 
 ### Asset generation
 

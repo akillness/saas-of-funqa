@@ -159,12 +159,26 @@ export function SearchResults({ locale, initialQuery, messages }: SearchResultsP
         tone: "offline"
       };
     }
+    if (search.health.engine === "genkit") {
+      return {
+        label: messages.serviceReadyGenkit,
+        detail: messages.serviceReadyGenkitDetail,
+        tone: "ready"
+      };
+    }
     return {
       label: messages.serviceReady,
       detail: messages.serviceReadyDetail,
       tone: "ready"
     };
   }, [messages, search.health]);
+
+  const engineBadge =
+    search.health.engine === "genkit"
+      ? { tone: "genkit" as const, label: messages.engineGenkit }
+      : search.health.engine === "local"
+        ? { tone: "local" as const, label: messages.engineLocal }
+        : { tone: "unknown" as const, label: messages.engineUnknown };
 
   const indexHealthStatus: GameLogSearchHealthStatus =
     search.health.overall === "checking"
@@ -232,6 +246,7 @@ export function SearchResults({ locale, initialQuery, messages }: SearchResultsP
       <div className="patch-desk-inner">
         <header className="patch-desk-header">
           <div className="patch-desk-intro">
+            <span className="patch-hero-rule" aria-hidden="true" />
             <p className="patch-kicker">{messages.eyebrow}</p>
             <h1>{messages.title}</h1>
             <p className="patch-desk-lede">{messages.lede}</p>
@@ -258,6 +273,11 @@ export function SearchResults({ locale, initialQuery, messages }: SearchResultsP
               <p className="patch-kicker">{messages.serviceLampLabel}</p>
               <h2 id="patch-service-title"><span aria-hidden="true" />{healthView.label}</h2>
               <p>{healthView.detail}</p>
+              <p className="patch-engine-badge" data-engine={engineBadge.tone}>
+                <span className="patch-engine-dot" aria-hidden="true" />
+                <span className="patch-engine-term">{messages.engineLabel}</span>
+                <span className="patch-engine-name">{engineBadge.label}</span>
+              </p>
               <dl className="patch-service-grid">
                 <div>
                   <dt>{messages.archiveLabel}</dt>

@@ -3782,27 +3782,32 @@ body[data-theme="dark"] .nav-auth-icon {
   }
 }
 
-/* Patch Desk: page-scoped editorial game-log search */
+/* Patch Desk: page-scoped editorial game-log search — Gradient-Media dark */
 .patch-desk {
-  --patch-bg: #f7f1e7;
-  --patch-surface: #fffaf2;
-  --patch-surface-soft: #eadfce;
-  --patch-ink: #25211d;
-  --patch-muted: #62584f;
-  --patch-border: #c9b9a5;
-  --patch-accent: #9b4e36;
-  --patch-accent-2: #476a7a;
-  --patch-plum: #6d526d;
-  --patch-ok: #2f6b4f;
-  --patch-warn: #805600;
-  --patch-danger: #9d2f2f;
-  --patch-shadow: 0 18px 46px rgba(73, 54, 38, 0.14);
+  --patch-bg: var(--gm-bg-base);
+  --patch-surface: var(--gm-bg-surface);
+  --patch-surface-soft: var(--gm-bg-elevated);
+  --patch-ink: var(--gm-text-primary);
+  --patch-muted: var(--gm-text-secondary);
+  --patch-border: var(--gm-border-subtle);
+  --patch-border-strong: var(--gm-border-medium);
+  --patch-accent: #a5b4fc;           /* indigo-300 of --gm-accent-ai family */
+  --patch-accent-2: #818cf8;         /* indigo-400 */
+  --patch-accent-fill: #4f46e5;      /* indigo-600: button fill, AA with white */
+  --patch-accent-wash: rgba(99, 102, 241, 0.12);
+  --patch-plum: #c4b5fd;
+  --patch-ok: #4ade80;
+  --patch-warn: #fbbf24;
+  --patch-danger: #f87171;
+  --patch-danger-fill: #dc2626;
+  --patch-shadow: var(--gm-shadow-card);
+  --patch-shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.56), 0 0 24px rgba(99, 102, 241, 0.12);
   min-height: 100vh;
   overflow-x: clip;
   color: var(--patch-ink);
-  color-scheme: light;
+  color-scheme: dark;
   background:
-    linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), rgba(155, 78, 54, 0.04) calc(100% - 1px)) 0 0 / 4.5rem 100%,
+    linear-gradient(180deg, rgba(99, 102, 241, 0.08) 0, rgba(99, 102, 241, 0.02) 22rem, transparent 40rem),
     var(--patch-bg);
   font-family: var(--font-body);
 }
@@ -3865,7 +3870,8 @@ body[data-theme="dark"] .nav-auth-icon {
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 1.5rem;
   align-items: start;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  padding-top: 1rem;
 }
 
 .patch-desk-intro {
@@ -3876,18 +3882,32 @@ body[data-theme="dark"] .nav-auth-icon {
   max-width: 13ch;
   margin: 0;
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 5vw, 5.4rem);
+  font-size: clamp(2.75rem, 5.5vw, 5.75rem);
   font-weight: 500;
   line-height: 1;
   letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--gm-text-primary) 55%, var(--patch-accent) 115%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--gm-text-primary); /* fallback when clip unsupported */
+}
+
+.patch-hero-rule {
+  display: block;
+  width: 3rem;
+  height: 0.25rem;
+  margin-bottom: 1rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--gm-accent-ai), transparent);
 }
 
 .patch-desk-lede {
-  max-width: 68ch;
-  margin: 1rem 0;
+  max-width: 62ch;
+  margin: 1rem 0 1.5rem;
   color: var(--patch-muted);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 1.05rem;
+  line-height: 1.65;
 }
 
 .patch-starters {
@@ -3898,19 +3918,20 @@ body[data-theme="dark"] .nav-auth-icon {
 
 .patch-starters button,
 .patch-text-button {
-  border: 1px solid var(--patch-border);
+  border: 1px solid var(--patch-border-strong);
   border-radius: 999px;
   background: var(--patch-surface);
   cursor: pointer;
-  padding: 0.55rem 0.9rem;
+  padding: 0.5rem 1rem;
   text-align: left;
-  transition: border-color 160ms ease-out, background-color 160ms ease-out;
+  transition: border-color 200ms ease-out, background-color 200ms ease-out, transform 200ms ease-out;
 }
 
 .patch-starters button:hover,
 .patch-text-button:hover {
-  border-color: var(--patch-accent);
-  background: #f5e8d8;
+  border-color: var(--patch-accent-2);
+  background: var(--patch-accent-wash);
+  transform: translateY(-1px);
 }
 
 .patch-header-rail {
@@ -3934,11 +3955,20 @@ body[data-theme="dark"] .nav-auth-icon {
 
 .patch-service-lamp {
   min-width: 0;
-  border: 1px solid var(--patch-border);
+  border: 1px solid var(--patch-border-strong);
   border-radius: 1rem;
   background: var(--patch-surface);
   padding: 1rem;
   box-shadow: var(--patch-shadow);
+  transition: border-color 250ms ease-out;
+}
+
+.patch-service-lamp[data-tone="ready"] {
+  border-color: rgba(74, 222, 128, 0.3);
+}
+
+.patch-service-lamp[data-tone="offline"] {
+  border-color: rgba(248, 113, 113, 0.35);
 }
 
 .patch-service-lamp h2 {
@@ -4092,28 +4122,29 @@ body[data-theme="dark"] .nav-auth-icon {
 }
 
 .patch-primary-button {
-  color: #fffaf2 !important;
-  background: var(--patch-accent);
+  color: #ffffff !important;
+  background: var(--patch-accent-fill);
 }
 
 .patch-stop-button {
-  color: #fffaf2 !important;
-  background: var(--patch-danger);
+  color: #ffffff !important;
+  background: var(--patch-danger-fill);
 }
 
 .patch-secondary-button {
   border-color: var(--patch-accent-2);
-  color: var(--patch-accent-2);
+  color: var(--patch-accent);
   background: transparent;
 }
 
 .patch-primary-button:hover,
 .patch-stop-button:hover {
   border-color: var(--patch-ink);
+  box-shadow: var(--patch-shadow-hover);
 }
 
 .patch-secondary-button:hover {
-  background: #e6eef0;
+  background: var(--patch-accent-wash);
 }
 
 .patch-desk button:disabled,
@@ -4268,7 +4299,7 @@ body[data-theme="dark"] .nav-auth-icon {
 .patch-freshness-stamp {
   max-width: 100%;
   border-left: 3px dotted var(--patch-warn);
-  background: #fbf2dc;
+  background: rgba(251, 191, 36, 0.1);
   padding: 0.7rem;
   overflow-wrap: anywhere;
 }
@@ -4354,13 +4385,19 @@ body[data-theme="dark"] .nav-auth-icon {
 }
 
 .patch-shard {
-  margin-top: 0.85rem;
+  margin-top: 1rem;
   border: 2px solid var(--patch-border);
-  border-radius: 0.85rem;
+  border-radius: 1rem;
   background: var(--patch-surface);
-  padding: 0.9rem;
+  padding: 1rem;
   cursor: pointer;
-  transition: border-color 160ms ease-out, opacity 160ms ease-out;
+  transition: border-color 200ms ease-out, box-shadow 200ms ease-out, transform 200ms ease-out, opacity 200ms ease-out;
+}
+
+.patch-shard:hover {
+  border-color: var(--patch-border-strong);
+  box-shadow: var(--patch-shadow-hover);
+  transform: translateY(-2px);
 }
 
 .patch-shard[data-selected="true"] {
@@ -4453,12 +4490,18 @@ body[data-theme="dark"] .nav-auth-icon {
   grid-template-columns: auto minmax(0, 1fr);
   width: 100%;
   border: 2px solid var(--patch-border);
-  border-radius: 0.8rem;
+  border-radius: 1rem;
   background: var(--patch-surface);
-  padding: 0.85rem;
+  padding: 1rem;
   text-align: left;
   cursor: pointer;
-  transition: border-color 160ms ease-out, opacity 160ms ease-out;
+  transition: border-color 200ms ease-out, box-shadow 200ms ease-out, transform 200ms ease-out, opacity 200ms ease-out;
+}
+
+.patch-claim-button:hover {
+  border-color: var(--patch-border-strong);
+  box-shadow: var(--patch-shadow-hover);
+  transform: translateY(-2px);
 }
 
 .patch-claim-button[data-selected="true"] {
@@ -4784,6 +4827,146 @@ body[data-theme="dark"] .nav-auth-icon {
   }
 }
 
+/* Patch Desk: engine badge in the service lamp */
+.patch-engine-badge {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem 0.5rem;
+  margin: 0.5rem 0 0;
+  border: 1px solid var(--patch-border-strong);
+  border-radius: 0.75rem;
+  background: var(--patch-surface-soft);
+  padding: 0.375rem 0.625rem;
+  color: var(--patch-ink);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.patch-engine-badge .patch-engine-term {
+  color: var(--patch-muted);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.patch-engine-badge .patch-engine-name {
+  min-width: 0;
+  overflow-wrap: normal;
+}
+
+.patch-engine-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  flex: none;
+  border-radius: 50%;
+  background: var(--patch-muted);
+}
+
+.patch-engine-badge[data-engine="genkit"] {
+  border-color: rgba(99, 102, 241, 0.45);
+  background: var(--patch-accent-wash);
+}
+
+.patch-engine-badge[data-engine="genkit"] .patch-engine-dot {
+  background: var(--patch-accent);
+}
+
+.patch-engine-badge[data-engine="local"] {
+  border-color: rgba(74, 222, 128, 0.4);
+  background: rgba(74, 222, 128, 0.1);
+}
+
+.patch-engine-badge[data-engine="local"] .patch-engine-dot {
+  background: var(--patch-ok);
+}
+
+/* Patch Desk: trust-class badge on evidence provenance */
+.patch-trust-badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(74, 222, 128, 0.4);
+  border-radius: 999px;
+  background: rgba(74, 222, 128, 0.1);
+  padding: 0.125rem 0.5rem;
+  color: var(--patch-ok);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.patch-trust-badge[data-trust="untrusted_data"] {
+  border-color: rgba(248, 113, 113, 0.45);
+  border-style: dashed;
+  background: rgba(248, 113, 113, 0.1);
+  color: var(--patch-danger);
+}
+
+/* Patch Desk: skeleton placeholders for streaming stages */
+.patch-skeleton-stack {
+  display: grid;
+  gap: 0.75rem;
+  border-top: 1px solid var(--patch-border);
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.patch-skeleton {
+  display: block;
+  width: 72%;
+  height: 1rem;
+  border-radius: 0.5rem;
+  background:
+    linear-gradient(100deg, transparent 30%, rgba(165, 180, 252, 0.14) 50%, transparent 70%) 0 0 / 200% 100%,
+    var(--patch-surface-soft);
+  animation: patch-skeleton-sweep 1600ms ease-in-out infinite;
+}
+
+.patch-skeleton--wide {
+  width: 88%;
+}
+
+.patch-skeleton--narrow {
+  width: 48%;
+}
+
+@keyframes patch-skeleton-sweep {
+  from {
+    background-position: 200% 0, 0 0;
+  }
+  to {
+    background-position: -200% 0, 0 0;
+  }
+}
+
+/* Patch Desk: service lamp checking pulse */
+.patch-service-lamp[data-tone="checking"] h2 span,
+.patch-service-grid dd[data-tone="checking"] {
+  animation: patch-checking-pulse 1400ms ease-in-out infinite;
+}
+
+@keyframes patch-checking-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* Patch Desk: active stage tint on the dispatch track */
+.patch-stage-track li {
+  transition: border-color 200ms ease-out, background-color 200ms ease-out, color 200ms ease-out;
+}
+
+.patch-stage-track li[aria-current="step"] {
+  background: var(--patch-accent-wash);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .patch-desk *,
   .patch-desk *::before,
@@ -4792,5 +4975,24 @@ body[data-theme="dark"] .nav-auth-icon {
     transition-duration: 0ms !important;
     animation-duration: 0ms !important;
     animation-iteration-count: 1 !important;
+  }
+
+  /* Static reduced variants: no sweep, no pulse, no lift */
+  .patch-skeleton {
+    animation: none;
+    background: var(--patch-surface-soft);
+  }
+
+  .patch-service-lamp[data-tone="checking"] h2 span,
+  .patch-service-grid dd[data-tone="checking"] {
+    animation: none;
+    opacity: 1;
+  }
+
+  .patch-shard:hover,
+  .patch-claim-button:hover,
+  .patch-starters button:hover,
+  .patch-text-button:hover {
+    transform: none;
   }
 }

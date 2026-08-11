@@ -160,7 +160,7 @@ function EvidenceCard({
         <div><dt>{messages.excerptBoundsLabel}</dt><dd>{evidence.excerpt_start}–{evidence.excerpt_end}</dd></div>
         <div><dt>{messages.queryIdLabel}</dt><dd>{evidence.query_id}</dd></div>
         <div><dt>{messages.correlationIdLabel}</dt><dd>{evidence.correlation_id}</dd></div>
-        <div><dt>{messages.trustLabel}</dt><dd>{evidence.trust_class}</dd></div>
+        <div><dt>{messages.trustLabel}</dt><dd><span className="patch-trust-badge" data-trust={evidence.trust_class}>{evidence.trust_class}</span></dd></div>
       </dl>
       {onBackToClaim ? (
         <button className="patch-text-button patch-back-to-claim" type="button" onClick={onBackToClaim}>
@@ -345,7 +345,13 @@ export function SearchStreamPanel({
             <p className="patch-kicker">{messages.rawEvidenceLabel} · {evidence.length}</p>
             <ul>{evidence.map((item) => <li key={item.evidence_id}>{item.evidence_id} · {item.source_label}</li>)}</ul>
           </div>
-        ) : null}
+        ) : (
+          <div className="patch-skeleton-stack" aria-hidden="true">
+            <span className="patch-skeleton patch-skeleton--wide" />
+            <span className="patch-skeleton" />
+            <span className="patch-skeleton patch-skeleton--narrow" />
+          </div>
+        )}
       </section>
     );
   }

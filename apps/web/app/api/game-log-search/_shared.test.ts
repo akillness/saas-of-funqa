@@ -1,15 +1,19 @@
 import {
+  GameLogSearchHealthSchema,
   GameLogSearchScopeSchema,
   type GameLogEvidence,
-  type GameLogSearchRequest
+  type GameLogSearchRequest,
+  type GameLogSearchUpstreamHealth
 } from "@funqa/contracts";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("server-only", () => ({}));
 
 import {
+  createProxyHealth,
   createRetrievalUnavailableTerminal,
   createSynthesisUnavailableTerminal,
+  createUnavailableHealth,
   getGameLogSearchServiceUrl
 } from "./_shared";
 
@@ -182,5 +186,34 @@ describe("game-log search proxy contracts", () => {
       retrieved_evidence_set_hash: EVIDENCE_HASH
     });
     expect(terminal.evidence).toEqual([evidence]);
+  });
+});
+
+describe("local proxy health engine attribution", () => {
+  it("stamps engine 'local' on unavailable health and passes schema", () => {
+    const health = createUnavailableHealth("service_url_unconfigured", TIMESTAMP);
+
+    expect(health.engine).toBe("local");
+    expect(health.overall).toBe("offline");
+    expect(GameLogSearchHealthSchema.safeParse(health).success).toBe(true);
+  });
+
+  it("stamps engine 'local' on proxied upstream health and passes schema", () => {
+    const upstream: GameLogSearchUpstreamHealth = {
+      schema_version: "game-log-search.v1",
+      retrieval: { status: "ready", checked_at: TIMESTAMP, reason_code: null },
+      synthesis: { status: "ready", checked_at: TIMESTAMP, reason_code: null },
+      index_snapshot_id: "sim-index-v1",
+      index_refreshed_at: TIMESTAMP,
+      index_coverage_through: TIMESTAMP,
+      model_profile_id: "llama-cpp:qwen",
+      build_id: "svc-1"
+    };
+
+    const health = createProxyHealth(upstream);
+
+    expect(health.engine).toBe("local");
+    expect(health.overall).toBe("ready");
+    expect(GameLogSearchHealthSchema.safeParse(health).success).toBe(true);
   });
 });

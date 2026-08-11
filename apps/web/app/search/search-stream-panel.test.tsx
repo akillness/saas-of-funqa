@@ -241,4 +241,28 @@ describe.each(["en", "ko"] as const)("Patch Desk terminal copy (%s)", (locale) =
     expect(markup).toContain(messages.stopped);
     expect(markup).toContain(messages.reviseQuery);
   });
+
+  it("renders decorative skeleton placeholders while loading without evidence", () => {
+    const markup = renderToStaticMarkup(
+      createElement(SearchStreamPanel, {
+        messages,
+        phase: "loading",
+        stage: "retrieving",
+        currentRequest: request,
+        evidence: [],
+        terminal: null,
+        onRecovery: vi.fn()
+      })
+    );
+
+    expect(markup).toContain(messages.dispatchStarted);
+    expect(markup).toContain('class="patch-skeleton-stack" aria-hidden="true"');
+  });
+
+  it("renders the trust class as a data-attributed badge on evidence provenance", () => {
+    const markup = renderTerminal("supported", messages);
+
+    expect(markup).toContain('data-trust="trusted_log"');
+    expect(markup).toContain(evidence.trust_class);
+  });
 });

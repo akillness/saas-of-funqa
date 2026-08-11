@@ -18,6 +18,11 @@ import {
   getGameLogSearchServiceUrl,
   ndjsonResponse
 } from "@/app/api/game-log-search/_shared";
+import {
+  cancelGenkitRun,
+  resolveGameLogSearchEngine,
+  runGenkitSearch
+} from "@/app/api/game-log-search/_genkit-engine";
 
 export const dynamic = "force-dynamic";
 
@@ -129,6 +134,10 @@ export async function POST(request: Request): Promise<Response> {
   }
 
   const searchRequest = parsedRequest.data;
+  if (resolveGameLogSearchEngine() === "genkit") {
+    return runGenkitSearch(searchRequest, request.signal);
+  }
+
   const upstreamUrl = getGameLogSearchServiceUrl("/v1/search");
   if (!upstreamUrl) {
     return ndjsonResponse(
@@ -375,6 +384,22 @@ export async function DELETE(request: Request): Promise<Response> {
   }
 
   const cancelRequest = parsedRequest.data;
+  if (resolveGameLogSearchEngine() === "genkit") {
+    const outcome = cancelGenkitRun(cancelRequest.query_id, cancelRequest.correlation_id);
+    return Response.json(
+      GameLogSearchCancelAckSchema.parse({
+        schema_version: "game-log-search.v1",
+        query_id: cancelRequest.query_id,
+        correlation_id: cancelRequest.correlation_id,
+        acknowledged: outcome.found,
+        run_status: "cancelled",
+        acknowledged_at: new Date().toISOString(),
+        preserved_evidence_count: outcome.preservedEvidenceCount
+      }),
+      { status: 200, headers: { "cache-control": "no-store" } }
+    );
+  }
+
   const upstreamUrl = getGameLogSearchServiceUrl(
     `/v1/search/${encodeURIComponent(cancelRequest.query_id)}/cancel`
   );

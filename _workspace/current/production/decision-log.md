@@ -125,3 +125,36 @@ Decision 003's exact restricted scope was deployed to Firebase project/backend `
 | Search boundary | HTTP 503 `application/x-ndjson`; `outcome=retrieval_unavailable`; `failure_owner=retrieval`; `boundary_reason_code=service_url_unconfigured`; `evidence=[]`; `finding=null` | valid frozen-contract production POST | `_workspace/current/ops/apphosting-release-2026-08-11.md#fresh-production-verification` |
 
 This verifies the authorized degraded boundary, not live search. `GAME_LOG_SEARCH_SERVICE_URL` remains absent. No VM, FastAPI, CocoIndex/Postgres, Ollama, Qwen, local-model availability, rollback readiness, telemetry completeness, or G1–G8 PASS is established. All gate verdicts remain **FIX**, release readiness remains 3/12, the cycle remains unarchived, and the next entry remains Stage 2 evidence qualification. Canonical restricted-rollout evidence is `_workspace/current/ops/apphosting-release-2026-08-11.md`; `_workspace/current/ops/release-readiness.md#restricted-shell-rollout-receipt` preserves the same authority boundary.
+
+## Decision 004 — Supersede the single-engine freeze: dual-engine with Genkit as production interim
+
+```yaml
+decision: 004
+date: 2026-08-11
+status: accepted
+owner: game-production-director
+scope: web-search-engine-selection
+public_beat: Firebase App Hosting Genkit-engine deployment after push
+gate_effect: none-all-gates-remain-FIX
+supersedes: 001 (partial — engine exclusivity only)
+requested_by: product-owner (2026-08-11 session instruction, "genkit 기반으로 작성")
+```
+
+### Context
+
+The product owner explicitly instructed the studio to run the Patch Desk on Genkit now while keeping the VM/local path ready for later activation. Decision 001 froze the slice as non-Genkit; that exclusivity is the only part changed here. The typed `game-log-search.v1` wire protocol, evidence-first behavior, and typed failure ownership remain frozen.
+
+### Decision
+
+- The web search API is dual-engine behind one frozen wire protocol. `GAME_LOG_SEARCH_ENGINE` selects `genkit` or `local`; unset resolves `local` iff `GAME_LOG_SEARCH_SERVICE_URL` is set, else `genkit`.
+- The Genkit engine (`apps/web/app/api/game-log-search/_genkit-engine.ts`) serves the embedded `sim-game-logs-v1` corpus with deterministic lexical retrieval and Gemini structured synthesis through Genkit, then applies the same deterministic claim–evidence gate ported from the Python service. A schema-valid draft that fails the gate publishes no finding (`weak_support`).
+- Engine identity is visible: health reports `engine: "genkit" | "local"`, `build_id` (`web-genkit` / `web-proxy` / upstream), and `model_profile_id` (`genkit:<model>` when active). No silent per-request engine switching; a failed engine emits its typed failure.
+- Production `apphosting.yaml` sets `GAME_LOG_SEARCH_ENGINE=genkit` and mounts secret `GEMINI_API_KEY`. VM cutover is config-only (`GAME_LOG_SEARCH_ENGINE=local` + `GAME_LOG_SEARCH_SERVICE_URL`) and remains a separate activation decision per Decision 003.
+- CocoIndex/pgvector/Ollama remain the long-term local target; nothing in the VM activation path is removed.
+
+### Consequences
+
+- Production can answer real queries before the VM exists, with claims still bounded by returned evidence.
+- Genkit-engine answers depend on a hosted model; privacy/local-execution claims of the VM path do not transfer and MUST NOT be made for the Genkit engine.
+- The embedded corpus equals the frozen fixture corpus, so production behavior is comparable to the frozen QA fixtures but is NOT new gate evidence: all G1–G8 verdicts remain FIX and readiness stays 3/12 until their own measurements exist.
+- Both engines change together or not at all when gate semantics change; engine-divergence is a defect.

@@ -117,6 +117,7 @@ export function createUnavailableHealth(reasonCode: string, checkedAt = new Date
   return GameLogSearchHealthSchema.parse({
     schema_version: "game-log-search.v1",
     overall: "offline",
+    engine: "local",
     proxy: { status: "ready", checked_at: checkedAt, reason_code: null },
     retrieval: { status: "offline", checked_at: checkedAt, reason_code: reasonCode },
     synthesis: { status: "offline", checked_at: checkedAt, reason_code: reasonCode },
@@ -140,6 +141,7 @@ export function createProxyHealth(upstream: GameLogSearchUpstreamHealth): GameLo
   return GameLogSearchHealthSchema.parse({
     schema_version: "game-log-search.v1",
     overall,
+    engine: "local",
     proxy: { status: "ready", checked_at: checkedAt, reason_code: null },
     retrieval: upstream.retrieval,
     synthesis: upstream.synthesis,

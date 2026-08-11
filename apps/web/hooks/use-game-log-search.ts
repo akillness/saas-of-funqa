@@ -106,6 +106,7 @@ export function useGameLogSearch(workspaceId = "patch-desk", topK = 5) {
     GameLogSearchHealthSchema.parse({
       schema_version: "game-log-search.v1",
       overall: "checking",
+      engine: null,
       proxy: { status: "checking", checked_at: INITIAL_HEALTH_CHECKED_AT, reason_code: null },
       retrieval: { status: "checking", checked_at: INITIAL_HEALTH_CHECKED_AT, reason_code: null },
       synthesis: { status: "checking", checked_at: INITIAL_HEALTH_CHECKED_AT, reason_code: null },
@@ -145,6 +146,7 @@ export function useGameLogSearch(workspaceId = "patch-desk", topK = 5) {
         GameLogSearchHealthSchema.parse({
           schema_version: "game-log-search.v1",
           overall: "offline",
+          engine: null,
           proxy: { status: "offline", checked_at: checkedAt, reason_code: "connection_refused" },
           retrieval: { status: "offline", checked_at: checkedAt, reason_code: "connection_refused" },
           synthesis: { status: "offline", checked_at: checkedAt, reason_code: "connection_refused" },

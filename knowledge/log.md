@@ -487,3 +487,18 @@ Each entry should list the files touched, the reason for the change, and any fol
   - A valid production search POST returned HTTP 503 NDJSON `retrieval_unavailable`, with `evidence=[]` and `finding=null`.
 - Follow-up:
   - Keep all G1–G8 gates at `FIX` until their missing human and operational measurements exist.
+
+## [2026-08-11] build | Dual-engine Patch Desk: Genkit production interim, VM-ready switch
+
+- Files touched:
+  - `wiki/concepts/dual-engine-game-log-search.md`
+  - `wiki/reports/game-log-agentic-search-cycle-2026-08-11.md`
+  - `index.md`
+  - `log.md`
+- Reason:
+  - Decision 004 superseded Decision 001's engine exclusivity on the product owner's explicit instruction: the Patch Desk now runs a Genkit/Gemini engine in production while the CocoIndex/pgvector/Ollama VM path stays configuration-ready (`GAME_LOG_SEARCH_ENGINE`).
+  - Preserve the shared wire-protocol invariants, the ported deterministic claim–evidence gate, and the honest non-transfer of local-execution claims to the hosted engine.
+- Verification:
+  - `npm run wiki:lint` after wiki edits; engine tests and typecheck/build receipts recorded in the cycle report after the release.
+- Follow-up:
+  - VM activation remains a separate decision requiring its own reachability/rollback/telemetry evidence; do not reuse Decision 004 as that authorization.

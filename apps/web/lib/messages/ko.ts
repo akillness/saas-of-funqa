@@ -270,6 +270,8 @@ export const koMessages = {
     synthesisOffline: "로컬 합성 오프라인",
     serviceCheckingDetail: "패치 데스크가 검색과 합성 상태를 확인하고 있습니다.",
     serviceReadyDetail: "CocoIndex 검색과 로컬 합성을 사용할 수 있습니다.",
+    serviceReadyGenkit: "Genkit 근거 서비스 준비 완료",
+    serviceReadyGenkitDetail: "내장 코퍼스 검색과 Genkit · Gemini 합성을 사용할 수 있습니다.",
     retrievalOfflineDetail: "현재 아카이브를 검색할 수 없습니다.",
     synthesisOfflineDetail: "검색된 로그 조각은 계속 사용할 수 있습니다.",
     retryConnection: "연결 다시 확인",
@@ -330,7 +332,7 @@ export const koMessages = {
     inspectBeforeCopy: "근거 링크를 복사하기 전에 로그 조각을 여세요.",
     readBeforeAcknowledge: "확인하기 전에 경계 이유를 읽으세요.",
     inspectBoundaryReason: "경계 이유 확인",
-    serviceLampLabel: "로컬 서비스 램프",
+    serviceLampLabel: "서비스 램프",
     archiveLabel: "아카이브",
     modelLabel: "모델",
     indexLabel: "인덱스",
@@ -400,7 +402,11 @@ export const koMessages = {
     freshnessUnknown: "새로 고침 시각을 알 수 없음",
     claimSelectedLabel: "선택한 주장",
     selectedShardLabel: "선택한 로그 조각",
-    retrying: "아카이브를 다시 확인하는 중…"
+    retrying: "아카이브를 다시 확인하는 중…",
+    engineLabel: "엔진",
+    engineGenkit: "Genkit · Gemini 클라우드",
+    engineLocal: "로컬 VM 엔진",
+    engineUnknown: "엔진 미확인"
   },
   ragLab: {
     eyebrow: "RAG 랩",

@@ -78,6 +78,9 @@ export type GameLogSearchConfidenceLabel = z.infer<
 export const GameLogSearchHealthStatusSchema = z.enum(["checking", "ready", "offline"]);
 export type GameLogSearchHealthStatus = z.infer<typeof GameLogSearchHealthStatusSchema>;
 
+export const GameLogSearchEngineSchema = z.enum(["local", "genkit"]);
+export type GameLogSearchEngine = z.infer<typeof GameLogSearchEngineSchema>;
+
 export const GameLogEvidenceRelationSchema = z.enum([
   "supports",
   "contradicts",
@@ -590,6 +593,7 @@ export const GameLogSearchHealthSchema = z
   .object({
     schema_version: z.literal(SCHEMA_VERSION),
     overall: GameLogSearchHealthStatusSchema,
+    engine: GameLogSearchEngineSchema.nullable(),
     proxy: GameLogSearchComponentHealthSchema,
     retrieval: GameLogSearchComponentHealthSchema,
     synthesis: GameLogSearchComponentHealthSchema,
