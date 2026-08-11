@@ -3,6 +3,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
 
+import { RUNTIME_EXTERNAL_ROOTS, resolveClosure } from "./runtime-dep-closure.mjs";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const appRoot = path.resolve(__dirname, "..");
@@ -97,62 +99,23 @@ for (const { packageName, targets } of copies) {
   console.log(`Copied ${packageName} → standalone/node_modules`);
 }
 
-// The App Hosting runtime image contains ONLY the standalone tree: any
-// server-external package (next.config serverExternalPackages) and every
-// transitive dependency MUST physically exist inside
-// standalone/node_modules. Copy full dependency closures for the packages
-// the Genkit engine and styled-jsx load at runtime.
-const closureRoots = [
-  "genkit",
-  "@genkit-ai/google-genai",
-  "client-only"
-];
-
-const visited = new Set();
+// Belt-and-braces for LOCAL standalone runs: mirror the runtime-external
+// closure into standalone/node_modules. On App Hosting the adapter reassembles
+// the app layer from the next-build trace, so the durable mechanism is
+// prepare-runtime-deps.mjs + outputFileTracingIncludes (next.config.mjs);
+// these copies only make a bare local `node .next/standalone/server.js` work.
+const closure = resolveClosure(RUNTIME_EXTERNAL_ROOTS, appRoot);
 let closureCopied = 0;
-
-function copyClosure(packageName, fromDir) {
-  if (visited.has(packageName)) return;
-  visited.add(packageName);
-
-  const source = resolvePackagePath(packageName, [fromDir, appRoot]);
-  if (!source) {
-    console.warn(`Warning: closure package '${packageName}' not found — skipping`);
-    return;
-  }
-
+for (const [packageName, sourceDir] of closure) {
   const target = path.join(standaloneNodeModules, ...packageName.split("/"));
-  if (!fs.existsSync(target)) {
-    fs.mkdirSync(path.dirname(target), { recursive: true });
-    fs.cpSync(source, target, {
-      recursive: true,
-      filter: (src) => !src.includes(`${path.sep}node_modules${path.sep}`)
-    });
-    closureCopied += 1;
-  }
-
-  let manifest;
-  try {
-    manifest = JSON.parse(fs.readFileSync(path.join(source, "package.json"), "utf8"));
-  } catch {
-    return;
-  }
-  const dependencyNames = [
-    ...Object.keys(manifest.dependencies ?? {}),
-    ...Object.keys(manifest.optionalDependencies ?? {}),
-    ...(Array.isArray(manifest.bundleDependencies) ? manifest.bundleDependencies : []),
-    ...Object.keys(manifest.peerDependencies ?? {}).filter((name) =>
-      Boolean(resolvePackagePath(name, [source, appRoot]))
-    )
-  ];
-  for (const dependencyName of dependencyNames) {
-    copyClosure(dependencyName, source);
-  }
-}
-
-for (const rootPackage of closureRoots) {
-  copyClosure(rootPackage, appRoot);
+  if (fs.existsSync(target)) continue;
+  fs.mkdirSync(path.dirname(target), { recursive: true });
+  fs.cpSync(sourceDir, target, {
+    recursive: true,
+    filter: (src) => !path.relative(sourceDir, src).split(path.sep).includes("node_modules")
+  });
+  closureCopied += 1;
 }
 console.log(
-  `Copied ${closureCopied} closure package(s) for ${closureRoots.join(", ")} → standalone/node_modules`
+  `Copied ${closureCopied} runtime-external package(s) (${RUNTIME_EXTERNAL_ROOTS.join(", ")}) → standalone/node_modules`
 );
