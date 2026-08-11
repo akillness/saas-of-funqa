@@ -12,11 +12,17 @@ import path from "node:path";
 export const RUNTIME_EXTERNAL_ROOTS = [
   "require-in-the-middle",
   "import-in-the-middle",
-  "client-only",
-  "express",
-  "ajv",
-  "ajv-formats"
+  "client-only"
 ];
+
+/**
+ * Externals only reached on lazy paths (Genkit's dev reflection server pulls
+ * express; ajv runtime helpers back optional precompiled validators). They are
+ * workspace-hoisted locally but absent on the App Hosting builder, which
+ * installs only the web workspace's dependency tree — so they are shipped when
+ * resolvable and skipped otherwise.
+ */
+export const OPTIONAL_RUNTIME_EXTERNAL_ROOTS = ["express", "ajv", "ajv-formats"];
 
 function ancestorDirs(startDir) {
   const dirs = [];

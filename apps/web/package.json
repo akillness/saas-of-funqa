@@ -12,6 +12,9 @@
   "dependencies": {
     "@funqa/contracts": "file:../../packages/contracts",
     "@genkit-ai/google-genai": "^1.16.1",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "express": "5.2.1",
     "firebase": "^12.12.0",
     "genkit": "^1.16.1",
     "next": "15.2.9",

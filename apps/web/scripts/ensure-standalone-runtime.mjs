@@ -3,7 +3,11 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
 
-import { RUNTIME_EXTERNAL_ROOTS, resolveClosure } from "./runtime-dep-closure.mjs";
+import {
+  OPTIONAL_RUNTIME_EXTERNAL_ROOTS,
+  RUNTIME_EXTERNAL_ROOTS,
+  resolveClosure
+} from "./runtime-dep-closure.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -104,7 +108,10 @@ for (const { packageName, targets } of copies) {
 // the app layer from the next-build trace, so the durable mechanism is
 // prepare-runtime-deps.mjs + outputFileTracingIncludes (next.config.mjs);
 // these copies only make a bare local `node .next/standalone/server.js` work.
-const closure = resolveClosure(RUNTIME_EXTERNAL_ROOTS, appRoot);
+const closure = resolveClosure(
+  [...RUNTIME_EXTERNAL_ROOTS, ...OPTIONAL_RUNTIME_EXTERNAL_ROOTS],
+  appRoot
+);
 let closureCopied = 0;
 for (const [packageName, sourceDir] of closure) {
   const target = path.join(standaloneNodeModules, ...packageName.split("/"));

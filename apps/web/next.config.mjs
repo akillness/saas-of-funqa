@@ -1,7 +1,11 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { RUNTIME_EXTERNAL_ROOTS, resolveClosure } from "./scripts/runtime-dep-closure.mjs";
+import {
+  OPTIONAL_RUNTIME_EXTERNAL_ROOTS,
+  RUNTIME_EXTERNAL_ROOTS,
+  resolveClosure
+} from "./scripts/runtime-dep-closure.mjs";
 
 const appRoot = path.dirname(fileURLToPath(import.meta.url));
 
@@ -11,9 +15,12 @@ const appRoot = path.dirname(fileURLToPath(import.meta.url));
 // output file tracing include them. Genkit itself is NOT external — it is
 // bundled into the compiled route chunks because the App Hosting adapter
 // reassembles the app layer and drops post-build node_modules edits.
-const runtimeExternalIncludes = [...resolveClosure(RUNTIME_EXTERNAL_ROOTS, appRoot).keys()].map(
-  (packageName) => `./node_modules/${packageName}/**/*`
-);
+const runtimeExternalIncludes = [
+  ...resolveClosure(
+    [...RUNTIME_EXTERNAL_ROOTS, ...OPTIONAL_RUNTIME_EXTERNAL_ROOTS],
+    appRoot
+  ).keys()
+].map((packageName) => `./node_modules/${packageName}/**/*`);
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
