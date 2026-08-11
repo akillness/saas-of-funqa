@@ -10,12 +10,16 @@ const standaloneNodeModules = path.join(appRoot, ".next", "standalone", "node_mo
 
 const require = createRequire(import.meta.url);
 
-function resolvePackagePath(packageName) {
+function resolvePackagePath(packageName, fromDirs = [appRoot]) {
   try {
-    return path.dirname(require.resolve(`${packageName}/package.json`));
+    return path.dirname(
+      require.resolve(`${packageName}/package.json`, { paths: fromDirs })
+    );
   } catch {
-    const local = path.join(appRoot, "node_modules", packageName);
-    if (fs.existsSync(local)) return local;
+    for (const fromDir of fromDirs) {
+      const local = path.join(fromDir, "node_modules", packageName);
+      if (fs.existsSync(local)) return local;
+    }
     return null;
   }
 }
@@ -76,3 +80,63 @@ for (const { packageName, targets } of copies) {
   }
   console.log(`Copied ${packageName} → standalone/node_modules`);
 }
+
+// The App Hosting runtime image contains ONLY the standalone tree: any
+// server-external package (next.config serverExternalPackages) and every
+// transitive dependency MUST physically exist inside
+// standalone/node_modules. Copy full dependency closures for the packages
+// the Genkit engine and styled-jsx load at runtime.
+const closureRoots = [
+  "genkit",
+  "@genkit-ai/google-genai",
+  "client-only"
+];
+
+const visited = new Set();
+let closureCopied = 0;
+
+function copyClosure(packageName, fromDir) {
+  if (visited.has(packageName)) return;
+  visited.add(packageName);
+
+  const source = resolvePackagePath(packageName, [fromDir, appRoot]);
+  if (!source) {
+    console.warn(`Warning: closure package '${packageName}' not found — skipping`);
+    return;
+  }
+
+  const target = path.join(standaloneNodeModules, ...packageName.split("/"));
+  if (!fs.existsSync(target)) {
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.cpSync(source, target, {
+      recursive: true,
+      filter: (src) => !src.includes(`${path.sep}node_modules${path.sep}`)
+    });
+    closureCopied += 1;
+  }
+
+  let manifest;
+  try {
+    manifest = JSON.parse(fs.readFileSync(path.join(source, "package.json"), "utf8"));
+  } catch {
+    return;
+  }
+  const dependencyNames = [
+    ...Object.keys(manifest.dependencies ?? {}),
+    ...Object.keys(manifest.optionalDependencies ?? {}),
+    ...(Array.isArray(manifest.bundleDependencies) ? manifest.bundleDependencies : []),
+    ...Object.keys(manifest.peerDependencies ?? {}).filter((name) =>
+      Boolean(resolvePackagePath(name, [source, appRoot]))
+    )
+  ];
+  for (const dependencyName of dependencyNames) {
+    copyClosure(dependencyName, source);
+  }
+}
+
+for (const rootPackage of closureRoots) {
+  copyClosure(rootPackage, appRoot);
+}
+console.log(
+  `Copied ${closureCopied} closure package(s) for ${closureRoots.join(", ")} → standalone/node_modules`
+);
