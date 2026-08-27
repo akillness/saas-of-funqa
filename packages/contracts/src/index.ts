@@ -751,3 +751,4 @@ export const LlmWikiEntrySchema = z.object({
 export type LlmWikiEntry = z.infer<typeof LlmWikiEntrySchema>;
 
 export * from "./game-log-search";
+export * from "./scene";

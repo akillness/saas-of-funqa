@@ -45,6 +45,20 @@ export function SearchIcon(props: IconProps) {
   );
 }
 
+export function FilmIcon(props: IconProps) {
+  return (
+    <BaseIcon {...props}>
+      <rect height="14" rx="2" width="17" x="3.5" y="5" />
+      <path d="M7.5 5v14" />
+      <path d="M16.5 5v14" />
+      <path d="M3.5 9.5h4" />
+      <path d="M3.5 14.5h4" />
+      <path d="M16.5 9.5h4" />
+      <path d="M16.5 14.5h4" />
+    </BaseIcon>
+  );
+}
+
 export function FlaskIcon(props: IconProps) {
   return (
     <BaseIcon {...props}>

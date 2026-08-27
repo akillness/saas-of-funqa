@@ -1,11 +1,30 @@
 import type { NextFunction, Request, RequestHandler, Response } from "express";
+import type { AuthenticatedRequest } from "./auth.middleware.js";
 
 interface RateLimitConfig {
   windowMs: number;
   maxRequests: number;
+  // Default ("auto"): uid > body/header tenantId > IP — see getKey. Public,
+  // cost-sensitive routes with no auth (e.g. scene search, which calls paid
+  // Gemini vision/embedding APIs) should pass "ip" so a caller can't reset
+  // its quota by rotating the client-supplied tenantId.
+  keyBy?: "auto" | "ip";
 }
 
-function getKey(req: Request): string {
+// Key by authenticated uid first: req.body / X-Tenant-Id are client-supplied,
+// so keying on them alone lets a caller reset its own quota by rotating the
+// value on every request. uid comes from a verified ID token (see
+// requireAuth) and is only present on routes that ran auth before this
+// limiter, so it can't be spoofed the same way.
+function getKey(req: Request, keyBy: "auto" | "ip"): string {
+  if (keyBy === "ip") {
+    return `ip:${req.ip ?? "unknown"}`;
+  }
+
+  const uid = (req as AuthenticatedRequest).uid;
+  if (typeof uid === "string" && uid.length > 0) {
+    return `uid:${uid}`;
+  }
   const tenantId =
     (req.body as Record<string, unknown> | undefined)?.tenantId;
   if (typeof tenantId === "string" && tenantId.length > 0) {
@@ -19,7 +38,7 @@ function getKey(req: Request): string {
 }
 
 export function createRateLimiter(config: RateLimitConfig): RequestHandler {
-  const { windowMs, maxRequests } = config;
+  const { windowMs, maxRequests, keyBy = "auto" } = config;
   const store = new Map<string, number[]>();
 
   const cleanup = setInterval(() => {
@@ -40,7 +59,7 @@ export function createRateLimiter(config: RateLimitConfig): RequestHandler {
   }
 
   return (req: Request, res: Response, next: NextFunction): void => {
-    const key = getKey(req);
+    const key = getKey(req, keyBy);
     const now = Date.now();
     const timestamps = (store.get(key) ?? []).filter((t) => now - t < windowMs);
 

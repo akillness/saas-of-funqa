@@ -7,7 +7,7 @@ import { FirebaseAnalytics } from "./firebase-analytics";
 import { AuthProvider } from "@/components/auth-provider";
 import { NavAuth } from "@/components/nav-auth";
 import { CategoryTabBar } from "@/components/category-tab-bar";
-import { BookIcon, FlaskIcon, HomeIcon, RalphIcon, SearchIcon, ShieldIcon } from "@/components/menu-icons";
+import { BookIcon, FilmIcon, FlaskIcon, HomeIcon, RalphIcon, SearchIcon, ShieldIcon } from "@/components/menu-icons";
 import { getDictionary, withLocale } from "../lib/i18n";
 import { getRequestLocale } from "../lib/i18n-server";
 import "./globals.css";
@@ -40,6 +40,7 @@ export default async function RootLayout({
   const navItems = [
     { href: "/", label: t.layout.nav.overview, Icon: HomeIcon },
     { href: "/search", label: t.layout.nav.search, Icon: SearchIcon },
+    { href: "/scene-search", label: t.layout.nav.sceneLab, Icon: FilmIcon },
     { href: "/rag-lab", label: t.layout.nav.ragLab, Icon: FlaskIcon },
     { href: "/ralph", label: t.layout.nav.ralph, Icon: RalphIcon },
     { href: "/admin", label: t.layout.nav.admin, Icon: ShieldIcon },

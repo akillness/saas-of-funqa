@@ -12,6 +12,7 @@ import { registerMonetizationGuidesRoute } from "./routes/monetization-guides.ro
 import { registerMonetizationSourcesRoute } from "./routes/monetization-sources.route.js";
 import { registerProviderKeyRoute } from "./routes/provider-keys.route.js";
 import { registerRagRoute } from "./routes/rag.route.js";
+import { registerScenesRoute } from "./routes/scenes.route.js";
 import { registerWikiRoute } from "./routes/wiki.route.js";
 import { registerSearchRoute } from "./routes/search.route.js";
 
@@ -46,6 +47,8 @@ export function createServer() {
   // Write and sensitive endpoints require authentication
   app.use("/v1/provider-keys", requireAuth);
   app.use("/v1/ingest", requireAuth);
+  // Scene ingest calls the Gemini vision captioner per frame (cost protection).
+  app.use("/v1/scenes/ingest", requireAuth);
   app.use("/v1/creator-ingest-bundle", requireAuth);
   app.use("/v1/video-analyses", requireAuth);
   app.use("/v1/monetization-guides", requireAuth);
@@ -61,6 +64,7 @@ export function createServer() {
   registerMonetizationGuidesRoute(app);
   registerMonetizationSourcesRoute(app);
   registerRagRoute(app);
+  registerScenesRoute(app);
   registerMonitoringRoute(app);
   app.use((error: unknown, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
     if (error instanceof z.ZodError) {

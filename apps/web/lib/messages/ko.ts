@@ -30,11 +30,69 @@ export const koMessages = {
     nav: {
       overview: "홈",
       search: "검색",
+      sceneLab: "장면 검색",
       ragLab: "RAG 랩",
       ralph: "Ralph",
       admin: "관리",
       docs: "API 문서",
       login: "로그인"
+    }
+  },
+  sceneLab: {
+    eyebrow: "영상 문서 멀티모달 RAG",
+    title: "장면 검색",
+    lede:
+      "영상이 포함된 문서를 올리면 브라우저가 프레임을 추출하고, Gemini 비전 모델이 장면을 설명한 뒤 gemini-embedding-2 임베딩으로 저장합니다. 텍스트나 영상으로 검색하면 유사 장면 이미지가 결과로 나옵니다.",
+    ingest: {
+      title: "1 · 영상 문서 등록",
+      videoLabel: "영상 파일",
+      videoHint: "mp4 · webm · mov 등 브라우저가 재생 가능한 영상",
+      titleLabel: "문서 제목",
+      titlePlaceholder: "예: 던전 탐험 플레이 하이라이트",
+      descriptionLabel: "설명 (선택)",
+      descriptionPlaceholder: "장면 검색에 도움이 될 맥락을 적어주세요",
+      frameCountLabel: "추출 프레임",
+      extracting: "프레임 추출 중…",
+      framesReady: "개 프레임 준비됨",
+      submit: "장면 인덱싱",
+      submitting: "캡션 생성 + 임베딩 중…",
+      loginRequired: "장면 등록은 로그인이 필요합니다 (비용 보호).",
+      successTitle: "인덱싱 완료",
+      captionsTitle: "생성된 장면 캡션",
+      errorGeneric: "인덱싱에 실패했습니다. 잠시 후 다시 시도해주세요."
+    },
+    search: {
+      title: "2 · 장면 검색",
+      queryLabel: "텍스트 쿼리",
+      queryPlaceholder: "예: 보라색 배경의 전투 장면",
+      videoLabel: "영상 쿼리 (선택)",
+      videoHint: "짧은 클립을 올리면 대표 프레임으로 유사 장면을 찾습니다",
+      clearVideo: "영상 쿼리 제거",
+      submit: "검색",
+      searching: "검색 중…",
+      needInput: "텍스트나 영상 중 하나는 입력해주세요.",
+      modeText: "텍스트",
+      modeVideo: "영상",
+      modeHybrid: "하이브리드",
+      resultsTitle: "유사 장면 결과",
+      emptyResults: "아직 결과가 없습니다. 먼저 영상 문서를 등록해주세요.",
+      noMatch: "일치하는 장면을 찾지 못했습니다.",
+      queryCaptionsTitle: "쿼리 프레임 해석",
+      similarity: "유사도",
+      errorGeneric: "검색에 실패했습니다. 잠시 후 다시 시도해주세요."
+    },
+    library: {
+      title: "등록된 영상 문서",
+      empty: "아직 등록된 영상 문서가 없습니다.",
+      scenes: "장면",
+      refresh: "새로고침"
+    },
+    meta: {
+      embeddingModel: "임베딩 모델",
+      captionModel: "캡션 모델",
+      queryMode: "쿼리 모드",
+      totalScenes: "전체 장면",
+      took: "소요"
     }
   },
   home: {

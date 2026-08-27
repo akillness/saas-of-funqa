@@ -30,11 +30,69 @@ export const enMessages = {
     nav: {
       overview: "Home",
       search: "Search",
+      sceneLab: "Scene Search",
       ragLab: "RAG Lab",
       ralph: "Ralph",
       admin: "Admin",
       docs: "API Docs",
       login: "Login"
+    }
+  },
+  sceneLab: {
+    eyebrow: "Video-document multimodal RAG",
+    title: "Scene Search",
+    lede:
+      "Upload a video-bearing document: the browser extracts frames, a Gemini vision model captions each scene, and gemini-embedding-2 stores them as searchable vectors. Query with text or video and get matching scene images back.",
+    ingest: {
+      title: "1 · Register video document",
+      videoLabel: "Video file",
+      videoHint: "Any browser-playable video (mp4 · webm · mov)",
+      titleLabel: "Document title",
+      titlePlaceholder: "e.g. Dungeon crawl playthrough highlights",
+      descriptionLabel: "Description (optional)",
+      descriptionPlaceholder: "Context that helps scene retrieval",
+      frameCountLabel: "Frames to extract",
+      extracting: "Extracting frames…",
+      framesReady: "frames ready",
+      submit: "Index scenes",
+      submitting: "Captioning + embedding…",
+      loginRequired: "Scene ingest requires login (cost protection).",
+      successTitle: "Ingest complete",
+      captionsTitle: "Generated scene captions",
+      errorGeneric: "Ingest failed. Please retry in a moment."
+    },
+    search: {
+      title: "2 · Search scenes",
+      queryLabel: "Text query",
+      queryPlaceholder: "e.g. combat scene with purple background",
+      videoLabel: "Video query (optional)",
+      videoHint: "Upload a short clip to find similar scenes by its key frames",
+      clearVideo: "Remove video query",
+      submit: "Search",
+      searching: "Searching…",
+      needInput: "Provide a text query or a query video.",
+      modeText: "text",
+      modeVideo: "video",
+      modeHybrid: "hybrid",
+      resultsTitle: "Similar scene results",
+      emptyResults: "No scenes indexed yet. Register a video document first.",
+      noMatch: "No matching scenes found.",
+      queryCaptionsTitle: "Query frame interpretation",
+      similarity: "similarity",
+      errorGeneric: "Search failed. Please retry in a moment."
+    },
+    library: {
+      title: "Registered video documents",
+      empty: "No video documents registered yet.",
+      scenes: "scenes",
+      refresh: "Refresh"
+    },
+    meta: {
+      embeddingModel: "Embedding model",
+      captionModel: "Caption model",
+      queryMode: "Query mode",
+      totalScenes: "Total scenes",
+      took: "Took"
     }
   },
   home: {
