@@ -1,9 +1,23 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
 import { defineConfig } from "vitest/config";
+
+const repoRoot = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   oxc: false,
   esbuild: {
     jsx: "automatic"
+  },
+  resolve: {
+    alias: {
+      // Mirror apps/web/tsconfig.json ("@/*" -> "./*"). Next resolves this at
+      // build time, so a component could import "@/components/..." and still
+      // ship, while any test that imported that component failed to collect.
+      // apps/web is the only workspace that declares the alias.
+      "@/": `${path.join(repoRoot, "apps/web")}/`
+    }
   },
   test: {
     globals: true,

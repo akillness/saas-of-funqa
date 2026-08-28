@@ -9,6 +9,7 @@ import type {
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 
+import { FocusBeam } from "@/components/motion";
 import { createScopeDelta, useGameLogSearch } from "@/hooks/use-game-log-search";
 import type { Locale, Messages } from "@/lib/i18n";
 
@@ -407,13 +408,28 @@ export function SearchResults({ locale, initialQuery, messages }: SearchResultsP
           </fieldset>
 
           <div className="patch-composer-actions">
-            <button
-              className={search.isRunning ? "patch-stop-button" : "patch-primary-button"}
-              type="submit"
-              disabled={!search.isRunning && (search.health.overall !== "ready" || query.trim().length < 3)}
+            {/*
+              The page's single focus accent. It only lights up when the desk is
+              genuinely ready to dispatch, so the beam means "this is the next
+              action" instead of being ambient chrome. Every other state — not
+              ready, query too short, already running, reduced motion — renders
+              the static border and leaves the button untouched.
+            */}
+            <FocusBeam
+              active={
+                !search.isRunning &&
+                search.health.overall === "ready" &&
+                query.trim().length >= 3
+              }
             >
-              {search.isRunning ? messages.stop : messages.search}
-            </button>
+              <button
+                className={search.isRunning ? "patch-stop-button" : "patch-primary-button"}
+                type="submit"
+                disabled={!search.isRunning && (search.health.overall !== "ready" || query.trim().length < 3)}
+              >
+                {search.isRunning ? messages.stop : messages.search}
+              </button>
+            </FocusBeam>
             <span>{messages.shortcut}</span>
             {search.health.overall !== "ready" ? <small>{messages.searchNeedsService}</small> : null}
             {composerNote ? <small role="status">{composerNote}</small> : null}

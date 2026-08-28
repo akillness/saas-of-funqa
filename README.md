@@ -18,6 +18,7 @@
 - **Grounded-search first UI** — 홈과 검색 모두 “예쁜 AI 페이지”보다 “검증 가능한 retrieval workspace”로 읽히도록 재구성
 - **Visible wow points** — `Strict grounding`, `Pipeline x-ray`, `Operator proof`, `Multimodal core`, `Consensus engine` 같은 기술 블록을 첫 화면에 노출
 - **NavAuth 컴포넌트** — 로그인 상태에 따라 사용자명·로그아웃 또는 로그인 링크를 표시
+- **UI 모션 capability contract** — 검색 에이전트 상태와 기본 디스패치 컨트롤에만 모션을 부여하고, 정적 폴백·인스턴스 예산·접근성 소유권을 앱이 직접 소유
 - `evidence-only` + `document-graph-consensus` 계약 기반 검색 API
 - 검색 화면의 **strict grounding 상태 블록** + **pipeline reveal strip** + **citation inspector rail**
 - 검색 shell 전반의 **dictionary-driven copy** + **localized category tabs** + **pinned inspector trust flow**
@@ -40,6 +41,7 @@
 - [빌드 & 배포](#빌드--배포)
 - [스크립트 목록](#스크립트-목록)
 - [GitHub Actions 워크플로우](#github-actions-워크플로우)
+- [UI 모션 capability contract](#ui-모션-capability-contract)
 - [기획 문서](#기획-문서)
 
 ---
@@ -120,9 +122,13 @@ saas-of-funqa/
 ├── .github/
 │   └── workflows/    # CI/CD 워크플로우
 ├── firebase.json
+├── THIRD_PARTY_NOTICES.md   # 번들에 포함되는 서드파티 고지(MIT 등)
 ├── deploy.sh
 └── dev.sh
 ```
+
+> 프론트엔드 모션 래퍼는 `apps/web/components/motion/`에 모여 있으며,
+> 화면 코드가 서드파티 애니메이션 패키지를 직접 import 하지 않습니다.
 
 > 모든 주요 디렉토리에는 AI 에이전트용 `AGENTS.md` 파일이 포함되어 있습니다 (계층적 deepinit 구조).
 
@@ -388,10 +394,50 @@ push(main) → CI 통과 → Deploy to Firebase App Hosting
 
 ---
 
+## UI 모션 capability contract
+
+FunQA는 모션을 장식이 아니라 **예산과 수명주기가 있는 시스템**으로 다룹니다.
+화면 코드는 서드파티 애니메이션 패키지를 직접 import 하지 않고, 반드시
+`apps/web/components/motion/` 어댑터를 거칩니다.
+
+선정 근거는 4개 "바이럴" UI 이펙트 패키지의 소스 감사입니다 —
+<https://akillness.github.io/posts/viral-ui-effects-source-audit/>
+
+| 용도(job) | 적용 위치 | 렌더러 | 판단 |
+|------|------|------|------|
+| 검색 에이전트 활동 상태 | `/search` Patch Desk, `/scene-search` 제출 버튼 | `thinking-orbs@0.3.1` | 상태가 의미를 가지며 reduced-motion 정적 프레임·오프스크린 일시정지가 기본 동작 |
+| 페이지당 단 하나의 기본 디스패치 컨트롤 | Patch Desk composer | `border-beam@1.3.0` | rotate 계열은 canvas·WebGL 없이 CSS만 쓴다 |
+| 히어로 CTA | — | **미채택** (`metal-fx`) | 공유 렌더러가 프리셋·테마를 **전역 1개**로만 보관해 혼합 사용 시 충돌, reduced-motion 자동 처리 없음, WebGL 불가 시 내부 폴백 없이 throw |
+| 공간 병합 모프 | — | **미채택** (`liquid-gooey`) | reduced-motion 커버리지가 부분적이고 npm 릴리즈가 0.1.0 하나 |
+
+계약의 핵심 6가지:
+
+1. **인스턴스 예산** — `agent-orb` 4개 / `focus-beam` 1개(페이지당). 초과한 호출지는
+   사라지지 않고 `data-reason="over-budget"` 정적 폴백으로 내려갑니다.
+2. **정적 폴백이 기본값** — 서버 렌더링은 항상 정적 변형입니다. canvas/WebGL이
+   프리렌더 마크업에 들어가지 않습니다.
+3. **reduced-motion은 앱이 소유** — `border-beam`은 pulse 계열에서만 이를 존중하므로
+   스위치를 라이브러리가 아닌 어댑터가 잡습니다.
+4. **접근성 소유권 분리** — orb는 항상 `aria-hidden` 장식이고, 발표는 기존
+   `aria-live`/`role="status"` 영역이 그대로 가져갑니다.
+5. **정확한 버전 핀 + 소스 좌표** — 범위 지정자 없이 `0.3.1` / `1.3.0`. 감사한
+   커밋 SHA는 `THIRD_PARTY_NOTICES.md`에 기록됩니다.
+6. **고지 경로** — MIT는 관대하지만 고지 면제가 아니므로 번들러가 아니라
+   저장소 루트 `THIRD_PARTY_NOTICES.md`가 고지를 보장합니다.
+
+번들 비용(배포된 ESM, `gzip -9`, React 제외 — 감사와 동일한 방법으로 실측):
+`thinking-orbs` 7,530 B / `border-beam` 11,952 B.
+
+상세 계약과 새 이펙트 추가 절차: [`docs/ui-motion-capability-contract.md`](docs/ui-motion-capability-contract.md)
+
+---
+
 ## 기획 문서
 
 | 문서 | 경로 |
 |------|------|
+| UI 모션 capability contract | `docs/ui-motion-capability-contract.md` |
+| 서드파티 고지 | `THIRD_PARTY_NOTICES.md` |
 | Seed 스펙 | `docs/spec/seed.yaml` |
 | 시스템 아키텍처 | `docs/architecture/system-architecture.md` |
 | 보안 & 암호화 | `docs/architecture/security-secrets.md` |
@@ -407,6 +453,12 @@ push(main) → CI 통과 → Deploy to Firebase App Hosting
 
 - `GameRecommendationCard` — 게임 미디어 카드 (카테고리 그라디언트 캡, AI 점수 배지)
 - `RecommendationPanel` — 슬라이딩 추천 패널 (백드롭 오버레이, 큐빅 베지어 애니메이션)
+- `AgentActivityOrb` — 검색 에이전트 활동 표시(`dispatching`/`retrieving`/`ranking`/`synthesizing`).
+  항상 장식이며 발표는 주변 live region이 소유합니다.
+- `FocusBeam` — 페이지당 단 하나의 기본 컨트롤 강조. 예산 초과·reduced-motion·
+  비활성 상태에서는 버튼을 그대로 둔 채 정적 래퍼로 내려갑니다.
+- `components/motion/motion-policy.ts` — reduced-motion 판단, 인스턴스 예산 장부,
+  거절 사유(`data-reason`) 노출을 담당하는 단일 정책 지점
 
 ### 검색 & 인증
 

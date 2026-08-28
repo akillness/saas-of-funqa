@@ -630,3 +630,28 @@ Each entry should list the files touched, the reason for the change, and any fol
   - `npm run wiki:lint` after wiki edits; engine tests and typecheck/build receipts recorded in the cycle report after the release.
 - Follow-up:
   - VM activation remains a separate decision requiring its own reachability/rollback/telemetry evidence; do not reuse Decision 004 as that authorization.
+
+## 2026-08-28 — UI motion capability contract (audit-driven UI refresh)
+
+- Files touched:
+  - `wiki/concepts/ui-motion-capability-contract.md` (new)
+  - `index.md`
+  - `log.md`
+- Reason:
+  - Applied the 2026-08-26 viral-UI-effects source audit to the product: adopted
+    `thinking-orbs@0.3.1` (agent activity, Patch Desk + Scene Search) and
+    `border-beam@1.3.0` (single composer dispatch accent) behind a new
+    `apps/web/components/motion/` policy adapter; deliberately rejected
+    `metal-fx` and `liquid-gooey` with recorded boundaries.
+  - Contract doc `docs/ui-motion-capability-contract.md`, notices
+    `THIRD_PARTY_NOTICES.md`, README section added.
+- Verification:
+  - `npm run typecheck` green; `npx vitest run apps/web packages/contracts`
+    10 files / 102 tests green (includes new `motion-policy.test.tsx`);
+    `npm run build:web` green. `npm run smoke:rag` fails on a pre-existing
+    consensus baseline (`consensus.reached` true vs expected false) with
+    `packages/ai` and `scripts` identical to HEAD — not introduced here.
+- Follow-up:
+  - `vitest.config.ts` now resolves the web `@/*` alias for the whole suite.
+  - Root vitest run still collects the untracked local `jeo-code/` checkout
+    (bun:test) — pre-existing noise, untouched.

@@ -5612,3 +5612,81 @@ body[data-theme="dark"] .nav-auth-icon {
     gap: 4px;
   }
 }
+
+/* ============================================================================
+   Motion capability layer — static fallbacks
+   ----------------------------------------------------------------------------
+   Every animated third-party renderer in FunQA is wrapped by
+   components/motion/*, and every wrapper can refuse to mount its renderer
+   (reduced motion, over budget, inactive, or server render). These rules are
+   what the screen looks like in that refusal path, so the layout must not move
+   when the animated variant appears or disappears.
+
+   Effect selection follows the 2026-08-26 source audit:
+   https://akillness.github.io/posts/viral-ui-effects-source-audit/
+   ========================================================================== */
+
+.funqa-agent-orb {
+  --funqa-orb-size: 20px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: var(--funqa-orb-size);
+  height: var(--funqa-orb-size);
+  vertical-align: middle;
+}
+
+/* Reserve the box before the canvas exists so the first paint and the
+   post-hydration paint occupy the same space. */
+.funqa-agent-orb canvas {
+  display: block;
+}
+
+/* The static contract fallback: a legible, motionless mark. It is never the
+   accessible name of anything — the surrounding live region owns that. */
+.funqa-agent-orb-static {
+  width: calc(var(--funqa-orb-size) * 0.5);
+  height: calc(var(--funqa-orb-size) * 0.5);
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.75;
+}
+
+.funqa-agent-orb[data-activity="ranking"] .funqa-agent-orb-static,
+.funqa-agent-orb[data-activity="synthesizing"] .funqa-agent-orb-static {
+  /* Distinguishable without motion: later stages read as filled. */
+  background: currentColor;
+  opacity: 0.85;
+}
+
+.funqa-agent-orb--panel {
+  margin-bottom: 0.75rem;
+  color: var(--patch-accent, #a5b4fc);
+}
+
+/* Wrapper for the single primary-control accent. In the static path it must be
+   a layout no-op so the composer action row keeps its original geometry. */
+.funqa-focus-beam {
+  display: inline-flex;
+  border-radius: 0.6rem;
+}
+
+.funqa-focus-beam[data-motion="static"] {
+  /* No border, no glow, no size change — the button keeps owning its own
+     affordance. This path is the default on the server and under reduced
+     motion, so it has to look finished on its own. */
+  background: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Belt and braces: the wrappers already refuse to mount an animated renderer
+     here, but a stray canvas or generated keyframe must still be inert. */
+  .funqa-agent-orb canvas,
+  .funqa-focus-beam *,
+  .funqa-focus-beam *::before,
+  .funqa-focus-beam *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

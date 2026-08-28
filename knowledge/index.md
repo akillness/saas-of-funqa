@@ -27,6 +27,7 @@ This is the content-oriented map of the wiki. Read this file first before broad 
 
 ## Concepts
 <!-- CONCEPTS:START -->
+- [[wiki/concepts/ui-motion-capability-contract]]
 - [[wiki/concepts/prompt-knowledge-loop]]
 - [[wiki/concepts/bmad-ooo-integration]]
 - [[wiki/concepts/neuro-symbolic-game-storytelling]]

@@ -8,6 +8,7 @@ import type {
   SceneSearchResponse
 } from "@funqa/contracts";
 import { useAuth } from "@/components/auth-provider";
+import { AgentActivityOrb } from "@/components/motion";
 import { extractVideoFrames, type ExtractedFrame } from "@/lib/video-frames";
 import type { Messages } from "@/lib/i18n";
 
@@ -455,6 +456,13 @@ export function SceneSearchClient({ t, loginHref, tenantId }: SceneSearchClientP
           onClick={() => void submitSearch()}
           type="button"
         >
+          {/* Decorative: the button label already changes to "searching", and
+              the results `role="status"` region owns the announcement. */}
+          <AgentActivityOrb
+            activity={queryExtracting ? "dispatching" : "retrieving"}
+            active={searching || queryExtracting}
+            size={20}
+          />
           {searching ? t.search.searching : t.search.submit}
         </button>
 

@@ -10,6 +10,7 @@ import type {
 } from "@funqa/contracts";
 import { useEffect, useMemo, useRef, useState } from "react";
 
+import { AgentActivityOrb, type AgentActivity } from "@/components/motion";
 import type { Messages } from "@/lib/i18n";
 import type { GameLogSearchPhase } from "@/hooks/use-game-log-search";
 
@@ -52,6 +53,17 @@ const RELATION_MESSAGE_KEY = {
   context_only: "relationContext",
   untrusted_data: "relationUntrusted"
 } as const;
+
+/**
+ * Wire stage → FunQA agent activity. `null` means the dispatch was accepted but
+ * the engine has not emitted a stage frame yet, which is still real work.
+ */
+function agentActivity(stage: GameLogSearchStage | null): AgentActivity {
+  if (stage === "retrieving") return "retrieving";
+  if (stage === "ranking") return "ranking";
+  if (stage === "synthesizing") return "synthesizing";
+  return "dispatching";
+}
 
 function fillTemplate(template: string, values: Record<string, string | number>): string {
   return Object.entries(values).reduce(
@@ -333,7 +345,18 @@ export function SearchStreamPanel({
             <p className="patch-kicker">{messages.activeOwner}: {owner}</p>
             <h2 id="patch-loading-title">{phase === "stopping" ? messages.stopping : messages.dispatchStarted}</h2>
           </div>
-          <span className="patch-status-shape" data-tone="loading">{messages.dispatchRunning}</span>
+          <span className="patch-status-shape" data-tone="loading">
+            {/*
+              Decorative only. The `aria-live` paragraph above already owns the
+              announcement for this stage, so the orb must not repeat it.
+            */}
+            <AgentActivityOrb
+              activity={agentActivity(stage)}
+              active={phase === "loading"}
+              size={20}
+            />
+            {messages.dispatchRunning}
+          </span>
         </div>
         <ol className="patch-stage-track" aria-label={messages.stageLabel}>
           <li aria-current={currentStep === 1 ? "step" : undefined} data-complete={currentStep > 1}>{messages.searching}</li>
@@ -347,6 +370,12 @@ export function SearchStreamPanel({
           </div>
         ) : (
           <div className="patch-skeleton-stack" aria-hidden="true">
+            <AgentActivityOrb
+              activity={agentActivity(stage)}
+              active={phase === "loading"}
+              size={64}
+              className="funqa-agent-orb--panel"
+            />
             <span className="patch-skeleton patch-skeleton--wide" />
             <span className="patch-skeleton" />
             <span className="patch-skeleton patch-skeleton--narrow" />
