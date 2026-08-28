@@ -457,6 +457,134 @@ Each entry should list the files touched, the reason for the change, and any fol
   - Verify full BibTeX records for the unverified candidate titles before citation in a submission draft.
   - Implement experiment schemas and fixtures in `saas-of-funqa` before making empirical claims.
 
+## [2026-07-06] query | Neuro-symbolic game story research stage 8-week plan update
+
+- Files touched:
+  - `knowledge/wiki/reports/neuro-symbolic-game-story-research-plan-2026-07-06.md`
+  - `knowledge/index.md`
+  - `knowledge/log.md`
+- Reason:
+  - Update the neuro-symbolic game storytelling research plan to compress the 12-week schedule into the mandated 8-week schedule ending 2026-08-31, incorporating parallel and staggered workloads for Paper A and Paper B.
+  - Refresh and extend the literature grounding with verified 2025-2026 papers for both paper tracks and the FunQA tension-score track, adding DOIs and arXiv IDs where verified via web searches.
+- Follow-up:
+  - Keep alignment with the FunQA tension-score track in `funqa-tension-score-platform-stage-plan-2026-07-06.md`.
+  - Proceed with designing shared schemas in `packages/contracts` and prototyping in `packages/ai` starting in W2.
+
+## [2026-07-05] query | FunQA tension score platform stage plan
+
+- Files touched:
+  - `knowledge/wiki/reports/funqa-tension-score-platform-stage-plan-2026-07-06.md`
+  - `knowledge/index.md`
+  - `knowledge/log.md`
+- Reason:
+  - Produce the 8-week stage plan for integrating the FunQA Tension Score platform into the saas-of-funqa codebase.
+  - Detail Zod schema definitions, Firestore repository scopes, multimodal AI video segment chunking/embedding pipelines, Express API routes, and Next.js visual UI analyser components.
+  - Define the data/labeling milestone to convert user survey responses into a continuous, Gaussian-smoothed tension score ground truth.
+- Follow-up:
+  - Align with the sibling neuro-symbolic research plan to build common evaluation interfaces and share the RAG prediction database.
+
+## [2026-07-06] lint | Citation integrity pass on 07-06 stage-plan reports
+
+- Files touched:
+  - `knowledge/wiki/reports/neuro-symbolic-game-story-research-plan-2026-07-06.md`
+  - `knowledge/wiki/reports/funqa-tension-score-platform-stage-plan-2026-07-06.md`
+- Reason:
+  - Re-verified every literature citation added by the two subagent drafts via direct `web_search` lookups against arXiv/IEEE/ICML sources.
+  - Removed one fabricated combined citation (`Agentic GraphRAG and GATs for Difficulty-Aware Recommendation`, Journal of KIISE 2026 — no primary source found) and one unverifiable citation (`Grounded NPC Dialogue via Retrieval-Augmented Generation`, FDG 2025 — FDG 2026 accepted-paper list is not yet public).
+  - Corrected one wrong identifier (MultiPENG was cited as `arXiv:2604.14820`; the real primary source is IEEE Xplore document 10934747).
+  - Corrected two mischaracterized-but-real citations (RLAnything/AutoTool ICML 2026, and `Automatic Generation of High-Performance RL Environments` arXiv:2603.12145) whose actual content does not match the playtesting/playstyle-conditioning claims the draft made about them, and added one directly-relevant real substitute (`Automated Play-Testing Through RL Based Human-Like Play-Styles Generation`, arXiv:2211.17188).
+- Follow-up:
+  - Treat any future subagent-authored literature grounding in this vault as a draft requiring the same verification pass before it is cited in an actual manuscript submission.
+
+## [2026-07-06] ingest | Deep-research update of Paper A and Paper B to v0.2, SCI-E format alignment
+
+- Files touched:
+  - `knowledge/wiki/reports/paper-draft-constraint-audited-interactive-fiction-2026-07-06.md` (new, Paper A v0.2)
+  - `knowledge/wiki/reports/paper-draft-kg-grounded-npc-dialogue-2026-07-06.md` (new, Paper B v0.2)
+  - `knowledge/wiki/reports/neuro-symbolic-game-story-research-plan-2026-07-06.md` (Related pages updated)
+  - `knowledge/wiki/concepts/neuro-symbolic-game-storytelling.md` (Related pages updated)
+  - `knowledge/index.md`
+  - `knowledge/log.md`
+- Reason:
+  - User asked for a "deep research" (딥리서치) pass to bring both paper drafts up to 2026 AI-research currency and to align them with standard SCI-E paper format (title/abstract/keywords/numbered sections/numbered references).
+  - Ran ~14 `web_search` deep-dive queries across: 2025-2026 neuro-symbolic AI surveys, grammar-constrained decoding, LLM+PDDL planning, GraphRAG landscape, LLM agent long-term memory/persona consistency, and reasoning-model/test-time-compute trends, then individually verified every specific paper title found (arXiv ID / DOI / venue) before citing it.
+  - Discovered that Paper A's proposed architecture is now extremely close to five independent 2025-2026 systems (PAYADOR arXiv:2504.07304, IVIE arXiv:2606.13348, STORY2GAME arXiv:2505.03547, G-KMS DOI:10.3390/systems14020175, SINE in Applied Sciences 16(6):2932) — v0.2 repositions the paper's contribution as a cross-genre ablation + production-RAG-platform integration + repair-efficiency analysis rather than claiming the architecture itself as novel.
+  - Discovered comparable overlap for Paper B against SURGE (arXiv:2305.18846), KNUDGE (arXiv:2212.10618), and NPC Mind — v0.2 repositions the contribution as combining KG-subgraph retrieval with a game-specific disclosure policy, a LoCoMo-scale (arXiv:2402.17753) multi-session memory stress test, and a citable persona-stability mechanism (arXiv:2601.10025) plus a deflanderization-risk check (arXiv:2510.13586).
+  - Caught and corrected two of my own citation errors during drafting before finalizing: reference [15] in Paper B initially pointed to the wrong arXiv ID (a Werewolf-game persona-consistency paper, arXiv:2603.07111) for the "deflanderization" concept — corrected to the actual deflanderization paper (arXiv:2510.13586) and kept the Werewolf paper as a separate, correctly-described reference. Also added the missing arXiv ID (2204.12681) for the graph-based semantic-modelling dialogue reference.
+  - v0.1 files (`paper-draft-ivie-style-validated-game-story-generation-2026-06-28.md`, `paper-draft-kg-grounded-rpg-dialogue-2026-06-28.md`) were left completely unedited per the vault's report-immutability rule; v0.2 supersedes them via new dated files and cross-links.
+- Follow-up:
+  - Reference [4] in Paper B (NPC Mind) is still only secondary-source-verified; needs a primary-source AAAI 2025 proceedings check before submission.
+  - `World-State Transformations for Neuro-symbolic Interactive Storytelling` (now located at arXiv:2605.24719) was found but not read in full — held out of Paper A's numbered reference list pending a dedicated read-and-verify pass.
+  - Local `.docx` conversions and a Google Drive `research-materials/` upload of both v0.2 drafts are pending as the next step to mirror the existing dual-homed (repo + Drive) convention.
+
+## [2026-07-06] query | W1 contracts implementation — moved 8-week plans from paper to code
+
+- Files touched:
+  - `packages/contracts/src/index.ts` (18 new Zod schemas + inferred types appended)
+  - `packages/contracts/src/index.test.ts` (new, 9 vitest smoke tests)
+  - `packages/contracts/AGENTS.md`
+  - `knowledge/log.md`
+- Reason:
+  - User asked to continue the project ("프로젝트 내용 이어서 진행하자"). Both 2026-07-06 8-week stage plans ([[wiki/reports/neuro-symbolic-game-story-research-plan-2026-07-06]] and [[wiki/reports/funqa-tension-score-platform-stage-plan-2026-07-06]]) name W1 (2026-07-06~07-12) as `packages/contracts` common schema definition — this is the first concrete, bounded, low-risk increment explicitly implied by the plans, so implementation started there rather than jumping ahead to `packages/db`/`packages/ai`/`apps/api` work that the plans schedule for W2+ and that has no consumer yet.
+  - Added, additively (no existing schema modified): interactive-fiction contracts (`WorldStateSchema`, `StoryTransformationSchema`, `ValidationResultSchema`, `RepairAttemptSchema`, `GeneratedWorldTraceSchema`, `InteractiveFictionEvalDatasetSchema` plus supporting sub-schemas) for Paper A; NPC-dialogue contracts (`NpcProfileSchema`, `LoreGraphFactSchema`, `PersonaStateSchema`, `DialoguePolicySchema`, `DialogueScenarioSchema`, `DialogueCandidateSchema`, `DialogueValidationResultSchema`, `DialogueExperimentTraceSchema`) for Paper B; and FunQA product contracts (`RlPolicyTypeSchema`, `PlaySessionSchema`, `TensionScoreLabelSchema`, `SimilarGameLinkSchema`).
+  - Field vocabulary was taken directly from the JSON examples already specified in both v0.2 paper drafts and the FunQA stage-plan report, not invented ad hoc.
+- Verification:
+  - `npm run typecheck` — passes for both `@funqa/api` and `@funqa/web` with the new contracts in place.
+  - `npx vitest run packages/contracts/src/index.test.ts` — 9/9 passed (genre-enum rejection, unknown validation-error-code rejection, nested-schema requirement, similarity-score range rejection, and default-value population all exercised).
+- Follow-up:
+  - W1 also calls for `data/evals` fixture packaging and IF-world/NPC-lore seed definition — not started this session.
+  - W2 (`packages/db` repositories, `packages/ai` baseline systems) has no code yet; do not scaffold it before there is an endpoint or test that actually needs it, per the plans' own week sequencing.
+
+## [2026-07-09] query | Software patent differentiation research
+
+- Files touched:
+  - `wiki/reports/software-patent-differentiation-research-2026-07-09.md`
+  - `index.md`
+  - `log.md`
+- Reason:
+  - Capture project-grounded software patent differentiation candidates for FunQA, centered on document-graph consensus RAG, immutable evidence packets, neuro-symbolic game content validation, NPC dialogue policy, and tension-aware retrieval.
+- Follow-up:
+  - Have patent counsel run novelty/FTO searches; implement full candidate/evidence packet traces and minimal game/NPC validators before using secondary claim families in a filing.
+
+## [2026-07-19] query | Bilingual two-paper research brief, experiment artifacts, and implementation roadmap
+
+- Files touched:
+  - `wiki/reports/research-program-bilingual-brief-2026-07-19.md`
+  - `wiki/reports/research-experiment-and-figure-spec-2026-07-19.md`
+  - `wiki/reports/research-implementation-roadmap-2026-07-19.md`
+  - `wiki/reports/assets/paper-a-pipeline.svg`
+  - `wiki/reports/assets/paper-b-pipeline.svg`
+  - `wiki/reports/assets/shared-trace-and-eval.svg`
+  - `index.md`
+  - `log.md`
+- Reason:
+  - Preserve a bilingual ideation brief grounded in the current FunQA repository, the existing v0.2 paper drafts, and direct primary-source abstract checks for IVIE, PAYADOR, STORY2GAME, RPGBench, KNUDGE, SURGE, LoCoMo, and XGrammar.
+  - Freeze defensible novelty boundaries: Paper A is cross-genre ablation plus repair efficiency and production-RAG integration; Paper B is disclosure-policy and multi-session consistency evaluation rather than generic KG-grounded dialogue novelty.
+  - Specify planned fixtures, baselines, metrics, trace minimums, tables, and reproducible SVG architecture figures without inventing empirical results.
+  - Record that Paper A reachability experiments require typed placement/precondition contract hardening, and that domain validators/runners/routes/fixtures are not yet implemented.
+- Verification:
+  - Direct primary-source reads captured the cited abstracts and identifiers; detailed result claims remain gated on full-text extraction.
+  - Existing repository evidence was mapped to exact contracts, RAG modules, API inspection route, and generic consensus runner.
+  - New SVGs are deterministic local artifacts with bilingual labels; numerical figures remain planned until experiment traces exist.
+- Follow-up:
+  - Re-read G-KMS and SINE primary text before using exact experimental numbers.
+  - Implement and test deterministic Paper A/B validators before adding proposal flows or batch runners.
+  - Run `npm run wiki:lint` and refresh `graphify-out/` after the durable knowledge update.
+
+## [2026-07-19] upload | Bilingual research packet and SVG assets to Google Drive
+
+- Files uploaded:
+  - `research-program-bilingual-brief-2026-07-19.md`
+  - `research-experiment-and-figure-spec-2026-07-19.md`
+  - `research-implementation-roadmap-2026-07-19.md`
+  - `paper-a-pipeline.svg`
+  - `paper-b-pipeline.svg`
+  - `shared-trace-and-eval.svg`
+- Destination:
+  - Google Drive breadcrumb `공유 문서함 / EGLAB_Lab Meeting / 정장영 / research-materials`
+- Verification:
+  - Drive lists all six uploaded files with current timestamps and file sizes.
+
 ## [2026-08-11] build | Local game-log agentic search and CocoIndex cycle
 
 - Files touched:

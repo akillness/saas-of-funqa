@@ -752,3 +752,347 @@ export type LlmWikiEntry = z.infer<typeof LlmWikiEntrySchema>;
 
 export * from "./game-log-search";
 export * from "./scene";
+
+// ---------------------------------------------------------------------------
+// Neuro-symbolic interactive-fiction contracts (Paper A: Constraint-Audited
+// LLM Generation for Playable Interactive Fiction Worlds)
+// See knowledge/wiki/reports/paper-draft-constraint-audited-interactive-fiction-2026-07-06.md
+// ---------------------------------------------------------------------------
+
+export const IfLocationSchema = z
+  .object({
+    id: z.string().min(1),
+    name: z.string().min(1),
+    description: z.string(),
+    exits: z.array(z.string()).default([])
+  })
+  .passthrough();
+export type IfLocation = z.infer<typeof IfLocationSchema>;
+
+export const IfObjectSchema = z
+  .object({
+    id: z.string().min(1),
+    name: z.string().min(1),
+    locationId: z.string().min(1).nullable(),
+    isKey: z.boolean().default(false),
+    unlocks: z.array(z.string()).default([])
+  })
+  .passthrough();
+export type IfObject = z.infer<typeof IfObjectSchema>;
+
+export const IfCharacterSchema = z
+  .object({
+    id: z.string().min(1),
+    name: z.string().min(1),
+    locationId: z.string().min(1).nullable(),
+    knownFacts: z.array(z.string()).default([])
+  })
+  .passthrough();
+export type IfCharacter = z.infer<typeof IfCharacterSchema>;
+
+export const IfGoalSchema = z
+  .object({
+    id: z.string().min(1),
+    description: z.string(),
+    preconditionIds: z.array(z.string()).default([])
+  })
+  .passthrough();
+export type IfGoal = z.infer<typeof IfGoalSchema>;
+
+export const IfInvariantSchema = z
+  .object({
+    code: z.string().min(1),
+    description: z.string()
+  })
+  .passthrough();
+export type IfInvariant = z.infer<typeof IfInvariantSchema>;
+
+export const WorldStateSchema = z
+  .object({
+    worldId: z.string().min(1),
+    genre: z.enum(["fantasy", "mystery", "sci-fi", "educational-puzzle"]),
+    locations: z.array(IfLocationSchema).default([]),
+    objects: z.array(IfObjectSchema).default([]),
+    characters: z.array(IfCharacterSchema).default([]),
+    inventoryRules: z.array(z.string()).default([]),
+    questGoals: z.array(IfGoalSchema).default([]),
+    preconditions: z.array(z.string()).default([]),
+    effects: z.array(z.string()).default([]),
+    invariants: z.array(IfInvariantSchema).default([]),
+    narrativeFacts: z.array(z.string()).default([])
+  })
+  .passthrough();
+export type WorldState = z.infer<typeof WorldStateSchema>;
+
+export const IfActionTypeSchema = z.enum([
+  "ADD_LOCATION",
+  "ADD_OBJECT",
+  "ADD_CHARACTER",
+  "ADD_PUZZLE_CHAIN",
+  "ADD_QUEST_GOAL",
+  "MODIFY_FACT"
+]);
+
+export const StoryTransformationSchema = z
+  .object({
+    worldId: z.string().min(1),
+    actionType: IfActionTypeSchema,
+    rationale: z.string(),
+    preconditions: z.array(z.string()).default([]),
+    effects: z.array(z.string()).default([]),
+    newEntities: z.array(z.string()).default([]),
+    narrativeText: z.string()
+  })
+  .passthrough();
+export type StoryTransformation = z.infer<typeof StoryTransformationSchema>;
+
+export const ValidationErrorCodeSchema = z.enum([
+  "UNREACHABLE_REQUIRED_OBJECT",
+  "UNSOLVABLE_PUZZLE",
+  "PRECONDITION_UNSATISFIED",
+  "NARRATIVE_CONTRADICTION",
+  "FUTURE_KNOWLEDGE_LEAK",
+  "INVENTORY_RULE_VIOLATION"
+]);
+
+export const ValidationErrorSchema = z
+  .object({
+    code: ValidationErrorCodeSchema,
+    entity: z.string().min(1),
+    reason: z.string(),
+    repairHint: z.string().optional()
+  })
+  .passthrough();
+export type ValidationError = z.infer<typeof ValidationErrorSchema>;
+
+export const ValidationResultSchema = z
+  .object({
+    valid: z.boolean(),
+    errors: z.array(ValidationErrorSchema).default([])
+  })
+  .passthrough();
+export type ValidationResult = z.infer<typeof ValidationResultSchema>;
+
+export const RepairAttemptSchema = z
+  .object({
+    transformationId: z.string().min(1),
+    iteration: z.number().int().nonnegative(),
+    strategy: z.enum(["llm-revision", "deterministic"]),
+    resultingValidation: ValidationResultSchema,
+    tokensUsed: z.number().int().nonnegative().default(0),
+    latencyMs: z.number().int().nonnegative().default(0)
+  })
+  .passthrough();
+export type RepairAttempt = z.infer<typeof RepairAttemptSchema>;
+
+export const GeneratedWorldTraceSchema = z
+  .object({
+    worldId: z.string().min(1),
+    genre: z.enum(["fantasy", "mystery", "sci-fi", "educational-puzzle"]),
+    systemVariant: z.enum([
+      "llm-only",
+      "grammar-only",
+      "symbolic-only",
+      "rag-only",
+      "neuro-symbolic"
+    ]),
+    committedTransformations: z.array(StoryTransformationSchema).default([]),
+    rejectedTransformations: z.array(StoryTransformationSchema).default([]),
+    repairAttempts: z.array(RepairAttemptSchema).default([]),
+    finalWorldState: WorldStateSchema.optional(),
+    createdAt: z.string()
+  })
+  .passthrough();
+export type GeneratedWorldTrace = z.infer<typeof GeneratedWorldTraceSchema>;
+
+export const InteractiveFictionEvalSeedSchema = z
+  .object({
+    seedId: z.string().min(1),
+    genre: z.enum(["fantasy", "mystery", "sci-fi", "educational-puzzle"]),
+    prompt: z.string().min(1),
+    requiredPlotBeats: z.array(z.string()).default([]),
+    permittedObjectClasses: z.array(z.string()).default([])
+  })
+  .passthrough();
+export type InteractiveFictionEvalSeed = z.infer<typeof InteractiveFictionEvalSeedSchema>;
+
+export const InteractiveFictionEvalDatasetSchema = z
+  .object({
+    datasetId: z.string().min(1),
+    version: z.string().min(1),
+    seeds: z.array(InteractiveFictionEvalSeedSchema).default([])
+  })
+  .passthrough();
+export type InteractiveFictionEvalDataset = z.infer<
+  typeof InteractiveFictionEvalDatasetSchema
+>;
+
+// ---------------------------------------------------------------------------
+// Knowledge-graph-grounded RPG NPC dialogue contracts (Paper B)
+// See knowledge/wiki/reports/paper-draft-kg-grounded-npc-dialogue-2026-07-06.md
+// ---------------------------------------------------------------------------
+
+export const NpcProfileSchema = z
+  .object({
+    npcId: z.string().min(1),
+    worldId: z.string().min(1),
+    name: z.string().min(1),
+    factionId: z.string().optional(),
+    voiceConstraints: z.array(z.string()).default([]),
+    knownFactIds: z.array(z.string()).default([]),
+    forbiddenFactIds: z.array(z.string()).default([])
+  })
+  .passthrough();
+export type NpcProfile = z.infer<typeof NpcProfileSchema>;
+
+export const LoreGraphFactSchema = z
+  .object({
+    factId: z.string().min(1),
+    worldId: z.string().min(1),
+    subject: z.string().min(1),
+    relation: z.string().min(1),
+    object: z.string().min(1),
+    unlockedByQuestStage: z.string().optional()
+  })
+  .passthrough();
+export type LoreGraphFact = z.infer<typeof LoreGraphFactSchema>;
+
+export const PersonaStateSchema = z
+  .object({
+    dominant: z.string().min(1),
+    auxiliary: z.string().optional(),
+    driftScore: z.number().min(0).max(1).default(0)
+  })
+  .passthrough();
+export type PersonaState = z.infer<typeof PersonaStateSchema>;
+
+export const DialoguePolicySchema = z
+  .object({
+    npcId: z.string().min(1),
+    knownFacts: z.array(z.string()).default([]),
+    forbiddenFacts: z.array(z.string()).default([]),
+    allowedHints: z.array(z.string()).default([]),
+    personaState: PersonaStateSchema,
+    questStage: z.string().min(1),
+    voiceConstraints: z.array(z.string()).default([])
+  })
+  .passthrough();
+export type DialoguePolicy = z.infer<typeof DialoguePolicySchema>;
+
+export const DialogueScenarioSchema = z
+  .object({
+    scenarioId: z.string().min(1),
+    worldId: z.string().min(1),
+    npcId: z.string().min(1),
+    playerUtterance: z.string().min(1),
+    turnIndex: z.number().int().nonnegative().default(0),
+    sessionIndex: z.number().int().nonnegative().default(0),
+    expectedForbiddenFacts: z.array(z.string()).default([])
+  })
+  .passthrough();
+export type DialogueScenario = z.infer<typeof DialogueScenarioSchema>;
+
+export const DialogueCandidateSchema = z
+  .object({
+    response: z.string().min(1),
+    usedFacts: z.array(z.string()).default([]),
+    withheldFacts: z.array(z.string()).default([]),
+    personaState: PersonaStateSchema
+  })
+  .passthrough();
+export type DialogueCandidate = z.infer<typeof DialogueCandidateSchema>;
+
+export const DialogueValidationCheckSchema = z.enum([
+  "LORE_CONTRADICTION",
+  "FORBIDDEN_DISCLOSURE",
+  "NPC_KNOWLEDGE_VIOLATION",
+  "RELATIONSHIP_MISMATCH",
+  "QUEST_STAGE_MISMATCH",
+  "VOICE_DRIFT",
+  "DEFLANDERIZATION_RISK",
+  "SAFETY_MISMATCH"
+]);
+
+export const DialogueValidationResultSchema = z
+  .object({
+    valid: z.boolean(),
+    failedChecks: z.array(DialogueValidationCheckSchema).default([])
+  })
+  .passthrough();
+export type DialogueValidationResult = z.infer<
+  typeof DialogueValidationResultSchema
+>;
+
+export const DialogueExperimentTraceSchema = z
+  .object({
+    scenarioId: z.string().min(1),
+    npcId: z.string().min(1),
+    playerUtterance: z.string().min(1),
+    retrievedFactIds: z.array(z.string()).default([]),
+    policyPacket: DialoguePolicySchema,
+    candidateResponses: z.array(DialogueCandidateSchema).default([]),
+    validationResults: z.array(DialogueValidationResultSchema).default([]),
+    acceptedResponse: z.string().optional(),
+    latencyMs: z.number().int().nonnegative().default(0),
+    tokensUsed: z.number().int().nonnegative().default(0)
+  })
+  .passthrough();
+export type DialogueExperimentTrace = z.infer<
+  typeof DialogueExperimentTraceSchema
+>;
+
+// ---------------------------------------------------------------------------
+// FunQA tension-score platform contracts
+// See knowledge/wiki/reports/funqa-tension-score-platform-stage-plan-2026-07-06.md
+// ---------------------------------------------------------------------------
+
+export const RlPolicyTypeSchema = z
+  .object({
+    policyId: z.string().min(1),
+    label: z.enum([
+      "speedrunner",
+      "explorer",
+      "completionist",
+      "aggressive",
+      "cautious"
+    ]),
+    description: z.string().optional()
+  })
+  .passthrough();
+export type RlPolicyType = z.infer<typeof RlPolicyTypeSchema>;
+
+export const PlaySessionSchema = z
+  .object({
+    sessionId: z.string().min(1),
+    gameId: z.string().min(1),
+    policyId: z.string().min(1),
+    videoUrl: z.string().min(1),
+    durationSeconds: z.number().nonnegative(),
+    levelDesignSegmentId: z.string().optional(),
+    recordedAt: z.string()
+  })
+  .passthrough();
+export type PlaySession = z.infer<typeof PlaySessionSchema>;
+
+export const TensionScoreLabelSchema = z
+  .object({
+    sessionId: z.string().min(1),
+    timestampSeconds: z.number().nonnegative(),
+    surveyMean: z.number().min(0).max(1),
+    surveyStdDev: z.number().min(0),
+    respondentCount: z.number().int().nonnegative(),
+    smoothingWindowSeconds: z.number().positive().default(5)
+  })
+  .passthrough();
+export type TensionScoreLabel = z.infer<typeof TensionScoreLabelSchema>;
+
+export const SimilarGameLinkSchema = z
+  .object({
+    gameId: z.string().min(1),
+    similarGameId: z.string().min(1),
+    similarityScore: z.number().min(0).max(1),
+    sharedDifficultyTags: z.array(z.string()).default([]),
+    sharedMechanicTags: z.array(z.string()).default([])
+  })
+  .passthrough();
+export type SimilarGameLink = z.infer<typeof SimilarGameLinkSchema>;

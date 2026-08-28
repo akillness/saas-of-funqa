@@ -54,3 +54,6 @@ Player action
 - [[wiki/reports/neuro-symbolic-game-story-research-plan-2026-06-28]]
 - [[wiki/reports/paper-draft-ivie-style-validated-game-story-generation-2026-06-28]]
 - [[wiki/reports/paper-draft-kg-grounded-rpg-dialogue-2026-06-28]]
+- [[wiki/reports/neuro-symbolic-game-story-research-plan-2026-07-06]] (latest plan; supersedes the 2026-06-28 plan)
+- [[wiki/reports/paper-draft-constraint-audited-interactive-fiction-2026-07-06]] (Paper A v0.2 — latest; supersedes the 2026-06-28 v0.1 draft above)
+- [[wiki/reports/paper-draft-kg-grounded-npc-dialogue-2026-07-06]] (Paper B v0.2 — latest; supersedes the 2026-06-28 v0.1 draft above)

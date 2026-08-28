@@ -55,6 +55,9 @@ This is the content-oriented map of the wiki. Read this file first before broad 
 - [[wiki/reports/funqa-locale-theme-sidebar-apphosting-2026-04-24]]
 - [[wiki/reports/funqa-eglab-home-refresh-2026-04-24]]
 - [[wiki/reports/funqa-rag-platform]]
+- [[wiki/reports/funqa-tension-score-platform-stage-plan-2026-07-06]]
+ 
+- [[wiki/reports/software-patent-differentiation-research-2026-07-09]]
 - [[wiki/reports/apphosting-deploy-rollout-debug]]
 - [[wiki/reports/firebase-functions-integration]]
 - [[wiki/reports/live-apphosting-ui-verification]]
@@ -66,4 +69,10 @@ This is the content-oriented map of the wiki. Read this file first before broad 
 - [[wiki/reports/paper-draft-kg-grounded-rpg-dialogue-2026-06-28]]
 - [[wiki/reports/game-log-agentic-search-cycle-2026-08-11]]
 - [[wiki/reports/ralph-page-route-fix-2026-06-29]]
+- [[wiki/reports/neuro-symbolic-game-story-research-plan-2026-07-06]]
+- [[wiki/reports/paper-draft-constraint-audited-interactive-fiction-2026-07-06]]
+- [[wiki/reports/paper-draft-kg-grounded-npc-dialogue-2026-07-06]]
+- [[wiki/reports/research-program-bilingual-brief-2026-07-19]]
+- [[wiki/reports/research-experiment-and-figure-spec-2026-07-19]]
+- [[wiki/reports/research-implementation-roadmap-2026-07-19]]
 <!-- REPORTS:END -->
