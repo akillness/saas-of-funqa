@@ -6,11 +6,6 @@ export const enMessages = {
       en: "English",
       ko: "한국어"
     },
-    themeLabel: "Theme",
-    themeModes: {
-      light: "Light",
-      dark: "Dark"
-    },
     liveLabel: "live",
     sourceLabels: {
       games: "Games",
@@ -30,7 +25,7 @@ export const enMessages = {
     nav: {
       overview: "Home",
       search: "Search",
-      sceneLab: "Scene Search",
+      sceneLab: "Video QA",
       ragLab: "RAG Lab",
       ralph: "Ralph",
       admin: "Admin",
@@ -39,10 +34,10 @@ export const enMessages = {
     }
   },
   sceneLab: {
-    eyebrow: "Video-document multimodal RAG",
-    title: "Scene Search",
+    eyebrow: "Video QA analysis workspace",
+    title: "Video QA analysis",
     lede:
-      "Upload a video-bearing document: the browser extracts frames, a Gemini vision model captions each scene, and a Gemini multimodal embedding model stores them as searchable vectors. Query with text or video and get matching scene images back.",
+      "Review video frames, scene captions, search evidence, and measured processing signals in one timestamp-led analysis flow.",
     ingest: {
       // Step 2: ingest is login-gated and cost-protected, so it now sits below
       // search and results rather than occupying the primary top-left slot.
@@ -607,12 +602,19 @@ export const enMessages = {
       none: "none"
     },
     analyticsMetrics: {
-      title: "Game Video Analytics",
-      cragConfidence: "CRAG Confidence",
-      searchAccuracy: "Search Accuracy",
-      cacheHitRate: "Cache Hit Rate",
-      processingLatency: "Processing Latency",
-      lede: "AI search pipeline · game video verification console"
+      lede: "Stage-by-stage inspection console for the AI search pipeline"
+    },
+    // The former "Game Video Analytics" block hardcoded 94% / 87% / 62ms / high
+    // in the markup. Those were never measured, so they are gone; this strip
+    // reports only values observed in the current inspection response.
+    liveSignals: {
+      title: "Live pipeline signals",
+      note: "Observed in this inspection response",
+      results: "Results",
+      citations: "Citations returned",
+      avgRetrieval: "Avg retrieval score",
+      latency: "Inspection latency",
+      unavailable: "No response"
     },
     releaseGateEyebrow: "Consensus release gate",
     releaseGateTitle: "Latest release-gate report",

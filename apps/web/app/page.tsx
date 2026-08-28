@@ -2,7 +2,6 @@ import Link from "next/link";
 import { fetchHealthSummary } from "../lib/funqa-api";
 import { getDictionary, resolveLocale, withLocale } from "../lib/i18n";
 import { getRequestLocale } from "../lib/i18n-server";
-import { GameRecommendationCard } from "../components/game-recommendation-card";
 
 type HomePageProps = {
   searchParams?: Promise<{
@@ -10,210 +9,173 @@ type HomePageProps = {
   }>;
 };
 
-const TRENDING_CARDS: Array<{
-  title: string;
-  category: "games" | "movies" | "videos";
-  aiScore: number;
-  description: string;
-}> = [
-  { title: "Elden Ring", category: "games", aiScore: 97, description: "Open-world action RPG with vast lore and brutal combat." },
-  { title: "Inception", category: "movies", aiScore: 94, description: "Layered sci-fi thriller exploring dreams within dreams." },
-  { title: "GDC 2024 Highlights", category: "videos", aiScore: 91, description: "Top developer talks from the Game Developers Conference." },
-  { title: "Baldur's Gate 3", category: "games", aiScore: 96, description: "Epic turn-based RPG with deep narrative branching." },
-  { title: "Dune: Part Two", category: "movies", aiScore: 89, description: "Visually stunning sci-fi epic with political depth." },
-  { title: "Unity DOTS Deep Dive", category: "videos", aiScore: 87, description: "Performance-focused game architecture explained." },
-];
-
 export default async function HomePage({ searchParams }: HomePageProps) {
   const params = await searchParams;
   const locale = params?.lang ? resolveLocale(params.lang) : await getRequestLocale();
   const t = getDictionary(locale);
   const health = await fetchHealthSummary();
-
   const isKo = locale === "ko";
 
-  const copy = {
-    heroHeadline: isKo ? "게임 · 영상 · AI 검색" : "Game · Video · AI Search",
-    heroSubtitle: isKo ? "비디오 분석 기반 AI 추천 엔진" : "AI recommendation engine powered by video analysis",
-    heroSearch: isKo ? "게임, 영화, 영상을 검색하세요…" : "Search games, movies, and videos…",
-    searchCta: isKo ? "검색 시작" : "Start Searching",
-    trendingTitle: isKo ? "트렌딩 추천" : "Trending Recommendations",
-    discoveryTitle: isKo ? "AI 디스커버리" : "AI Discovery",
-    statusTitle: isKo ? "시스템 상태" : "System Status",
-    cards: [
-      {
-        icon: "🎮",
-        title: isKo ? "게임 영상 분석" : "Game Video Analysis",
-        body: isKo
-          ? "AI가 게임 플레이 영상을 분석해 장면, 전략, 하이라이트를 자동으로 색인합니다."
-          : "AI analyzes gameplay footage to automatically index scenes, strategies, and highlights.",
-        href: withLocale("/search?source=videos", locale),
-      },
-      {
-        icon: "🤖",
-        title: isKo ? "AI 추천 엔진" : "AI Recommendation Engine",
-        body: isKo
-          ? "하이브리드 검색과 리랭크로 취향에 맞는 게임과 콘텐츠를 정확하게 추천합니다."
-          : "Hybrid retrieval and reranking deliver precise recommendations tuned to your preferences.",
-        href: withLocale("/search", locale),
-      },
-      {
-        icon: "🔬",
-        title: isKo ? "RAG Lab 검증" : "RAG Lab Verification",
-        body: isKo
-          ? "RAG 파이프라인 전체를 투명하게 검사하고 검색 근거를 운영자가 직접 확인합니다."
-          : "Inspect the full RAG pipeline transparently and verify retrieval evidence as an operator.",
-        href: withLocale("/rag-lab", locale),
-        isRagLab: true,
-      },
-    ],
-    stats: {
-      embedding: isKo ? "임베딩 엔진" : "Embedding engine",
-      docs: isKo ? "색인된 문서" : "Docs indexed",
-      chunks: isKo ? "활성 청크" : "Chunks live",
-    },
-  };
+  const copy = isKo
+    ? {
+        eyebrow: "FUNQA · VIDEO QUALITY ANALYSIS",
+        headline: "영상에서 발견하고, 근거로 QA하세요.",
+        lede: "영상 한 편을 넣으면 QA 시나리오, 장면 관찰, 타임코드 근거와 결과 지표를 하나의 검색 워크스페이스에서 검토할 수 있습니다.",
+        primary: "영상 분석 시작",
+        secondary: "게임 로그 검색",
+        trust: "원본 영상은 브라우저에 유지 · 선택 프레임만 전송",
+        sample: "샘플 분석",
+        sampleTitle: "Dungeon run · build 42",
+        finding: "보상 팝업 종료 후 입력 포커스가 복구되지 않음",
+        scenarios: "QA 시나리오",
+        analysis: "영상 분석",
+        evidence: "타임코드 근거",
+        score: "FunQA Score",
+        passed: "통과",
+        coverage: "커버리지",
+        confidence: "근거 신뢰도",
+        whyEyebrow: "분석 흐름",
+        whyTitle: "전체 영상보다, 검증해야 할 순간을 먼저 보여줍니다.",
+        steps: [
+          { number: "01", title: "영상 선택", body: "브라우저에서 프레임을 추출하고 원본 파일은 로컬에 유지합니다." },
+          { number: "02", title: "장면 검색", body: "텍스트 또는 영상 프레임으로 관련 구간을 찾아 타임코드에 연결합니다." },
+          { number: "03", title: "QA 검토", body: "시나리오·관찰·근거를 비교하고 지원되는 지표만 한눈에 확인합니다." }
+        ],
+        capabilityEyebrow: "검증 가능한 출력",
+        capabilityTitle: "예쁜 점수보다 실제 근거를 먼저 설계했습니다.",
+        capabilities: [
+          { label: "QA 시나리오", title: "실패 우선 테이블", body: "Passed, Failed, Blocked를 텍스트와 기호로 구분하고 첫 실패를 상단에 둡니다." },
+          { label: "영상 분석", title: "플레이어와 결과 동기화", body: "시나리오 행과 프레임 마커를 선택하면 같은 타임코드 맥락을 유지합니다." },
+          { label: "FunQA 지표", title: "샘플과 실측을 분리", body: "라이브 결과에서는 API가 실제로 반환한 장면 수, 상대 강도, 지연, 제외 장면만 표시합니다." }
+        ],
+        live: "서비스",
+        ready: "검색 준비됨",
+        limited: "상태 확인 중"
+      }
+    : {
+        eyebrow: "FUNQA · VIDEO QUALITY ANALYSIS",
+        headline: "Find it in video. QA it with evidence.",
+        lede: "Add one video and review QA scenarios, scene observations, timestamp evidence, and result signals in a single search workspace.",
+        primary: "Start video analysis",
+        secondary: "Search game logs",
+        trust: "Raw video stays in-browser · only selected frames are sent",
+        sample: "Sample analysis",
+        sampleTitle: "Dungeon run · build 42",
+        finding: "Gameplay input did not recover after the reward dialog closed",
+        scenarios: "QA scenarios",
+        analysis: "Video analysis",
+        evidence: "Timestamp evidence",
+        score: "FunQA Score",
+        passed: "Passed",
+        coverage: "Coverage",
+        confidence: "Evidence confidence",
+        whyEyebrow: "Analysis flow",
+        whyTitle: "See the moment that needs verification, not the whole recording.",
+        steps: [
+          { number: "01", title: "Choose video", body: "Frames are extracted in the browser while the source file stays local." },
+          { number: "02", title: "Search scenes", body: "Use text or video frames to find relevant moments and bind them to timestamps." },
+          { number: "03", title: "Review QA", body: "Compare scenarios, observations, evidence, and only the metrics the system supports." }
+        ],
+        capabilityEyebrow: "Verifiable output",
+        capabilityTitle: "Evidence comes before decorative scores.",
+        capabilities: [
+          { label: "QA scenarios", title: "Failure-first table", body: "Passed, Failed, and Blocked use words and symbols, with the first failure promoted." },
+          { label: "Video analysis", title: "Player-result sync", body: "Scenario rows and frame markers retain the same timestamp context." },
+          { label: "FunQA signals", title: "Sample and live stay separate", body: "Live views show only API-observed scene count, relative strength, latency, and excluded scenes." }
+        ],
+        live: "Service",
+        ready: "Search ready",
+        limited: "Checking status"
+      };
 
-  const issueStats = [
-    {
-      label: copy.stats.embedding,
-      value: health?.embeddingModel ?? "gemini-embedding-2-preview",
-      tone: "ok" as const,
-      dotColor: "var(--ok)",
-    },
-    {
-      label: copy.stats.docs,
-      value: String(health?.rag.documentCount ?? 0),
-      tone: "accent" as const,
-      dotColor: "var(--gm-accent-ai)",
-    },
-    {
-      label: copy.stats.chunks,
-      value: String(health?.rag.chunkCount ?? 0),
-      tone: "accent" as const,
-      dotColor: "var(--gm-accent-ai)",
-    },
-  ];
+  const serviceReady = health?.status === "ok";
 
   return (
-    <div className="gm-home">
-      <section className="gm-hero" aria-label={isKo ? "홈 히어로" : "Home hero"} style={{ position: 'relative', overflow: 'hidden' }}>
-        <div className="gm-hero-bg-container" aria-hidden="true" />
-        <div className="gm-hero-inner" style={{ position: 'relative', zIndex: 1 }}>
-          <p className="gm-hero-eyebrow" style={{ color: 'var(--gm-accent-neon)', textShadow: '0 0 10px var(--gm-accent-neon)' }}>
-            {isKo ? "AI 미디어 검색 엔진" : "AI Media Search Engine"}
-          </p>
-          <h1 className="gm-hero-headline" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}>{copy.heroHeadline}</h1>
-          <p className="gm-hero-subtitle" style={{ color: '#e0e0e0', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>{copy.heroSubtitle}</p>
-          <div className="gm-search-bar" role="search" style={{ boxShadow: '0 0 30px rgba(0, 255, 204, 0.2)' }}>
-            <Link
-              href={withLocale("/search", locale)}
-              className="gm-search-link"
-              aria-label={copy.heroSearch}
-            >
-              <span className="gm-search-icon" aria-hidden="true" style={{ color: 'var(--gm-accent-neon)' }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="11" cy="11" r="8" />
-                  <path d="m21 21-4.35-4.35" />
-                </svg>
-              </span>
-              <span className="gm-search-placeholder">{copy.heroSearch}</span>
-              <span className="gm-search-cta" style={{ background: 'linear-gradient(135deg, var(--gm-accent-neon), var(--gm-accent-cyber))', color: '#000', fontWeight: 'bold', border: 'none' }}>{copy.searchCta}</span>
+    <div className="vqa-home">
+      <section className="vqa-home-hero">
+        <div className="vqa-home-copy">
+          <p className="vqa-eyebrow">{copy.eyebrow}</p>
+          <h1>{copy.headline}</h1>
+          <p className="vqa-home-lede">{copy.lede}</p>
+          <div className="vqa-home-actions">
+            <Link className="vqa-home-primary" href={withLocale("/scene-search", locale)}>
+              {copy.primary}<span aria-hidden="true">→</span>
+            </Link>
+            <Link className="vqa-home-secondary" href={withLocale("/search", locale)}>
+              {copy.secondary}
             </Link>
           </div>
-          <div className="gm-hero-quicklinks">
-            {t.home.visitorPaths.map((path) => (
-              <Link
-                key={path.href}
-                href={withLocale(path.href, locale)}
-                className="gm-quicklink"
-                style={{ backdropFilter: 'blur(10px)', border: '1px solid rgba(0,255,204,0.3)', transition: 'all 0.3s' }}
-              >
-                <span className="gm-quicklink-eyebrow" style={{ color: 'var(--gm-accent-cyber)' }}>{path.eyebrow}</span>
-                <strong className="gm-quicklink-title" style={{ textShadow: '0 0 5px rgba(255,255,255,0.5)' }}>{path.title}</strong>
-              </Link>
-            ))}
+          <div className="vqa-home-trust">
+            <span aria-hidden="true">◇</span>
+            <span>{copy.trust}</span>
           </div>
         </div>
-        <div className="gm-hero-glow" aria-hidden="true" style={{ background: 'radial-gradient(circle, rgba(0,255,204,0.15) 0%, transparent 60%)' }} />
-      </section>
 
-      <section className="gm-section" aria-label={copy.trendingTitle} style={{ position: 'relative', zIndex: 1 }}>
-        <div className="gm-section-header">
-          <h2 className="gm-section-title">{copy.trendingTitle}</h2>
-          <Link href={withLocale("/search", locale)} className="gm-see-all">
-            {isKo ? "전체 보기" : "See all"}
-          </Link>
-        </div>
-        <div className="gm-carousel" role="list">
-          {TRENDING_CARDS.map((card) => (
-            <div key={card.title} role="listitem">
-              <Link href={withLocale(`/search?source=${card.category}&q=${encodeURIComponent(card.title)}`, locale)} className="gm-card-link">
-                <GameRecommendationCard
-                  title={card.title}
-                  category={card.category}
-                  aiScore={card.aiScore}
-                  description={card.description}
-                />
-              </Link>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="gm-section" aria-label={copy.discoveryTitle}>
-        <div className="gm-section-header">
-          <h2 className="gm-section-title">{copy.discoveryTitle}</h2>
-        </div>
-        <div className="gm-discovery-grid">
-          {copy.cards.map((card) => (
-            <Link
-              key={card.title}
-              href={card.href}
-              className={`gm-discovery-card${card.isRagLab ? " gm-discovery-card--rag" : ""}`}
-            >
-              <span className="gm-discovery-icon" aria-hidden="true">{card.icon}</span>
-              <h3 className="gm-discovery-title">{card.title}</h3>
-              <p className="gm-discovery-body">{card.body}</p>
-              {card.isRagLab && (
-                <span className="gm-discovery-cta">
-                  {isKo ? "RAG Lab 열기 →" : "Open RAG Lab →"}
-                </span>
-              )}
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="gm-section gm-status-rail" aria-label={copy.statusTitle}>
-        <div className="gm-section-header">
-          <h2 className="gm-section-title">{copy.statusTitle}</h2>
-          <span className="gm-live-badge" aria-label={isKo ? "실시간" : "live"}>
-            <span className="gm-live-dot" aria-hidden="true" />
-            {isKo ? "실시간" : "live"}
-          </span>
-        </div>
-        <div className="gm-status-grid">
-          {issueStats.map((item) => (
-            <div className="gm-status-card" key={item.label}>
-              <span
-                className="gm-status-dot"
-                style={{ background: item.dotColor }}
-                aria-hidden="true"
-              />
-              <div className="gm-status-content">
-                <strong className="gm-status-value">{item.value}</strong>
-                <p className="gm-status-label">{item.label}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="gm-pipeline-chips">
-          {t.home.pipeline.map((step) => (
-            <span className="gm-pipeline-chip" key={step.label}>
-              <span className="gm-pipeline-chip-label">{step.label}</span>
-              <span className="gm-pipeline-chip-text">{step.text}</span>
+        <div className="vqa-home-product" aria-label={copy.sample}>
+          <div className="vqa-home-product-bar">
+            <span>{copy.sample}</span>
+            <span>{copy.sampleTitle}</span>
+            <span className={serviceReady ? "vqa-home-live vqa-home-live--ready" : "vqa-home-live"}>
+              <i aria-hidden="true" /> {copy.live} · {serviceReady ? copy.ready : copy.limited}
             </span>
+          </div>
+          <div className="vqa-home-product-body">
+            <div className="vqa-home-video">
+              <img alt="" src="/assets/hero-bg.png" />
+              <div className="vqa-home-video-time">00:48 / 01:36</div>
+              <div className="vqa-home-video-marker" aria-hidden="true" />
+            </div>
+            <div className="vqa-home-score">
+              <span>{copy.score}</span>
+              <strong>76<small>/100</small></strong>
+              <div className="vqa-home-metrics">
+                <span><b>3/5</b>{copy.passed}</span>
+                <span><b>80%</b>{copy.coverage}</span>
+                <span><b>93%</b>{copy.confidence}</span>
+              </div>
+              <p>{copy.finding}</p>
+            </div>
+          </div>
+          <div className="vqa-home-tabs">
+            <span className="vqa-home-tab--active">{copy.scenarios}</span>
+            <span>{copy.analysis}</span>
+            <span>{copy.evidence}</span>
+          </div>
+          <div className="vqa-home-row">
+            <span className="vqa-home-fail">!</span>
+            <span><small>QA-04 · 00:48</small><strong>{copy.finding}</strong></span>
+            <span>94%</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="vqa-home-flow" aria-labelledby="vqa-home-flow-title">
+        <div className="vqa-home-section-heading">
+          <p className="vqa-eyebrow">{copy.whyEyebrow}</p>
+          <h2 id="vqa-home-flow-title">{copy.whyTitle}</h2>
+        </div>
+        <ol>
+          {copy.steps.map((step) => (
+            <li key={step.number}>
+              <span>{step.number}</span>
+              <div><h3>{step.title}</h3><p>{step.body}</p></div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="vqa-home-capabilities" aria-labelledby="vqa-home-capabilities-title">
+        <div className="vqa-home-section-heading">
+          <p className="vqa-eyebrow">{copy.capabilityEyebrow}</p>
+          <h2 id="vqa-home-capabilities-title">{copy.capabilityTitle}</h2>
+        </div>
+        <div className="vqa-home-capability-grid">
+          {copy.capabilities.map((capability, index) => (
+            <article key={capability.title}>
+              <span>0{index + 1} · {capability.label}</span>
+              <h3>{capability.title}</h3>
+              <p>{capability.body}</p>
+            </article>
           ))}
         </div>
       </section>

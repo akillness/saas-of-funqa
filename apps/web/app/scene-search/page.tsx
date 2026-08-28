@@ -4,9 +4,9 @@ import { getRequestLocale } from "../../lib/i18n-server";
 import { SceneSearchClient } from "./scene-search-client";
 
 export const metadata: Metadata = {
-  title: "Scene Search | FunQA",
+  title: "Video QA Analysis | FunQA",
   description:
-    "Multimodal RAG lab: index video documents as captioned scene embeddings and search them with text or video queries."
+    "Analyze a video in one evidence-first workspace with QA scenarios, timestamped scene observations, multimodal search, and measured FunQA signals."
 };
 
 type SceneSearchPageProps = {
@@ -24,6 +24,7 @@ export default async function SceneSearchPage({ searchParams }: SceneSearchPageP
 
   return (
     <SceneSearchClient
+      locale={locale}
       loginHref={withLocale("/login", locale)}
       t={t.sceneLab}
       tenantId={tenantId}

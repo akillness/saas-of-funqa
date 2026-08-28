@@ -655,3 +655,71 @@ Each entry should list the files touched, the reason for the change, and any fol
   - `vitest.config.ts` now resolves the web `@/*` alias for the whole suite.
   - Root vitest run still collects the untracked local `jeo-code/` checkout
     (bun:test) — pre-existing noise, untouched.
+
+## 2026-08-28 — Video QA analysis workspace + single dark theme
+
+- Files touched:
+  - `wiki/concepts/video-qa-analysis-workspace.md` (new)
+  - `index.md`
+  - `log.md`
+- Reason:
+  - Reframed `/scene-search` from an upload form + result cards into a
+    single-screen video QA analysis workspace: source bar, local `<video>`
+    preview, evidence timeline with seekable markers, metric deck, critical
+    finding, persistent query composer, and scenario/analysis/evidence tabs.
+    Home was rebuilt around the same job and its unverified static AI scores
+    (`Elden Ring 97` etc.) were removed.
+  - Backend contract untouched: still `/v1/scenes/{ingest,search,documents}`,
+    still frames-only transport, still server-computed `relativeStrength`.
+  - Honesty boundary recorded: the Scene API has no pass/fail QA verdict, so QA
+    scenarios and FunQA Score render only in sample mode behind a persistent
+    `Sample report` badge; live mode shows only observed response values.
+  - Removed the light/dark toggle. `data-theme="dark"` is now server-rendered on
+    `<body>`, so the existing dark rules apply from first paint and the inline
+    post-hydration theme script (light flash on cold load) is gone.
+- Findings worth keeping:
+  - A locally running pre-`c7340e1` scene API returned results without
+    `relativeStrength`/`unscoreableScenes`; the typed client did not fail, it
+    rendered `NaN%` and `undefined`. Model now degrades to `—`/`0` with a
+    regression test. A deployed server can be older than its client.
+  - `html { color-scheme: dark }` loses to an earlier `:root { color-scheme:
+    light }` because `:root` (0,1,0) outranks `html` (0,0,1). The override must
+    match `:root` so source order decides.
+  - `[data-theme="dark"] body` in `globals.css` has always been dead: the
+    attribute sits on `body` itself, so body is not its own descendant.
+- Verification:
+  - `npm run typecheck` green; `npx vitest run apps/web packages/contracts`
+    10 files / 100 tests green (7 in the new `video-qa-model.test.ts`);
+    `npm --prefix apps/web run build` green.
+  - Browser: 1440×900 keeps player, metrics, finding, composer, tabs, and the
+    first scenario row above the fold; 390×844 has no horizontal overflow
+    (`scrollWidth` 388) on both pages; marker↔row↔playhead sync verified; live
+    search returned six ranked scenes with 0 page errors.
+- Follow-up:
+  - `smoke:rag` still fails on the pre-existing consensus baseline, unrelated.
+  - `graphify update .` still cannot run locally (`ModuleNotFoundError: No
+    module named 'graphify'`).
+
+## 2026-08-28 — RAG Lab tone alignment + Ralph out of navigation
+
+- Files touched:
+  - `wiki/concepts/video-qa-analysis-workspace.md`
+  - `log.md`
+- Reason:
+  - `/rag-lab` still used the violet glass treatment after home and
+    `/scene-search` moved to the analysis canvas, so one nav click changed the
+    apparent product. Shared primitives are now restated under a `.vqa-lab`
+    scope with the workspace tokens.
+  - The lab's "Game Video Analytics" block hardcoded `high` / `94%` / `87%` /
+    `62ms` in the markup. Those were never measured and the inspection contract
+    exposes no cache-hit or accuracy signal, so the block is replaced by a live
+    strip carrying `resultCount`, `citationCount`, `averageRetrieveScore`, and
+    measured latency. Observed live: 8 / 3 / 0.031 / 11ms.
+  - `/ralph` removed from the sidebar. Route, dictionary, and its two test files
+    are intentionally left in place — this is a navigation decision, not a
+    feature deletion, and it stays reachable by URL.
+- Verification:
+  - `npm run typecheck` green; 10 files / 100 tests green; web build green.
+  - Browser: sidebar renders 홈 / 검색 / 영상 QA / RAG 랩 / 관리 / API 문서;
+    no `/ralph` link; strings `94%`, `87%`, `62ms` absent from the rendered page;
+    0 page errors; no horizontal overflow at 1440.

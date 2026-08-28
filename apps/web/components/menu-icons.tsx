@@ -135,30 +135,6 @@ export function KoreanIcon(props: IconProps) {
   );
 }
 
-export function SunIcon(props: IconProps) {
-  return (
-    <BaseIcon {...props}>
-      <circle cx="12" cy="12" r="4" />
-      <path d="M12 2.8v2.4" />
-      <path d="M12 18.8v2.4" />
-      <path d="m4.8 4.8 1.7 1.7" />
-      <path d="m17.5 17.5 1.7 1.7" />
-      <path d="M2.8 12h2.4" />
-      <path d="M18.8 12h2.4" />
-      <path d="m4.8 19.2 1.7-1.7" />
-      <path d="m17.5 6.5 1.7-1.7" />
-    </BaseIcon>
-  );
-}
-
-export function MoonIcon(props: IconProps) {
-  return (
-    <BaseIcon {...props}>
-      <path d="M18 14.8A6.8 6.8 0 1 1 9.2 6a7 7 0 0 0 8.8 8.8Z" />
-    </BaseIcon>
-  );
-}
-
 export function LoginIcon(props: IconProps) {
   return (
     <BaseIcon {...props}>

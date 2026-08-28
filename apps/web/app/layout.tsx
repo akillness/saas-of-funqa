@@ -2,32 +2,34 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { LocaleSwitcher } from "./locale-switcher";
-import { ThemeToggle } from "./theme-toggle";
 import { FirebaseAnalytics } from "./firebase-analytics";
 import { AuthProvider } from "@/components/auth-provider";
 import { NavAuth } from "@/components/nav-auth";
 import { CategoryTabBar } from "@/components/category-tab-bar";
-import { BookIcon, FilmIcon, FlaskIcon, HomeIcon, RalphIcon, SearchIcon, ShieldIcon } from "@/components/menu-icons";
+import { BookIcon, FilmIcon, FlaskIcon, HomeIcon, SearchIcon, ShieldIcon } from "@/components/menu-icons";
 import { getDictionary, withLocale } from "../lib/i18n";
 import { getRequestLocale } from "../lib/i18n-server";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "funqa",
-  description: "An all-knowledge AI search engine with grounded retrieval, citations, and visible evidence.",
+  title: "FunQA · Video QA Analysis",
+  description:
+    "Analyze video QA scenarios, timestamped scene evidence, and measured FunQA signals in one concise search workspace.",
   metadataBase: new URL("https://saas-of-funqa--saas-of-funqa.us-east4.hosted.app"),
   openGraph: {
-    title: "funqa",
-    description: "An all-knowledge AI search engine with grounded retrieval, citations, and visible evidence.",
+    title: "FunQA · Video QA Analysis",
+    description:
+      "Analyze video QA scenarios, timestamped scene evidence, and measured FunQA signals in one concise search workspace.",
     images: ["/opengraph-image.png"],
-    type: "website",
+    type: "website"
   },
   twitter: {
     card: "summary_large_image",
-    title: "funqa",
-    description: "An all-knowledge AI search engine with grounded retrieval, citations, and visible evidence.",
-    images: ["/twitter-image.png"],
-  },
+    title: "FunQA · Video QA Analysis",
+    description:
+      "Analyze video QA scenarios, timestamped scene evidence, and measured FunQA signals in one concise search workspace.",
+    images: ["/twitter-image.png"]
+  }
 };
 
 export default async function RootLayout({
@@ -42,32 +44,26 @@ export default async function RootLayout({
     { href: "/search", label: t.layout.nav.search, Icon: SearchIcon },
     { href: "/scene-search", label: t.layout.nav.sceneLab, Icon: FilmIcon },
     { href: "/rag-lab", label: t.layout.nav.ragLab, Icon: FlaskIcon },
-    { href: "/ralph", label: t.layout.nav.ralph, Icon: RalphIcon },
     { href: "/admin", label: t.layout.nav.admin, Icon: ShieldIcon },
     { href: "/docs", label: t.layout.nav.docs, Icon: BookIcon },
   ];
 
   return (
     <html lang={locale}>
-      <body
-        data-locale={locale}
-        suppressHydrationWarning
-      >
-        <script
-          dangerouslySetInnerHTML={{
-            __html:
-              "try{var t=localStorage.getItem('funqa-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.body.dataset.theme=t;}catch(e){document.body.dataset.theme='light';}"
-          }}
-        />
+      {/* FunQA ships a single dark analysis theme. `data-theme` is rendered on
+          the server so the first paint is already dark: the previous inline
+          script resolved the theme after hydration, which flashed the light
+          palette on every cold load. */}
+      <body data-locale={locale} data-theme="dark" suppressHydrationWarning>
         <FirebaseAnalytics />
         <a className="skip-link" href="#main-content">
           {t.layout.skipToContent}
         </a>
         <AuthProvider>
-          <div className="arc-layout" style={{ background: 'transparent' }}>
-            <aside className="arc-sidebar" id="arc-sidebar" style={{ background: 'rgba(10, 10, 15, 0.45)', backdropFilter: 'blur(30px)', borderRight: '1px solid rgba(0, 255, 204, 0.2)', boxShadow: '4px 0 30px rgba(0,0,0,0.5)' }}>
+          <div className="arc-layout">
+            <aside className="arc-sidebar" id="arc-sidebar">
               <Link className="arc-sidebar-brand brand-lockup" href={withLocale("/", locale)}>
-                <span className="brand-mark" aria-hidden="true" style={{ background: 'linear-gradient(135deg, var(--gm-accent-neon), var(--gm-accent-cyber))', boxShadow: '0 0 15px var(--gm-accent-neon)' }}>
+                <span className="brand-mark" aria-hidden="true">
                   fq
                 </span>
                 <span>
@@ -104,18 +100,17 @@ export default async function RootLayout({
                     locale={locale}
                     localeNames={t.common.localeNames}
                   />
-                  <ThemeToggle label={t.common.themeLabel} modes={t.common.themeModes} />
                 </div>
               </div>
             </aside>
 
             <div className="arc-content">
-              <header className="site-header arc-content-header" style={{ background: 'rgba(15, 15, 22, 0.55)', backdropFilter: 'blur(24px)', border: '1px solid rgba(0, 255, 204, 0.15)', boxShadow: '0 4px 30px rgba(0,0,0,0.4)' }}>
+              <header className="site-header arc-content-header">
                 <Link className="brand-lockup arc-mobile-brand" href={withLocale("/", locale)}>
-                  <span className="brand-mark" aria-hidden="true" style={{ background: 'linear-gradient(135deg, var(--gm-accent-neon), var(--gm-accent-cyber))' }}>
+                  <span className="brand-mark" aria-hidden="true">
                     fq
                   </span>
-                  <span className="site-title" style={{ textShadow: '0 0 8px rgba(0,255,204,0.5)' }}>funqa</span>
+                  <span className="site-title">funqa</span>
                 </Link>
                 <div className="site-header-actions">
                   <NavAuth
@@ -124,7 +119,6 @@ export default async function RootLayout({
                     loginLabel={t.layout.nav.login}
                     logoutLabel={locale === "ko" ? "로그아웃" : "Sign out"}
                   />
-                  <ThemeToggle label={t.common.themeLabel} modes={t.common.themeModes} />
                 </div>
               </header>
 

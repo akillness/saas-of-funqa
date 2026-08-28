@@ -5,7 +5,7 @@ This is the content-oriented map of the wiki. Read this file first before broad 
 ## Overview
 
 - `saas-of-funqa` is a Firebase App Hosting SaaS with a server-first trust boundary and a separate local-first game-log search vertical slice.
-- Current focus: [[wiki/concepts/dual-engine-game-log-search]], [[wiki/concepts/local-game-log-agentic-search]], [[wiki/concepts/cocoindex-incremental-game-log-index]], and the evidence-bounded cycle report.
+- Current focus: [[wiki/concepts/video-qa-analysis-workspace]], [[wiki/concepts/dual-engine-game-log-search]], [[wiki/concepts/local-game-log-agentic-search]], [[wiki/concepts/cocoindex-incremental-game-log-index]], and the evidence-bounded cycle report.
 
 ## Sources
 <!-- SOURCES:START -->
@@ -27,6 +27,7 @@ This is the content-oriented map of the wiki. Read this file first before broad 
 
 ## Concepts
 <!-- CONCEPTS:START -->
+- [[wiki/concepts/video-qa-analysis-workspace]]
 - [[wiki/concepts/ui-motion-capability-contract]]
 - [[wiki/concepts/prompt-knowledge-loop]]
 - [[wiki/concepts/bmad-ooo-integration]]

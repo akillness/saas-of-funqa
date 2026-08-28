@@ -13,8 +13,10 @@
 
 현재 구현 기준 핵심 운영 기능:
 
+- **영상 QA 분석 워크스페이스(`/scene-search`)** — 영상 한 편을 넣으면 플레이어·근거 타임라인·요약 지표·QA 시나리오·타임코드 근거를 한 화면에서 검토. 원본 영상은 브라우저에 남고 추출 프레임만 전송
+- **샘플과 실측의 명시적 분리** — QA 판정 계약이 아직 없으므로 pass/fail·FunQA Score는 `샘플 리포트` 배지로만 노출하고, 라이브 모드에서는 API가 실제 반환한 장면 수·상대 강도·지연·제외 장면만 표시
+- **단일 다크 테마** — 라이트/다크 토글을 제거하고 서버에서 `data-theme="dark"`를 렌더링해 첫 페인트부터 다크(콜드 로드 시 라이트 플래시 제거)
 - **Google Auth 로그인** — Firebase `signInWithPopup` 기반 Google 소셜 로그인, `AuthProvider` 컨텍스트로 전역 인증 상태 관리
-- **Mria-inspired editorial shell** — 홈과 검색을 밝고 여유 있는 매거진형 shell로 정리하되, 기존 FunQA route/IA/search contract는 유지
 - **Grounded-search first UI** — 홈과 검색 모두 “예쁜 AI 페이지”보다 “검증 가능한 retrieval workspace”로 읽히도록 재구성
 - **Visible wow points** — `Strict grounding`, `Pipeline x-ray`, `Operator proof`, `Multimodal core`, `Consensus engine` 같은 기술 블록을 첫 화면에 노출
 - **NavAuth 컴포넌트** — 로그인 상태에 따라 사용자명·로그아웃 또는 로그인 링크를 표시
@@ -24,7 +26,7 @@
 - 검색 shell 전반의 **dictionary-driven copy** + **localized category tabs** + **pinned inspector trust flow**
 - consensus 미달 시 **evidence-only fallback**를 trust feature로 드러내는 경고 상태
 - `rag-lab`의 최신 consensus release-gate 리포트 조회 및 선택 UI
-- `/ralph`의 **ooo ralph completion loop surface** — seed, execute, evaluate, evolve 단계를 제품 안에서 설명하고 검증 산출물을 노출
+- `/ralph`의 **ooo ralph completion loop surface** — seed, execute, evaluate, evolve 단계를 제품 안에서 설명하고 검증 산출물을 노출 (좌측 네비게이션에서는 숨김 — route는 유지)
 - creator ingest bundle, video analyses, monetization guide/source API surface
 
 ---
@@ -42,6 +44,7 @@
 - [스크립트 목록](#스크립트-목록)
 - [GitHub Actions 워크플로우](#github-actions-워크플로우)
 - [UI 모션 capability contract](#ui-모션-capability-contract)
+- [영상 QA 분석 워크스페이스](#영상-qa-분석-워크스페이스)
 - [기획 문서](#기획-문서)
 
 ---
@@ -206,7 +209,7 @@ Firebase App Hosting과 Functions Emulator를 함께 실행합니다.
 | `/` | 제품 홈과 추천/상태 요약 |
 | `/search` | 근거 기반 검색 workspace |
 | `/rag-lab` | RAG pipeline inspection 및 release-gate 확인 |
-| `/ralph` | ooo ralph completion loop와 검증 산출물 안내 (`/ralph?lang=ko`/`/ralph?lang=en` 지원) |
+| `/ralph` | ooo ralph completion loop와 검증 산출물 안내 (`/ralph?lang=ko`/`/ralph?lang=en` 지원). 제품 네비게이션에서는 제외되어 있으며 URL로만 접근합니다 |
 | `/admin` | 운영 콘솔 |
 | `/docs` | API 문서 |
 
@@ -432,10 +435,56 @@ FunQA는 모션을 장식이 아니라 **예산과 수명주기가 있는 시스
 
 ---
 
+## 영상 QA 분석 워크스페이스
+
+`/scene-search`는 “업로드 폼 + 결과 카드 목록”에서 **영상 한 편을 검토하는 분석
+워크스페이스**로 재구성됐습니다. 백엔드 계약(`/v1/scenes/ingest`,
+`/v1/scenes/search`, `/v1/scenes/documents`)은 그대로입니다.
+
+### 화면 구조
+
+| 영역 | 내용 |
+|------|------|
+| 소스 바 | 영상 선택/교체, 드래그 앤 드롭, 현재 모드 배지, 프레임 추출 진행 |
+| 플레이어 | 로컬 `<video>` 미리보기 + 근거 타임라인 마커 + 프레임 스크럽 스트립 |
+| 요약 레일 | 지표 4개 + 우선 확인할 발견 + 실제 사용 모델(디스클로저) |
+| 컴포저 | 영상 안에서 질문(텍스트·영상·하이브리드 자동 판정) |
+| 결과 탭 | QA 시나리오 / 영상 분석 / 타임코드 근거 |
+| 인덱싱 | 로그인 게이트가 걸린 장면 인덱싱 + 라이브러리(기본 접힘) |
+
+### 지켜야 하는 경계
+
+1. **원본 영상은 브라우저 밖으로 나가지 않습니다.** 서버로 가는 것은
+   `extractVideoFrames()`가 만든 프레임 데이터 URL뿐입니다.
+2. **없는 판정을 만들지 않습니다.** 현재 Scene API는 캡션·임베딩·랭킹 근거를
+   생성하지만 pass/fail QA 판정 계약이 없습니다. 따라서 QA 시나리오 테이블과
+   FunQA Score는 **샘플 모드에서만** 렌더되고 `샘플 리포트` 배지가 항상 붙습니다.
+   라이브 모드에서는 응답에서 관측된 값(장면 수, 상대 강도, `tookMs`,
+   `unscoreableScenes`)만 표시합니다.
+3. **타임코드가 조인 키입니다.** 시나리오 행, 타임라인 마커, 프레임 썸네일,
+   근거 카드가 모두 같은 `MM:SS`를 공유하고 로컬 영상이 있으면 플레이어를 seek합니다.
+4. **스키마 드리프트에 안전해야 합니다.** 배포된 서버가 클라이언트보다 오래되어
+   `relativeStrength`/`unscoreableScenes`가 없으면 `NaN%`/`undefined` 대신
+   `—`와 `0`을 렌더합니다(회귀 테스트 있음).
+5. **상태는 색상만으로 구분하지 않습니다.** 통과/실패/차단은 기호와 단어를 함께 씁니다.
+
+### 테마
+
+라이트/다크 토글은 제거됐습니다. 근거 표면(프레임·썸네일·타임라인)이 다크 캔버스를
+전제로 설계돼 있어 두 번째 팔레트는 검증 면적만 두 배로 늘렸습니다.
+`<body data-theme="dark">`를 **서버에서** 렌더하므로 기존
+`[data-theme="dark"]` 규칙이 첫 페인트부터 적용되고, 하이드레이션 이후 테마를
+결정하던 인라인 스크립트가 만들던 라이트 플래시가 사라집니다.
+
+설계 문서: [`docs/plans/designs/001-video-qa-analysis-workspace.md`](docs/plans/designs/001-video-qa-analysis-workspace.md)
+
+---
+
 ## 기획 문서
 
 | 문서 | 경로 |
 |------|------|
+| 영상 QA 분석 워크스페이스 설계 | `docs/plans/designs/001-video-qa-analysis-workspace.md` |
 | UI 모션 capability contract | `docs/ui-motion-capability-contract.md` |
 | 서드파티 고지 | `THIRD_PARTY_NOTICES.md` |
 | Seed 스펙 | `docs/spec/seed.yaml` |

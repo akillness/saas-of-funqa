@@ -6,11 +6,6 @@ export const koMessages = {
       en: "English",
       ko: "한국어"
     },
-    themeLabel: "테마",
-    themeModes: {
-      light: "라이트",
-      dark: "다크"
-    },
     liveLabel: "실시간",
     sourceLabels: {
       games: "게임",
@@ -30,7 +25,7 @@ export const koMessages = {
     nav: {
       overview: "홈",
       search: "검색",
-      sceneLab: "장면 검색",
+      sceneLab: "영상 QA",
       ragLab: "RAG 랩",
       ralph: "Ralph",
       admin: "관리",
@@ -39,10 +34,10 @@ export const koMessages = {
     }
   },
   sceneLab: {
-    eyebrow: "영상 문서 멀티모달 RAG",
-    title: "장면 검색",
+    eyebrow: "영상 QA 분석 워크스페이스",
+    title: "영상 QA 분석",
     lede:
-      "영상이 포함된 문서를 올리면 브라우저가 프레임을 추출하고, Gemini 비전 모델이 장면을 설명한 뒤 Gemini 멀티모달 임베딩으로 저장합니다. 텍스트나 영상으로 검색하면 유사 장면 이미지가 결과로 나옵니다.",
+      "영상 프레임, 장면 캡션, 검색 근거와 처리 지표를 타임코드 중심의 분석 흐름으로 검토합니다.",
     ingest: {
       // 2단계: 등록은 로그인 게이트 + 비용 보호가 걸려 있어, 검색과 결과 아래로 내렸다.
       title: "2 · 영상 문서 등록",
@@ -600,12 +595,19 @@ export const koMessages = {
       none: "없음"
     },
     analyticsMetrics: {
-      title: "게임 비디오 분석 지표",
-      cragConfidence: "CRAG 신뢰도",
-      searchAccuracy: "검색 정확도",
-      cacheHitRate: "캐시 히트율",
-      processingLatency: "처리 지연",
-      lede: "AI 검색 파이프라인 분석 · 게임 비디오 검증 콘솔"
+      lede: "AI 검색 파이프라인 단계별 점검 콘솔"
+    },
+    // 기존 "게임 비디오 분석 지표" 블록은 94% / 87% / 62ms / high를 마크업에
+    // 하드코딩해두고 있었다. 측정된 값이 아니므로 제거하고, 이번 응답에서
+    // 실제로 관측된 값만 보여준다.
+    liveSignals: {
+      title: "라이브 파이프라인 신호",
+      note: "이번 인스펙션 응답에서 관측된 값",
+      results: "검색 결과",
+      citations: "반환된 인용",
+      avgRetrieval: "평균 검색 점수",
+      latency: "인스펙션 지연",
+      unavailable: "응답 없음"
     },
     releaseGateEyebrow: "합의 출시 게이트",
     releaseGateTitle: "최신 출시 게이트 리포트",
