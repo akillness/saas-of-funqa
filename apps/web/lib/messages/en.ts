@@ -42,9 +42,13 @@ export const enMessages = {
     eyebrow: "Video-document multimodal RAG",
     title: "Scene Search",
     lede:
-      "Upload a video-bearing document: the browser extracts frames, a Gemini vision model captions each scene, and gemini-embedding-2 stores them as searchable vectors. Query with text or video and get matching scene images back.",
+      "Upload a video-bearing document: the browser extracts frames, a Gemini vision model captions each scene, and a Gemini multimodal embedding model stores them as searchable vectors. Query with text or video and get matching scene images back.",
     ingest: {
-      title: "1 · Register video document",
+      // Step 2: ingest is login-gated and cost-protected, so it now sits below
+      // search and results rather than occupying the primary top-left slot.
+      title: "2 · Register video document",
+      // Collapsed by default — an anonymous visitor cannot use this panel at all.
+      panelSummary: "Register a video document (login required)",
       videoLabel: "Video file",
       videoHint: "Any browser-playable video (mp4 · webm · mov)",
       titleLabel: "Document title",
@@ -59,10 +63,17 @@ export const enMessages = {
       loginRequired: "Scene ingest requires login (cost protection).",
       successTitle: "Ingest complete",
       captionsTitle: "Generated scene captions",
-      errorGeneric: "Ingest failed. Please retry in a moment."
+      errorGeneric: "Ingest failed. Please retry in a moment.",
+      errorUnavailable:
+        "The embedding provider is temporarily unavailable. Nothing was stored — retry shortly.",
+      errorUnavailableRetry:
+        "The embedding provider is temporarily unavailable. Nothing was stored — retry in about {seconds}s."
     },
     search: {
-      title: "2 · Search scenes",
+      // Search is step 1 now: ingest is login-gated and cost-protected, so an
+      // anonymous visitor can only ever use search. Ordinals must match the
+      // rendered order or they read as time-reversed.
+      title: "1 · Search scenes",
       queryLabel: "Text query",
       queryPlaceholder: "e.g. combat scene with purple background",
       videoLabel: "Video query (optional)",
@@ -75,11 +86,66 @@ export const enMessages = {
       modeVideo: "video",
       modeHybrid: "hybrid",
       resultsTitle: "Similar scene results",
-      emptyResults: "No scenes indexed yet. Register a video document first.",
-      noMatch: "No matching scenes found.",
+      // Three distinct states that previously collapsed into one sentence.
+      // (a) nothing searched yet — no verdict to report.
+      idleHint: "Run a search to see matching scenes.",
+      // (b) the index itself is empty — the query was fine, there is nothing to
+      // match against. Paired with an in-page anchor because the ingest panel
+      // sits far below on mobile.
+      emptyIndex: "No scenes are indexed yet, so there is nothing to match against.",
+      emptyIndexCta: "Go to “Register video document” →",
+      // (c) the index has scenes but none matched. Echo the query so the user can
+      // see what was actually sent.
+      noMatchEcho: "No scenes matched “{query}”.",
+      noMatch: "No scenes matched this query.",
       queryCaptionsTitle: "Query frame interpretation",
       similarity: "similarity",
-      errorGeneric: "Search failed. Please retry in a moment."
+      // Announced to screen readers when the result count changes; the visual
+      // result grid alone fired no notification at all.
+      resultsCount: "{count} matching scenes found.",
+      resultsCountOne: "1 matching scene found.",
+      // Rank labelling. The top card previously carried both "#1" and a
+      // confidence badge 12px apart, encoding the same bit twice.
+      bestMatch: "Best match",
+      // The server now applies an absolute floor (0.45), so rank 1 can be "low".
+      // Saying only "Best match" there would imply a good match.
+      bestMatchWeak: "Closest match — weak",
+      rankLabel: "#{rank}",
+      confidenceHigh: "high confidence",
+      confidenceMedium: "medium confidence",
+      confidenceLow: "weak",
+      weakTopNote:
+        "Even the closest scene scored below the reliability floor — treat these as unrelated.",
+      // Scenes indexed in a different embedding space cannot be ranked against
+      // this query at all. Distinguishes a stale index from "nothing matched".
+      unscoreableNotice:
+        "{count} indexed scenes were skipped: they were embedded with a different model and need re-indexing.",
+      unscoreableNoticeOne:
+        "1 indexed scene was skipped: it was embedded with a different model and needs re-indexing.",
+      // The bar encodes rank strength relative to the top hit, which is the only
+      // part of the raw cosine that is comparable across query modes.
+      matchBarLabel: "Match strength relative to the top result",
+      // Raw numbers stay available for operators, off the card face.
+      rawScoreSummary: "Raw score",
+      rawScoreLabel: "Cosine similarity",
+      rawRelativeLabel: "Relative to top",
+      // Deliberately number-free. An earlier draft cited "0.47-0.62 vs 0.87",
+      // which was already wrong within a day: the ranges are per-signal, and the
+      // 0.87 figure came from a query frame byte-identical to an indexed frame,
+      // so it measured nothing. Hardcoded score ranges are the same staleness
+      // trap as the hardcoded model name this page already had.
+      rawScoreNote:
+        "Comparable only within this result list. The same value means different things from one query to the next, because it depends on which signal matched — use the ranking and confidence, not the number.",
+      captionExpand: "Show full caption",
+      captionCollapse: "Show less",
+      errorGeneric: "Search failed. Please retry in a moment.",
+      // 503 from the API: the embedding provider is down, so results would be
+      // meaningless. Distinct from a generic failure because retrying works.
+      errorUnavailable:
+        "The embedding provider is temporarily unavailable, so results would be meaningless. Retry shortly.",
+      errorUnavailableRetry:
+        "The embedding provider is temporarily unavailable. Retry in about {seconds}s.",
+      retryNow: "Retry search"
     },
     library: {
       title: "Registered video documents",
@@ -92,7 +158,12 @@ export const enMessages = {
       captionModel: "Caption model",
       queryMode: "Query mode",
       totalScenes: "Total scenes",
-      took: "Took"
+      took: "Took",
+      // Shown in the header chips until a response reports the real model.
+      // Deliberately not a model name: the chips used to hardcode one and drifted
+      // out of sync with the deployed backend.
+      embeddingModelUnknown: "embedding model: pending",
+      captionModelUnknown: "caption model: pending"
     }
   },
   home: {

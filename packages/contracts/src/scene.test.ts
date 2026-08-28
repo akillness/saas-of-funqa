@@ -3,7 +3,8 @@ import {
   SCENE_INGEST_MAX_FRAMES,
   SceneFrameInputSchema,
   SceneIngestRequestSchema,
-  SceneSearchRequestSchema
+  SceneSearchRequestSchema,
+  SceneSearchResponseSchema
 } from "./scene";
 
 const PREFIX = "data:image/jpeg;base64,";
@@ -81,5 +82,39 @@ describe("SceneSearchRequestSchema", () => {
       frames: [{ timecodeSec: 0, imageDataUrl: dataUrlOfLength(100) }]
     });
     expect(result.success).toBe(true);
+  });
+});
+
+describe("SceneSearchResponseSchema", () => {
+  const baseResponse = {
+    queryMode: "text" as const,
+    queryText: "combat scene",
+    queryCaptions: [],
+    embeddingModel: "gemini-embedding-2",
+    captionModel: "gemini-2.5-flash",
+    totalScenes: 3,
+    results: [],
+    tookMs: 12,
+    generatedAt: "2026-01-01T00:00:00.000Z"
+  };
+
+  it("defaults unscoreableScenes to 0 when a response omits it", () => {
+    // The field was added with the embedding-space guards. A cached or
+    // in-flight response from an older server has no such key, and a required
+    // field would make the client reject an otherwise valid payload.
+    const result = SceneSearchResponseSchema.parse(baseResponse);
+    expect(result.unscoreableScenes).toBe(0);
+  });
+
+  it("preserves a non-zero unscoreableScenes count", () => {
+    // A default that silently swallowed the real count would erase the one
+    // signal distinguishing a stale index from "nothing matched".
+    const result = SceneSearchResponseSchema.parse({ ...baseResponse, unscoreableScenes: 3 });
+    expect(result.unscoreableScenes).toBe(3);
+  });
+
+  it("rejects a negative unscoreableScenes count", () => {
+    const result = SceneSearchResponseSchema.safeParse({ ...baseResponse, unscoreableScenes: -1 });
+    expect(result.success).toBe(false);
   });
 });

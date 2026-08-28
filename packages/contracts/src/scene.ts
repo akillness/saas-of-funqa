@@ -84,7 +84,18 @@ export const SceneSearchResultSchema = z.object({
   timecodeSec: z.number(),
   caption: z.string(),
   imageDataUrl: z.string(),
+  // Raw cosine. NOT comparable across results: a same-modality text-vs-text
+  // match lands at 0.47-0.62 while a correct cross-modal text-vs-image match
+  // lands at 0.31-0.39, and which channel produced a given result is an
+  // implementation detail the client is not told. Display only, for operators.
   score: z.number().min(0).max(1),
+  // How strongly this result matched relative to the top result, on the server's
+  // single normalised scale (floor-relative strength). 1 for rank 1 and
+  // monotonically non-increasing down the list, so it is safe to render directly
+  // as a bar width or meter value. The client cannot derive this from `score`:
+  // ranking is by strength, so a lower-ranked result may hold a HIGHER raw
+  // cosine, and `score / results[0].score` can exceed 1.
+  relativeStrength: z.number().min(0).max(1),
   confidence: z.enum(["high", "medium", "low"])
 });
 export type SceneSearchResult = z.infer<typeof SceneSearchResultSchema>;
@@ -96,6 +107,14 @@ export const SceneSearchResponseSchema = z.object({
   embeddingModel: z.string(),
   captionModel: z.string(),
   totalScenes: z.number().int().nonnegative(),
+  // Scenes excluded from ranking because they were indexed in a different
+  // embedding space than the current query — different mode (local vs live),
+  // different model, or different dimension. Note that a model change alone is
+  // enough: gemini-embedding-001 and gemini-embedding-2 both emit 1536 dims but
+  // are unrelated semantic spaces, so dimension equality does NOT imply
+  // comparability. Surfaced so a stale index is distinguishable from "nothing
+  // matched" — both used to return HTTP 200 with an all-zero result list.
+  unscoreableScenes: z.number().int().nonnegative().default(0),
   results: z.array(SceneSearchResultSchema),
   tookMs: z.number().nonnegative(),
   generatedAt: z.string()

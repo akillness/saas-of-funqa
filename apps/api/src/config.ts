@@ -84,7 +84,7 @@ export const config = {
     process.env.SECRET_ENCRYPTION_KEY ??
     (isFirebaseEmulatorRuntime() ? "local-dev-secret-key-32-bytes" : ""),
   secretEncryptionKeyVersion: process.env.SECRET_ENCRYPTION_KEY_VERSION ?? "v1",
-  embeddingModelId: process.env.EMBEDDING_MODEL_ID ?? "gemini-embedding-2-preview",
+  embeddingModelId: process.env.EMBEDDING_MODEL_ID ?? "gemini-embedding-2",
   embeddingOutputDimensionality: Number(process.env.EMBEDDING_OUTPUT_DIMENSION ?? 1536),
   liveEmbeddingsEnabled: parseBooleanFlag(
     process.env.RAG_LIVE_EMBEDDINGS,

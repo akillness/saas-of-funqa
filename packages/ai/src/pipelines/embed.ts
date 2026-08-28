@@ -3,7 +3,7 @@ import { tokenize } from "../core/tokenize.js";
 import type { ChunkRecord, EmbeddedChunk } from "../types.js";
 
 export const LOCAL_EMBEDDING_DIMENSION = 64;
-const DEFAULT_LIVE_EMBEDDING_MODEL = "gemini-embedding-2-preview";
+const DEFAULT_LIVE_EMBEDDING_MODEL = "gemini-embedding-2";
 const DEFAULT_OUTPUT_DIMENSION = 1536;
 
 type EmbeddingTaskType = "RETRIEVAL_DOCUMENT" | "RETRIEVAL_QUERY" | "SEMANTIC_SIMILARITY";
@@ -146,6 +146,66 @@ export async function embedQueryTextAsync(
     ...options,
     taskType: "RETRIEVAL_QUERY"
   });
+}
+
+/**
+ * Embeds a base64 image data URL directly into the same vector space that
+ * `embedQueryTextAsync` produces, so a text query can retrieve an image with no
+ * intermediate caption.
+ *
+ * Returns null instead of falling back to a local hash. There is no meaningful
+ * local substitute for an image embedding — the local tokenizer strips
+ * non-alphanumerics, so hashing a base64 payload yields a vector unrelated to
+ * the text-query space. A silent fallback would therefore produce a stored
+ * vector that can never match anything, which is exactly the class of invisible
+ * failure this pipeline already suffered from.
+ *
+ * Requires a multimodal model. gemini-embedding-001 rejects image parts with
+ * "The text content is empty"; gemini-embedding-2 and -2-preview accept them.
+ */
+export async function embedImageAsync(
+  imageDataUrl: string,
+  options: Omit<EmbedTextOptions, "title"> = {}
+): Promise<number[] | null> {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey || !shouldUseLiveEmbeddings(options.live)) {
+    return null;
+  }
+
+  const match = /^data:(image\/(?:jpeg|png|webp));base64,(.+)$/.exec(imageDataUrl);
+  if (!match) {
+    return null;
+  }
+  const [, mimeType, base64Data] = match;
+
+  const modelId = options.modelId ?? getConfiguredEmbeddingModelId();
+  const outputDimensionality = options.outputDimensionality ?? getConfiguredOutputDimensionality();
+
+  try {
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${modelId}:embedContent?key=${apiKey}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: `models/${modelId}`,
+          content: { parts: [{ inlineData: { mimeType, data: base64Data } }] },
+          outputDimensionality,
+          ...(options.taskType ? { taskType: options.taskType } : {})
+        })
+      }
+    );
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const data = (await response.json()) as { embedding?: { values?: number[] } };
+    const values = data.embedding?.values;
+    return values && values.length > 0 ? values : null;
+  } catch {
+    return null;
+  }
 }
 
 export async function embedChunkAsync(

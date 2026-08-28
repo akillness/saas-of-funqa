@@ -33,6 +33,17 @@
   --gm-gradient-videos: linear-gradient(135deg, #0891b2, #0d9488);
   --gm-gradient-hero: linear-gradient(180deg, #1a0533 0%, #0a0a0f 100%);
 
+  /* Referenced 5x by .primary-button and friends but was never defined, so
+     `background: var(--theme-gradient)` resolved to nothing and every primary
+     CTA rendered as a transparent box with white text — invisible on light
+     surfaces. Aliased to the existing games gradient rather than a new token:
+     both of its stops (#7c3aed 5.70:1, #4f46e5 6.29:1) clear WCAG AA against
+     the buttons' white 16px/600 label, and because this is a FIXED token (not
+     redefined per theme) that guarantee holds in light and dark alike. A
+     theme-following accent could not: --accent/--accent-2 flip lightness with
+     the theme, so white text fails one side (best case 3.60:1). */
+  --theme-gradient: var(--gm-gradient-games);
+
   /* Glass Surfaces - 2026 Ultra Blur */
   --gm-glass-dark: rgba(10, 10, 15, 0.45);
   --gm-glass-card: rgba(15, 15, 22, 0.55);
@@ -845,7 +856,13 @@ html:lang(ko) .metric-label {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
-  color: var(--ink-primary);
+  /* --ink-inverse (#0a0a0f, dark ink) on this near-white field: 19.75:1.
+     Was --ink-primary (#f0f0f8, LIGHT ink) = 1.13:1 — near-white on near-white,
+     so a user could not read their own typing. The two fixed ink tokens were
+     swapped relative to their backgrounds, here and in the dark override below.
+     Neither token follows the theme, so each must be paired with the background
+     it actually sits on. */
+  color: var(--ink-inverse);
   font: inherit;
   transition: box-shadow var(--dur-hover) ease;
 }
@@ -2576,10 +2593,15 @@ body[data-theme="dark"] .nav-auth-icon {
   color: rgba(250, 250, 250, 0.65);
 }
 
+/* Was `color: var(--ink-inverse)`, i.e. #0a0a0f — near-black ink on a dark
+   panel, so every heading was invisible in dark theme. The token name reads
+   like "ink for inverted surfaces" but is defined as dark ink FOR light
+   surfaces. --text already resolves per theme (#21313a light / #eef8fb dark),
+   which is what this rule wanted. */
 [data-theme="dark"] h1,
 [data-theme="dark"] h2,
 [data-theme="dark"] h3 {
-  color: var(--ink-inverse);
+  color: var(--text);
 }
 
 [data-theme="dark"] .secondary-button {
@@ -2591,7 +2613,10 @@ body[data-theme="dark"] .nav-auth-icon {
 [data-theme="dark"] .text-input {
   background: rgba(20, 20, 28, 0.72);
   border-color: rgba(255, 255, 255, 0.1);
-  color: var(--ink-inverse);
+  /* --ink-primary (#f0f0f8, light ink) on this dark field: 16.16:1.
+     Was --ink-inverse (#0a0a0f, DARK ink) = 1.08:1 — the mirror image of the
+     light-theme bug above. */
+  color: var(--ink-primary);
 }
 
 [data-theme="dark"] .text-input::placeholder {
@@ -5020,13 +5045,13 @@ body[data-theme="dark"] .nav-auth-icon {
   font-size: clamp(30px, 4.4vw, 44px);
   line-height: 1.08;
   margin: 0;
-  color: var(--gm-text-primary);
+  color: var(--text);
 }
 
 .scene-lab-lede {
   max-width: 62ch;
   margin: 0;
-  color: var(--gm-text-secondary);
+  color: var(--muted);
   font-size: 15px;
   line-height: 1.65;
 }
@@ -5042,23 +5067,23 @@ body[data-theme="dark"] .nav-auth-icon {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.02em;
-  color: var(--gm-text-secondary);
-  border: 1px solid var(--gm-border-subtle);
-  background: var(--gm-glass-card);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  background: var(--surface);
   border-radius: 999px;
   padding: 5px 12px;
 }
 
 .scene-chip--model {
-  color: var(--gm-accent-neon);
+  color: var(--accent-2);
   border-color: rgba(0, 255, 204, 0.28);
 }
 
-.scene-panels {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 20px;
-  align-items: start;
+/* `.scene-panels` (a two-column auto-fit grid) is gone: ingest and search are no
+   longer siblings competing for the top row. Search is a single full-width panel
+   followed by results, with ingest collapsed below. */
+.scene-panel--search {
+  max-width: 46rem;
 }
 
 .scene-panel {
@@ -5071,7 +5096,7 @@ body[data-theme="dark"] .nav-auth-icon {
   font-size: 17px;
   font-weight: 650;
   margin: 0 0 4px;
-  color: var(--gm-text-primary);
+  color: var(--text);
 }
 
 .scene-textarea {
@@ -5083,9 +5108,9 @@ body[data-theme="dark"] .nav-auth-icon {
   width: 100%;
   padding: 9px 10px;
   border-radius: 12px;
-  border: 1px dashed var(--gm-border-medium);
+  border: 1px dashed var(--border-strong);
   background: rgba(255, 255, 255, 0.02);
-  color: var(--gm-text-secondary);
+  color: var(--muted);
   font-size: 13px;
 }
 
@@ -5093,9 +5118,9 @@ body[data-theme="dark"] .nav-auth-icon {
   margin-right: 10px;
   padding: 7px 14px;
   border-radius: 999px;
-  border: 1px solid var(--gm-border-medium);
-  background: var(--gm-bg-elevated);
-  color: var(--gm-text-primary);
+  border: 1px solid var(--border-strong);
+  background: var(--surface-strong);
+  color: var(--text);
   font-size: 12.5px;
   cursor: pointer;
 }
@@ -5116,9 +5141,9 @@ body[data-theme="dark"] .nav-auth-icon {
   min-width: 38px;
   padding: 5px 0;
   border-radius: 999px;
-  border: 1px solid var(--gm-border-subtle);
+  border: 1px solid var(--border);
   background: transparent;
-  color: var(--gm-text-secondary);
+  color: var(--muted);
   font-family: var(--font-mono);
   font-size: 12px;
   cursor: pointer;
@@ -5128,7 +5153,7 @@ body[data-theme="dark"] .nav-auth-icon {
 .scene-count-chip--active {
   border-color: rgba(124, 58, 237, 0.65);
   background: rgba(124, 58, 237, 0.18);
-  color: var(--gm-text-primary);
+  color: var(--text);
 }
 
 .scene-frame-strip {
@@ -5154,14 +5179,14 @@ body[data-theme="dark"] .nav-auth-icon {
   aspect-ratio: 16 / 10;
   object-fit: cover;
   border-radius: 8px;
-  border: 1px solid var(--gm-border-subtle);
+  border: 1px solid var(--border);
   display: block;
 }
 
 .scene-frame-thumb figcaption {
   font-family: var(--font-mono);
   font-size: 10px;
-  color: var(--gm-text-tertiary);
+  color: var(--muted);
   text-align: center;
   margin-top: 3px;
 }
@@ -5173,17 +5198,17 @@ body[data-theme="dark"] .nav-auth-icon {
 .scene-status {
   margin: 0;
   font-size: 13px;
-  color: var(--gm-accent-neon);
+  color: var(--accent-2);
 }
 
 .scene-note {
   margin: 4px 0 0;
   font-size: 13px;
-  color: var(--gm-text-tertiary);
+  color: var(--muted);
 }
 
 .scene-note a {
-  color: var(--gm-accent-neon);
+  color: var(--accent-2);
 }
 
 .scene-error {
@@ -5199,7 +5224,7 @@ body[data-theme="dark"] .nav-auth-icon {
 }
 
 .scene-ingest-result {
-  border-top: 1px solid var(--gm-border-subtle);
+  border-top: 1px solid var(--border);
   padding-top: 10px;
   display: flex;
   flex-direction: column;
@@ -5210,7 +5235,7 @@ body[data-theme="dark"] .nav-auth-icon {
 .scene-query-captions summary {
   cursor: pointer;
   font-size: 12.5px;
-  color: var(--gm-text-secondary);
+  color: var(--muted);
 }
 
 .scene-caption-list {
@@ -5221,13 +5246,13 @@ body[data-theme="dark"] .nav-auth-icon {
   gap: 6px;
   font-size: 12.5px;
   line-height: 1.55;
-  color: var(--gm-text-secondary);
+  color: var(--muted);
 }
 
 .scene-caption-time {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--gm-accent-neon);
+  color: var(--accent-2);
 }
 
 .scene-query-video-row {
@@ -5238,9 +5263,9 @@ body[data-theme="dark"] .nav-auth-icon {
 
 .scene-clear-button {
   align-self: flex-start;
-  border: 1px solid var(--gm-border-subtle);
+  border: 1px solid var(--border);
   background: transparent;
-  color: var(--gm-text-secondary);
+  color: var(--muted);
   border-radius: 999px;
   padding: 5px 12px;
   font-size: 12px;
@@ -5248,18 +5273,18 @@ body[data-theme="dark"] .nav-auth-icon {
 }
 
 .scene-clear-button:hover {
-  border-color: var(--gm-border-medium);
-  color: var(--gm-text-primary);
+  border-color: var(--border-strong);
+  color: var(--text);
 }
 
 .scene-search-meta {
   margin: 6px 0 0;
   font-size: 12.5px;
-  color: var(--gm-text-tertiary);
+  color: var(--muted);
 }
 
 .scene-search-meta strong {
-  color: var(--gm-text-primary);
+  color: var(--text);
 }
 
 /* results ------------------------------------------------------------------ */
@@ -5270,28 +5295,69 @@ body[data-theme="dark"] .nav-auth-icon {
   gap: 12px;
 }
 
+.scene-results-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.scene-results-count {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+/* Distinct from .scene-error (a failed action) and .scene-note (neutral): this
+   is a successful response carrying a caveat — a stale index, or a top hit below
+   the reliability floor. */
+.scene-warning {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--warn);
+  border: 1px solid rgba(251, 191, 36, 0.32);
+  border-radius: 10px;
+  padding: 8px 12px;
+  background: rgba(251, 191, 36, 0.06);
+}
+
 .scene-result-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  /* Wider floor than 240px: the caption is now the lead content and needs room
+     to reach 5 lines without becoming a column of two-word fragments. */
+  grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
   gap: 16px;
 }
 
+.scene-result-item {
+  display: flex;
+}
+
 .scene-result-card {
-  border: 1px solid var(--gm-border-subtle);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid var(--border);
   border-radius: 16px;
-  background: var(--gm-glass-card);
+  background: var(--surface);
   overflow: hidden;
-  box-shadow: var(--gm-shadow-card);
+  box-shadow: var(--shadow);
   transition: transform 0.16s ease, border-color 0.16s ease;
 }
 
 .scene-result-card:hover {
   transform: translateY(-2px);
-  border-color: var(--gm-border-accent);
+  border-color: var(--accent-2);
 }
 
-.scene-result-image {
-  position: relative;
+/* Keyboard focus lands on the caption toggle or the raw-score summary inside the
+   card; ring the whole card so the reader can see which one they are in. */
+.scene-result-card:focus-within {
+  border-color: var(--accent-2);
 }
 
 .scene-result-image img {
@@ -5301,30 +5367,54 @@ body[data-theme="dark"] .nav-auth-icon {
   display: block;
 }
 
+.scene-result-body {
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+/* Labels moved off the image and into the body. Overlaid badges sat on arbitrary
+   video frames, so contrast was whatever the frame happened to be. */
+.scene-result-labels {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
 .scene-result-rank {
-  position: absolute;
-  top: 8px;
-  left: 8px;
   font-family: var(--font-mono);
   font-size: 11px;
-  color: #fff;
-  background: rgba(10, 10, 15, 0.72);
-  border: 1px solid var(--gm-border-medium);
+  color: var(--muted);
+  border: 1px solid var(--border-strong);
   border-radius: 999px;
   padding: 2px 9px;
 }
 
+/* Rank 1 carries a single label instead of "#1" plus a confidence badge saying
+   the same thing 12px away. */
+.scene-result-rank--best {
+  color: var(--ok);
+  border-color: rgba(52, 211, 153, 0.5);
+  letter-spacing: 0.01em;
+}
+
+/* The server now applies an absolute floor (0.45), so rank 1 can be weak. It
+   must not read like an endorsement. */
+.scene-result-rank--weak {
+  color: var(--warn);
+  border-color: rgba(251, 191, 36, 0.5);
+}
+
 .scene-result-confidence {
-  position: absolute;
-  top: 8px;
-  right: 8px;
   font-family: var(--font-mono);
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   border-radius: 999px;
   padding: 3px 9px;
-  background: rgba(10, 10, 15, 0.72);
 }
 
 .scene-result-confidence--high {
@@ -5338,25 +5428,13 @@ body[data-theme="dark"] .nav-auth-icon {
 }
 
 .scene-result-confidence--low {
-  color: var(--gm-text-tertiary);
-  border: 1px solid var(--gm-border-medium);
+  color: var(--muted);
+  border: 1px solid var(--border-strong);
 }
 
-.scene-result-body {
-  padding: 12px 14px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.scene-result-score-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
+/* Relative-to-top bar. No numeric twin beside it any more: the raw cosine
+   percentage lives in the per-card <details>. */
 .scene-score-bar {
-  flex: 1;
   height: 5px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
@@ -5369,33 +5447,113 @@ body[data-theme="dark"] .nav-auth-icon {
   background: linear-gradient(90deg, #7c3aed, #00ffcc);
 }
 
-.scene-score-value {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--gm-accent-neon);
-}
-
+/* The caption is the embedding source, so it leads the card body. Clamp raised
+   from 3 to 5 lines, with a measured expander for anything longer. */
 .scene-result-caption {
   margin: 0;
-  font-size: 13px;
+  font-size: 13.5px;
   line-height: 1.55;
-  color: var(--gm-text-primary);
+  color: var(--text);
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-.scene-result-source {
-  margin: 0;
+.scene-result-caption--expanded {
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
+.scene-caption-toggle {
+  align-self: flex-start;
+  border: 0;
+  background: transparent;
+  padding: 0;
   font-size: 12px;
-  color: var(--gm-text-tertiary);
+  color: var(--accent-2);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.scene-result-source {
+  /* `margin-top: auto` pins the source line to the card bottom so cards with
+     short template captions still align their footers with rich-caption cards. */
+  margin: auto 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Raw cosine kept for operators, off the card face. */
+.scene-result-raw > summary {
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.scene-raw-list {
+  margin: 8px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  font-size: 11.5px;
+}
+
+.scene-raw-list div {
+  display: flex;
+  gap: 6px;
+}
+
+.scene-raw-list dt {
+  color: var(--muted);
+}
+
+.scene-raw-list dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  color: var(--text);
+}
+
+.scene-raw-note {
+  margin: 8px 0 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* ingest (collapsed step 2) ------------------------------------------------- */
+
+.scene-ingest-details {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+}
+
+.scene-ingest-summary {
+  cursor: pointer;
+  padding: 14px 18px;
+  font-size: 14.5px;
+  font-weight: 550;
+  color: var(--text);
+}
+
+.scene-ingest-details[open] > .scene-ingest-summary {
+  border-bottom: 1px solid var(--border);
+}
+
+/* The panel already carries the card chrome, so drop the duplicate frame when it
+   is nested inside the details shell. */
+.scene-ingest-details .scene-panel {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 /* library ------------------------------------------------------------------ */
 
 .scene-library {
-  border-top: 1px solid var(--gm-border-subtle);
+  border-top: 1px solid var(--border);
   padding-top: 18px;
   display: flex;
   flex-direction: column;
@@ -5423,7 +5581,7 @@ body[data-theme="dark"] .nav-auth-icon {
   align-items: baseline;
   justify-content: space-between;
   gap: 16px;
-  border: 1px solid var(--gm-border-subtle);
+  border: 1px solid var(--border);
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.02);
   padding: 10px 14px;
@@ -5431,14 +5589,14 @@ body[data-theme="dark"] .nav-auth-icon {
 
 .scene-library-title {
   font-size: 14px;
-  color: var(--gm-text-primary);
+  color: var(--text);
   font-weight: 550;
 }
 
 .scene-library-meta {
   font-family: var(--font-mono);
   font-size: 11.5px;
-  color: var(--gm-text-tertiary);
+  color: var(--muted);
   white-space: nowrap;
 }
 

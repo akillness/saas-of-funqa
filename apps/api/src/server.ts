@@ -81,7 +81,14 @@ export function createServer() {
     }
 
     if (error instanceof FunQAError) {
-      const status = error.code === "invalid_request" ? 400 : 500;
+      // "embedding_unavailable" is a transient upstream provider failure, not a
+      // server defect: the request was well-formed and will likely succeed on
+      // retry. A 500 would tell clients and uptime monitors the wrong thing.
+      const status =
+        error.code === "invalid_request" ? 400 : error.code === "embedding_unavailable" ? 503 : 500;
+      if (status === 503) {
+        res.setHeader("Retry-After", "30");
+      }
       res.status(status).json({ error: error.code, message: error.message });
       return;
     }

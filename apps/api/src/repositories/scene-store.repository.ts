@@ -34,7 +34,24 @@ export type StoredScene = {
   caption: string;
   captionModel: string;
   imageDataUrl: string;
+  // Caption-derived embedding. Retrieval quality depends on the vision model
+  // having produced a real caption; a template fallback carries no signal.
   embedding: number[];
+  // Whether `embedding` is actually usable for retrieval. Stored explicitly
+  // rather than inferred from vector length, because the two failure modes are
+  // distinct and both must exclude the channel: a 64-dim local-hash fallback
+  // (wrong space) AND a full-width embedding of a TEMPLATE caption (right space,
+  // no signal — and worse than nothing, since template text still scores
+  // 0.55-0.60 on lexical overlap and outranks correct image matches at 0.31-0.39).
+  // Absent on scenes written before this field existed; treat absent as usable
+  // so pre-existing data keeps its previous behavior.
+  captionEmbeddingUsable?: boolean;
+  // Frame image embedded DIRECTLY into the same vector space (multimodal
+  // embedding models only). Independent of the vision/generate_content quota,
+  // so it survives a caption outage — the failure mode that made every caption
+  // in a document identical while embeddings still reported "live".
+  // Null when live embedding is unavailable or the model is text-only.
+  imageEmbedding?: number[] | null;
   embeddingMode: "local" | "live";
   embeddingModel: string;
   createdAt: string;
@@ -90,13 +107,79 @@ export async function getSceneDocuments(tenantId: string): Promise<StoredSceneDo
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 }
 
-export async function getScenes(tenantId: string): Promise<StoredScene[]> {
+/** A scene with the base64 frame image omitted — everything scoring needs. */
+export type ScoringScene = Omit<StoredScene, "imageDataUrl">;
+
+/**
+ * Scenes without `imageDataUrl`, for the scoring pass.
+ *
+ * Scoring never reads the image bytes, but they dominate a scene document.
+ * Measured on a real 480x270 frame: 62.4KB per scene, of which imageDataUrl is
+ * 20KB (32%). Loading them for every search meant a 400-scene tenant transferred
+ * and JSON-parsed ~7.6 MiB of image data per query that scoring never touched —
+ * on a 512MiB function, where V8 string/array overhead multiplies the raw bytes.
+ * Adding the second (image) embedding vector made the total worse, so the
+ * projection lands together with it.
+ *
+ * Images for the handful of results actually returned are fetched afterwards by
+ * `getSceneImages`.
+ */
+export async function getScenesForScoring(tenantId: string): Promise<ScoringScene[]> {
   if (useFirestore) {
-    const snap = await db().collection(`sceneFrames/${tenantId}/scenes`).get();
-    return snap.docs.map((d) => d.data() as StoredScene);
+    const snap = await db()
+      .collection(`sceneFrames/${tenantId}/scenes`)
+      .select(
+        "id",
+        "tenantId",
+        "documentId",
+        "documentTitle",
+        "timecodeSec",
+        "caption",
+        "captionModel",
+        "embedding",
+        "captionEmbeddingUsable",
+        "imageEmbedding",
+        "embeddingMode",
+        "embeddingModel",
+        "createdAt"
+      )
+      .get();
+    return snap.docs.map((d) => d.data() as ScoringScene);
   }
 
-  return readLocalStore().scenes.filter((scene) => scene.tenantId === tenantId);
+  // The local JSON store has no projection; it already holds everything in
+  // memory, so strip the field to keep both branches on the same contract.
+  return readLocalStore()
+    .scenes.filter((scene) => scene.tenantId === tenantId)
+    .map(({ imageDataUrl: _imageDataUrl, ...rest }) => rest);
+}
+
+/** Frame images for specific scene ids — called only for the returned topK. */
+export async function getSceneImages(
+  tenantId: string,
+  sceneIds: string[]
+): Promise<Map<string, string>> {
+  if (sceneIds.length === 0) {
+    return new Map();
+  }
+
+  if (useFirestore) {
+    const firestore = db();
+    const refs = sceneIds.map((id) => firestore.doc(`sceneFrames/${tenantId}/scenes/${id}`));
+    const snaps = await firestore.getAll(...refs);
+    return new Map(
+      snaps
+        .filter((snap) => snap.exists)
+        .map((snap) => [snap.id, (snap.data() as StoredScene).imageDataUrl])
+    );
+  }
+
+  const wanted = new Set(sceneIds);
+  return new Map(
+    readLocalStore()
+      .scenes.filter((scene) => scene.tenantId === tenantId && wanted.has(scene.id))
+      .map((scene) => [scene.id, scene.imageDataUrl])
+  );
 }
 
 export async function getSceneCount(tenantId: string): Promise<number> {

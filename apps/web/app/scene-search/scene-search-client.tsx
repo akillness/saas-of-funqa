@@ -21,6 +21,7 @@ type SceneSearchClientProps = {
 
 const INGEST_FRAME_CHOICES = [4, 6, 8, 12] as const;
 const QUERY_FRAME_COUNT = 3;
+const INGEST_PANEL_ID = "scene-ingest-panel";
 
 function getApiBaseUrl(): string {
   return process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://127.0.0.1:4300";
@@ -32,8 +33,91 @@ function formatTimecode(seconds: number): string {
   return `${String(minutes).padStart(2, "0")}:${rest.toFixed(1).padStart(4, "0")}`;
 }
 
-function formatScore(score: number): string {
-  return `${(score * 100).toFixed(1)}%`;
+function interpolate(template: string, values: Record<string, string | number>): string {
+  return Object.entries(values).reduce(
+    (copy, [key, value]) => copy.replace(`{${key}}`, String(value)),
+    template
+  );
+}
+
+type RequestErrorCopy = {
+  errorGeneric: string;
+  errorUnavailable: string;
+  errorUnavailableRetry: string;
+};
+
+// A 503 means the embedding provider is down: the request was well-formed and a
+// retry will likely succeed, which is a different user action than a generic
+// failure. Every non-2xx used to collapse into `errorGeneric`, so a transient
+// provider outage read as "your search is broken".
+//
+// `Retry-After` is read opportunistically. The API sets it but sends no
+// `Access-Control-Expose-Headers`, so a cross-origin read returns null; we then
+// fall back to number-free wording instead of printing a delay we cannot
+// confirm. Server `message` bodies for 503 are operator-grade ("query embedding
+// 1/3 returned 768 dims, expected 1536"), so curated copy wins for that status
+// only — other statuses keep surfacing the server's own message.
+async function resolveRequestError(response: Response, copy: RequestErrorCopy): Promise<string> {
+  if (response.status === 503) {
+    const retryAfter = Number(response.headers.get("Retry-After"));
+    return Number.isFinite(retryAfter) && retryAfter > 0
+      ? interpolate(copy.errorUnavailableRetry, { seconds: retryAfter })
+      : copy.errorUnavailable;
+  }
+  const body = (await response.json().catch(() => null)) as { message?: string } | null;
+  return body?.message ?? copy.errorGeneric;
+}
+
+// The caption is the embedding source in this pipeline, so it is the most
+// valuable text on the card and now sits above the score row. It is also not
+// guaranteed to be rich prose: when the vision model is rate-limited the server
+// stores a short template fallback. So measure before offering an expander —
+// a "show full caption" button under a six-word caption is pure noise.
+function SceneResultCaption({
+  caption,
+  expandLabel,
+  collapseLabel
+}: {
+  caption: string;
+  expandLabel: string;
+  collapseLabel: string;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const [clamped, setClamped] = useState(false);
+  const captionRef = useRef<HTMLParagraphElement | null>(null);
+
+  useEffect(() => {
+    const node = captionRef.current;
+    // Skip while expanded: the clamp is lifted, so scrollHeight === clientHeight
+    // and re-measuring would drop `clamped` to false and delete the collapse
+    // control the user just used to expand.
+    if (!node || expanded) return;
+    const measure = () => setClamped(node.scrollHeight > node.clientHeight + 1);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [caption, expanded]);
+
+  return (
+    <>
+      <p
+        className={`scene-result-caption${expanded ? " scene-result-caption--expanded" : ""}`}
+        ref={captionRef}
+      >
+        {caption}
+      </p>
+      {clamped ? (
+        <button
+          className="scene-caption-toggle"
+          onClick={() => setExpanded((value) => !value)}
+          type="button"
+        >
+          {expanded ? collapseLabel : expandLabel}
+        </button>
+      ) : null}
+    </>
+  );
 }
 
 export function SceneSearchClient({ t, loginHref, tenantId }: SceneSearchClientProps) {
@@ -51,6 +135,7 @@ export function SceneSearchClient({ t, loginHref, tenantId }: SceneSearchClientP
   const [ingesting, setIngesting] = useState(false);
   const [ingestError, setIngestError] = useState<string | null>(null);
   const [ingestResult, setIngestResult] = useState<SceneIngestResponse | null>(null);
+  const [ingestPanelOpen, setIngestPanelOpen] = useState(false);
   const ingestFileRef = useRef<HTMLInputElement | null>(null);
   const lastIngestFileRef = useRef<File | null>(null);
 
@@ -148,8 +233,7 @@ export function SceneSearchClient({ t, loginHref, tenantId }: SceneSearchClientP
         return;
       }
       if (!response.ok) {
-        const body = (await response.json().catch(() => null)) as { message?: string } | null;
-        setIngestError(body?.message ?? t.ingest.errorGeneric);
+        setIngestError(await resolveRequestError(response, t.ingest));
         return;
       }
       const result = (await response.json()) as SceneIngestResponse;
@@ -167,8 +251,7 @@ export function SceneSearchClient({ t, loginHref, tenantId }: SceneSearchClientP
     ingestMimeType,
     ingesting,
     refreshLibrary,
-    t.ingest.errorGeneric,
-    t.ingest.loginRequired,
+    t.ingest,
     tenantId,
     title,
     user
@@ -220,17 +303,20 @@ export function SceneSearchClient({ t, loginHref, tenantId }: SceneSearchClientP
         })
       });
       if (!response.ok) {
-        const body = (await response.json().catch(() => null)) as { message?: string } | null;
-        setSearchError(body?.message ?? t.search.errorGeneric);
+        // Drop the stale result set: leaving the previous results rendered under
+        // a fresh "retry shortly" error implies they answer the current query.
+        setSearchResult(null);
+        setSearchError(await resolveRequestError(response, t.search));
         return;
       }
       setSearchResult((await response.json()) as SceneSearchResponse);
     } catch {
+      setSearchResult(null);
       setSearchError(t.search.errorGeneric);
     } finally {
       setSearching(false);
     }
-  }, [query, queryFrames, searching, t.search.errorGeneric, t.search.needInput, tenantId]);
+  }, [query, queryFrames, searching, t.search, tenantId]);
 
   const queryModeLabel = useMemo(() => {
     if (!searchResult) return null;
@@ -239,6 +325,52 @@ export function SceneSearchClient({ t, loginHref, tenantId }: SceneSearchClientP
     return t.search.modeText;
   }, [searchResult, t.search.modeHybrid, t.search.modeText, t.search.modeVideo]);
 
+  // Whichever response arrived most recently is the authoritative source of the
+  // model actually in use. Prefer search (the frequent action), fall back to
+  // ingest, then to an explicit "unknown" rather than asserting a model name we
+  // have not observed.
+  const activeEmbeddingModel = searchResult?.embeddingModel ?? ingestResult?.embeddingModel ?? null;
+  // Same drift risk as the embedding chip: captionModel is on both responses, so
+  // report the observed value rather than a literal. In local mode the server
+  // reports "local-heuristic-caption", which the user needs to see.
+  const activeCaptionModel = searchResult?.captionModel ?? ingestResult?.captionModel ?? null;
+
+  // Three genuinely different states, previously indistinguishable:
+  //   idle       — nothing searched yet, no verdict to report
+  //   emptyIndex — query was fine, the index has nothing to match against
+  //   noMatch    — index has scenes, none of them matched this query
+  const resultsState: "idle" | "emptyIndex" | "noMatch" | "matches" = !searchResult
+    ? "idle"
+    : searchResult.totalScenes === 0
+      ? "emptyIndex"
+      : searchResult.results.length === 0
+        ? "noMatch"
+        : "matches";
+
+  // Echo what was actually sent. A video-only query has no text, so fall back to
+  // the server's own interpretation of the query frames before giving up.
+  const echoedQuery = searchResult?.queryText?.trim() || searchResult?.queryCaptions[0]?.trim() || null;
+
+  const resultsAnnouncement = useMemo(() => {
+    if (!searchResult) return "";
+    if (resultsState === "emptyIndex") return t.search.emptyIndex;
+    if (resultsState === "noMatch") {
+      return echoedQuery
+        ? interpolate(t.search.noMatchEcho, { query: echoedQuery })
+        : t.search.noMatch;
+    }
+    const count = searchResult.results.length;
+    return count === 1
+      ? t.search.resultsCountOne
+      : interpolate(t.search.resultsCount, { count });
+  }, [echoedQuery, resultsState, searchResult, t.search]);
+
+  const confidenceLabels = {
+    high: t.search.confidenceHigh,
+    medium: t.search.confidenceMedium,
+    low: t.search.confidenceLow
+  };
+
   return (
     <div className="scene-lab">
       <header className="scene-lab-header">
@@ -246,14 +378,276 @@ export function SceneSearchClient({ t, loginHref, tenantId }: SceneSearchClientP
         <h1 className="scene-lab-title">{t.title}</h1>
         <p className="scene-lab-lede">{t.lede}</p>
         <div className="scene-meta-chips">
-          <span className="scene-chip scene-chip--model">gemini-embedding-2-preview · 1536d</span>
-          <span className="scene-chip">gemini-2.5-flash vision caption</span>
+          {/* Sourced from the API response, never hardcoded: this chip previously
+              read "gemini-embedding-2-preview" while the deployed backend was
+              actually running gemini-embedding-001 — a text-only model that
+              rejects image parts outright — so the UI advertised multimodal
+              retrieval the backend could not perform. Falls back to a neutral
+              label until the first response arrives. */}
+          <span className="scene-chip scene-chip--model">
+            {activeEmbeddingModel ?? t.meta.embeddingModelUnknown}
+          </span>
+          <span className="scene-chip">
+            {activeCaptionModel ?? t.meta.captionModelUnknown}
+          </span>
           <span className="scene-chip">Genkit flows</span>
         </div>
       </header>
 
-      <div className="scene-panels">
-        {/* ---------------- ingest panel ---------------- */}
+      {/* ---------------- search (step 1) ----------------
+          Search leads. Ingest is login-gated and cost-protected, so an anonymous
+          visitor could never use the panel that previously occupied the primary
+          top-left slot. */}
+      <section aria-label={t.search.title} className="panel scene-panel scene-panel--search">
+        <h2 className="scene-panel-title">{t.search.title}</h2>
+
+        <label className="field-label" htmlFor="scene-query-input">
+          {t.search.queryLabel}
+        </label>
+        <input
+          className="text-input"
+          id="scene-query-input"
+          onChange={(event) => setQuery(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") void submitSearch();
+          }}
+          placeholder={t.search.queryPlaceholder}
+          type="search"
+          value={query}
+        />
+
+        <label className="field-label" htmlFor="scene-query-video">
+          {t.search.videoLabel}
+        </label>
+        <input
+          accept="video/*"
+          className="scene-file-input"
+          id="scene-query-video"
+          onChange={(event) => void handleQueryFile(event.target.files?.[0] ?? null)}
+          ref={queryFileRef}
+          type="file"
+        />
+        <p className="microcopy">{t.search.videoHint}</p>
+
+        {queryExtracting ? <p className="scene-status">{t.ingest.extracting}</p> : null}
+
+        {queryFrames.length > 0 ? (
+          <div className="scene-query-video-row">
+            <div className="scene-frame-strip scene-frame-strip--compact">
+              {queryFrames.map((frame) => (
+                <figure className="scene-frame-thumb" key={frame.timecodeSec}>
+                  {/* figcaption below is the accessible name of the figure; an alt
+                      repeating the timecode makes AT read it twice per frame. */}
+                  <img alt="" src={frame.imageDataUrl} />
+                  <figcaption>{formatTimecode(frame.timecodeSec)}</figcaption>
+                </figure>
+              ))}
+            </div>
+            <button className="scene-clear-button" onClick={clearQueryVideo} type="button">
+              {t.search.clearVideo} ({queryFileName})
+            </button>
+          </div>
+        ) : null}
+
+        <button
+          className="primary-button scene-submit"
+          disabled={searching || queryExtracting}
+          onClick={() => void submitSearch()}
+          type="button"
+        >
+          {searching ? t.search.searching : t.search.submit}
+        </button>
+
+        {searchError ? (
+          <p className="scene-error" role="alert">
+            {searchError}
+          </p>
+        ) : null}
+
+        {searchResult && searchResult.queryCaptions.length > 0 ? (
+          <details className="scene-query-captions">
+            <summary>{t.search.queryCaptionsTitle}</summary>
+            <ul className="scene-caption-list">
+              {searchResult.queryCaptions.map((caption, index) => (
+                <li key={index}>{caption}</li>
+              ))}
+            </ul>
+          </details>
+        ) : null}
+      </section>
+
+      {/* ---------------- results ----------------
+          Always mounted so the live region exists in the DOM before it updates:
+          a status region inserted at the same moment its text appears is not
+          reliably announced. */}
+      <section aria-label={t.search.resultsTitle} className="scene-results">
+        <div className="scene-results-header">
+          <h2 className="scene-panel-title">{t.search.resultsTitle}</h2>
+          {resultsState === "matches" ? (
+            <span className="scene-results-count">{resultsAnnouncement}</span>
+          ) : null}
+        </div>
+
+        <p className="sr-only" role="status">
+          {resultsAnnouncement}
+        </p>
+
+        {searchResult && searchResult.unscoreableScenes > 0 ? (
+          <p className="scene-warning">
+            {searchResult.unscoreableScenes === 1
+              ? t.search.unscoreableNoticeOne
+              : interpolate(t.search.unscoreableNotice, {
+                  count: searchResult.unscoreableScenes
+                })}
+          </p>
+        ) : null}
+
+        {resultsState === "idle" ? <p className="scene-note">{t.search.idleHint}</p> : null}
+
+        {resultsState === "emptyIndex" ? (
+          <p className="scene-note">
+            {t.search.emptyIndex}{" "}
+            {/* Real in-page anchor: the ingest panel is ~800px below on mobile,
+                so "register a document first" with no way to get there was a
+                dead end. The click also opens the collapsed panel. */}
+            <a href={`#${INGEST_PANEL_ID}`} onClick={() => setIngestPanelOpen(true)}>
+              {t.search.emptyIndexCta}
+            </a>
+          </p>
+        ) : null}
+
+        {resultsState === "noMatch" ? (
+          <p className="scene-note">
+            {echoedQuery
+              ? interpolate(t.search.noMatchEcho, { query: echoedQuery })
+              : t.search.noMatch}
+          </p>
+        ) : null}
+
+        {resultsState === "matches" && searchResult ? (
+          <>
+            {searchResult.results[0].confidence === "low" ? (
+              <p className="scene-warning">{t.search.weakTopNote}</p>
+            ) : null}
+
+            {/* Ordered list: rank is meaningful, and it gives AT a "list of N"
+                announcement plus item-by-item navigation the plain div grid
+                could not offer. */}
+            <ol className="scene-result-grid">
+              {searchResult.results.map((result, index) => {
+                // Server-computed on its single normalised scale. Dividing raw
+                // scores here produced >100% for rank 2 whenever strength and
+                // raw order disagree — ranking is by floor-relative strength and
+                // the client is not told which channel matched, so it cannot
+                // reconstruct the comparison from `score`.
+                const relativePercent = Math.round(result.relativeStrength * 100);
+                const isTop = index === 0;
+                const weakTop = isTop && result.confidence === "low";
+                return (
+                  <li className="scene-result-item" key={result.sceneId}>
+                    <article className="scene-result-card">
+                      <div className="scene-result-image">
+                        {/* alt="" — the caption below is the AI's description of
+                            this exact frame, so a duplicate alt makes AT read
+                            the same sentence twice per card. */}
+                        <img alt="" src={result.imageDataUrl} />
+                      </div>
+                      <div className="scene-result-body">
+                        {/* One label for rank 1 instead of "#1" plus a confidence
+                            badge 12px away saying the same thing. */}
+                        <div className="scene-result-labels">
+                          {isTop ? (
+                            <span
+                              className={`scene-result-rank scene-result-rank--${weakTop ? "weak" : "best"}`}
+                            >
+                              {weakTop ? t.search.bestMatchWeak : t.search.bestMatch}
+                            </span>
+                          ) : (
+                            <>
+                              <span className="scene-result-rank">
+                                {interpolate(t.search.rankLabel, { rank: index + 1 })}
+                              </span>
+                              <span
+                                className={`scene-result-confidence scene-result-confidence--${result.confidence}`}
+                              >
+                                {confidenceLabels[result.confidence]}
+                              </span>
+                            </>
+                          )}
+                        </div>
+
+                        {/* Caption first: it answers "why did this scene come
+                            back" and it is the text that was actually embedded. */}
+                        <SceneResultCaption
+                          caption={result.caption}
+                          collapseLabel={t.search.captionCollapse}
+                          expandLabel={t.search.captionExpand}
+                        />
+
+                        <div
+                          aria-label={t.search.matchBarLabel}
+                          aria-valuemax={100}
+                          aria-valuemin={0}
+                          aria-valuenow={relativePercent}
+                          className="scene-score-bar"
+                          role="meter"
+                        >
+                          <div
+                            className="scene-score-fill"
+                            style={{ width: `${relativePercent}%` }}
+                          />
+                        </div>
+
+                        <p className="scene-result-source">
+                          {result.documentTitle} · {formatTimecode(result.timecodeSec)}
+                        </p>
+
+                        {/* Raw cosine stays reachable for operators but off the
+                            card face, where "47%" read as "barely matched" even
+                            though 0.47 is a correct text→image hit. */}
+                        <details className="scene-result-raw">
+                          <summary>{t.search.rawScoreSummary}</summary>
+                          <dl className="scene-raw-list">
+                            <div>
+                              <dt>{t.search.rawScoreLabel}</dt>
+                              <dd>{(result.score * 100).toFixed(1)}%</dd>
+                            </div>
+                            <div>
+                              <dt>{t.search.rawRelativeLabel}</dt>
+                              <dd>{relativePercent}%</dd>
+                            </div>
+                          </dl>
+                          <p className="scene-raw-note">{t.search.rawScoreNote}</p>
+                        </details>
+                      </div>
+                    </article>
+                  </li>
+                );
+              })}
+            </ol>
+          </>
+        ) : null}
+
+        {searchResult ? (
+          <p className="scene-search-meta">
+            {t.meta.queryMode}: <strong>{queryModeLabel}</strong> · {t.meta.totalScenes}:{" "}
+            {searchResult.totalScenes} · {t.meta.embeddingModel}: {searchResult.embeddingModel} ·{" "}
+            {t.meta.took}: {searchResult.tookMs}ms
+          </p>
+        ) : null}
+      </section>
+
+      {/* ---------------- ingest (step 2) ----------------
+          Collapsed by default: login-gated and cost-protected, so it is the
+          minority action. Controlled `open` so the empty-index anchor above can
+          expand it on the way in. */}
+      <details
+        className="scene-ingest-details"
+        id={INGEST_PANEL_ID}
+        onToggle={(event) => setIngestPanelOpen(event.currentTarget.open)}
+        open={ingestPanelOpen}
+      >
+        <summary className="scene-ingest-summary">{t.ingest.panelSummary}</summary>
         <section aria-label={t.ingest.title} className="panel scene-panel">
           <h2 className="scene-panel-title">{t.ingest.title}</h2>
 
@@ -295,10 +689,17 @@ export function SceneSearchClient({ t, loginHref, tenantId }: SceneSearchClientP
           />
 
           <div className="scene-frame-count-row">
-            <span className="field-label">{t.ingest.frameCountLabel}</span>
-            <div className="scene-frame-count-options" role="group">
+            <span className="field-label" id="scene-frame-count-label">
+              {t.ingest.frameCountLabel}
+            </span>
+            <div
+              aria-labelledby="scene-frame-count-label"
+              className="scene-frame-count-options"
+              role="group"
+            >
               {INGEST_FRAME_CHOICES.map((count) => (
                 <button
+                  aria-pressed={frameCount === count}
                   className={`scene-count-chip ${frameCount === count ? "scene-count-chip--active" : ""}`}
                   key={count}
                   onClick={() => handleFrameCountChange(count)}
@@ -317,7 +718,7 @@ export function SceneSearchClient({ t, loginHref, tenantId }: SceneSearchClientP
               <div aria-label="extracted frames" className="scene-frame-strip">
                 {ingestFrames.map((frame) => (
                   <figure className="scene-frame-thumb" key={frame.timecodeSec}>
-                    <img alt={`frame ${formatTimecode(frame.timecodeSec)}`} src={frame.imageDataUrl} />
+                    <img alt="" src={frame.imageDataUrl} />
                     <figcaption>{formatTimecode(frame.timecodeSec)}</figcaption>
                   </figure>
                 ))}
@@ -344,7 +745,11 @@ export function SceneSearchClient({ t, loginHref, tenantId }: SceneSearchClientP
             </p>
           ) : null}
 
-          {ingestError ? <p className="scene-error">{ingestError}</p> : null}
+          {ingestError ? (
+            <p className="scene-error" role="alert">
+              {ingestError}
+            </p>
+          ) : null}
 
           {ingestResult ? (
             <div className="scene-ingest-result">
@@ -369,126 +774,7 @@ export function SceneSearchClient({ t, loginHref, tenantId }: SceneSearchClientP
             </div>
           ) : null}
         </section>
-
-        {/* ---------------- search panel ---------------- */}
-        <section aria-label={t.search.title} className="panel scene-panel">
-          <h2 className="scene-panel-title">{t.search.title}</h2>
-
-          <label className="field-label" htmlFor="scene-query-input">
-            {t.search.queryLabel}
-          </label>
-          <input
-            className="text-input"
-            id="scene-query-input"
-            onChange={(event) => setQuery(event.target.value)}
-            onKeyDown={(event) => {
-              if (event.key === "Enter") void submitSearch();
-            }}
-            placeholder={t.search.queryPlaceholder}
-            type="search"
-            value={query}
-          />
-
-          <label className="field-label" htmlFor="scene-query-video">
-            {t.search.videoLabel}
-          </label>
-          <input
-            accept="video/*"
-            className="scene-file-input"
-            id="scene-query-video"
-            onChange={(event) => void handleQueryFile(event.target.files?.[0] ?? null)}
-            ref={queryFileRef}
-            type="file"
-          />
-          <p className="microcopy">{t.search.videoHint}</p>
-
-          {queryExtracting ? <p className="scene-status">{t.ingest.extracting}</p> : null}
-
-          {queryFrames.length > 0 ? (
-            <div className="scene-query-video-row">
-              <div className="scene-frame-strip scene-frame-strip--compact">
-                {queryFrames.map((frame) => (
-                  <figure className="scene-frame-thumb" key={frame.timecodeSec}>
-                    <img alt={`query frame ${formatTimecode(frame.timecodeSec)}`} src={frame.imageDataUrl} />
-                    <figcaption>{formatTimecode(frame.timecodeSec)}</figcaption>
-                  </figure>
-                ))}
-              </div>
-              <button className="scene-clear-button" onClick={clearQueryVideo} type="button">
-                {t.search.clearVideo} ({queryFileName})
-              </button>
-            </div>
-          ) : null}
-
-          <button
-            className="primary-button scene-submit"
-            disabled={searching || queryExtracting}
-            onClick={() => void submitSearch()}
-            type="button"
-          >
-            {searching ? t.search.searching : t.search.submit}
-          </button>
-
-          {searchError ? <p className="scene-error">{searchError}</p> : null}
-
-          {searchResult ? (
-            <p className="scene-search-meta">
-              {t.meta.queryMode}: <strong>{queryModeLabel}</strong> · {t.meta.totalScenes}:{" "}
-              {searchResult.totalScenes} · {t.meta.embeddingModel}: {searchResult.embeddingModel} ·{" "}
-              {t.meta.took}: {searchResult.tookMs}ms
-            </p>
-          ) : null}
-
-          {searchResult && searchResult.queryCaptions.length > 0 ? (
-            <details className="scene-query-captions">
-              <summary>{t.search.queryCaptionsTitle}</summary>
-              <ul className="scene-caption-list">
-                {searchResult.queryCaptions.map((caption, index) => (
-                  <li key={index}>{caption}</li>
-                ))}
-              </ul>
-            </details>
-          ) : null}
-        </section>
-      </div>
-
-      {/* ---------------- results ---------------- */}
-      {searchResult ? (
-        <section aria-label={t.search.resultsTitle} className="scene-results">
-          <h2 className="scene-panel-title">{t.search.resultsTitle}</h2>
-          {searchResult.totalScenes === 0 ? (
-            <p className="scene-note">{t.search.emptyResults}</p>
-          ) : searchResult.results.length === 0 ? (
-            <p className="scene-note">{t.search.noMatch}</p>
-          ) : (
-            <div className="scene-result-grid">
-              {searchResult.results.map((result, index) => (
-                <article className="scene-result-card" key={result.sceneId}>
-                  <div className="scene-result-image">
-                    <img alt={result.caption} src={result.imageDataUrl} />
-                    <span className="scene-result-rank">#{index + 1}</span>
-                    <span className={`scene-result-confidence scene-result-confidence--${result.confidence}`}>
-                      {result.confidence}
-                    </span>
-                  </div>
-                  <div className="scene-result-body">
-                    <div className="scene-result-score-row">
-                      <div className="scene-score-bar">
-                        <div className="scene-score-fill" style={{ width: `${Math.round(result.score * 100)}%` }} />
-                      </div>
-                      <span className="scene-score-value">{formatScore(result.score)}</span>
-                    </div>
-                    <p className="scene-result-caption">{result.caption}</p>
-                    <p className="scene-result-source">
-                      {result.documentTitle} · {formatTimecode(result.timecodeSec)}
-                    </p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          )}
-        </section>
-      ) : null}
+      </details>
 
       {/* ---------------- library ---------------- */}
       <section aria-label={t.library.title} className="scene-library">
