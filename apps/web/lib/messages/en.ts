@@ -1,35 +1,20 @@
 export const enMessages = {
   common: {
-    appName: "funqa",
     localeLabel: "Language",
     localeNames: {
       en: "English",
       ko: "한국어"
-    },
-    liveLabel: "live",
-    sourceLabels: {
-      games: "Games",
-      movies: "Movies",
-      videos: "Videos"
-    },
-    confidenceLabels: {
-      high: "High",
-      medium: "Medium",
-      low: "Low"
     }
   },
   layout: {
     skipToContent: "Skip to main content",
     brandEyebrow: "AI media search engine",
-    menuLabel: "Menu",
     nav: {
       overview: "Home",
-      search: "Search",
       sceneLab: "Video QA",
       vectorIndex: "Vector index",
       corpus: "Game corpus",
       ragLab: "RAG Lab",
-      ralph: "Ralph",
       admin: "Admin",
       docs: "API Docs",
       login: "Login"
@@ -37,9 +22,8 @@ export const enMessages = {
   },
   vectorIndex: {
     eyebrow: "FUNQA · VECTOR INDEX",
-    title: "Store a video as searchable vectors.",
-    lede:
-      "Add a video file: the browser samples representative frames, the server captions each scene, and the caption is embedded and written into the scene vector store.",
+    title: "Pair a video with FunQA evidence and index it.",
+    lede: "Add the matching video and FunQA analysis JSON. The browser extracts evidence-aligned frames and the server stores one fused Gemini Embedding 2 vector per visual-caption-data pair.",
     boundary:
       "The source video file is never uploaded. Only the extracted frame images and their metadata are sent to the server.",
     storeTitle: "Store status",
@@ -54,20 +38,27 @@ export const enMessages = {
     replaceFile: "Replace video",
     dropHere: "Drop a video here",
     noFile: "No video selected",
+    analysisTitle: "2 · Match the FunQA analysis",
+    analysisHint:
+      "Choose the JSON generated for this exact video. Filename and duration are verified before indexing.",
+    chooseAnalysis: "Choose analysis JSON",
+    replaceAnalysis: "Replace analysis JSON",
+    analysisRequired: "A matching FunQA analysis JSON is required.",
+    analysisReady: "analysis paired",
     extracting: "Extracting frames…",
     framesReady: "frames ready",
-    indexTitle: "2 · Index scenes",
+    indexTitle: "3 · Index paired scenes",
     submit: "Store as vectors",
     submitting: "Captioning + embedding…",
     loginRequired: "Scene indexing requires login for cost protection.",
     successTitle: "Stored in the vector index",
     contractTitle: "What one scene stores",
     contractItems: [
-      "Frame image and timecode",
-      "Scene caption from the vision model",
-      "Caption embedding vector",
-      "Image embedding vector when the model is multimodal",
-      "Embedding mode and model name (other spaces are excluded from search)"
+      "Frame image and exact evidence timecode",
+      "Independent scene caption from the vision model",
+      "Paired FunQA evidence and source provenance",
+      "One fused Gemini Embedding 2 vector for image, caption, and evidence",
+      "Embedding model and dimension (other spaces are excluded from search)"
     ],
     storageNote:
       "Depending on the deployment this is Firestore (sceneFrames/{tenant}/scenes) or a local JSON store. There is no separate vector database; similarity is computed on the server.",
@@ -90,8 +81,7 @@ export const enMessages = {
   sceneLab: {
     eyebrow: "Video QA analysis workspace",
     title: "Video QA analysis",
-    lede:
-      "Review video frames, scene captions, search evidence, and measured processing signals in one timestamp-led analysis flow.",
+    lede: "Review video frames, scene captions, search evidence, and measured processing signals in one timestamp-led analysis flow.",
     ingest: {
       // Step 2: ingest is login-gated and cost-protected, so it now sits below
       // search and results rather than occupying the primary top-left slot.
@@ -257,18 +247,36 @@ export const enMessages = {
       }
     ],
     processEyebrow: "AI Pipeline",
-    processTitle: "Media content flows through AI-powered stages for accurate search and retrieval.",
+    processTitle:
+      "Media content flows through AI-powered stages for accurate search and retrieval.",
     pipeline: [
-      { label: "Index", text: "media titles, metadata, and descriptions are ingested and normalized" },
-      { label: "Embed", text: "content is embedded with `gemini-embedding-2-preview` for semantic search" },
-      { label: "Retrieve", text: "semantic and lexical signals are fused for accurate media retrieval" },
-      { label: "Answer", text: "final responses cite specific media entries instead of generating freely" }
+      {
+        label: "Index",
+        text: "media titles, metadata, and descriptions are ingested and normalized"
+      },
+      {
+        label: "Embed",
+        text: "content is embedded with `gemini-embedding-2-preview` for semantic search"
+      },
+      {
+        label: "Retrieve",
+        text: "semantic and lexical signals are fused for accurate media retrieval"
+      },
+      {
+        label: "Answer",
+        text: "final responses cite specific media entries instead of generating freely"
+      }
     ],
     whyEyebrow: "Why the UI changed",
     whyTitle: "Recent AI products converge on one main task surface plus one context rail.",
     whyBody:
       "Search borrows the cited-answer density of Perplexity, admin keeps the restrained hierarchy common in modern AI ops consoles, and docs stay code-first in the style of OpenAI and Gemini references.",
-    whyChips: ["Sticky query composer", "Context inspector", "Quiet KPI deck", "Code-first docs rail"],
+    whyChips: [
+      "Sticky query composer",
+      "Context inspector",
+      "Quiet KPI deck",
+      "Code-first docs rail"
+    ],
     visitorPaths: [
       {
         href: "/search",
@@ -290,554 +298,18 @@ export const enMessages = {
       }
     ]
   },
-  search: {
-    eyebrow: "Media Search",
-    title: "Search and save games, movies, and media with AI",
-    lede:
-      "Find games, movies, and videos with AI-powered search. Get grounded answers with citations to the exact media entries that match your query.",
-    composerLabel: "Search query",
-    composerPlaceholder: "게임, 영화, 영상을 검색하세요...",
-    submit: "Search",
-    pending: "Searching…",
-    shareableNote: "URL state stays shareable for review and replay.",
-    suggestionsLabel: "Suggested searches",
-    fallbackSuggestions: ["What's new in Minecraft 1.21?", "Christopher Nolan films ranked", "Best Netflix originals to watch now", "2024 GOTY winner and nominees", "Best soulslike games for beginners", "All-time Academy Award Best Picture winners", "Top YouTube tech review channels", "Open-world RPGs with the best story"],
-    railTitle: "Category Filter",
-    railBadge: "Live filters",
-    sourceLabel: "Content type",
-    sourceOptions: [
-      { value: "all", label: "All" },
-      { value: "games", label: "Games" },
-      { value: "movies", label: "Movies" },
-      { value: "videos", label: "Videos" }
-    ],
-    applyFilters: "Apply filters",
-    recentSearches: "Recent: open world games, classic films, tech reviews.",
-    filterChips: ["High rated", "Recent releases", "My library"],
-    editorialKicker: "Editorial search desk · games, films, and creator media",
-    contractEyebrow: "Search contract",
-    contractTitle: "One deliberate query surface, one inspectable answer rail.",
-    contractNotes: [
-      "Keep the query box prominent, but let the shell breathe like an editorial desk.",
-      "Consensus-backed and evidence-only answers must remain visibly different states.",
-      "The supporting rail should clarify confidence and citations, not become dashboard clutter."
-    ],
-    resultsTitle: "Results",
-    resultsSummaryEmpty: "Try a natural-language question to inspect grounded matches.",
-    stateSummaryLabel: "Search desk summary",
-    stateLabels: {
-      activeDesk: "Active desk",
-      outputMode: "Output mode",
-      retrievalPath: "Retrieval path"
-    },
-    stateNotes: {
-      filteredDesk: "Query is filtered through the selected archive desk.",
-      allDesk: "Browse every desk from one search surface.",
-      evidenceOnly: "Fallback stays visible when the answer gate does not open.",
-      consensusBacked: "Allowed answers stay paired with a visible inspection rail.",
-      pending: "The shell is ready before an answer contract is determined.",
-      retrievalPath: "Transform, retrieval, rerank, and output contract stay legible instead of hidden."
-    },
-    outputModes: {
-      evidenceOnly: "Evidence only",
-      consensusBacked: "Consensus-backed",
-      pending: "Awaiting result"
-    },
-    strictGroundingTitle: "Strict grounding",
-    strictGroundingBody: "Consensus gate protects final answer output.",
-    overviewEyebrow: "Search desk",
-    pipelineAriaLabel: "Search pipeline",
-    pipelineEyebrow: "Pipeline x-ray",
-    pipelineTitle: "FunQA shows how the answer was allowed, not just what it said.",
-    pipelineBody: "Search runs through transform, retrieval, rerank, and output contract checks.",
-    optimizedIntentPrefix: "Optimized intent:",
-    pipelineStepLabels: {
-      queryTransform: "Query transform",
-      retrieval: "Retrieval",
-      rerank: "Rerank",
-      outputContract: "Output contract"
-    },
-    inspectorSynced: "Inspector synced",
-    groundedAnswer: "Grounded answer",
-    evidenceOnlyTitle: "Evidence-only fallback",
-    evidenceOnlyBadge: "Consensus not reached",
-    evidenceOnlyBody:
-      "FunQA found supporting evidence, but the answer gate stayed closed. Review the ranked evidence below while graph-backed consensus is still being wired into search.",
-    chunksSearchedSuffix: "chunks searched",
-    emptyTitle: "No strong matches yet.",
-    emptyBody:
-      "Try a broader repository question, switch source type, or ingest additional content before retrying.",
-    inspectorTitle: "Inspector",
-    inspectorPinned: "Pinned",
-    inspectorHint: "Select a result to inspect citations and source metadata.",
-    sourceField: "Source",
-    confidenceField: "Confidence",
-    freshnessField: "Freshness",
-    citationsField: "Citations",
-    resultForSuffix: "result(s) for",
-    citationsSuffix: "citations",
-    bookmarkLabel: "Bookmark",
-    liveFreshness: "live",
-    stream: {
-      streaming: "Streaming search…",
-      error: "Stream error",
-      liveAnswer: "Live answer",
-      topChunks: "Top chunks",
-      citations: "Citations",
-      stages: {
-        retrieving: "Retrieving relevant chunks…",
-        reranking: "Re-ranking results…",
-        generating: "Generating answer…"
-      }
-    },
-    fallbackResults: [
-      {
-        title: "Elden Ring",
-        source: "games/elden-ring",
-        category: "games",
-        confidence: "high",
-        freshness: "2024",
-        snippet:
-          "An action RPG set in the Lands Between. Fromsoft's most expansive open-world soulslike with rich lore and challenging combat.",
-        citations: ["games/elden-ring#overview", "games/elden-ring#gameplay"]
-      },
-      {
-        title: "Interstellar",
-        source: "movies/interstellar",
-        category: "movies",
-        confidence: "high",
-        freshness: "2014",
-        snippet:
-          "Christopher Nolan's sci-fi epic about a team of astronauts traveling through a wormhole near Saturn to find a new home for humanity.",
-        citations: ["movies/interstellar#synopsis", "movies/interstellar#cast"]
-      },
-      {
-        title: "Veritasium: How AI Works",
-        source: "videos/veritasium-ai-explainer",
-        category: "videos",
-        confidence: "medium",
-        freshness: "recent",
-        snippet: "A deep-dive video explainer on neural networks, transformers, and modern AI architecture by Derek Muller.",
-        citations: ["videos/veritasium-ai-explainer#summary", "videos/veritasium-ai-explainer#chapters"]
-      }
-    ]
-  },
-  patchDesk: {
-    eyebrow: "Game-log evidence desk",
-    title: "The Patch Desk",
-    lede: "Ask what changed, trace every claim to the logs, and carry verified context into your next question.",
-    starterP42: "What changed about Scout dash cooldown in P42, and why?",
-    starterIncident184: "What caused Incident 184 and what fixed it?",
-    starterNewest: "Summarize the newest Scout playtest.",
-    queryLabel: "Query the game logs",
-    queryPlaceholder: "Ask about a patch, playtest, incident, or decision…",
-    search: "Search logs",
-    shortcut: "Press / to focus",
-    scopeLabel: "Scope",
-    entityLabel: "Project or entity",
-    timeLabel: "Time range",
-    sourcesLabel: "Log sources",
-    noScopeDelta: "No scope changes",
-    changedPrefix: "Changed:",
-    notSet: "Not set",
-    showAllScope: "Show all scope",
-    serviceChecking: "Checking local evidence service…",
-    serviceReady: "Local evidence service ready",
-    retrievalOffline: "Local retrieval offline",
-    synthesisOffline: "Local synthesis offline",
-    serviceCheckingDetail: "The Patch Desk is verifying retrieval and synthesis.",
-    serviceReadyDetail: "CocoIndex retrieval and local synthesis are available.",
-    serviceReadyGenkit: "Genkit evidence service ready",
-    serviceReadyGenkitDetail: "Embedded-corpus retrieval and Genkit · Gemini synthesis are available.",
-    retrievalOfflineDetail: "The Archive cannot be searched right now.",
-    synthesisOfflineDetail: "Retrieved log shards remain available.",
-    retryConnection: "Retry connection",
-    dispatchStarted: "Dispatch started",
-    searching: "Searching indexed logs…",
-    ranking: "Log shards found. Ranking evidence…",
-    synthesizing: "Building a finding from {count} log shards…",
-    stop: "Stop search",
-    stopped: "Search stopped. Retrieved evidence is preserved.",
-    supportedTitle: "Finding supported",
-    supportedBody: "Every material claim below traces to the indexed logs.",
-    inspectTraces: "Inspect claim traces",
-    noHitsTitle: "No matching log shards",
-    noHitsBody: "No indexed log evidence matched this scope.",
-    weakTitle: "Evidence found; finding withheld",
-    weakBody: "Log shards were found, but they do not support a reliable finding.",
-    retrievalUnavailableTitle: "Archive search unavailable",
-    retrievalUnavailableBody: "The local retrieval path could not search indexed logs.",
-    synthesisUnavailableTitle: "Finding unavailable; evidence preserved",
-    synthesisUnavailableBody: "Log shards are available, but the local model could not build a finding.",
-    staleTitle: "Archive may be behind",
-    staleBody: "Results may omit logs newer than {timestamp}.",
-    ageWarning: "Archive refresh is 24 hours old or older.",
-    broadenScope: "Broaden scope",
-    refineQuery: "Refine query",
-    retryRetrieval: "Retry retrieval",
-    openRawEvidence: "Open raw evidence",
-    refreshArchive: "Refresh archive",
-    claimsLabel: "Claims",
-    traceRailLabel: "Claim traces",
-    logShardLabel: "Log shard",
-    freshnessLabel: "Archive refreshed",
-    superseded: "Superseded by {evidenceId}",
-    untrusted: "Untrusted log text — data, not instruction",
-    sourceLabel: "Source log",
-    eventTimeLabel: "Event time",
-    rankLabel: "Rank",
-    scoreLabel: "Retrieval score",
-    excerptBoundsLabel: "Excerpt range",
-    queryIdLabel: "Query ID",
-    correlationIdLabel: "Correlation ID",
-    relationLabel: "Claim relation",
-    relationSupports: "Supports",
-    relationContradicts: "Contradicts",
-    relationSupersedes: "Supersedes",
-    relationContext: "Context only",
-    relationUntrusted: "Untrusted data",
-    followUpLabel: "Ask a follow-up",
-    parentQueryLabel: "Continues from",
-    dispatchTrail: "Dispatch trail",
-    reviseQuery: "Revise query",
-    saveCard: "Save evidence card",
-    copyEvidence: "Copy evidence link",
-    acknowledge: "Acknowledge boundary note",
-    dispatchDetails: "Dispatch details",
-    backToClaim: "Back to claim",
-    inspectBeforeSave: "Inspect a claim trace before saving.",
-    inspectBeforeCopy: "Open a log shard before copying its evidence link.",
-    readBeforeAcknowledge: "Read the boundary reason before acknowledging it.",
-    inspectBoundaryReason: "Inspect boundary reason",
-    serviceLampLabel: "Service Lamp",
-    archiveLabel: "Archive",
-    modelLabel: "Model",
-    indexLabel: "Index",
-    readyState: "Ready",
-    checkingState: "Checking",
-    offlineState: "Offline",
-    checkedAtLabel: "Checked",
-    ownerLabel: "Owner",
-    retrievalOwner: "Retrieval",
-    synthesisOwner: "Synthesis",
-    noFailureOwner: "No failure owner",
-    activeOwner: "Active owner",
-    projectLabel: "Project",
-    projectPlaceholder: "Project IDs, comma separated",
-    entityPlaceholder: "Entity IDs, comma separated",
-    sourcePlaceholder: "Source IDs, comma separated",
-    timeFromLabel: "From",
-    timeToLabel: "Through",
-    snapshotLabel: "Index snapshot",
-    allProjects: "All projects",
-    allEntities: "All entities",
-    allSources: "All indexed logs",
-    scopeFrozen: "Scope is frozen when a Dispatch starts.",
-    findingLabel: "Finding",
-    boundaryNoteLabel: "Boundary Note",
-    reasonLabel: "Reason code",
-    stageLabel: "Dispatch stage",
-    stopping: "Stopping search…",
-    initialTitle: "Open a Dispatch",
-    initialBody: "Choose a starter Query or ask the Archive about a recorded game change.",
-    searchNeedsService: "Search becomes available when both local retrieval and synthesis are ready.",
-    evidenceEmpty: "No log shards are available for this Dispatch.",
-    rawEvidenceLabel: "Raw evidence",
-    linkedEvidenceLabel: "Linked log shards",
-    excerptLabel: "Excerpt",
-    pathLabel: "Source path",
-    trustLabel: "Trust class",
-    indexSnapshotLabel: "Snapshot",
-    coverageLabel: "Coverage through",
-    evidenceSetLabel: "Evidence set",
-    modelProfileLabel: "Model profile",
-    quantizationLabel: "Quantization",
-    contextTokensLabel: "Context limit",
-    inputTokensLabel: "Evidence input tokens",
-    outputTokensLabel: "Output tokens",
-    truncationLabel: "Truncation",
-    unknownValue: "Unknown",
-    dispatchCurrent: "Current Dispatch",
-    dispatchAccepted: "Accepted",
-    dispatchRunning: "Running",
-    dispatchCompleted: "Completed",
-    dispatchCancelled: "Cancelled",
-    noDispatches: "No Dispatches yet.",
-    revisionPlaceholder: "Keep the Query or ask a narrower follow-up…",
-    parentScopeLabel: "Inherited Scope",
-    scopeDeltaLabel: "Scope delta",
-    entityAdded: "Entities added",
-    entityRemoved: "Entities removed",
-    sourcesAdded: "Sources added",
-    sourcesRemoved: "Sources removed",
-    timeFromChanged: "Start time changed",
-    timeToChanged: "End time changed",
-    cardSaved: "Evidence card saved.",
-    linkCopied: "Evidence link copied.",
-    boundaryAcknowledged: "Boundary Note acknowledged.",
-    rewardStatusLabel: "Resolve status",
-    freshnessUnknown: "Refresh time unavailable",
-    claimSelectedLabel: "Selected Claim",
-    selectedShardLabel: "Selected log shard",
-    retrying: "Checking the Archive again…",
-    engineLabel: "Engine",
-    engineGenkit: "Genkit · Gemini cloud",
-    engineLocal: "Local VM engine",
-    engineUnknown: "Engine unknown"
-  },
-  ragLab: {
-    eyebrow: "RAG Lab",
-    title: "Inspect every retrieval step as a first-class module.",
-    lede:
-      "This view is designed to match the modular pipeline directly so query transforms, retrieval, reranking, and answer assembly can be compared without leaving the product.",
-    queryLabel: "Query",
-    queryPlaceholder: "provider key storage",
-    transformLabel: "Query transform",
-    transformOptions: {
-      none: "None",
-      "rewrite-local": "Rewrite local",
-      "hyde-local": "HyDE local",
-      "hyde-genkit": "HyDE via Genkit"
-    },
-    rerankLabel: "Rerank",
-    rerankOptions: {
-      none: "None",
-      rrf: "RRF only",
-      heuristic: "Heuristic rerank",
-      "genkit-score": "Genkit score"
-    },
-    runInspection: "Run Inspection",
-    stagesLabel: "RAG stages",
-    stages: {
-      query: "Query",
-      retrieve: "Retrieve",
-      rerank: "Rerank",
-      answer: "Answer",
-      eval: "Eval",
-      trace: "Trace"
-    },
-    currentStrategy: "Current strategy",
-    preRerank: "pre-rerank",
-    finalTopK: "final top-k",
-    liveGenkit: "live genkit",
-    deterministicLocal: "deterministic local",
-    latency: "latency",
-    queryTransformTitle: "Query transform",
-    rawQuery: "Raw query",
-    mode: "Mode",
-    transformedQuery: "Transformed query",
-    hydePseudoDocument: "HyDE pseudo document",
-    retrieveTitle: "Retrieve",
-    retrieveColumns: {
-      chunk: "Chunk",
-      dense: "Dense",
-      lexical: "Lexical",
-      fused: "Fused"
-    },
-    rerankTitle: "Rerank",
-    rerankColumns: {
-      chunk: "Chunk",
-      rerank: "Rerank score",
-      why: "Why it moved"
-    },
-    answerTitle: "Answer",
-    answerPreview: "Answer preview",
-    answerCitations: "Returned citations",
-    evalTitle: "Eval",
-    evalScore: "Local groundedness score",
-    evalNote: "Use this pane to compare strategy changes before wiring a stronger evaluator.",
-    traceTitle: "Trace",
-    traceLabel: "Execution trace",
-    traceDetails: {
-      normalizeDocs: "Normalize docs",
-      extractDocs: "Extract docs",
-      chunks: "Chunks",
-      topDocument: "Top document",
-      none: "none"
-    },
-    analyticsMetrics: {
-      lede: "Stage-by-stage inspection console for the AI search pipeline"
-    },
-    // The former "Game Video Analytics" block hardcoded 94% / 87% / 62ms / high
-    // in the markup. Those were never measured, so they are gone; this strip
-    // reports only values observed in the current inspection response.
-    liveSignals: {
-      title: "Live pipeline signals",
-      note: "Observed in this inspection response",
-      results: "Results",
-      citations: "Citations returned",
-      avgRetrieval: "Avg retrieval score",
-      latency: "Inspection latency",
-      unavailable: "No response"
-    },
-    releaseGateEyebrow: "Consensus release gate",
-    releaseGateTitle: "Latest release-gate report",
-    releaseGateBody:
-      "This panel reflects the latest frozen consensus-eval report so operators can judge launch readiness without leaving RAG Lab.",
-    releaseGateSelectorLabel: "Release reports",
-    latestReportBadge: "latest",
-    unknownState: "unknown",
-    noReasonCode: "none",
-    releaseGateCasesTitle: "Release-gate case results",
-    releaseGateArtifactsTitle: "Retained artifacts",
-    releaseGateMetrics: {
-      agreementRate: "Agreement rate",
-      threshold: "Threshold",
-      eligibleCases: "Eligible cases",
-      failedCases: "Failed cases"
-    },
-    releaseGateDetails: {
-      datasetVersion: "Dataset version",
-      generatedAt: "Generated at",
-      buildSha: "Build SHA",
-      evaluationStatus: "Evaluation status",
-      integrity: "Artifact integrity",
-      replayability: "Replayability"
-    },
-    releaseGateColumns: {
-      caseId: "Case ID",
-      verdict: "Verdict",
-      decision: "Decision",
-      answerMode: "Answer mode",
-      reason: "Primary reason"
-    }
-  },
-  ralph: {
-    eyebrow: "Ralph completion loop",
-    title: "Run work against a frozen seed until the evidence says it is done.",
-    lede:
-      "Ralph turns implementation work into a verified loop: clarify the contract, execute the smallest useful change, inspect the evidence, correct drift, and keep moving until acceptance criteria pass.",
-    primaryAction: "Inspect in RAG Lab",
-    secondaryAction: "Read API docs",
-    statusCard: {
-      eyebrow: "Operating posture",
-      title: "Spec-first loop status",
-      metrics: [
-        { label: "Contract", value: "Seeded", text: "Work starts from explicit goal, constraints, and acceptance criteria." },
-        { label: "Gate", value: "Verify", text: "Build, typecheck, smoke, and browser evidence precede completion claims." },
-        { label: "Drift", value: "Tracked", text: "Failures feed the next pass instead of being hidden in chat history." }
-      ]
-    },
-    loopEyebrow: "Execution model",
-    loopTitle: "The page-level contract for ooo ralph",
-    loopLede:
-      "Each card is a durable checkpoint. The loop remains visible so product, engineering, and QA can agree on what changed and why.",
-    loopSteps: [
-      {
-        label: "Interview",
-        title: "Reduce ambiguity",
-        body: "Turn vague requests into a bounded goal, constraints, and explicit non-goals.",
-        signal: "Ready when the remaining ambiguity is small enough to freeze."
-      },
-      {
-        label: "Seed",
-        title: "Freeze the contract",
-        body: "Capture the accepted goal and acceptance criteria before implementation starts.",
-        signal: "The seed is immutable; follow-up changes become a new seed."
-      },
-      {
-        label: "Execute",
-        title: "Make the smallest useful change",
-        body: "Apply focused edits that satisfy the seed without broad refactors or hidden scope creep.",
-        signal: "Every code path touched has a reason tied to the contract."
-      },
-      {
-        label: "Evaluate",
-        title: "Verify before claiming done",
-        body: "Run mechanical checks and inspect the user-facing behavior before closing the loop.",
-        signal: "Evidence matters more than confidence."
-      },
-      {
-        label: "Evolve",
-        title: "Correct drift and repeat",
-        body: "When checks fail, keep the evidence and adjust the next pass until the acceptance criteria hold.",
-        signal: "Failures are recorded as data for the next iteration."
-      }
-    ],
-    guardrailsEyebrow: "Guardrails",
-    guardrailsTitle: "What Ralph will not skip",
-    guardrails: [
-      "No implementation without a bounded contract.",
-      "No completion claim without verification evidence.",
-      "No silent rewrite of the seed mid-run.",
-      "No deployment before build-critical checks pass."
-    ],
-    evidenceEyebrow: "Evidence rail",
-    evidenceTitle: "Artifacts Ralph keeps inspectable",
-    evidenceColumns: {
-      artifact: "Artifact",
-      purpose: "Purpose",
-      state: "State"
-    },
-    evidenceRows: [
-      { artifact: "seed.yaml", purpose: "Immutable work contract", state: "Required" },
-      { artifact: "README update", purpose: "User-facing operating note", state: "Required for this change" },
-      { artifact: "typecheck/build logs", purpose: "Mechanical verification", state: "Required" },
-      { artifact: "browser evidence", purpose: "Page-level behavior check", state: "Required" },
-      { artifact: "wiki report", purpose: "Durable project memory", state: "Filed after completion" }
-    ],
-    handoffEyebrow: "Handoff",
-    handoffTitle: "Use Ralph when a task must keep going",
-    handoffBody:
-      "Ralph is the right lane when a request should not stop at a proposal. It keeps implementation, evidence, and deployment work tied to the same acceptance criteria.",
-    handoffAction: "Search Ralph context",
-    handoffQuery: "Ralph completion loop"
-  },
   admin: {
     eyebrow: "Admin",
-    title: "Operate ingestion, keys, users, and spend without turning the console into a form graveyard.",
-    lede:
-      "The console leads with signals, not configuration. Priority items stay above the fold, drill-down data stays compact, and operators can see queue pressure and model cost in one glance.",
-    windowLabel: "Window",
-    windows: ["24h", "7d", "30d"],
-    chips: ["rollouts", "queues", "keys", "usage"],
-    metrics: {
-      successRate: "Success Rate",
-      indexedDocs: "Indexed Docs",
-      indexedChunks: "Indexed Chunks",
-      p95Latency: "P95 Latency",
-      runtimeHealthy: "runtime healthy",
-      needsReview: "needs review",
-      tenantsSuffix: "tenants",
-      updatedRecently: "updated recently",
-      notIngestedYet: "not ingested yet",
-      todaySuffix: "today",
-      previousWindowSuffix: "vs previous window"
-    },
-    needsAttention: "Needs Attention",
-    operatorQueue: "Operator Queue",
-    attentionItems: {
-      priority: "Priority",
-      queue: "Queue",
-      telemetry: "Telemetry",
-      keyGuard: "Provider key rotation policy still needs an enforced admin-only route guard.",
-      queueSummaryPrefix: "Current store has",
-      queueSummaryDocs: "documents and",
-      queueSummaryChunks: "chunks.",
-      telemetryPrefix: "Runtime reports",
-      telemetryUsers: "active users and",
-      telemetryEmbedding: "as the current embedding path."
-    },
-    queueTable: {
-      area: "Area",
-      signal: "Signal",
-      owner: "Owner",
-      rows: [
-        ["Ingestion", "Retry stalled repository sync", "Ops"],
-        ["Users", "Review pending admin invite", "Admin"],
-        ["Usage", "Inspect cost spike on search flow", "PM"],
-        ["Deploy", "Verify App Hosting rollout health after local smoke", "Platform"]
-      ]
-    }
+    title: "Live runtime observations",
+    lede: "Inspect only values reported by the deployed API, Genkit scene runtime, and persistent stores."
   },
   docs: {
     title: "API Docs",
     navLabel: "API sections",
     notesTitle: "Reference Notes",
     eyebrow: "Public API Docs",
-    heroTitle: "Authenticate, ingest content, and retrieve grounded answers from one server boundary.",
-    lede:
-      "Start with Google-authenticated workspace access, then use task-first endpoints for ingest, search, and provider-key administration.",
+    heroTitle: "Authenticate, index uploaded video, and retrieve grounded scene evidence.",
+    lede: "Firebase identity owns the workspace boundary. Genkit captions uploaded frames, embeddings index them, and every scene operation returns runtime provenance.",
     sections: [
       { id: "overview", label: "Overview", title: "Overview" },
       { id: "auth", label: "Auth", title: "Auth" },
@@ -847,84 +319,63 @@ export const enMessages = {
       { id: "limits", label: "Limits", title: "Rate Limits" }
     ],
     overviewBody:
-      "The API accepts repository content, enriches it, stores encrypted provider-key metadata, and returns search results with citations.",
-    authBody: "Use Google-authenticated workspace sessions. Admin-only routes must be server-guarded.",
+      "The scene API accepts sampled video frames, generates captions and QA review candidates through Genkit, stores same-space embeddings, and returns evidence with operation IDs.",
+    authBody:
+      "Send a Firebase ID token. The server derives tenant ownership from the verified uid and ignores client-supplied tenant identifiers.",
     quickstartSteps: [
-      "Sign in with Google and obtain a workspace token.",
-      "Save provider credentials through the admin-only encrypted key endpoint.",
-      "Post ingest payloads, then search with URL-shareable query parameters."
+      "Sign in with Google and obtain a Firebase ID token.",
+      "Sample representative JPEG frames from the uploaded video and post them to /v1/scenes/ingest.",
+      "Search the authenticated scene index by text, query frames, or both."
     ],
     endpointsTable: {
       method: "Method",
       path: "Path",
       purpose: "Purpose",
       rows: [
-        ["GET", "/v1/health", "Runtime health and embedding-model declaration"],
-        ["POST", "/v1/ingest", "Accept documents for extraction and indexing"],
-    ["POST", "/v1/search", "Return consensus-backed answers or evidence-only search results"],
-        ["POST", "/v1/rag/inspect", "Inspect query-transform, retrieve, rerank, answer, and eval steps"],
-        ["POST", "/v1/provider-keys/:provider", "Encrypt and store provider credentials"],
-        ["GET", "/v1/monitoring/summary", "Provide admin dashboard usage aggregates"],
-        ["GET", "/v1/admin/rag/stats", "Inspect local RAG store document and chunk counts"],
-        ["POST", "/v1/admin/rag/reset", "Reset the local verification store before smoke tests"]
+        [
+          "GET",
+          "/v1/health",
+          "Runtime, Genkit, model, embedding dimension, and scene-store status"
+        ],
+        ["POST", "/v1/scenes/ingest", "Caption and index uploaded video frames"],
+        ["POST", "/v1/scenes/search", "Search indexed scenes with text, frames, or a hybrid query"],
+        ["GET", "/v1/scenes/documents", "List documents owned by the authenticated uid"],
+        [
+          "DELETE",
+          "/v1/scenes/documents/:documentId",
+          "Delete an indexed document owned by the authenticated uid"
+        ],
+        ["GET", "/v1/monitoring/summary", "Read instance-scoped request observations"],
+        ["POST", "/v1/rag/inspect", "Inspect the authenticated retrieval pipeline"]
       ]
     },
     errorsBody:
-      "Validation errors return field-level messages. Admin-only failures must explain the missing role or token.",
+      "Validation errors return field-level messages. Missing authentication returns 401/403. Genkit generation outages return 503 without storing template evidence.",
     limitsBody:
-      "Initial limits should be tenant-aware and enforced server-side. Document retries and backoff in the final API reference.",
+      "Scene ingestion accepts up to 16 frames per request under the 5 MB JSON body limit. Server-side rate limits apply per authenticated workspace.",
     notes: [
-      { label: "Auth", text: "Google session required for workspace APIs." },
-      { label: "Default model", text: "`gemini-embedding-2-preview`" },
-      { label: "Deployment", text: "Next.js web on App Hosting, API on a separate trusted boundary." }
+      { label: "Auth", text: "Firebase ID token required for every scene and RAG workspace API." },
+      {
+        label: "Grounding",
+        text: "QA candidates are review prompts, never generated pass/fail verdicts."
+      },
+      { label: "Telemetry", text: "Responses and Cloud Logging share the same operationId." }
     ]
   },
   login: {
     eyebrow: "Authentication",
     title: "Sign in with Google to enter the search workspace and operator console.",
-    lede:
-      "End users see saved search and citations. Admins also get ingestion controls, model-key settings, and usage telemetry.",
+    lede: "End users see saved search and citations. Admins also get ingestion controls, model-key settings, and usage telemetry.",
     continueTitle: "Continue with Google",
     continueBody:
       "Workspace login unlocks saved searches, grounded citations, admin controls, and audit-aware provider key actions.",
     continueButton: "Continue With Google",
-    continueNote: "Firebase Auth wiring is the next implementation step.",
+    continueNote: "Firebase Auth scopes uploaded scenes to your verified workspace.",
     trustTitle: "Trust boundary",
     trustItems: [
       "You need a Google account allowed by workspace policy.",
       "Admin privileges are assigned server-side after sign-in.",
       "No provider API key is ever stored in browser storage."
     ]
-  },
-  featuredHero: {
-    eyebrow: "AI Media Search Engine",
-    title: "Discover Games, Movies & Media with AI",
-    lede: "Your personal content universe. Search, save, and explore with grounded AI retrieval.",
-    primaryAction: "Start Searching",
-    trendingAction: "See What's Trending",
-    statsChunks: "chunks indexed",
-    statsModel: "embedding model"
-  },
-  contentRow: {
-    seeAll: "See all",
-    gamesLabel: "Games",
-    moviesLabel: "Movies",
-    videosLabel: "Videos",
-    gamesSubtitle: "Top-rated & trending games",
-    moviesSubtitle: "Critically acclaimed films",
-    videosSubtitle: "Content creator highlights"
-  },
-  categoryTabs: {
-    all: "All",
-    games: "Games",
-    movies: "Movies",
-    videos: "Videos"
-  },
-    answerPanel: {
-    toggleShow: "Show AI Analysis",
-    toggleHide: "Hide AI Analysis",
-    chunksAnalyzed: "chunks analyzed",
-    confidenceScore: "Confidence",
-    citationsLabel: "Sources"
   }
 } as const;

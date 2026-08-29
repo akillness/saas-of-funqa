@@ -17,30 +17,11 @@ function BaseIcon(props: IconProps) {
   );
 }
 
-export function MenuIcon(props: IconProps) {
-  return (
-    <BaseIcon {...props}>
-      <path d="M4 7h16" />
-      <path d="M4 12h16" />
-      <path d="M4 17h16" />
-    </BaseIcon>
-  );
-}
-
 export function HomeIcon(props: IconProps) {
   return (
     <BaseIcon {...props}>
       <path d="M4.5 10.5 12 4l7.5 6.5" />
       <path d="M6.5 9.8V20h11V9.8" />
-    </BaseIcon>
-  );
-}
-
-export function SearchIcon(props: IconProps) {
-  return (
-    <BaseIcon {...props}>
-      <circle cx="11" cy="11" r="5.5" />
-      <path d="m15.5 15.5 4 4" />
     </BaseIcon>
   );
 }
@@ -65,19 +46,6 @@ export function FlaskIcon(props: IconProps) {
       <path d="M10 4v4.5L5.5 17a2 2 0 0 0 1.8 3h9.4a2 2 0 0 0 1.8-3L14 8.5V4" />
       <path d="M9 4h6" />
       <path d="M8.4 14h7.2" />
-    </BaseIcon>
-  );
-}
-
-export function RalphIcon(props: IconProps) {
-  return (
-    <BaseIcon {...props}>
-      <path d="M7.2 7.5a6.8 6.8 0 0 1 10.4.8" />
-      <path d="M17.8 4.8v3.8h-3.8" />
-      <path d="M16.8 16.5a6.8 6.8 0 0 1-10.4-.8" />
-      <path d="M6.2 19.2v-3.8h3.8" />
-      <path d="M9.5 12h5" />
-      <path d="M12 9.5v5" />
     </BaseIcon>
   );
 }

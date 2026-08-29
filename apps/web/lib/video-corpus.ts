@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------------------
 // Search over the bundled game-video analysis corpus.
 //
-// The corpus ships with the repository (see scripts/load-video-corpus.mjs) and
+// The corpus ships with the repository (see scripts/load-video-corpus.ts) and
 // carries two independent retrieval signals:
 //
 //   1. `tokens` / `text` per document — used for free-text queries.
@@ -74,6 +74,7 @@ export type CorpusMeta = {
   builtAt: string | null;
   gameCount: number;
   docCount: number;
+  vectorDocCount: number;
 };
 
 export type CorpusFilters = {
@@ -187,10 +188,7 @@ export function searchCorpus(options: {
   if (terms.length === 0) {
     return pool
       .slice()
-      .sort(
-        (a, b) =>
-          a.videoId.localeCompare(b.videoId) || (a.startSec ?? 0) - (b.startSec ?? 0)
-      )
+      .sort((a, b) => a.videoId.localeCompare(b.videoId) || (a.startSec ?? 0) - (b.startSec ?? 0))
       .slice(0, limit)
       .map((doc) => ({ doc, score: 0, relativeScore: 0, matchedTerms: [] }));
   }
@@ -248,8 +246,9 @@ function getVectors(): Float32Array {
   return vectorCache;
 }
 
-export const corpusVectorDimension: number =
-  (vectorsJson as unknown as { dimension: number }).dimension;
+export const corpusVectorDimension: number = (vectorsJson as unknown as { dimension: number })
+  .dimension;
+export const corpusVectorDocCount: number = (vectorsJson as unknown as { count: number }).count;
 
 function cosine(a: Float32Array, aOffset: number, b: Float32Array, bOffset: number, dim: number) {
   let dot = 0;
@@ -268,6 +267,11 @@ function cosine(a: Float32Array, aOffset: number, b: Float32Array, bOffset: numb
 
 export type SimilarHit = { doc: CorpusDoc; similarity: number };
 
+export function hasCorpusVector(docId: string): boolean {
+  const index = corpusDocs.findIndex((doc) => doc.id === docId);
+  return index >= 0 && index < corpusVectorDocCount;
+}
+
 /**
  * Nearest documents to `docId` inside the bundled embedding space.
  *
@@ -277,12 +281,12 @@ export type SimilarHit = { doc: CorpusDoc; similarity: number };
  */
 export function similarDocs(docId: string, limit = 6): SimilarHit[] {
   const index = corpusDocs.findIndex((doc) => doc.id === docId);
-  if (index < 0) return [];
+  if (!hasCorpusVector(docId)) return [];
   const dim = corpusVectorDimension;
   const vectors = getVectors();
 
   const hits: SimilarHit[] = [];
-  for (let i = 0; i < corpusDocs.length; i += 1) {
+  for (let i = 0; i < corpusVectorDocCount; i += 1) {
     if (i === index) continue;
     hits.push({
       doc: corpusDocs[i],

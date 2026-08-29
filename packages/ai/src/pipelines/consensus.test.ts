@@ -15,7 +15,7 @@ describe("Co-citation Graph Consensus Evaluation Pipeline", () => {
         keywords: ["consensus"],
         tokenCount: 10,
         embedding: [1, 0, 0], // High similarity to chunk-2
-        index: 1,
+        index: 1
       },
       {
         id: "chunk-2",
@@ -25,11 +25,11 @@ describe("Co-citation Graph Consensus Evaluation Pipeline", () => {
         keywords: ["consensus", "pipeline"],
         tokenCount: 10,
         embedding: [0.95, 0.1, 0], // Similarity is ~0.95 (>= 0.6)
-        index: 1,
-      },
+        index: 1
+      }
     ];
 
-    const result = evaluateConsensus(query, topChunks, topChunks, { threshold: 0.5 });
+    const result = evaluateConsensus(query, topChunks, { threshold: 0.5 });
 
     expect(result.reached).toBe(true);
     expect(result.agreement).toBe(1.0); // 2 docs / 2 chunks
@@ -47,7 +47,7 @@ describe("Co-citation Graph Consensus Evaluation Pipeline", () => {
         keywords: ["consensus"],
         tokenCount: 10,
         embedding: [1, 0, 0],
-        index: 1,
+        index: 1
       },
       {
         id: "chunk-3",
@@ -57,11 +57,11 @@ describe("Co-citation Graph Consensus Evaluation Pipeline", () => {
         keywords: ["consensus"],
         tokenCount: 10,
         embedding: [0, 1, 0], // Cosine similarity is 0 (< 0.6)
-        index: 1,
-      },
+        index: 1
+      }
     ];
 
-    const result = evaluateConsensus(query, topChunks, topChunks, { threshold: 0.5 });
+    const result = evaluateConsensus(query, topChunks, { threshold: 0.5 });
 
     expect(result.reached).toBe(false); // reached is false because graphPaths is empty
     expect(result.graphPaths).toHaveLength(0); // Excluded due to low similarity
@@ -77,7 +77,7 @@ describe("Co-citation Graph Consensus Evaluation Pipeline", () => {
         keywords: ["consensus"],
         tokenCount: 10,
         embedding: [1, 0, 0],
-        index: 1,
+        index: 1
       },
       {
         id: "chunk-1b",
@@ -87,11 +87,11 @@ describe("Co-citation Graph Consensus Evaluation Pipeline", () => {
         keywords: ["consensus"],
         tokenCount: 10,
         embedding: [0.98, 0, 0],
-        index: 2,
-      },
+        index: 2
+      }
     ];
 
-    const result = evaluateConsensus(query, topChunks, topChunks, { threshold: 0.5 });
+    const result = evaluateConsensus(query, topChunks, { threshold: 0.5 });
 
     expect(result.reached).toBe(false); // numDocs = 1 (< 2)
     expect(result.graphPaths).toHaveLength(0);
@@ -107,11 +107,11 @@ describe("Co-citation Graph Consensus Evaluation Pipeline", () => {
         keywords: ["consensus"],
         tokenCount: 10,
         embedding: [1, 0, 0],
-        index: 1,
-      },
+        index: 1
+      }
     ];
 
-    const result = evaluateConsensus(query, topChunks, topChunks, { threshold: 0.5 });
+    const result = evaluateConsensus(query, topChunks, { threshold: 0.5 });
 
     expect(result.reached).toBe(false);
     expect(result.agreement).toBe(0);

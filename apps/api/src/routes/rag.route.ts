@@ -3,50 +3,24 @@ import type { Express } from "express";
 import { getRagInspectionChunks, getRagInspectionDocuments } from "../services/rag.service.js";
 import { inspectOptimizedPipeline } from "../services/rag-optimization.service.js";
 import { requireAuth } from "../middleware/auth.middleware.js";
-const defaultLabDocuments = [
-  {
-    id: "pricing-policy",
-    text:
-      "FunQA pricing policy keeps free search for up to one hundred source documents. Admin users can rotate provider keys from the admin console.",
-    mimeType: "text/plain",
-    sourceUrl: "https://funqa.local/pricing"
-  },
-  {
-    id: "security-boundary",
-    text:
-      "Provider keys are encrypted server-side with AES-GCM before persistence. The search workspace displays grounded answers with citations.",
-    mimeType: "text/plain",
-    sourceUrl: "https://funqa.local/security"
-  }
-];
+import { resolveTenantId } from "../middleware/tenant.middleware.js";
 
 export function registerRagRoute(app: Express) {
-  app.post("/v1/rag/inspect", async (req, res, next) => {
+  app.post("/v1/rag/inspect", requireAuth, async (req, res, next) => {
     try {
       const parsed = RagInspectRequestSchema.parse(req.body);
+      const tenantId = resolveTenantId(req, parsed.tenantId);
 
-      // Cost protection: Genkit models require authenticated users
-      if (parsed.queryTransformMode === "hyde-genkit" || parsed.rerankMode === "genkit-score") {
-        await new Promise<void>((resolve, reject) => {
-          requireAuth(req, res, (err) => {
-            if (err) reject(err);
-            else resolve();
-          });
-        });
-      }
       const [tenantDocuments, tenantChunks] = await Promise.all([
-        getRagInspectionDocuments(parsed.tenantId),
-        getRagInspectionChunks(parsed.tenantId)
+        getRagInspectionDocuments(tenantId),
+        getRagInspectionChunks(tenantId)
       ]);
 
       const result = await inspectOptimizedPipeline({
         ...parsed,
+        tenantId,
         documents:
-          parsed.documents && parsed.documents.length > 0
-            ? parsed.documents
-            : tenantDocuments.length > 0
-              ? tenantDocuments
-              : defaultLabDocuments,
+          parsed.documents && parsed.documents.length > 0 ? parsed.documents : tenantDocuments,
         chunks: parsed.documents && parsed.documents.length > 0 ? undefined : tenantChunks
       });
 

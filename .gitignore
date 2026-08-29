@@ -40,3 +40,4 @@ graphify-out/cache/
 # corpus under apps/web/data/ is committed (see scripts/load-video-corpus.mjs).
 data/*.zip
 data/video/
+data/자료 (1)/

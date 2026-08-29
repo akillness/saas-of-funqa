@@ -1,522 +1,88 @@
-import { access, readFile, readdir, stat } from "node:fs/promises";
-import path from "node:path";
 import Link from "next/link";
-import { ConsensusEvalReportSchema, type ConsensusEvalReport } from "@funqa/contracts";
-import { inspectRagPipeline } from "../../lib/funqa-api";
-import { getDictionary, resolveLocale, withLocale } from "../../lib/i18n";
+import { resolveLocale, withLocale } from "../../lib/i18n";
 import { getRequestLocale } from "../../lib/i18n-server";
 
 type RagLabPageProps = {
-  searchParams?: Promise<{
-    q?: string;
-    report?: string;
-    stage?: string;
-    transform?: "none" | "rewrite-local" | "hyde-local" | "hyde-genkit";
-    rerank?: "none" | "rrf" | "heuristic" | "genkit-score";
-    lang?: string;
-  }>;
+  searchParams?: Promise<{ lang?: string }>;
 };
-
-const stageOrder = ["query", "retrieve", "rerank", "answer", "eval", "trace"] as const;
-type StageId = (typeof stageOrder)[number];
-type ConsensusReleaseGateReport = ConsensusEvalReport & {
-  decisionId?: string;
-  releaseState?: string;
-  artifactIntegrityStatus?: string;
-  replayabilityStatus?: string;
-  retainedArtifacts?: Array<{
-    artifactType: string;
-    handle: string;
-    minimumRetention: string;
-  }>;
-};
-type ConsensusReleaseGateReportOption = {
-  entry: string;
-  mtimeMs: number;
-  report: ConsensusReleaseGateReport;
-};
-
-const consensusReportRelativePath = path.join(
-  "knowledge",
-  "wiki",
-  "reports"
-);
-
-function resolveStage(value?: string): StageId {
-  return stageOrder.includes((value ?? "query") as StageId) ? ((value ?? "query") as StageId) : "query";
-}
-
-function formatPercent(value: number) {
-  return `${(value * 100).toFixed(1)}%`;
-}
-
-async function loadConsensusReleaseGateReports(): Promise<ConsensusReleaseGateReportOption[]> {
-  const candidateDirectories = [
-    path.resolve(process.cwd(), consensusReportRelativePath),
-    path.resolve(process.cwd(), "..", consensusReportRelativePath),
-    path.resolve(process.cwd(), "..", "..", consensusReportRelativePath)
-  ];
-
-  for (const candidateDirectory of candidateDirectories) {
-    try {
-      await access(candidateDirectory);
-      const entries = await readdir(candidateDirectory);
-      const reportCandidates = await Promise.all(
-        entries
-          .filter(
-            (entry) =>
-              entry.startsWith("funqa-consensus-release-gate-") &&
-              entry.endsWith(".json") &&
-              !entry.includes(".integrity.")
-          )
-          .map(async (entry) => ({
-            path: path.join(candidateDirectory, entry),
-            entry,
-            stat: await stat(path.join(candidateDirectory, entry))
-          }))
-      );
-
-      reportCandidates.sort((left, right) => right.stat.mtimeMs - left.stat.mtimeMs);
-      const parsedReports: ConsensusReleaseGateReportOption[] = [];
-
-      for (const reportCandidate of reportCandidates) {
-        try {
-          const raw = JSON.parse(await readFile(reportCandidate.path, "utf8")) as Record<string, unknown>;
-          const parsed = ConsensusEvalReportSchema.parse(raw);
-          parsedReports.push({
-            entry: reportCandidate.entry,
-            mtimeMs: reportCandidate.stat.mtimeMs,
-            report: {
-              ...raw,
-              ...parsed
-            } as ConsensusReleaseGateReport
-          });
-        } catch {
-          continue;
-        }
-      }
-
-      if (parsedReports.length > 0) {
-        return parsedReports;
-      }
-    } catch {
-      continue;
-    }
-  }
-
-  return [];
-}
 
 export default async function RagLabPage({ searchParams }: RagLabPageProps) {
   const params = await searchParams;
   const locale = params?.lang ? resolveLocale(params.lang) : await getRequestLocale();
-  const t = getDictionary(locale);
-  const query = params?.q?.trim() ?? t.ragLab.queryPlaceholder;
-  const requestedReport = params?.report?.trim() ?? "";
-  const stage = resolveStage(params?.stage?.trim());
-  const transform = params?.transform ?? "rewrite-local";
-  const rerank = params?.rerank ?? "heuristic";
-  const startMs = Date.now();
-  const inspection = await inspectRagPipeline({
-    query,
-    queryTransformMode: transform,
-    rerankMode: rerank
-  });
-  const latencyMs = Date.now() - startMs;
-  const releaseGateReports = await loadConsensusReleaseGateReports();
-  const selectedReleaseGateReportOption =
-    releaseGateReports.find((item) => item.entry === requestedReport) ?? releaseGateReports[0] ?? null;
-  const releaseGateReport = selectedReleaseGateReportOption?.report ?? null;
+  const isKo = locale === "ko";
+
+  const copy = isKo
+    ? {
+        eyebrow: "RAG LAB · LIVE DATA ONLY",
+        title: "빈 인덱스는 빈 결과로 남깁니다.",
+        lede: "이 화면은 더 이상 가격 정책이나 보안 문서를 자동 주입하지 않습니다. 인증된 워크스페이스에 실제 문서가 있을 때만 RAG 검사를 실행합니다.",
+        state: "데모 데이터 제거됨",
+        body: "현재 공개 화면에서는 테넌트 문서나 과거 fixture 평가를 실제 운영 결과처럼 렌더링하지 않습니다. 영상 장면 분석은 인증된 Genkit 워크스페이스에서 바로 사용할 수 있습니다.",
+        primary: "영상 QA 열기",
+        secondary: "벡터 인덱스 열기",
+        contract: "운영 계약",
+        items: [
+          "문서 0건이면 검색 결과도 0건입니다.",
+          "RAG inspect API는 Firebase 인증 UID로 테넌트를 결정합니다.",
+          "체크인된 평가 fixture는 라이브 릴리스 상태로 표시하지 않습니다."
+        ]
+      }
+    : {
+        eyebrow: "RAG LAB · LIVE DATA ONLY",
+        title: "An empty index stays empty.",
+        lede: "This surface no longer injects pricing or security documents. RAG inspection runs only when an authenticated workspace has real documents.",
+        state: "Demo data removed",
+        body: "The public page no longer presents tenant documents or historical fixture evaluations as live operations. Uploaded video analysis remains available in the authenticated Genkit workspace.",
+        primary: "Open video QA",
+        secondary: "Open vector index",
+        contract: "Runtime contract",
+        items: [
+          "Zero documents means zero retrieved results.",
+          "The RAG inspect API derives tenant ownership from Firebase auth UID.",
+          "Checked-in evaluation fixtures are never shown as current release state."
+        ]
+      };
 
   return (
-    <div className="rag-lab-layout vqa-lab">
-      <aside className="panel lab-sidebar">
-        <p className="eyebrow">{t.ragLab.eyebrow}</p>
-        <h1>{t.ragLab.title}</h1>
-        <p className="microcopy">{t.ragLab.analyticsMetrics.lede}</p>
-        <p className="microcopy">{t.ragLab.lede}</p>
-        <form action="/rag-lab" className="stack-sm">
-          <input name="lang" type="hidden" value={locale} />
-          <label className="field-label" htmlFor="lab-query">
-            {t.ragLab.queryLabel}
-          </label>
-          <input className="text-input" defaultValue={query} id="lab-query" name="q" type="search" />
-          <label className="field-label" htmlFor="transform">
-            {t.ragLab.transformLabel}
-          </label>
-          <select className="text-input" defaultValue={transform} id="transform" name="transform">
-            {Object.entries(t.ragLab.transformOptions).map(([value, label]) => (
-              <option key={value} value={value}>
-                {label}
-              </option>
-            ))}
-          </select>
-          <label className="field-label" htmlFor="rerank">
-            {t.ragLab.rerankLabel}
-          </label>
-          <select className="text-input" defaultValue={rerank} id="rerank" name="rerank">
-            {Object.entries(t.ragLab.rerankOptions).map(([value, label]) => (
-              <option key={value} value={value}>
-                {label}
-              </option>
-            ))}
-          </select>
-          {selectedReleaseGateReportOption ? <input name="report" type="hidden" value={selectedReleaseGateReportOption.entry} /> : null}
-          <input name="stage" type="hidden" value={stage} />
-          <button className="primary-button" type="submit">
-            {t.ragLab.runInspection}
-          </button>
-        </form>
+    <div className="vqa-rag-empty">
+      <header className="vqa-header">
+        <div>
+          <p className="vqa-eyebrow">{copy.eyebrow}</p>
+          <h1>{copy.title}</h1>
+          <p className="vqa-lede">{copy.lede}</p>
+        </div>
+        <div className="vqa-boundary-note">
+          <span className="vqa-boundary-icon" aria-hidden="true">
+            ◇
+          </span>
+          <p>{copy.state}</p>
+        </div>
+      </header>
 
-        <nav aria-label={t.ragLab.stagesLabel} className="stack-sm">
-          {stageOrder.map((item) => (
-            <Link
-              className={`lab-menu-link ${stage === item ? "lab-menu-link-active" : ""}`}
-              href={withLocale("/rag-lab", locale, {
-                q: query,
-                report: selectedReleaseGateReportOption?.entry,
-                stage: item,
-                transform,
-                rerank
-              })}
-              key={item}
-            >
-              {t.ragLab.stages[item]}
+      <section className="vqa-rag-empty-grid">
+        <article className="vqa-admin-panel">
+          <h2>{copy.state}</h2>
+          <p>{copy.body}</p>
+          <div className="vqa-home-actions">
+            <Link className="vqa-home-primary" href={withLocale("/scene-search", locale)}>
+              {copy.primary}
             </Link>
-          ))}
-        </nav>
-
-        {releaseGateReports.length > 0 ? (
-          <section className="stack-sm">
-            <p className="field-label">{t.ragLab.releaseGateSelectorLabel}</p>
-            <div className="stack-sm">
-              {releaseGateReports.map((item, index) => (
-                <Link
-                  className={`lab-menu-link ${selectedReleaseGateReportOption?.entry === item.entry ? "lab-menu-link-active" : ""}`}
-                  href={withLocale("/rag-lab", locale, {
-                    q: query,
-                    report: item.entry,
-                    stage,
-                    transform,
-                    rerank
-                  })}
-                  key={item.entry}
-                >
-                  <span>{item.report.aggregate.buildSha}</span>
-                  {index === 0 ? <span className="pill pill-subtle">{t.ragLab.latestReportBadge}</span> : null}
-                </Link>
-              ))}
-            </div>
-          </section>
-        ) : null}
-      </aside>
-
-      <section className="stack-lg">
-        {/* Replaces a block that hardcoded "high / 94% / 87% / 62ms" in the
-            markup. None of those were measured: there is no cache-hit or
-            search-accuracy signal in the inspection contract. This strip reports
-            only fields the current response actually carries, and says so. */}
-        <section aria-label={t.ragLab.liveSignals.title} className="vqa-lab-signals">
-          <div className="vqa-lab-signals-head">
-            <h2>{t.ragLab.liveSignals.title}</h2>
-            <span>{t.ragLab.liveSignals.note}</span>
+            <Link className="vqa-home-secondary" href={withLocale("/vector-index", locale)}>
+              {copy.secondary}
+            </Link>
           </div>
-          <div className="vqa-lab-signal-grid">
-            <article>
-              <span>{t.ragLab.liveSignals.results}</span>
-              <strong>{inspection ? inspection.steps.eval.resultCount : t.ragLab.liveSignals.unavailable}</strong>
-            </article>
-            <article>
-              <span>{t.ragLab.liveSignals.citations}</span>
-              <strong>{inspection ? inspection.steps.eval.citationCount : t.ragLab.liveSignals.unavailable}</strong>
-            </article>
-            <article>
-              <span>{t.ragLab.liveSignals.avgRetrieval}</span>
-              <strong>{inspection ? inspection.steps.eval.averageRetrieveScore : t.ragLab.liveSignals.unavailable}</strong>
-            </article>
-            <article>
-              <span>{t.ragLab.liveSignals.latency}</span>
-              <strong>{latencyMs}ms</strong>
-            </article>
-          </div>
-        </section>
-
-        <section className="panel">
-          <div className="results-header">
-            <div>
-              <p className="eyebrow">{t.ragLab.currentStrategy}</p>
-              <h2>
-                {inspection?.strategy.queryTransformMode ?? transform} +{" "}
-                {inspection?.strategy.rerankMode ?? rerank}
-              </h2>
-            </div>
-            <div className="check-grid">
-              <span className="check-chip">
-                {inspection?.strategy.preRerankK ?? 0} {t.ragLab.preRerank}
-              </span>
-              <span className="check-chip">
-                {inspection?.strategy.topK ?? 0} {t.ragLab.finalTopK}
-              </span>
-              <span className="check-chip">
-                {inspection?.strategy.usedLiveGenkit ? t.ragLab.liveGenkit : t.ragLab.deterministicLocal}
-              </span>
-              <span className="check-chip">
-                {latencyMs}ms {t.ragLab.latency}
-              </span>
-            </div>
-          </div>
-        </section>
-
-        {releaseGateReport ? (
-          <section className="panel stack-md">
-            <div className="results-header">
-              <div>
-                <p className="eyebrow">{t.ragLab.releaseGateEyebrow}</p>
-                <h2>{t.ragLab.releaseGateTitle}</h2>
-                <p className="microcopy">{t.ragLab.releaseGateBody}</p>
-              </div>
-              <div className="result-tags">
-                <span className="pill pill-bright">{releaseGateReport.releaseState ?? t.ragLab.unknownState}</span>
-                <span className="pill pill-subtle">{releaseGateReport.aggregate.buildSha}</span>
-                <span className="pill pill-subtle">{selectedReleaseGateReportOption?.entry}</span>
-              </div>
-            </div>
-
-            <section className="metric-grid" aria-label={t.ragLab.releaseGateTitle}>
-              <article className="metric-card metric-card-premium">
-                <p className="metric-label">{t.ragLab.releaseGateMetrics.agreementRate}</p>
-                <p className="metric-value">{formatPercent(releaseGateReport.aggregate.overallAgreementRate)}</p>
-              </article>
-              <article className="metric-card metric-card-premium">
-                <p className="metric-label">{t.ragLab.releaseGateMetrics.threshold}</p>
-                <p className="metric-value">{formatPercent(releaseGateReport.aggregate.agreementThreshold)}</p>
-              </article>
-              <article className="metric-card metric-card-premium">
-                <p className="metric-label">{t.ragLab.releaseGateMetrics.eligibleCases}</p>
-                <p className="metric-value">{releaseGateReport.aggregate.eligibleConsensusCases}</p>
-              </article>
-              <article className="metric-card metric-card-premium">
-                <p className="metric-label">{t.ragLab.releaseGateMetrics.failedCases}</p>
-                <p className="metric-value">{releaseGateReport.aggregate.failedConsensusCases}</p>
-              </article>
-            </section>
-
-            <div className="detail-grid">
-              <div>
-                <dt>{t.ragLab.releaseGateDetails.datasetVersion}</dt>
-                <dd>{releaseGateReport.aggregate.datasetVersion}</dd>
-              </div>
-              <div>
-                <dt>{t.ragLab.releaseGateDetails.generatedAt}</dt>
-                <dd>{releaseGateReport.generatedAt}</dd>
-              </div>
-              <div>
-                <dt>{t.ragLab.releaseGateDetails.buildSha}</dt>
-                <dd>{releaseGateReport.aggregate.buildSha}</dd>
-              </div>
-              <div>
-                <dt>{t.ragLab.releaseGateDetails.evaluationStatus}</dt>
-                <dd>{releaseGateReport.aggregate.evaluationStatus}</dd>
-              </div>
-              <div>
-                <dt>{t.ragLab.releaseGateDetails.integrity}</dt>
-                <dd>{releaseGateReport.artifactIntegrityStatus ?? t.ragLab.unknownState}</dd>
-              </div>
-              <div>
-                <dt>{t.ragLab.releaseGateDetails.replayability}</dt>
-                <dd>{releaseGateReport.replayabilityStatus ?? t.ragLab.unknownState}</dd>
-              </div>
-            </div>
-
-            <table className="data-table">
-              <caption className="sr-only">{t.ragLab.releaseGateCasesTitle}</caption>
-              <thead>
-                <tr>
-                  <th>{t.ragLab.releaseGateColumns.caseId}</th>
-                  <th>{t.ragLab.releaseGateColumns.verdict}</th>
-                  <th>{t.ragLab.releaseGateColumns.decision}</th>
-                  <th>{t.ragLab.releaseGateColumns.answerMode}</th>
-                  <th>{t.ragLab.releaseGateColumns.reason}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {releaseGateReport.cases.map((caseResult) => (
-                  <tr key={caseResult.caseId}>
-                    <td>{caseResult.caseId}</td>
-                    <td>{caseResult.verdict}</td>
-                    <td>{caseResult.consensusGate.observedDecision}</td>
-                    <td>{caseResult.consensusGate.observedAnswerMode}</td>
-                    <td>{caseResult.consensusGate.observedReasonCodes[0] ?? t.ragLab.noReasonCode}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-
-            <article className="panel panel-inset">
-              <p className="metric-label">{t.ragLab.releaseGateArtifactsTitle}</p>
-              <ul className="bullet-list compact-list">
-                {(releaseGateReport.retainedArtifacts ?? []).map((artifact) => (
-                  <li key={artifact.handle}>
-                    {artifact.handle} · {artifact.minimumRetention}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          </section>
-        ) : null}
-
-        {stage === "query" ? (
-          <section className="panel stack-md">
-            <h2>{t.ragLab.queryTransformTitle}</h2>
-            <div className="detail-grid">
-              <div>
-                <dt>{t.ragLab.rawQuery}</dt>
-                <dd>{inspection?.query}</dd>
-              </div>
-              <div>
-                <dt>{t.ragLab.mode}</dt>
-                <dd>{inspection?.steps.queryTransform.mode}</dd>
-              </div>
-            </div>
-            <article className="panel panel-inset">
-              <p className="metric-label">{t.ragLab.transformedQuery}</p>
-              <p>{inspection?.steps.queryTransform.transformedQuery}</p>
-            </article>
-            {inspection?.steps.queryTransform.hypotheticalDocument ? (
-              <article className="panel panel-inset">
-                <p className="metric-label">{t.ragLab.hydePseudoDocument}</p>
-                <p>{inspection.steps.queryTransform.hypotheticalDocument}</p>
-              </article>
-            ) : null}
-            <ul className="bullet-list">
-              {inspection?.steps.queryTransform.notes?.map((note) => <li key={note}>{note}</li>)}
-            </ul>
-          </section>
-        ) : null}
-
-        {stage === "retrieve" ? (
-          <section className="panel stack-md">
-            <h2>{t.ragLab.retrieveTitle}</h2>
-            <table className="data-table">
-              <thead>
-                <tr>
-                  <th>{t.ragLab.retrieveColumns.chunk}</th>
-                  <th>{t.ragLab.retrieveColumns.dense}</th>
-                  <th>{t.ragLab.retrieveColumns.lexical}</th>
-                  <th>{t.ragLab.retrieveColumns.fused}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {inspection?.steps.retrieve.map((row) => (
-                  <tr key={row.id}>
-                    <td>{row.id}</td>
-                    <td>{row.denseScore}</td>
-                    <td>{row.lexicalScore}</td>
-                    <td>{row.fusedScore}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </section>
-        ) : null}
-
-        {stage === "rerank" ? (
-          <section className="panel stack-md">
-            <h2>{t.ragLab.rerankTitle}</h2>
-            <table className="data-table">
-              <thead>
-                <tr>
-                  <th>{t.ragLab.rerankColumns.chunk}</th>
-                  <th>{t.ragLab.rerankColumns.rerank}</th>
-                  <th>{t.ragLab.retrieveColumns.lexical}</th>
-                  <th>{t.ragLab.rerankColumns.why}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {inspection?.steps.rerank.map((row) => (
-                  <tr key={row.id}>
-                    <td>{row.id}</td>
-                    <td>{row.rerankScore}</td>
-                    <td>{row.lexicalOverlap}</td>
-                    <td>{row.keywordHits}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </section>
-        ) : null}
-
-        {stage === "answer" ? (
-          <section className="panel stack-md">
-            <h2>{t.ragLab.answerTitle}</h2>
-            <article className="panel panel-inset">
-              <p className="metric-label">{t.ragLab.answerPreview}</p>
-              <p>{inspection?.steps.answer.answer}</p>
-            </article>
-            <div className="stack-sm">
-              <p className="field-label">{t.ragLab.answerCitations}</p>
-              <ul className="citation-list">
-                {inspection?.steps.answer.citations.map((citation) => (
-                  <li key={citation.chunkId}>
-                    {citation.sourcePath} · {citation.chunkId} · {citation.score}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-        ) : null}
-
-        {stage === "eval" ? (
-          <section className="metric-grid">
-            <article className="metric-card metric-card-premium">
-              <p className="metric-label">{t.ragLab.evalTitle}</p>
-              <p className="metric-value">{inspection?.steps.eval.resultCount ?? 0}</p>
-            </article>
-            <article className="metric-card metric-card-premium">
-              <p className="metric-label">{t.ragLab.answerCitations}</p>
-              <p className="metric-value">{inspection?.steps.eval.citationCount ?? 0}</p>
-            </article>
-            <article className="metric-card metric-card-premium">
-              <p className="metric-label">{t.ragLab.retrieveTitle}</p>
-              <p className="metric-value">{inspection?.steps.eval.averageRetrieveScore ?? 0}</p>
-            </article>
-            <article className="metric-card metric-card-premium">
-              <p className="metric-label">{t.ragLab.evalScore}</p>
-              <p className="metric-value">{inspection?.steps.eval.averageRerankScore ?? 0}</p>
-            </article>
-          </section>
-        ) : null}
-
-        {stage === "trace" ? (
-          <section className="panel stack-md">
-            <h2>{t.ragLab.traceTitle}</h2>
-            <div className="detail-grid">
-              <div>
-                <dt>{t.ragLab.traceDetails.normalizeDocs}</dt>
-                <dd>{inspection?.steps.normalize.length ?? 0}</dd>
-              </div>
-              <div>
-                <dt>{t.ragLab.traceDetails.extractDocs}</dt>
-                <dd>{inspection?.steps.extract.length ?? 0}</dd>
-              </div>
-              <div>
-                <dt>{t.ragLab.traceDetails.chunks}</dt>
-                <dd>{inspection?.steps.chunk.length ?? 0}</dd>
-              </div>
-              <div>
-                <dt>{t.ragLab.traceDetails.topDocument}</dt>
-                <dd>{inspection?.steps.eval.topDocumentId ?? t.ragLab.traceDetails.none}</dd>
-              </div>
-            </div>
-            <article className="panel panel-inset">
-              <p className="metric-label">{t.ragLab.traceLabel}</p>
-              <pre className="code-block">
-                <code>{JSON.stringify(inspection?.steps.embed, null, 2)}</code>
-              </pre>
-            </article>
-            <p className="microcopy">{t.ragLab.evalNote}</p>
-          </section>
-        ) : null}
+        </article>
+        <article className="vqa-admin-panel">
+          <h2>{copy.contract}</h2>
+          <ol>
+            {copy.items.map((item, index) => (
+              <li key={item}>
+                <span>0{index + 1}</span>
+                <p>{item}</p>
+              </li>
+            ))}
+          </ol>
+        </article>
       </section>
     </div>
   );

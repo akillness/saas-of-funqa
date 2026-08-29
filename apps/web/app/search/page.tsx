@@ -1,7 +1,6 @@
-import { getDictionary, resolveLocale } from "@/lib/i18n";
+import { resolveLocale } from "@/lib/i18n";
 import { getRequestLocale } from "@/lib/i18n-server";
-
-import { SearchResults } from "@/app/search/search-results";
+import { redirect } from "next/navigation";
 
 export type SearchPageProps = {
   searchParams?: Promise<{ lang?: string; q?: string }>;
@@ -10,13 +9,10 @@ export type SearchPageProps = {
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const params = await searchParams;
   const locale = params?.lang ? resolveLocale(params.lang) : await getRequestLocale();
-  const messages = getDictionary(locale).patchDesk;
+  const target = new URLSearchParams({ lang: locale });
+  if (params?.q?.trim()) target.set("q", params.q.trim());
 
-  return (
-    <SearchResults
-      locale={locale}
-      initialQuery={params?.q?.trim() ?? ""}
-      messages={messages}
-    />
-  );
+  // The former Patch Desk route searched a checked-in simulation corpus. The
+  // canonical search surface now targets authenticated, uploaded scene data.
+  redirect(`/scene-search?${target.toString()}`);
 }

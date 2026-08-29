@@ -5,11 +5,18 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   SCENE_INGEST_MAX_FRAMES,
   SCENE_MAX_SCENES_PER_TENANT,
+  type SceneAnalysisEvidence,
   type SceneDocumentListResponse,
   type SceneIngestResponse
 } from "@funqa/contracts";
 import { useAuth } from "@/components/auth-provider";
 import { AgentActivityOrb } from "@/components/motion";
+import {
+  buildFrameEvidencePlan,
+  type FrameEvidence,
+  type FrameEvidencePlan
+} from "@/lib/funqa-analysis";
+import { getFunqaApiBaseUrl } from "@/lib/funqa-api";
 import { extractVideoFrames, type ExtractedFrame } from "@/lib/video-frames";
 import type { Messages } from "@/lib/i18n";
 import { formatVideoTimecode } from "../scene-search/video-qa-model";
@@ -20,18 +27,13 @@ type VectorIndexClientProps = {
   t: VectorIndexMessages;
   loginHref: string;
   searchHref: string;
-  tenantId: string;
 };
 
-const FRAME_CHOICES = [4, 6, 8, 12] as const;
-
-function getApiBaseUrl(): string {
-  return process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://127.0.0.1:4300";
-}
+const FRAME_CHOICES = [4, 6, 8, 12, 16] as const;
 
 function interpolate(template: string, values: Record<string, string | number>): string {
   return Object.entries(values).reduce(
-    (copy, [key, value]) => copy.replace(`{${key}}`, String(value)),
+    (copy, [key, value]) => copy.split(`{${key}}`).join(String(value)),
     template
   );
 }
@@ -42,13 +44,29 @@ function formatFileSize(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-export function VectorIndexClient({ t, loginHref, searchHref, tenantId }: VectorIndexClientProps) {
-  const { user } = useAuth();
+function toSceneEvidence(evidence: FrameEvidence): SceneAnalysisEvidence {
+  return {
+    sourceId: evidence.id,
+    sourceMode: evidence.sourceMode,
+    sourceKind: evidence.sourceKind,
+    startSec: evidence.startSec,
+    endSec: evidence.endSec,
+    text: evidence.evidenceText,
+    evidenceTextIsLabelOnly: evidence.evidenceTextIsLabelOnly,
+    labels: evidence.labels,
+    ...(evidence.confidence === null ? {} : { confidence: evidence.confidence })
+  };
+}
+
+export function VectorIndexClient({ t, loginHref, searchHref }: VectorIndexClientProps) {
+  const { user, loading: authLoading } = useAuth();
 
   const [file, setFile] = useState<File | null>(null);
+  const [analysisFile, setAnalysisFile] = useState<File | null>(null);
+  const [analysisPlan, setAnalysisPlan] = useState<FrameEvidencePlan | null>(null);
   const [frames, setFrames] = useState<ExtractedFrame[]>([]);
   const [durationSec, setDurationSec] = useState<number | null>(null);
-  const [frameCount, setFrameCount] = useState<number>(6);
+  const [frameCount, setFrameCount] = useState<number>(12);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [extracting, setExtracting] = useState(false);
@@ -57,84 +75,145 @@ export function VectorIndexClient({ t, loginHref, searchHref, tenantId }: Vector
   const [result, setResult] = useState<SceneIngestResponse | null>(null);
   const [library, setLibrary] = useState<SceneDocumentListResponse | null>(null);
   const [dragActive, setDragActive] = useState(false);
-
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const lastFileRef = useRef<File | null>(null);
+  const extractionRunRef = useRef(0);
 
   const refreshLibrary = useCallback(async () => {
+    if (!user) {
+      setLibrary(null);
+      return;
+    }
     try {
-      const response = await fetch(
-        `${getApiBaseUrl()}/v1/scenes/documents?tenantId=${encodeURIComponent(tenantId)}`,
-        { cache: "no-store" }
-      );
+      const response = await fetch(`${getFunqaApiBaseUrl()}/v1/scenes/documents`, {
+        cache: "no-store",
+        headers: { Authorization: `Bearer ${await user.getIdToken()}` }
+      });
       if (!response.ok) return;
       setLibrary((await response.json()) as SceneDocumentListResponse);
     } catch {
-      // Store unreachable — the status strip falls back to placeholders.
+      // Store unreachable — the status strip remains explicitly empty.
     }
-  }, [tenantId]);
+  }, [user]);
 
   useEffect(() => {
     void refreshLibrary();
   }, [refreshLibrary]);
 
-  const handleFile = useCallback(
-    async (nextFile: File | null, requestedFrameCount = frameCount) => {
-      if (!nextFile) return;
-      lastFileRef.current = nextFile;
-      setFile(nextFile);
+  const handleFile = useCallback((nextFile: File | null) => {
+    if (!nextFile) return;
+    extractionRunRef.current += 1;
+    setExtracting(false);
+    setFile(nextFile);
+    setAnalysisFile(null);
+    setAnalysisPlan(null);
+    setFrames([]);
+    setDurationSec(null);
+    setTitle(nextFile.name.replace(/\.[a-z0-9]+$/i, ""));
+    setDescription("");
+    setError(null);
+    setResult(null);
+  }, []);
+
+  const preparePairedAnalysis = useCallback(
+    async (nextAnalysisFile: File, requestedFrameCount = frameCount) => {
+      if (!file) {
+        setError(t.analysisRequired);
+        return;
+      }
+      const runId = extractionRunRef.current + 1;
+      extractionRunRef.current = runId;
+      setExtracting(true);
       setError(null);
       setResult(null);
-      setExtracting(true);
-      if (!title.trim()) {
-        setTitle(nextFile.name.replace(/\.[a-z0-9]+$/i, ""));
-      }
       try {
-        const extracted = await extractVideoFrames(nextFile, requestedFrameCount);
-        setFrames(extracted);
-        // The browser only reports a usable duration once metadata is parsed;
-        // the last sampled timecode is a floor, not the real length, so it is
-        // labelled as such rather than presented as the video duration.
-        setDurationSec(extracted.length > 0 ? extracted[extracted.length - 1].timecodeSec : null);
+        const payload = JSON.parse(await nextAnalysisFile.text()) as unknown;
+        const provisional = buildFrameEvidencePlan(payload, {
+          analysisFilename: nextAnalysisFile.name,
+          video: { filename: file.name },
+          maxFrames: requestedFrameCount
+        });
+        const extracted = await extractVideoFrames(file, {
+          timecodesSec: provisional.timecodesSec
+        });
+        const verified = buildFrameEvidencePlan(payload, {
+          analysisFilename: nextAnalysisFile.name,
+          video: { filename: file.name, durationSec: extracted.durationSec },
+          maxFrames: requestedFrameCount
+        });
+        if (extracted.frames.length !== verified.frames.length) {
+          throw new Error("Evidence timecodes did not map one-to-one to extracted frames.");
+        }
+        if (extractionRunRef.current !== runId) return;
+        setAnalysisFile(nextAnalysisFile);
+        setAnalysisPlan(verified);
+        setFrames(extracted.frames);
+        setDurationSec(extracted.durationSec);
+        setTitle((current) => current.trim() || verified.video.id);
       } catch (caught) {
-        setFrames([]);
+        if (extractionRunRef.current !== runId) return;
+        setAnalysisFile(null);
+        setAnalysisPlan(null);
         setError(caught instanceof Error ? caught.message : String(caught));
       } finally {
-        setExtracting(false);
+        if (extractionRunRef.current === runId) setExtracting(false);
       }
     },
-    [frameCount, title]
+    [file, frameCount, t.analysisRequired]
   );
 
   const handleFrameCountChange = useCallback(
     (count: number) => {
       setFrameCount(count);
-      if (lastFileRef.current) {
-        void handleFile(lastFileRef.current, count);
+      if (analysisFile) {
+        void preparePairedAnalysis(analysisFile, count);
       }
     },
-    [handleFile]
+    [analysisFile, preparePairedAnalysis]
   );
 
   const submitIndex = useCallback(async () => {
     if (frames.length === 0 || !title.trim() || indexing) return;
+    if (!analysisPlan) {
+      setError(t.analysisRequired);
+      return;
+    }
+    if (!user) {
+      setError(t.loginRequired);
+      return;
+    }
     setIndexing(true);
     setError(null);
+    setResult(null);
     try {
-      const headers: Record<string, string> = { "Content-Type": "application/json" };
-      if (user) headers.Authorization = `Bearer ${await user.getIdToken()}`;
-      const response = await fetch(`${getApiBaseUrl()}/v1/scenes/ingest`, {
+      const headers: Record<string, string> = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${await user.getIdToken()}`
+      };
+      const pairedFrames = frames.map((frame, index) => {
+        const evidence = analysisPlan.frames[index];
+        if (!evidence || Math.abs(evidence.timecodeSec - frame.timecodeSec) > 0.02) {
+          throw new Error("Extracted frames no longer match the FunQA evidence plan.");
+        }
+        return { ...frame, analysisEvidence: toSceneEvidence(evidence) };
+      });
+      const response = await fetch(`${getFunqaApiBaseUrl()}/v1/scenes/ingest`, {
         method: "POST",
         headers,
         body: JSON.stringify({
-          tenantId,
           document: {
+            id: `funqa-${analysisPlan.video.id}`,
             title: title.trim(),
             description: description.trim() || undefined,
             mimeType: file?.type || "video/mp4",
-            durationSec: durationSec ?? undefined
+            durationSec: durationSec ?? undefined,
+            analysisProvenance: {
+              sourceFile: analysisPlan.analysisFilename,
+              videoId: analysisPlan.video.id,
+              videoFilename: analysisPlan.video.filename,
+              analyzedAt: analysisPlan.analyzedAt ?? undefined,
+              engine: analysisPlan.engine ?? undefined
+            }
           },
-          frames
+          frames: pairedFrames
         })
       });
       if (response.status === 401 || response.status === 403) {
@@ -154,14 +233,15 @@ export function VectorIndexClient({ t, loginHref, searchHref, tenantId }: Vector
       setIndexing(false);
     }
   }, [
+    analysisPlan,
     description,
     durationSec,
     file,
     frames,
     indexing,
     refreshLibrary,
+    t.analysisRequired,
     t.loginRequired,
-    tenantId,
     title,
     user
   ]);
@@ -210,7 +290,9 @@ export function VectorIndexClient({ t, loginHref, searchHref, tenantId }: Vector
           <p className="vqa-vector-lede">{t.lede}</p>
         </div>
         <div className="vqa-boundary-note">
-          <span className="vqa-boundary-icon" aria-hidden="true">◇</span>
+          <span className="vqa-boundary-icon" aria-hidden="true">
+            ◇
+          </span>
           <p>{t.boundary}</p>
         </div>
       </header>
@@ -259,24 +341,67 @@ export function VectorIndexClient({ t, loginHref, searchHref, tenantId }: Vector
             onDrop={(event) => {
               event.preventDefault();
               setDragActive(false);
-              void handleFile(event.dataTransfer.files?.[0] ?? null);
+              if (!extracting && !indexing) handleFile(event.dataTransfer.files?.[0] ?? null);
             }}
           >
             <p className="vqa-vector-drop-title">{file ? file.name : t.dropHere}</p>
             <p className="vqa-vector-drop-hint">
-              {file ? `${formatFileSize(file.size)} · ${frames.length || "—"} ${t.framesReady}` : t.uploadHint}
+              {file
+                ? `${formatFileSize(file.size)} · ${frames.length || "—"} ${t.framesReady}`
+                : t.uploadHint}
             </p>
-            <label className="vqa-file-button" htmlFor="vector-index-file">
+            <label
+              aria-disabled={extracting || indexing}
+              className={`vqa-file-button${extracting || indexing ? " vqa-file-button--disabled" : ""}`}
+              htmlFor="vector-index-file"
+            >
               {file ? t.replaceFile : t.chooseFile}
             </label>
             <input
               accept="video/*"
               className="sr-only"
               id="vector-index-file"
-              onChange={(event) => void handleFile(event.target.files?.[0] ?? null)}
-              ref={fileInputRef}
+              disabled={extracting || indexing}
+              onChange={(event) => {
+                const nextFile = event.target.files?.[0] ?? null;
+                event.target.value = "";
+                handleFile(nextFile);
+              }}
               type="file"
             />
+          </div>
+
+          <div className="vqa-vector-fields">
+            <h2>{t.analysisTitle}</h2>
+            <p id="vector-analysis-hint">{t.analysisHint}</p>
+            <label
+              aria-disabled={!file || extracting || indexing}
+              className={`vqa-file-button${!file || extracting || indexing ? " vqa-file-button--disabled" : ""}`}
+              htmlFor="vector-analysis-file"
+            >
+              {analysisFile ? t.replaceAnalysis : t.chooseAnalysis}
+            </label>
+            <input
+              accept="application/json,.json"
+              aria-describedby="vector-analysis-hint"
+              className="sr-only"
+              disabled={!file || extracting || indexing}
+              id="vector-analysis-file"
+              onChange={(event) => {
+                const nextAnalysis = event.target.files?.[0];
+                event.target.value = "";
+                if (nextAnalysis) void preparePairedAnalysis(nextAnalysis);
+              }}
+              type="file"
+            />
+            {analysisPlan ? (
+              <p className="vqa-vector-success" role="status">
+                ✓ {t.analysisReady} · {analysisPlan.analysisFilename} · mode {analysisPlan.mode} ·{" "}
+                {analysisPlan.frames.length}/{analysisPlan.candidateCount} {t.framesReady}
+              </p>
+            ) : (
+              <p className="vqa-vector-note">{t.analysisRequired}</p>
+            )}
           </div>
 
           {extracting ? (
@@ -287,12 +412,26 @@ export function VectorIndexClient({ t, loginHref, searchHref, tenantId }: Vector
 
           {frames.length > 0 ? (
             <div className="vqa-vector-frames" aria-label={t.framesReady}>
-              {frames.map((frame, index) => (
-                <figure key={`${frame.timecodeSec}-${index}`}>
-                  <img alt="" src={frame.imageDataUrl} />
-                  <figcaption>{formatVideoTimecode(frame.timecodeSec)}</figcaption>
-                </figure>
-              ))}
+              {frames.map((frame, index) => {
+                const evidence = analysisPlan?.frames[index];
+                return (
+                  <figure key={`${frame.timecodeSec}-${index}`}>
+                    <img
+                      alt={`${formatVideoTimecode(frame.timecodeSec)} · ${evidence?.evidenceText ?? t.framesReady}`}
+                      src={frame.imageDataUrl}
+                    />
+                    <figcaption>
+                      <strong>{formatVideoTimecode(frame.timecodeSec)}</strong>
+                      {evidence ? (
+                        <span>
+                          {evidence.evidenceTextIsLabelOnly ? "labels · " : "FunQA · "}
+                          {evidence.evidenceText}
+                        </span>
+                      ) : null}
+                    </figcaption>
+                  </figure>
+                );
+              })}
             </div>
           ) : null}
 
@@ -326,8 +465,11 @@ export function VectorIndexClient({ t, loginHref, searchHref, tenantId }: Vector
                 <button
                   aria-pressed={frameCount === count}
                   className={
-                    frameCount === count ? "scene-count-chip scene-count-chip--active" : "scene-count-chip"
+                    frameCount === count
+                      ? "scene-count-chip scene-count-chip--active"
+                      : "scene-count-chip"
                   }
+                  disabled={extracting || indexing}
                   key={count}
                   onClick={() => handleFrameCountChange(count)}
                   type="button"
@@ -342,7 +484,15 @@ export function VectorIndexClient({ t, loginHref, searchHref, tenantId }: Vector
           <h2 className="vqa-vector-substep">{t.indexTitle}</h2>
           <button
             className="vqa-vector-submit"
-            disabled={frames.length === 0 || !title.trim() || indexing || extracting}
+            disabled={
+              frames.length === 0 ||
+              !analysisPlan ||
+              !title.trim() ||
+              indexing ||
+              extracting ||
+              !user ||
+              authLoading
+            }
             onClick={() => void submitIndex()}
             type="button"
           >
@@ -379,15 +529,49 @@ export function VectorIndexClient({ t, loginHref, searchHref, tenantId }: Vector
                     {result.embeddingModel} ({result.embeddingMode})
                   </dd>
                 </div>
+                <div>
+                  <dt>execution</dt>
+                  <dd>
+                    {result.executionMode} · {result.durationMs} ms
+                  </dd>
+                </div>
+                <div>
+                  <dt>operation</dt>
+                  <dd>
+                    <code>{result.operationId}</code>
+                  </dd>
+                </div>
               </dl>
               <ul>
                 {result.captions.slice(0, 4).map((caption) => (
                   <li key={caption.sceneId}>
                     <span>{formatVideoTimecode(caption.timecodeSec)}</span>
                     {caption.caption}
+                    {caption.analysisEvidence ? (
+                      <small>
+                        {caption.analysisEvidence.evidenceTextIsLabelOnly ? "labels" : "FunQA"} ·{" "}
+                        {caption.analysisEvidence.text}
+                      </small>
+                    ) : null}
                   </li>
                 ))}
               </ul>
+              {result.qaCandidates.length > 0 ? (
+                <div className="vqa-vector-qa-candidates">
+                  <h3>Genkit QA review candidates</h3>
+                  <ul>
+                    {result.qaCandidates.map((candidate) => (
+                      <li key={candidate.id}>
+                        <span>
+                          {formatVideoTimecode(candidate.timecodeSec)} · {candidate.severity}
+                        </span>
+                        <strong>{candidate.title}</strong>
+                        <p>{candidate.expectedCheck}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
               <Link className="vqa-vector-search-cta" href={searchHref}>
                 {t.searchCta}
               </Link>
@@ -430,10 +614,17 @@ export function VectorIndexClient({ t, loginHref, searchHref, tenantId }: Vector
                 <tr key={doc.id}>
                   <th data-label={t.columnTitle} scope="row">
                     {doc.title}
+                    {doc.analysisProvenance ? (
+                      <small>{doc.analysisProvenance.sourceFile}</small>
+                    ) : null}
                   </th>
-                  <td data-label={t.columnScenes}>{doc.sceneCount}</td>
+                  <td data-label={t.columnScenes}>
+                    {doc.sceneCount} · {doc.pairedEvidenceCount} paired
+                  </td>
                   <td data-label={t.columnDuration}>
-                    {typeof doc.durationSec === "number" ? formatVideoTimecode(doc.durationSec) : "—"}
+                    {typeof doc.durationSec === "number"
+                      ? formatVideoTimecode(doc.durationSec)
+                      : "—"}
                   </td>
                   <td data-label={t.columnCreated}>
                     {new Date(doc.createdAt).toLocaleDateString()}

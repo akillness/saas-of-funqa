@@ -12,7 +12,6 @@ export const metadata: Metadata = {
 type VectorIndexPageProps = {
   searchParams?: Promise<{
     lang?: string;
-    tenant?: string;
   }>;
 };
 
@@ -20,14 +19,12 @@ export default async function VectorIndexPage({ searchParams }: VectorIndexPageP
   const params = await searchParams;
   const locale = params?.lang ? resolveLocale(params.lang) : await getRequestLocale();
   const t = getDictionary(locale);
-  const tenantId = params?.tenant?.trim() || "demo";
 
   return (
     <VectorIndexClient
       loginHref={withLocale("/login", locale)}
       searchHref={withLocale("/scene-search", locale)}
       t={t.vectorIndex}
-      tenantId={tenantId}
     />
   );
 }

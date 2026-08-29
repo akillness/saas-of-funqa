@@ -13,8 +13,32 @@ async function main() {
   const baseUrl = `http://127.0.0.1:${port}`;
 
   try {
+    const allowedPreflight = await fetch(`${baseUrl}/v1/health`, {
+      method: "OPTIONS",
+      headers: {
+        Origin: "http://localhost:3132",
+        "Access-Control-Request-Method": "GET"
+      }
+    });
+    assert.equal(allowedPreflight.status, 204, "configured origins should pass CORS preflight");
+    assert.equal(
+      allowedPreflight.headers.get("access-control-allow-origin"),
+      "http://localhost:3132"
+    );
+    const blockedPreflight = await fetch(`${baseUrl}/v1/health`, {
+      method: "OPTIONS",
+      headers: {
+        Origin: "https://untrusted.example",
+        "Access-Control-Request-Method": "GET"
+      }
+    });
+    assert.equal(blockedPreflight.status, 403, "unknown origins should fail CORS preflight");
+    assert.equal(blockedPreflight.headers.get("access-control-allow-origin"), null);
+
     const resetResponse = await fetch(`${baseUrl}/v1/admin/rag/reset`, {
-      method: "POST"
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ tenantId: "demo" })
     });
     assert.equal(resetResponse.status, 200, "reset should succeed");
 
@@ -28,13 +52,11 @@ async function main() {
         documents: [
           {
             id: "pricing-policy",
-            text:
-              "FunQA pricing policy keeps free search for up to one hundred source documents. Admin users can rotate provider keys from the admin console."
+            text: "FunQA pricing policy keeps free search for up to one hundred source documents. Admin users can rotate provider keys from the admin console."
           },
           {
             id: "ingestion-guide",
-            text:
-              "The ingestion pipeline normalizes repository documents, extracts keywords, chunks long passages, embeds the chunks, and stores them for retrieval."
+            text: "The ingestion pipeline normalizes repository documents, extracts keywords, chunks long passages, embeds the chunks, and stores them for retrieval."
           }
         ]
       })
@@ -61,13 +83,29 @@ async function main() {
     const searchPayload = await searchResponse.json();
     assert.equal(searchPayload.totalDocuments, 2, "stored documents should be visible");
     assert.ok(searchPayload.results.length > 0, "search should return ranked results");
-    
+
     // Under low-confidence local mock embedding environment, Dynamic Consensus should safely remain closed
-    assert.equal(searchPayload.consensus.reached, false, "consensus should safely remain closed on low-confidence local mock evidence");
-    assert.equal(searchPayload.answerMode, "evidence-only", "search should expose evidence-only mode");
-    assert.equal(searchPayload.answer, null, "search should suppress synthesized answer under low-confidence evidence");
-    
-    assert.equal(searchPayload.retrievalMode, "graph-core", "search should report graph-core retrieval intent");
+    assert.equal(
+      searchPayload.consensus.reached,
+      false,
+      "consensus should safely remain closed on low-confidence local mock evidence"
+    );
+    assert.equal(
+      searchPayload.answerMode,
+      "evidence-only",
+      "search should expose evidence-only mode"
+    );
+    assert.equal(
+      searchPayload.answer,
+      null,
+      "search should suppress synthesized answer under low-confidence evidence"
+    );
+
+    assert.equal(
+      searchPayload.retrievalMode,
+      "graph-core",
+      "search should report graph-core retrieval intent"
+    );
     assert.equal(
       searchPayload.consensus.reason,
       "insufficient-confidence",
@@ -89,19 +127,43 @@ async function main() {
       })
     });
 
-    assert.equal(genkitRerankSearchResponse.status, 200, "search with genkit-score rerankMode should succeed");
+    assert.equal(
+      genkitRerankSearchResponse.status,
+      200,
+      "search with genkit-score rerankMode should succeed"
+    );
     const genkitRerankPayload = await genkitRerankSearchResponse.json();
-    assert.equal(genkitRerankPayload.consensus.reached, false, "consensus should remain closed on genkit-score low-confidence evidence");
+    assert.equal(
+      genkitRerankPayload.consensus.reached,
+      false,
+      "consensus should remain closed on genkit-score low-confidence evidence"
+    );
     assert.equal(
       genkitRerankPayload.consensus.reason,
       "insufficient-confidence",
       "genkit-score search should report insufficient-confidence status"
     );
-    assert.ok(genkitRerankPayload.results.length > 0, "genkit-score search should return ranked results");
+    assert.ok(
+      genkitRerankPayload.results.length > 0,
+      "genkit-score search should return ranked results"
+    );
+
+    const statsResponse = await fetch(`${baseUrl}/v1/admin/rag/stats?tenantId=demo`);
+    const statsPayload = await statsResponse.json();
+    assert.equal(
+      statsPayload.documentCount,
+      2,
+      "tenant-scoped admin stats should reflect the store"
+    );
 
     const healthResponse = await fetch(`${baseUrl}/v1/health`);
     const healthPayload = await healthResponse.json();
-    assert.equal(healthPayload.rag.documentCount, 2, "health should reflect rag store stats");
+    assert.equal(healthResponse.status, 200, "cheap public health should stay available");
+    assert.equal(
+      healthPayload.rag.documentCount,
+      null,
+      "public health should not scan tenant collections"
+    );
 
     console.log("RAG smoke test passed");
     console.log(

@@ -6,7 +6,9 @@ import {
   corpusGames,
   corpusMeta,
   corpusVectorDimension,
+  corpusVectorDocCount,
   formatCorpusTimecode,
+  hasCorpusVector,
   searchCorpus,
   similarDocs,
   tokenizeQuery
@@ -19,6 +21,13 @@ describe("bundled corpus", () => {
     expect(corpusMeta.docCount).toBeGreaterThan(0);
     expect(corpusMeta.embeddingModel).toBe("text-embedding-3-small");
     expect(corpusVectorDimension).toBe(corpusMeta.dimension);
+    expect(corpusVectorDocCount).toBe(corpusMeta.vectorDocCount);
+  });
+
+  it("keeps at least one searchable document paired to every analysed video", () => {
+    for (const game of corpusGames) {
+      expect(corpusDocs.some((doc) => doc.videoId === game.id)).toBe(true);
+    }
   });
 
   it("keeps every document attached to a game in the same file", () => {
@@ -31,13 +40,7 @@ describe("bundled corpus", () => {
 
 describe("query tokenizer", () => {
   it("splits Latin, digits and Hangul runs so Korean queries can match", () => {
-    expect(tokenizeQuery("boss HP 50 위협 구간")).toEqual([
-      "boss",
-      "hp",
-      "50",
-      "위협",
-      "구간"
-    ]);
+    expect(tokenizeQuery("boss HP 50 위협 구간")).toEqual(["boss", "hp", "50", "위협", "구간"]);
   });
 
   it("drops punctuation and deduplicates", () => {
@@ -99,6 +102,16 @@ describe("vector similarity", () => {
       expect(score).toBeLessThan(1.0001);
     }
     expect(scores[0]).toBeGreaterThan(0);
+  });
+
+  it("does not invent vectors or offer vector actions for lexical fallback documents", () => {
+    const vectorDocument = corpusDocs[0]!;
+    const fallback = corpusDocs[corpusVectorDocCount]!;
+
+    expect(hasCorpusVector(vectorDocument.id)).toBe(true);
+    expect(fallback).toBeDefined();
+    expect(hasCorpusVector(fallback.id)).toBe(false);
+    expect(similarDocs(fallback.id)).toEqual([]);
   });
 
   it("returns an empty list for an unknown document instead of throwing", () => {

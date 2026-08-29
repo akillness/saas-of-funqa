@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { initializeApp, cert, getApps, getApp, type App } from "firebase-admin/app";
 import { getFirestore, type Firestore } from "firebase-admin/firestore";
+import { getStorage, type Storage } from "firebase-admin/storage";
 import { config } from "./config.js";
 
 export function getFirebaseApp(): App {
@@ -19,6 +20,7 @@ export function getFirebaseApp(): App {
 }
 
 let firestoreInstance: Firestore | undefined;
+let storageInstance: Storage | undefined;
 
 export function db(): Firestore {
   if (!firestoreInstance) {
@@ -27,4 +29,9 @@ export function db(): Firestore {
   }
 
   return firestoreInstance;
+}
+
+export function storage(): Storage {
+  if (!storageInstance) storageInstance = getStorage(getFirebaseApp());
+  return storageInstance;
 }

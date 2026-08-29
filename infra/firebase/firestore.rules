@@ -2,9 +2,10 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // ── Existing: Tenant provider keys ───────────────────────────
+    // Server-owned encrypted credentials. Only the Admin SDK may access them;
+    // signed-in browser clients must never read ciphertext or mutate records.
     match /tenantProviderKeys/{document=**} {
-      allow read, write: if request.auth != null;
+      allow read, write: if false;
     }
 
     // ── EGLab Blog: User profiles ─────────────────────────────────

@@ -1,5 +1,7 @@
 # Ralph Page Fix 2026-05-22
 
+> **Status: superseded on 2026-08-29.** This is a historical implementation record, not a current route requirement. The Ralph page and navigation entry were intentionally retired when FunQA consolidated on paired multimodal video QA and removed unused product surfaces during the ponytail pass. The active workflow seed is `.ouroboros/seeds/seed_funqa_multimodal_scene_search_20260829.yaml`; the product route is `/scene-search`.
+
 ## Problem
 
 The user reported that the Ralph page is not working. Search through the web app found no existing `/ralph` route, so the most direct failure mode is a missing App Router page causing a 404.

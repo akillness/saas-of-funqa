@@ -1,4 +1,5 @@
 <!-- rtk-instructions v2 -->
+
 # RTK (Rust Token Killer) - Token-Optimized Commands
 
 ## Golden Rule
@@ -6,6 +7,7 @@
 **Always prefix commands with `rtk`**. If RTK has a dedicated filter, it uses it. If not, it passes through unchanged. This means RTK is always safe to use.
 
 **Important**: Even in command chains with `&&`, use `rtk`:
+
 ```bash
 # ❌ Wrong
 git add . && git commit -m "msg" && git push
@@ -17,6 +19,7 @@ rtk git add . && rtk git commit -m "msg" && rtk git push
 ## RTK Commands by Workflow
 
 ### Build & Compile (80-90% savings)
+
 ```bash
 rtk cargo build         # Cargo build output
 rtk cargo check         # Cargo check output
@@ -28,6 +31,7 @@ rtk next build          # Next.js build with route metrics (87%)
 ```
 
 ### Test (60-99% savings)
+
 ```bash
 rtk cargo test          # Cargo test failures only (90%)
 rtk go test             # Go test failures only (90%)
@@ -41,6 +45,7 @@ rtk test <cmd>          # Generic test wrapper - failures only
 ```
 
 ### Git (59-80% savings)
+
 ```bash
 rtk git status          # Compact status
 rtk git log             # Compact log (works with all git flags)
@@ -59,6 +64,7 @@ rtk git worktree        # Compact worktree
 Note: Git passthrough works for ALL subcommands, even those not explicitly listed.
 
 ### GitHub (26-87% savings)
+
 ```bash
 rtk gh pr view <num>    # Compact PR view (87%)
 rtk gh pr checks        # Compact PR checks (79%)
@@ -68,6 +74,7 @@ rtk gh api              # Compact API responses (26%)
 ```
 
 ### JavaScript/TypeScript Tooling (70-90% savings)
+
 ```bash
 rtk pnpm list           # Compact dependency tree (70%)
 rtk pnpm outdated       # Compact outdated packages (80%)
@@ -78,6 +85,7 @@ rtk prisma              # Prisma without ASCII art (88%)
 ```
 
 ### Files & Search (60-75% savings)
+
 ```bash
 rtk ls <path>           # Tree format, compact (65%)
 rtk read <file>         # Code reading with filtering (60%)
@@ -86,6 +94,7 @@ rtk find <pattern>      # Find grouped by directory (70%)
 ```
 
 ### Analysis & Debug (70-90% savings)
+
 ```bash
 rtk err <cmd>           # Filter errors only from any command
 rtk log <file>          # Deduplicated logs with counts
@@ -97,6 +106,7 @@ rtk diff                # Ultra-compact diffs
 ```
 
 ### Infrastructure (85% savings)
+
 ```bash
 rtk docker ps           # Compact container list
 rtk docker images       # Compact image list
@@ -106,12 +116,14 @@ rtk kubectl logs        # Deduplicated pod logs
 ```
 
 ### Network (65-70% savings)
+
 ```bash
 rtk curl <url>          # Compact HTTP responses (70%)
 rtk wget <url>          # Compact download output (65%)
 ```
 
 ### Meta Commands
+
 ```bash
 rtk gain                # View token savings statistics
 rtk gain --history      # View command history with savings
@@ -123,18 +135,19 @@ rtk init --global       # Add RTK to ~/.claude/CLAUDE.md
 
 ## Token Savings Overview
 
-| Category | Commands | Typical Savings |
-|----------|----------|-----------------|
-| Tests | vitest, playwright, cargo test | 90-99% |
-| Build | next, tsc, lint, prettier | 70-87% |
-| Git | status, log, diff, add, commit | 59-80% |
-| GitHub | gh pr, gh run, gh issue | 26-87% |
-| Package Managers | pnpm, npm, npx | 70-90% |
-| Files | ls, read, grep, find | 60-75% |
-| Infrastructure | docker, kubectl | 85% |
-| Network | curl, wget | 65-70% |
+| Category         | Commands                       | Typical Savings |
+| ---------------- | ------------------------------ | --------------- |
+| Tests            | vitest, playwright, cargo test | 90-99%          |
+| Build            | next, tsc, lint, prettier      | 70-87%          |
+| Git              | status, log, diff, add, commit | 59-80%          |
+| GitHub           | gh pr, gh run, gh issue        | 26-87%          |
+| Package Managers | pnpm, npm, npx                 | 70-90%          |
+| Files            | ls, read, grep, find           | 60-75%          |
+| Infrastructure   | docker, kubectl                | 85%             |
+| Network          | curl, wget                     | 65-70%          |
 
 Overall average: **60-90% token reduction** on common development operations.
+
 <!-- /rtk-instructions -->
 
 ## Prompt Knowledge Loop (Core Workflow Rule)
@@ -160,6 +173,7 @@ Overall average: **60-90% token reduction** on common development operations.
 This project has a graphify knowledge graph at graphify-out/.
 
 Rules:
+
 - Before answering architecture or codebase questions, read graphify-out/GRAPH_REPORT.md for god nodes and community structure
 - If graphify-out/wiki/index.md exists, navigate it instead of reading raw files
 - After modifying code, run `graphify update .` and read the refreshed `graphify-out/GRAPH_REPORT.md` before reporting architecture changes.
@@ -169,6 +183,7 @@ Rules:
 This project has a persistent LLM-maintained wiki at `knowledge/` which serves as the **Obsidian Vault Root**.
 
 Rules:
+
 - Read `knowledge/index.md` before any broad search or architecture question — it is the fastest path to relevant context
 - File durable answers, decisions, and reusable findings into `knowledge/wiki/` (queries → `queries/`, memos → `reports/`, entities → `entities/`, concepts → `concepts/`)
 - On every meaningful ingest: update the source summary under `knowledge/wiki/sources/`, touch affected synthesis pages, append to `knowledge/log.md`, and refresh `knowledge/index.md`
@@ -178,26 +193,26 @@ Rules:
 
 ## Game Studio Harness repository contract
 
-This repository runs one standing production cycle for the FunQA game-log search product. Studio evidence lives under `_workspace/current/`; prior-cycle evidence moves only to `_workspace/archive/<run-id>/` and is never edited or deleted. This prevents gate evidence from being replaced by a cleaner-looking rewrite.
+This repository runs the FunQA video-QA and paired-scene retrieval product. `_workspace/current/` contains immutable evidence from the retired 2026-08 game-log experiment; it is historical input, not the active product contract. Do not edit or cite those records as proof of the current release.
 
 ### Workspace and ownership
 
-- `_workspace/current/` is the only writable studio-artifact tree. Keep `intake/`, `design/`, `pm/`, `engineering/`, `qa/`, `ops/`, `ui/`, `production/`, `messages/`, and `retrospectives/` current.
+- Current release evidence lives in executable tests, `data/evals/`, `.ouroboros/seeds/`, and deployment receipts. Historical `_workspace/current/` records remain untouched until they are archived as a dedicated migration.
 - Every measured statement is labeled `[OBSERVED]`, `[INFERENCE]`, or `[TARGET]` and cites the repository-relative command or evidence path behind it.
-- Append-only decision and negotiation records use unique IDs. Re-read the tail before writing; never renumber prior entries.
-- `.runtime/**`, local model caches, generated concept output, `.env*`, and `saas-of-funqa-firebase-adminsdk-*.json` are machine-local or secret material. Never commit them or cite them as shared gate evidence.
+- `.runtime/**`, local model caches, generated concept output, live scenario reports, `.env*`, uploaded media, and `saas-of-funqa-firebase-adminsdk-*.json` are machine-local or secret material. Never commit them or cite them as shared gate evidence.
 
 ### Engine boundary
 
-FunQA is a web search product: Next.js/React renders the App Hosting surface, Express/Firebase Functions owns the HTTP trust boundary, CocoIndex owns incremental game-log indexing, PostgreSQL/pgvector owns searchable index state. Answer generation is dual-engine. Work from `skill://api-design`, `skill://design-system`, `skill://system-environment-setup`, `skill://genkit`, and `skill://firebase-cli`.
+FunQA is a video-QA search product: Next.js/React renders the App Hosting surface, Express/Firebase Functions owns the HTTP trust boundary, Firestore stores tenant-scoped scene documents, and private Firebase Storage objects hold extracted frames. Genkit provides captioning and grounded answer generation; Gemini Embedding 2 provides the single fused image-caption-analysis vector. Work from `skill://api-design`, `skill://design-system`, `skill://system-environment-setup`, `skill://genkit`, and `skill://firebase-cli`.
 
 - Keep the API path router → service → repository. Route handlers validate and translate; they do not own retrieval logic.
-- Presentation reads typed search responses but never mutates index state. Index updates happen through the CocoIndex service.
+- Presentation reads typed search responses but never mutates index state outside authenticated API calls.
+- Every indexed document must pair a video with its matching FunQA analysis. Original video files stay in the browser; only selected frame images, exact timecodes, and analysis evidence cross the API boundary.
+- Keep one reviewed multimodal embedding space: `gemini-embedding-2` at 1536 dimensions. Do not mix legacy text vectors into scene retrieval or silently fall back after a live provider failure.
+- Generated answers are optional and fail closed behind raw-score and competing-document gates. Search hits, provenance, and label-only limitations remain visible even when an answer is withheld.
+- The bundled legacy corpus is read-only reference data. Its 78 OpenAI text-vector documents may compare only with each other; 24 source-derived documents are lexical-only and must never be presented as vector-searchable.
+- The former Ralph page and game-log/CocoIndex/pgvector/Ollama product were retired on 2026-08-29. Historical specifications and `_workspace/current/` receipts document those releases but do not define current routes or dependencies.
 - Do not apply Unity or Unreal editor/asset guidance here; neither engine exists in this repository.
-- **Dual search engines, one wire protocol (Decision 004, 2026-08-11).** `GAME_LOG_SEARCH_ENGINE` selects `genkit` (in-process Gemini via Genkit over the embedded `sim-game-logs-v1` corpus, active production interim) or `local` (VM proxy to CocoIndex/pgvector/Ollama, the long-term target). Unset: `local` iff `GAME_LOG_SEARCH_SERVICE_URL` is set, else `genkit`. Both engines must emit the identical `game-log-search.v1` typed NDJSON frames and typed failure ownership — a broken engine is never hidden by silently switching engines at request time.
-- The Genkit engine reuses the frozen deterministic gate ported from `services/game-log-search` (`_genkit-engine.ts`): claim–evidence membership, untrusted-relation, supersedes, lexical-overlap, numeric-direction, and coverage rules. Changing gate semantics requires changing both engines and their tests together.
-- Local-model and CocoIndex integrations keep a kill switch (`GAME_LOG_SEARCH_ENGINE=genkit`) and deterministic evidence-only fallback so App Hosting stays usable when the future VM is not active.
-- VM activation uses local `build:` contexts for the API and CocoIndex containers. The systemd Compose command must build them (`--build`) or pull immutable prebuilt images before startup; `--no-build` on a fresh checkout leaves the service unavailable. Switching production back to the VM is config-only: set `GAME_LOG_SEARCH_ENGINE=local` + `GAME_LOG_SEARCH_SERVICE_URL` in `apphosting.yaml`.
 
 ### Asset generation
 
@@ -211,9 +226,10 @@ Editorial game-search imagery is generated only with `god-tibo-imagen` (`gti --d
 
 ### Verification
 
-- Core regression command: `npm run typecheck && npm run smoke:rag && npm run build:web`.
+- Core regression command: `npm run typecheck && npm test && npm run build:web && npm run build:functions && npm run smoke:rag && npm run smoke:functions`.
+- Scenario-source gate: `FUNQA_ARCHIVE_ROOT='<local paired archive>' npm run verify:scene-scenario-suite` must prove all 10 scenarios against the 9 video-analysis pairs. A manifest-only pass is not live retrieval proof.
 - Gate claims require a measured value, method, and evidence path. Missing evidence or any open S1 defect blocks PASS.
-- Leave `_workspace/current/production/task-manifest.md`, the project-local `llm-wiki` skill, `knowledge/index.md`, and the Graphify report current so the next session can resume without chat history.
+- Keep `README.md`, `data/evals/`, `.ouroboros/seeds/`, and executable verification scripts aligned with the deployed API.
 
 <!-- OMA:START — managed by oh-my-agent. Do not edit this block manually. -->
 
@@ -237,32 +253,32 @@ Editorial game-search imagery is generated only with `god-tibo-imagen` (`gti --d
 
 Prefer **serena MCP** tools over native find/grep when locating code — they are symbol-aware and faster on large repos. Fall back to native Read / Glob / Grep only when serena is unavailable or for plain file content reads.
 
-| Task | Preferred tool |
-|------|----------------|
-| Locate a symbol definition (class / function / variable) | `find_symbol` |
-| Find references / callers of a symbol | `find_referencing_symbols` |
-| Outline a file's top-level symbols | `get_symbols_overview` |
-| Pattern or regex search across the codebase | `search_for_pattern` |
-| Find a file by name | `find_file` |
-| List directory contents | `list_dir` |
+| Task                                                     | Preferred tool             |
+| -------------------------------------------------------- | -------------------------- |
+| Locate a symbol definition (class / function / variable) | `find_symbol`              |
+| Find references / callers of a symbol                    | `find_referencing_symbols` |
+| Outline a file's top-level symbols                       | `get_symbols_overview`     |
+| Pattern or regex search across the codebase              | `search_for_pattern`       |
+| Find a file by name                                      | `find_file`                |
+| List directory contents                                  | `list_dir`                 |
 
 ## Workflows
 
 Execute by naming the workflow in your prompt. Keywords are auto-detected via hooks.
 
-| Workflow | File | Description |
-|----------|------|-------------|
-| orchestrate | `orchestrate.md` | Parallel subagents + Review Loop |
-| work | `work.md` | Step-by-step with remediation loop |
-| ultrawork | `ultrawork.md` | 5-Phase Gate Loop (11 reviews) |
-| plan | `plan.md` | PM task breakdown |
-| brainstorm | `brainstorm.md` | Design-first ideation |
-| review | `review.md` | QA audit |
-| debug | `debug.md` | Root cause + minimal fix |
-| deepsec | `deepsec.md` | Drive `oma-deepsec` end-to-end (setup / scan / pr-review / matchers / triage) |
-| scm | `scm.md` | SCM + Git operations + Conventional Commits |
-| docs | `docs.md` | Documentation drift verify + sync |
-| recap | `recap.md` | Daily / period AI conversation recap |
+| Workflow    | File             | Description                                                                   |
+| ----------- | ---------------- | ----------------------------------------------------------------------------- |
+| orchestrate | `orchestrate.md` | Parallel subagents + Review Loop                                              |
+| work        | `work.md`        | Step-by-step with remediation loop                                            |
+| ultrawork   | `ultrawork.md`   | 5-Phase Gate Loop (11 reviews)                                                |
+| plan        | `plan.md`        | PM task breakdown                                                             |
+| brainstorm  | `brainstorm.md`  | Design-first ideation                                                         |
+| review      | `review.md`      | QA audit                                                                      |
+| debug       | `debug.md`       | Root cause + minimal fix                                                      |
+| deepsec     | `deepsec.md`     | Drive `oma-deepsec` end-to-end (setup / scan / pr-review / matchers / triage) |
+| scm         | `scm.md`         | SCM + Git operations + Conventional Commits                                   |
+| docs        | `docs.md`        | Documentation drift verify + sync                                             |
+| recap       | `recap.md`       | Daily / period AI conversation recap                                          |
 
 To execute: read and follow `.agents/workflows/{name}.md` step by step.
 
@@ -283,19 +299,19 @@ Deactivate: say "workflow done".
 
 Read the relevant file from `.agents/rules/` when working on matching code.
 
-| Rule | File | Scope |
-|------|------|-------|
-| backend | `.agents/rules/backend.md` | on request |
-| commit | `.agents/rules/commit.md` | on request |
-| database | `.agents/rules/database.md` | **/*.{sql,prisma} |
-| debug | `.agents/rules/debug.md` | on request |
-| design | `.agents/rules/design.md` | on request |
-| dev-workflow | `.agents/rules/dev-workflow.md` | on request |
-| frontend | `.agents/rules/frontend.md` | **/*.{tsx,jsx,css,scss} |
-| i18n-guide | `.agents/rules/i18n-guide.md` | always |
-| infrastructure | `.agents/rules/infrastructure.md` | **/*.{tf,tfvars,hcl} |
-| market | `.agents/rules/market.md` | on request |
-| mobile | `.agents/rules/mobile.md` | **/*.{dart,swift,kt} |
-| quality | `.agents/rules/quality.md` | on request |
+| Rule           | File                              | Scope                    |
+| -------------- | --------------------------------- | ------------------------ |
+| backend        | `.agents/rules/backend.md`        | on request               |
+| commit         | `.agents/rules/commit.md`         | on request               |
+| database       | `.agents/rules/database.md`       | \*_/_.{sql,prisma}       |
+| debug          | `.agents/rules/debug.md`          | on request               |
+| design         | `.agents/rules/design.md`         | on request               |
+| dev-workflow   | `.agents/rules/dev-workflow.md`   | on request               |
+| frontend       | `.agents/rules/frontend.md`       | \*_/_.{tsx,jsx,css,scss} |
+| i18n-guide     | `.agents/rules/i18n-guide.md`     | always                   |
+| infrastructure | `.agents/rules/infrastructure.md` | \*_/_.{tf,tfvars,hcl}    |
+| market         | `.agents/rules/market.md`         | on request               |
+| mobile         | `.agents/rules/mobile.md`         | \*_/_.{dart,swift,kt}    |
+| quality        | `.agents/rules/quality.md`        | on request               |
 
 <!-- OMA:END -->

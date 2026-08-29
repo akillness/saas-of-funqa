@@ -22,17 +22,18 @@ export function recordRequest(
 
 export function getMonitoringSummary() {
   const now = Date.now();
-  const day = records.filter(r => now - r.timestamp < 86_400_000);
-  const week = records.filter(r => now - r.timestamp < 604_800_000);
+  const day = records.filter((r) => now - r.timestamp < 86_400_000);
+  const week = records.filter((r) => now - r.timestamp < 604_800_000);
 
-  const successRate = day.length > 0
-    ? day.filter(r => !r.error).length / day.length
-    : 1.0;
+  const successRate = day.length > 0 ? day.filter((r) => !r.error).length / day.length : null;
 
-  const sortedLatency = [...day].map(r => r.latencyMs).sort((a, b) => a - b);
-  const p95 = sortedLatency.length > 0
-    ? sortedLatency[Math.floor(sortedLatency.length * 0.95)]
-    : 0;
+  const sortedLatency = [...day].map((r) => r.latencyMs).sort((a, b) => a - b);
+  const p95 =
+    sortedLatency.length > 0
+      ? sortedLatency[
+          Math.min(sortedLatency.length - 1, Math.ceil(sortedLatency.length * 0.95) - 1)
+        ]
+      : null;
 
   const totalTokens = day.reduce((s, r) => s + r.tokensUsed, 0);
   const totalSavings = day.reduce((s, r) => s + r.rerankTokenSavings, 0);
@@ -40,14 +41,15 @@ export function getMonitoringSummary() {
   const dailySavingsUsd = (totalSavings / 1000) * config.costPer1kTokens;
 
   return {
+    generatedAt: new Date(now).toISOString(),
+    scope: "instance" as const,
     dailyCostUsd: Math.round(dailyCostUsd * 100) / 100,
     dailySavingsUsd: Math.round(dailySavingsUsd * 100) / 100,
-    activeUsers: day.length, // proxy: requests today as active session count
-    successRate: Math.round(successRate * 1000) / 1000,
-    p95LatencyMs: Math.round(p95),
+    successRate: successRate === null ? null : Math.round(successRate * 1000) / 1000,
+    p95LatencyMs: p95 === null ? null : Math.round(p95),
     totalRequestsDay: day.length,
     totalRequestsWeek: week.length,
     totalTokensDay: totalTokens,
-    totalSavingsDay: totalSavings,
+    totalSavingsDay: totalSavings
   };
 }

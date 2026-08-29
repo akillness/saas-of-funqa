@@ -8,13 +8,19 @@ import {
   type RetrievedChunk,
   type RerankMode
 } from "@funqa/ai";
-import { getRagStore, resetRagStore, saveRagArtifacts, upsertRagArtifacts, deleteTenantRagArtifacts } from "@funqa/db";
+import {
+  getRagStore,
+  resetRagStore,
+  saveRagArtifacts,
+  upsertRagArtifacts,
+  deleteTenantRagArtifacts
+} from "@funqa/db";
 import type { IngestRequest, SearchRequest, SearchResponse } from "@funqa/contracts";
 import { config } from "../config.js";
-import { db } from "../firebase.js";
 import {
   getFirestoreRagChunkCount,
   getFirestoreRagChunks,
+  getFirestoreRagDocumentCount,
   getFirestoreRagDocuments,
   resetFirestoreRag,
   saveFirestoreRagArtifacts,
@@ -63,8 +69,6 @@ function resolveConfidence(
 
   return "low";
 }
-
-
 
 async function loadTenantArtifacts(tenantId: string): Promise<{
   documents: RagScopedDocument[];
@@ -120,13 +124,25 @@ export async function getRagInspectionChunks(tenantId: string): Promise<Embedded
 }
 
 export async function ingestDocuments(input: IngestRequest) {
-  const { extracted: extractedDocuments, embeddedChunks } = await pipelineDocuments(input.documents, input.tenantId);
+  const { extracted: extractedDocuments, embeddedChunks } = await pipelineDocuments(
+    input.documents,
+    input.tenantId
+  );
 
   let storeUpdatedAt: string;
   if (useFirestore) {
-    storeUpdatedAt = await saveFirestoreRagArtifacts(input.tenantId, extractedDocuments, embeddedChunks);
+    storeUpdatedAt = await saveFirestoreRagArtifacts(
+      input.tenantId,
+      extractedDocuments,
+      embeddedChunks
+    );
   } else {
-    const store = saveRagArtifacts(config.ragStorePath, input.tenantId, extractedDocuments, embeddedChunks);
+    const store = saveRagArtifacts(
+      config.ragStorePath,
+      input.tenantId,
+      extractedDocuments,
+      embeddedChunks
+    );
     storeUpdatedAt = store.updatedAt ?? new Date().toISOString();
   }
 
@@ -144,7 +160,10 @@ export async function ingestDocuments(input: IngestRequest) {
 }
 
 export async function ingestAdditionalDocuments(input: IngestRequest) {
-  const { extracted: extractedDocuments, embeddedChunks } = await pipelineDocuments(input.documents, input.tenantId);
+  const { extracted: extractedDocuments, embeddedChunks } = await pipelineDocuments(
+    input.documents,
+    input.tenantId
+  );
 
   let storeUpdatedAt: string;
   if (useFirestore) {
@@ -223,20 +242,25 @@ export async function searchDocuments(input: SearchRequest): Promise<SearchRespo
   const crag = {
     kept: finalReranked,
     filtered: [] as RetrievedChunk[],
-    confidence: finalReranked.length >= topK ? ("high" as const) : finalReranked.length > 0 ? ("medium" as const) : ("low" as const)
+    confidence:
+      finalReranked.length >= topK
+        ? ("high" as const)
+        : finalReranked.length > 0
+          ? ("medium" as const)
+          : ("low" as const)
   };
 
   const topRerankScore = pipeline.reranked[0]?.rerankScore ?? 0;
-  
+
   // Optimize lookup: O(1) key check rather than nested O(N) array scans
-  const documentById: Record<string, typeof pipeline.extracted[number]> = {};
+  const documentById: Record<string, (typeof pipeline.extracted)[number]> = {};
   for (const doc of pipeline.extracted) {
     documentById[doc.id] = doc;
   }
 
   const results = crag.kept.map((chunk, index) => {
     const matchedDocument = documentById[chunk.documentId];
-    const rerankScore = (chunk as typeof pipeline.reranked[0]).rerankScore ?? 0;
+    const rerankScore = (chunk as (typeof pipeline.reranked)[0]).rerankScore ?? 0;
     return {
       id: chunk.id,
       title: matchedDocument?.title ?? `Document ${chunk.documentId}`,
@@ -246,21 +270,18 @@ export async function searchDocuments(input: SearchRequest): Promise<SearchRespo
     };
   });
 
-  const consensusResult = evaluateConsensus(
-    input.query,
-    crag.kept,
-    pipeline.chunks,
-    {
-      threshold: config.consensusThreshold,
-      topK
-    }
-  );
+  const consensusResult = evaluateConsensus(input.query, crag.kept, {
+    threshold: config.consensusThreshold,
+    topK
+  });
   const consensus = {
     gate: "document-graph-consensus" as const,
     reached: consensusResult.reached,
     agreement: consensusResult.agreement,
     threshold: config.consensusThreshold,
-    reason: consensusResult.reached ? ("consensus-reached" as const) : ("insufficient-confidence" as const),
+    reason: consensusResult.reached
+      ? ("consensus-reached" as const)
+      : ("insufficient-confidence" as const),
     explanation: consensusResult.reached
       ? "Strong consensus reached based on highly-grounded lexical & semantic fusion scores."
       : "Graph-path retrieval is not wired, and document confidence is insufficient to prevent hallucination."
@@ -309,25 +330,38 @@ export async function searchDocuments(input: SearchRequest): Promise<SearchRespo
   return searchResult;
 }
 
-export async function getRagStats() {
+export async function getRagStats(tenantId?: string) {
   if (useFirestore) {
-    const [docsSnap, chunksSnap] = await Promise.all([
-      db().collectionGroup("docs").count().get(),
-      db().collectionGroup("chunks").count().get()
+    if (!tenantId) {
+      throw new FunQAError(
+        "invalid_request",
+        "tenantId is required to inspect the Firestore RAG store."
+      );
+    }
+    const [documentCount, chunkCount] = await Promise.all([
+      getFirestoreRagDocumentCount(tenantId),
+      getFirestoreRagChunkCount(tenantId)
     ]);
     return {
-      documentCount: docsSnap.data().count,
-      chunkCount: chunksSnap.data().count,
+      documentCount,
+      chunkCount,
       updatedAt: new Date().toISOString(),
-      tenants: [] as string[]
+      tenants: [tenantId]
     };
   }
 
   const store = getRagStore(config.ragStorePath);
-  const tenants = [...new Set(store.documents.map((document) => document.tenantId))];
+  const documents = tenantId
+    ? store.documents.filter((document) => document.tenantId === tenantId)
+    : store.documents;
+  const documentIds = new Set(documents.map((document) => document.id));
+  const chunks = tenantId
+    ? store.chunks.filter((chunk) => documentIds.has(chunk.documentId))
+    : store.chunks;
+  const tenants = [...new Set(documents.map((document) => document.tenantId))];
   return {
-    documentCount: store.documents.length,
-    chunkCount: store.chunks.length,
+    documentCount: documents.length,
+    chunkCount: chunks.length,
     updatedAt: store.updatedAt,
     tenants
   };
@@ -347,9 +381,9 @@ export async function clearRagStore(tenantId?: string) {
 
   if (useFirestore) {
     await resetFirestoreRag(tenantId);
-    return getRagStats();
+    return getRagStats(tenantId);
   }
 
   deleteTenantRagArtifacts(config.ragStorePath, tenantId);
-  return getRagStats();
+  return getRagStats(tenantId);
 }

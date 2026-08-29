@@ -1,23 +1,39 @@
 import { HealthResponseSchema } from "@funqa/contracts";
 import type { Express } from "express";
-import { getEmbeddingPath } from "@funqa/ai";
+import { getEmbeddingPath, LOCAL_EMBEDDING_DIMENSION } from "@funqa/ai";
 import { config } from "../config.js";
-import { getRagStats } from "../services/rag.service.js";
+import { getLiveModel } from "../genkit.js";
 
 export function registerHealthRoute(app: Express) {
   app.get("/v1/health", async (_req, res) => {
-    const stats = await getRagStats();
+    const genkitConfigured = Boolean(getLiveModel()) && config.liveEmbeddingsEnabled;
+    const liveConfigurationBroken = config.liveEmbeddingsEnabled && !genkitConfigured;
     const payload = HealthResponseSchema.parse({
-      status: "ok",
+      status: liveConfigurationBroken ? "error" : genkitConfigured ? "ok" : "warn",
       timestamp: new Date().toISOString(),
-      embeddingModel: config.liveEmbeddingsEnabled ? config.embeddingModelId : getEmbeddingPath("local"),
+      embeddingModel: config.liveEmbeddingsEnabled
+        ? config.embeddingModelId
+        : getEmbeddingPath("local"),
       rag: {
         storePath: config.ragStorePath,
-        documentCount: stats.documentCount,
-        chunkCount: stats.chunkCount
+        documentCount: null,
+        chunkCount: null
+      },
+      scene: {
+        status: genkitConfigured || !config.liveEmbeddingsEnabled ? "ready" : "degraded",
+        executionMode: config.liveEmbeddingsEnabled ? "live-genkit" : "deterministic-local",
+        genkitConfigured,
+        captionModel: genkitConfigured ? config.geminiModelId : null,
+        embeddingModel: config.liveEmbeddingsEnabled
+          ? config.embeddingModelId
+          : getEmbeddingPath("local"),
+        embeddingDimension: config.liveEmbeddingsEnabled
+          ? config.embeddingOutputDimensionality
+          : LOCAL_EMBEDDING_DIMENSION,
+        storePath: config.sceneStorePath
       }
     });
 
-    res.json(payload);
+    res.status(liveConfigurationBroken ? 503 : 200).json(payload);
   });
 }

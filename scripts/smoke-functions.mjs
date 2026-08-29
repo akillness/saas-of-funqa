@@ -1,8 +1,7 @@
 import assert from "node:assert/strict";
 
 const baseUrl =
-  process.env.FUNQA_FUNCTIONS_BASE_URL ??
-  "http://127.0.0.1:5001/saas-of-funqa/asia-northeast3/api";
+  process.env.FUNQA_FUNCTIONS_BASE_URL ?? "http://127.0.0.1:5001/saas-of-funqa/asia-northeast3/api";
 
 async function request(path, init) {
   const response = await fetch(`${baseUrl}${path}`, {
@@ -17,8 +16,16 @@ async function request(path, init) {
 }
 
 async function main() {
-  const resetResponse = await request("/v1/admin/rag/reset", { method: "POST" });
-  assert.equal(resetResponse.status, 200, "reset should succeed through the function endpoint");
+  const resetResponse = await request("/v1/admin/rag/reset", {
+    method: "POST",
+    body: JSON.stringify({ tenantId: "demo" })
+  });
+  const resetFailure = resetResponse.status === 200 ? "" : await resetResponse.clone().text();
+  assert.equal(
+    resetResponse.status,
+    200,
+    `reset should succeed through the function endpoint${resetFailure ? `: ${resetFailure}` : ""}`
+  );
 
   const ingestResponse = await request("/v1/ingest", {
     method: "POST",
@@ -27,13 +34,11 @@ async function main() {
       documents: [
         {
           id: "pricing-policy",
-          text:
-            "FunQA pricing policy keeps free search for up to one hundred source documents. Admin users can rotate provider keys from the admin console."
+          text: "FunQA pricing policy keeps free search for up to one hundred source documents. Admin users can rotate provider keys from the admin console."
         },
         {
           id: "firebase-runtime",
-          text:
-            "The Firebase Functions runtime stores demo RAG artifacts in Firestore so the serverless API remains stateful across requests."
+          text: "The Firebase Functions runtime stores demo RAG artifacts in Firestore so the serverless API remains stateful across requests."
         }
       ]
     })
@@ -54,9 +59,21 @@ async function main() {
 
   assert.equal(searchResponse.status, 200, "search should succeed through the function endpoint");
   const searchPayload = await searchResponse.json();
-  assert.equal(searchPayload.answerMode, "evidence-only", "search should expose evidence-only mode");
-  assert.equal(searchPayload.answer, null, "search should suppress synthesized prose until consensus passes");
-  assert.equal(searchPayload.consensus.reached, false, "consensus should remain closed in the scaffold");
+  assert.equal(
+    searchPayload.answerMode,
+    "evidence-only",
+    "search should expose evidence-only mode"
+  );
+  assert.equal(
+    searchPayload.answer,
+    null,
+    "search should suppress synthesized prose until consensus passes"
+  );
+  assert.equal(
+    searchPayload.consensus.reached,
+    false,
+    "consensus should remain closed in the scaffold"
+  );
   assert.ok(searchPayload.citations.length > 0, "citations should be present");
 
   const inspectResponse = await request("/v1/rag/inspect", {
@@ -68,6 +85,64 @@ async function main() {
   });
 
   assert.equal(inspectResponse.status, 200, "rag inspect should succeed in Firestore mode");
+
+  await request("/v1/scenes/documents/smoke-video?tenantId=demo", { method: "DELETE" });
+  const sceneIngestResponse = await request("/v1/scenes/ingest", {
+    method: "POST",
+    body: JSON.stringify({
+      tenantId: "demo",
+      document: {
+        id: "smoke-video",
+        title: "Storage smoke video",
+        mimeType: "video/mp4",
+        durationSec: 2
+      },
+      frames: [
+        {
+          timecodeSec: 1,
+          imageDataUrl:
+            "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
+        }
+      ]
+    })
+  });
+  assert.equal(
+    sceneIngestResponse.status,
+    201,
+    "scene ingest should write a private Storage frame"
+  );
+
+  const sceneListAfterIngest = await request("/v1/scenes/documents?tenantId=demo");
+  assert.equal(sceneListAfterIngest.status, 200, "scene list should read the tenant counter");
+  assert.equal(
+    (await sceneListAfterIngest.json()).totalScenes,
+    1,
+    "transactional tenant counter should include the ingested frame"
+  );
+
+  const sceneSearchResponse = await request("/v1/scenes/search", {
+    method: "POST",
+    body: JSON.stringify({ tenantId: "demo", query: "storage smoke video", topK: 1 })
+  });
+  assert.equal(sceneSearchResponse.status, 200, "scene search should read the stored frame");
+  const sceneSearchPayload = await sceneSearchResponse.json();
+  assert.equal(sceneSearchPayload.results.length, 1, "the stored scene should be searchable");
+  assert.match(sceneSearchPayload.results[0].imageDataUrl, /^data:image\/png;base64,/);
+
+  const sceneDeleteResponse = await request("/v1/scenes/documents/smoke-video?tenantId=demo", {
+    method: "DELETE"
+  });
+  assert.equal(
+    sceneDeleteResponse.status,
+    200,
+    "scene delete should remove metadata and frame object"
+  );
+  const sceneListAfterDelete = await request("/v1/scenes/documents?tenantId=demo");
+  assert.equal(
+    (await sceneListAfterDelete.json()).totalScenes,
+    0,
+    "transactional tenant counter should decrement after deletion"
+  );
 
   const creatorBundleResponse = await request("/v1/creator-ingest-bundle", {
     method: "POST",
@@ -193,7 +268,11 @@ async function main() {
   assert.equal(analysesResponse.status, 200, "video analyses listing should succeed");
   const analysesPayload = await analysesResponse.json();
   assert.equal(analysesPayload.totalCount, 1, "video analyses should include the seeded record");
-  assert.equal(analysesPayload.summary.uploadedCount, 1, "uploaded summary should reflect seeded status");
+  assert.equal(
+    analysesPayload.summary.uploadedCount,
+    1,
+    "uploaded summary should reflect seeded status"
+  );
   assert.equal(analysesPayload.analyses[0].analysisId, "analysis-1");
 
   const analysisDetailResponse = await request(
@@ -203,9 +282,7 @@ async function main() {
   const analysisDetailPayload = await analysisDetailResponse.json();
   assert.equal(analysisDetailPayload.analysis.filename, "creator-weekly.mp4");
 
-  const latestGuideResponse = await request(
-    "/v1/monetization-guides/latest?tenantId=creator-demo"
-  );
+  const latestGuideResponse = await request("/v1/monetization-guides/latest?tenantId=creator-demo");
   assert.equal(latestGuideResponse.status, 200, "latest monetization guide should succeed");
   const latestGuidePayload = await latestGuideResponse.json();
   assert.equal(latestGuidePayload.latestPublishedGuide.version, "guide-v1");
@@ -220,11 +297,24 @@ async function main() {
   });
   assert.equal(latestSourcesResponse.status, 200, "latest monetization sources should succeed");
   const latestSourcesPayload = await latestSourcesResponse.json();
-  assert.equal(latestSourcesPayload.sources.length, 1, "latest sources should include the seeded source");
+  assert.equal(
+    latestSourcesPayload.sources.length,
+    1,
+    "latest sources should include the seeded source"
+  );
   assert.equal(
     latestSourcesPayload.priorGuideSourceInventories.length,
     1,
     "source inventories should include the seeded guide inventory"
+  );
+
+  const ragStatsResponse = await request("/v1/admin/rag/stats?tenantId=demo");
+  assert.equal(ragStatsResponse.status, 200, "tenant RAG stats should succeed");
+  const ragStatsPayload = await ragStatsResponse.json();
+  assert.equal(
+    ragStatsPayload.documentCount,
+    2,
+    "RAG stats must not count sceneDocuments/{tenant}/docs"
   );
 
   const healthResponse = await request("/v1/health");
@@ -235,9 +325,10 @@ async function main() {
       healthPayload.rag.storePath.endsWith(".runtime/rag-store.json"),
     "functions runtime should expose a valid Firestore or local emulator store path"
   );
-  assert.ok(
-    healthPayload.rag.documentCount >= 2,
-    "health should reflect persisted Firestore-backed documents"
+  assert.equal(
+    healthPayload.rag.documentCount,
+    null,
+    "public health should not run collection-wide count queries"
   );
 
   // ── Monitoring Summary Test ──────────────────────────────────
@@ -246,9 +337,15 @@ async function main() {
   assert.equal(monitoringResponse.status, 200, "monitoring summary should succeed");
   const monitoringPayload = await monitoringResponse.json();
   assert.equal(typeof monitoringPayload.dailyCostUsd, "number", "dailyCostUsd must be a number");
-  assert.equal(typeof monitoringPayload.activeUsers, "number", "activeUsers must be a number");
-  assert.equal(typeof monitoringPayload.successRate, "number", "successRate must be a number");
-  assert.equal(typeof monitoringPayload.p95LatencyMs, "number", "p95LatencyMs must be a number");
+  assert.ok(
+    monitoringPayload.successRate === null || typeof monitoringPayload.successRate === "number",
+    "successRate must be a number or null when no completed request exists"
+  );
+  assert.ok(
+    monitoringPayload.p95LatencyMs === null || typeof monitoringPayload.p95LatencyMs === "number",
+    "p95LatencyMs must be a number or null when no latency sample exists"
+  );
+  assert.equal(monitoringPayload.scope, "instance", "monitoring scope must be explicit");
 
   // ── Provider Keys Tests ─────────────────────────────────────────
   console.log("Running Provider Keys smoke tests...");
@@ -318,13 +415,17 @@ async function main() {
   assert.equal(getWikiResponse.status, 200, "GET wiki entry should succeed");
   const getWikiResult = await getWikiResponse.json();
   assert.equal(getWikiResult.id, "test-concept-1", "id should match in fetched wiki entry");
-  assert.equal(getWikiResult.content, "Consensus requires 90% or higher agreement among RAG source documents.", "content should match");
+  assert.equal(
+    getWikiResult.content,
+    "Consensus requires 90% or higher agreement among RAG source documents.",
+    "content should match"
+  );
 
   const queryWikiResponse = await request("/v1/wiki/concept");
   assert.equal(queryWikiResponse.status, 200, "GET wiki entries by type should succeed");
   const queryWikiResult = await queryWikiResponse.json();
   assert.ok(Array.isArray(queryWikiResult), "query result should be an array");
-  const foundEntry = queryWikiResult.find(e => e.id === "test-concept-1");
+  const foundEntry = queryWikiResult.find((e) => e.id === "test-concept-1");
   assert.ok(foundEntry, "seeded entry should be found in query list");
 
   const deleteWikiResponse = await request("/v1/wiki/concept/test-concept-1", {

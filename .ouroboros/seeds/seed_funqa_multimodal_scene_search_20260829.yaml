@@ -1,0 +1,75 @@
+goal: >-
+  Replace text-only and mock scene retrieval with a production Genkit scene-search
+  path that pairs all nine real FunQA videos with their matching analysis JSON,
+  indexes fused Gemini Embedding 2 image-caption-evidence vectors, and returns only
+  scene-cited answers.
+task_type: code
+brownfield_context:
+  project_type: brownfield
+  context_references:
+    - path: data/자료 (1)/video
+      role: private-input
+      summary: Nine real, gitignored source videos
+    - path: data/자료 (1)/영상 9편 분석 결과
+      role: private-input
+      summary: One verified analysis JSON for each source video
+    - path: data/evals/scene-search-scenarios.json
+      role: primary
+      summary: Authoritative ten-scenario retrieval contract
+  existing_dependencies:
+    - Genkit
+    - Firebase Functions
+    - Firestore
+    - Firebase App Hosting
+    - gemini-embedding-2
+constraints:
+  - The authenticated Firebase uid is the tenant boundary; caller tenant ids are never trusted.
+  - The GA model id is gemini-embedding-2 with 1536 output dimensions.
+  - Gemini Embedding 2 task intent uses documented string prefixes because taskType is unsupported.
+  - Every production scene vector is one fused text-plus-image embedding in a single declared space.
+  - Paired frames preserve analysis file, video id, video filename, source mode, exact time window, labels, and label-only status.
+  - All nine video-analysis pairs must be represented; mode P events without prose remain honest label metadata instead of fabricated observations.
+  - Grounded answers require one or more citations to returned scene ids; unsupported or unavailable generation is withheld.
+  - Legacy, local, wrong-model, wrong-dimension, and non-fused scenes are excluded and counted as unscoreable.
+  - Raw videos, extracted frame files, data URLs, credentials, and runtime stores are never committed.
+  - Deployed frame bytes live in private Firebase Storage objects; Firestore stores only metadata, one fused vector, and the object path.
+  - Production push and deployment require the final confirmation gate.
+acceptance_criteria:
+  - description: The single authoritative manifest has exactly ten cases, covers all nine videos, and pins source-derived selected-frame coordinates.
+    verify_command: FUNQA_ARCHIVE_ROOT='data/자료 (1)' npm run verify:scene-scenario-suite
+    output_assertion: 10 scenarios and 9 paired video/analysis sources pass
+  - description: Gemini Embedding 2 requests use retrieval prefixes, omit taskType for v2, send real inline image data, and fail loudly under explicit live mode.
+    verify_command: npx vitest run packages/ai/src/pipelines/embed.test.ts
+    output_assertion: all tests pass
+  - description: Paired analysis parsing supports mode T and mode P, rejects cross-video pairs, and spreads frame evidence deterministically.
+    verify_command: npx vitest run apps/web/lib/funqa-analysis.test.ts apps/web/lib/video-frames.test.ts
+    output_assertion: all tests pass
+  - description: Trust boundaries, persistence, grounded-answer citations, and structured scene operations pass unit and route tests.
+    verify_command: npm test
+    output_assertion: all tests pass
+  - description: TypeScript, both production bundles, local RAG, and the Firestore/Storage frame lifecycle complete without generated-file drift.
+    verify_command: npm run typecheck && npm run build:functions && npm run build:web && npm run smoke:rag && npm run smoke:functions
+    output_assertion: all commands exit zero
+  - description: All ten live post-deploy searches return the expected funqa document and a scene timestamp inside the inclusive window.
+    verify_command: npm run verify:scene-scenarios -- --report reports/scene-search-live.json
+    output_assertion: 10/10 grounded scenarios passed
+exit_conditions:
+  - name: mechanical
+    criteria: unit, typecheck, functions build, and web build all pass
+  - name: semantic
+    criteria: ten of ten live paired-data scenarios pass
+  - name: deployed
+    criteria: confirmed main push, Functions deployment, App Hosting rollout, anonymous health check, and authenticated scene check are verified
+metadata:
+  seed_id: seed_funqa_multimodal_scene_search_20260829
+  version: 1.1.0
+  created_at: "2026-08-29T13:20:00Z"
+  source_interview_id: interview_1d5362214dee41af
+  source_auto_session_id: auto_42ac90044121
+  ambiguity_score: 0.125
+  qa_note: >-
+    Ouroboros generated the interview and seed but its automatic QA adapter selected
+    an unsupported gemini-2.5-pro runtime. This corrected seed removes three unrelated
+    game-loop criteria injected by that failed QA pass while preserving the accepted
+    interview decisions. Version 1.1 records the later Ponytail decision to remove the
+    duplicate manifest mirror and the review decision to move frame bytes to Storage.

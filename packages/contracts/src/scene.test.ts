@@ -1,8 +1,10 @@
 import { describe, expect, it } from "vitest";
 import {
   SCENE_INGEST_MAX_FRAMES,
+  SceneDocumentDeleteResponseSchema,
   SceneFrameInputSchema,
   SceneIngestRequestSchema,
+  SceneIngestResponseSchema,
   SceneSearchRequestSchema,
   SceneSearchResponseSchema
 } from "./scene";
@@ -51,6 +53,34 @@ describe("SceneFrameInputSchema", () => {
 });
 
 describe("SceneIngestRequestSchema", () => {
+  it("accepts an authenticated-boundary payload without a client tenant id", () => {
+    expect(
+      SceneIngestRequestSchema.safeParse({
+        document: { title: "upload" },
+        frames: [{ timecodeSec: 0, imageDataUrl: dataUrlOfLength(100) }]
+      }).success
+    ).toBe(true);
+  });
+
+  it("rejects document ids that could escape a Firestore path segment", () => {
+    expect(
+      SceneIngestRequestSchema.safeParse({
+        document: { id: "other-tenant/video", title: "upload" },
+        frames: [{ timecodeSec: 0, imageDataUrl: dataUrlOfLength(100) }]
+      }).success
+    ).toBe(false);
+  });
+
+  it("rejects tenant ids that could escape a Firestore path segment", () => {
+    expect(
+      SceneIngestRequestSchema.safeParse({
+        tenantId: "other/workspace",
+        document: { title: "upload" },
+        frames: [{ timecodeSec: 0, imageDataUrl: dataUrlOfLength(100) }]
+      }).success
+    ).toBe(false);
+  });
+
   it("rejects more than SCENE_INGEST_MAX_FRAMES frames", () => {
     const frames = Array.from({ length: SCENE_INGEST_MAX_FRAMES + 1 }, (_, index) => ({
       timecodeSec: index,
@@ -71,8 +101,8 @@ describe("SceneSearchRequestSchema", () => {
     expect(result.success).toBe(false);
   });
 
-  it("accepts a text-only query", () => {
-    const result = SceneSearchRequestSchema.safeParse({ tenantId: "tenant-1", query: "combat scene" });
+  it("accepts an authenticated-boundary text query without a client tenant id", () => {
+    const result = SceneSearchRequestSchema.safeParse({ query: "combat scene" });
     expect(result.success).toBe(true);
   });
 
@@ -85,8 +115,50 @@ describe("SceneSearchRequestSchema", () => {
   });
 });
 
+describe("SceneIngestResponseSchema", () => {
+  it("requires runtime provenance and accepts grounded QA candidates", () => {
+    const result = SceneIngestResponseSchema.safeParse({
+      operationId: "018f1234-5678-7abc-8def-0123456789ab",
+      executionMode: "live-genkit",
+      durationMs: 742,
+      documentId: "video-1",
+      title: "real upload",
+      sceneCount: 1,
+      captions: [{ sceneId: "scene-1", timecodeSec: 3.5, caption: "전투 장면" }],
+      qaCandidates: [
+        {
+          id: "qa-1",
+          sceneId: "scene-1",
+          timecodeSec: 3.5,
+          title: "피격 피드백 검토",
+          severity: "major",
+          expectedCheck: "피격 시 시각 피드백이 동기화되는지 확인",
+          observedEvidence: "전투 장면",
+          rationale: "피격 상태가 보이는 프레임에 근거함"
+        }
+      ],
+      captionModel: "gemini-2.5-flash",
+      embeddingModel: "gemini-embedding-2",
+      embeddingMode: "live",
+      storeUpdatedAt: "2026-01-01T00:00:00.000Z"
+    });
+    expect(result.success).toBe(true);
+  });
+});
+
+describe("SceneDocumentDeleteResponseSchema", () => {
+  it("accepts an idempotent document deletion result", () => {
+    expect(
+      SceneDocumentDeleteResponseSchema.parse({ documentId: "funqa-video", deletedScenes: 0 })
+    ).toEqual({ documentId: "funqa-video", deletedScenes: 0 });
+  });
+});
+
 describe("SceneSearchResponseSchema", () => {
   const baseResponse = {
+    operationId: "018f1234-5678-7abc-8def-0123456789ab",
+    executionMode: "live-genkit" as const,
+    durationMs: 12,
     queryMode: "text" as const,
     queryText: "combat scene",
     queryCaptions: [],

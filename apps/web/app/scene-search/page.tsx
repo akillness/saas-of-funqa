@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 type SceneSearchPageProps = {
   searchParams?: Promise<{
     lang?: string;
-    tenant?: string;
+    q?: string;
   }>;
 };
 
@@ -20,14 +20,13 @@ export default async function SceneSearchPage({ searchParams }: SceneSearchPageP
   const params = await searchParams;
   const locale = params?.lang ? resolveLocale(params.lang) : await getRequestLocale();
   const t = getDictionary(locale);
-  const tenantId = params?.tenant?.trim() || "demo";
 
   return (
     <SceneSearchClient
+      initialQuery={params?.q?.trim() ?? ""}
       locale={locale}
       loginHref={withLocale("/login", locale)}
       t={t.sceneLab}
-      tenantId={tenantId}
     />
   );
 }

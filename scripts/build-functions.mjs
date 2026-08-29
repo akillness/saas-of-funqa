@@ -37,9 +37,13 @@ await mkdir(outdir, { recursive: true });
 // ambient EMBEDDING_MODEL_ID cannot satisfy by accident.
 const PRODUCTION_EMBEDDING_MODEL_ID = "gemini-embedding-2";
 const PRODUCTION_EMBEDDING_OUTPUT_DIMENSION = "1536";
+const PRODUCTION_GENERATION_MODEL_ID = "gemini-2.5-flash";
+const PRODUCTION_CORS_ORIGINS = "https://saas-of-funqa--saas-of-funqa.us-east4.hosted.app";
+const PRODUCTION_STORAGE_BUCKET = "saas-of-funqa.firebasestorage.app";
 
-const embeddingModelId =
-  process.env.FUNCTIONS_EMBEDDING_MODEL_ID ?? PRODUCTION_EMBEDDING_MODEL_ID;
+const embeddingModelId = (
+  process.env.FUNCTIONS_EMBEDDING_MODEL_ID ?? PRODUCTION_EMBEDDING_MODEL_ID
+).replace(/^models\//, "");
 
 // Same reasoning as the model: an ambient EMBEDDING_OUTPUT_DIMENSION must not be
 // able to re-pin the runtime dimension, because scene.service.ts infers
@@ -49,19 +53,18 @@ const embeddingModelId =
 const embeddingOutputDimension =
   process.env.FUNCTIONS_EMBEDDING_OUTPUT_DIMENSION ?? PRODUCTION_EMBEDDING_OUTPUT_DIMENSION;
 
-// Scene Search needs image embedding. Fail the build rather than ship a
-// text-only model that degrades retrieval silently at runtime.
-const TEXT_ONLY_EMBEDDING_MODELS = new Set(["gemini-embedding-001"]);
-if (TEXT_ONLY_EMBEDDING_MODELS.has(embeddingModelId)) {
+// Every stored/query vector must come from the reviewed multimodal space.
+// Reject arbitrary model ids at build time instead of discovering a text-only
+// or incompatible override after a paid ingest has started.
+if (embeddingModelId !== PRODUCTION_EMBEDDING_MODEL_ID) {
   console.error(
-    `[build-functions] Refusing to build: embedding model "${embeddingModelId}" is text-only ` +
-      `and cannot embed images, which breaks Scene Search multimodal retrieval. ` +
-      `Use a multimodal model (e.g. ${PRODUCTION_EMBEDDING_MODEL_ID}).`
+    `[build-functions] Refusing to build: embedding model "${embeddingModelId}" is not the ` +
+      `required multimodal model ${PRODUCTION_EMBEDDING_MODEL_ID}.`
   );
   process.exit(1);
 }
 
-// Live-probed supported values for gemini-embedding-2 / -2-preview.
+// Live-probed supported values for the GA gemini-embedding-2 model.
 // 4096 returns 400 INVALID_ARGUMENT; omitting the field defaults to 3072.
 const SUPPORTED_EMBEDDING_DIMENSIONS = new Set(["128", "256", "768", "1536", "2048", "3072"]);
 if (!SUPPORTED_EMBEDDING_DIMENSIONS.has(embeddingOutputDimension)) {
@@ -81,6 +84,14 @@ const functionEnv = {
   // Previously absent from this allowlist entirely, so deploy.yml's value never
   // reached the Functions runtime.
   EMBEDDING_OUTPUT_DIMENSION: embeddingOutputDimension,
+  GEMINI_MODEL_ID: process.env.FUNCTIONS_GEMINI_MODEL_ID ?? PRODUCTION_GENERATION_MODEL_ID,
+  CORS_ALLOWED_ORIGINS: process.env.FUNCTIONS_CORS_ALLOWED_ORIGINS ?? PRODUCTION_CORS_ORIGINS,
+  // FIREBASE_* names are reserved by the Functions dotenv loader.
+  SCENE_STORAGE_BUCKET:
+    process.env.FUNCTIONS_SCENE_STORAGE_BUCKET ?? PRODUCTION_STORAGE_BUCKET,
+  // Admin identity is deployment-owned rather than committed. Use a custom
+  // Firebase admin claim when this explicit allowlist is omitted.
+  ADMIN_EMAILS: process.env.FUNCTIONS_ADMIN_EMAILS,
   RAG_LIVE_EMBEDDINGS: process.env.RAG_LIVE_EMBEDDINGS,
   SEARCH_TOP_K: process.env.SEARCH_TOP_K
 };

@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Suspense } from "react";
 import { LocaleSwitcher } from "./locale-switcher";
 import { FirebaseAnalytics } from "./firebase-analytics";
 import { AuthProvider } from "@/components/auth-provider";
 import { NavAuth } from "@/components/nav-auth";
-import { CategoryTabBar } from "@/components/category-tab-bar";
-import { BookIcon, CorpusIcon, FilmIcon, FlaskIcon, HomeIcon, LayersIcon, SearchIcon, ShieldIcon } from "@/components/menu-icons";
+import {
+  BookIcon,
+  CorpusIcon,
+  FilmIcon,
+  FlaskIcon,
+  HomeIcon,
+  LayersIcon,
+  ShieldIcon
+} from "@/components/menu-icons";
 import { getDictionary, withLocale } from "../lib/i18n";
 import { getRequestLocale } from "../lib/i18n-server";
 import "./globals.css";
@@ -41,13 +47,12 @@ export default async function RootLayout({
   const t = getDictionary(locale);
   const navItems = [
     { href: "/", label: t.layout.nav.overview, Icon: HomeIcon },
-    { href: "/search", label: t.layout.nav.search, Icon: SearchIcon },
     { href: "/scene-search", label: t.layout.nav.sceneLab, Icon: FilmIcon },
     { href: "/vector-index", label: t.layout.nav.vectorIndex, Icon: LayersIcon },
     { href: "/corpus", label: t.layout.nav.corpus, Icon: CorpusIcon },
     { href: "/rag-lab", label: t.layout.nav.ragLab, Icon: FlaskIcon },
     { href: "/admin", label: t.layout.nav.admin, Icon: ShieldIcon },
-    { href: "/docs", label: t.layout.nav.docs, Icon: BookIcon },
+    { href: "/docs", label: t.layout.nav.docs, Icon: BookIcon }
   ];
 
   return (
@@ -124,9 +129,6 @@ export default async function RootLayout({
                 </div>
               </header>
 
-              <Suspense fallback={null}>
-                <CategoryTabBar locale={locale} />
-              </Suspense>
               <main id="main-content">{children}</main>
             </div>
           </div>

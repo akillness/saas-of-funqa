@@ -33,10 +33,10 @@ export default async function DocsPage({ searchParams }: DocsPageProps) {
           <h1>{t.docs.heroTitle}</h1>
           <p className="lede">{t.docs.lede}</p>
           <pre className="code-block">
-            <code>{`curl -X POST https://api.example.com/v1/ingest \\
-  -H "Authorization: Bearer <token>" \\
+            <code>{`curl -X POST <API_BASE_URL>/v1/scenes/ingest \\
+  -H "Authorization: Bearer <firebase-id-token>" \\
   -H "Content-Type: application/json" \\
-  -d '{"tenantId":"demo","documents":[{"id":"repo-1","text":"Hello RAG"}]}'`}</code>
+  -d '{"document":{"title":"uploaded-video.mp4","durationSec":120},"frames":[{"timecodeSec":0,"imageDataUrl":"data:image/jpeg;base64,<base64>"}]}'`}</code>
           </pre>
         </header>
 

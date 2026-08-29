@@ -66,5 +66,21 @@
       ]
     }
   ],
-  "fieldOverrides": []
+  "fieldOverrides": [
+    {
+      "collectionGroup": "scenes",
+      "fieldPath": "imageDataUrl",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "scenes",
+      "fieldPath": "embedding",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "scenes",
+      "fieldPath": "imageEmbedding",
+      "indexes": []
+    }
+  ]
 }

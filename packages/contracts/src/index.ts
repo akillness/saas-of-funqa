@@ -1,10 +1,21 @@
 import { z } from "zod";
 
+export const SafeTenantIdSchema = z
+  .string()
+  .min(1)
+  .max(128)
+  .regex(/^[A-Za-z0-9][A-Za-z0-9._-]*$/, "tenant id contains unsupported characters");
+export const SafeDocumentIdSchema = z
+  .string()
+  .min(1)
+  .max(160)
+  .regex(/^[A-Za-z0-9][A-Za-z0-9._-]*$/, "document id contains unsupported characters");
+
 export const ProviderSchema = z.enum(["gemini", "openai", "anthropic", "vertex"]);
 export type Provider = z.infer<typeof ProviderSchema>;
 
 export const ProviderKeyUpsertSchema = z.object({
-  tenantId: z.string().min(1),
+  tenantId: SafeTenantIdSchema,
   provider: ProviderSchema,
   label: z.string().min(1).max(64),
   apiKey: z.string().min(10),
@@ -12,7 +23,7 @@ export const ProviderKeyUpsertSchema = z.object({
 });
 
 export const IngestDocumentSchema = z.object({
-  id: z.string().min(1),
+  id: SafeDocumentIdSchema,
   text: z.string().min(1),
   mimeType: z.string().default("text/plain"),
   sourceUrl: z.string().url().optional()
@@ -20,7 +31,7 @@ export const IngestDocumentSchema = z.object({
 export type IngestDocument = z.infer<typeof IngestDocumentSchema>;
 
 export const IngestRequestSchema = z.object({
-  tenantId: z.string().min(1),
+  tenantId: SafeTenantIdSchema,
   documents: z.array(IngestDocumentSchema).min(1)
 });
 export type IngestRequest = z.infer<typeof IngestRequestSchema>;
@@ -78,9 +89,7 @@ export const CreatorGuideSourceIdentifierSchema = z
     url: z.string().url().optional()
   })
   .passthrough();
-export type CreatorGuideSourceIdentifier = z.infer<
-  typeof CreatorGuideSourceIdentifierSchema
->;
+export type CreatorGuideSourceIdentifier = z.infer<typeof CreatorGuideSourceIdentifierSchema>;
 
 export const CreatorGuideSourceInventorySchema = z
   .object({
@@ -94,9 +103,7 @@ export const CreatorGuideSourceInventorySchema = z
     sourceIdentifiers: z.array(CreatorGuideSourceIdentifierSchema).default([])
   })
   .passthrough();
-export type CreatorGuideSourceInventory = z.infer<
-  typeof CreatorGuideSourceInventorySchema
->;
+export type CreatorGuideSourceInventory = z.infer<typeof CreatorGuideSourceInventorySchema>;
 
 export const CreatorGuideRecordSchema = z
   .object({
@@ -131,9 +138,7 @@ export const CreatorActiveGuideVersionSchema = z
     updatedAt: z.string().min(1)
   })
   .passthrough();
-export type CreatorActiveGuideVersion = z.infer<
-  typeof CreatorActiveGuideVersionSchema
->;
+export type CreatorActiveGuideVersion = z.infer<typeof CreatorActiveGuideVersionSchema>;
 
 export const CreatorMonetizationSourceSchema = z
   .object({
@@ -153,9 +158,7 @@ export const CreatorMonetizationSourceSchema = z
     tags: z.array(z.string()).default([])
   })
   .passthrough();
-export type CreatorMonetizationSource = z.infer<
-  typeof CreatorMonetizationSourceSchema
->;
+export type CreatorMonetizationSource = z.infer<typeof CreatorMonetizationSourceSchema>;
 
 export const CreatorOriginalRecordSchema = z
   .object({
@@ -198,9 +201,7 @@ export const CreatorIngestBundleRequestSchema = z
       });
     }
   });
-export type CreatorIngestBundleRequest = z.infer<
-  typeof CreatorIngestBundleRequestSchema
->;
+export type CreatorIngestBundleRequest = z.infer<typeof CreatorIngestBundleRequestSchema>;
 
 export const CreatorIngestPersistedStatusSchema = z
   .object({
@@ -215,9 +216,7 @@ export const CreatorIngestPersistedStatusSchema = z
     sourceInventory: z.boolean().optional()
   })
   .passthrough();
-export type CreatorIngestPersistedStatus = z.infer<
-  typeof CreatorIngestPersistedStatusSchema
->;
+export type CreatorIngestPersistedStatus = z.infer<typeof CreatorIngestPersistedStatusSchema>;
 
 export const CreatorIngestBundleResponseSchema = z
   .object({
@@ -226,17 +225,13 @@ export const CreatorIngestBundleResponseSchema = z
     searchDocumentsAccepted: z.number().int().nonnegative()
   })
   .passthrough();
-export type CreatorIngestBundleResponse = z.infer<
-  typeof CreatorIngestBundleResponseSchema
->;
+export type CreatorIngestBundleResponse = z.infer<typeof CreatorIngestBundleResponseSchema>;
 
 export const ListCreatorAnalysesQuerySchema = z.object({
   tenantId: z.string().min(1),
   limit: z.coerce.number().int().min(1).max(100).default(20)
 });
-export type ListCreatorAnalysesQuery = z.infer<
-  typeof ListCreatorAnalysesQuerySchema
->;
+export type ListCreatorAnalysesQuery = z.infer<typeof ListCreatorAnalysesQuerySchema>;
 
 export const CreatorAnalysisSummarySchema = z.object({
   totalCount: z.number().int().nonnegative(),
@@ -244,9 +239,7 @@ export const CreatorAnalysisSummarySchema = z.object({
   failedCount: z.number().int().nonnegative(),
   pendingCount: z.number().int().nonnegative()
 });
-export type CreatorAnalysisSummary = z.infer<
-  typeof CreatorAnalysisSummarySchema
->;
+export type CreatorAnalysisSummary = z.infer<typeof CreatorAnalysisSummarySchema>;
 
 export const ListCreatorAnalysesResponseSchema = z.object({
   tenantId: z.string().min(1),
@@ -254,9 +247,7 @@ export const ListCreatorAnalysesResponseSchema = z.object({
   summary: CreatorAnalysisSummarySchema,
   analyses: z.array(CreatorAnalysisRecordSchema)
 });
-export type ListCreatorAnalysesResponse = z.infer<
-  typeof ListCreatorAnalysesResponseSchema
->;
+export type ListCreatorAnalysesResponse = z.infer<typeof ListCreatorAnalysesResponseSchema>;
 
 export const LatestMonetizationSourcesRequestSchema = z.object({
   tenantId: z.string().min(1),
@@ -282,10 +273,7 @@ export const LatestMonetizationGuideResponseSchema = z.object({
   latestPublishedGuide: CreatorGuideRecordSchema,
   activeGuideVersion: CreatorActiveGuideVersionSchema
 });
-export type LatestMonetizationGuideResponse = z.infer<
-  typeof LatestMonetizationGuideResponseSchema
->;
-
+export type LatestMonetizationGuideResponse = z.infer<typeof LatestMonetizationGuideResponseSchema>;
 
 export const QueryTransformModeSchema = z.enum([
   "none",
@@ -304,7 +292,7 @@ export const ConsensusGateReasonSchema = z.enum([
 ]);
 
 export const SearchRequestSchema = z.object({
-  tenantId: z.string().min(1),
+  tenantId: SafeTenantIdSchema,
   query: z.string().min(3),
   topK: z.number().int().min(1).max(10).optional(),
   rerankMode: RerankModeSchema.optional()
@@ -355,7 +343,7 @@ export const SearchResponseSchema = z.object({
 export type SearchResponse = z.infer<typeof SearchResponseSchema>;
 
 export const RagInspectRequestSchema = z.object({
-  tenantId: z.string().min(1).default("demo"),
+  tenantId: SafeTenantIdSchema.optional(),
   query: z.string().min(3),
   topK: z.number().int().min(1).max(10).default(5),
   preRerankK: z.number().int().min(1).max(50).default(8),
@@ -565,7 +553,11 @@ export const ConsensusEvalRunOptionsSchema = z.object({
 });
 export type ConsensusEvalRunOptions = z.infer<typeof ConsensusEvalRunOptionsSchema>;
 
-export const ConsensusEvalObservedDecisionSchema = z.enum(["allow-synthesis", "evidence-only", "non-applicable"]);
+export const ConsensusEvalObservedDecisionSchema = z.enum([
+  "allow-synthesis",
+  "evidence-only",
+  "non-applicable"
+]);
 export const ConsensusEvalObservedAnswerModeSchema = z.enum([
   "consensus-backed-answer",
   "evidence-only",
@@ -628,7 +620,9 @@ export const ConsensusEvalCaseExecutionRecordSchema = z.object({
   verdict: ConsensusEvalCaseVerdictSchema,
   notes: z.array(z.string().min(1))
 });
-export type ConsensusEvalCaseExecutionRecord = z.infer<typeof ConsensusEvalCaseExecutionRecordSchema>;
+export type ConsensusEvalCaseExecutionRecord = z.infer<
+  typeof ConsensusEvalCaseExecutionRecordSchema
+>;
 
 export const ConsensusEvalReportSchema = z.object({
   reportVersion: z.literal("funqa-consensus-report-v1"),
@@ -709,17 +703,27 @@ export const HealthResponseSchema = z.object({
   embeddingModel: z.string(),
   rag: z.object({
     storePath: z.string(),
-    documentCount: z.number().int(),
-    chunkCount: z.number().int()
+    documentCount: z.number().int().nullable(),
+    chunkCount: z.number().int().nullable()
+  }),
+  scene: z.object({
+    status: z.enum(["ready", "degraded"]),
+    executionMode: z.enum(["live-genkit", "deterministic-local"]),
+    genkitConfigured: z.boolean(),
+    captionModel: z.string().nullable(),
+    embeddingModel: z.string(),
+    embeddingDimension: z.number().int().positive(),
+    storePath: z.string()
   })
 });
 
 export const MonitoringSummarySchema = z.object({
+  generatedAt: z.string(),
+  scope: z.literal("instance"),
   dailyCostUsd: z.number(),
   dailySavingsUsd: z.number(),
-  activeUsers: z.number().int(),
-  successRate: z.number(),
-  p95LatencyMs: z.number(),
+  successRate: z.number().nullable(),
+  p95LatencyMs: z.number().nullable(),
   totalRequestsDay: z.number().int(),
   totalRequestsWeek: z.number().int(),
   totalTokensDay: z.number().int(),
@@ -737,20 +741,19 @@ export const RagStatsResponseSchema = z.object({
 export const LlmWikiEntryTypeSchema = z.enum(["source", "entity", "concept", "query", "report"]);
 
 export const LlmWikiEntrySchema = z.object({
-  id: z.string().min(1),
+  id: SafeDocumentIdSchema,
   type: LlmWikiEntryTypeSchema,
-  title: z.string().min(1),
-  content: z.string(),
-  tags: z.array(z.string()),
-  path: z.string(),
-  sourceFile: z.string(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-  createdBy: z.string()
+  title: z.string().min(1).max(200),
+  content: z.string().max(100_000),
+  tags: z.array(z.string().min(1).max(64)).max(32),
+  path: z.string().min(1).max(512),
+  sourceFile: z.string().min(1).max(512),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
+  createdBy: z.string().min(1).max(160)
 });
 export type LlmWikiEntry = z.infer<typeof LlmWikiEntrySchema>;
 
-export * from "./game-log-search";
 export * from "./scene";
 
 // ---------------------------------------------------------------------------
@@ -923,9 +926,7 @@ export const InteractiveFictionEvalDatasetSchema = z
     seeds: z.array(InteractiveFictionEvalSeedSchema).default([])
   })
   .passthrough();
-export type InteractiveFictionEvalDataset = z.infer<
-  typeof InteractiveFictionEvalDatasetSchema
->;
+export type InteractiveFictionEvalDataset = z.infer<typeof InteractiveFictionEvalDatasetSchema>;
 
 // ---------------------------------------------------------------------------
 // Knowledge-graph-grounded RPG NPC dialogue contracts (Paper B)
@@ -1019,9 +1020,7 @@ export const DialogueValidationResultSchema = z
     failedChecks: z.array(DialogueValidationCheckSchema).default([])
   })
   .passthrough();
-export type DialogueValidationResult = z.infer<
-  typeof DialogueValidationResultSchema
->;
+export type DialogueValidationResult = z.infer<typeof DialogueValidationResultSchema>;
 
 export const DialogueExperimentTraceSchema = z
   .object({
@@ -1037,9 +1036,7 @@ export const DialogueExperimentTraceSchema = z
     tokensUsed: z.number().int().nonnegative().default(0)
   })
   .passthrough();
-export type DialogueExperimentTrace = z.infer<
-  typeof DialogueExperimentTraceSchema
->;
+export type DialogueExperimentTrace = z.infer<typeof DialogueExperimentTraceSchema>;
 
 // ---------------------------------------------------------------------------
 // FunQA tension-score platform contracts
@@ -1049,13 +1046,7 @@ export type DialogueExperimentTrace = z.infer<
 export const RlPolicyTypeSchema = z
   .object({
     policyId: z.string().min(1),
-    label: z.enum([
-      "speedrunner",
-      "explorer",
-      "completionist",
-      "aggressive",
-      "cautious"
-    ]),
+    label: z.enum(["speedrunner", "explorer", "completionist", "aggressive", "cautious"]),
     description: z.string().optional()
   })
   .passthrough();

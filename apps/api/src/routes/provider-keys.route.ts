@@ -1,20 +1,26 @@
-import { ProviderKeyUpsertSchema, type Provider } from "@funqa/contracts";
+import { ProviderKeyUpsertSchema, ProviderSchema } from "@funqa/contracts";
 import type { Express } from "express";
+import { resolveTenantId } from "../middleware/tenant.middleware.js";
 import { encryptSecret } from "../secrets/crypto.js";
-import { saveProviderKey, getProviderKey, deleteProviderKey } from "../repositories/provider-key.repository.js";
+import {
+  saveProviderKey,
+  getProviderKey,
+  deleteProviderKey
+} from "../repositories/provider-key.repository.js";
 
 export function registerProviderKeyRoute(app: Express) {
   app.post("/v1/provider-keys/:provider", async (req, res, next) => {
     try {
-      const provider = req.params.provider as Provider;
+      const provider = ProviderSchema.parse(req.params.provider);
       const payload = ProviderKeyUpsertSchema.extend({
         provider: ProviderKeyUpsertSchema.shape.provider.default(provider)
       }).parse({ ...req.body, provider });
+      const tenantId = resolveTenantId(req, payload.tenantId);
 
-      const aad = `${payload.tenantId}:${payload.provider}:v1`;
+      const aad = `${tenantId}:${payload.provider}:v1`;
       const encrypted = encryptSecret(payload.apiKey, aad);
       const record = await saveProviderKey({
-        tenantId: payload.tenantId,
+        tenantId,
         provider: payload.provider,
         label: payload.label,
         notes: payload.notes,
@@ -35,12 +41,10 @@ export function registerProviderKeyRoute(app: Express) {
 
   app.get("/v1/provider-keys/:provider", async (req, res, next) => {
     try {
-      const { provider } = req.params;
-      const tenantId = req.query.tenantId as string;
-      if (!tenantId) {
-        res.status(400).json({ error: "validation_error", message: "tenantId query parameter is required" });
-        return;
-      }
+      const provider = ProviderSchema.parse(req.params.provider);
+      const requestedTenantId =
+        typeof req.query.tenantId === "string" ? req.query.tenantId : undefined;
+      const tenantId = resolveTenantId(req, requestedTenantId);
       const result = await getProviderKey(tenantId, provider);
       if (!result) {
         res.status(404).json({ error: "not_found", message: "Provider key not found" });
@@ -54,12 +58,10 @@ export function registerProviderKeyRoute(app: Express) {
 
   app.delete("/v1/provider-keys/:provider", async (req, res, next) => {
     try {
-      const { provider } = req.params;
-      const tenantId = req.query.tenantId as string;
-      if (!tenantId) {
-        res.status(400).json({ error: "validation_error", message: "tenantId query parameter is required" });
-        return;
-      }
+      const provider = ProviderSchema.parse(req.params.provider);
+      const requestedTenantId =
+        typeof req.query.tenantId === "string" ? req.query.tenantId : undefined;
+      const tenantId = resolveTenantId(req, requestedTenantId);
       await deleteProviderKey(tenantId, provider);
       res.status(204).send();
     } catch (error) {

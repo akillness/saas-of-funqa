@@ -26,7 +26,7 @@ export NEXT_PUBLIC_API_BASE_URL="${NEXT_PUBLIC_API_BASE_URL:-http://127.0.0.1:50
 echo "Building Firebase Functions bundle"
 npm run build:functions
 
-REQUIRED_PORTS=(3000 5001 9099 8080)
+REQUIRED_PORTS=(3000 5001 9099 8080 9199)
 for PORT in "${REQUIRED_PORTS[@]}"; do
   PIDS=$(lsof -ti:"$PORT" 2>/dev/null || true)
   if [[ -n "$PIDS" ]]; then
@@ -42,8 +42,8 @@ echo "Starting Next.js dev server"
 npm --prefix apps/web run dev -- --port 3000 &
 WEB_PID=$!
 
-echo "Starting Firebase emulators (Functions + Auth + Firestore)"
-"${FIREBASE_BIN[@]}" emulators:start --only functions,auth,firestore &
+echo "Starting Firebase emulators (Functions + Auth + Firestore + Storage)"
+"${FIREBASE_BIN[@]}" emulators:start --only functions,auth,firestore,storage &
 EMULATOR_PID=$!
 
 wait $WEB_PID $EMULATOR_PID

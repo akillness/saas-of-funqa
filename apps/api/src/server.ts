@@ -1,7 +1,9 @@
 import express from "express";
+import { EmbeddingProviderError } from "@funqa/ai";
 import { z } from "zod";
+import { config, localDevelopmentOrigin } from "./config.js";
 import { AuthError, FunQAError } from "./errors.js";
-import { requireAuth } from "./middleware/auth.middleware.js";
+import { requireAdmin, requireAuth } from "./middleware/auth.middleware.js";
 import { registerAdminRoute } from "./routes/admin.route.js";
 import { registerCreatorAnalysesRoute } from "./routes/creator-analyses.route.js";
 import { registerCreatorIngestBundleRoute } from "./routes/creator-ingest-bundle.route.js";
@@ -24,17 +26,17 @@ export function createServer() {
   // CORS Middleware
   app.use((req, res, next) => {
     const origin = req.headers.origin;
-    if (origin) {
+    const originAllowed =
+      !origin || config.corsAllowedOrigins.includes(origin) || localDevelopmentOrigin.test(origin);
+    if (origin && originAllowed) {
       res.setHeader("Access-Control-Allow-Origin", origin);
-    } else {
-      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Vary", "Origin");
     }
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, DELETE");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Tenant-Id");
-    res.setHeader("Access-Control-Allow-Credentials", "true");
 
     if (req.method === "OPTIONS") {
-      res.sendStatus(204);
+      res.sendStatus(originAllowed ? 204 : 403);
       return;
     }
     next();
@@ -44,15 +46,23 @@ export function createServer() {
 
   registerHealthRoute(app);
 
-  // Write and sensitive endpoints require authentication
+  // Tenant-scoped endpoints require authentication and bind storage access to
+  // the verified Firebase uid inside each route.
   app.use("/v1/provider-keys", requireAuth);
   app.use("/v1/ingest", requireAuth);
-  // Scene ingest calls the Gemini vision captioner per frame (cost protection).
-  app.use("/v1/scenes/ingest", requireAuth);
-  app.use("/v1/creator-ingest-bundle", requireAuth);
-  app.use("/v1/video-analyses", requireAuth);
-  app.use("/v1/monetization-guides", requireAuth);
-  app.use("/v1/monetization-sources", requireAuth);
+  app.use("/v1/search", requireAuth);
+  // Scene frames and captions are tenant-private. Bind every scene read/write
+  // endpoint to a verified Firebase user; the route replaces client tenant ids
+  // with the token uid before calling a Genkit flow.
+  app.use("/v1/scenes", requireAuth);
+  // Shared operational stores are admin-only; their payloads can name several
+  // tenant-linked records and are not end-user workspace APIs.
+  app.use("/v1/admin", requireAdmin);
+  app.use("/v1/wiki", requireAdmin);
+  app.use("/v1/creator-ingest-bundle", requireAdmin);
+  app.use("/v1/video-analyses", requireAdmin);
+  app.use("/v1/monetization-guides", requireAdmin);
+  app.use("/v1/monetization-sources", requireAdmin);
 
   registerAdminRoute(app);
   registerProviderKeyRoute(app);
@@ -66,39 +76,82 @@ export function createServer() {
   registerRagRoute(app);
   registerScenesRoute(app);
   registerMonitoringRoute(app);
-  app.use((error: unknown, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
-    if (error instanceof z.ZodError) {
-      res.status(400).json({
-        error: "validation_error",
-        issues: error.issues
-      });
-      return;
-    }
-
-    if (error instanceof AuthError) {
-      res.status(401).json({ error: error.code, message: error.message });
-      return;
-    }
-
-    if (error instanceof FunQAError) {
-      // "embedding_unavailable" is a transient upstream provider failure, not a
-      // server defect: the request was well-formed and will likely succeed on
-      // retry. A 500 would tell clients and uptime monitors the wrong thing.
-      const status =
-        error.code === "invalid_request" ? 400 : error.code === "embedding_unavailable" ? 503 : 500;
-      if (status === 503) {
-        res.setHeader("Retry-After", "30");
+  app.use(
+    (error: unknown, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({
+          error: "validation_error",
+          issues: error.issues
+        });
+        return;
       }
-      res.status(status).json({ error: error.code, message: error.message });
-      return;
-    }
 
-    console.error("[server] Unhandled internal error:", error);
-    res.status(500).json({
-      error: "internal_error",
-      message: "An unexpected server error occurred."
-    });
-  });
+      if (error instanceof AuthError) {
+        res.status(401).json({ error: error.code, message: error.message });
+        return;
+      }
+
+      if (error instanceof EmbeddingProviderError) {
+        console.warn("[embedding] provider unavailable", {
+          status: error.status ?? null,
+          model: error.model
+        });
+        res.setHeader("Retry-After", "30");
+        res.status(503).json({
+          error: "embedding_unavailable",
+          message: "The multimodal embedding provider is temporarily unavailable. Retry shortly."
+        });
+        return;
+      }
+
+      if (error instanceof FunQAError) {
+        // "embedding_unavailable" is a transient upstream provider failure, not a
+        // server defect: the request was well-formed and will likely succeed on
+        // retry. A 500 would tell clients and uptime monitors the wrong thing.
+        const status =
+          error.code === "invalid_request"
+            ? 400
+            : error.code === "embedding_unavailable" || error.code === "generation_unavailable"
+              ? 503
+              : 500;
+        if (status === 503) {
+          console.warn("[provider] operation unavailable", {
+            code: error.code,
+            detail: error.message
+          });
+          res.setHeader("Retry-After", "30");
+          res.status(status).json({
+            error: error.code,
+            message:
+              error.code === "embedding_unavailable"
+                ? "The multimodal embedding provider is temporarily unavailable. Retry shortly."
+                : "The generation provider is temporarily unavailable. Retry shortly."
+          });
+          return;
+        }
+        res.status(status).json({ error: error.code, message: error.message });
+        return;
+      }
+
+      const httpError = error as { status?: number; type?: string };
+      if (httpError.status === 413 || httpError.status === 400) {
+        res.status(httpError.status).json({
+          error: httpError.status === 413 ? "payload_too_large" : "invalid_json",
+          message:
+            httpError.status === 413
+              ? "Request body exceeds the 5 MB limit."
+              : "Request body is not valid JSON."
+        });
+        return;
+      }
+
+      console.error("[server] Unhandled internal error:", error);
+      res.status(500).json({
+        error: "internal_error",
+        message: "An unexpected server error occurred."
+      });
+    }
+  );
 
   return app;
 }

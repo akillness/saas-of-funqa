@@ -1,4 +1,3 @@
-import { GameLogSearchStageSchema } from "@funqa/contracts";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { beforeEach, describe, expect, it } from "vitest";
@@ -94,7 +93,7 @@ describe("server rendering", () => {
 
 describe("activity vocabulary", () => {
   it("covers every wire stage the search contract can emit", () => {
-    const stages = GameLogSearchStageSchema.options;
+    const stages = ["retrieving", "ranking", "synthesizing"] as const;
 
     for (const stage of stages) {
       const markup = renderToStaticMarkup(

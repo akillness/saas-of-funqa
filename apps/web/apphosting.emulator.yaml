@@ -9,7 +9,3 @@ env:
     availability:
       - BUILD
       - RUNTIME
-  - variable: GAME_LOG_SEARCH_SERVICE_URL
-    value: http://127.0.0.1:7400
-    availability:
-      - RUNTIME

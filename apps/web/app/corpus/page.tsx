@@ -9,6 +9,7 @@ import {
   corpusMeta,
   formatCorpusTimecode,
   getGame,
+  hasCorpusVector,
   searchCorpus,
   similarDocs,
   type CorpusFilters
@@ -54,9 +55,10 @@ export default async function CorpusPage({ searchParams }: CorpusPageProps) {
   const similarSeedId = params?.similar?.trim() || "";
   const similar = similarSeedId ? similarDocs(similarSeedId, 6) : [];
   const seedDoc = similarSeedId
-    ? hits.find((hit) => hit.doc.id === similarSeedId)?.doc ??
-      searchCorpus({ limit: corpusMeta.docCount }).find((hit) => hit.doc.id === similarSeedId)?.doc ??
-      null
+    ? (hits.find((hit) => hit.doc.id === similarSeedId)?.doc ??
+      searchCorpus({ limit: corpusMeta.docCount }).find((hit) => hit.doc.id === similarSeedId)
+        ?.doc ??
+      null)
     : null;
 
   const selectedGame = filters.game ? getGame(filters.game) : null;
@@ -447,9 +449,14 @@ export default async function CorpusPage({ searchParams }: CorpusPageProps) {
                   <span className="vqa-corpus-kind">
                     {hit.doc.mode}/{hit.doc.kind}
                   </span>
-                  <Link className="vqa-corpus-similar-cta" href={baseParams({ similar: hit.doc.id })}>
-                    {copy.similarCta}
-                  </Link>
+                  {hasCorpusVector(hit.doc.id) ? (
+                    <Link
+                      className="vqa-corpus-similar-cta"
+                      href={baseParams({ similar: hit.doc.id })}
+                    >
+                      {copy.similarCta}
+                    </Link>
+                  ) : null}
                 </div>
                 <p className="vqa-corpus-text">{hit.doc.text}</p>
                 {hit.matchedTerms.length > 0 ? (

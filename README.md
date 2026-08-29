@@ -13,7 +13,7 @@
 
 현재 구현 기준 핵심 운영 기능:
 
-- **게임 코퍼스(`/corpus`)** — 번들로 포함된 텐션 분석 코퍼스(게임 9종 · 장면 문서 78개)를 장면 단위로 검색. 자유 문장은 결정적 어휘 스코어링, `유사 장면`은 번들 벡터 공간 내부 코사인
+- **게임 코퍼스(`/corpus`)** — 번들로 포함된 텐션 분석 코퍼스(게임 9종 · 장면 문서 102개)를 장면 단위로 검색. 자유 문장은 결정적 어휘 스코어링, `유사 장면`은 같은 사전 구축 벡터가 있는 78개 문서 안에서만 코사인 비교
 - **벡터 인덱스(`/vector-index`)** — 영상 파일을 올리면 브라우저가 대표 프레임을 뽑고, 서버가 장면 캐프션을 생성해 임베딩과 함께 장면 벡터 저장소에 기록. 저장소 현황(문서 수·장면 수·테넌트 용량·임베딩 모드)과 장면당 저장 계약을 함께 노출
 - **영상 QA 분석 워크스페이스(`/scene-search`)** — 영상 한 편을 넣으면 플레이어·근거 타임라인·요약 지표·QA 시나리오·타임코드 근거를 한 화면에서 검토. 원본 영상은 브라우저에 남고 추출 프레임만 전송
 - **샘플과 실측의 명시적 분리** — QA 판정 계약이 아직 없으므로 pass/fail·FunQA Score는 `샘플 리포트` 배지로만 노출하고, 라이브 모드에서는 API가 실제 반환한 장면 수·상대 강도·지연·제외 장면만 표시
@@ -28,7 +28,6 @@
 - 검색 shell 전반의 **dictionary-driven copy** + **localized category tabs** + **pinned inspector trust flow**
 - consensus 미달 시 **evidence-only fallback**를 trust feature로 드러내는 경고 상태
 - `rag-lab`의 최신 consensus release-gate 리포트 조회 및 선택 UI
-- `/ralph`의 **ooo ralph completion loop surface** — seed, execute, evaluate, evolve 단계를 제품 안에서 설명하고 검증 산출물을 노출 (좌측 네비게이션에서는 숨김 — route는 유지)
 - creator ingest bundle, video analyses, monetization guide/source API surface
 
 ---
@@ -83,21 +82,20 @@ RAG 파이프라인 흐름:
 - 답변은 항상 허용되는 것이 아니라 `document-graph consensus`를 통과해야 한다.
 - consensus 미달 시 FunQA는 hallucinate하지 않고 **evidence-only** 상태로 실패를 드러낸다.
 - `rag-lab`은 내부 디버깅용 부속 페이지가 아니라, 검색 품질과 release gate를 설명하는 operator proof surface다.
-- `ralph`는 제안에서 멈추지 않는 작업을 위한 spec-first completion loop surface다.
 
 ---
 
 ## 기술 스택
 
-| 영역 | 기술 |
-|------|------|
-| Frontend | Next.js 15.2.9, React 19, TypeScript 6 |
-| Backend | Express 5, Genkit 1.32 |
-| AI | Google Gemini (`gemini-embedding-2-preview`, multimodal) |
-| Database | Firebase Firestore |
-| Auth | Firebase Auth — Google Login (`signInWithPopup`, `AuthProvider`, `NavAuth`) |
-| Infra | Firebase App Hosting, Firebase Functions |
-| Monorepo | npm workspaces |
+| 영역     | 기술                                                                        |
+| -------- | --------------------------------------------------------------------------- |
+| Frontend | Next.js 15.2.9, React 19, TypeScript 6                                      |
+| Backend  | Express 5, Genkit 1.16                                                      |
+| AI       | Google Gemini (`gemini-embedding-2`, multimodal)                            |
+| Database | Firebase Firestore                                                          |
+| Auth     | Firebase Auth — Google Login (`signInWithPopup`, `AuthProvider`, `NavAuth`) |
+| Infra    | Firebase App Hosting, Firebase Functions                                    |
+| Monorepo | npm workspaces                                                              |
 
 ---
 
@@ -171,19 +169,24 @@ npm install
 cp .env.example .env
 ```
 
-| 변수 | 설명 | 기본값 |
-|------|------|--------|
-| `PORT` | API 서버 포트 | `4300` |
-| `GEMINI_API_KEY` | Google Gemini API 키 | **(필수)** |
-| `FIREBASE_SERVICE_ACCOUNT_PATH` | Firebase 서비스 계정 JSON 경로 | `./saas-of-funqa-firebase-adminsdk-*.json` |
-| `SECRET_ENCRYPTION_KEY` | 시크릿 암호화 키 | **(필수)** |
-| `SECRET_ENCRYPTION_KEY_VERSION` | 암호화 키 버전 | `v1` |
-| `EMBEDDING_MODEL_ID` | 임베딩 모델 ID | `gemini-embedding-2-preview` |
-| `EMBEDDING_OUTPUT_DIMENSION` | live 임베딩 차원 수 | `1536` |
-| `RAG_LIVE_EMBEDDINGS` | Gemini live 임베딩 사용 여부 | `1` |
-| `SEARCH_TOP_K` | RAG 검색 결과 수 | `5` |
-| `RAG_STORE_PATH` | RAG 저장소 경로 | `./.runtime/rag-store.json` |
-| `COHERE_API_KEY` | Cohere cross-encoder reranker API 키 | 없음 (선택) |
+| 변수                               | 설명                                                                               | 기본값                                      |
+| ---------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------- |
+| `PORT`                             | API 서버 포트                                                                      | `4300`                                      |
+| `CORS_ALLOWED_ORIGINS`             | 브라우저 API 호출을 허용할 origin CSV (localhost/127.0.0.1 포트는 개발용으로 허용) | 프로덕션 App Hosting + 로컬 에뮬레이터      |
+| `GEMINI_API_KEY`                   | Google Gemini API 키                                                               | **(필수)**                                  |
+| `FIREBASE_SERVICE_ACCOUNT_PATH`    | Firebase 서비스 계정 JSON 경로                                                     | `./saas-of-funqa-firebase-adminsdk-*.json`  |
+| `SCENE_STORAGE_BUCKET`             | Firestore 장면 프레임을 저장할 비공개 버킷                                         | 배포 프로젝트의 `.firebasestorage.app` 버킷 |
+| `SECRET_ENCRYPTION_KEY`            | 시크릿 암호화 키                                                                   | **(필수)**                                  |
+| `SECRET_ENCRYPTION_KEY_VERSION`    | 암호화 키 버전                                                                     | `v1`                                        |
+| `EMBEDDING_MODEL_ID`               | 임베딩 모델 ID                                                                     | `gemini-embedding-2`                        |
+| `EMBED_TIMEOUT_MS`                 | 임베딩 공급자 요청 제한 시간(ms, 1,000-60,000)                                     | `20000`                                     |
+| `EMBEDDING_OUTPUT_DIMENSION`       | live 임베딩 차원 수                                                                | `1536`                                      |
+| `RAG_LIVE_EMBEDDINGS`              | Gemini live 임베딩 사용 여부                                                       | `1`                                         |
+| `SEARCH_TOP_K`                     | RAG 검색 결과 수                                                                   | `5`                                         |
+| `SCENE_ANSWER_SCORE_FLOOR`         | 근거 답변을 허용할 최소 원시 코사인 점수                                           | `0.35`                                      |
+| `SCENE_ANSWER_MIN_DOCUMENT_MARGIN` | 다른 영상의 최고 점수와 확보할 최소 점수 차                                        | `0.02`                                      |
+| `RAG_STORE_PATH`                   | RAG 저장소 경로                                                                    | `./.runtime/rag-store.json`                 |
+| `COHERE_API_KEY`                   | Cohere cross-encoder reranker API 키                                               | 없음 (선택)                                 |
 
 ---
 
@@ -197,30 +200,27 @@ Firebase App Hosting과 Functions Emulator를 함께 실행합니다.
 ./dev.sh
 ```
 
-| 서비스 | URL |
-|--------|-----|
-| API 서버 (`npm run dev:api`) | `http://localhost:4300` |
+| 서비스                        | URL                                                       |
+| ----------------------------- | --------------------------------------------------------- |
+| API 서버 (`npm run dev:api`)  | `http://localhost:4300`                                   |
 | Firebase Functions 에뮬레이터 | `http://127.0.0.1:5001/saas-of-funqa/asia-northeast3/api` |
-| App Hosting 에뮬레이터 | `http://localhost:5002` |
-| Auth 에뮬레이터 | `http://localhost:9099` |
-| Firestore 에뮬레이터 | `http://localhost:8080` |
+| App Hosting 에뮬레이터        | `http://localhost:5002`                                   |
+| Auth 에뮬레이터               | `http://localhost:9099`                                   |
+| Firestore 에뮬레이터          | `http://localhost:8080`                                   |
+| Storage 에뮬레이터            | `http://localhost:9199`                                   |
 
 주요 웹 surface:
 
-| Route | Purpose |
-|-------|---------|
-| `/` | 제품 홈과 추천/상태 요약 |
-| `/search` | 근거 기반 검색 workspace |
-| `/rag-lab` | RAG pipeline inspection 및 release-gate 확인 |
-| `/ralph` | ooo ralph completion loop와 검증 산출물 안내 (`/ralph?lang=ko`/`/ralph?lang=en` 지원). 제품 네비게이션에서는 제외되어 있으며 URL로만 접근합니다 |
-| `/admin` | 운영 콘솔 |
-| `/docs` | API 문서 |
-
-#### Ralph completion loop surface
-
-`/ralph`는 Ouroboros/Ralph 작업을 제품 안에서 설명하는 spec-first completion loop 화면입니다. 고정된 seed 계약을 기준으로 `seed → execute → evaluate → evolve` 단계를 보여주고, 완료 주장은 타입체크·빌드·브라우저 확인 같은 검증 산출물과 함께 다룹니다. 화면 copy는 기존 EN/KO i18n dictionary를 따르며, 사이드바 navigation과 App Router route contract 안에서 한국어와 영어 query locale 모두 같은 loop surface를 제공합니다.
-
-Ralph 화면의 한국어 route/render 계약(`/ralph?lang=ko`가 404 없이 Korean dictionary copy를 렌더링)은 `npm test -- apps/web/app/ralph/page.test.tsx apps/web/lib/messages/ralph.test.ts`로 독립 실행할 수 있습니다.
+| Route           | Purpose                                      |
+| --------------- | -------------------------------------------- |
+| `/`             | 제품 홈과 추천/상태 요약                     |
+| `/search`       | `/scene-search`로 보내는 호환 리다이렉트     |
+| `/scene-search` | 멀티모달 장면 검색과 근거 답변 workspace     |
+| `/vector-index` | 영상과 FunQA 분석 JSON 페어 인덱싱           |
+| `/corpus`       | 읽기 전용 FunQA 분석 코퍼스                  |
+| `/rag-lab`      | RAG pipeline inspection 및 release-gate 확인 |
+| `/admin`        | 운영 콘솔                                    |
+| `/docs`         | API 문서                                     |
 
 ### 개별 실행
 
@@ -294,8 +294,8 @@ npm run build:web
 
 최근 반영 사항:
 
-- **전체 페이지 톤앤메너·레이아웃 일관성 개선**: 검색 페이지 Arc-era CSS 클래스 제거 → --gm-* 다크 테마로 통일, RAG-lab i18n 일관성 확보 (하드코딩 텍스트 제거), trace 레이블 i18n 처리
-- **그라디언트-미디어 다크 디자인 시스템 적용**: --gm-* CSS 토큰, Spotify/Apple TV 스타일 다크 테마
+- **전체 페이지 톤앤메너·레이아웃 일관성 개선**: 검색 페이지 Arc-era CSS 클래스 제거 → --gm-\* 다크 테마로 통일, RAG-lab i18n 일관성 확보 (하드코딩 텍스트 제거), trace 레이블 i18n 처리
+- **그라디언트-미디어 다크 디자인 시스템 적용**: --gm-\* CSS 토큰, Spotify/Apple TV 스타일 다크 테마
 - **GameRecommendationCard, RecommendationPanel 컴포넌트 추가**: 게임 미디어 카드 및 슬라이딩 추천 패널 UI
 - **전체 페이지 다크 테마 적용**: /, /search, /rag-lab, /login, /admin
 - **Arc Browser 디자인 시스템 적용**: 사이드바 우선 레이아웃(240px `.arc-sidebar` + `.arc-content`), 프로스트 글래스 서피스, Arc 모션 시스템(`--ease-spring: cubic-bezier(0.32,0.72,0,1)`, 200/320/480ms), 다크모드 `[data-theme="dark"]` 글래스 블록 추가
@@ -342,30 +342,33 @@ npm run build:web
 
 ## 스크립트 목록
 
-| 명령어 | 설명 |
-|--------|------|
-| `npm run dev` | 웹 앱 개발 서버 시작 |
-| `npm run dev:web` | Next.js 개발 서버 |
-| `npm run dev:api` | Express API 개발 서버 |
-| `npm run dev:functions` | Firebase Functions + Firestore 에뮬레이터 |
-| `npm run dev:apphosting` | Firebase 에뮬레이터 (App Hosting + Functions + Auth + Firestore) |
-| `npm run build` | 웹 앱 프로덕션 빌드 |
-| `npm run build:functions` | Firebase Functions 번들 빌드 |
-| `npm run start` | 빌드된 웹 앱 서버 시작 |
-| `npm run typecheck` | TypeScript 타입 체크 (api + web) |
-| `npm test -- apps/web/app/ralph/page.test.tsx apps/web/lib/messages/ralph.test.ts` | Ralph route와 EN/KO dictionary 렌더링 회귀 테스트 |
-| `npm run smoke:rag` | RAG 파이프라인 스모크 테스트 |
-| `POST /v1/search/stream` | SSE 스트리밍 검색 엔드포인트 (retrieving→reranking→generating→done 이벤트) |
-| `npm run smoke:functions` | Firebase Functions 엔드포인트 스모크 테스트 |
-| `npm run eval:consensus -- --dataset data/evals/fixtures/funqa-consensus-eval-fixture.json --build-sha <sha>` | consensus release-gate 리포트 생성 |
-| `npm run seed:demo` | 데모 RAG 데이터 시드 |
-| `npm run deploy:functions` | Firebase Functions 배포 |
-| `npm run deploy:apphosting` | Firebase App Hosting 배포 |
-| `scripts/bootstrap-vault.sh` | knowledge/ 볼트 초기 디렉토리 구조 생성 |
-| `scripts/ingest-url.sh <url>` | URL 원문을 `knowledge/raw/sources/`에 캡처 |
-| `scripts/new-query-note.sh <topic>` | `knowledge/wiki/queries/`에 새 쿼리 노트 생성 |
-| `scripts/lint-wiki.py` | wiki 마크다운 링크·형식 검사 |
-| `scripts/build-brand-assets.py` | 브랜드 이미지 자산 생성 |
+| 명령어                                                                                                        | 설명                                                                       |
+| ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `npm run dev`                                                                                                 | 웹 앱 개발 서버 시작                                                       |
+| `npm run dev:web`                                                                                             | Next.js 개발 서버                                                          |
+| `npm run dev:api`                                                                                             | Express API 개발 서버                                                      |
+| `npm run dev:functions`                                                                                       | Firebase Functions + Firestore 에뮬레이터                                  |
+| `npm run dev:apphosting`                                                                                      | Firebase 에뮬레이터 (App Hosting + Functions + Auth + Firestore)           |
+| `npm run build`                                                                                               | 웹 앱 프로덕션 빌드                                                        |
+| `npm run build:functions`                                                                                     | Firebase Functions 번들 빌드                                               |
+| `npm run start`                                                                                               | 빌드된 웹 앱 서버 시작                                                     |
+| `npm run typecheck`                                                                                           | TypeScript 타입 체크 (api + web)                                           |
+| `npm run verify:scene-scenarios`                                                                              | 10개 장면 검색 시나리오 manifest 검증                                      |
+| `npm run verify:scene-scenario-sources -- --archive-root <path>`                                              | 원본 영상/분석 페어와 선택 프레임 좌표 대조                                |
+| `FUNQA_ARCHIVE_ROOT=<path> npm run verify:scene-scenario-suite`                                               | manifest와 원본 페어 검증을 한 번에 실행                                   |
+| `npm run run:scene-scenarios -- --output <path>`                                                              | 인증된 live API로 10개 질의를 실행해 무이미지 리포트 캡처                  |
+| `npm run smoke:rag`                                                                                           | RAG 파이프라인 스모크 테스트                                               |
+| `POST /v1/search/stream`                                                                                      | SSE 스트리밍 검색 엔드포인트 (retrieving→reranking→generating→done 이벤트) |
+| `npm run smoke:functions`                                                                                     | Firebase Functions 엔드포인트 스모크 테스트                                |
+| `npm run eval:consensus -- --dataset data/evals/fixtures/funqa-consensus-eval-fixture.json --build-sha <sha>` | consensus release-gate 리포트 생성                                         |
+| `npm run seed:demo`                                                                                           | 데모 RAG 데이터 시드                                                       |
+| `npm run deploy:functions`                                                                                    | Firebase Functions 배포                                                    |
+| `npm run deploy:apphosting`                                                                                   | Firebase App Hosting 배포                                                  |
+| `scripts/bootstrap-vault.sh`                                                                                  | knowledge/ 볼트 초기 디렉토리 구조 생성                                    |
+| `scripts/ingest-url.sh <url>`                                                                                 | URL 원문을 `knowledge/raw/sources/`에 캡처                                 |
+| `scripts/new-query-note.sh <topic>`                                                                           | `knowledge/wiki/queries/`에 새 쿼리 노트 생성                              |
+| `scripts/lint-wiki.py`                                                                                        | wiki 마크다운 링크·형식 검사                                               |
+| `scripts/build-brand-assets.py`                                                                               | 브랜드 이미지 자산 생성                                                    |
 
 ---
 
@@ -387,16 +390,16 @@ push / PR → Install → Typecheck → Build
 push(main) → CI 통과 → Deploy to Firebase App Hosting
 ```
 
-현재 GitHub Actions 배포 워크플로는 App Hosting backend `saas-of-funqa`를 대상으로 `./deploy.sh --apphosting`를 실행하고, 배포 직후 hosted URL의 `HTTP 200` 응답까지 확인합니다.
+현재 GitHub Actions 배포 워크플로는 App Hosting backend `saas-of-funqa`를 대상으로 전체 `./deploy.sh`를 실행해 Functions·Firestore 규칙/인덱스·Storage 규칙·App Hosting을 함께 배포합니다. 이후 hosted URL의 `HTTP 200`과 라이브 API의 `gemini-embedding-2` 모델 ID를 확인합니다. 관리자 통계 접근 계정은 공개 저장소에 이메일을 넣지 않고 GitHub Actions 변수 `FUNCTIONS_ADMIN_EMAILS`로 주입합니다.
 
 **필요한 GitHub Secrets:**
 
-| Secret | 설명 |
-|--------|------|
-| `GEMINI_API_KEY` | Google Gemini API 키 |
-| `FIREBASE_SERVICE_ACCOUNT` | Firebase 서비스 계정 JSON (전체 내용) |
-| `SECRET_ENCRYPTION_KEY` | 시크릿 암호화 키 |
-| `FIREBASE_TOKEN` | Firebase CLI 인증 토큰 (`firebase login:ci` 로 발급) |
+| Secret                     | 설명                                                 |
+| -------------------------- | ---------------------------------------------------- |
+| `GEMINI_API_KEY`           | Google Gemini API 키                                 |
+| `FIREBASE_SERVICE_ACCOUNT` | Firebase 서비스 계정 JSON (전체 내용)                |
+| `SECRET_ENCRYPTION_KEY`    | 시크릿 암호화 키                                     |
+| `FIREBASE_TOKEN`           | Firebase CLI 인증 토큰 (`firebase login:ci` 로 발급) |
 
 ---
 
@@ -409,12 +412,12 @@ FunQA는 모션을 장식이 아니라 **예산과 수명주기가 있는 시스
 선정 근거는 4개 "바이럴" UI 이펙트 패키지의 소스 감사입니다 —
 <https://akillness.github.io/posts/viral-ui-effects-source-audit/>
 
-| 용도(job) | 적용 위치 | 렌더러 | 판단 |
-|------|------|------|------|
-| 검색 에이전트 활동 상태 | `/search` Patch Desk, `/scene-search` 제출 버튼 | `thinking-orbs@0.3.1` | 상태가 의미를 가지며 reduced-motion 정적 프레임·오프스크린 일시정지가 기본 동작 |
-| 페이지당 단 하나의 기본 디스패치 컨트롤 | Patch Desk composer | `border-beam@1.3.0` | rotate 계열은 canvas·WebGL 없이 CSS만 쓴다 |
-| 히어로 CTA | — | **미채택** (`metal-fx`) | 공유 렌더러가 프리셋·테마를 **전역 1개**로만 보관해 혼합 사용 시 충돌, reduced-motion 자동 처리 없음, WebGL 불가 시 내부 폴백 없이 throw |
-| 공간 병합 모프 | — | **미채택** (`liquid-gooey`) | reduced-motion 커버리지가 부분적이고 npm 릴리즈가 0.1.0 하나 |
+| 용도(job)                               | 적용 위치                                | 렌더러                      | 판단                                                                                                                                     |
+| --------------------------------------- | ---------------------------------------- | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| 검색 에이전트 활동 상태                 | capability 어댑터(현재 기본 호출지 없음) | `thinking-orbs@0.3.1`       | 상태가 의미를 가지며 reduced-motion 정적 프레임·오프스크린 일시정지가 기본 동작                                                          |
+| 페이지당 단 하나의 기본 디스패치 컨트롤 | capability 어댑터(현재 기본 호출지 없음) | `border-beam@1.3.0`         | rotate 계열은 canvas·WebGL 없이 CSS만 쓴다                                                                                               |
+| 히어로 CTA                              | —                                        | **미채택** (`metal-fx`)     | 공유 렌더러가 프리셋·테마를 **전역 1개**로만 보관해 혼합 사용 시 충돌, reduced-motion 자동 처리 없음, WebGL 불가 시 내부 폴백 없이 throw |
+| 공간 병합 모프                          | —                                        | **미채택** (`liquid-gooey`) | reduced-motion 커버리지가 부분적이고 npm 릴리즈가 0.1.0 하나                                                                             |
 
 계약의 핵심 6가지:
 
@@ -441,35 +444,36 @@ FunQA는 모션을 장식이 아니라 **예산과 수명주기가 있는 시스
 ## 영상 QA 분석 워크스페이스
 
 `/scene-search`는 “업로드 폼 + 결과 카드 목록”에서 **영상 한 편을 검토하는 분석
-워크스페이스**로 재구성됐습니다. 백엔드 계약(`/v1/scenes/ingest`,
-`/v1/scenes/search`, `/v1/scenes/documents`)은 그대로입니다.
+워크스페이스**로 재구성됐습니다. 백엔드는 `/v1/scenes/ingest`,
+`/v1/scenes/search`, `/v1/scenes/documents`와 문서별 `DELETE` 수명주기를 제공합니다.
 
 ### 화면 구조
 
-| 영역 | 내용 |
-|------|------|
-| 소스 바 | 영상 선택/교체, 드래그 앤 드롭, 현재 모드 배지, 프레임 추출 진행 |
-| 플레이어 | 로컬 `<video>` 미리보기 + 근거 타임라인 마커 + 프레임 스크럽 스트립 |
-| 요약 레일 | 지표 4개 + 우선 확인할 발견 + 실제 사용 모델(디스클로저) |
-| 컴포저 | 영상 안에서 질문(텍스트·영상·하이브리드 자동 판정) |
-| 결과 탭 | QA 시나리오 / 영상 분석 / 타임코드 근거 |
-| 인덱싱 | 로그인 게이트가 걸린 장면 인덱싱 + 라이브러리(기본 접힘) |
+| 영역        | 내용                                                                  |
+| ----------- | --------------------------------------------------------------------- |
+| 소스 바     | 영상 선택/교체, 드래그 앤 드롭, 현재 모드 배지, 프레임 추출 진행      |
+| 플레이어    | 로컬 `<video>` 미리보기 + 근거 타임라인 마커 + 프레임 스크럽 스트립   |
+| 요약 레일   | 지표 4개 + 우선 확인할 발견 + 실제 사용 모델(디스클로저)              |
+| 컴포저      | 영상 안에서 질문(텍스트·영상·하이브리드 자동 판정)                    |
+| 결과 탭     | QA 시나리오 / 영상 분석 / 타임코드 근거                               |
+| 인덱싱 이동 | 로그인 게이트가 걸린 `/vector-index` 쓰기 경로와 저장 문서 라이브러리 |
 
 ### 지켜야 하는 경계
 
 1. **원본 영상은 브라우저 밖으로 나가지 않습니다.** 서버로 가는 것은
    `extractVideoFrames()`가 만든 프레임 데이터 URL뿐입니다.
-2. **없는 판정을 만들지 않습니다.** 현재 Scene API는 캡션·임베딩·랭킹 근거를
-   생성하지만 pass/fail QA 판정 계약이 없습니다. 따라서 QA 시나리오 테이블과
-   FunQA Score는 **샘플 모드에서만** 렌더되고 `샘플 리포트` 배지가 항상 붙습니다.
-   라이브 모드에서는 응답에서 관측된 값(장면 수, 상대 강도, `tookMs`,
-   `unscoreableScenes`)만 표시합니다.
-3. **타임코드가 조인 키입니다.** 시나리오 행, 타임라인 마커, 프레임 썸네일,
+2. **없는 판정을 만들지 않습니다.** Scene API가 반환하는 QA 후보는 검토할 질문이지
+   pass/fail 판정이 아닙니다. 답변은 원시 코사인 점수와 교차 문서 마진을 모두 통과할
+   때만 생성하고, 부족하면 `answer.text=null`과 차단 사유를 반환합니다.
+3. **서버가 반환한 근거만 표시합니다.** 결과·점수·모델·인용은 캡처된 라이브 응답에서
+   읽으며, 클라이언트가 목업 점수나 상위 결과를 합성하지 않습니다. 점수화할 수 없는
+   레거시 임베딩은 `unscoreableScenes`로 분리합니다.
+4. **타임코드가 조인 키입니다.** 시나리오 행, 타임라인 마커, 프레임 썸네일,
    근거 카드가 모두 같은 `MM:SS`를 공유하고 로컬 영상이 있으면 플레이어를 seek합니다.
-4. **스키마 드리프트에 안전해야 합니다.** 배포된 서버가 클라이언트보다 오래되어
-   `relativeStrength`/`unscoreableScenes`가 없으면 `NaN%`/`undefined` 대신
-   `—`와 `0`을 렌더합니다(회귀 테스트 있음).
-5. **상태는 색상만으로 구분하지 않습니다.** 통과/실패/차단은 기호와 단어를 함께 씁니다.
+5. **분석·질문·제목은 모두 비신뢰 데이터입니다.** 프롬프트 안에서 JSON 데이터 블록으로
+   경계를 긋고, 근거에 포함된 지시문을 실행하지 않습니다.
+6. **상태는 색상만으로 구분하지 않습니다.** 지원됨/차단됨/점수화 불가는 기호와 단어를
+   함께 씁니다.
 
 ### 테마
 
@@ -481,22 +485,22 @@ FunQA는 모션을 장식이 아니라 **예산과 수명주기가 있는 시스
 
 ### 쓰기 경로와 읽기 경로 분리
 
-| 경로 | 메뉴 | 역할 |
-|------|------|------|
+| 경로            | 메뉴        | 역할                                                                  |
+| --------------- | ----------- | --------------------------------------------------------------------- |
 | `/vector-index` | 벡터 인덱스 | **쓰기** — 영상 업로드 → 프레임 추출 → 캐프션·임베딩 → 장면 벡터 저장 |
-| `/scene-search` | 영상 QA | **읽기** — 저장된 장면을 검색하고 근거를 검토 |
+| `/scene-search` | 영상 QA     | **읽기** — 저장된 장면을 검색하고 근거를 검토                         |
 
 인덱싱은 원래 워크스페이스 맨 아래 접힌 패널에 숨어 있어서, 제품의 핵심 동작이 메뉴에
 드러나지 않았습니다. 지금은 전용 메뉴가 쓰기 경로를 소유합니다.
 
-**장면 하나당 저장되는 것**: 프레임 이미지·타임코드, 장면 캐프션, 캐프션 임베딩 벡터,
-멀티모달 모델일 때는 이미지 임베딩 벡터, 그리고 임베딩 모드·모델명입니다.
+**장면 하나당 저장되는 것**: 비공개 Storage 프레임 객체·정확한 타임코드, 독립적으로
+생성한 장면 캡션, 페어링된 FunQA 분석 근거·출처, 그리고 이미지·캡션·근거를 함께 넣은
+`gemini-embedding-2` 1536차원 벡터 하나입니다.
 
-⚠️ **별도의 벡터 DB를 두지 않습니다.** 저장 위치는 배포 환경에 따라
-`sceneFrames/{tenant}/scenes`(Firestore) 또는 로컬 JSON 스토어이고, 유사도는 서버에서
-계산합니다. pgvector 경로는 게임 로그 버티컬의 CocoIndex 쪽이며 이 화면과 무관합니다.
-임베딩 공간이 다른 장면은 검색 순위에서 제외되고 재인덱싱 안내가 표시됩니다.
-상한은 테넌트당 400장면·인젝스트당 16프레임입니다.
+⚠️ **별도의 벡터 DB를 두지 않습니다.** 문서·벡터는 배포 환경의
+`sceneFrames/{tenant}/scenes`(Firestore) 또는 로컬 JSON 스토어에 저장하고, 프레임은
+비공개 Firebase Storage 객체로 분리합니다. 유사도는 서버가 같은 임베딩 공간의 문서만
+대상으로 계산합니다. 상한은 테넌트당 400장면·인제스트당 16프레임입니다.
 
 설계 문서: [`docs/plans/designs/001-video-qa-analysis-workspace.md`](docs/plans/designs/001-video-qa-analysis-workspace.md)
 
@@ -509,16 +513,16 @@ FunQA는 모션을 장식이 아니라 **예산과 수명주기가 있는 시스
 ### 적재 방법
 
 ```bash
-node scripts/load-video-corpus.mjs                 # 기본 경로: data/자료 (1).zip
-node scripts/load-video-corpus.mjs --zip <path>    # 다른 위치의 아카이브
+npx tsx scripts/load-video-corpus.ts                 # 기본 경로: data/자료 (1).zip
+npx tsx scripts/load-video-corpus.ts --zip <path>    # 다른 위치의 아카이브
 ```
 
 스크립트는 두 개의 산출물만 커밋 대상으로 만듭니다.
 
-| 산출물 | 크기 | 내용 |
-|--------|------|------|
-| `apps/web/data/video-corpus.json` | 약 90KB | 게임 9종 요약 + 장면 문서 78개(텍스트·토큰·추상 클래스·타임코드) |
-| `apps/web/data/video-corpus-vectors.json` | 약 620KB | 1536차원 벡터 78개(float32 base64) |
+| 산출물                                    | 크기     | 내용                                                                        |
+| ----------------------------------------- | -------- | --------------------------------------------------------------------------- |
+| `apps/web/data/video-corpus.json`         | 약 112KB | 게임 9종 요약 + 장면 문서 102개(원본 색인 78 + 누락 영상 원본 분석 파생 24) |
+| `apps/web/data/video-corpus-vectors.json` | 약 624KB | 원본 색인의 1536차원 벡터 78개(float32 base64, 파생 문서와 혼합하지 않음)   |
 
 ⚠️ **원본 아카이브와 영상은 커밋하지 않습니다.** 아카이브 421MB, 영상 447MB이므로
 `.gitignore`에 `data/*.zip`과 `data/video/`를 추가했습니다.
@@ -541,18 +545,18 @@ Load JS 104kB). 쿼리·필터·유사도 기준은 모두 URL에 반영되어 �
 
 ## 기획 문서
 
-| 문서 | 경로 |
-|------|------|
-| 게임 코퍼스 적재 스크립트 | `scripts/load-video-corpus.mjs` |
+| 문서                           | 경로                                                    |
+| ------------------------------ | ------------------------------------------------------- |
+| 게임 코퍼스 적재 스크립트      | `scripts/load-video-corpus.ts`                          |
 | 영상 QA 분석 워크스페이스 설계 | `docs/plans/designs/001-video-qa-analysis-workspace.md` |
-| UI 모션 capability contract | `docs/ui-motion-capability-contract.md` |
-| 서드파티 고지 | `THIRD_PARTY_NOTICES.md` |
-| Seed 스펙 | `docs/spec/seed.yaml` |
-| 시스템 아키텍처 | `docs/architecture/system-architecture.md` |
-| 보안 & 암호화 | `docs/architecture/security-secrets.md` |
-| ClawTeam 런북 | `docs/runbooks/clawteam.md` |
-| 서베이 | `.survey/funqa-rag-genkit-platform/` |
-| 지식 볼트 | `knowledge/` |
+| UI 모션 capability contract    | `docs/ui-motion-capability-contract.md`                 |
+| 서드파티 고지                  | `THIRD_PARTY_NOTICES.md`                                |
+| Seed 스펙                      | `docs/spec/seed.yaml`                                   |
+| 시스템 아키텍처                | `docs/architecture/system-architecture.md`              |
+| 보안 & 암호화                  | `docs/architecture/security-secrets.md`                 |
+| ClawTeam 런북                  | `docs/runbooks/clawteam.md`                             |
+| 서베이                         | `.survey/funqa-rag-genkit-platform/`                    |
+| 지식 볼트                      | `knowledge/`                                            |
 
 ---
 
@@ -577,7 +581,7 @@ Load JS 104kB). 쿼리·필터·유사도 기준은 모두 URL에 반영되어 �
 - 검색 응답은 현재 `graph-core` retrieval intent와 `require-consensus` 계약을 반영하며, graph-path retrieval이 완전 연결되기 전까지는 `evidence-only` 응답을 기본값으로 유지합니다.
 - `apps/web/app/rag-lab`에서는 `knowledge/wiki/reports/` 아래 최신 consensus release-gate 리포트를 자동 선택하거나 특정 리포트를 지정해서 검토할 수 있습니다.
 - creator 운영 API는 `POST /v1/creator-ingest-bundle`, `GET /v1/video-analyses`, `GET /v1/monetization-guides/latest`, `POST /v1/monetization-sources/latest` 경로를 제공합니다.
-- live 임베딩 기본값은 `gemini-embedding-2-preview`이며, 텍스트 외 이미지·비디오·오디오·PDF 입력까지 확장 가능한 최신 Gemini 멀티모달 경로를 기준으로 맞췄습니다.
+- live 임베딩 기본값은 GA 모델 `gemini-embedding-2`이며, 텍스트 외 이미지·비디오·오디오·PDF 입력까지 확장 가능한 Gemini 멀티모달 경로를 기준으로 맞췄습니다.
 - `EMBEDDING_OUTPUT_DIMENSION=1536`은 속도·저장소 효율과 품질의 균형값으로 설정했습니다. 필요하면 `768`, `1536`, `3072` 중 하나로 조정할 수 있습니다.
 - `packages/ai`의 임베딩 어댑터는 플러그인 방식으로 교체 가능합니다.
 - 적재 시 생성한 청크/임베딩은 저장소에 보존되고, 검색 시 재청킹/재임베딩하지 않고 그대로 재사용합니다.

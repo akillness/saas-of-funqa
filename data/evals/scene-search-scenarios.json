@@ -1,0 +1,310 @@
+{
+  "manifestVersion": "funqa-scene-search-scenarios-v1",
+  "queryLanguage": "ko",
+  "videoCount": 9,
+  "scenarioCount": 10,
+  "source": {
+    "kind": "video-analysis-archive",
+    "path": "data/자료 (1)/영상 9편 분석 결과",
+    "note": "각 시나리오의 기대 구간과 requiredEvidence는 위 경로의 분석 JSON에서 직접 읽은 값이다. 새 값을 추정하지 말고 analysisFile의 해당 segment/event를 다시 읽어 갱신할 것."
+  },
+  "timeWindowPolicy": {
+    "unit": "ms",
+    "bounds": "inclusive",
+    "rounding": "분석 원본 초 단위 값을 10ms 단위로 바깥쪽 반올림(start는 내림, end는 올림)했다. 파생 코퍼스가 초를 소수점 2자리로 반올림해 저장하므로, 그 반올림 오차만큼 창을 넓혀 두지 않으면 정답 문서가 경계 밖으로 밀려난다."
+  },
+  "indexingPolicy": {
+    "maxFramesPerVideo": 12,
+    "selection": "buildFrameEvidencePlan의 결정적 시간 분산 선택을 사용한다. 10개 기대 구간은 실제 9개 분석 파일을 이 정책으로 다시 계산했을 때 선택되는 프레임을 기준으로 한다."
+  },
+  "evidencePolicy": {
+    "sourceModes": {
+      "T": "modeT.segments — 구간 caption이 근거. labels/keywords는 caption 안의 문구.",
+      "P": "modeP.events — labels는 rawLabel에서, keywords는 evidence 문장에서 검증한다. prose가 없는 명시적 label-only 예외는 검색 메타데이터로만 쓰고 답변 관측으로 제시하지 않는다."
+    },
+    "media": "이 매니페스트는 텍스트 전용이다. 프레임 이미지, data URL, base64 페이로드를 넣지 않는다."
+  },
+  "scenarios": [
+    {
+      "scenarioId": "skul-cleric-boss-beam",
+      "mode": "text",
+      "query": "성직자 보스가 화면을 가르는 광선 공격을 퍼붓는 장면",
+      "expectedVideoId": "roguelike-skul",
+      "expectedDocumentId": "funqa-roguelike-skul",
+      "acceptableTimeWindowMs": {
+        "startMs": 79140,
+        "endMs": 80890
+      },
+      "requiredEvidence": {
+        "sourceMode": "T",
+        "labels": [
+          "성직자 보스"
+        ],
+        "keywords": [
+          "광선"
+        ],
+        "analysisFile": "roguelike-skul.json",
+        "sourceId": "roguelike-skul:T:9"
+      },
+      "requiredAnswerKeywords": [
+        "성직자",
+        "광선"
+      ],
+      "selectedFrameTimecodeSec": 79.73,
+      "expectedVideoFilename": "Roguelike_Skul.mp4"
+    },
+    {
+      "scenarioId": "dungeonslasher-skill-card-menu",
+      "mode": "text",
+      "query": "여러 스킬 카드 중 하나를 고르는 선택 메뉴 화면",
+      "expectedVideoId": "roguelike-dungeonslasher",
+      "expectedDocumentId": "funqa-roguelike-dungeonslasher",
+      "acceptableTimeWindowMs": {
+        "startMs": 44310,
+        "endMs": 49950
+      },
+      "requiredEvidence": {
+        "sourceMode": "T",
+        "labels": [
+          "스킬 카드"
+        ],
+        "keywords": [
+          "메뉴"
+        ],
+        "analysisFile": "roguelike-dungeonslasher.json",
+        "sourceId": "roguelike-dungeonslasher:T:13"
+      },
+      "requiredAnswerKeywords": [
+        "스킬",
+        "카드"
+      ],
+      "selectedFrameTimecodeSec": 46.19,
+      "expectedVideoFilename": "roguelike_dungeonslasher.mp4"
+    },
+    {
+      "scenarioId": "ascendtozero-ability-tree-menu",
+      "mode": "text",
+      "query": "능력치 강화 트리 메뉴가 열려 있는 구간",
+      "expectedVideoId": "roguelike-ascendtozero",
+      "expectedDocumentId": "funqa-roguelike-ascendtozero",
+      "acceptableTimeWindowMs": {
+        "startMs": 26290,
+        "endMs": 38040
+      },
+      "requiredEvidence": {
+        "sourceMode": "T",
+        "labels": [
+          "능력치 강화 트리"
+        ],
+        "keywords": [
+          "메뉴"
+        ],
+        "analysisFile": "roguelike-ascendtozero.json",
+        "sourceId": "roguelike-ascendtozero:T:10"
+      },
+      "requiredAnswerKeywords": [
+        "능력치",
+        "강화"
+      ],
+      "selectedFrameTimecodeSec": 30.21,
+      "expectedVideoFilename": "roguelike_ascendtozero.mp4"
+    },
+    {
+      "scenarioId": "tarae-foggy-lake-boat-opening",
+      "mode": "text",
+      "query": "안개 낀 호수에서 작은 배가 절벽 아래를 지나가는 도입부",
+      "expectedVideoId": "roguelike-tarae",
+      "expectedDocumentId": "funqa-roguelike-tarae",
+      "acceptableTimeWindowMs": {
+        "startMs": 0,
+        "endMs": 9370
+      },
+      "requiredEvidence": {
+        "sourceMode": "T",
+        "labels": [
+          "안개 낀 호수"
+        ],
+        "keywords": [
+          "배"
+        ],
+        "analysisFile": "roguelike-tarae.json",
+        "sourceId": "roguelike-tarae:T:0"
+      },
+      "requiredAnswerKeywords": [
+        "호수",
+        "배"
+      ],
+      "selectedFrameTimecodeSec": 3.12,
+      "expectedVideoFilename": "roguelike_tarae.mp4"
+    },
+    {
+      "scenarioId": "nammo-golden-buddha-threat",
+      "mode": "text",
+      "query": "거대한 황금 불상이 빛나는 손을 들어 위협하는 순간",
+      "expectedVideoId": "soullike-nammo",
+      "expectedDocumentId": "funqa-soullike-nammo",
+      "acceptableTimeWindowMs": {
+        "startMs": 22280,
+        "endMs": 24150
+      },
+      "requiredEvidence": {
+        "sourceMode": "T",
+        "labels": [
+          "황금 불상"
+        ],
+        "keywords": [
+          "위협"
+        ],
+        "analysisFile": "soullike-nammo.json",
+        "sourceId": "soullike-nammo:T:3"
+      },
+      "requiredAnswerKeywords": [
+        "황금",
+        "불상"
+      ],
+      "selectedFrameTimecodeSec": 22.91,
+      "expectedVideoFilename": "Soullike_Nammo.mp4"
+    },
+    {
+      "scenarioId": "scourgebringer-vertical-beam-fight",
+      "mode": "text",
+      "query": "지하 시설에서 거대한 수직 광선과 맞서는 전투 구간",
+      "expectedVideoId": "roguelike-scourgebringer",
+      "expectedDocumentId": "funqa-roguelike-scourgebringer",
+      "acceptableTimeWindowMs": {
+        "startMs": 11530,
+        "endMs": 37640
+      },
+      "requiredEvidence": {
+        "sourceMode": "T",
+        "labels": [
+          "수직 광선"
+        ],
+        "keywords": [
+          "지하 시설"
+        ],
+        "analysisFile": "roguelike-scourgebringer.json",
+        "sourceId": "roguelike-scourgebringer:T:2"
+      },
+      "requiredAnswerKeywords": [
+        "수직",
+        "광선"
+      ],
+      "selectedFrameTimecodeSec": 20.23,
+      "expectedVideoFilename": "roguelike_ScourgeBringer.mp4"
+    },
+    {
+      "scenarioId": "poingpoing-wall-spike-avoidance",
+      "mode": "text",
+      "query": "플레이어가 천장과 벽의 여러 가시를 건드리지 않고 피해 가는 장면",
+      "expectedVideoId": "platformer-poingpoing",
+      "expectedDocumentId": "funqa-platformer-poingpoing",
+      "acceptableTimeWindowMs": {
+        "startMs": 74600,
+        "endMs": 75400
+      },
+      "requiredEvidence": {
+        "sourceMode": "P",
+        "labels": [
+          "wall_spikes"
+        ],
+        "keywords": [
+          "without contact"
+        ],
+        "analysisFile": "platformer-poingpoing.json",
+        "sourceId": "platformer-poingpoing:P:9"
+      },
+      "requiredAnswerKeywords": [
+        "가시",
+        "피해"
+      ],
+      "selectedFrameTimecodeSec": 74.6,
+      "expectedVideoFilename": "Platformer_PoingPoing.mp4"
+    },
+    {
+      "scenarioId": "axion-bad-timing-judgment",
+      "mode": "text",
+      "query": "중앙 타겟 옆에 BAD 판정 문구가 뜨는 리듬 실패 순간",
+      "expectedVideoId": "rhythm-axion",
+      "expectedDocumentId": "funqa-rhythm-axion",
+      "acceptableTimeWindowMs": {
+        "startMs": 44600,
+        "endMs": 46600
+      },
+      "requiredEvidence": {
+        "sourceMode": "P",
+        "labels": [
+          "bad_timing_judgment"
+        ],
+        "keywords": [
+          "BAD judgment text"
+        ],
+        "analysisFile": "rhythm-axion.json",
+        "sourceId": "rhythm-axion:P:16"
+      },
+      "requiredAnswerKeywords": [
+        "BAD",
+        "판정"
+      ],
+      "selectedFrameTimecodeSec": 44.6,
+      "expectedVideoFilename": "Rhythm_Axion.mp4"
+    },
+    {
+      "scenarioId": "axion-lightning-bolt-counter-gain",
+      "mode": "text",
+      "query": "번개 아이콘을 획득해 카운터가 8에서 10으로 오르는 순간",
+      "expectedVideoId": "rhythm-axion",
+      "expectedDocumentId": "funqa-rhythm-axion",
+      "acceptableTimeWindowMs": {
+        "startMs": 62600,
+        "endMs": 64600
+      },
+      "requiredEvidence": {
+        "sourceMode": "P",
+        "labels": [
+          "yellow_lightning_bolt_right"
+        ],
+        "keywords": [
+          "counter rises from 8 to 10"
+        ],
+        "analysisFile": "rhythm-axion.json",
+        "sourceId": "rhythm-axion:P:24"
+      },
+      "requiredAnswerKeywords": [
+        "8",
+        "10"
+      ],
+      "selectedFrameTimecodeSec": 62.6,
+      "expectedVideoFilename": "Rhythm_Axion.mp4"
+    },
+    {
+      "scenarioId": "runion-winged-boss-engagement",
+      "mode": "text",
+      "query": "주황색 보스 날개와 중앙 의식진이 나타나는 장면",
+      "expectedVideoId": "rhythm-runion",
+      "expectedDocumentId": "funqa-rhythm-runion",
+      "acceptableTimeWindowMs": {
+        "startMs": 44600,
+        "endMs": 45400
+      },
+      "requiredEvidence": {
+        "sourceMode": "P",
+        "labels": [
+          "orange_boss_wings"
+        ],
+        "keywords": [
+          "central_ritual_circle"
+        ],
+        "analysisFile": "rhythm-runion.json",
+        "sourceId": "rhythm-runion:P:20",
+        "allowLabelOnlyEvidence": true
+      },
+      "requiredAnswerKeywords": [
+        "보스",
+        "날개"
+      ],
+      "selectedFrameTimecodeSec": 44.6,
+      "expectedVideoFilename": "Rhythm_RUNION.mp4"
+    }
+  ]
+}

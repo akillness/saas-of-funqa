@@ -1,10 +1,15 @@
 import { SearchRequestSchema } from "@funqa/contracts";
 import type { Express } from "express";
 import { createRateLimiter } from "../middleware/rate-limit.js";
+import { resolveTenantId } from "../middleware/tenant.middleware.js";
 import { runSearchFlow } from "../flows/search.js";
 import { searchDocuments } from "../services/rag.service.js";
 
-const searchRateLimit = createRateLimiter({ windowMs: 60_000, maxRequests: 30 });
+const searchRateLimit = createRateLimiter({
+  windowMs: 60_000,
+  maxRequests: 30,
+  scope: "rag-search"
+});
 
 type SearchResult = {
   id: string;
@@ -18,7 +23,8 @@ export function registerSearchRoute(app: Express) {
   app.post("/v1/search", searchRateLimit, async (req, res, next) => {
     try {
       const payload = SearchRequestSchema.parse(req.body);
-      const result = await runSearchFlow(payload);
+      const tenantId = resolveTenantId(req, payload.tenantId);
+      const result = await runSearchFlow({ ...payload, tenantId });
       res.json(result);
     } catch (error) {
       next(error);
@@ -31,7 +37,9 @@ export function registerSearchRoute(app: Express) {
       res.status(400).json({ error: "invalid_request", details: parseResult.error.issues });
       return;
     }
-    const payload = parseResult.data;
+    const parsed = parseResult.data;
+    const tenantId = resolveTenantId(req, parsed.tenantId);
+    const payload = { ...parsed, tenantId };
 
     res.setHeader("Content-Type", "text/event-stream");
     res.setHeader("Cache-Control", "no-cache");
@@ -52,7 +60,11 @@ export function registerSearchRoute(app: Express) {
 
       const result = await searchDocuments(payload);
 
-      const chunks = (result.results as SearchResult[]).map((r) => ({ id: r.id, score: r.confidence, content: r.snippet }));
+      const chunks = (result.results as SearchResult[]).map((r) => ({
+        id: r.id,
+        score: r.confidence,
+        content: r.snippet
+      }));
       write("chunks", chunks);
 
       write("status", { stage: "generating" });
@@ -60,11 +72,10 @@ export function registerSearchRoute(app: Express) {
       write("answer", { answer: result.answer, citations: result.citations });
 
       write("done", { latencyMs: Date.now() - start });
-    } catch (error) {
-      write("error", { message: error instanceof Error ? error.message : "search_failed" });
+    } catch {
+      write("error", { message: "search_failed" });
     } finally {
       res.end();
     }
   });
 }
-

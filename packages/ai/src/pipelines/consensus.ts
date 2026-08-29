@@ -1,4 +1,5 @@
-import type { EmbeddedChunk } from '../types.js';
+import { cosineSimilarity } from "../core/similarity.js";
+import type { EmbeddedChunk } from "../types.js";
 
 export interface ConsensusResult {
   reached: boolean;
@@ -14,16 +15,16 @@ export interface ConsensusResult {
  * 1. Group top retrieved chunks by documentId
  * 2. If ≥2 distinct documents each contribute a top chunk → consensus candidate
  * 3. agreement = unique supporting docs / total top chunks (capped at 1.0)
- * 4. graphPaths = pairs of [docA_chunkId, docB_chunkId] that share keyword overlap
- * 5. reached = agreement >= threshold (default 0.5) AND ≥2 supporting docs
+ * 4. graphPaths = cross-document pairs with shared query evidence and
+ *    embedding similarity above the configured floor
+ * 5. reached = agreement >= threshold, ≥2 supporting docs, and ≥1 graph path
  */
 export function evaluateConsensus(
   query: string,
   topChunks: EmbeddedChunk[],
-  allChunks: EmbeddedChunk[],
-  options: { threshold?: number; topK?: number } = {}
+  options: { threshold?: number; topK?: number; similarityThreshold?: number } = {}
 ): ConsensusResult {
-  const { threshold = 0.5, topK = 5 } = options;
+  const { threshold = 0.5, topK = 5, similarityThreshold = 0.6 } = options;
   const candidates = topChunks.slice(0, topK);
 
   // Group by document
@@ -45,7 +46,12 @@ export function evaluateConsensus(
   const agreement = Math.min(1.0, numDocs / candidates.length);
 
   // Build graph paths: pairs of chunks from different documents that share query keywords
-  const queryTokens = new Set(query.toLowerCase().split(/\s+/).filter(t => t.length > 3));
+  const queryTokens = new Set(
+    query
+      .toLowerCase()
+      .split(/\s+/)
+      .filter((t) => t.length > 3)
+  );
   const graphPaths: string[][] = [];
 
   const docList = [...byDoc.entries()];
@@ -57,17 +63,28 @@ export function evaluateConsensus(
       const chunkB = chunksB[0];
 
       // Check if both chunks contain at least one query keyword
-      const textA = (chunkA.text || '').toLowerCase();
-      const textB = (chunkB.text || '').toLowerCase();
-      const shared = [...queryTokens].some(t => textA.includes(t) && textB.includes(t));
+      const textA = (chunkA.text || "").toLowerCase();
+      const textB = (chunkB.text || "").toLowerCase();
+      const shared = [...queryTokens].some((t) => textA.includes(t) && textB.includes(t));
 
-      if (shared) {
+      const embeddingsComparable =
+        chunkA.embedding.length > 0 && chunkA.embedding.length === chunkB.embedding.length;
+      const similarity = embeddingsComparable
+        ? cosineSimilarity(chunkA.embedding, chunkB.embedding)
+        : 0;
+
+      if (shared && similarity >= similarityThreshold) {
         graphPaths.push([chunkA.id, chunkB.id]);
       }
     }
   }
 
-  const reached = agreement >= threshold && numDocs >= 2;
+  const reached = agreement >= threshold && numDocs >= 2 && graphPaths.length > 0;
 
-  return { reached, agreement: Math.round(agreement * 1000) / 1000, graphPaths, supportingDocuments };
+  return {
+    reached,
+    agreement: Math.round(agreement * 1000) / 1000,
+    graphPaths,
+    supportingDocuments
+  };
 }

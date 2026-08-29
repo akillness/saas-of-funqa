@@ -26,6 +26,7 @@ jobs:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       SECRET_ENCRYPTION_KEY: ${{ secrets.SECRET_ENCRYPTION_KEY }}
       SECRET_ENCRYPTION_KEY_VERSION: v1
+      FUNCTIONS_ADMIN_EMAILS: ${{ vars.FUNCTIONS_ADMIN_EMAILS }}
       # Functions 런타임 모델은 scripts/build-functions.mjs 가 고정하므로 이 값은
       # Functions 에 도달하지 않는다. 로컬/빌드 단계 일관성용으로만 유지.
       EMBEDDING_MODEL_ID: gemini-embedding-2
@@ -43,8 +44,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
-          cache: 'npm'
+          node-version: "22"
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci

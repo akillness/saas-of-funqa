@@ -9,6 +9,11 @@
         ".omx",
         ".runtime",
         ".survey",
+        ".env",
+        ".env.*",
+        "*adminsdk*.json",
+        "**/*adminsdk*.json",
+        "*.pem",
         "google-cloud-sdk",
         "google-cloud-cli-darwin-arm.tar.gz",
         "apps/web/.next",
@@ -62,6 +67,9 @@
     },
     "firestore": {
       "port": 8080
+    },
+    "storage": {
+      "port": 9199
     },
     "ui": {
       "enabled": false,
