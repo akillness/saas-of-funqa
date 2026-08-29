@@ -723,3 +723,31 @@ Each entry should list the files touched, the reason for the change, and any fol
   - Browser: sidebar renders 홈 / 검색 / 영상 QA / RAG 랩 / 관리 / API 문서;
     no `/ralph` link; strings `94%`, `87%`, `62ms` absent from the rendered page;
     0 page errors; no horizontal overflow at 1440.
+
+## 2026-08-28 — Vector index gets its own route and menu
+
+- Files touched:
+  - `wiki/concepts/video-qa-analysis-workspace.md`
+  - `log.md`
+- Reason:
+  - "Upload a video and it becomes searchable vectors" was the product's core
+    write action but lived in a collapsed `<details>` at the bottom of
+    `/scene-search`, invisible from the navigation. It now has `/vector-index`
+    with its own sidebar entry, and the workspace cross-links to it.
+  - The page states the real storage contract instead of implying a vector DB:
+    per scene it stores frame image + timecode, caption, caption embedding,
+    optional image embedding, and embedding mode/model. Backing store is
+    Firestore `sceneFrames/{tenant}/scenes` or a local JSON file; similarity is
+    computed server-side. Capacity (400/tenant) and ingest cap (16 frames) are
+    shown up front rather than surfaced as a failure.
+- Verification:
+  - typecheck green; 10 files / 100 tests green; build green.
+  - End-to-end against the live local API with a generated 6s clip: 6 frames
+    extracted, indexed with caption model `gemini-2.5-flash` and embedding model
+    `gemini-embedding-001` (live), real Korean captions returned, status strip
+    moved 6 → 12 scenes, library table gained the row.
+  - Test data then removed from `.runtime/scene-store.json`; store returned to
+    1 document / 6 scenes so the baseline is unchanged.
+  - 390px: no horizontal overflow (scrollWidth 388), status strip reflows 2x2.
+- Note:
+  - Fixed a Korean typo introduced in this change ("캐션" → "캡션").

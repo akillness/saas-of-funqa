@@ -135,6 +135,17 @@ export function KoreanIcon(props: IconProps) {
   );
 }
 
+/** Stacked layers: the scene vector store, one layer per indexed frame. */
+export function LayersIcon(props: IconProps) {
+  return (
+    <BaseIcon {...props}>
+      <path d="m12 3.5 8 4.2-8 4.2-8-4.2 8-4.2Z" />
+      <path d="m4 12 8 4.2 8-4.2" />
+      <path d="m4 16.2 8 4.2 8-4.2" />
+    </BaseIcon>
+  );
+}
+
 export function LoginIcon(props: IconProps) {
   return (
     <BaseIcon {...props}>

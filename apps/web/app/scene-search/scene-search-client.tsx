@@ -10,7 +10,7 @@ import type {
 import { useAuth } from "@/components/auth-provider";
 import { AgentActivityOrb } from "@/components/motion";
 import { extractVideoFrames, type ExtractedFrame } from "@/lib/video-frames";
-import type { Locale, Messages } from "@/lib/i18n";
+import { withLocale, type Locale, type Messages } from "@/lib/i18n";
 import {
   SAMPLE_DURATION_SEC,
   SAMPLE_OBSERVATIONS,
@@ -743,7 +743,7 @@ export function SceneSearchClient({ t, loginHref, tenantId, locale }: SceneSearc
             {ingestResult ? <p className="scene-success">✓ {t.ingest.successTitle} · {ingestResult.sceneCount} {t.library.scenes}</p> : null}
           </section>
           <section aria-label={copy.recent} className="vqa-library">
-            <div><h3>{copy.recent}</h3><button className="vqa-quiet-button" onClick={() => void refreshLibrary()} type="button">{t.library.refresh}</button></div>
+            <div><h3>{copy.recent}</h3><Link className="vqa-quiet-button" href={withLocale("/vector-index", locale)}>{isKo ? "벡터 인덱스 열기 →" : "Open vector index →"}</Link></div>
             {!library?.documents.length ? <p>{t.library.empty}</p> : <ul>{library.documents.slice(0, 5).map((doc) => <li key={doc.id}><strong>{doc.title}</strong><span>{doc.sceneCount} {t.library.scenes}{typeof doc.durationSec === "number" ? ` · ${formatVideoTimecode(doc.durationSec)}` : ""}</span></li>)}</ul>}
           </section>
         </div>

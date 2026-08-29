@@ -74,6 +74,34 @@ specificity (0,1,0) and outranks the `html` type selector (0,0,1), so an earlier
 light scrollbar gutter. The override has to match the `:root` selector so source
 order decides.
 
+## Write path has its own surface
+
+Indexing used to live in a collapsed `<details>` at the bottom of the workspace,
+so the one action the product is named after was invisible from the navigation.
+It now has a dedicated route and menu entry.
+
+| Route | Menu | Owns |
+|---|---|---|
+| `/vector-index` | 벡터 인덱스 | write: upload → frame sampling → caption + embedding → scene vector store |
+| `/scene-search` | 영상 QA | read: search stored scenes and review evidence |
+
+The surface states the storage contract instead of implying a vector database
+that does not exist. One stored scene carries the frame image and timecode, the
+caption, the caption embedding, an image embedding when the model is multimodal,
+and the embedding mode plus model name. The backing store is Firestore
+(`sceneFrames/{tenant}/scenes`) or a local JSON file depending on deployment, and
+similarity is computed on the server. The pgvector path belongs to the game-log
+vertical and is unrelated to this screen.
+
+Limits are surfaced rather than discovered on failure: 400 scenes per tenant
+(shown as a capacity meter) and 16 frames per ingest.
+
+Verified end to end against the live local API: a 6-second test clip produced
+six frames, indexed as `gemini-2.5-flash` captions embedded with
+`gemini-embedding-001` in `live` mode, and the status strip moved from 6 to 12
+stored scenes. The test document was then removed from
+`.runtime/scene-store.json` so the store baseline returned to its prior state.
+
 ## Shell consistency
 
 Two follow-on changes keep the rest of the shell from contradicting the new
