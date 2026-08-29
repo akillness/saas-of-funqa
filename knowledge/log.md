@@ -751,3 +751,48 @@ Each entry should list the files touched, the reason for the change, and any fol
   - 390px: no horizontal overflow (scrollWidth 388), status strip reflows 2x2.
 - Note:
   - Fixed a Korean typo introduced in this change ("캐션" → "캡션").
+
+## 2026-08-29 — Bundled game-video corpus loaded and made searchable
+
+- Files touched:
+  - `wiki/concepts/video-qa-analysis-workspace.md`
+  - `log.md`
+- Reason:
+  - `data/자료 (1).zip` (421MB) held a real tension-analysis dataset: 9 gameplay
+    videos, 9 per-game analysis JSONs, tension episode CSVs, and a prebuilt
+    `scene-index.json` with 78 documents plus 78 x 1536 embedding vectors.
+    It was sitting unused and untracked-but-not-ignored next to a tracked
+    `data/evals/` directory.
+  - `scripts/load-video-corpus.mjs` now derives two committed artifacts
+    (`apps/web/data/video-corpus.json` ~90KB, `video-corpus-vectors.json` ~620KB
+    as float32 base64) and `.gitignore` gained `data/*.zip` and `data/video/` so
+    the 421MB archive and 447MB of video can never be committed by accident.
+  - New `/corpus` route + "게임 코퍼스" menu searches it.
+- Findings worth keeping:
+  - The archive stores Korean directory names in CP949 without the UTF-8 flag,
+    so both `unzip` and Python's `zipfile` surface mojibake. Entries are matched
+    on basename (always ASCII) instead of full path.
+  - The bundled vectors are OpenAI `text-embedding-3-small` (1536d), which is
+    NOT the app's Gemini space. Free-text queries are therefore scored
+    lexically, and the vectors are used only for document-to-document
+    similarity where both sides come from the same index. Embedding a Gemini
+    query into this space would reproduce exactly the failure the scene store
+    already guards against with `unscoreableScenes`.
+  - Korean needs run-based tokenization: a whitespace split can never match
+    `요소: 위협` from a query of `위협`. Latin, digit, and Hangul runs are
+    extracted separately.
+  - Keeping the page a server component matters: `/corpus` ships 104kB First
+    Load JS despite a 620KB vector file, because the vectors never cross into
+    the client bundle.
+- Verification:
+  - typecheck green; vitest 11 files / 113 tests green (13 new corpus tests);
+    build green.
+  - Live: EN token query `lightning` -> 4 hits; Korean `위협` -> 30 (capped);
+    mixed `boss 체력` -> 1; unknown term -> honest empty state; `SETBACK`
+    filter -> 7 in timeline order.
+  - Vector similarity from `rhythm-axion#event:9` ranked same-game rhythm scenes
+    at 78.4 / 77.0 / 75.5% and a cross-genre soullike scene at 51.8%, with no
+    provider call.
+  - Game panel for `roguelike-skul` rendered real grading: tier D/mode T, 01:40,
+    64% observed, 18 cuts, THREAT 100%, personas, flag "초반 이탈 위험".
+  - 390px: no horizontal overflow on the listing or the game panel (388).

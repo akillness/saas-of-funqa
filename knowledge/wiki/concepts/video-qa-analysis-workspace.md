@@ -122,6 +122,24 @@ surface:
   its dictionary, and its regression tests still exist and remain reachable by
   URL, so this is a navigation decision rather than a deletion.
 
+## Bundled corpus is a third surface
+
+`/corpus` searches a dataset that ships with the repository rather than tenant
+data: 9 analysed gameplay videos and 78 scene/event documents derived from
+`data/자료 (1).zip` by `scripts/load-video-corpus.mjs`.
+
+It exists because that archive already contains what the product otherwise has
+to generate: per-scene captions, abstract classes (THREAT, SETBACK, PROGRESS,
+RESOURCE, COLLECTIBLE), timecodes, per-game grading, pacing series, and marketed
+persona scores.
+
+The retrieval split is the important part. Free-text queries are scored
+lexically; only "similar scenes" touches the bundled vectors, because those are
+OpenAI `text-embedding-3-small` and the app never calls that provider. Comparing
+documents against each other keeps both sides inside one space, so the score
+means something without a request-time embedding. This is the same rule the
+scene store enforces with `unscoreableScenes`, applied to a second dataset.
+
 ## Verified
 
 - 1440×900: player, metric deck, critical finding, composer, tabs, and the first

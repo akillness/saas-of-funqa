@@ -27,6 +27,7 @@ export const koMessages = {
       search: "검색",
       sceneLab: "영상 QA",
       vectorIndex: "벡터 인덱스",
+      corpus: "게임 코퍼스",
       ragLab: "RAG 랩",
       ralph: "Ralph",
       admin: "관리",

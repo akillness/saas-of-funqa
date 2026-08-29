@@ -27,6 +27,7 @@ export const enMessages = {
       search: "Search",
       sceneLab: "Video QA",
       vectorIndex: "Vector index",
+      corpus: "Game corpus",
       ragLab: "RAG Lab",
       ralph: "Ralph",
       admin: "Admin",

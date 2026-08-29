@@ -34,3 +34,9 @@ docs/generated/
 services/**/.cocoindex/
 /logs/
 graphify-out/cache/
+
+# Source media for the bundled game-video corpus.
+# The archive is ~421MB and its videos are ~447MB unpacked; only the derived
+# corpus under apps/web/data/ is committed (see scripts/load-video-corpus.mjs).
+data/*.zip
+data/video/

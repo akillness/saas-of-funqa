@@ -6,7 +6,7 @@ import { FirebaseAnalytics } from "./firebase-analytics";
 import { AuthProvider } from "@/components/auth-provider";
 import { NavAuth } from "@/components/nav-auth";
 import { CategoryTabBar } from "@/components/category-tab-bar";
-import { BookIcon, FilmIcon, FlaskIcon, HomeIcon, LayersIcon, SearchIcon, ShieldIcon } from "@/components/menu-icons";
+import { BookIcon, CorpusIcon, FilmIcon, FlaskIcon, HomeIcon, LayersIcon, SearchIcon, ShieldIcon } from "@/components/menu-icons";
 import { getDictionary, withLocale } from "../lib/i18n";
 import { getRequestLocale } from "../lib/i18n-server";
 import "./globals.css";
@@ -44,6 +44,7 @@ export default async function RootLayout({
     { href: "/search", label: t.layout.nav.search, Icon: SearchIcon },
     { href: "/scene-search", label: t.layout.nav.sceneLab, Icon: FilmIcon },
     { href: "/vector-index", label: t.layout.nav.vectorIndex, Icon: LayersIcon },
+    { href: "/corpus", label: t.layout.nav.corpus, Icon: CorpusIcon },
     { href: "/rag-lab", label: t.layout.nav.ragLab, Icon: FlaskIcon },
     { href: "/admin", label: t.layout.nav.admin, Icon: ShieldIcon },
     { href: "/docs", label: t.layout.nav.docs, Icon: BookIcon },

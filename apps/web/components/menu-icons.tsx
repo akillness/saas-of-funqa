@@ -146,6 +146,19 @@ export function LayersIcon(props: IconProps) {
   );
 }
 
+/** Archive drawer: the bundled, read-only analysis corpus. */
+export function CorpusIcon(props: IconProps) {
+  return (
+    <BaseIcon {...props}>
+      <rect height="4.4" rx="1" width="16" x="4" y="4" />
+      <rect height="4.4" rx="1" width="16" x="4" y="11.6" />
+      <path d="M10 6.2h4" />
+      <path d="M10 13.8h4" />
+      <path d="M6.5 19.4h11" />
+    </BaseIcon>
+  );
+}
+
 export function LoginIcon(props: IconProps) {
   return (
     <BaseIcon {...props}>

@@ -1,0 +1,3647 @@
+{
+  "meta": {
+    "source": "자료 (1).zip",
+    "embeddingModel": "text-embedding-3-small",
+    "dimension": 1536,
+    "builtAt": "2026-08-26T07:42:23.954Z",
+    "gameCount": 9,
+    "docCount": 78,
+    "generatedBy": "scripts/load-video-corpus.mjs"
+  },
+  "games": [
+    {
+      "id": "platformer-poingpoing",
+      "filename": "Platformer_PoingPoing.mp4",
+      "genre": "platformer",
+      "durationSec": 469.5,
+      "width": 1920,
+      "height": 1080,
+      "fps": 60,
+      "tier": "B",
+      "mode": "P",
+      "observedFraction": 0.9872,
+      "hudVisible": false,
+      "hudElements": [],
+      "cutCount": 3,
+      "rationale": "등급 B — 컷 3개(초당 0.006개), 게임플레이 프레임 비중 88%, HUD 미노출을 근거로 판정했습니다. 관측률은 99%이며, 산출 방법은 타이머 판독 불가에 따른 컷 밀도 기반 추정(실측 아님)입니다. 모드 P로 전체 분석을 제공하되 생략 구간을 명시하고 신뢰도를 한 단계 낮춰 표기합니다. 예상 비용은 약 $0.0391입니다.",
+      "segmentCount": 0,
+      "eventCount": 159,
+      "composition": [],
+      "features": [],
+      "persona": [],
+      "personaConfidence": null,
+      "diagnostics": {
+        "firstActionBeatSec": 26,
+        "climaxPositionPct": 0.06,
+        "restIntervalCount": 2,
+        "maxSustainedArousalSec": 4,
+        "meanCutsPerSec": 0.006,
+        "flags": [
+          "초반 이탈 위험"
+        ]
+      },
+      "costUsd": 0.09516,
+      "analyzedAt": "2026-08-26T07:49:25.799Z",
+      "engine": "live"
+    },
+    {
+      "id": "rhythm-axion",
+      "filename": "Rhythm_Axion.mp4",
+      "genre": "rhythm",
+      "durationSec": 93.6,
+      "width": 1920,
+      "height": 1080,
+      "fps": 60,
+      "tier": "C",
+      "mode": "P",
+      "observedFraction": 0.9359,
+      "hudVisible": true,
+      "hudElements": [
+        "difficulty",
+        "bpm",
+        "timer",
+        "progress",
+        "score",
+        "settings",
+        "countdown",
+        "note_lane",
+        "feedback",
+        "results"
+      ],
+      "cutCount": 3,
+      "rationale": "등급 C — 컷 3개(초당 0.032개), 게임플레이 프레임 비중 50%, HUD 노출을 근거로 판정했습니다. 관측률은 94%이며, 산출 방법은 타이머 판독 불가에 따른 컷 밀도 기반 추정(실측 아님)입니다. 이벤트 타임라인과 구성비·페이싱만 제공하고 페르소나 판정은 보류합니다. 예상 비용은 약 $0.0086입니다.",
+      "segmentCount": 0,
+      "eventCount": 34,
+      "composition": [],
+      "features": [],
+      "persona": [],
+      "personaConfidence": null,
+      "diagnostics": {
+        "firstActionBeatSec": 14,
+        "climaxPositionPct": 0.149,
+        "restIntervalCount": 3,
+        "maxSustainedArousalSec": 3,
+        "meanCutsPerSec": 0.032,
+        "flags": []
+      },
+      "costUsd": 0.03553,
+      "analyzedAt": "2026-08-26T07:28:40.363Z",
+      "engine": "live"
+    },
+    {
+      "id": "rhythm-runion",
+      "filename": "Rhythm_RUNION.mp4",
+      "genre": "rhythm",
+      "durationSec": 251.8,
+      "width": 1920,
+      "height": 1080,
+      "fps": 60,
+      "tier": "B",
+      "mode": "P",
+      "observedFraction": 0.9921,
+      "hudVisible": true,
+      "hudElements": [
+        "hp_bar",
+        "damage",
+        "accuracy",
+        "combo"
+      ],
+      "cutCount": 1,
+      "rationale": "등급 B — 컷 1개(초당 0.004개), 게임플레이 프레임 비중 75%, HUD 노출을 근거로 판정했습니다. 관측률은 99%이며, 산출 방법은 타이머 판독 불가에 따른 컷 밀도 기반 추정(실측 아님)입니다. 모드 P로 전체 분석을 제공하되 생략 구간을 명시하고 신뢰도를 한 단계 낮춰 표기합니다. 예상 비용은 약 $0.0208입니다.",
+      "segmentCount": 0,
+      "eventCount": 348,
+      "composition": [],
+      "features": [],
+      "persona": [],
+      "personaConfidence": null,
+      "diagnostics": {
+        "firstActionBeatSec": null,
+        "climaxPositionPct": 0.222,
+        "restIntervalCount": 14,
+        "maxSustainedArousalSec": 0,
+        "meanCutsPerSec": 0.004,
+        "flags": [
+          "초반 이탈 위험"
+        ]
+      },
+      "costUsd": 0.14242,
+      "analyzedAt": "2026-08-26T07:42:22.997Z",
+      "engine": "live"
+    },
+    {
+      "id": "roguelike-ascendtozero",
+      "filename": "roguelike_ascendtozero.mp4",
+      "genre": "roguelike",
+      "durationSec": 60.1,
+      "width": 1920,
+      "height": 1080,
+      "fps": 29.97002997002997,
+      "tier": "D",
+      "mode": "T",
+      "observedFraction": 0.5,
+      "hudVisible": true,
+      "hudElements": [
+        "timer",
+        "enemy_levels",
+        "operation_banner",
+        "hp_bar",
+        "damage_numbers",
+        "boss_bar"
+      ],
+      "cutCount": 19,
+      "rationale": "등급 D — 컷 19개(초당 0.316개), 게임플레이 프레임 비중 88%, HUD 노출을 근거로 판정했습니다. 관측률은 50%이며, 산출 방법은 타이머 판독 불가에 따른 컷 밀도 기반 추정(실측 아님)입니다. 모드 T로 콘텐츠 구성비, 의도된 타겟 페르소나(신뢰도 낮음), 편집 페이싱, 유사 게임 검색을 제공합니다. 예상 비용은 약 $0.0148입니다.",
+      "segmentCount": 15,
+      "eventCount": 0,
+      "composition": [
+        {
+          "abstractClass": "THREAT",
+          "shareOfDuration": 1,
+          "segmentCount": 11
+        },
+        {
+          "abstractClass": "RESOURCE",
+          "shareOfDuration": 0.228,
+          "segmentCount": 1
+        },
+        {
+          "abstractClass": "PROGRESS",
+          "shareOfDuration": 0.1042,
+          "segmentCount": 2
+        },
+        {
+          "abstractClass": "SETBACK",
+          "shareOfDuration": 0.0489,
+          "segmentCount": 1
+        },
+        {
+          "abstractClass": "COLLECTIBLE",
+          "shareOfDuration": 0,
+          "segmentCount": 0
+        }
+      ],
+      "features": [
+        {
+          "axis": "camera",
+          "value": "isometric",
+          "confidence": 1
+        },
+        {
+          "axis": "combatStyle",
+          "value": "realtime_melee",
+          "confidence": 0.4545
+        },
+        {
+          "axis": "artStyle",
+          "value": "stylized_3d",
+          "confidence": 1
+        },
+        {
+          "axis": "environment",
+          "value": "sci-fi room",
+          "confidence": 0.1818
+        },
+        {
+          "axis": "hudDensity",
+          "value": "heavy",
+          "confidence": 0.6364
+        },
+        {
+          "axis": "combatShare",
+          "value": 1,
+          "confidence": 1
+        },
+        {
+          "axis": "exploreShare",
+          "value": 0.1042,
+          "confidence": 1
+        },
+        {
+          "axis": "cutsPerSec",
+          "value": 0.316,
+          "confidence": 1
+        },
+        {
+          "axis": "meanArousal",
+          "value": 0.5444,
+          "confidence": 1
+        },
+        {
+          "axis": "climaxPositionPct",
+          "value": 0.1,
+          "confidence": 1
+        }
+      ],
+      "persona": [
+        {
+          "persona": "Speedrunner",
+          "score": 0.6841,
+          "drivers": [
+            "THREAT 점유 100%",
+            "컷 0.32/s · 빠른 컷 성향 높음",
+            "휴지 구간 1회 · 짧은 정지 성향 높음"
+          ]
+        },
+        {
+          "persona": "Strategist",
+          "score": 0.194,
+          "drivers": [
+            "HUD 밀도 높음",
+            "평균 샷 2.8초",
+            "RESOURCE 점유 23%"
+          ]
+        },
+        {
+          "persona": "Explorer",
+          "score": 0.122,
+          "drivers": [
+            "환경 다양도 8종",
+            "컷 0.32/s · 느린 컷 성향 보통",
+            "휴지 구간 1회 · 호흡 구간 성향 낮음"
+          ]
+        }
+      ],
+      "personaConfidence": "low",
+      "diagnostics": {
+        "firstActionBeatSec": 3,
+        "climaxPositionPct": 0.1,
+        "restIntervalCount": 1,
+        "maxSustainedArousalSec": 10,
+        "meanCutsPerSec": 0.316,
+        "flags": []
+      },
+      "costUsd": 0.01454,
+      "analyzedAt": "2026-08-26T07:24:35.875Z",
+      "engine": "live"
+    },
+    {
+      "id": "roguelike-dungeonslasher",
+      "filename": "roguelike_dungeonslasher.mp4",
+      "genre": "roguelike",
+      "durationSec": 88.3,
+      "width": 1920,
+      "height": 1080,
+      "fps": 29.97002997002997,
+      "tier": "D",
+      "mode": "T",
+      "observedFraction": 0.5244,
+      "hudVisible": true,
+      "hudElements": [
+        "hp_bar",
+        "currency",
+        "minimap",
+        "enemy_count",
+        "touch_controls",
+        "pause_button",
+        "menu_button",
+        "boss_health_bar"
+      ],
+      "cutCount": 21,
+      "rationale": "등급 D — 컷 21개(초당 0.238개), 게임플레이 프레임 비중 75%, HUD 노출을 근거로 판정했습니다. 관측률은 52%이며, 산출 방법은 타이머 판독 불가에 따른 컷 밀도 기반 추정(실측 아님)입니다. 모드 T로 콘텐츠 구성비, 의도된 타겟 페르소나(신뢰도 낮음), 편집 페이싱, 유사 게임 검색을 제공합니다. 예상 비용은 약 $0.0168입니다.",
+      "segmentCount": 17,
+      "eventCount": 0,
+      "composition": [
+        {
+          "abstractClass": "THREAT",
+          "shareOfDuration": 0.9177,
+          "segmentCount": 14
+        },
+        {
+          "abstractClass": "RESOURCE",
+          "shareOfDuration": 0.5814,
+          "segmentCount": 9
+        },
+        {
+          "abstractClass": "COLLECTIBLE",
+          "shareOfDuration": 0.31,
+          "segmentCount": 3
+        },
+        {
+          "abstractClass": "PROGRESS",
+          "shareOfDuration": 0.0823,
+          "segmentCount": 2
+        },
+        {
+          "abstractClass": "SETBACK",
+          "shareOfDuration": 0,
+          "segmentCount": 0
+        }
+      ],
+      "features": [
+        {
+          "axis": "camera",
+          "value": "side_scroll",
+          "confidence": 1
+        },
+        {
+          "axis": "combatStyle",
+          "value": "realtime_melee",
+          "confidence": 0.625
+        },
+        {
+          "axis": "artStyle",
+          "value": "pixel",
+          "confidence": 0.875
+        },
+        {
+          "axis": "environment",
+          "value": "stone dungeon",
+          "confidence": 0.375
+        },
+        {
+          "axis": "hudDensity",
+          "value": "heavy",
+          "confidence": 0.8125
+        },
+        {
+          "axis": "combatShare",
+          "value": 0.9177,
+          "confidence": 1
+        },
+        {
+          "axis": "exploreShare",
+          "value": 0.3923,
+          "confidence": 1
+        },
+        {
+          "axis": "cutsPerSec",
+          "value": 0.238,
+          "confidence": 1
+        },
+        {
+          "axis": "meanArousal",
+          "value": 0.4105,
+          "confidence": 1
+        },
+        {
+          "axis": "climaxPositionPct",
+          "value": 0.125,
+          "confidence": 1
+        }
+      ],
+      "persona": [
+        {
+          "persona": "Strategist",
+          "score": 0.4461,
+          "drivers": [
+            "HUD 밀도 높음",
+            "RESOURCE 점유 58%",
+            "평균 샷 5.2초"
+          ]
+        },
+        {
+          "persona": "Speedrunner",
+          "score": 0.3116,
+          "drivers": [
+            "THREAT 점유 92%",
+            "컷 0.24/s · 빠른 컷 성향 보통",
+            "휴지 구간 3회 · 짧은 정지 성향 낮음"
+          ]
+        },
+        {
+          "persona": "Explorer",
+          "score": 0.2422,
+          "drivers": [
+            "환경 다양도 9종",
+            "COLLECTIBLE 점유 31%",
+            "컷 0.24/s · 느린 컷 성향 보통"
+          ]
+        }
+      ],
+      "personaConfidence": "low",
+      "diagnostics": {
+        "firstActionBeatSec": 9,
+        "climaxPositionPct": 0.125,
+        "restIntervalCount": 3,
+        "maxSustainedArousalSec": 4,
+        "meanCutsPerSec": 0.238,
+        "flags": []
+      },
+      "costUsd": 0.01673,
+      "analyzedAt": "2026-08-26T07:25:12.373Z",
+      "engine": "live"
+    },
+    {
+      "id": "roguelike-scourgebringer",
+      "filename": "roguelike_ScourgeBringer.mp4",
+      "genre": "roguelike",
+      "durationSec": 80.8,
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "tier": "D",
+      "mode": "T",
+      "observedFraction": 0.7031,
+      "hudVisible": false,
+      "hudElements": [
+        "ability_icons",
+        "hp_bar",
+        "boss_name",
+        "score",
+        "counter"
+      ],
+      "cutCount": 12,
+      "rationale": "등급 D — 컷 12개(초당 0.148개), 게임플레이 프레임 비중 83%, HUD 미노출을 근거로 판정했습니다. 관측률은 70%이며, 산출 방법은 타이머 판독 불가에 따른 컷 밀도 기반 추정(실측 아님)입니다. 모드 T로 콘텐츠 구성비, 의도된 타겟 페르소나(신뢰도 낮음), 편집 페이싱, 유사 게임 검색을 제공합니다. 예상 비용은 약 $0.0059입니다.",
+      "segmentCount": 6,
+      "eventCount": 0,
+      "composition": [
+        {
+          "abstractClass": "THREAT",
+          "shareOfDuration": 1,
+          "segmentCount": 5
+        },
+        {
+          "abstractClass": "PROGRESS",
+          "shareOfDuration": 0.3675,
+          "segmentCount": 1
+        },
+        {
+          "abstractClass": "RESOURCE",
+          "shareOfDuration": 0,
+          "segmentCount": 0
+        },
+        {
+          "abstractClass": "COLLECTIBLE",
+          "shareOfDuration": 0,
+          "segmentCount": 0
+        },
+        {
+          "abstractClass": "SETBACK",
+          "shareOfDuration": 0,
+          "segmentCount": 0
+        }
+      ],
+      "features": [
+        {
+          "axis": "camera",
+          "value": "side_scroll",
+          "confidence": 0.8
+        },
+        {
+          "axis": "combatStyle",
+          "value": "realtime_ranged",
+          "confidence": 0.6
+        },
+        {
+          "axis": "artStyle",
+          "value": "pixel",
+          "confidence": 1
+        },
+        {
+          "axis": "environment",
+          "value": "sci-fi dungeon",
+          "confidence": 0.2
+        },
+        {
+          "axis": "hudDensity",
+          "value": "heavy",
+          "confidence": 0.6
+        },
+        {
+          "axis": "combatShare",
+          "value": 1,
+          "confidence": 1
+        },
+        {
+          "axis": "exploreShare",
+          "value": 0.3675,
+          "confidence": 1
+        },
+        {
+          "axis": "cutsPerSec",
+          "value": 0.148,
+          "confidence": 1
+        },
+        {
+          "axis": "meanArousal",
+          "value": 0.4448,
+          "confidence": 1
+        },
+        {
+          "axis": "climaxPositionPct",
+          "value": 0.148,
+          "confidence": 1
+        }
+      ],
+      "persona": [
+        {
+          "persona": "Speedrunner",
+          "score": 0.467,
+          "drivers": [
+            "THREAT 점유 100%",
+            "컷 0.15/s · 빠른 컷 성향 낮음",
+            "휴지 구간 2회 · 짧은 정지 성향 보통"
+          ]
+        },
+        {
+          "persona": "Strategist",
+          "score": 0.3143,
+          "drivers": [
+            "HUD 밀도 높음",
+            "평균 샷 14.7초",
+            "컷 0.15/s · 느린 호흡 성향 높음"
+          ]
+        },
+        {
+          "persona": "Explorer",
+          "score": 0.2188,
+          "drivers": [
+            "환경 다양도 5종",
+            "컷 0.15/s · 느린 컷 성향 높음",
+            "휴지 구간 2회 · 호흡 구간 성향 보통"
+          ]
+        }
+      ],
+      "personaConfidence": "low",
+      "diagnostics": {
+        "firstActionBeatSec": 3,
+        "climaxPositionPct": 0.148,
+        "restIntervalCount": 2,
+        "maxSustainedArousalSec": 12,
+        "meanCutsPerSec": 0.148,
+        "flags": []
+      },
+      "costUsd": 0.00755,
+      "analyzedAt": "2026-08-26T07:24:02.977Z",
+      "engine": "live"
+    },
+    {
+      "id": "roguelike-skul",
+      "filename": "Roguelike_Skul.mp4",
+      "genre": "roguelike",
+      "durationSec": 100.1,
+      "width": 1920,
+      "height": 1080,
+      "fps": 60,
+      "tier": "D",
+      "mode": "T",
+      "observedFraction": 0.6404,
+      "hudVisible": true,
+      "hudElements": [
+        "hp_bar",
+        "ability_icons",
+        "minimap",
+        "currency",
+        "boss_health_bar"
+      ],
+      "cutCount": 18,
+      "rationale": "등급 D — 컷 18개(초당 0.180개), 게임플레이 프레임 비중 63%, HUD 노출을 근거로 판정했습니다. 관측률은 64%이며, 산출 방법은 타이머 판독 불가에 따른 컷 밀도 기반 추정(실측 아님)입니다. 모드 T로 콘텐츠 구성비, 의도된 타겟 페르소나(신뢰도 낮음), 편집 페이싱, 유사 게임 검색을 제공합니다. 예상 비용은 약 $0.0148입니다.",
+      "segmentCount": 15,
+      "eventCount": 0,
+      "composition": [
+        {
+          "abstractClass": "THREAT",
+          "shareOfDuration": 1,
+          "segmentCount": 13
+        },
+        {
+          "abstractClass": "COLLECTIBLE",
+          "shareOfDuration": 0.2237,
+          "segmentCount": 1
+        },
+        {
+          "abstractClass": "SETBACK",
+          "shareOfDuration": 0.1126,
+          "segmentCount": 4
+        },
+        {
+          "abstractClass": "RESOURCE",
+          "shareOfDuration": 0.0756,
+          "segmentCount": 2
+        },
+        {
+          "abstractClass": "PROGRESS",
+          "shareOfDuration": 0,
+          "segmentCount": 0
+        }
+      ],
+      "features": [
+        {
+          "axis": "camera",
+          "value": "side_scroll",
+          "confidence": 1
+        },
+        {
+          "axis": "combatStyle",
+          "value": "realtime_melee",
+          "confidence": 0.9231
+        },
+        {
+          "axis": "artStyle",
+          "value": "pixel",
+          "confidence": 0.8462
+        },
+        {
+          "axis": "environment",
+          "value": "gothic castle",
+          "confidence": 0.0769
+        },
+        {
+          "axis": "hudDensity",
+          "value": "heavy",
+          "confidence": 0.6923
+        },
+        {
+          "axis": "combatShare",
+          "value": 1,
+          "confidence": 1
+        },
+        {
+          "axis": "exploreShare",
+          "value": 0.2237,
+          "confidence": 1
+        },
+        {
+          "axis": "cutsPerSec",
+          "value": 0.18,
+          "confidence": 1
+        },
+        {
+          "axis": "meanArousal",
+          "value": 0.4349,
+          "confidence": 1
+        },
+        {
+          "axis": "climaxPositionPct",
+          "value": 0.29,
+          "confidence": 1
+        }
+      ],
+      "persona": [
+        {
+          "persona": "Speedrunner",
+          "score": 0.3645,
+          "drivers": [
+            "THREAT 점유 100%",
+            "컷 0.18/s · 빠른 컷 성향 보통",
+            "휴지 구간 4회 · 짧은 정지 성향 낮음"
+          ]
+        },
+        {
+          "persona": "Explorer",
+          "score": 0.3248,
+          "drivers": [
+            "환경 다양도 13종",
+            "컷 0.18/s · 느린 컷 성향 높음",
+            "휴지 구간 4회 · 호흡 구간 성향 높음"
+          ]
+        },
+        {
+          "persona": "Strategist",
+          "score": 0.3107,
+          "drivers": [
+            "HUD 밀도 높음",
+            "평균 샷 6.8초",
+            "컷 0.18/s · 느린 호흡 성향 높음"
+          ]
+        }
+      ],
+      "personaConfidence": "low",
+      "diagnostics": {
+        "firstActionBeatSec": 27,
+        "climaxPositionPct": 0.29,
+        "restIntervalCount": 4,
+        "maxSustainedArousalSec": 13,
+        "meanCutsPerSec": 0.18,
+        "flags": [
+          "초반 이탈 위험"
+        ]
+      },
+      "costUsd": 0.01445,
+      "analyzedAt": "2026-08-26T07:23:39.075Z",
+      "engine": "live"
+    },
+    {
+      "id": "roguelike-tarae",
+      "filename": "roguelike_tarae.mp4",
+      "genre": "roguelike",
+      "durationSec": 83.8,
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "tier": "D",
+      "mode": "T",
+      "observedFraction": 0.5702,
+      "hudVisible": false,
+      "hudElements": [],
+      "cutCount": 18,
+      "rationale": "등급 D — 컷 18개(초당 0.215개), 게임플레이 프레임 비중 50%, HUD 미노출을 근거로 판정했습니다. 관측률은 57%이며, 산출 방법은 타이머 판독 불가에 따른 컷 밀도 기반 추정(실측 아님)입니다. 모드 T로 콘텐츠 구성비, 의도된 타겟 페르소나(신뢰도 낮음), 편집 페이싱, 유사 게임 검색을 제공합니다. 예상 비용은 약 $0.0138입니다.",
+      "segmentCount": 14,
+      "eventCount": 0,
+      "composition": [
+        {
+          "abstractClass": "THREAT",
+          "shareOfDuration": 1,
+          "segmentCount": 6
+        },
+        {
+          "abstractClass": "PROGRESS",
+          "shareOfDuration": 0,
+          "segmentCount": 0
+        },
+        {
+          "abstractClass": "RESOURCE",
+          "shareOfDuration": 0,
+          "segmentCount": 0
+        },
+        {
+          "abstractClass": "COLLECTIBLE",
+          "shareOfDuration": 0,
+          "segmentCount": 0
+        },
+        {
+          "abstractClass": "SETBACK",
+          "shareOfDuration": 0,
+          "segmentCount": 0
+        }
+      ],
+      "features": [
+        {
+          "axis": "camera",
+          "value": "isometric",
+          "confidence": 0.6667
+        },
+        {
+          "axis": "combatStyle",
+          "value": "realtime_melee",
+          "confidence": 0.5
+        },
+        {
+          "axis": "artStyle",
+          "value": "realistic_3d",
+          "confidence": 0.6667
+        },
+        {
+          "axis": "environment",
+          "value": "stone dungeon",
+          "confidence": 0.1667
+        },
+        {
+          "axis": "hudDensity",
+          "value": "none",
+          "confidence": 1
+        },
+        {
+          "axis": "combatShare",
+          "value": 1,
+          "confidence": 1
+        },
+        {
+          "axis": "exploreShare",
+          "value": 0,
+          "confidence": 1
+        },
+        {
+          "axis": "cutsPerSec",
+          "value": 0.215,
+          "confidence": 1
+        },
+        {
+          "axis": "meanArousal",
+          "value": 0.4507,
+          "confidence": 1
+        },
+        {
+          "axis": "climaxPositionPct",
+          "value": 0.764,
+          "confidence": 1
+        }
+      ],
+      "persona": [
+        {
+          "persona": "Speedrunner",
+          "score": 0.5307,
+          "drivers": [
+            "THREAT 점유 100%",
+            "컷 0.21/s · 빠른 컷 성향 보통",
+            "휴지 구간 4회 · 짧은 정지 성향 낮음"
+          ]
+        },
+        {
+          "persona": "Explorer",
+          "score": 0.3526,
+          "drivers": [
+            "환경 다양도 6종",
+            "휴지 구간 4회 · 호흡 구간 성향 높음",
+            "컷 0.21/s · 느린 컷 성향 보통"
+          ]
+        },
+        {
+          "persona": "Strategist",
+          "score": 0.1167,
+          "drivers": [
+            "평균 샷 4.4초",
+            "컷 0.21/s · 느린 호흡 성향 보통"
+          ]
+        }
+      ],
+      "personaConfidence": "low",
+      "diagnostics": {
+        "firstActionBeatSec": 45,
+        "climaxPositionPct": 0.764,
+        "restIntervalCount": 4,
+        "maxSustainedArousalSec": 16,
+        "meanCutsPerSec": 0.215,
+        "flags": [
+          "초반 이탈 위험"
+        ]
+      },
+      "costUsd": 0.01341,
+      "analyzedAt": "2026-08-26T07:25:42.183Z",
+      "engine": "live"
+    },
+    {
+      "id": "soullike-nammo",
+      "filename": "Soullike_Nammo.mp4",
+      "genre": "soullike",
+      "durationSec": 66.4,
+      "width": 1920,
+      "height": 1080,
+      "fps": 60,
+      "tier": "D",
+      "mode": "T",
+      "observedFraction": 0.5,
+      "hudVisible": false,
+      "hudElements": [],
+      "cutCount": 18,
+      "rationale": "등급 D — 컷 18개(초당 0.271개), 게임플레이 프레임 비중 86%, HUD 미노출을 근거로 판정했습니다. 관측률은 50%이며, 산출 방법은 타이머 판독 불가에 따른 컷 밀도 기반 추정(실측 아님)입니다. 모드 T로 콘텐츠 구성비, 의도된 타겟 페르소나(신뢰도 낮음), 편집 페이싱, 유사 게임 검색을 제공합니다. 예상 비용은 약 $0.0119입니다.",
+      "segmentCount": 12,
+      "eventCount": 0,
+      "composition": [
+        {
+          "abstractClass": "THREAT",
+          "shareOfDuration": 1,
+          "segmentCount": 7
+        },
+        {
+          "abstractClass": "PROGRESS",
+          "shareOfDuration": 0,
+          "segmentCount": 0
+        },
+        {
+          "abstractClass": "RESOURCE",
+          "shareOfDuration": 0,
+          "segmentCount": 0
+        },
+        {
+          "abstractClass": "COLLECTIBLE",
+          "shareOfDuration": 0,
+          "segmentCount": 0
+        },
+        {
+          "abstractClass": "SETBACK",
+          "shareOfDuration": 0,
+          "segmentCount": 0
+        }
+      ],
+      "features": [
+        {
+          "axis": "camera",
+          "value": "side_scroll",
+          "confidence": 1
+        },
+        {
+          "axis": "combatStyle",
+          "value": "realtime_melee",
+          "confidence": 1
+        },
+        {
+          "axis": "artStyle",
+          "value": "stylized_3d",
+          "confidence": 0.7143
+        },
+        {
+          "axis": "environment",
+          "value": "dark cavern",
+          "confidence": 0.2857
+        },
+        {
+          "axis": "hudDensity",
+          "value": "none",
+          "confidence": 1
+        },
+        {
+          "axis": "combatShare",
+          "value": 1,
+          "confidence": 1
+        },
+        {
+          "axis": "exploreShare",
+          "value": 0,
+          "confidence": 1
+        },
+        {
+          "axis": "cutsPerSec",
+          "value": 0.271,
+          "confidence": 1
+        },
+        {
+          "axis": "meanArousal",
+          "value": 0.3981,
+          "confidence": 1
+        },
+        {
+          "axis": "climaxPositionPct",
+          "value": 0.768,
+          "confidence": 1
+        }
+      ],
+      "persona": [
+        {
+          "persona": "Speedrunner",
+          "score": 0.6876,
+          "drivers": [
+            "THREAT 점유 100%",
+            "컷 0.27/s · 빠른 컷 성향 보통",
+            "휴지 구간 2회 · 짧은 정지 성향 보통"
+          ]
+        },
+        {
+          "persona": "Explorer",
+          "score": 0.218,
+          "drivers": [
+            "환경 다양도 6종",
+            "컷 0.27/s · 느린 컷 성향 보통",
+            "휴지 구간 2회 · 호흡 구간 성향 높음"
+          ]
+        },
+        {
+          "persona": "Strategist",
+          "score": 0.0944,
+          "drivers": [
+            "평균 샷 4.6초",
+            "컷 0.27/s · 느린 호흡 성향 보통"
+          ]
+        }
+      ],
+      "personaConfidence": "low",
+      "diagnostics": {
+        "firstActionBeatSec": 22,
+        "climaxPositionPct": 0.768,
+        "restIntervalCount": 2,
+        "maxSustainedArousalSec": 12,
+        "meanCutsPerSec": 0.271,
+        "flags": [
+          "초반 이탈 위험"
+        ]
+      },
+      "costUsd": 0.01142,
+      "analyzedAt": "2026-08-26T07:26:07.849Z",
+      "engine": "live"
+    }
+  ],
+  "docs": [
+    {
+      "id": "rhythm-axion#event:9",
+      "videoId": "rhythm-axion",
+      "filename": "Rhythm_Axion.mp4",
+      "genre": "rhythm",
+      "mode": "P",
+      "kind": "event",
+      "startSec": 26.6,
+      "endSec": 28.6,
+      "text": "red_lightning_bolt — red lightning bolt remains visible as positions shift (게임: Axion · 요소: 위협 · 상호작용: 회피 · 구간: 0:26-0:28)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "red",
+        "lightning",
+        "bolt",
+        "red",
+        "lightning",
+        "bolt",
+        "remains",
+        "visible",
+        "as",
+        "positions",
+        "shift",
+        "게임",
+        "axion",
+        "요소",
+        "위협",
+        "상호작용",
+        "회피",
+        "구간",
+        "0",
+        "26",
+        "0",
+        "28"
+      ]
+    },
+    {
+      "id": "rhythm-axion#event:17",
+      "videoId": "rhythm-axion",
+      "filename": "Rhythm_Axion.mp4",
+      "genre": "rhythm",
+      "mode": "P",
+      "kind": "event",
+      "startSec": 44.6,
+      "endSec": 46.6,
+      "text": "bad_timing_judgment — BAD judgment text appears beside the central target (게임: Axion · 요소: 손실 · 상호작용: 실패 · 구간: 0:44-0:46)",
+      "abstractClasses": [
+        "SETBACK"
+      ],
+      "tokens": [
+        "bad",
+        "timing",
+        "judgment",
+        "bad",
+        "judgment",
+        "text",
+        "appears",
+        "beside",
+        "the",
+        "central",
+        "target",
+        "게임",
+        "axion",
+        "요소",
+        "손실",
+        "상호작용",
+        "실패",
+        "구간",
+        "0",
+        "44",
+        "0",
+        "46"
+      ]
+    },
+    {
+      "id": "rhythm-axion#event:19",
+      "videoId": "rhythm-axion",
+      "filename": "Rhythm_Axion.mp4",
+      "genre": "rhythm",
+      "mode": "P",
+      "kind": "event",
+      "startSec": 50.6,
+      "endSec": 52.6,
+      "text": "stage_marker — stage number changes from 6 to 7 (게임: Axion · 요소: 진행 · 상호작용: 교전 · 구간: 0:50-0:52)",
+      "abstractClasses": [
+        "PROGRESS"
+      ],
+      "tokens": [
+        "stage",
+        "marker",
+        "stage",
+        "number",
+        "changes",
+        "from",
+        "6",
+        "to",
+        "7",
+        "게임",
+        "axion",
+        "요소",
+        "진행",
+        "상호작용",
+        "교전",
+        "구간",
+        "0",
+        "50",
+        "0",
+        "52"
+      ]
+    },
+    {
+      "id": "rhythm-axion#event:20",
+      "videoId": "rhythm-axion",
+      "filename": "Rhythm_Axion.mp4",
+      "genre": "rhythm",
+      "mode": "P",
+      "kind": "event",
+      "startSec": 50.6,
+      "endSec": 52.6,
+      "text": "blue_lightning_bolt — bolt changes color as PERFECT judgment appears (게임: Axion · 요소: 자원 · 상호작용: 교전 · 구간: 0:50-0:52)",
+      "abstractClasses": [
+        "RESOURCE"
+      ],
+      "tokens": [
+        "blue",
+        "lightning",
+        "bolt",
+        "bolt",
+        "changes",
+        "color",
+        "as",
+        "perfect",
+        "judgment",
+        "appears",
+        "게임",
+        "axion",
+        "요소",
+        "자원",
+        "상호작용",
+        "교전",
+        "구간",
+        "0",
+        "50",
+        "0",
+        "52"
+      ]
+    },
+    {
+      "id": "rhythm-axion#event:22",
+      "videoId": "rhythm-axion",
+      "filename": "Rhythm_Axion.mp4",
+      "genre": "rhythm",
+      "mode": "P",
+      "kind": "event",
+      "startSec": 56.6,
+      "endSec": 58.6,
+      "text": "bad_timing_judgment — BAD judgment text appears beside the central wheel (게임: Axion · 요소: 손실 · 상호작용: 실패 · 구간: 0:56-0:58)",
+      "abstractClasses": [
+        "SETBACK"
+      ],
+      "tokens": [
+        "bad",
+        "timing",
+        "judgment",
+        "bad",
+        "judgment",
+        "text",
+        "appears",
+        "beside",
+        "the",
+        "central",
+        "wheel",
+        "게임",
+        "axion",
+        "요소",
+        "손실",
+        "상호작용",
+        "실패",
+        "구간",
+        "0",
+        "56",
+        "0",
+        "58"
+      ]
+    },
+    {
+      "id": "rhythm-axion#event:24",
+      "videoId": "rhythm-axion",
+      "filename": "Rhythm_Axion.mp4",
+      "genre": "rhythm",
+      "mode": "P",
+      "kind": "event",
+      "startSec": 62.6,
+      "endSec": 64.6,
+      "text": "yellow_lightning_bolt_right — right lightning bolt disappears as counter rises from 8 to 10 (게임: Axion · 요소: 자원 · 상호작용: 획득 · 구간: 1:02-1:04)",
+      "abstractClasses": [
+        "RESOURCE"
+      ],
+      "tokens": [
+        "yellow",
+        "lightning",
+        "bolt",
+        "right",
+        "right",
+        "lightning",
+        "bolt",
+        "disappears",
+        "as",
+        "counter",
+        "rises",
+        "from",
+        "8",
+        "to",
+        "10",
+        "게임",
+        "axion",
+        "요소",
+        "자원",
+        "상호작용",
+        "획득",
+        "구간",
+        "1",
+        "02",
+        "1",
+        "04"
+      ]
+    },
+    {
+      "id": "rhythm-axion#event:25",
+      "videoId": "rhythm-axion",
+      "filename": "Rhythm_Axion.mp4",
+      "genre": "rhythm",
+      "mode": "P",
+      "kind": "event",
+      "startSec": 62.6,
+      "endSec": 64.6,
+      "text": "yellow_lightning_bolt_bottom — bottom lightning bolt disappears as counter rises from 8 to 10 (게임: Axion · 요소: 자원 · 상호작용: 획득 · 구간: 1:02-1:04)",
+      "abstractClasses": [
+        "RESOURCE"
+      ],
+      "tokens": [
+        "yellow",
+        "lightning",
+        "bolt",
+        "bottom",
+        "bottom",
+        "lightning",
+        "bolt",
+        "disappears",
+        "as",
+        "counter",
+        "rises",
+        "from",
+        "8",
+        "to",
+        "10",
+        "게임",
+        "axion",
+        "요소",
+        "자원",
+        "상호작용",
+        "획득",
+        "구간",
+        "1",
+        "02",
+        "1",
+        "04"
+      ]
+    },
+    {
+      "id": "soullike-nammo#segment:0",
+      "videoId": "soullike-nammo",
+      "filename": "Soullike_Nammo.mp4",
+      "genre": "soullike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 0,
+      "endSec": 6.52,
+      "text": "어두운 공간에서 여성이 떨어진 뒤 붉은 배경에 문구가 나타납니다. (게임: Nammo · 구간: 0:00-0:06)",
+      "abstractClasses": [],
+      "tokens": [
+        "어두운",
+        "공간에서",
+        "여성이",
+        "떨어진",
+        "뒤",
+        "붉은",
+        "배경에",
+        "문구가",
+        "나타납니다",
+        "게임",
+        "nammo",
+        "구간",
+        "0",
+        "00",
+        "0",
+        "06"
+      ]
+    },
+    {
+      "id": "soullike-nammo#segment:1",
+      "videoId": "soullike-nammo",
+      "filename": "Soullike_Nammo.mp4",
+      "genre": "soullike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 6.52,
+      "endSec": 15.65,
+      "text": "어두운 배경 속 검은 머리의 여성이 클로즈업으로 등장한다. (게임: Nammo · 구간: 0:06-0:15)",
+      "abstractClasses": [],
+      "tokens": [
+        "어두운",
+        "배경",
+        "속",
+        "검은",
+        "머리의",
+        "여성이",
+        "클로즈업으로",
+        "등장한다",
+        "게임",
+        "nammo",
+        "구간",
+        "0",
+        "06",
+        "0",
+        "15"
+      ]
+    },
+    {
+      "id": "soullike-nammo#segment:2",
+      "videoId": "soullike-nammo",
+      "filename": "Soullike_Nammo.mp4",
+      "genre": "soullike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 15.65,
+      "endSec": 22.28,
+      "text": "어두운 동굴에서 무장한 인물이 번개 장벽과 수상한 존재들을 마주하고 있다. (게임: Nammo · 요소: 위협 · 구간: 0:15-0:22)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "어두운",
+        "동굴에서",
+        "무장한",
+        "인물이",
+        "번개",
+        "장벽과",
+        "수상한",
+        "존재들을",
+        "마주하고",
+        "있다",
+        "게임",
+        "nammo",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "15",
+        "0",
+        "22"
+      ]
+    },
+    {
+      "id": "soullike-nammo#segment:3",
+      "videoId": "soullike-nammo",
+      "filename": "Soullike_Nammo.mp4",
+      "genre": "soullike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 22.28,
+      "endSec": 24.15,
+      "text": "주인공 앞에서 거대한 황금 불상이 빛나는 손을 들어 위협한다. (게임: Nammo · 요소: 위협 · 구간: 0:22-0:24)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "주인공",
+        "앞에서",
+        "거대한",
+        "황금",
+        "불상이",
+        "빛나는",
+        "손을",
+        "들어",
+        "위협한다",
+        "게임",
+        "nammo",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "22",
+        "0",
+        "24"
+      ]
+    },
+    {
+      "id": "soullike-nammo#segment:4",
+      "videoId": "soullike-nammo",
+      "filename": "Soullike_Nammo.mp4",
+      "genre": "soullike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 24.15,
+      "endSec": 33.05,
+      "text": "어두운 동굴에서 캐릭터가 거대한 괴물과 맞서 싸우고 있다. (게임: Nammo · 요소: 위협 · 구간: 0:24-0:33)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "어두운",
+        "동굴에서",
+        "캐릭터가",
+        "거대한",
+        "괴물과",
+        "맞서",
+        "싸우고",
+        "있다",
+        "게임",
+        "nammo",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "24",
+        "0",
+        "33"
+      ]
+    },
+    {
+      "id": "soullike-nammo#segment:6",
+      "videoId": "soullike-nammo",
+      "filename": "Soullike_Nammo.mp4",
+      "genre": "soullike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 39.82,
+      "endSec": 42.02,
+      "text": "거대한 괴물이 마을 앞에서 붉은 형체와 함께 모습을 드러낸다. (게임: Nammo · 구간: 0:39-0:42)",
+      "abstractClasses": [],
+      "tokens": [
+        "거대한",
+        "괴물이",
+        "마을",
+        "앞에서",
+        "붉은",
+        "형체와",
+        "함께",
+        "모습을",
+        "드러낸다",
+        "게임",
+        "nammo",
+        "구간",
+        "0",
+        "39",
+        "0",
+        "42"
+      ]
+    },
+    {
+      "id": "soullike-nammo#segment:7",
+      "videoId": "soullike-nammo",
+      "filename": "Soullike_Nammo.mp4",
+      "genre": "soullike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 42.02,
+      "endSec": 43.25,
+      "text": "어두운 사원에서 작은 전사가 거대한 괴물과 맞서 싸우고 있다. (게임: Nammo · 요소: 위협 · 구간: 0:42-0:43)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "어두운",
+        "사원에서",
+        "작은",
+        "전사가",
+        "거대한",
+        "괴물과",
+        "맞서",
+        "싸우고",
+        "있다",
+        "게임",
+        "nammo",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "42",
+        "0",
+        "43"
+      ]
+    },
+    {
+      "id": "soullike-nammo#segment:8",
+      "videoId": "soullike-nammo",
+      "filename": "Soullike_Nammo.mp4",
+      "genre": "soullike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 43.25,
+      "endSec": 45.43,
+      "text": "어두운 동굴에서 작은 전사가 거대한 괴물과 근접 전투를 벌이고 있다. (게임: Nammo · 요소: 위협 · 구간: 0:43-0:45)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "어두운",
+        "동굴에서",
+        "작은",
+        "전사가",
+        "거대한",
+        "괴물과",
+        "근접",
+        "전투를",
+        "벌이고",
+        "있다",
+        "게임",
+        "nammo",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "43",
+        "0",
+        "45"
+      ]
+    },
+    {
+      "id": "soullike-nammo#segment:9",
+      "videoId": "soullike-nammo",
+      "filename": "Soullike_Nammo.mp4",
+      "genre": "soullike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 45.43,
+      "endSec": 50.35,
+      "text": "동굴 속에서 캐릭터가 거대한 괴물을 공격하고 있다. (게임: Nammo · 요소: 위협 · 구간: 0:45-0:50)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "동굴",
+        "속에서",
+        "캐릭터가",
+        "거대한",
+        "괴물을",
+        "공격하고",
+        "있다",
+        "게임",
+        "nammo",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "45",
+        "0",
+        "50"
+      ]
+    },
+    {
+      "id": "soullike-nammo#segment:10",
+      "videoId": "soullike-nammo",
+      "filename": "Soullike_Nammo.mp4",
+      "genre": "soullike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 50.35,
+      "endSec": 56.98,
+      "text": "작은 전사가 거대한 악마 보스와 전투를 벌이고 있다. (게임: Nammo · 요소: 위협 · 구간: 0:50-0:56)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "작은",
+        "전사가",
+        "거대한",
+        "악마",
+        "보스와",
+        "전투를",
+        "벌이고",
+        "있다",
+        "게임",
+        "nammo",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "50",
+        "0",
+        "56"
+      ]
+    },
+    {
+      "id": "roguelike-tarae#segment:0",
+      "videoId": "roguelike-tarae",
+      "filename": "roguelike_tarae.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 0,
+      "endSec": 9.37,
+      "text": "안개 낀 호수에서 작은 배가 절벽 아래를 지나간다. (게임: tarae · 구간: 0:00-0:09)",
+      "abstractClasses": [],
+      "tokens": [
+        "안개",
+        "낀",
+        "호수에서",
+        "작은",
+        "배가",
+        "절벽",
+        "아래를",
+        "지나간다",
+        "게임",
+        "tarae",
+        "구간",
+        "0",
+        "00",
+        "0",
+        "09"
+      ]
+    },
+    {
+      "id": "roguelike-tarae#segment:1",
+      "videoId": "roguelike-tarae",
+      "filename": "roguelike_tarae.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 9.37,
+      "endSec": 12.27,
+      "text": "안개 속 배 위에 인물이 서 있다. (게임: tarae · 구간: 0:09-0:12)",
+      "abstractClasses": [],
+      "tokens": [
+        "안개",
+        "속",
+        "배",
+        "위에",
+        "인물이",
+        "서",
+        "있다",
+        "게임",
+        "tarae",
+        "구간",
+        "0",
+        "09",
+        "0",
+        "12"
+      ]
+    },
+    {
+      "id": "roguelike-tarae#segment:2",
+      "videoId": "roguelike-tarae",
+      "filename": "roguelike_tarae.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 12.27,
+      "endSec": 14.6,
+      "text": "어두운 실내에서 인물의 상반신이 클로즈업으로 보인다. (게임: tarae · 구간: 0:12-0:14)",
+      "abstractClasses": [],
+      "tokens": [
+        "어두운",
+        "실내에서",
+        "인물의",
+        "상반신이",
+        "클로즈업으로",
+        "보인다",
+        "게임",
+        "tarae",
+        "구간",
+        "0",
+        "12",
+        "0",
+        "14"
+      ]
+    },
+    {
+      "id": "roguelike-tarae#segment:3",
+      "videoId": "roguelike-tarae",
+      "filename": "roguelike_tarae.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 14.6,
+      "endSec": 21,
+      "text": "안개 낀 어두운 물가와 자막이 보입니다. (게임: tarae · 구간: 0:14-0:21)",
+      "abstractClasses": [],
+      "tokens": [
+        "안개",
+        "낀",
+        "어두운",
+        "물가와",
+        "자막이",
+        "보입니다",
+        "게임",
+        "tarae",
+        "구간",
+        "0",
+        "14",
+        "0",
+        "21"
+      ]
+    },
+    {
+      "id": "roguelike-tarae#segment:4",
+      "videoId": "roguelike-tarae",
+      "filename": "roguelike_tarae.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 21,
+      "endSec": 44.73,
+      "text": "붉은 조명 아래 인물의 얼굴과 눈이 클로즈업으로 보인다. (게임: tarae · 구간: 0:21-0:44)",
+      "abstractClasses": [],
+      "tokens": [
+        "붉은",
+        "조명",
+        "아래",
+        "인물의",
+        "얼굴과",
+        "눈이",
+        "클로즈업으로",
+        "보인다",
+        "게임",
+        "tarae",
+        "구간",
+        "0",
+        "21",
+        "0",
+        "44"
+      ]
+    },
+    {
+      "id": "roguelike-tarae#segment:5",
+      "videoId": "roguelike-tarae",
+      "filename": "roguelike_tarae.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 44.73,
+      "endSec": 46.5,
+      "text": "안개 낀 숲속에 색색의 천이 매달린 거대한 나무가 보인다. (게임: tarae · 구간: 0:44-0:46)",
+      "abstractClasses": [],
+      "tokens": [
+        "안개",
+        "낀",
+        "숲속에",
+        "색색의",
+        "천이",
+        "매달린",
+        "거대한",
+        "나무가",
+        "보인다",
+        "게임",
+        "tarae",
+        "구간",
+        "0",
+        "44",
+        "0",
+        "46"
+      ]
+    },
+    {
+      "id": "roguelike-tarae#segment:6",
+      "videoId": "roguelike-tarae",
+      "filename": "roguelike_tarae.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 46.5,
+      "endSec": 50.47,
+      "text": "안개 낀 어두운 숲과 불타는 마을이 차례로 비친다. (게임: tarae · 구간: 0:46-0:50)",
+      "abstractClasses": [],
+      "tokens": [
+        "안개",
+        "낀",
+        "어두운",
+        "숲과",
+        "불타는",
+        "마을이",
+        "차례로",
+        "비친다",
+        "게임",
+        "tarae",
+        "구간",
+        "0",
+        "46",
+        "0",
+        "50"
+      ]
+    },
+    {
+      "id": "roguelike-tarae#segment:7",
+      "videoId": "roguelike-tarae",
+      "filename": "roguelike_tarae.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 50.47,
+      "endSec": 64.3,
+      "text": "어두운 석조 던전에서 캐릭터가 괴물들과 근접 전투를 벌인다. (게임: tarae · 요소: 위협 · 구간: 0:50-1:04)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "어두운",
+        "석조",
+        "던전에서",
+        "캐릭터가",
+        "괴물들과",
+        "근접",
+        "전투를",
+        "벌인다",
+        "게임",
+        "tarae",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "50",
+        "1",
+        "04"
+      ]
+    },
+    {
+      "id": "roguelike-tarae#segment:8",
+      "videoId": "roguelike-tarae",
+      "filename": "roguelike_tarae.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 64.3,
+      "endSec": 65.5,
+      "text": "눈 덮인 숲에서 캐릭터가 적들을 공격하고 있다. (게임: tarae · 요소: 위협 · 구간: 1:04-1:05)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "눈",
+        "덮인",
+        "숲에서",
+        "캐릭터가",
+        "적들을",
+        "공격하고",
+        "있다",
+        "게임",
+        "tarae",
+        "요소",
+        "위협",
+        "구간",
+        "1",
+        "04",
+        "1",
+        "05"
+      ]
+    },
+    {
+      "id": "roguelike-tarae#segment:9",
+      "videoId": "roguelike-tarae",
+      "filename": "roguelike_tarae.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 65.5,
+      "endSec": 67.53,
+      "text": "눈 덮인 폐허에서 캐릭터들이 강렬한 마법 공격으로 적들과 전투하고 있다. (게임: tarae · 요소: 위협 · 구간: 1:05-1:07)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "눈",
+        "덮인",
+        "폐허에서",
+        "캐릭터들이",
+        "강렬한",
+        "마법",
+        "공격으로",
+        "적들과",
+        "전투하고",
+        "있다",
+        "게임",
+        "tarae",
+        "요소",
+        "위협",
+        "구간",
+        "1",
+        "05",
+        "1",
+        "07"
+      ]
+    },
+    {
+      "id": "roguelike-tarae#segment:10",
+      "videoId": "roguelike-tarae",
+      "filename": "roguelike_tarae.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 67.53,
+      "endSec": 71.73,
+      "text": "황폐한 늪에서 캐릭터가 적들에게 화염 공격을 퍼붓고 있습니다. (게임: tarae · 요소: 위협 · 구간: 1:07-1:11)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "황폐한",
+        "늪에서",
+        "캐릭터가",
+        "적들에게",
+        "화염",
+        "공격을",
+        "퍼붓고",
+        "있습니다",
+        "게임",
+        "tarae",
+        "요소",
+        "위협",
+        "구간",
+        "1",
+        "07",
+        "1",
+        "11"
+      ]
+    },
+    {
+      "id": "roguelike-tarae#segment:11",
+      "videoId": "roguelike-tarae",
+      "filename": "roguelike_tarae.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 71.73,
+      "endSec": 73.27,
+      "text": "눈 덮인 폐허에서 캐릭터가 여러 적을 근접 공격하고 있다. (게임: tarae · 요소: 위협 · 구간: 1:11-1:13)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "눈",
+        "덮인",
+        "폐허에서",
+        "캐릭터가",
+        "여러",
+        "적을",
+        "근접",
+        "공격하고",
+        "있다",
+        "게임",
+        "tarae",
+        "요소",
+        "위협",
+        "구간",
+        "1",
+        "11",
+        "1",
+        "13"
+      ]
+    },
+    {
+      "id": "roguelike-tarae#segment:12",
+      "videoId": "roguelike-tarae",
+      "filename": "roguelike_tarae.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 73.27,
+      "endSec": 76.63,
+      "text": "어두운 전장에서 보라색 마법 공격이 괴물을 덮친다. (게임: tarae · 요소: 위협 · 구간: 1:13-1:16)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "어두운",
+        "전장에서",
+        "보라색",
+        "마법",
+        "공격이",
+        "괴물을",
+        "덮친다",
+        "게임",
+        "tarae",
+        "요소",
+        "위협",
+        "구간",
+        "1",
+        "13",
+        "1",
+        "16"
+      ]
+    },
+    {
+      "id": "roguelike-dungeonslasher#segment:0",
+      "videoId": "roguelike-dungeonslasher",
+      "filename": "roguelike_dungeonslasher.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 0,
+      "endSec": 8.24,
+      "text": "석조 던전에서 캐릭터가 적들을 근접 공격으로 공격하고 있다. (게임: dungeonslasher · 요소: 위협·자원 · 구간: 0:00-0:08)",
+      "abstractClasses": [
+        "THREAT",
+        "RESOURCE"
+      ],
+      "tokens": [
+        "석조",
+        "던전에서",
+        "캐릭터가",
+        "적들을",
+        "근접",
+        "공격으로",
+        "공격하고",
+        "있다",
+        "게임",
+        "dungeonslasher",
+        "요소",
+        "위협",
+        "자원",
+        "구간",
+        "0",
+        "00",
+        "0",
+        "08"
+      ]
+    },
+    {
+      "id": "roguelike-dungeonslasher#segment:1",
+      "videoId": "roguelike-dungeonslasher",
+      "filename": "roguelike_dungeonslasher.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 8.24,
+      "endSec": 11.61,
+      "text": "픽셀풍 캐릭터가 적을 향해 원거리 공격을 발사하고 있습니다. (게임: dungeonslasher · 요소: 위협·수집 · 구간: 0:08-0:11)",
+      "abstractClasses": [
+        "THREAT",
+        "COLLECTIBLE"
+      ],
+      "tokens": [
+        "픽셀풍",
+        "캐릭터가",
+        "적을",
+        "향해",
+        "원거리",
+        "공격을",
+        "발사하고",
+        "있습니다",
+        "게임",
+        "dungeonslasher",
+        "요소",
+        "위협",
+        "수집",
+        "구간",
+        "0",
+        "08",
+        "0",
+        "11"
+      ]
+    },
+    {
+      "id": "roguelike-dungeonslasher#segment:2",
+      "videoId": "roguelike-dungeonslasher",
+      "filename": "roguelike_dungeonslasher.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 11.61,
+      "endSec": 16.75,
+      "text": "검을 든 캐릭터가 지하 던전의 출입구와 물약 근처에 서 있다. (게임: dungeonslasher · 요소: 진행·자원 · 구간: 0:11-0:16)",
+      "abstractClasses": [
+        "PROGRESS",
+        "RESOURCE"
+      ],
+      "tokens": [
+        "검을",
+        "든",
+        "캐릭터가",
+        "지하",
+        "던전의",
+        "출입구와",
+        "물약",
+        "근처에",
+        "서",
+        "있다",
+        "게임",
+        "dungeonslasher",
+        "요소",
+        "진행",
+        "자원",
+        "구간",
+        "0",
+        "11",
+        "0",
+        "16"
+      ]
+    },
+    {
+      "id": "roguelike-dungeonslasher#segment:3",
+      "videoId": "roguelike-dungeonslasher",
+      "filename": "roguelike_dungeonslasher.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 16.75,
+      "endSec": 18.42,
+      "text": "눈 덮인 동굴에서 캐릭터가 무기를 휘두르며 앞으로 나아간다. (게임: dungeonslasher · 요소: 진행 · 구간: 0:16-0:18)",
+      "abstractClasses": [
+        "PROGRESS"
+      ],
+      "tokens": [
+        "눈",
+        "덮인",
+        "동굴에서",
+        "캐릭터가",
+        "무기를",
+        "휘두르며",
+        "앞으로",
+        "나아간다",
+        "게임",
+        "dungeonslasher",
+        "요소",
+        "진행",
+        "구간",
+        "0",
+        "16",
+        "0",
+        "18"
+      ]
+    },
+    {
+      "id": "roguelike-dungeonslasher#segment:4",
+      "videoId": "roguelike-dungeonslasher",
+      "filename": "roguelike_dungeonslasher.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 18.42,
+      "endSec": 19.65,
+      "text": "캐릭터가 거대한 적을 향해 사격하고 있습니다. (게임: dungeonslasher · 요소: 위협 · 구간: 0:18-0:19)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "캐릭터가",
+        "거대한",
+        "적을",
+        "향해",
+        "사격하고",
+        "있습니다",
+        "게임",
+        "dungeonslasher",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "18",
+        "0",
+        "19"
+      ]
+    },
+    {
+      "id": "roguelike-dungeonslasher#segment:5",
+      "videoId": "roguelike-dungeonslasher",
+      "filename": "roguelike_dungeonslasher.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 19.65,
+      "endSec": 20.89,
+      "text": "눈 내리는 동굴에서 주인공이 거대한 적을 향해 총을 겨누고 있다. (게임: dungeonslasher · 요소: 위협 · 구간: 0:19-0:20)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "눈",
+        "내리는",
+        "동굴에서",
+        "주인공이",
+        "거대한",
+        "적을",
+        "향해",
+        "총을",
+        "겨누고",
+        "있다",
+        "게임",
+        "dungeonslasher",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "19",
+        "0",
+        "20"
+      ]
+    },
+    {
+      "id": "roguelike-dungeonslasher#segment:6",
+      "videoId": "roguelike-dungeonslasher",
+      "filename": "roguelike_dungeonslasher.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 20.89,
+      "endSec": 25.73,
+      "text": "돌로 된 지하 감옥에서 캐릭터가 거대한 적과 전투를 벌이고 있다. (게임: dungeonslasher · 요소: 위협 · 구간: 0:20-0:25)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "돌로",
+        "된",
+        "지하",
+        "감옥에서",
+        "캐릭터가",
+        "거대한",
+        "적과",
+        "전투를",
+        "벌이고",
+        "있다",
+        "게임",
+        "dungeonslasher",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "20",
+        "0",
+        "25"
+      ]
+    },
+    {
+      "id": "roguelike-dungeonslasher#segment:7",
+      "videoId": "roguelike-dungeonslasher",
+      "filename": "roguelike_dungeonslasher.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 25.73,
+      "endSec": 27.99,
+      "text": "동굴에서 플레이어가 거대한 보스와 적들을 원거리 공격으로 상대하고 있다. (게임: dungeonslasher · 요소: 위협·자원 · 구간: 0:25-0:27)",
+      "abstractClasses": [
+        "THREAT",
+        "RESOURCE"
+      ],
+      "tokens": [
+        "동굴에서",
+        "플레이어가",
+        "거대한",
+        "보스와",
+        "적들을",
+        "원거리",
+        "공격으로",
+        "상대하고",
+        "있다",
+        "게임",
+        "dungeonslasher",
+        "요소",
+        "위협",
+        "자원",
+        "구간",
+        "0",
+        "25",
+        "0",
+        "27"
+      ]
+    },
+    {
+      "id": "roguelike-dungeonslasher#segment:8",
+      "videoId": "roguelike-dungeonslasher",
+      "filename": "roguelike_dungeonslasher.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 27.99,
+      "endSec": 30.86,
+      "text": "캐릭터가 밝은 동굴에서 거대한 무기를 들고 적과 전투하며 체력 막대가 표시됩니다. (게임: dungeonslasher · 요소: 위협·자원 · 구간: 0:27-0:30)",
+      "abstractClasses": [
+        "THREAT",
+        "RESOURCE"
+      ],
+      "tokens": [
+        "캐릭터가",
+        "밝은",
+        "동굴에서",
+        "거대한",
+        "무기를",
+        "들고",
+        "적과",
+        "전투하며",
+        "체력",
+        "막대가",
+        "표시됩니다",
+        "게임",
+        "dungeonslasher",
+        "요소",
+        "위협",
+        "자원",
+        "구간",
+        "0",
+        "27",
+        "0",
+        "30"
+      ]
+    },
+    {
+      "id": "roguelike-dungeonslasher#segment:9",
+      "videoId": "roguelike-dungeonslasher",
+      "filename": "roguelike_dungeonslasher.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 30.86,
+      "endSec": 33.3,
+      "text": "픽셀풍 던전에서 캐릭터가 거대 적과 근접 전투를 벌이고 있습니다. (게임: dungeonslasher · 요소: 위협·자원 · 구간: 0:30-0:33)",
+      "abstractClasses": [
+        "THREAT",
+        "RESOURCE"
+      ],
+      "tokens": [
+        "픽셀풍",
+        "던전에서",
+        "캐릭터가",
+        "거대",
+        "적과",
+        "근접",
+        "전투를",
+        "벌이고",
+        "있습니다",
+        "게임",
+        "dungeonslasher",
+        "요소",
+        "위협",
+        "자원",
+        "구간",
+        "0",
+        "30",
+        "0",
+        "33"
+      ]
+    },
+    {
+      "id": "roguelike-dungeonslasher#segment:10",
+      "videoId": "roguelike-dungeonslasher",
+      "filename": "roguelike_dungeonslasher.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 33.3,
+      "endSec": 36.3,
+      "text": "얼음 동굴에서 캐릭터가 거대한 낫을 휘둘러 적과 싸우고 있습니다. (게임: dungeonslasher · 요소: 위협·자원 · 구간: 0:33-0:36)",
+      "abstractClasses": [
+        "THREAT",
+        "RESOURCE"
+      ],
+      "tokens": [
+        "얼음",
+        "동굴에서",
+        "캐릭터가",
+        "거대한",
+        "낫을",
+        "휘둘러",
+        "적과",
+        "싸우고",
+        "있습니다",
+        "게임",
+        "dungeonslasher",
+        "요소",
+        "위협",
+        "자원",
+        "구간",
+        "0",
+        "33",
+        "0",
+        "36"
+      ]
+    },
+    {
+      "id": "roguelike-dungeonslasher#segment:11",
+      "videoId": "roguelike-dungeonslasher",
+      "filename": "roguelike_dungeonslasher.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 36.3,
+      "endSec": 39.21,
+      "text": "돌다리 위에서 해골 전사와 늑대형 적이 전투를 벌이고 있습니다. (게임: dungeonslasher · 요소: 위협·자원 · 구간: 0:36-0:39)",
+      "abstractClasses": [
+        "THREAT",
+        "RESOURCE"
+      ],
+      "tokens": [
+        "돌다리",
+        "위에서",
+        "해골",
+        "전사와",
+        "늑대형",
+        "적이",
+        "전투를",
+        "벌이고",
+        "있습니다",
+        "게임",
+        "dungeonslasher",
+        "요소",
+        "위협",
+        "자원",
+        "구간",
+        "0",
+        "36",
+        "0",
+        "39"
+      ]
+    },
+    {
+      "id": "roguelike-dungeonslasher#segment:12",
+      "videoId": "roguelike-dungeonslasher",
+      "filename": "roguelike_dungeonslasher.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 39.21,
+      "endSec": 44.31,
+      "text": "픽셀풍 던전에서 캐릭터가 가시 장애물과 적들을 상대하고 있습니다. (게임: dungeonslasher · 요소: 위협·자원 · 구간: 0:39-0:44)",
+      "abstractClasses": [
+        "THREAT",
+        "RESOURCE"
+      ],
+      "tokens": [
+        "픽셀풍",
+        "던전에서",
+        "캐릭터가",
+        "가시",
+        "장애물과",
+        "적들을",
+        "상대하고",
+        "있습니다",
+        "게임",
+        "dungeonslasher",
+        "요소",
+        "위협",
+        "자원",
+        "구간",
+        "0",
+        "39",
+        "0",
+        "44"
+      ]
+    },
+    {
+      "id": "roguelike-dungeonslasher#segment:13",
+      "videoId": "roguelike-dungeonslasher",
+      "filename": "roguelike_dungeonslasher.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 44.31,
+      "endSec": 49.95,
+      "text": "화면에 여러 스킬 카드 중 하나를 선택하는 메뉴가 표시되어 있습니다. (게임: dungeonslasher · 구간: 0:44-0:49)",
+      "abstractClasses": [],
+      "tokens": [
+        "화면에",
+        "여러",
+        "스킬",
+        "카드",
+        "중",
+        "하나를",
+        "선택하는",
+        "메뉴가",
+        "표시되어",
+        "있습니다",
+        "게임",
+        "dungeonslasher",
+        "구간",
+        "0",
+        "44",
+        "0",
+        "49"
+      ]
+    },
+    {
+      "id": "roguelike-dungeonslasher#segment:14",
+      "videoId": "roguelike-dungeonslasher",
+      "filename": "roguelike_dungeonslasher.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 49.95,
+      "endSec": 60.03,
+      "text": "어두운 던전에서 캐릭터가 여러 적을 공격하고 있습니다. (게임: dungeonslasher · 요소: 위협·수집 · 구간: 0:49-1:00)",
+      "abstractClasses": [
+        "THREAT",
+        "COLLECTIBLE"
+      ],
+      "tokens": [
+        "어두운",
+        "던전에서",
+        "캐릭터가",
+        "여러",
+        "적을",
+        "공격하고",
+        "있습니다",
+        "게임",
+        "dungeonslasher",
+        "요소",
+        "위협",
+        "수집",
+        "구간",
+        "0",
+        "49",
+        "1",
+        "00"
+      ]
+    },
+    {
+      "id": "roguelike-dungeonslasher#segment:15",
+      "videoId": "roguelike-dungeonslasher",
+      "filename": "roguelike_dungeonslasher.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 60.03,
+      "endSec": 72.21,
+      "text": "지하 감옥에서 캐릭터가 적과 맞서며 보물 상자와 물약을 지나간다. (게임: dungeonslasher · 요소: 위협·수집 · 구간: 1:00-1:12)",
+      "abstractClasses": [
+        "THREAT",
+        "COLLECTIBLE"
+      ],
+      "tokens": [
+        "지하",
+        "감옥에서",
+        "캐릭터가",
+        "적과",
+        "맞서며",
+        "보물",
+        "상자와",
+        "물약을",
+        "지나간다",
+        "게임",
+        "dungeonslasher",
+        "요소",
+        "위협",
+        "수집",
+        "구간",
+        "1",
+        "00",
+        "1",
+        "12"
+      ]
+    },
+    {
+      "id": "roguelike-dungeonslasher#segment:16",
+      "videoId": "roguelike-dungeonslasher",
+      "filename": "roguelike_dungeonslasher.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 72.21,
+      "endSec": 88.31,
+      "text": "픽셀풍 던전에서 캐릭터가 거대한 적을 근접 공격하고 있다. (게임: dungeonslasher · 요소: 위협·자원 · 구간: 1:12-1:28)",
+      "abstractClasses": [
+        "THREAT",
+        "RESOURCE"
+      ],
+      "tokens": [
+        "픽셀풍",
+        "던전에서",
+        "캐릭터가",
+        "거대한",
+        "적을",
+        "근접",
+        "공격하고",
+        "있다",
+        "게임",
+        "dungeonslasher",
+        "요소",
+        "위협",
+        "자원",
+        "구간",
+        "1",
+        "12",
+        "1",
+        "28"
+      ]
+    },
+    {
+      "id": "roguelike-ascendtozero#segment:1",
+      "videoId": "roguelike-ascendtozero",
+      "filename": "roguelike_ascendtozero.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 4.14,
+      "endSec": 5.14,
+      "text": "작전 시작 안내와 함께 여러 레벨 1 적들이 시설 안에 보인다. (게임: ascendtozero · 요소: 위협·진행 · 구간: 0:04-0:05)",
+      "abstractClasses": [
+        "THREAT",
+        "PROGRESS"
+      ],
+      "tokens": [
+        "작전",
+        "시작",
+        "안내와",
+        "함께",
+        "여러",
+        "레벨",
+        "1",
+        "적들이",
+        "시설",
+        "안에",
+        "보인다",
+        "게임",
+        "ascendtozero",
+        "요소",
+        "위협",
+        "진행",
+        "구간",
+        "0",
+        "04",
+        "0",
+        "05"
+      ]
+    },
+    {
+      "id": "roguelike-ascendtozero#segment:2",
+      "videoId": "roguelike-ascendtozero",
+      "filename": "roguelike_ascendtozero.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 5.14,
+      "endSec": 7.41,
+      "text": "주인공이 적들에게 둘러싸여 근접 전투를 벌이고 있다. (게임: ascendtozero · 요소: 위협 · 구간: 0:05-0:07)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "주인공이",
+        "적들에게",
+        "둘러싸여",
+        "근접",
+        "전투를",
+        "벌이고",
+        "있다",
+        "게임",
+        "ascendtozero",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "05",
+        "0",
+        "07"
+      ]
+    },
+    {
+      "id": "roguelike-ascendtozero#segment:3",
+      "videoId": "roguelike-ascendtozero",
+      "filename": "roguelike_ascendtozero.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 7.41,
+      "endSec": 8.91,
+      "text": "적들이 밀집한 전투 공간에 남은 시간이 0초로 표시됩니다. (게임: ascendtozero · 요소: 손실·위협 · 구간: 0:07-0:08)",
+      "abstractClasses": [
+        "SETBACK",
+        "THREAT"
+      ],
+      "tokens": [
+        "적들이",
+        "밀집한",
+        "전투",
+        "공간에",
+        "남은",
+        "시간이",
+        "0",
+        "초로",
+        "표시됩니다",
+        "게임",
+        "ascendtozero",
+        "요소",
+        "손실",
+        "위협",
+        "구간",
+        "0",
+        "07",
+        "0",
+        "08"
+      ]
+    },
+    {
+      "id": "roguelike-ascendtozero#segment:5",
+      "videoId": "roguelike-ascendtozero",
+      "filename": "roguelike_ascendtozero.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 10.31,
+      "endSec": 11.85,
+      "text": "네온 시설에서 캐릭터가 다수의 적과 보스의 공격 범위 안에서 전투하고 있다. (게임: ascendtozero · 요소: 위협 · 구간: 0:10-0:11)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "네온",
+        "시설에서",
+        "캐릭터가",
+        "다수의",
+        "적과",
+        "보스의",
+        "공격",
+        "범위",
+        "안에서",
+        "전투하고",
+        "있다",
+        "게임",
+        "ascendtozero",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "10",
+        "0",
+        "11"
+      ]
+    },
+    {
+      "id": "roguelike-ascendtozero#segment:6",
+      "videoId": "roguelike-ascendtozero",
+      "filename": "roguelike_ascendtozero.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 11.85,
+      "endSec": 16.05,
+      "text": "네온빛 연구실에서 캐릭터가 여러 적과 근접 전투를 벌이고 있다. (게임: ascendtozero · 요소: 위협 · 구간: 0:11-0:16)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "네온빛",
+        "연구실에서",
+        "캐릭터가",
+        "여러",
+        "적과",
+        "근접",
+        "전투를",
+        "벌이고",
+        "있다",
+        "게임",
+        "ascendtozero",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "11",
+        "0",
+        "16"
+      ]
+    },
+    {
+      "id": "roguelike-ascendtozero#segment:7",
+      "videoId": "roguelike-ascendtozero",
+      "filename": "roguelike_ascendtozero.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 16.05,
+      "endSec": 21.76,
+      "text": "플레이어가 다수의 적과 보스급 적에게 둘러싸여 전투 중이다. (게임: ascendtozero · 요소: 위협 · 구간: 0:16-0:21)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "플레이어가",
+        "다수의",
+        "적과",
+        "보스급",
+        "적에게",
+        "둘러싸여",
+        "전투",
+        "중이다",
+        "게임",
+        "ascendtozero",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "16",
+        "0",
+        "21"
+      ]
+    },
+    {
+      "id": "roguelike-ascendtozero#segment:8",
+      "videoId": "roguelike-ascendtozero",
+      "filename": "roguelike_ascendtozero.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 21.76,
+      "endSec": 23.96,
+      "text": "등장한 적들과 전투를 벌이며 포털이 있는 시설을 이동한다. (게임: ascendtozero · 요소: 위협·진행 · 구간: 0:21-0:23)",
+      "abstractClasses": [
+        "THREAT",
+        "PROGRESS"
+      ],
+      "tokens": [
+        "등장한",
+        "적들과",
+        "전투를",
+        "벌이며",
+        "포털이",
+        "있는",
+        "시설을",
+        "이동한다",
+        "게임",
+        "ascendtozero",
+        "요소",
+        "위협",
+        "진행",
+        "구간",
+        "0",
+        "21",
+        "0",
+        "23"
+      ]
+    },
+    {
+      "id": "roguelike-ascendtozero#segment:9",
+      "videoId": "roguelike-ascendtozero",
+      "filename": "roguelike_ascendtozero.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 23.96,
+      "endSec": 26.29,
+      "text": "미노타우로스와 여러 적들이 밀폐된 미래형 경기장에서 근접 전투를 벌이고 있다. (게임: ascendtozero · 요소: 위협 · 구간: 0:23-0:26)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "미노타우로스와",
+        "여러",
+        "적들이",
+        "밀폐된",
+        "미래형",
+        "경기장에서",
+        "근접",
+        "전투를",
+        "벌이고",
+        "있다",
+        "게임",
+        "ascendtozero",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "23",
+        "0",
+        "26"
+      ]
+    },
+    {
+      "id": "roguelike-ascendtozero#segment:10",
+      "videoId": "roguelike-ascendtozero",
+      "filename": "roguelike_ascendtozero.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 26.29,
+      "endSec": 38.04,
+      "text": "능력치 강화 트리 메뉴가 화면에 표시되어 있습니다. (게임: ascendtozero · 구간: 0:26-0:38)",
+      "abstractClasses": [],
+      "tokens": [
+        "능력치",
+        "강화",
+        "트리",
+        "메뉴가",
+        "화면에",
+        "표시되어",
+        "있습니다",
+        "게임",
+        "ascendtozero",
+        "구간",
+        "0",
+        "26",
+        "0",
+        "38"
+      ]
+    },
+    {
+      "id": "roguelike-ascendtozero#segment:11",
+      "videoId": "roguelike-ascendtozero",
+      "filename": "roguelike_ascendtozero.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 38.04,
+      "endSec": 45.05,
+      "text": "무기를 확인한 뒤 적들이 가득한 공간에서 원거리 전투가 벌어진다. (게임: ascendtozero · 요소: 위협·자원 · 구간: 0:38-0:45)",
+      "abstractClasses": [
+        "THREAT",
+        "RESOURCE"
+      ],
+      "tokens": [
+        "무기를",
+        "확인한",
+        "뒤",
+        "적들이",
+        "가득한",
+        "공간에서",
+        "원거리",
+        "전투가",
+        "벌어진다",
+        "게임",
+        "ascendtozero",
+        "요소",
+        "위협",
+        "자원",
+        "구간",
+        "0",
+        "38",
+        "0",
+        "45"
+      ]
+    },
+    {
+      "id": "roguelike-ascendtozero#segment:12",
+      "videoId": "roguelike-ascendtozero",
+      "filename": "roguelike_ascendtozero.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 45.05,
+      "endSec": 46.65,
+      "text": "네온 경기장에서 다수의 적과 보스에게 광역 공격이 펼쳐지고 있다. (게임: ascendtozero · 요소: 위협 · 구간: 0:45-0:46)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "네온",
+        "경기장에서",
+        "다수의",
+        "적과",
+        "보스에게",
+        "광역",
+        "공격이",
+        "펼쳐지고",
+        "있다",
+        "게임",
+        "ascendtozero",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "45",
+        "0",
+        "46"
+      ]
+    },
+    {
+      "id": "roguelike-ascendtozero#segment:13",
+      "videoId": "roguelike-ascendtozero",
+      "filename": "roguelike_ascendtozero.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 46.65,
+      "endSec": 48.01,
+      "text": "이소메트릭 산업 경기장에서 적들과 격렬한 전투가 벌어지고 있다. (게임: ascendtozero · 요소: 위협 · 구간: 0:46-0:48)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "이소메트릭",
+        "산업",
+        "경기장에서",
+        "적들과",
+        "격렬한",
+        "전투가",
+        "벌어지고",
+        "있다",
+        "게임",
+        "ascendtozero",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "46",
+        "0",
+        "48"
+      ]
+    },
+    {
+      "id": "roguelike-scourgebringer#segment:0",
+      "videoId": "roguelike-scourgebringer",
+      "filename": "roguelike_ScourgeBringer.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 0,
+      "endSec": 4.43,
+      "text": "픽셀풍 던전에서 거대한 보스와 전투가 벌어지고 뒤이어 타이틀 카드가 나타납니다. (게임: ScourgeBringer · 요소: 위협 · 구간: 0:00-0:04)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "픽셀풍",
+        "던전에서",
+        "거대한",
+        "보스와",
+        "전투가",
+        "벌어지고",
+        "뒤이어",
+        "타이틀",
+        "카드가",
+        "나타납니다",
+        "게임",
+        "scourgebringer",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "00",
+        "0",
+        "04"
+      ]
+    },
+    {
+      "id": "roguelike-scourgebringer#segment:2",
+      "videoId": "roguelike-scourgebringer",
+      "filename": "roguelike_ScourgeBringer.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 11.53,
+      "endSec": 37.63,
+      "text": "픽셀풍 지하 시설에서 캐릭터가 거대한 수직 광선과 맞서고 있습니다. (게임: ScourgeBringer · 요소: 위협 · 구간: 0:11-0:37)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "픽셀풍",
+        "지하",
+        "시설에서",
+        "캐릭터가",
+        "거대한",
+        "수직",
+        "광선과",
+        "맞서고",
+        "있습니다",
+        "게임",
+        "scourgebringer",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "11",
+        "0",
+        "37"
+      ]
+    },
+    {
+      "id": "roguelike-scourgebringer#segment:3",
+      "videoId": "roguelike-scourgebringer",
+      "filename": "roguelike_ScourgeBringer.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 37.63,
+      "endSec": 39.2,
+      "text": "어두운 유기체 던전에서 캐릭터가 중앙 구역에서 전투 중이다. (게임: ScourgeBringer · 요소: 위협 · 구간: 0:37-0:39)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "어두운",
+        "유기체",
+        "던전에서",
+        "캐릭터가",
+        "중앙",
+        "구역에서",
+        "전투",
+        "중이다",
+        "게임",
+        "scourgebringer",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "37",
+        "0",
+        "39"
+      ]
+    },
+    {
+      "id": "roguelike-scourgebringer#segment:4",
+      "videoId": "roguelike-scourgebringer",
+      "filename": "roguelike_ScourgeBringer.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 39.2,
+      "endSec": 53.73,
+      "text": "어두운 던전에서 캐릭터가 녹색 적과 투사체를 피하며 전투하고 있다. (게임: ScourgeBringer · 요소: 위협 · 구간: 0:39-0:53)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "어두운",
+        "던전에서",
+        "캐릭터가",
+        "녹색",
+        "적과",
+        "투사체를",
+        "피하며",
+        "전투하고",
+        "있다",
+        "게임",
+        "scourgebringer",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "39",
+        "0",
+        "53"
+      ]
+    },
+    {
+      "id": "roguelike-scourgebringer#segment:5",
+      "videoId": "roguelike-scourgebringer",
+      "filename": "roguelike_ScourgeBringer.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 53.73,
+      "endSec": 80.83,
+      "text": "경로 지도 뒤 어두운 던전에서 캐릭터가 적과 전투한다. (게임: ScourgeBringer · 요소: 위협·진행 · 구간: 0:53-1:20)",
+      "abstractClasses": [
+        "THREAT",
+        "PROGRESS"
+      ],
+      "tokens": [
+        "경로",
+        "지도",
+        "뒤",
+        "어두운",
+        "던전에서",
+        "캐릭터가",
+        "적과",
+        "전투한다",
+        "게임",
+        "scourgebringer",
+        "요소",
+        "위협",
+        "진행",
+        "구간",
+        "0",
+        "53",
+        "1",
+        "20"
+      ]
+    },
+    {
+      "id": "roguelike-skul#segment:0",
+      "videoId": "roguelike-skul",
+      "filename": "Roguelike_Skul.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 0,
+      "endSec": 29.52,
+      "text": "고딕 성 내부에서 무장한 병사들이 대치하고 있습니다. (게임: Skul · 요소: 위협 · 구간: 0:00-0:29)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "고딕",
+        "성",
+        "내부에서",
+        "무장한",
+        "병사들이",
+        "대치하고",
+        "있습니다",
+        "게임",
+        "skul",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "00",
+        "0",
+        "29"
+      ]
+    },
+    {
+      "id": "roguelike-skul#segment:1",
+      "videoId": "roguelike-skul",
+      "filename": "Roguelike_Skul.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 29.52,
+      "endSec": 32.02,
+      "text": "픽셀 아트 던전에서 여러 전사와 괴물이 철창을 둘러싸고 있다. (게임: Skul · 구간: 0:29-0:32)",
+      "abstractClasses": [],
+      "tokens": [
+        "픽셀",
+        "아트",
+        "던전에서",
+        "여러",
+        "전사와",
+        "괴물이",
+        "철창을",
+        "둘러싸고",
+        "있다",
+        "게임",
+        "skul",
+        "구간",
+        "0",
+        "29",
+        "0",
+        "32"
+      ]
+    },
+    {
+      "id": "roguelike-skul#segment:2",
+      "videoId": "roguelike-skul",
+      "filename": "Roguelike_Skul.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 32.02,
+      "endSec": 37.95,
+      "text": "어두운 숲에서 해골 적들이 검을 들고 쓰러져 있다. (게임: Skul · 요소: 위협 · 구간: 0:32-0:37)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "어두운",
+        "숲에서",
+        "해골",
+        "적들이",
+        "검을",
+        "들고",
+        "쓰러져",
+        "있다",
+        "게임",
+        "skul",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "32",
+        "0",
+        "37"
+      ]
+    },
+    {
+      "id": "roguelike-skul#segment:3",
+      "videoId": "roguelike-skul",
+      "filename": "Roguelike_Skul.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 37.95,
+      "endSec": 44.98,
+      "text": "숲속에서 플레이어가 여러 적과 근접 전투를 벌이고 있다. (게임: Skul · 요소: 위협 · 구간: 0:37-0:44)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "숲속에서",
+        "플레이어가",
+        "여러",
+        "적과",
+        "근접",
+        "전투를",
+        "벌이고",
+        "있다",
+        "게임",
+        "skul",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "37",
+        "0",
+        "44"
+      ]
+    },
+    {
+      "id": "roguelike-skul#segment:4",
+      "videoId": "roguelike-skul",
+      "filename": "Roguelike_Skul.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 44.98,
+      "endSec": 47.92,
+      "text": "폐허가 된 성 안에서 캐릭터가 해골 형상의 적과 맞서고 있다. (게임: Skul · 요소: 위협 · 구간: 0:44-0:47)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "폐허가",
+        "된",
+        "성",
+        "안에서",
+        "캐릭터가",
+        "해골",
+        "형상의",
+        "적과",
+        "맞서고",
+        "있다",
+        "게임",
+        "skul",
+        "요소",
+        "위협",
+        "구간",
+        "0",
+        "44",
+        "0",
+        "47"
+      ]
+    },
+    {
+      "id": "roguelike-skul#segment:5",
+      "videoId": "roguelike-skul",
+      "filename": "Roguelike_Skul.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 47.92,
+      "endSec": 67.65,
+      "text": "어두운 던전에서 해골 캐릭터가 적과 근접 전투를 벌이고 있습니다. (게임: Skul · 요소: 위협·수집 · 구간: 0:47-1:07)",
+      "abstractClasses": [
+        "THREAT",
+        "COLLECTIBLE"
+      ],
+      "tokens": [
+        "어두운",
+        "던전에서",
+        "해골",
+        "캐릭터가",
+        "적과",
+        "근접",
+        "전투를",
+        "벌이고",
+        "있습니다",
+        "게임",
+        "skul",
+        "요소",
+        "위협",
+        "수집",
+        "구간",
+        "0",
+        "47",
+        "1",
+        "07"
+      ]
+    },
+    {
+      "id": "roguelike-skul#segment:6",
+      "videoId": "roguelike-skul",
+      "filename": "Roguelike_Skul.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 67.65,
+      "endSec": 71.02,
+      "text": "분홍빛 성 안에서 플레이어가 여러 적과 거대한 적을 공격하고 있다. (게임: Skul · 요소: 위협·자원 · 구간: 1:07-1:11)",
+      "abstractClasses": [
+        "THREAT",
+        "RESOURCE"
+      ],
+      "tokens": [
+        "분홍빛",
+        "성",
+        "안에서",
+        "플레이어가",
+        "여러",
+        "적과",
+        "거대한",
+        "적을",
+        "공격하고",
+        "있다",
+        "게임",
+        "skul",
+        "요소",
+        "위협",
+        "자원",
+        "구간",
+        "1",
+        "07",
+        "1",
+        "11"
+      ]
+    },
+    {
+      "id": "roguelike-skul#segment:7",
+      "videoId": "roguelike-skul",
+      "filename": "Roguelike_Skul.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 71.02,
+      "endSec": 74.32,
+      "text": "성채 폐허에서 플레이어가 여러 적과 근접 전투를 벌이고 있습니다. (게임: Skul · 요소: 위협·자원 · 구간: 1:11-1:14)",
+      "abstractClasses": [
+        "THREAT",
+        "RESOURCE"
+      ],
+      "tokens": [
+        "성채",
+        "폐허에서",
+        "플레이어가",
+        "여러",
+        "적과",
+        "근접",
+        "전투를",
+        "벌이고",
+        "있습니다",
+        "게임",
+        "skul",
+        "요소",
+        "위협",
+        "자원",
+        "구간",
+        "1",
+        "11",
+        "1",
+        "14"
+      ]
+    },
+    {
+      "id": "roguelike-skul#segment:8",
+      "videoId": "roguelike-skul",
+      "filename": "Roguelike_Skul.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 74.32,
+      "endSec": 79.15,
+      "text": "보라색 던전에서 캐릭터가 여러 석상형 적들과 전투를 벌이며 피해를 받고 있다. (게임: Skul · 요소: 위협·손실 · 구간: 1:14-1:19)",
+      "abstractClasses": [
+        "THREAT",
+        "SETBACK"
+      ],
+      "tokens": [
+        "보라색",
+        "던전에서",
+        "캐릭터가",
+        "여러",
+        "석상형",
+        "적들과",
+        "전투를",
+        "벌이며",
+        "피해를",
+        "받고",
+        "있다",
+        "게임",
+        "skul",
+        "요소",
+        "위협",
+        "손실",
+        "구간",
+        "1",
+        "14",
+        "1",
+        "19"
+      ]
+    },
+    {
+      "id": "roguelike-skul#segment:9",
+      "videoId": "roguelike-skul",
+      "filename": "Roguelike_Skul.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 79.15,
+      "endSec": 80.88,
+      "text": "성직자 보스가 화면을 가르는 광선 공격을 퍼붓고 플레이어가 피해를 입는다. (게임: Skul · 요소: 위협·손실 · 구간: 1:19-1:20)",
+      "abstractClasses": [
+        "THREAT",
+        "SETBACK"
+      ],
+      "tokens": [
+        "성직자",
+        "보스가",
+        "화면을",
+        "가르는",
+        "광선",
+        "공격을",
+        "퍼붓고",
+        "플레이어가",
+        "피해를",
+        "입는다",
+        "게임",
+        "skul",
+        "요소",
+        "위협",
+        "손실",
+        "구간",
+        "1",
+        "19",
+        "1",
+        "20"
+      ]
+    },
+    {
+      "id": "roguelike-skul#segment:10",
+      "videoId": "roguelike-skul",
+      "filename": "Roguelike_Skul.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 80.88,
+      "endSec": 84.15,
+      "text": "플레이어가 거대한 나무 보스와 전투하고 있습니다. (게임: Skul · 요소: 위협 · 구간: 1:20-1:24)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "플레이어가",
+        "거대한",
+        "나무",
+        "보스와",
+        "전투하고",
+        "있습니다",
+        "게임",
+        "skul",
+        "요소",
+        "위협",
+        "구간",
+        "1",
+        "20",
+        "1",
+        "24"
+      ]
+    },
+    {
+      "id": "roguelike-skul#segment:11",
+      "videoId": "roguelike-skul",
+      "filename": "Roguelike_Skul.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 84.15,
+      "endSec": 85.82,
+      "text": "화려한 궁전에서 플레이어가 적들과 근접 전투를 벌이고 있습니다. (게임: Skul · 요소: 위협·손실 · 구간: 1:24-1:25)",
+      "abstractClasses": [
+        "THREAT",
+        "SETBACK"
+      ],
+      "tokens": [
+        "화려한",
+        "궁전에서",
+        "플레이어가",
+        "적들과",
+        "근접",
+        "전투를",
+        "벌이고",
+        "있습니다",
+        "게임",
+        "skul",
+        "요소",
+        "위협",
+        "손실",
+        "구간",
+        "1",
+        "24",
+        "1",
+        "25"
+      ]
+    },
+    {
+      "id": "roguelike-skul#segment:12",
+      "videoId": "roguelike-skul",
+      "filename": "Roguelike_Skul.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 85.82,
+      "endSec": 87.52,
+      "text": "플레이어가 거대한 키메라 보스와 근접 전투를 벌이며 피해를 입고 있다. (게임: Skul · 요소: 위협·손실 · 구간: 1:25-1:27)",
+      "abstractClasses": [
+        "THREAT",
+        "SETBACK"
+      ],
+      "tokens": [
+        "플레이어가",
+        "거대한",
+        "키메라",
+        "보스와",
+        "근접",
+        "전투를",
+        "벌이며",
+        "피해를",
+        "입고",
+        "있다",
+        "게임",
+        "skul",
+        "요소",
+        "위협",
+        "손실",
+        "구간",
+        "1",
+        "25",
+        "1",
+        "27"
+      ]
+    },
+    {
+      "id": "roguelike-skul#segment:13",
+      "videoId": "roguelike-skul",
+      "filename": "Roguelike_Skul.mp4",
+      "genre": "roguelike",
+      "mode": "T",
+      "kind": "segment",
+      "startSec": 87.52,
+      "endSec": 90.72,
+      "text": "화려한 신전에서 두 캐릭터가 서로 마주 보고 서 있다. (게임: Skul · 요소: 위협 · 구간: 1:27-1:30)",
+      "abstractClasses": [
+        "THREAT"
+      ],
+      "tokens": [
+        "화려한",
+        "신전에서",
+        "두",
+        "캐릭터가",
+        "서로",
+        "마주",
+        "보고",
+        "서",
+        "있다",
+        "게임",
+        "skul",
+        "요소",
+        "위협",
+        "구간",
+        "1",
+        "27",
+        "1",
+        "30"
+      ]
+    }
+  ]
+}
