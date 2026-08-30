@@ -1,80 +1,72 @@
-# FunQA Editorial Refresh Design Contract
+# FunQA Media Analysis Search Contract
 
-## Intent
+## 1. Product Intent
 
-Refresh the web experience so it feels closer to the editorial, airy, premium mood of the Mria theme while preserving FunQA's existing product identity, routes, and search-first information architecture.
+FunQA is a search and evidence-review tool, not a marketing site. The root URL opens the search workspace directly. The interface centers video frames, exact timecodes, retrieval evidence, and grounded answers instead of feature copy or decorative landing sections.
 
-This is not a blog clone. It is a search product with a magazine-like shell.
+## 2. Audience And Access
 
-## Reference Mood
+- Anonymous visitors may inspect the search surface and sign in.
+- Authenticated non-admin users see only video search, media evidence, and results.
+- Admins additionally see vector ingestion, corpus inspection, RAG operations, administration, and API documentation.
+- Navigation hiding is only a usability layer. Admin pages verify an HttpOnly server session before rendering, and Functions middleware remains the authority for every write/admin API operation.
+- Admin-managed scene data is stored in one reviewed search tenant so regular users query the same paired video-analysis corpus rather than empty per-user stores.
 
-- oversized serif headlines with disciplined line length
-- bright, warm-neutral surfaces instead of dark dashboard chrome
-- generous vertical rhythm and visible section breaks
-- one dominant story area with one supporting rail
-- card-based content grouping that feels curated rather than grid-heavy
-- restrained accent color usage with soft gradients, not glossy UI effects
+## 3. Information Architecture
 
-## What Must Stay
+1. Compact white header with brand and one `Menu` dropdown
+2. Uncarded text composer and optional query-video selector in the first viewport
+3. Media card showing the local video or top retrieved frame
+4. Analysis card with measured summary, models, latency, scoreability, and provenance
+5. Results card with grounded answer, query analysis, and timestamp evidence tabs
+6. Admin-only ingestion and library cards outside the regular search flow
 
-- FunQA brand name and current route structure
-- search, RAG lab, admin, docs, and login surfaces
-- search-first product framing and grounded-answer positioning
-- evidence-first product behavior and current backend contracts
+The old landing route, permanent sidebar, promotional flow cards, and capability grid do not exist.
 
-## Home Shell Direction
+## 4. Visual Direction
 
-- Hero should read like a cover story, not a SaaS billboard.
-- Headline measure should stay tight, ideally around 10 to 13 characters per line on desktop.
-- Supporting copy should stay readable and narrow rather than spanning the full card width.
-- The right rail should feel like editorial support material: system posture, contract, and quick proof.
-- Surface cards should feel like curated desks or sections, with stronger hierarchy between the lead card and supporting cards.
+- White page background with dark ink and restrained blue action color.
+- The text field and video selector stay open on the page, not inside a card.
+- Every readout after search is grouped into a clear white card with a quiet border and soft shadow.
+- Video or frame imagery is the dominant visual surface inside the first result card.
+- Dense operational data uses compact sans and mono labels; headings remain concise.
+- Blue identifies search/retrieval, green verified readiness, amber review, and red failure.
+- No glass blur, ornamental gradients, neon canvas, persistent sidebar, or dashboard card wall.
 
-## Search Shell Direction
+## 5. Motion Capability Contract
 
-- Search should feel like an editorial desk, not a utility form.
-- The query composer should remain prominent but visually calmer.
-- Pipeline and evidence states should feel inspectable and trustworthy.
-- Result cards should prioritize title, snippet, source, and confidence without noisy chrome.
-- Evidence-only and consensus-backed states must remain visually distinct.
+The audited source is <https://akillness.github.io/posts/viral-ui-effects-source-audit/>.
 
-## Typography Rules
+- `thinking-orbs@0.3.1`: one visible 20 px orb for genuine extracting/searching/indexing work. It stays decorative; a separate `role="status"` text node owns announcements. Never place an orb on each result.
+- `border-beam@1.3.0`: one instance around the primary search action, active only during a real search. The app wrapper owns reduced-motion fallback because rotate variants do not.
+- Do not add `metal-fx`: its renderer has one page-global palette, no automatic reduced-motion policy, and no internal WebGL fallback.
+- Do not add `liquid-gooey`: image masking/blur and partial reduced-motion coverage conflict with evidence thumbnails.
+- Server and reduced-motion output must be complete static UI. Motion may disappear without changing geometry or meaning.
 
-- Use the existing serif display face for major headlines.
-- Keep headline wrapping intentional; do not allow very wide unbroken measures.
-- Prefer short kicker lines, narrow ledes, and clearer spacing between label, title, and body.
-- Use mono or compact sans only for system labels, metrics, and protocol-like chips.
+## 6. Responsive Rules
 
-## Layout Rules
+- Mobile 320-639 px: composer first, media stage and summary stacked, horizontally scrollable evidence thumbnails, no hidden essential labels.
+- Tablet 768 px+: two-column media/summary when space permits.
+- Desktop 1024 px+: media stage owns roughly two thirds of the main card; evidence rail owns one third.
+- Navigation always stays inside one dropdown; it never expands into a persistent sidebar.
+- Search and primary result must remain visible without navigating a sidebar on every viewport.
 
-- Prefer asymmetric compositions over evenly split dashboard grids.
-- Use larger vertical spacing between major sections.
-- Maintain mobile readability first; stacked layouts should still feel editorial, not collapsed.
-- Avoid adding more cards unless they improve hierarchy or comprehension.
+## 7. Accessibility
 
-## Color And Surface Rules
+- WCAG 2.2 AA contrast and visible focus states are mandatory.
+- Motion follows `prefers-reduced-motion` and never carries unique information.
+- Video/frame controls have descriptive labels and keyboard activation.
+- Search progress uses `role="status"`/`aria-live="polite"`; failures use `role="alert"`.
+- Confidence, grounded/withheld state, and scoreability use text or symbols in addition to color.
 
-- Base palette: parchment, warm white, soft sand, muted ink.
-- Accent palette: terracotta, muted rose, dusty blue, softened plum only where category distinction helps.
-- Shadows should be soft and atmospheric.
-- Borders should stay low-contrast and paper-like.
+## 8. Evidence And Honesty Rules
 
-## UX Rules
+- No mock scores, synthetic top results, or client-generated verdicts.
+- Raw cosine scores and model identifiers remain visible when returned.
+- Generated answers appear only after the server score and competing-document gates pass.
+- Label-only evidence is explicitly labeled.
+- Original video stays in the browser; selected query/index frames are the only media sent to the API.
 
-- Primary actions must remain obvious within the first viewport.
-- Navigation should feel lighter and less application-chrome heavy.
-- Chips, pills, and badges should support scanability, not dominate the page.
-- Empty, fallback, and evidence-only states should feel intentional rather than degraded.
+## 9. Agent Prompt Guide
 
-## Stitch-Oriented Prompt Framing
-
-When generating or refining screens, use this framing:
-
-"Design an editorial search product homepage and search workspace for FunQA. Preserve the IA of a media search app, but use an airy magazine-like composition, oversized serif typography, soft warm-neutral cards, a dominant feature story area, and a supporting right rail for system proof. Avoid generic SaaS dashboard aesthetics and avoid literal blog cloning."
-
-## Pretext-Oriented Layout Guidance
-
-- Treat headline and lede width as fixed design decisions, not accidental browser wrap.
-- Optimize measure before increasing font size.
-- Favor stable line breaks and predictable text blocks over dense auto-flow.
-- Use typography hierarchy and spacing to create rhythm before adding more visual decoration.
+"Build FunQA as a white, media-first analysis search tool. Keep the text and optional video search controls uncarded, then organize every result and analysis readout into clear white cards. Use one dropdown for all navigation. Make a real video or retrieved frame the dominant result surface. Use one Thinking Orb only for active work and one Border Beam only for the primary search action. Keep regular users inside search/results; expose ingestion and operations only to verified admins."

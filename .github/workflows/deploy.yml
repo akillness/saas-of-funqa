@@ -44,7 +44,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          node-version: "24"
           cache: "npm"
 
       - name: Install dependencies
@@ -83,27 +83,19 @@ jobs:
           echo "Hosted app did not serve the search UI in time"
           exit 1
 
-      - name: Verify live API health uses hosted embeddings
+      - name: Verify live API readiness
         run: |
-          # 정확 일치로 검증한다. 'gemini-embedding-2' 부분일치는
-          # 'gemini-embedding-2-preview' 도 통과시켜 드리프트를 놓친다.
-          EXPECTED_MODEL='gemini-embedding-2'
+          # Exact model selection is a startup invariant in validateConfig();
+          # public health intentionally exposes only liveness, not admin runtime details.
           for attempt in {1..18}; do
             payload="$(curl -sS https://asia-northeast3-saas-of-funqa.cloudfunctions.net/api/v1/health || true)"
-            actual="$(printf '%s' "$payload" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("embeddingModel",""))' 2>/dev/null || true)"
-            if [ "$actual" = "$EXPECTED_MODEL" ]; then
-              echo "Live API health reports embeddingModel=$actual"
+            actual="$(printf '%s' "$payload" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("status",""))' 2>/dev/null || true)"
+            if [ "$actual" = "ok" ]; then
+              echo "Live API reports status=ok"
               exit 0
             fi
-            # 텍스트 전용 모델은 이미지 임베딩이 불가능해 Scene Search 를 조용히 망가뜨린다.
-            # 재시도해도 나아지지 않는 설정 오류이므로 즉시 실패시킨다.
-            if [ "$actual" = "gemini-embedding-001" ]; then
-              echo "FATAL: live API reports text-only embeddingModel=$actual;" \
-                   "Scene Search multimodal retrieval is broken. Expected $EXPECTED_MODEL."
-              exit 1
-            fi
-            echo "Attempt $attempt: embeddingModel=${actual:-<unavailable>} (expected $EXPECTED_MODEL)"
+            echo "Attempt $attempt: status=${actual:-<unavailable>}"
             sleep 10
           done
-          echo "Live API health did not report embeddingModel=$EXPECTED_MODEL in time"
+          echo "Live API did not report status=ok in time"
           exit 1

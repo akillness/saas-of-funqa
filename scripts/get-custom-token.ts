@@ -1,34 +1,33 @@
 /**
- * get-custom-token.ts
- * Generates a Firebase custom auth token for akillness38@gmail.com
- * so Playwriter can sign in without the Google OAuth popup.
+ * Generate a Firebase custom token for an explicitly configured admin account.
  *
- * Usage: npx tsx scripts/get-custom-token.ts
- * Output: prints the custom token to stdout
+ * Usage: ADMIN_EMAIL=admin@example.com npx tsx scripts/get-custom-token.ts
+ * Optional: FIREBASE_SERVICE_ACCOUNT_PATH=/absolute/service-account.json
  */
-import * as admin from 'firebase-admin';
-import { getAuth } from 'firebase-admin/auth';
-import { readFileSync } from 'fs';
-import { resolve } from 'path';
+import { readFileSync } from "node:fs";
+import { applicationDefault, cert, getApps, initializeApp } from "firebase-admin/app";
+import { getAuth } from "firebase-admin/auth";
 
-const SERVICE_ACCOUNT_PATH = resolve('./saas-of-funqa-firebase-adminsdk-fbsvc-cee18265fb.json');
-const ADMIN_EMAIL = 'akillness38@gmail.com';
+const adminEmail = process.env.ADMIN_EMAIL?.trim();
+if (!adminEmail) throw new Error("ADMIN_EMAIL is required.");
 
-const serviceAccount = JSON.parse(readFileSync(SERVICE_ACCOUNT_PATH, 'utf8'));
-
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    projectId: 'saas-of-funqa',
+const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT_PATH?.trim();
+if (getApps().length === 0) {
+  initializeApp({
+    credential: serviceAccountPath
+      ? cert(JSON.parse(readFileSync(serviceAccountPath, "utf8")))
+      : applicationDefault()
   });
 }
 
 async function main() {
   const auth = getAuth();
-  const userRecord = await auth.getUserByEmail(ADMIN_EMAIL);
-  const customToken = await auth.createCustomToken(userRecord.uid, { role: 'admin' });
-  // Only print the token (no extra logging) so it can be captured cleanly
-  process.stdout.write(customToken);
+  const user = await auth.getUserByEmail(adminEmail);
+  await auth.setCustomUserClaims(user.uid, { ...user.customClaims, admin: true });
+  process.stdout.write(await auth.createCustomToken(user.uid, { admin: true }));
 }
 
-main().catch(e => { console.error(e); process.exit(1); });
+main().catch((error: unknown) => {
+  console.error(error instanceof Error ? error.message : error);
+  process.exitCode = 1;
+});

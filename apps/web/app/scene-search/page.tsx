@@ -4,9 +4,9 @@ import { getRequestLocale } from "../../lib/i18n-server";
 import { SceneSearchClient } from "./scene-search-client";
 
 export const metadata: Metadata = {
-  title: "Video QA Analysis | FunQA",
+  title: "Video Evidence Search | FunQA",
   description:
-    "Analyze a video in one evidence-first workspace with QA scenarios, timestamped scene observations, multimodal search, and measured FunQA signals."
+    "Search reviewed video-analysis pairs and inspect timestamped frames, retrieval evidence, and grounded answers."
 };
 
 type SceneSearchPageProps = {

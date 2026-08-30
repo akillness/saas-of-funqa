@@ -24,13 +24,13 @@ vi.mock("../services/rag.service.js", () => ({ getRagStats: () => mocks.stats })
 
 let server: ReturnType<ReturnType<typeof express>["listen"]> | null = null;
 
-async function requestHealth() {
+async function requestHealth(path = "/v1/health") {
   const app = express();
   registerHealthRoute(app);
   server = app.listen(0);
   await new Promise<void>((resolve) => server?.once("listening", resolve));
   const port = (server.address() as AddressInfo).port;
-  return fetch(`http://127.0.0.1:${port}/v1/health`);
+  return fetch(`http://127.0.0.1:${port}${path}`);
 }
 
 afterEach(async () => {
@@ -43,8 +43,17 @@ afterEach(async () => {
 });
 
 describe("scene runtime health", () => {
-  it("declares the configured Genkit models and persistent Firestore store", async () => {
+  it("keeps public liveness free of operational details", async () => {
     const response = await requestHealth();
+    expect(response.status).toBe(200);
+    expect(await response.json()).toEqual({
+      status: "ok",
+      timestamp: expect.any(String)
+    });
+  });
+
+  it("reports model and store details only on the admin health route", async () => {
+    const response = await requestHealth("/v1/admin/health");
     expect(response.status).toBe(200);
     expect(await response.json()).toMatchObject({
       status: "ok",
@@ -60,18 +69,13 @@ describe("scene runtime health", () => {
     });
   });
 
-  it("fails health when live mode is requested but the Genkit model is unavailable", async () => {
+  it("fails liveness when live mode lacks the configured Genkit model", async () => {
     mocks.liveModel = null;
     const response = await requestHealth();
     expect(response.status).toBe(503);
-    expect(await response.json()).toMatchObject({
+    expect(await response.json()).toEqual({
       status: "error",
-      scene: {
-        status: "degraded",
-        executionMode: "live-genkit",
-        genkitConfigured: false,
-        captionModel: null
-      }
+      timestamp: expect.any(String)
     });
   });
 });

@@ -8,27 +8,19 @@
 [![Genkit](https://img.shields.io/badge/Genkit-1.32-4285F4?logo=google&logoColor=white)](https://firebase.google.com/docs/genkit)
 [![Node](https://img.shields.io/badge/Node.js-20+-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 
-> **게임, 영화, 미디어 콘텐츠를 저장하고 AI로 검색하는 RAG 기반 SaaS.**  
+> **관리자가 검증한 영상·FunQA 분석 페어를 장면 단위로 검색하는 근거 중심 분석 도구.**
 > Firebase App Hosting + Cloud Functions + Google Genkit + Google Auth 모노레포.
 
 현재 구현 기준 핵심 운영 기능:
 
-- **게임 코퍼스(`/corpus`)** — 번들로 포함된 텐션 분석 코퍼스(게임 9종 · 장면 문서 102개)를 장면 단위로 검색. 자유 문장은 결정적 어휘 스코어링, `유사 장면`은 같은 사전 구축 벡터가 있는 78개 문서 안에서만 코사인 비교
-- **벡터 인덱스(`/vector-index`)** — 영상 파일을 올리면 브라우저가 대표 프레임을 뽑고, 서버가 장면 캐프션을 생성해 임베딩과 함께 장면 벡터 저장소에 기록. 저장소 현황(문서 수·장면 수·테넌트 용량·임베딩 모드)과 장면당 저장 계약을 함께 노출
-- **영상 QA 분석 워크스페이스(`/scene-search`)** — 영상 한 편을 넣으면 플레이어·근거 타임라인·요약 지표·QA 시나리오·타임코드 근거를 한 화면에서 검토. 원본 영상은 브라우저에 남고 추출 프레임만 전송
-- **샘플과 실측의 명시적 분리** — QA 판정 계약이 아직 없으므로 pass/fail·FunQA Score는 `샘플 리포트` 배지로만 노출하고, 라이브 모드에서는 API가 실제 반환한 장면 수·상대 강도·지연·제외 장면만 표시
-- **단일 다크 테마** — 라이트/다크 토글을 제거하고 서버에서 `data-theme="dark"`를 렌더링해 첫 페인트부터 다크(콜드 로드 시 라이트 플래시 제거)
-- **Google Auth 로그인** — Firebase `signInWithPopup` 기반 Google 소셜 로그인, `AuthProvider` 컨텍스트로 전역 인증 상태 관리
-- **Grounded-search first UI** — 홈과 검색 모두 “예쁜 AI 페이지”보다 “검증 가능한 retrieval workspace”로 읽히도록 재구성
-- **Visible wow points** — `Strict grounding`, `Pipeline x-ray`, `Operator proof`, `Multimodal core`, `Consensus engine` 같은 기술 블록을 첫 화면에 노출
-- **NavAuth 컴포넌트** — 로그인 상태에 따라 사용자명·로그아웃 또는 로그인 링크를 표시
-- **UI 모션 capability contract** — 검색 에이전트 상태와 기본 디스패치 컨트롤에만 모션을 부여하고, 정적 폴백·인스턴스 예산·접근성 소유권을 앱이 직접 소유
-- `evidence-only` + `document-graph-consensus` 계약 기반 검색 API
-- 검색 화면의 **strict grounding 상태 블록** + **pipeline reveal strip** + **citation inspector rail**
-- 검색 shell 전반의 **dictionary-driven copy** + **localized category tabs** + **pinned inspector trust flow**
-- consensus 미달 시 **evidence-only fallback**를 trust feature로 드러내는 경고 상태
-- `rag-lab`의 최신 consensus release-gate 리포트 조회 및 선택 UI
-- creator ingest bundle, video analyses, monetization guide/source API surface
+- **일반 사용자 검색(`/scene-search`)** — 텍스트와 선택형 질의 영상 프레임으로 공유 코퍼스를 검색하고, 상위 프레임·정확한 타임코드·인용 근거·grounded/withheld 답변을 한 화면에서 검토
+- **관리자 인덱싱(`/vector-index`)** — 영상과 FunQA 분석 JSON을 페어링한 뒤 브라우저에서 대표 프레임을 추출하고, 서버가 캡션과 `gemini-embedding-2` 1536차원 융합 벡터를 생성해 `funqa-public` 코퍼스에 저장
+- **관리자 코퍼스 검사(`/corpus`)** — 체크인된 102개 분석 문서를 어휘 검색하고, 같은 사전 구축 벡터가 있는 78개 문서에만 문서 간 유사 장면 기능 제공
+- **역할 경계** — 비관리자 메뉴는 검색 하나뿐이며, 관리자 페이지는 서버 세션에서 먼저 차단합니다. 인덱싱·문서 목록/삭제·provider key·RAG·운영 API는 Functions의 `requireAdmin`이 다시 강제
+- **정직한 결과 계약** — 실제 응답 전에는 점수·판정·상위 장면을 만들지 않으며, 임베딩 공간이 다르거나 점수화할 수 없는 장면은 결과에서 격리
+- **화이트 명료화 테마** — 검색 입력은 열린 형태로 두고, 결과·분석 정보는 흰 카드로 묶으며 모든 메뉴는 하나의 드롭다운에서 제공
+- **감사 기반 모션** — `thinking-orbs@0.3.1`은 실제 처리 상태에만, `border-beam@1.3.0`은 검색 버튼 하나에만 사용하며 SSR·reduced-motion·인스턴스 예산은 앱 래퍼가 소유
+- **랜딩 제거** — `/`와 레거시 `/search`는 `/scene-search`로 이동하므로 마케팅 랜딩 없이 바로 검색을 시작
 
 ---
 
@@ -211,16 +203,16 @@ Firebase App Hosting과 Functions Emulator를 함께 실행합니다.
 
 주요 웹 surface:
 
-| Route           | Purpose                                      |
-| --------------- | -------------------------------------------- |
-| `/`             | 제품 홈과 추천/상태 요약                     |
-| `/search`       | `/scene-search`로 보내는 호환 리다이렉트     |
-| `/scene-search` | 멀티모달 장면 검색과 근거 답변 workspace     |
-| `/vector-index` | 영상과 FunQA 분석 JSON 페어 인덱싱           |
-| `/corpus`       | 읽기 전용 FunQA 분석 코퍼스                  |
-| `/rag-lab`      | RAG pipeline inspection 및 release-gate 확인 |
-| `/admin`        | 운영 콘솔                                    |
-| `/docs`         | API 문서                                     |
+| Route           | Access | Purpose                                      |
+| --------------- | ------ | -------------------------------------------- |
+| `/`             | 전체   | `/scene-search` 리다이렉트                   |
+| `/search`       | 전체   | `/scene-search` 호환 리다이렉트              |
+| `/scene-search` | 로그인 | 멀티모달 장면 검색·미디어 근거·grounded 답변 |
+| `/vector-index` | 관리자 | 영상과 FunQA 분석 JSON 페어 인덱싱           |
+| `/corpus`       | 관리자 | 체크인된 FunQA 분석 코퍼스 검사              |
+| `/rag-lab`      | 관리자 | RAG 운영 계약 검사                           |
+| `/admin`        | 관리자 | 런타임 운영 콘솔                             |
+| `/docs`         | 관리자 | 내부 API 문서                                |
 
 ### 개별 실행
 
@@ -294,15 +286,9 @@ npm run build:web
 
 최근 반영 사항:
 
-- **전체 페이지 톤앤메너·레이아웃 일관성 개선**: 검색 페이지 Arc-era CSS 클래스 제거 → --gm-\* 다크 테마로 통일, RAG-lab i18n 일관성 확보 (하드코딩 텍스트 제거), trace 레이블 i18n 처리
-- **그라디언트-미디어 다크 디자인 시스템 적용**: --gm-\* CSS 토큰, Spotify/Apple TV 스타일 다크 테마
-- **GameRecommendationCard, RecommendationPanel 컴포넌트 추가**: 게임 미디어 카드 및 슬라이딩 추천 패널 UI
-- **전체 페이지 다크 테마 적용**: /, /search, /rag-lab, /login, /admin
-- **Arc Browser 디자인 시스템 적용**: 사이드바 우선 레이아웃(240px `.arc-sidebar` + `.arc-content`), 프로스트 글래스 서피스, Arc 모션 시스템(`--ease-spring: cubic-bezier(0.32,0.72,0,1)`, 200/320/480ms), 다크모드 `[data-theme="dark"]` 글래스 블록 추가
-- **시피아 오버라이드 제거**: `globals.css`의 1019줄 세피아 팔레트 오버라이드(`--accent: #b96543`, `--text: #241915`) 전면 삭제 — Arc 토큰이 실제로 적용되도록 복원
-- **Inter 타이포그래피**: 제품 UI h1/h2/h3를 Cormorant Garamond → Inter로 전환, Cormorant는 `.display-heading` · `.editorial-hero h1` 마케팅 전용으로 격리
-- **카테고리 탭**: `.category-dot` 컬러 인디케이터 + `data-category` 속성으로 Arc 사이드바 탭 스타일 구현
-- **Arc 커맨드바 인풋**: `.text-input`을 `rgba(255,255,255,0.85)` + `blur(40px)` 글래스 사양으로 업그레이드
+- **화이트 검색 셸**: 영구 사이드바와 다크/글래스 배경을 제거하고, 텍스트·영상 검색기는 열린 형태로, 결과와 분석값은 명확한 흰 카드로 재구성
+- **단일 메뉴 드롭다운**: 일반 사용자는 검색만, 관리자는 인덱싱·코퍼스·RAG·관리·문서를 같은 메뉴 안에서 역할에 따라 확인
+- **미디어 우선 결과**: 검색된 상위 프레임 또는 로컬 영상을 첫 결과 카드의 주 시각 표면으로 표시
 - **Genkit 중앙화**: `getLiveModel()` 단일 소스(`apps/api/src/genkit.ts`)로 분산된 모델 해석 제거 — `answer.ts`, `rag-optimization.service.ts` 중복 제거
 - **O(1) LRU 캐시**: `rag-cache.service.ts`를 Map 삽입 순서 + delete-reinsert 방식으로 재작성, 선형 스캔 없이 O(1) eviction 달성
 - **충돌 방지 캐시 키**: `buildCacheKey` 구분자를 `\x00`(NUL)으로 변경해 tenantId/query 충돌 방지
@@ -443,25 +429,26 @@ FunQA는 모션을 장식이 아니라 **예산과 수명주기가 있는 시스
 
 ## 영상 QA 분석 워크스페이스
 
-`/scene-search`는 “업로드 폼 + 결과 카드 목록”에서 **영상 한 편을 검토하는 분석
-워크스페이스**로 재구성됐습니다. 백엔드는 `/v1/scenes/ingest`,
-`/v1/scenes/search`, `/v1/scenes/documents`와 문서별 `DELETE` 수명주기를 제공합니다.
+`/scene-search`는 랜딩 없이 바로 열리는 **미디어 중심 장면 검색 워크스페이스**입니다.
+일반 사용자는 관리자가 검증한 공유 코퍼스를 검색하고 결과를 볼 수 있습니다. 백엔드는
+`/v1/scenes/search`를 로그인 사용자에게, `/v1/scenes/ingest`와 문서 목록/삭제를
+관리자에게만 제공합니다.
 
 ### 화면 구조
 
-| 영역        | 내용                                                                  |
-| ----------- | --------------------------------------------------------------------- |
-| 소스 바     | 영상 선택/교체, 드래그 앤 드롭, 현재 모드 배지, 프레임 추출 진행      |
-| 플레이어    | 로컬 `<video>` 미리보기 + 근거 타임라인 마커 + 프레임 스크럽 스트립   |
-| 요약 레일   | 지표 4개 + 우선 확인할 발견 + 실제 사용 모델(디스클로저)              |
-| 컴포저      | 영상 안에서 질문(텍스트·영상·하이브리드 자동 판정)                    |
-| 결과 탭     | QA 시나리오 / 영상 분석 / 타임코드 근거                               |
-| 인덱싱 이동 | 로그인 게이트가 걸린 `/vector-index` 쓰기 경로와 저장 문서 라이브러리 |
+| 영역            | 내용                                                                 |
+| --------------- | -------------------------------------------------------------------- |
+| 검색 컴포저     | 첫 화면 텍스트 검색 + 필요할 때만 질의 영상 프레임 포함              |
+| 질의 영상       | 원본을 브라우저에 둔 채 영상 선택/교체, 프레임 추출                  |
+| 미디어 스테이지 | 로컬 `<video>` 또는 상위 검색 프레임 + 근거 타임라인과 프레임 스트립 |
+| 요약 레일       | 서버가 반환한 지표·우선 근거·모델·operation ID                       |
+| 결과 탭         | grounded/withheld 답변, 질의 프레임, 타임코드 근거                   |
+| 관리자 메뉴     | 단일 메뉴 드롭다운에서 인덱싱·코퍼스·운영 화면으로 이동              |
 
 ### 지켜야 하는 경계
 
-1. **원본 영상은 브라우저 밖으로 나가지 않습니다.** 서버로 가는 것은
-   `extractVideoFrames()`가 만든 프레임 데이터 URL뿐입니다.
+1. **질의 원본 영상은 브라우저 밖으로 나가지 않습니다.** 서버로 가는 것은
+   사용자가 프레임 검색을 켠 경우 `extractVideoFrames()`가 만든 선택 프레임뿐입니다.
 2. **없는 판정을 만들지 않습니다.** Scene API가 반환하는 QA 후보는 검토할 질문이지
    pass/fail 판정이 아닙니다. 답변은 원시 코사인 점수와 교차 문서 마진을 모두 통과할
    때만 생성하고, 부족하면 `answer.text=null`과 차단 사유를 반환합니다.
@@ -477,30 +464,29 @@ FunQA는 모션을 장식이 아니라 **예산과 수명주기가 있는 시스
 
 ### 테마
 
-라이트/다크 토글은 제거됐습니다. 근거 표면(프레임·썸네일·타임라인)이 다크 캔버스를
-전제로 설계돼 있어 두 번째 팔레트는 검증 면적만 두 배로 늘렸습니다.
-`<body data-theme="dark">`를 **서버에서** 렌더하므로 기존
-`[data-theme="dark"]` 규칙이 첫 페인트부터 적용되고, 하이드레이션 이후 테마를
-결정하던 인라인 스크립트가 만들던 라이트 플래시가 사라집니다.
+라이트/다크 토글은 제거했습니다. `<body data-theme="light">`를 서버에서 렌더링해
+흰 배경과 짙은 텍스트를 첫 페인트부터 고정합니다. 텍스트 입력과 선택형 영상 검색기는
+카드 밖에 두고, 미디어·요약·결과·관리 정보만 낮은 테두리와 그림자를 가진 흰 카드로
+그룹화합니다. 내비게이션은 화면 크기와 관계없이 헤더의 단일 드롭다운이 소유합니다.
 
 ### 쓰기 경로와 읽기 경로 분리
 
-| 경로            | 메뉴        | 역할                                                                  |
-| --------------- | ----------- | --------------------------------------------------------------------- |
-| `/vector-index` | 벡터 인덱스 | **쓰기** — 영상 업로드 → 프레임 추출 → 캐프션·임베딩 → 장면 벡터 저장 |
-| `/scene-search` | 영상 QA     | **읽기** — 저장된 장면을 검색하고 근거를 검토                         |
+| 경로            | 접근   | 역할                                                                   |
+| --------------- | ------ | ---------------------------------------------------------------------- |
+| `/vector-index` | 관리자 | **쓰기** — 영상·분석 페어 → 프레임·캡션·임베딩 → 공유 장면 코퍼스 저장 |
+| `/scene-search` | 로그인 | **읽기** — 공유 장면 코퍼스를 검색하고 근거를 검토                     |
 
-인덱싱은 원래 워크스페이스 맨 아래 접힌 패널에 숨어 있어서, 제품의 핵심 동작이 메뉴에
-드러나지 않았습니다. 지금은 전용 메뉴가 쓰기 경로를 소유합니다.
+웹 메뉴의 역할 필터는 UX 경계입니다. 실제 권한은 API의 Firebase ID token 검증과
+`requireAdmin`이 소유하며, 클라이언트가 보낸 `tenantId`는 장면 컬렉션 선택에 쓰지 않습니다.
 
 **장면 하나당 저장되는 것**: 비공개 Storage 프레임 객체·정확한 타임코드, 독립적으로
 생성한 장면 캡션, 페어링된 FunQA 분석 근거·출처, 그리고 이미지·캡션·근거를 함께 넣은
 `gemini-embedding-2` 1536차원 벡터 하나입니다.
 
 ⚠️ **별도의 벡터 DB를 두지 않습니다.** 문서·벡터는 배포 환경의
-`sceneFrames/{tenant}/scenes`(Firestore) 또는 로컬 JSON 스토어에 저장하고, 프레임은
+`sceneFrames/funqa-public/scenes`(Firestore) 또는 로컬 JSON 스토어에 저장하고, 프레임은
 비공개 Firebase Storage 객체로 분리합니다. 유사도는 서버가 같은 임베딩 공간의 문서만
-대상으로 계산합니다. 상한은 테넌트당 400장면·인제스트당 16프레임입니다.
+대상으로 계산합니다. 상한은 공유 코퍼스 400장면·인제스트당 16프레임입니다.
 
 설계 문서: [`docs/plans/designs/001-video-qa-analysis-workspace.md`](docs/plans/designs/001-video-qa-analysis-workspace.md)
 

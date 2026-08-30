@@ -11,18 +11,18 @@ packages published at
 <https://akillness.github.io/posts/viral-ui-effects-source-audit/>. Its finding
 is the reason this file exists: the four packages are not interchangeable
 decorations, they are four renderers with four different failure modes, so the
-real question is *which rendering contract can this screen afford*.
+real question is _which rendering contract can this screen afford_.
 
 ---
 
 ## 1. Job → renderer selection
 
-| Product job in FunQA | Renderer | Why it wins | Hard boundary we absorb |
-| --- | --- | --- | --- |
-| Search agent activity while a dispatch is running (`/search` Patch Desk, `/scene-search`) | `thinking-orbs` | Semantic states, deterministic static frame under reduced motion, auto-pause offscreen and on hidden tabs, pure geometry on a 2D canvas — no WebGL, no SVG filters | One RAF per visible orb, and an `aria-label` is not a live announcement |
-| The single primary control on the Patch Desk composer | `border-beam` | Mostly CSS gradients/masks; rotate variants need no canvas or WebGL at all | Every mount emits its own ID-scoped `<style>`; rotate variants ignore `prefers-reduced-motion` |
-| Premium hero call to action | **not adopted** (`metal-fx`) | — | The shared WebGL renderer stores exactly one global preset/theme, so mixed presets collide across the page; no automatic reduced motion; `ensureSharedRenderer()` throws with no internal fallback when WebGL is unavailable |
-| Spatial merge / grouped action morph | **not adopted** (`liquid-gooey`) | — | Reduced motion is only partial (observed `move`, shape evolution, and dissolve bypass `useReducedMotion`); single 0.1.0 release; no automated test script |
+| Product job in FunQA                                                                               | Renderer                         | Why it wins                                                                                                                                                        | Hard boundary we absorb                                                                                                                                                                                                      |
+| -------------------------------------------------------------------------------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Real frame extraction, scene retrieval, and admin indexing work (`/scene-search`, `/vector-index`) | `thinking-orbs`                  | Semantic states, deterministic static frame under reduced motion, auto-pause offscreen and on hidden tabs, pure geometry on a 2D canvas — no WebGL, no SVG filters | One RAF per visible orb, and an `aria-label` is not a live announcement                                                                                                                                                      |
+| The single primary search button in `/scene-search`                                                | `border-beam`                    | Mostly CSS gradients/masks; rotate variants need no canvas or WebGL at all                                                                                         | Every mount emits its own ID-scoped `<style>`; rotate variants ignore `prefers-reduced-motion`                                                                                                                               |
+| Premium hero call to action                                                                        | **not adopted** (`metal-fx`)     | —                                                                                                                                                                  | The shared WebGL renderer stores exactly one global preset/theme, so mixed presets collide across the page; no automatic reduced motion; `ensureSharedRenderer()` throws with no internal fallback when WebGL is unavailable |
+| Spatial merge / grouped action morph                                                               | **not adopted** (`liquid-gooey`) | —                                                                                                                                                                  | The current 0.2.1 release was not part of the pinned audit; image masking and blur would also compromise evidence thumbnails                                                                                                 |
 
 The two rejections are deliberate and are the reason the "improve the UI" work
 did not become "add four effects". FunQA's hero CTA and discovery cards keep
@@ -31,12 +31,12 @@ their existing CSS treatment.
 ## 2. Instance budget
 
 Declared in `apps/web/components/motion/motion-policy.ts` and enforced at
-runtime, because both adopted renderers degrade by *count*, not by presence.
+runtime, because both adopted renderers degrade by _count_, not by presence.
 
-| Surface | Budget per page | Reason |
-| --- | --- | --- |
-| `agent-orb` | 4 | Ten orbs share one phase clock but still schedule ten RAF callbacks |
-| `focus-beam` | 1 | Per-mount generated stylesheet; the audit measured ~72 KB of generated CSS text across seven mounts on the vendor demo |
+| Surface      | Budget per page | Reason                                                                                                                 |
+| ------------ | --------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `agent-orb`  | 4               | Ten orbs share one phase clock but still schedule ten RAF callbacks                                                    |
+| `focus-beam` | 1               | Per-mount generated stylesheet; the audit measured ~72 KB of generated CSS text across seven mounts on the vendor demo |
 
 Over-budget call sites do not throw and do not disappear. They render the static
 fallback and expose `data-reason="over-budget"`, so a page that unexpectedly
@@ -50,12 +50,12 @@ Non-React renderers must book against the same ledger via `acquireMotionSlot` /
 Every wrapper renders inert markup whenever it refuses to animate. Refusal is
 the default, not the exception:
 
-| `data-reason` | When |
-| --- | --- |
+| `data-reason`    | When                                                          |
+| ---------------- | ------------------------------------------------------------- |
 | `reduced-motion` | `prefers-reduced-motion: reduce`, **and** every server render |
-| `pending` | First client render, before the budget claim effect has run |
-| `over-budget` | Page already spends its budget for that surface |
-| `inactive` | The caller says the surface is not doing anything right now |
+| `pending`        | First client render, before the budget claim effect has run   |
+| `over-budget`    | Page already spends its budget for that surface               |
+| `inactive`       | The caller says the surface is not doing anything right now   |
 
 The server always renders the static variant (`getServerSnapshot` returns
 "reduced"). That keeps canvas and WebGL renderers out of prerendered markup and
@@ -75,9 +75,9 @@ The effect never owns the announcement.
 
 - Every orb is decorative: `aria-hidden="true"` on the wrapper, no `role`, no
   `aria-label`.
-- The announcement stays with the surrounding live region that already existed —
-  the `aria-live="polite"` paragraph in `search-stream-panel.tsx` and the
-  `role="status"` results region in `scene-search-client.tsx`.
+- The announcement stays with the surrounding live region in
+  `scene-search-client.tsx`: extraction uses `role="status"` and search completion
+  uses its existing polite status paragraph.
 - The focus beam wraps but never replaces the control. The `<button>` keeps its
   own label, disabled state, and focus ring; the beam's layers are
   `pointer-events: none`.
@@ -86,10 +86,10 @@ The effect never owns the announcement.
 
 Exact pins, no ranges, in `apps/web/package.json`:
 
-| Package | Pin | Audited source coordinate |
-| --- | --- | --- |
+| Package         | Pin     | Audited source coordinate                                                 |
+| --------------- | ------- | ------------------------------------------------------------------------- |
 | `thinking-orbs` | `0.3.1` | `Jakubantalik/thinking-orbs` @ `de85557ca220332586d070d8788c0e1d6e877a0d` |
-| `border-beam` | `1.3.0` | `Jakubantalik/Libraries` @ `b47ff34dbb37c6fb801cbfc195ec840c8b1924b2` |
+| `border-beam`   | `1.3.0` | `Jakubantalik/Libraries` @ `b47ff34dbb37c6fb801cbfc195ec840c8b1924b2`     |
 
 `border-beam`'s repository source had already moved to `1.4.0` while npm
 `latest` was still `1.3.0`, so features must be read from the pinned tarball,

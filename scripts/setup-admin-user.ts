@@ -1,64 +1,49 @@
 /**
- * setup-admin-user.ts
- * Seeds akillness38@gmail.com as admin in the saas-of-funqa Firebase project.
+ * Give one existing Firebase user the signed `admin` claim used by both the
+ * API and role-aware web shell.
  *
- * Usage: tsx scripts/setup-admin-user.ts
+ * Usage: ADMIN_EMAIL=user@example.com tsx scripts/setup-admin-user.ts
  */
-import * as admin from 'firebase-admin';
-import { getAuth } from 'firebase-admin/auth';
-import { getFirestore, Timestamp } from 'firebase-admin/firestore';
-import { readFileSync } from 'fs';
-import { resolve } from 'path';
+import { applicationDefault, cert, getApps, initializeApp } from "firebase-admin/app";
+import { getAuth } from "firebase-admin/auth";
+import { getFirestore, Timestamp } from "firebase-admin/firestore";
+import { readFileSync } from "node:fs";
 
-const SERVICE_ACCOUNT_PATH = resolve('./saas-of-funqa-firebase-adminsdk-fbsvc-cee18265fb.json');
-const ADMIN_EMAIL = 'akillness38@gmail.com';
+const adminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
+if (!adminEmail) throw new Error("ADMIN_EMAIL is required.");
 
-const serviceAccount = JSON.parse(readFileSync(SERVICE_ACCOUNT_PATH, 'utf8'));
-
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    projectId: 'saas-of-funqa',
-  });
+if (!getApps().length) {
+  const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT_PATH;
+  const credential = serviceAccountPath
+    ? cert(JSON.parse(readFileSync(serviceAccountPath, "utf8")))
+    : applicationDefault();
+  initializeApp({ credential, projectId: process.env.FIREBASE_PROJECT_ID ?? "saas-of-funqa" });
 }
 
 const auth = getAuth();
-const db   = getFirestore();
+const db = getFirestore();
 
 async function main() {
-  console.log(`Setting up admin user: ${ADMIN_EMAIL}`);
+  const user = await auth.getUserByEmail(adminEmail);
+  await auth.setCustomUserClaims(user.uid, { ...user.customClaims, admin: true });
+  await db
+    .collection("users")
+    .doc(user.uid)
+    .set(
+      {
+        displayName: user.displayName ?? "FunQA admin",
+        email: adminEmail,
+        role: "admin",
+        updatedAt: Timestamp.now()
+      },
+      { merge: true }
+    );
 
-  let uid: string;
-
-  try {
-    const userRecord = await auth.getUserByEmail(ADMIN_EMAIL);
-    uid = userRecord.uid;
-    console.log(`Found existing Firebase Auth user: uid=${uid}`);
-  } catch (err: any) {
-    if (err.code === 'auth/user-not-found') {
-      // Create the user so they can sign in with Google
-      const newUser = await auth.createUser({
-        email:       ADMIN_EMAIL,
-        displayName: 'akillness (Admin)',
-      });
-      uid = newUser.uid;
-      console.log(`Created new Firebase Auth user: uid=${uid}`);
-    } else {
-      throw err;
-    }
-  }
-
-  // Upsert Firestore user document with role: 'admin'
-  const userRef = db.collection('users').doc(uid);
-  await userRef.set({
-    displayName: 'akillness (Admin)',
-    email:       ADMIN_EMAIL,
-    role:        'admin',
-    lastLogin:   Timestamp.now(),
-  }, { merge: true });
-
-  console.log(`✓ Firestore users/${uid} set to role: 'admin'`);
-  console.log(`✓ ${ADMIN_EMAIL} can now log into the admin panel.`);
+  console.log(`Admin claim and profile updated for uid=${user.uid}.`);
+  console.log("The user must refresh their ID token by signing out and back in.");
 }
 
-main().catch(e => { console.error(e); process.exit(1); });
+main().catch((error: unknown) => {
+  console.error(error);
+  process.exit(1);
+});

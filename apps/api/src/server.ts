@@ -5,6 +5,7 @@ import { config, localDevelopmentOrigin } from "./config.js";
 import { AuthError, FunQAError } from "./errors.js";
 import { requireAdmin, requireAuth } from "./middleware/auth.middleware.js";
 import { registerAdminRoute } from "./routes/admin.route.js";
+import { registerAuthRoute } from "./routes/auth.route.js";
 import { registerCreatorAnalysesRoute } from "./routes/creator-analyses.route.js";
 import { registerCreatorIngestBundleRoute } from "./routes/creator-ingest-bundle.route.js";
 import { registerHealthRoute } from "./routes/health.route.js";
@@ -44,26 +45,29 @@ export function createServer() {
 
   app.use(express.json({ limit: "5mb" }));
 
-  registerHealthRoute(app);
-
-  // Tenant-scoped endpoints require authentication and bind storage access to
-  // the verified Firebase uid inside each route.
-  app.use("/v1/provider-keys", requireAuth);
-  app.use("/v1/ingest", requireAuth);
+  // Search is the only regular-user product surface. It reads the fixed,
+  // admin-managed scene corpus; all writes and operational libraries stay
+  // behind the server-side admin gate.
+  app.use("/v1/auth", requireAuth);
   app.use("/v1/search", requireAuth);
-  // Scene frames and captions are tenant-private. Bind every scene read/write
-  // endpoint to a verified Firebase user; the route replaces client tenant ids
-  // with the token uid before calling a Genkit flow.
-  app.use("/v1/scenes", requireAuth);
-  // Shared operational stores are admin-only; their payloads can name several
-  // tenant-linked records and are not end-user workspace APIs.
+  app.use("/v1/scenes/search", requireAuth);
+  app.use("/v1/scenes/ingest", requireAdmin);
+  app.use("/v1/scenes/documents", requireAdmin);
+  app.use("/v1/provider-keys", requireAdmin);
+  app.use("/v1/ingest", requireAdmin);
+  app.use("/v1/rag", requireAdmin);
   app.use("/v1/admin", requireAdmin);
+  app.use("/v1/monitoring", requireAdmin);
   app.use("/v1/wiki", requireAdmin);
   app.use("/v1/creator-ingest-bundle", requireAdmin);
   app.use("/v1/video-analyses", requireAdmin);
   app.use("/v1/monetization-guides", requireAdmin);
   app.use("/v1/monetization-sources", requireAdmin);
 
+  // Public liveness remains minimal; the detailed /v1/admin/health route passes
+  // through the admin middleware mounted above.
+  registerHealthRoute(app);
+  registerAuthRoute(app);
   registerAdminRoute(app);
   registerProviderKeyRoute(app);
   registerWikiRoute(app);

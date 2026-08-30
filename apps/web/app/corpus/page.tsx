@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { requireServerAdmin } from "@/lib/server-admin";
 import { resolveLocale, withLocale } from "../../lib/i18n";
 import { getRequestLocale } from "../../lib/i18n-server";
 import {
@@ -39,6 +40,7 @@ const RESULT_LIMIT = 30;
 export default async function CorpusPage({ searchParams }: CorpusPageProps) {
   const params = await searchParams;
   const locale = params?.lang ? resolveLocale(params.lang) : await getRequestLocale();
+  await requireServerAdmin(locale, "/corpus");
   const isKo = locale === "ko";
 
   const query = params?.q?.trim() ?? "";
@@ -161,319 +163,322 @@ export default async function CorpusPage({ searchParams }: CorpusPageProps) {
   };
 
   return (
-    <div className="vqa-corpus">
-      <header className="vqa-corpus-header">
-        <div>
-          <p className="vqa-eyebrow">{copy.eyebrow}</p>
-          <h1>{copy.title}</h1>
-          <p className="vqa-corpus-lede">{copy.lede}</p>
-        </div>
-        <dl className="vqa-corpus-provenance">
+    <>
+      <div className="vqa-corpus">
+        <header className="vqa-corpus-header">
           <div>
-            <dt>{copy.provenance}</dt>
-            <dd>{corpusMeta.source}</dd>
+            <p className="vqa-eyebrow">{copy.eyebrow}</p>
+            <h1>{copy.title}</h1>
+            <p className="vqa-corpus-lede">{copy.lede}</p>
           </div>
-          <div>
-            <dt>{copy.model}</dt>
-            <dd>
-              {corpusMeta.embeddingModel} · {corpusMeta.dimension}d
-            </dd>
-          </div>
-          <div>
-            <dt>{copy.built}</dt>
-            <dd>{corpusMeta.builtAt?.slice(0, 10) ?? "—"}</dd>
-          </div>
-          <div>
-            <dt>{copy.games}</dt>
-            <dd>
-              {corpusMeta.gameCount} · {corpusMeta.docCount} {copy.docs}
-            </dd>
-          </div>
-        </dl>
-      </header>
-
-      <p className="vqa-corpus-space-note">{copy.spaceNote}</p>
-
-      <form action="/corpus" className="vqa-corpus-controls">
-        <input name="lang" type="hidden" value={locale} />
-        <div className="vqa-corpus-search">
-          <label className="sr-only" htmlFor="corpus-q">
-            {copy.searchLabel}
-          </label>
-          <input
-            defaultValue={query}
-            id="corpus-q"
-            name="q"
-            placeholder={copy.searchPlaceholder}
-            type="search"
-          />
-          <button type="submit">{copy.submit}</button>
-        </div>
-        <div className="vqa-corpus-filters">
-          <label>
-            <span>{copy.filterGame}</span>
-            <select defaultValue={filters.game ?? ""} name="game">
-              <option value="">{copy.all}</option>
-              {corpusGames.map((game) => (
-                <option key={game.id} value={game.id}>
-                  {game.id}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
-            <span>{copy.filterGenre}</span>
-            <select defaultValue={filters.genre ?? ""} name="genre">
-              <option value="">{copy.all}</option>
-              {corpusGenres.map((genre) => (
-                <option key={genre} value={genre}>
-                  {genre}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
-            <span>{copy.filterClass}</span>
-            <select defaultValue={filters.abstractClass ?? ""} name="cls">
-              <option value="">{copy.all}</option>
-              {corpusAbstractClasses.map((cls) => (
-                <option key={cls} value={cls}>
-                  {cls}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
-            <span>{copy.filterMode}</span>
-            <select defaultValue={filters.mode ?? ""} name="mode">
-              <option value="">{copy.all}</option>
-              <option value="T">T</option>
-              <option value="P">P</option>
-            </select>
-          </label>
-          <label>
-            <span>{copy.filterKind}</span>
-            <select defaultValue={filters.kind ?? ""} name="kind">
-              <option value="">{copy.all}</option>
-              <option value="segment">segment</option>
-              <option value="event">event</option>
-            </select>
-          </label>
-          {activeFilters.length > 0 || query ? (
-            <Link className="vqa-corpus-reset" href={withLocale("/corpus", locale)}>
-              {copy.reset}
-            </Link>
-          ) : null}
-        </div>
-      </form>
-
-      {selectedGame ? (
-        <section className="vqa-corpus-game" aria-label={copy.gameTitle}>
-          <div className="vqa-corpus-game-head">
+          <dl className="vqa-corpus-provenance">
             <div>
-              <span className="vqa-section-label">{copy.gameTitle}</span>
-              <h2>{selectedGame.id}</h2>
+              <dt>{copy.provenance}</dt>
+              <dd>{corpusMeta.source}</dd>
             </div>
-            <Link className="vqa-quiet-button" href={baseParams({ game: undefined })}>
-              {copy.clearGame}
-            </Link>
-          </div>
-          <div className="vqa-corpus-game-stats">
-            <article>
-              <span>{copy.tier}</span>
-              <strong>
-                {selectedGame.tier} · {selectedGame.mode}
-              </strong>
-            </article>
-            <article>
-              <span>{copy.duration}</span>
-              <strong>{formatCorpusTimecode(selectedGame.durationSec)}</strong>
-            </article>
-            <article>
-              <span>{copy.observed}</span>
-              <strong>
-                {selectedGame.observedFraction === null
-                  ? "—"
-                  : `${Math.round(selectedGame.observedFraction * 100)}%`}
-              </strong>
-            </article>
-            <article>
-              <span>{copy.cuts}</span>
-              <strong>{selectedGame.cutCount ?? "—"}</strong>
-            </article>
-          </div>
-
-          {selectedGame.composition.length > 0 ? (
-            <div className="vqa-corpus-composition">
-              <span className="vqa-section-label">{copy.composition}</span>
-              <ul>
-                {selectedGame.composition.map((entry) => (
-                  <li key={entry.abstractClass}>
-                    <span>{entry.abstractClass}</span>
-                    <div>
-                      <div
-                        style={{
-                          width: `${Math.min(100, Math.round((entry.shareOfDuration ?? 0) * 100))}%`
-                        }}
-                      />
-                    </div>
-                    <small>
-                      {Math.round((entry.shareOfDuration ?? 0) * 100)}% · {entry.segmentCount}
-                    </small>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-
-          {selectedGame.persona.length > 0 ? (
-            <div className="vqa-corpus-persona">
-              <span className="vqa-section-label">
-                {copy.persona} ({selectedGame.personaConfidence})
-              </span>
-              <ul>
-                {selectedGame.persona.map((entry) => (
-                  <li key={entry.persona}>
-                    <strong>{entry.persona}</strong>
-                    <em>{entry.score === null ? "—" : entry.score.toFixed(2)}</em>
-                    <p>{entry.drivers.join(" · ")}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-
-          {selectedGame.diagnostics ? (
-            <div className="vqa-corpus-diagnostics">
-              <span className="vqa-section-label">{copy.diagnostics}</span>
-              <dl>
-                <div>
-                  <dt>firstActionBeat</dt>
-                  <dd>{formatCorpusTimecode(selectedGame.diagnostics.firstActionBeatSec)}</dd>
-                </div>
-                <div>
-                  <dt>climaxPosition</dt>
-                  <dd>
-                    {selectedGame.diagnostics.climaxPositionPct === null
-                      ? "—"
-                      : `${Math.round(selectedGame.diagnostics.climaxPositionPct * 100)}%`}
-                  </dd>
-                </div>
-                <div>
-                  <dt>restIntervals</dt>
-                  <dd>{selectedGame.diagnostics.restIntervalCount ?? "—"}</dd>
-                </div>
-                <div>
-                  <dt>meanCuts/s</dt>
-                  <dd>{selectedGame.diagnostics.meanCutsPerSec ?? "—"}</dd>
-                </div>
-              </dl>
-              {selectedGame.diagnostics.flags.length > 0 ? (
-                <p className="vqa-corpus-flags">
-                  <span>{copy.flagsLabel}</span>
-                  {selectedGame.diagnostics.flags.join(" · ")}
-                </p>
-              ) : null}
-            </div>
-          ) : null}
-
-          {selectedGame.rationale ? (
-            <details className="vqa-corpus-rationale">
-              <summary>{copy.rationale}</summary>
-              <p>{selectedGame.rationale}</p>
-            </details>
-          ) : null}
-        </section>
-      ) : null}
-
-      {similar.length > 0 && seedDoc ? (
-        <section className="vqa-corpus-similar" aria-label={copy.similarTitle}>
-          <div className="vqa-corpus-similar-head">
             <div>
-              <span className="vqa-section-label">{copy.similarTitle}</span>
-              <p>
-                {copy.similarSeed}: <strong>{seedDoc.id}</strong> · {copy.similarNote}
-              </p>
+              <dt>{copy.model}</dt>
+              <dd>
+                {corpusMeta.embeddingModel} · {corpusMeta.dimension}d
+              </dd>
             </div>
-            <Link className="vqa-quiet-button" href={baseParams({ similar: undefined })}>
-              ✕
-            </Link>
+            <div>
+              <dt>{copy.built}</dt>
+              <dd>{corpusMeta.builtAt?.slice(0, 10) ?? "—"}</dd>
+            </div>
+            <div>
+              <dt>{copy.games}</dt>
+              <dd>
+                {corpusMeta.gameCount} · {corpusMeta.docCount} {copy.docs}
+              </dd>
+            </div>
+          </dl>
+        </header>
+
+        <p className="vqa-corpus-space-note">{copy.spaceNote}</p>
+
+        <form action="/corpus" className="vqa-corpus-controls">
+          <input name="lang" type="hidden" value={locale} />
+          <div className="vqa-corpus-search">
+            <label className="sr-only" htmlFor="corpus-q">
+              {copy.searchLabel}
+            </label>
+            <input
+              defaultValue={query}
+              id="corpus-q"
+              name="q"
+              placeholder={copy.searchPlaceholder}
+              type="search"
+            />
+            <button type="submit">{copy.submit}</button>
           </div>
-          <ol>
-            {similar.map((hit) => (
-              <li key={hit.doc.id}>
-                <span className="vqa-corpus-sim-score">{(hit.similarity * 100).toFixed(1)}%</span>
-                <span className="vqa-corpus-sim-body">
-                  <strong>
-                    {hit.doc.videoId} · {formatCorpusTimecode(hit.doc.startSec)}
-                  </strong>
-                  <p>{hit.doc.text}</p>
-                </span>
-              </li>
-            ))}
-          </ol>
-        </section>
-      ) : null}
+          <div className="vqa-corpus-filters">
+            <label>
+              <span>{copy.filterGame}</span>
+              <select defaultValue={filters.game ?? ""} name="game">
+                <option value="">{copy.all}</option>
+                {corpusGames.map((game) => (
+                  <option key={game.id} value={game.id}>
+                    {game.id}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              <span>{copy.filterGenre}</span>
+              <select defaultValue={filters.genre ?? ""} name="genre">
+                <option value="">{copy.all}</option>
+                {corpusGenres.map((genre) => (
+                  <option key={genre} value={genre}>
+                    {genre}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              <span>{copy.filterClass}</span>
+              <select defaultValue={filters.abstractClass ?? ""} name="cls">
+                <option value="">{copy.all}</option>
+                {corpusAbstractClasses.map((cls) => (
+                  <option key={cls} value={cls}>
+                    {cls}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              <span>{copy.filterMode}</span>
+              <select defaultValue={filters.mode ?? ""} name="mode">
+                <option value="">{copy.all}</option>
+                <option value="T">T</option>
+                <option value="P">P</option>
+              </select>
+            </label>
+            <label>
+              <span>{copy.filterKind}</span>
+              <select defaultValue={filters.kind ?? ""} name="kind">
+                <option value="">{copy.all}</option>
+                <option value="segment">segment</option>
+                <option value="event">event</option>
+              </select>
+            </label>
+            {activeFilters.length > 0 || query ? (
+              <Link className="vqa-corpus-reset" href={withLocale("/corpus", locale)}>
+                {copy.reset}
+              </Link>
+            ) : null}
+          </div>
+        </form>
 
-      <section className="vqa-corpus-results" aria-label={copy.results}>
-        <div className="vqa-corpus-results-head">
-          <h2>{query ? copy.results : copy.listing}</h2>
-          <span>{hits.length}</span>
-        </div>
+        {selectedGame ? (
+          <section className="vqa-corpus-game" aria-label={copy.gameTitle}>
+            <div className="vqa-corpus-game-head">
+              <div>
+                <span className="vqa-section-label">{copy.gameTitle}</span>
+                <h2>{selectedGame.id}</h2>
+              </div>
+              <Link className="vqa-quiet-button" href={baseParams({ game: undefined })}>
+                {copy.clearGame}
+              </Link>
+            </div>
+            <div className="vqa-corpus-game-stats">
+              <article>
+                <span>{copy.tier}</span>
+                <strong>
+                  {selectedGame.tier} · {selectedGame.mode}
+                </strong>
+              </article>
+              <article>
+                <span>{copy.duration}</span>
+                <strong>{formatCorpusTimecode(selectedGame.durationSec)}</strong>
+              </article>
+              <article>
+                <span>{copy.observed}</span>
+                <strong>
+                  {selectedGame.observedFraction === null
+                    ? "—"
+                    : `${Math.round(selectedGame.observedFraction * 100)}%`}
+                </strong>
+              </article>
+              <article>
+                <span>{copy.cuts}</span>
+                <strong>{selectedGame.cutCount ?? "—"}</strong>
+              </article>
+            </div>
 
-        {hits.length === 0 ? (
-          <p className="vqa-corpus-empty">{copy.noResults}</p>
-        ) : (
-          <ol className="vqa-corpus-list">
-            {hits.map((hit) => (
-              <li key={hit.doc.id}>
-                <div className="vqa-corpus-row-head">
-                  <Link
-                    className="vqa-corpus-game-link"
-                    href={baseParams({ game: hit.doc.videoId, similar: undefined })}
-                  >
-                    {hit.doc.videoId}
-                  </Link>
-                  <span className="vqa-corpus-time">
-                    {formatCorpusTimecode(hit.doc.startSec)}–{formatCorpusTimecode(hit.doc.endSec)}
-                  </span>
-                  {hit.doc.abstractClasses.map((cls) => (
-                    <Link
-                      className={`vqa-corpus-class vqa-corpus-class--${cls.toLowerCase()}`}
-                      href={baseParams({ cls, similar: undefined })}
-                      key={cls}
-                    >
-                      {cls}
-                    </Link>
+            {selectedGame.composition.length > 0 ? (
+              <div className="vqa-corpus-composition">
+                <span className="vqa-section-label">{copy.composition}</span>
+                <ul>
+                  {selectedGame.composition.map((entry) => (
+                    <li key={entry.abstractClass}>
+                      <span>{entry.abstractClass}</span>
+                      <div>
+                        <div
+                          style={{
+                            width: `${Math.min(100, Math.round((entry.shareOfDuration ?? 0) * 100))}%`
+                          }}
+                        />
+                      </div>
+                      <small>
+                        {Math.round((entry.shareOfDuration ?? 0) * 100)}% · {entry.segmentCount}
+                      </small>
+                    </li>
                   ))}
-                  <span className="vqa-corpus-kind">
-                    {hit.doc.mode}/{hit.doc.kind}
-                  </span>
-                  {hasCorpusVector(hit.doc.id) ? (
-                    <Link
-                      className="vqa-corpus-similar-cta"
-                      href={baseParams({ similar: hit.doc.id })}
-                    >
-                      {copy.similarCta}
-                    </Link>
-                  ) : null}
-                </div>
-                <p className="vqa-corpus-text">{hit.doc.text}</p>
-                {hit.matchedTerms.length > 0 ? (
-                  <div className="vqa-corpus-match">
-                    <div className="vqa-corpus-score-bar">
-                      <div style={{ width: `${Math.round(hit.relativeScore * 100)}%` }} />
-                    </div>
-                    <small>
-                      {copy.matched}: {hit.matchedTerms.join(", ")}
-                    </small>
+                </ul>
+              </div>
+            ) : null}
+
+            {selectedGame.persona.length > 0 ? (
+              <div className="vqa-corpus-persona">
+                <span className="vqa-section-label">
+                  {copy.persona} ({selectedGame.personaConfidence})
+                </span>
+                <ul>
+                  {selectedGame.persona.map((entry) => (
+                    <li key={entry.persona}>
+                      <strong>{entry.persona}</strong>
+                      <em>{entry.score === null ? "—" : entry.score.toFixed(2)}</em>
+                      <p>{entry.drivers.join(" · ")}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
+            {selectedGame.diagnostics ? (
+              <div className="vqa-corpus-diagnostics">
+                <span className="vqa-section-label">{copy.diagnostics}</span>
+                <dl>
+                  <div>
+                    <dt>firstActionBeat</dt>
+                    <dd>{formatCorpusTimecode(selectedGame.diagnostics.firstActionBeatSec)}</dd>
                   </div>
+                  <div>
+                    <dt>climaxPosition</dt>
+                    <dd>
+                      {selectedGame.diagnostics.climaxPositionPct === null
+                        ? "—"
+                        : `${Math.round(selectedGame.diagnostics.climaxPositionPct * 100)}%`}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>restIntervals</dt>
+                    <dd>{selectedGame.diagnostics.restIntervalCount ?? "—"}</dd>
+                  </div>
+                  <div>
+                    <dt>meanCuts/s</dt>
+                    <dd>{selectedGame.diagnostics.meanCutsPerSec ?? "—"}</dd>
+                  </div>
+                </dl>
+                {selectedGame.diagnostics.flags.length > 0 ? (
+                  <p className="vqa-corpus-flags">
+                    <span>{copy.flagsLabel}</span>
+                    {selectedGame.diagnostics.flags.join(" · ")}
+                  </p>
                 ) : null}
-              </li>
-            ))}
-          </ol>
-        )}
-      </section>
-    </div>
+              </div>
+            ) : null}
+
+            {selectedGame.rationale ? (
+              <details className="vqa-corpus-rationale">
+                <summary>{copy.rationale}</summary>
+                <p>{selectedGame.rationale}</p>
+              </details>
+            ) : null}
+          </section>
+        ) : null}
+
+        {similar.length > 0 && seedDoc ? (
+          <section className="vqa-corpus-similar" aria-label={copy.similarTitle}>
+            <div className="vqa-corpus-similar-head">
+              <div>
+                <span className="vqa-section-label">{copy.similarTitle}</span>
+                <p>
+                  {copy.similarSeed}: <strong>{seedDoc.id}</strong> · {copy.similarNote}
+                </p>
+              </div>
+              <Link className="vqa-quiet-button" href={baseParams({ similar: undefined })}>
+                ✕
+              </Link>
+            </div>
+            <ol>
+              {similar.map((hit) => (
+                <li key={hit.doc.id}>
+                  <span className="vqa-corpus-sim-score">{(hit.similarity * 100).toFixed(1)}%</span>
+                  <span className="vqa-corpus-sim-body">
+                    <strong>
+                      {hit.doc.videoId} · {formatCorpusTimecode(hit.doc.startSec)}
+                    </strong>
+                    <p>{hit.doc.text}</p>
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ) : null}
+
+        <section className="vqa-corpus-results" aria-label={copy.results}>
+          <div className="vqa-corpus-results-head">
+            <h2>{query ? copy.results : copy.listing}</h2>
+            <span>{hits.length}</span>
+          </div>
+
+          {hits.length === 0 ? (
+            <p className="vqa-corpus-empty">{copy.noResults}</p>
+          ) : (
+            <ol className="vqa-corpus-list">
+              {hits.map((hit) => (
+                <li key={hit.doc.id}>
+                  <div className="vqa-corpus-row-head">
+                    <Link
+                      className="vqa-corpus-game-link"
+                      href={baseParams({ game: hit.doc.videoId, similar: undefined })}
+                    >
+                      {hit.doc.videoId}
+                    </Link>
+                    <span className="vqa-corpus-time">
+                      {formatCorpusTimecode(hit.doc.startSec)}–
+                      {formatCorpusTimecode(hit.doc.endSec)}
+                    </span>
+                    {hit.doc.abstractClasses.map((cls) => (
+                      <Link
+                        className={`vqa-corpus-class vqa-corpus-class--${cls.toLowerCase()}`}
+                        href={baseParams({ cls, similar: undefined })}
+                        key={cls}
+                      >
+                        {cls}
+                      </Link>
+                    ))}
+                    <span className="vqa-corpus-kind">
+                      {hit.doc.mode}/{hit.doc.kind}
+                    </span>
+                    {hasCorpusVector(hit.doc.id) ? (
+                      <Link
+                        className="vqa-corpus-similar-cta"
+                        href={baseParams({ similar: hit.doc.id })}
+                      >
+                        {copy.similarCta}
+                      </Link>
+                    ) : null}
+                  </div>
+                  <p className="vqa-corpus-text">{hit.doc.text}</p>
+                  {hit.matchedTerms.length > 0 ? (
+                    <div className="vqa-corpus-match">
+                      <div className="vqa-corpus-score-bar">
+                        <div style={{ width: `${Math.round(hit.relativeScore * 100)}%` }} />
+                      </div>
+                      <small>
+                        {copy.matched}: {hit.matchedTerms.join(", ")}
+                      </small>
+                    </div>
+                  ) : null}
+                </li>
+              ))}
+            </ol>
+          )}
+        </section>
+      </div>
+    </>
   );
 }

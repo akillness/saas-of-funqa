@@ -87,8 +87,8 @@ const functionEnv = {
   GEMINI_MODEL_ID: process.env.FUNCTIONS_GEMINI_MODEL_ID ?? PRODUCTION_GENERATION_MODEL_ID,
   CORS_ALLOWED_ORIGINS: process.env.FUNCTIONS_CORS_ALLOWED_ORIGINS ?? PRODUCTION_CORS_ORIGINS,
   // FIREBASE_* names are reserved by the Functions dotenv loader.
-  SCENE_STORAGE_BUCKET:
-    process.env.FUNCTIONS_SCENE_STORAGE_BUCKET ?? PRODUCTION_STORAGE_BUCKET,
+  SCENE_STORAGE_BUCKET: process.env.FUNCTIONS_SCENE_STORAGE_BUCKET ?? PRODUCTION_STORAGE_BUCKET,
+  SCENE_TENANT_ID: process.env.FUNCTIONS_SCENE_TENANT_ID ?? "funqa-public",
   // Admin identity is deployment-owned rather than committed. Use a custom
   // Firebase admin claim when this explicit allowlist is omitted.
   ADMIN_EMAILS: process.env.FUNCTIONS_ADMIN_EMAILS,

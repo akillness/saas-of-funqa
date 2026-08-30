@@ -92,6 +92,9 @@ export const config = {
   sceneStorePath:
     process.env.SCENE_STORE_PATH ??
     (isFirebaseRuntime() ? "firestore" : path.join(runtimeRoot, ".runtime", "scene-store.json")),
+  // One admin-managed corpus backs every authenticated search user. Client
+  // tenant ids never select another scene collection.
+  sceneTenantId: process.env.SCENE_TENANT_ID ?? "funqa-public",
   firebaseServiceAccountPath:
     process.env.FIREBASE_SERVICE_ACCOUNT_PATH ??
     path.join(runtimeRoot, "saas-of-funqa-firebase-adminsdk-fbsvc-cee18265fb.json"),
@@ -156,6 +159,9 @@ export function validateConfig(): void {
     config.sceneAnswerMinDocumentMargin > 1
   ) {
     throw new Error("SCENE_ANSWER_MIN_DOCUMENT_MARGIN must be between 0 and 1.");
+  }
+  if (!/^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$/.test(config.sceneTenantId)) {
+    throw new Error("SCENE_TENANT_ID must be a safe Firestore identifier.");
   }
   if (config.disableAuth && isFirebaseRuntime() && !isFirebaseEmulatorRuntime()) {
     throw new Error("DISABLE_AUTH cannot be enabled in a deployed Firebase runtime.");

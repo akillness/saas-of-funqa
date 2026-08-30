@@ -205,99 +205,6 @@ export const enMessages = {
       captionModelUnknown: "caption model: pending"
     }
   },
-  home: {
-    eyebrow: "All-Knowledge AI Search",
-    title: "Search Every Knowledge Surface with Grounded AI",
-    lede: "FunQA turns documents, games, films, videos, citations, and graph evidence into one inspectable AI search engine.",
-    primaryAction: "Start Searching",
-    secondaryAction: "API Docs",
-    embedLabel: "Default hosted embedding",
-    verifiedLabel: "Verified 2026-04-13",
-    embedNote:
-      "Google's latest Gemini embeddings docs expose `gemini-embedding-2-preview` as the multimodal path, while smoke tests stay on the deterministic local hash backend.",
-    docsIndexed: "docs indexed",
-    chunksLive: "chunks live",
-    systemShapeLabel: "Live system shape",
-    systemShape: [
-      "Server-side secret boundary with encrypted provider keys",
-      "Modular RAG flow split into testable process units",
-      "Search/admin/docs shells prepared for App Hosting rollout"
-    ],
-    surfaces: [
-      {
-        href: "/search?source=games",
-        label: "Games Discovery",
-        kicker: "Games",
-        text: "Track games you have played and games you want to try with AI-powered search.",
-        cta: "Search Games"
-      },
-      {
-        href: "/search?source=movies",
-        label: "Movie Database",
-        kicker: "Movies",
-        text: "Discover films and manage your watch history with grounded AI retrieval.",
-        cta: "Search Movies"
-      },
-      {
-        href: "/search?source=videos",
-        label: "Content Archive",
-        kicker: "Videos",
-        text: "Archive creator media and surface relevant clips, summaries, and insights with AI retrieval.",
-        cta: "Search Videos"
-      }
-    ],
-    processEyebrow: "AI Pipeline",
-    processTitle:
-      "Media content flows through AI-powered stages for accurate search and retrieval.",
-    pipeline: [
-      {
-        label: "Index",
-        text: "media titles, metadata, and descriptions are ingested and normalized"
-      },
-      {
-        label: "Embed",
-        text: "content is embedded with `gemini-embedding-2-preview` for semantic search"
-      },
-      {
-        label: "Retrieve",
-        text: "semantic and lexical signals are fused for accurate media retrieval"
-      },
-      {
-        label: "Answer",
-        text: "final responses cite specific media entries instead of generating freely"
-      }
-    ],
-    whyEyebrow: "Why the UI changed",
-    whyTitle: "Recent AI products converge on one main task surface plus one context rail.",
-    whyBody:
-      "Search borrows the cited-answer density of Perplexity, admin keeps the restrained hierarchy common in modern AI ops consoles, and docs stay code-first in the style of OpenAI and Gemini references.",
-    whyChips: [
-      "Sticky query composer",
-      "Context inspector",
-      "Quiet KPI deck",
-      "Code-first docs rail"
-    ],
-    visitorPaths: [
-      {
-        href: "/search",
-        eyebrow: "First visit",
-        title: "Start with search",
-        body: "Ask one question across documents, media, and evidence graphs to see what FunQA can prove."
-      },
-      {
-        href: "/docs",
-        eyebrow: "Study the contract",
-        title: "Read API docs",
-        body: "Inspect the data and response contract behind grounded search results."
-      },
-      {
-        href: "/rag-lab",
-        eyebrow: "Open the lab",
-        title: "Verify in RAG Lab",
-        body: "Review indexing, embedding, retrieval, reranking, and answer assembly as an operator."
-      }
-    ]
-  },
   admin: {
     eyebrow: "Admin",
     title: "Live runtime observations",
@@ -307,7 +214,7 @@ export const enMessages = {
     title: "API Docs",
     navLabel: "API sections",
     notesTitle: "Reference Notes",
-    eyebrow: "Public API Docs",
+    eyebrow: "Admin API Reference",
     heroTitle: "Authenticate, index uploaded video, and retrieve grounded scene evidence.",
     lede: "Firebase identity owns the workspace boundary. Genkit captions uploaded frames, embeddings index them, and every scene operation returns runtime provenance.",
     sections: [
@@ -321,40 +228,40 @@ export const enMessages = {
     overviewBody:
       "The scene API accepts sampled video frames, generates captions and QA review candidates through Genkit, stores same-space embeddings, and returns evidence with operation IDs.",
     authBody:
-      "Send a Firebase ID token. The server derives tenant ownership from the verified uid and ignores client-supplied tenant identifiers.",
+      "Send a Firebase ID token. Read-only scene search uses the fixed admin-managed corpus; ingest and operational endpoints additionally require an admin role.",
     quickstartSteps: [
       "Sign in with Google and obtain a Firebase ID token.",
-      "Sample representative JPEG frames from the uploaded video and post them to /v1/scenes/ingest.",
-      "Search the authenticated scene index by text, query frames, or both."
+      "As an admin, sample representative JPEG frames and post paired video-analysis evidence to /v1/scenes/ingest.",
+      "As any signed-in user, search the reviewed shared corpus by text, query frames, or both."
     ],
     endpointsTable: {
       method: "Method",
       path: "Path",
       purpose: "Purpose",
       rows: [
-        [
-          "GET",
-          "/v1/health",
-          "Runtime, Genkit, model, embedding dimension, and scene-store status"
-        ],
-        ["POST", "/v1/scenes/ingest", "Caption and index uploaded video frames"],
+        ["GET", "/v1/health", "Minimal public liveness status"],
+        ["GET", "/v1/admin/health", "Admin: runtime, model, embedding dimension, and store status"],
+        ["POST", "/v1/scenes/ingest", "Admin: caption and index paired video-analysis frames"],
         ["POST", "/v1/scenes/search", "Search indexed scenes with text, frames, or a hybrid query"],
-        ["GET", "/v1/scenes/documents", "List documents owned by the authenticated uid"],
+        ["GET", "/v1/scenes/documents", "Admin: list shared corpus documents"],
         [
           "DELETE",
           "/v1/scenes/documents/:documentId",
-          "Delete an indexed document owned by the authenticated uid"
+          "Admin: delete an indexed shared corpus document"
         ],
-        ["GET", "/v1/monitoring/summary", "Read instance-scoped request observations"],
-        ["POST", "/v1/rag/inspect", "Inspect the authenticated retrieval pipeline"]
+        ["GET", "/v1/monitoring/summary", "Admin: read instance-scoped request observations"],
+        ["POST", "/v1/rag/inspect", "Admin: inspect the authenticated retrieval pipeline"]
       ]
     },
     errorsBody:
       "Validation errors return field-level messages. Missing authentication returns 401/403. Genkit generation outages return 503 without storing template evidence.",
     limitsBody:
-      "Scene ingestion accepts up to 16 frames per request under the 5 MB JSON body limit. Server-side rate limits apply per authenticated workspace.",
+      "Admin-only scene ingestion accepts up to 16 frames per request under the 5 MB JSON body limit. Server-side rate limits apply to the shared corpus.",
     notes: [
-      { label: "Auth", text: "Firebase ID token required for every scene and RAG workspace API." },
+      {
+        label: "Auth",
+        text: "Scene search requires sign-in; corpus writes and operations additionally require admin."
+      },
       {
         label: "Grounding",
         text: "QA candidates are review prompts, never generated pass/fail verdicts."
@@ -370,7 +277,8 @@ export const enMessages = {
     continueBody:
       "Workspace login unlocks saved searches, grounded citations, admin controls, and audit-aware provider key actions.",
     continueButton: "Continue With Google",
-    continueNote: "Firebase Auth scopes uploaded scenes to your verified workspace.",
+    continueNote:
+      "Firebase Auth verifies search access; the server keeps corpus mutation admin-only.",
     trustTitle: "Trust boundary",
     trustItems: [
       "You need a Google account allowed by workspace policy.",

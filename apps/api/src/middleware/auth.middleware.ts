@@ -1,15 +1,28 @@
 import type { NextFunction, Request, Response } from "express";
 import { getAuth } from "firebase-admin/auth";
+import type { DecodedIdToken } from "firebase-admin/auth";
 import { config } from "../config.js";
 import { getFirebaseApp } from "../firebase.js";
 
 export interface AuthenticatedRequest extends Request {
   uid?: string;
   email?: string;
+  isAdmin?: boolean;
+}
+
+function hasAdminRole(decoded: DecodedIdToken): boolean {
+  const adminEmails = process.env.ADMIN_EMAILS
+    ? process.env.ADMIN_EMAILS.split(",").map((email) => email.trim().toLowerCase())
+    : [];
+  const isAdminByEmail =
+    decoded.email_verified === true &&
+    Boolean(decoded.email && adminEmails.includes(decoded.email.toLowerCase()));
+  return isAdminByEmail || decoded.admin === true;
 }
 
 export async function requireAuth(req: Request, res: Response, next: NextFunction): Promise<void> {
   if (config.disableAuth) {
+    (req as AuthenticatedRequest).isAdmin = true;
     next();
     return;
   }
@@ -25,6 +38,7 @@ export async function requireAuth(req: Request, res: Response, next: NextFunctio
     const authReq = req as AuthenticatedRequest;
     authReq.uid = decoded.uid;
     authReq.email = decoded.email;
+    authReq.isAdmin = hasAdminRole(decoded);
     next();
   } catch (e) {
     console.warn("[auth] verifyIdToken failed:", e instanceof Error ? e.message : e);
@@ -34,6 +48,7 @@ export async function requireAuth(req: Request, res: Response, next: NextFunctio
 
 export async function requireAdmin(req: Request, res: Response, next: NextFunction): Promise<void> {
   if (config.disableAuth) {
+    (req as AuthenticatedRequest).isAdmin = true;
     next();
     return;
   }
@@ -46,16 +61,11 @@ export async function requireAdmin(req: Request, res: Response, next: NextFuncti
   const token = authHeader.slice(7);
   try {
     const decoded = await getAuth(getFirebaseApp()).verifyIdToken(token);
-    const adminEmails = process.env.ADMIN_EMAILS
-      ? process.env.ADMIN_EMAILS.split(",").map((e) => e.trim().toLowerCase())
-      : [];
-    const isAdminByEmail = decoded.email && adminEmails.includes(decoded.email.toLowerCase());
-    const isAdminByClaim = decoded.admin === true;
-
-    if (isAdminByEmail || isAdminByClaim) {
+    if (hasAdminRole(decoded)) {
       const authReq = req as AuthenticatedRequest;
       authReq.uid = decoded.uid;
       authReq.email = decoded.email;
+      authReq.isAdmin = true;
       next();
     } else {
       res.status(403).json({ error: "Forbidden", message: "Admin role required." });

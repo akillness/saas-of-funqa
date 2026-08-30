@@ -139,14 +139,23 @@ export function VectorIndexClient({ t, loginHref, searchHref }: VectorIndexClien
           video: { filename: file.name, durationSec: extracted.durationSec },
           maxFrames: requestedFrameCount
         });
-        if (extracted.frames.length !== verified.frames.length) {
+        const provisionalMatchesVerified =
+          extracted.frames.length === verified.frames.length &&
+          extracted.frames.every(
+            (frame, index) =>
+              Math.abs(frame.timecodeSec - (verified.frames[index]?.timecodeSec ?? -1)) <= 0.02
+          );
+        const finalExtraction = provisionalMatchesVerified
+          ? extracted
+          : await extractVideoFrames(file, { timecodesSec: verified.timecodesSec });
+        if (finalExtraction.frames.length !== verified.frames.length) {
           throw new Error("Evidence timecodes did not map one-to-one to extracted frames.");
         }
         if (extractionRunRef.current !== runId) return;
         setAnalysisFile(nextAnalysisFile);
         setAnalysisPlan(verified);
-        setFrames(extracted.frames);
-        setDurationSec(extracted.durationSec);
+        setFrames(finalExtraction.frames);
+        setDurationSec(finalExtraction.durationSec);
         setTitle((current) => current.trim() || verified.video.id);
       } catch (caught) {
         if (extractionRunRef.current !== runId) return;
@@ -603,10 +612,10 @@ export function VectorIndexClient({ t, loginHref, searchHref }: VectorIndexClien
           <table className="vqa-vector-table">
             <thead>
               <tr>
-                <th>{t.columnTitle}</th>
-                <th>{t.columnScenes}</th>
-                <th>{t.columnDuration}</th>
-                <th>{t.columnCreated}</th>
+                <th scope="col">{t.columnTitle}</th>
+                <th scope="col">{t.columnScenes}</th>
+                <th scope="col">{t.columnDuration}</th>
+                <th scope="col">{t.columnCreated}</th>
               </tr>
             </thead>
             <tbody>

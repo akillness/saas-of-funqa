@@ -17,3 +17,8 @@ export function resolveTenantId(req: Request, requestedTenantId?: string): strin
 
   throw new AuthError("A verified workspace identity is required.");
 }
+
+/** Bind every scene read/write to the single admin-managed search corpus. */
+export function resolveSceneTenantId(): string {
+  return SafeTenantIdSchema.parse(config.sceneTenantId);
+}

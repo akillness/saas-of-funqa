@@ -318,18 +318,23 @@ async function main() {
   );
 
   const healthResponse = await request("/v1/health");
-  assert.equal(healthResponse.status, 200, "health should succeed through the function endpoint");
-  const healthPayload = await healthResponse.json();
+  assert.equal(healthResponse.status, 200, "liveness should succeed through the function endpoint");
+  const livenessPayload = await healthResponse.json();
+  assert.deepEqual(
+    Object.keys(livenessPayload).sort(),
+    ["status", "timestamp"],
+    "public liveness must not expose operational details"
+  );
+
+  const adminHealthResponse = await request("/v1/admin/health");
+  assert.equal(adminHealthResponse.status, 200, "admin health should succeed");
+  const healthPayload = await adminHealthResponse.json();
   assert.ok(
     healthPayload.rag.storePath === "firestore" ||
       healthPayload.rag.storePath.endsWith(".runtime/rag-store.json"),
-    "functions runtime should expose a valid Firestore or local emulator store path"
+    "admin health should expose a valid Firestore or local emulator store path"
   );
-  assert.equal(
-    healthPayload.rag.documentCount,
-    null,
-    "public health should not run collection-wide count queries"
-  );
+  assert.equal(healthPayload.rag.documentCount, null);
 
   // ── Monitoring Summary Test ──────────────────────────────────
   console.log("Running Monitoring Summary smoke test...");

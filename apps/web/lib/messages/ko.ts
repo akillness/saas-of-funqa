@@ -197,84 +197,6 @@ export const koMessages = {
       captionModelUnknown: "캡션 모델: 확인 중"
     }
   },
-  home: {
-    eyebrow: "게임·영화·미디어 AI 검색",
-    title: "게임, 영화, 미디어를 AI로 정확하게 검색하세요",
-    lede: "FunQA는 게임, 영화, 영상 콘텐츠를 AI로 검색하고 출처가 분명한 답변을 제공하는 통합 검색엔진입니다.",
-    primaryAction: "검색 시작",
-    secondaryAction: "API 문서",
-    embedLabel: "기본 호스팅 임베딩",
-    verifiedLabel: "검증일 2026-04-13",
-    embedNote:
-      "Google의 최신 Gemini 임베딩 문서는 `gemini-embedding-2-preview`를 멀티모달 경로로 제시하며, smoke test는 결정론적 local hash 백엔드로 유지됩니다.",
-    docsIndexed: "색인된 문서",
-    chunksLive: "활성 청크",
-    systemShapeLabel: "실시간 시스템 현황",
-    systemShape: [
-      "암호화된 provider key를 위한 서버 측 시크릿 경계",
-      "검증 가능한 프로세스 단위로 분리된 모듈형 RAG 흐름",
-      "App Hosting 롤아웃을 고려한 검색/관리/문서 셸"
-    ],
-    surfaces: [
-      {
-        href: "/search?source=games",
-        label: "게임 탐색",
-        kicker: "게임",
-        text: "플레이한 게임, 플레이하고 싶은 게임을 AI로 관리하고 스마트하게 검색합니다.",
-        cta: "게임 검색"
-      },
-      {
-        href: "/search?source=movies",
-        label: "영화 데이터베이스",
-        kicker: "영화",
-        text: "본 영화와 시청 목록을 스마트하게 검색하고 AI로 추천받습니다.",
-        cta: "영화 검색"
-      },
-      {
-        href: "/search?source=videos",
-        label: "콘텐츠 아카이브",
-        kicker: "영상",
-        text: "미디어 콘텐츠를 저장하고 AI로 분석하여 원하는 영상을 빠르게 찾습니다.",
-        cta: "영상 검색"
-      }
-    ],
-    processEyebrow: "AI 파이프라인",
-    processTitle: "미디어 콘텐츠가 AI 단계를 거쳐 정확한 검색 결과로 변환됩니다.",
-    pipeline: [
-      { label: "인덱싱", text: "게임, 영화, 영상의 메타데이터와 설명을 수집하고 정규화합니다" },
-      {
-        label: "임베딩",
-        text: "`gemini-embedding-2-preview`로 콘텐츠를 임베딩해 의미 기반 검색을 지원합니다"
-      },
-      { label: "검색", text: "의미 유사성과 키워드 신호를 결합해 정확한 미디어 결과를 반환합니다" },
-      { label: "답변", text: "최종 답변은 특정 미디어 항목에 인용을 연결해 근거를 유지합니다" }
-    ],
-    whyEyebrow: "디자인 원칙",
-    whyTitle: "최신 AI 제품은 핵심 작업 화면과 컨텍스트 패널, 이 두 가지로 수렴하고 있습니다.",
-    whyBody:
-      "검색은 인용 중심의 답변을, 관리자 화면은 운영 신호를 우선에 두며, 문서는 코드 중심 흐름을 따릅니다.",
-    whyChips: ["고정 질의 컴포저", "컨텍스트 인스펙터", "조용한 KPI 덱", "코드 우선 문서 레일"],
-    visitorPaths: [
-      {
-        href: "/search",
-        eyebrow: "처음 방문했어요",
-        title: "검색으로 바로 시작",
-        body: "문서, 미디어, 근거 그래프를 가로지르는 질문 하나로 FunQA가 무엇을 증명할 수 있는지 확인합니다."
-      },
-      {
-        href: "/docs",
-        eyebrow: "구조를 보고 싶어요",
-        title: "API 문서와 계약 확인",
-        body: "검색 결과가 어떤 데이터와 출력 계약을 따르는지 문서 흐름으로 점검합니다."
-      },
-      {
-        href: "/rag-lab",
-        eyebrow: "실험이 궁금해요",
-        title: "RAG Lab에서 검증",
-        body: "인덱싱, 임베딩, 검색, 답변 단계를 운영자 관점에서 확인합니다."
-      }
-    ]
-  },
   admin: {
     eyebrow: "관리",
     title: "실시간 런타임 관측",
@@ -284,7 +206,7 @@ export const koMessages = {
     title: "API 문서",
     navLabel: "API 섹션",
     notesTitle: "참고 노트",
-    eyebrow: "공개 API 문서",
+    eyebrow: "관리자 API 참고 문서",
     heroTitle: "인증하고, 업로드 영상을 색인하고, 근거가 있는 장면을 검색합니다.",
     lede: "Firebase 사용자가 워크스페이스 경계를 소유합니다. Genkit이 업로드 프레임을 캡션하고, 임베딩으로 색인하며, 모든 장면 작업에 런타임 출처를 반환합니다.",
     sections: [
@@ -298,32 +220,36 @@ export const koMessages = {
     overviewBody:
       "장면 API는 샘플링한 영상 프레임을 받고, Genkit으로 캡션과 QA 검토 후보를 생성하며, 같은 임베딩 공간에 저장한 뒤 operation ID가 포함된 근거를 반환합니다.",
     authBody:
-      "Firebase ID 토큰을 전송합니다. 서버는 검증된 uid에서 테넌트 소유권을 만들며 클라이언트가 보낸 tenantId는 신뢰하지 않습니다.",
+      "Firebase ID 토큰을 전송합니다. 장면 검색은 관리자 운영 공유 코퍼스를 읽고, 인덱싱·운영 API는 관리자 역할을 추가로 요구합니다.",
     quickstartSteps: [
       "Google로 로그인하고 Firebase ID 토큰을 획득합니다.",
-      "업로드 영상에서 대표 JPEG 프레임을 추출해 /v1/scenes/ingest로 전송합니다.",
-      "인증된 장면 인덱스를 텍스트, 질의 프레임 또는 두 입력의 조합으로 검색합니다."
+      "관리자는 영상·분석 근거를 페어링하고 대표 JPEG 프레임을 /v1/scenes/ingest로 전송합니다.",
+      "모든 로그인 사용자는 검증된 공유 코퍼스를 텍스트, 질의 프레임 또는 두 입력의 조합으로 검색합니다."
     ],
     endpointsTable: {
       method: "메서드",
       path: "경로",
       purpose: "목적",
       rows: [
-        ["GET", "/v1/health", "런타임, Genkit, 모델, 임베딩 차원, 장면 저장소 상태"],
-        ["POST", "/v1/scenes/ingest", "업로드 영상 프레임을 캡션하고 색인"],
+        ["GET", "/v1/health", "최소 공개 생존 상태"],
+        ["GET", "/v1/admin/health", "관리자: 런타임, 모델, 임베딩 차원, 저장소 상태"],
+        ["POST", "/v1/scenes/ingest", "관리자: 페어링된 영상 프레임을 캡션하고 색인"],
         ["POST", "/v1/scenes/search", "텍스트, 프레임 또는 하이브리드 질의로 장면 검색"],
-        ["GET", "/v1/scenes/documents", "인증된 uid가 소유한 문서 목록"],
-        ["DELETE", "/v1/scenes/documents/:documentId", "인증된 uid가 소유한 색인 문서 삭제"],
-        ["GET", "/v1/monitoring/summary", "인스턴스 범위 요청 관측값 조회"],
-        ["POST", "/v1/rag/inspect", "인증된 검색 파이프라인 점검"]
+        ["GET", "/v1/scenes/documents", "관리자: 공유 코퍼스 문서 목록"],
+        ["DELETE", "/v1/scenes/documents/:documentId", "관리자: 공유 코퍼스 문서 삭제"],
+        ["GET", "/v1/monitoring/summary", "관리자: 인스턴스 범위 요청 관측값 조회"],
+        ["POST", "/v1/rag/inspect", "관리자: 인증된 검색 파이프라인 점검"]
       ]
     },
     errorsBody:
       "검증 오류는 필드 단위 메시지를 반환합니다. 인증 누락은 401/403, Genkit 생성 장애는 템플릿 근거를 저장하지 않고 503을 반환합니다.",
     limitsBody:
-      "장면 색인은 요청당 최대 16개 프레임과 5MB JSON 본문 제한을 적용합니다. 서버 속도 제한은 인증된 워크스페이스별로 동작합니다.",
+      "관리자 전용 장면 색인은 요청당 최대 16개 프레임과 5MB JSON 본문 제한을 적용하며 공유 코퍼스에 서버 속도 제한을 적용합니다.",
     notes: [
-      { label: "인증", text: "모든 장면·RAG 워크스페이스 API에 Firebase ID 토큰이 필요합니다." },
+      {
+        label: "인증",
+        text: "장면 검색은 로그인, 코퍼스 쓰기와 운영 API는 관리자 역할이 필요합니다."
+      },
       { label: "근거 경계", text: "QA 후보는 검토 질문이며 생성된 pass/fail 판정이 아닙니다." },
       { label: "관측성", text: "응답과 Cloud Logging이 같은 operationId를 공유합니다." }
     ]
@@ -336,7 +262,8 @@ export const koMessages = {
     continueBody:
       "워크스페이스 로그인으로 저장된 검색, 근거 기반 citation, 관리자 제어, 감사 가능한 provider key 작업이 열립니다.",
     continueButton: "Google로 계속",
-    continueNote: "Firebase Auth가 업로드 장면을 검증된 워크스페이스에 귀속합니다.",
+    continueNote:
+      "Firebase Auth가 검색 접근을 검증하고 서버가 코퍼스 변경을 관리자에게만 허용합니다.",
     trustTitle: "신뢰 경계",
     trustItems: [
       "워크스페이스 정책에서 허용된 Google 계정이 필요합니다.",

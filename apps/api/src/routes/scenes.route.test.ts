@@ -12,7 +12,7 @@ const mocks = vi.hoisted(() => ({
   loggerInfo: vi.fn(),
   loggerError: vi.fn(),
   recordRequest: vi.fn(),
-  config: { disableAuth: false }
+  config: { disableAuth: false, sceneTenantId: "funqa-public" }
 }));
 
 vi.mock("../flows/scene-ingest.js", () => ({ runSceneIngestFlow: mocks.ingest }));
@@ -75,7 +75,7 @@ beforeEach(() => {
     tookMs: 12,
     generatedAt: "2026-08-29T00:00:00.000Z"
   });
-  mocks.list.mockResolvedValue({ tenantId: "verified-user", documents: [], totalScenes: 0 });
+  mocks.list.mockResolvedValue({ tenantId: "funqa-public", documents: [], totalScenes: 0 });
   mocks.remove.mockResolvedValue({ documentId: "funqa-clip", deletedScenes: 12 });
 });
 
@@ -88,7 +88,7 @@ afterEach(async () => {
 });
 
 describe("scene route tenant ownership", () => {
-  it("replaces an ingest tenant supplied by the client with the verified uid", async () => {
+  it("replaces an ingest tenant supplied by the client with the shared corpus tenant", async () => {
     const baseUrl = await startApi();
     const response = await fetch(`${baseUrl}/v1/scenes/ingest`, {
       method: "POST",
@@ -102,14 +102,14 @@ describe("scene route tenant ownership", () => {
 
     expect(response.status).toBe(201);
     expect(mocks.ingest).toHaveBeenCalledWith(
-      expect.objectContaining({ tenantId: "verified-user" })
+      expect.objectContaining({ tenantId: "funqa-public" })
     );
     const body = await response.json();
     expect(body).toMatchObject({ executionMode: "live-genkit", durationMs: expect.any(Number) });
     expect(body.operationId).toMatch(/^[0-9a-f-]{36}$/i);
   });
 
-  it("replaces a search tenant supplied by the client with the verified uid", async () => {
+  it("replaces a search tenant supplied by the client with the shared corpus tenant", async () => {
     const baseUrl = await startApi();
     const response = await fetch(`${baseUrl}/v1/scenes/search`, {
       method: "POST",
@@ -119,7 +119,7 @@ describe("scene route tenant ownership", () => {
 
     expect(response.status).toBe(200);
     expect(mocks.search).toHaveBeenCalledWith(
-      expect.objectContaining({ tenantId: "verified-user" })
+      expect.objectContaining({ tenantId: "funqa-public" })
     );
     expect(mocks.loggerInfo).toHaveBeenCalledWith(
       "scene_operation",
@@ -127,15 +127,15 @@ describe("scene route tenant ownership", () => {
     );
   });
 
-  it("lists only documents for the verified uid", async () => {
+  it("lists documents only from the shared corpus tenant", async () => {
     const baseUrl = await startApi();
     const response = await fetch(`${baseUrl}/v1/scenes/documents?tenantId=victim-workspace`);
 
     expect(response.status).toBe(200);
-    expect(mocks.list).toHaveBeenCalledWith("verified-user");
+    expect(mocks.list).toHaveBeenCalledWith("funqa-public");
   });
 
-  it("deletes a safe document id only from the verified tenant", async () => {
+  it("deletes a safe document id only from the shared corpus tenant", async () => {
     const baseUrl = await startApi();
     const response = await fetch(`${baseUrl}/v1/scenes/documents/funqa-clip`, {
       method: "DELETE"
@@ -143,6 +143,6 @@ describe("scene route tenant ownership", () => {
 
     expect(response.status).toBe(200);
     expect(await response.json()).toEqual({ documentId: "funqa-clip", deletedScenes: 12 });
-    expect(mocks.remove).toHaveBeenCalledWith("verified-user", "funqa-clip");
+    expect(mocks.remove).toHaveBeenCalledWith("funqa-public", "funqa-clip");
   });
 });

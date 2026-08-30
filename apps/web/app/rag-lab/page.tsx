@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { requireServerAdmin } from "@/lib/server-admin";
 import { resolveLocale, withLocale } from "../../lib/i18n";
 import { getRequestLocale } from "../../lib/i18n-server";
 
@@ -9,6 +10,7 @@ type RagLabPageProps = {
 export default async function RagLabPage({ searchParams }: RagLabPageProps) {
   const params = await searchParams;
   const locale = params?.lang ? resolveLocale(params.lang) : await getRequestLocale();
+  await requireServerAdmin(locale, "/rag-lab");
   const isKo = locale === "ko";
 
   const copy = isKo
@@ -44,46 +46,48 @@ export default async function RagLabPage({ searchParams }: RagLabPageProps) {
       };
 
   return (
-    <div className="vqa-rag-empty">
-      <header className="vqa-header">
-        <div>
-          <p className="vqa-eyebrow">{copy.eyebrow}</p>
-          <h1>{copy.title}</h1>
-          <p className="vqa-lede">{copy.lede}</p>
-        </div>
-        <div className="vqa-boundary-note">
-          <span className="vqa-boundary-icon" aria-hidden="true">
-            ◇
-          </span>
-          <p>{copy.state}</p>
-        </div>
-      </header>
-
-      <section className="vqa-rag-empty-grid">
-        <article className="vqa-admin-panel">
-          <h2>{copy.state}</h2>
-          <p>{copy.body}</p>
-          <div className="vqa-home-actions">
-            <Link className="vqa-home-primary" href={withLocale("/scene-search", locale)}>
-              {copy.primary}
-            </Link>
-            <Link className="vqa-home-secondary" href={withLocale("/vector-index", locale)}>
-              {copy.secondary}
-            </Link>
+    <>
+      <div className="vqa-rag-empty">
+        <header className="vqa-header">
+          <div>
+            <p className="vqa-eyebrow">{copy.eyebrow}</p>
+            <h1>{copy.title}</h1>
+            <p className="vqa-lede">{copy.lede}</p>
           </div>
-        </article>
-        <article className="vqa-admin-panel">
-          <h2>{copy.contract}</h2>
-          <ol>
-            {copy.items.map((item, index) => (
-              <li key={item}>
-                <span>0{index + 1}</span>
-                <p>{item}</p>
-              </li>
-            ))}
-          </ol>
-        </article>
-      </section>
-    </div>
+          <div className="vqa-boundary-note">
+            <span className="vqa-boundary-icon" aria-hidden="true">
+              ◇
+            </span>
+            <p>{copy.state}</p>
+          </div>
+        </header>
+
+        <section className="vqa-rag-empty-grid">
+          <article className="vqa-admin-panel">
+            <h2>{copy.state}</h2>
+            <p>{copy.body}</p>
+            <div className="vqa-tool-actions">
+              <Link className="primary-button" href={withLocale("/scene-search", locale)}>
+                {copy.primary}
+              </Link>
+              <Link className="secondary-button" href={withLocale("/vector-index", locale)}>
+                {copy.secondary}
+              </Link>
+            </div>
+          </article>
+          <article className="vqa-admin-panel">
+            <h2>{copy.contract}</h2>
+            <ol>
+              {copy.items.map((item, index) => (
+                <li key={item}>
+                  <span>0{index + 1}</span>
+                  <p>{item}</p>
+                </li>
+              ))}
+            </ol>
+          </article>
+        </section>
+      </div>
+    </>
   );
 }

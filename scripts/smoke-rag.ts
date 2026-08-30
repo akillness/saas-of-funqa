@@ -159,11 +159,16 @@ async function main() {
     const healthResponse = await fetch(`${baseUrl}/v1/health`);
     const healthPayload = await healthResponse.json();
     assert.equal(healthResponse.status, 200, "cheap public health should stay available");
-    assert.equal(
-      healthPayload.rag.documentCount,
-      null,
-      "public health should not scan tenant collections"
+    assert.deepEqual(
+      Object.keys(healthPayload).sort(),
+      ["status", "timestamp"],
+      "public liveness must not expose operational details"
     );
+
+    const adminHealthResponse = await fetch(`${baseUrl}/v1/admin/health`);
+    const adminHealthPayload = await adminHealthResponse.json();
+    assert.equal(adminHealthResponse.status, 200);
+    assert.equal(adminHealthPayload.rag.documentCount, null);
 
     console.log("RAG smoke test passed");
     console.log(

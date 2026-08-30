@@ -697,6 +697,12 @@ export const ConsensusEvalReportSchema = z.object({
 });
 export type ConsensusEvalReport = z.infer<typeof ConsensusEvalReportSchema>;
 
+export const LivenessResponseSchema = z.object({
+  status: z.enum(["ok", "error"]),
+  timestamp: z.string()
+});
+export type LivenessResponse = z.infer<typeof LivenessResponseSchema>;
+
 export const HealthResponseSchema = z.object({
   status: z.enum(["ok", "warn", "error"]),
   timestamp: z.string(),

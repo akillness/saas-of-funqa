@@ -1,5 +1,7 @@
 # Live App Hosting UI Verification
 
+> Historical verification record. The current release redirects `/` to `/scene-search`, keeps public `/v1/health` to `status` and `timestamp`, and exposes detailed runtime health only at admin-protected `/v1/admin/health`. Counts described below document the earlier implementation and are not current behavior.
+
 ## Summary
 
 The web surface now uses live backend data when the trusted API is available. `search` calls the real `/v1/search` flow, `admin` reads `/v1/health`, `/v1/monitoring/summary`, and `/v1/admin/rag/stats`, and the home surface exposes live document and chunk counts from the health payload.

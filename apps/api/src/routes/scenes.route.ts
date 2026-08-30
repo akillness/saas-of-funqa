@@ -15,7 +15,7 @@ import { AuthError, FunQAError } from "../errors.js";
 import { runSceneIngestFlow } from "../flows/scene-ingest.js";
 import { runSceneSearchFlow } from "../flows/scene-search.js";
 import { createRateLimiter } from "../middleware/rate-limit.js";
-import { resolveTenantId } from "../middleware/tenant.middleware.js";
+import { resolveSceneTenantId } from "../middleware/tenant.middleware.js";
 import { recordRequest } from "../services/monitoring.service.js";
 import { listSceneDocuments, removeSceneDocument } from "../services/scene.service.js";
 
@@ -97,7 +97,7 @@ export function registerScenesRoute(app: Express) {
     let frames = 0;
     try {
       const payload = SceneIngestRequestSchema.parse(req.body);
-      tenantId = resolveTenantId(req, payload.tenantId);
+      tenantId = resolveSceneTenantId();
       frames = payload.frames.length;
       const result = await runSceneIngestFlow({ ...payload, tenantId });
       const parsedResponse = SceneIngestResponseSchema.safeParse({
@@ -143,7 +143,7 @@ export function registerScenesRoute(app: Express) {
     let frames = 0;
     try {
       const payload = SceneSearchRequestSchema.parse(req.body);
-      tenantId = resolveTenantId(req, payload.tenantId);
+      tenantId = resolveSceneTenantId();
       frames = payload.frames?.length ?? 0;
       const result = await runSceneSearchFlow({ ...payload, tenantId });
       const parsedResponse = SceneSearchResponseSchema.safeParse({
@@ -183,11 +183,9 @@ export function registerScenesRoute(app: Express) {
     }
   });
 
-  app.get("/v1/scenes/documents", sceneListRateLimit, async (req, res, next) => {
+  app.get("/v1/scenes/documents", sceneListRateLimit, async (_req, res, next) => {
     try {
-      const requestedTenantId =
-        typeof req.query.tenantId === "string" ? req.query.tenantId : undefined;
-      const tenantId = resolveTenantId(req, requestedTenantId);
+      const tenantId = resolveSceneTenantId();
       const result = await listSceneDocuments(tenantId);
       const parsedResponse = SceneDocumentListResponseSchema.safeParse(result);
       if (!parsedResponse.success) {
@@ -204,9 +202,7 @@ export function registerScenesRoute(app: Express) {
 
   app.delete("/v1/scenes/documents/:documentId", sceneListRateLimit, async (req, res, next) => {
     try {
-      const requestedTenantId =
-        typeof req.query.tenantId === "string" ? req.query.tenantId : undefined;
-      const tenantId = resolveTenantId(req, requestedTenantId);
+      const tenantId = resolveSceneTenantId();
       const documentId = SceneDocumentIdSchema.parse(req.params.documentId);
       const result = await removeSceneDocument(tenantId, documentId);
       const parsedResponse = SceneDocumentDeleteResponseSchema.safeParse(result);
