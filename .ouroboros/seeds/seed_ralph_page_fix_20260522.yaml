@@ -1,0 +1,27 @@
+id: seed_ralph_page_fix_20260522
+created: "2026-05-22"
+status: frozen
+goal: "Make the Ralph page work in the Next.js web app, document it in README, commit and push the change, then deploy Firebase App Hosting."
+constraints:
+  - "Do not touch secret files or Firebase service account keys."
+  - "Keep the fix aligned with the existing App Router, i18n dictionary, and sidebar navigation patterns."
+  - "Prefer a minimal route-level fix over broad visual or framework refactors."
+  - "Use the existing App Hosting deployment command from package.json."
+acceptance_criteria:
+  - "`/ralph` renders without 404 in both default and localized `?lang=ko`/`?lang=en` flows."
+  - "The sidebar navigation exposes the Ralph page."
+  - "Ralph page copy is dictionary-backed in Korean and English."
+  - "README documents the Ralph completion loop surface."
+  - "`npm run typecheck` passes."
+  - "`npm run build:web` passes."
+  - "Local browser verification confirms the page renders."
+  - "Changes are committed, pushed, and Firebase App Hosting deploy is attempted."
+verification:
+  - "npm run typecheck"
+  - "npm run build:web"
+  - "local browser check for /ralph"
+  - "git push"
+  - "npm run deploy:apphosting"
+drift_controls:
+  - "If deploy or push fails because of credentials/network, report the exact blocker and keep local commit ready."
+  - "If the existing page failure is not a missing route, preserve this seed and add a follow-up note with the newly found root cause."
