@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="620" viewBox="0 0 1400 620" role="img" aria-labelledby="title desc">
+  <title id="title">Paper B knowledge-graph-grounded RPG NPC dialogue pipeline</title>
+  <desc id="desc">Bilingual architecture diagram showing player utterance, lore graph retrieval, disclosure policy, LLM response, validation, repair, and accepted response.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 Z" fill="#264653"/></marker>
+    <marker id="redArrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 Z" fill="#C44536"/></marker>
+    <style>
+      .title{font:700 28px Arial,sans-serif;fill:#17323a}.sub{font:400 15px Arial,sans-serif;fill:#46606a}.head{font:700 17px Arial,sans-serif;fill:#17323a}.ko{font:400 13px Arial,sans-serif;fill:#46606a}.box{stroke:#264653;stroke-width:2;rx:14}.arrow{stroke:#264653;stroke-width:2.5;fill:none;marker-end:url(#arrow)}.feedback{stroke:#C44536;stroke-width:2.5;fill:none;stroke-dasharray:8 6;marker-end:url(#redArrow)}
+    </style>
+  </defs>
+  <rect width="1400" height="620" fill="#FAFCFC"/>
+  <text x="55" y="45" class="title">Paper B · Knowledge-Graph-Grounded RPG NPC Dialogue</text>
+  <text x="55" y="72" class="sub">Disclosure policy controls what an NPC may say / Disclosure policy가 NPC의 발화 가능 범위를 통제한다</text>
+  <rect x="45" y="105" width="1310" height="175" rx="22" fill="#E8EDF2"/>
+  <text x="70" y="135" class="head">Context and evidence layer · 대화 문맥 및 증거 계층</text>
+  <rect x="75" y="160" width="220" height="90" class="box" fill="#FFFFFF"/>
+  <text x="185" y="192" text-anchor="middle" class="head">Player utterance</text><text x="185" y="218" text-anchor="middle" class="ko">turn·session·quest</text>
+  <rect x="350" y="160" width="245" height="90" class="box" fill="#FFFFFF"/>
+  <text x="472" y="192" text-anchor="middle" class="head">Lore KG retriever</text><text x="472" y="218" text-anchor="middle" class="ko">subgraph·fact IDs</text>
+  <rect x="650" y="160" width="245" height="90" class="box" fill="#FFF4D8"/>
+  <text x="772" y="192" text-anchor="middle" class="head">Disclosure policy</text><text x="772" y="218" text-anchor="middle" class="ko">known·forbidden·allowed</text>
+  <rect x="950" y="160" width="245" height="90" class="box" fill="#FFFFFF"/>
+  <text x="1072" y="192" text-anchor="middle" class="head">LLM proposer</text><text x="1072" y="218" text-anchor="middle" class="ko">candidate response</text>
+  <rect x="1250" y="160" width="70" height="90" class="box" fill="#D6E4D4"/>
+  <text x="1285" y="192" text-anchor="middle" class="head">KG</text><text x="1285" y="218" text-anchor="middle" class="ko">facts</text>
+  <path d="M295 205 H345" class="arrow"/><path d="M595 205 H645" class="arrow"/><path d="M895 205 H945" class="arrow"/><path d="M1280 155 V130 H770 V155" class="arrow"/>
+  <rect x="45" y="325" width="1310" height="185" rx="22" fill="#F5F0E8"/>
+  <text x="70" y="355" class="head">Validation, repair, and memory trace · 검증·repair·기억 추적</text>
+  <rect x="110" y="385" width="250" height="90" class="box" fill="#FFFFFF"/>
+  <text x="235" y="417" text-anchor="middle" class="head">Response validator</text><text x="235" y="443" text-anchor="middle" class="ko">lore·disclosure·quest·voice</text>
+  <rect x="465" y="385" width="250" height="90" class="box" fill="#FFFFFF"/>
+  <text x="590" y="417" text-anchor="middle" class="head">Repair / reject</text><text x="590" y="443" text-anchor="middle" class="ko">bounded candidates</text>
+  <rect x="820" y="385" width="250" height="90" class="box" fill="#D6E4F0"/>
+  <text x="945" y="417" text-anchor="middle" class="head">Accepted response</text><text x="945" y="443" text-anchor="middle" class="ko">evidence-backed reply</text>
+  <rect x="1175" y="385" width="150" height="90" class="box" fill="#E6DFF0"/>
+  <text x="1250" y="417" text-anchor="middle" class="head">Trace</text><text x="1250" y="443" text-anchor="middle" class="ko">memory·cost·checks</text>
+  <path d="M1072 250 V300 H235 V380" class="arrow"/><path d="M360 430 H460" class="arrow"/><path d="M715 430 H815" class="arrow"/><path d="M1070 430 H1170" class="arrow"/>
+  <path d="M590 380 C590 305 1072 305 1072 255" class="feedback"/>
+  <text x="770" y="300" text-anchor="middle" class="ko" fill="#C44536">violation → repair or explicit rejection / 위반 → repair 또는 명시적 거절</text>
+  <text x="70" y="570" class="sub">Core claim: factual grounding and disclosure control are separate, measurable axes.</text>
+</svg>

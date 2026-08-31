@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="650" viewBox="0 0 1400 650" role="img" aria-labelledby="title desc">
+  <title id="title">Shared FunQA research trace and evaluation gate</title>
+  <desc id="desc">Bilingual diagram showing shared evidence packet, paper-specific validators, typed traces, objective evaluation, human evaluation, and claim gate.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 Z" fill="#264653"/></marker>
+    <style>
+      .title{font:700 28px Arial,sans-serif;fill:#17323a}.sub{font:400 15px Arial,sans-serif;fill:#46606a}.head{font:700 17px Arial,sans-serif;fill:#17323a}.ko{font:400 13px Arial,sans-serif;fill:#46606a}.box{stroke:#264653;stroke-width:2;rx:14}.arrow{stroke:#264653;stroke-width:2.5;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1400" height="650" fill="#FAFCFC"/>
+  <text x="55" y="45" class="title">Shared FunQA research core · 공통 연구 코어</text>
+  <text x="55" y="72" class="sub">One evidence and trace boundary, two domain validators / 하나의 증거·trace 경계, 두 개의 도메인 validator</text>
+  <rect x="60" y="110" width="1280" height="115" rx="22" fill="#E8F2EE"/>
+  <text x="85" y="142" class="head">Shared evidence packet · 공통 증거 패킷</text>
+  <rect x="105" y="160" width="250" height="45" class="box" fill="#FFFFFF"/><text x="230" y="189" text-anchor="middle" class="head">normalize / extract / chunk</text>
+  <rect x="425" y="160" width="250" height="45" class="box" fill="#FFFFFF"/><text x="550" y="189" text-anchor="middle" class="head">embed / retrieve / rerank</text>
+  <rect x="745" y="160" width="250" height="45" class="box" fill="#FFFFFF"/><text x="870" y="189" text-anchor="middle" class="head">EvidencePacket</text>
+  <rect x="1065" y="160" width="250" height="45" class="box" fill="#FFFFFF"/><text x="1190" y="189" text-anchor="middle" class="head">RunMetadata</text>
+  <path d="M355 182 H420" class="arrow"/><path d="M675 182 H740" class="arrow"/><path d="M995 182 H1060" class="arrow"/>
+  <rect x="60" y="270" width="600" height="155" rx="22" fill="#F5F0E8"/>
+  <text x="85" y="302" class="head">Paper A domain gate · Paper A 도메인 게이트</text>
+  <rect x="110" y="330" width="230" height="65" class="box" fill="#FFFFFF"/><text x="225" y="357" text-anchor="middle" class="head">World validator</text><text x="225" y="379" text-anchor="middle" class="ko">reachability·solvability</text>
+  <rect x="400" y="330" width="210" height="65" class="box" fill="#FFFFFF"/><text x="505" y="357" text-anchor="middle" class="head">A trace</text><text x="505" y="379" text-anchor="middle" class="ko">repair·commit·cost</text>
+  <path d="M870 225 V290 H225 V325" class="arrow"/><path d="M340 362 H395" class="arrow"/>
+  <rect x="740" y="270" width="600" height="155" rx="22" fill="#E8EDF2"/>
+  <text x="765" y="302" class="head">Paper B domain gate · Paper B 도메인 게이트</text>
+  <rect x="790" y="330" width="230" height="65" class="box" fill="#FFFFFF"/><text x="905" y="357" text-anchor="middle" class="head">Dialogue validator</text><text x="905" y="379" text-anchor="middle" class="ko">lore·disclosure·memory</text>
+  <rect x="1080" y="330" width="210" height="65" class="box" fill="#FFFFFF"/><text x="1185" y="357" text-anchor="middle" class="head">B trace</text><text x="1185" y="379" text-anchor="middle" class="ko">facts·policy·cost</text>
+  <path d="M870 225 V290 H905 V325" class="arrow"/><path d="M1020 362 H1075" class="arrow"/>
+  <rect x="60" y="475" width="1280" height="115" rx="22" fill="#E6DFF0"/>
+  <text x="85" y="507" class="head">Evidence gates · 증거 게이트</text>
+  <rect x="110" y="530" width="250" height="40" class="box" fill="#FFFFFF"/><text x="235" y="556" text-anchor="middle" class="head">Objective metrics</text>
+  <rect x="430" y="530" width="250" height="40" class="box" fill="#FFFFFF"/><text x="555" y="556" text-anchor="middle" class="head">Human evaluation</text>
+  <rect x="750" y="530" width="250" height="40" class="box" fill="#FFFFFF"/><text x="875" y="556" text-anchor="middle" class="head">Claim → table/figure</text>
+  <rect x="1070" y="530" width="250" height="40" class="box" fill="#FFF4D8"/><text x="1195" y="556" text-anchor="middle" class="head">Manuscript gate</text>
+  <path d="M505 425 V505 H235 V525" class="arrow"/><path d="M1185 425 V505 H555 V525" class="arrow"/><path d="M360 550 H425" class="arrow"/><path d="M680 550 H745" class="arrow"/><path d="M1000 550 H1065" class="arrow"/>
+</svg>

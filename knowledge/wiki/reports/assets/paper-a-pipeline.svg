@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="620" viewBox="0 0 1400 620" role="img" aria-labelledby="title desc">
+  <title id="title">Paper A constraint-audited interactive fiction pipeline</title>
+  <desc id="desc">Bilingual architecture diagram showing seed interpretation, FunQA retrieval, LLM proposal, grammar checks, symbolic validation, repair, and commit.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 Z" fill="#264653"/></marker>
+    <marker id="redArrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 Z" fill="#C44536"/></marker>
+    <style>
+      .title{font:700 28px Arial,sans-serif;fill:#17323a}.sub{font:400 15px Arial,sans-serif;fill:#46606a}.head{font:700 17px Arial,sans-serif;fill:#17323a}.ko{font:400 13px Arial,sans-serif;fill:#46606a}.box{stroke:#264653;stroke-width:2;rx:14}.arrow{stroke:#264653;stroke-width:2.5;fill:none;marker-end:url(#arrow)}.feedback{stroke:#C44536;stroke-width:2.5;fill:none;stroke-dasharray:8 6;marker-end:url(#redArrow)}
+    </style>
+  </defs>
+  <rect width="1400" height="620" fill="#FAFCFC"/>
+  <text x="55" y="45" class="title">Paper A · Constraint-Audited Interactive Fiction Worlds</text>
+  <text x="55" y="72" class="sub">LLM proposal is never a direct world mutation / LLM 제안은 월드 상태를 직접 변경하지 않는다</text>
+  <rect x="45" y="105" width="1310" height="170" rx="22" fill="#E8F2EE"/>
+  <text x="70" y="135" class="head">Grounded proposal layer · 근거 기반 제안 계층</text>
+  <rect x="75" y="160" width="220" height="85" class="box" fill="#FFFFFF"/>
+  <text x="185" y="191" text-anchor="middle" class="head">Story seed</text><text x="185" y="216" text-anchor="middle" class="ko">장르·plot beats·규칙</text>
+  <rect x="350" y="160" width="220" height="85" class="box" fill="#FFFFFF"/>
+  <text x="460" y="191" text-anchor="middle" class="head">Seed interpreter</text><text x="460" y="216" text-anchor="middle" class="ko">초기 WorldState 생성</text>
+  <rect x="625" y="160" width="220" height="85" class="box" fill="#FFFFFF"/>
+  <text x="735" y="191" text-anchor="middle" class="head">FunQA RAG</text><text x="735" y="216" text-anchor="middle" class="ko">lore·genre·prior state</text>
+  <rect x="900" y="160" width="220" height="85" class="box" fill="#FFFFFF"/>
+  <text x="1010" y="191" text-anchor="middle" class="head">LLM proposer</text><text x="1010" y="216" text-anchor="middle" class="ko">StoryTransformation</text>
+  <rect x="1175" y="160" width="140" height="85" class="box" fill="#FFF4D8"/>
+  <text x="1245" y="191" text-anchor="middle" class="head">Grammar</text><text x="1245" y="216" text-anchor="middle" class="ko">구조 검사</text>
+  <path d="M295 202 H345" class="arrow"/><path d="M570 202 H620" class="arrow"/><path d="M845 202 H895" class="arrow"/><path d="M1120 202 H1170" class="arrow"/>
+  <rect x="45" y="320" width="1310" height="190" rx="22" fill="#F5F0E8"/>
+  <text x="70" y="350" class="head">Semantic gate and commit layer · 의미 검증 및 커밋 계층</text>
+  <rect x="115" y="380" width="250" height="90" class="box" fill="#FFFFFF"/>
+  <text x="240" y="411" text-anchor="middle" class="head">Symbolic validator</text><text x="240" y="437" text-anchor="middle" class="ko">reachability·preconditions</text>
+  <rect x="465" y="380" width="250" height="90" class="box" fill="#FFFFFF"/>
+  <text x="590" y="411" text-anchor="middle" class="head">Repair controller</text><text x="590" y="437" text-anchor="middle" class="ko">LLM revision / deterministic</text>
+  <rect x="815" y="380" width="250" height="90" class="box" fill="#FFFFFF"/>
+  <text x="940" y="411" text-anchor="middle" class="head">Commit gate</text><text x="940" y="437" text-anchor="middle" class="ko">valid only → WorldState</text>
+  <rect x="1165" y="380" width="150" height="90" class="box" fill="#D6E4F0"/>
+  <text x="1240" y="411" text-anchor="middle" class="head">Trace</text><text x="1240" y="437" text-anchor="middle" class="ko">증거·비용·오류</text>
+  <path d="M1245 245 V300 H240 V375" class="arrow"/><path d="M365 425 H460" class="arrow"/><path d="M715 425 H810" class="arrow"/><path d="M1065 425 H1160" class="arrow"/>
+  <path d="M590 375 C590 300 1010 300 1010 250" class="feedback"/>
+  <text x="735" y="292" text-anchor="middle" class="ko" fill="#C44536">invalid → bounded repair / 실패 → 제한된 repair</text>
+  <text x="70" y="570" class="sub">Design claim: validity is measured separately for syntax, semantics, playability, and repair efficiency.</text>
+</svg>
