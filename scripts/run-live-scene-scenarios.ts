@@ -12,7 +12,9 @@ const outputPath =
 const apiBaseUrl = process.env.FUNQA_API_BASE_URL?.replace(/\/$/, "");
 const idToken = process.env.FUNQA_ID_TOKEN;
 const requestTimeoutMs = 45_000;
-const expectedApiBaseUrl = "https://saas-of-funqa--saas-of-funqa.us-east4.hosted.app";
+// The public API surface is the Functions host; the App Hosting web origin
+// serves the Next.js UI only and returns 404 for /v1/*.
+const expectedApiBaseUrl = "https://asia-northeast3-saas-of-funqa.cloudfunctions.net/api";
 
 if (apiBaseUrl !== expectedApiBaseUrl) {
   throw new Error(`FUNQA_API_BASE_URL must be ${expectedApiBaseUrl}`);

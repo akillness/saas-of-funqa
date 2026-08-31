@@ -49,7 +49,9 @@ const EXPECTED_VIDEO_IDS = [
   "soullike-nammo"
 ];
 const VALID_SOURCE_MODES = ["T", "P"];
-const EXPECTED_LIVE_API_BASE_URL = "https://saas-of-funqa--saas-of-funqa.us-east4.hosted.app";
+// The public API surface is the Functions host; the App Hosting web origin
+// serves the Next.js UI only and returns 404 for /v1/*.
+const EXPECTED_LIVE_API_BASE_URL = "https://asia-northeast3-saas-of-funqa.cloudfunctions.net/api";
 
 const failures = [];
 function fail(scope, message) {
