@@ -1,18 +1,19 @@
 #!/usr/bin/env node
 /**
  * Next.js `output: "standalone"` uses build-time static tracing (@vercel/nft) to decide
- * which node_modules files get copied into `.next/standalone/node_modules`. That tracer
- * cannot see `next/dist/server/require-hook.js`'s dynamic `require.resolve('styled-jsx/package.json')`
- * call, so `styled-jsx` is silently dropped from the standalone bundle even though Next.js
- * requires it unconditionally at server startup. In monorepos it's worse: npm may hoist
- * styled-jsx to a parent workspace's node_modules, which the standalone tracer never visits
- * at all — the failure only surfaces as a Cloud Run/production crash
- * ("Error: Cannot find module 'styled-jsx/package.json'"), not as a local `next build` error.
+ * which node_modules files get copied into `.next/standalone/node_modules`. `next.config.mjs`
+ * now sets `outputFileTracingRoot` to the monorepo root so that tracer actually walks up to
+ * wherever npm hoisted shared deps — but `next/dist/server/require-hook.js` also resolves
+ * `styled-jsx` via a runtime `require.resolve()` call that static tracing can miss regardless
+ * of tracing root, and SWC-compiled output pulls in `@swc/helpers` the same dynamic way. Both
+ * failures only surface as a Cloud Run boot crash ("Cannot find module '<pkg>'"), never as a
+ * local build error.
  *
- * This script copies the resolved styled-jsx package (wherever npm actually installed it)
- * into `.next/standalone/node_modules/styled-jsx` after every build, so the standalone
- * server can find it regardless of hoisting. See knowledge/wiki/reports/apphosting-deploy-rollout-debug.md
- * for the original incident this guards against.
+ * This script copies each resolved package (wherever npm actually installed it — repo root or
+ * apps/web) into `.next/standalone/node_modules/<pkg>` after every build, as a belt-and-suspenders
+ * safety net on top of outputFileTracingRoot. See
+ * knowledge/wiki/reports/apphosting-deploy-rollout-debug.md for the original styled-jsx incident,
+ * and this fix's own commit for the follow-up @swc/helpers incident.
  */
 import { createRequire } from "node:module";
 import { cpSync, existsSync, mkdirSync } from "node:fs";
@@ -56,6 +57,6 @@ if (!existsSync(standaloneRoot)) {
   process.exit(1);
 }
 
-for (const packageName of ["styled-jsx"]) {
+for (const packageName of ["styled-jsx", "@swc/helpers"]) {
   ensurePackageCopied(packageName);
 }
