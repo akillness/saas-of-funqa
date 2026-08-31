@@ -41,3 +41,17 @@ graphify-out/cache/
 data/*.zip
 data/video/
 data/자료 (1)/
+
+# Local tool/session scratch artifacts (not project deliverables)
+.gjc/
+.serena/
+jeo-code/
+llm-wiki/
+exports/
+border-beam.tgz
+border-beam/
+thinking-orbs.tgz
+thinking-orbs/
+ouroboros_help.txt
+ouroboros_help_wide.txt
+ouroboros_auto_help_wide.txt
